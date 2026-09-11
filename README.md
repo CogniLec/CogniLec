@@ -1,114 +1,53 @@
-# Claims Fraud Flagging Dashboard
+# Lecture Intelligence System (LIS)
 
-Real-time fraud risk scoring for insurance claims, built for TECHNOVATE Hackathon 2026 (Problem Statement 6).
-
-Claims stream through a Kafka pipeline, get scored by a rule-based engine with simple pattern detection, and surface on a live dashboard with the reasons behind every flag.
-
-## Live Demo
-
-**[simple-orchestra-website-organizations.trycloudflare.com](https://simple-orchestra-website-organizations.trycloudflare.com/)**
-
-⚠️ **Temporary link, not a permanent deployment.** The full pipeline (Kafka, MySQL, the consumer, and the dashboard) runs on a team member's own machine — this URL is a [Cloudflare Quick Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/do-more-with-tunnels/trycloudflare/) exposing it publicly. It only works while that machine is on and the tunnel process is running, and a new tunnel gets a **different** random URL — so if this link is dead, it means the demo isn't currently running, not that the project is broken. See [`docs/deployment.md`](docs/deployment.md) for how this is set up and how to run it yourself.
-
-If this link has gone dead, whoever's running the demo can bring up a fresh one with:
-```
-cloudflared tunnel --url http://localhost:8501 2>&1 | tee cloudflared.log | grep --line-buffered -o 'https://[A-Za-z0-9.-]*trycloudflare\.com'
-```
+> Point it at a classroom. It listens, figures out what's actually being taught, and turns a semester of lectures into notes, flashcards, and mock tests that get better every session.
 
 ---
 
-## Problem
+## What This Is
 
-Insurers lose significant revenue to fraudulent and inflated claims. Manual review is too slow to catch patterns across large claim volumes — by the time a reviewer spots a repeat claimant or a colluding provider, the payouts have already gone out.
+LIS is a system that records live classroom or meeting audio and turns it into structured, topic-organised study material — without ever knowing or caring *who* is speaking.
 
-## Approach
+Most transcription tools give you a wall of undifferentiated text: everything the microphone heard, in the order it heard it, with no sense of what mattered. LIS is built around a different idea: **identify the topic, not the speaker.** A relevant question from a student in the back row belongs in the notes. An off-topic aside from the lecturer does not. The system decides that by *what was said*, never by *who said it* — no voice enrolment, no speaker identification, no biometric data, anywhere.
 
-Every incoming claim is scored 0–100 by two complementary layers:
+Everything the system produces — notes, flashcards, mock tests, coverage tracking against the syllabus — accumulates coherently across a whole semester, per subject, rather than existing as disposable output from one lecture.
 
-**Rule-based checks** — evaluated on the claim alone
-- Claim amount far above the average for its category
-- Claim filed shortly after policy start date
-- Round-number claim amounts
-- Claim submitted at unusual hours
-- Claimant address far from incident or provider location
+## What We're Building
 
-**Pattern detection** — evaluated against claim history
-- Multiple claims from the same claimant within a rolling window
-- One provider recurring across many unrelated claimants
-- Claim frequency spike against a policyholder's own baseline
+A pipeline with two phases:
 
-Claims crossing the risk threshold are written to a separate alerts table with the list of triggered checks attached, so every flag is explainable.
+**Live**, while the lecture happens: audio is captured, cleaned, and transcribed in real time, with word-level timestamps.
 
-See [`docs/consumer-rule-pattern-engine.md`](docs/consumer-rule-pattern-engine.md) for the exact thresholds, weights, the research behind the design, and how the weights were calibrated against measured false-positive rates.
+**Post-session**, in the background: the transcript is embedded, segmented into topics, filtered for relevance, and synthesised into notes by a set of specialised LLM agents — each one independent, none of them chatting with each other, all of them auditable. Board photos and textbook pages get OCR'd in. Diagrams are drawn as text (Mermaid, KaTeX) where possible, retrieved from openly-licensed sources where not, and generated from scratch — never from a copyrighted reference — as a last resort.
 
-## Case Management
+The result, per subject: a searchable, cross-referenced knowledge base that knows what's been taught, what the syllabus still expects, and how to quiz you on it.
 
-A flagged claim becomes a case that moves through a status lifecycle rather than sitting as a static "flagged" record:
+### Core design decisions worth knowing up front
 
-`pending_review` → `under_investigation` → `escalated` → `cleared` / `confirmed_fraud`
+- **Topic-first, not speaker-first.** No identity is ever inferred or stored about who's talking.
+- **Two-phase architecture.** Live capture is the only real-time dependency. Everything else is durable, retryable, and re-runnable — the raw transcript is the permanent source of truth, so a bad model call or a pipeline bug never loses a lecture.
+- **Six independent LLM agents**, not a collaborative mesh: relevance filtering, note synthesis, history context, visual enrichment, question generation, syllabus extraction. Isolation is enforced structurally, not by convention.
+- **User-defined subjects**, each an isolated namespace. Topics *within* a subject are discovered automatically by clustering; the system never tries to reconcile topics *across* subjects.
+- **A separate syllabus database**, linked to the main store, so the system can track what's been covered against what's expected.
+- **Copyright handled structurally, not by policy.** The image-generation service has no parameter for an input image — a restricted picture cannot reach it because there's no field to put it in.
+- **Self-hosted GPU inference**, which changes what's affordable: dual-ASR ensembles to catch hallucination, full-transcript note synthesis instead of chunked, and — the actual long-term payoff — fine-tuning small specialist models on the system's own corrected output as it accumulates.
 
-- **Assignment** — cases are assigned to an investigator (no login/auth in this build — investigators are a simple name list, not user accounts)
-- **Notes** — investigators log timestamped notes and findings against a case
-- **Audit trail** — every status, assignment, and resolution change is logged automatically by a database trigger, independent of which app code made the change
-- **Entity tracking** — `claimants` and `providers` are tracked as running aggregates (claim count, flagged count, avg/max risk score; providers also track distinct-claimant reach), kept in sync by triggers on every incoming claim, so a repeat offender is visible immediately without an ad-hoc query
+## Documents in This Project
 
-See `db/mysql-init.sql` for the full schema and trigger definitions, or
-[`docs/schema-erd.html`](docs/schema-erd.html) for a crow's-foot ER diagram of every
-table, column, PK/FK, and cardinality (open it in a browser).
-
----
-
-## Architecture
-
-```
-Layer 1  R generator (SynthETIC + fraud archetypes)  →  claims_data.csv
-Layer 2  producer.py  →  Kafka topic: claims-stream
-Layer 3  consumer.py  →  rule checks + pattern detection  →  risk score
-Layer 4  MySQL/Postgres  →  claims, fraud_alerts, claimants/providers, case_notes, audit_log
-Layer 5  Streamlit dashboard  →  live feed, metrics, alerts panel
-```
-
-Layers 2–5 run in Docker Compose. Layer 1 runs once, offline, and is not part of the running system.
-
-## Tech Stack
-
-| Layer | Technology |
+| Document | What it covers |
 |---|---|
-| Data generation | R, SynthETIC |
-| Streaming | Apache Kafka, Zookeeper, kafka-python |
-| Processing | Python (rule engine + pattern detection) |
-| Storage | MySQL 8, containerized via Docker Compose |
-| Dashboard | Streamlit (Grafana as fallback) |
-| Orchestration | Docker Compose |
+| **Requirements Specification (SRS) v1.0** | The functional and non-functional requirements — what the system must do, organised into FR-1 through FR-7 plus NFRs, with acceptance criteria |
+| **Technical Architecture v1.0** | The system design: runtime topology, the orchestration split (Prefect / LangGraph / n8n), agent contracts, database schema, ADRs |
+| **GPU Architecture Revision v2.0** | How owned GPU capacity changes the design — ensemble ASR, consensus voting, fine-tuning as the real strategic payoff |
+| **Stack Manifest v1.1 + Addendum v2.1** | The complete open-source tool inventory across every layer — containers, databases, ML serving, observability, CI/CD — with licence flags and a tiered adoption plan |
+| **Implementation Plan v1.0** | 76 build stages across 14 blocks, each a full vertical slice with test cases, gated by 7 hard checkpoints |
 
----
+Start with the SRS if you want to know *what* the system does. Start with the Implementation Plan if you want to know *what gets built, in what order*.
 
-## Repository Structure
+## Status
 
-```
-├── data-gen/          R script and fraud archetype injection
-├── producer/          Kafka producer, replays claims_data.csv
-├── consumer/          Scoring engine — rules and pattern modules
-├── db/                Schema definitions
-├── dashboard/         Streamlit app
-├── docs/              Setup instructions, design docs, PPT assets
-└── docker-compose.yml
-```
+Architecture and planning stage. Nothing has shipped yet. **The first real milestone (Gate 1) is a two-to-four-day benchmark** measuring real classroom audio quality against several ASR models — everything else in the plan depends on that number, so it happens before any other code is written.
 
-## Getting Started
+## The One-Line Version
 
-Setup steps, prerequisites, and run order are in [INSTRUCTIONS.md](INSTRUCTIONS.md).
-
----
-
-## Why the data is synthetic
-
-Fraud labels are inherently retrospective — a claim is only confirmed fraudulent after investigation, days or weeks later. No live fraud-labeled feed exists anywhere, including inside real insurers. The standard approach in fraud-detection research is to stream a prepared dataset through the pipeline, which is exactly what this project does: the data is generated once with realistic actuarial distributions, then replayed in real time so the pipeline processes each claim as it arrives.
-
-## Scope
-
-Deliberately limited to rule-based checks and simple pattern detection, per the problem statement. Machine learning is out of scope for this build and is documented as future work.
-
-## Team
-
-Six contributors, one per layer plus integration. See repository contributors.
+A system that listens to lectures, figures out what mattered, and never has to know who was talking to do it.
