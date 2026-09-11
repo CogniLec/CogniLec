@@ -1,0 +1,5 @@
+{
+  "title": "LIS Segmentation",
+  "description": "Audio segmentation project for speaker diarization and segment labeling",
+  "label_config": "<View>\n  <Header value=\"Listen to the audio and segment it by speaker or topic.\" />\n  <Audio name=\"audio\" value=\"$audio\" />\n  <RectangleLabels name=\"segment\" toName=\"audio\">\n    <Label value=\"speaker_1\" />\n    <Label value=\"speaker_2\" />\n    <Label value=\"speaker_3\" />\n    <Label value=\"noise\" />\n    <Label value=\"silence\" />\n  </RectangleLabels>\n  <TextArea name=\"notes\" toName=\"audio\" rows=\"2\" placeholder=\"Optional notes about the segmentation...\" />\n</View>"
+}

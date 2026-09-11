@@ -1,0 +1,5 @@
+{
+  "title": "LIS Word-Level Transcription",
+  "description": "S05 Project 1 — Word-level transcription with timestamps for WER ground truth",
+  "label_config": "<View>\n  <Header value=\"Word-Level Transcription\" />\n  <Header value=\"Listen to the audio and transcribe each utterance exactly as spoken.\" />\n  <Audio name=\"audio\" value=\"$audio\" />\n  <Header value=\"Reference (ASR output — correct any errors)\" />\n  <Text name=\"asr_text\" value=\"$asr_text\" />\n  <TextArea name=\"transcription\" toName=\"audio\" rows=\"3\" placeholder=\"Enter corrected transcription here...\" />\n  <Header value=\"Audio Quality\" />\n  <Choices name=\"quality\" toName=\"audio\" choice=\"single\">\n    <Choice value=\"clean\" />\n    <Choice value=\"noisy\" />\n    <Choice value=\"poor\" />\n  </Choices>\n  <Header value=\"Utterance Boundaries\" />\n  <RectangleLabels name=\"utterance_boundaries\" toName=\"audio\">\n    <Label value=\"utterance_start\" />\n  </RectangleLabels>\n</View>"
+}

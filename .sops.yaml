@@ -1,0 +1,30 @@
+# SOPS Configuration for Age Encryption
+# https://github.com/getsops/sops
+#
+# Age public keys for team members (replace with actual keys)
+# Generate with: age-keygen -o age.key
+# Public key is in age.key.pub
+#
+# Usage:
+#   sops -e -i .env.prod
+#   sops -d .env.prod
+#
+# CI/CD: Store private keys in 1Password/GitHub Secrets, never in repo
+
+creation_rules:
+  - path_regex: \.env\.(prod|staging|local)$
+    encrypted_regex: ^(.*_PASSWORD|.*_SECRET|.*_KEY|.*_TOKEN)$
+    age: >
+      age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
+      age1yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+
+  - path_regex: secrets/.*\.txt$
+    encrypted_regex: ^.*
+    age: >
+      age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
+      age1yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+
+  - path_regex: docker/.*\.(conf|ini|sql|json)$
+    encrypted_regex: ^(.*_PASSWORD|.*_SECRET|.*_KEY)$
+    age: >
+      age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -1,0 +1,5 @@
+{
+  "title": "LIS Relevance Classification",
+  "description": "S05 Project 3 — Classify utterances as on_topic or off_topic per relevance rubric",
+  "label_config": "<View>\n  <Header value=\"Relevance Classification\" />\n  <Header value=\"Read the utterance in context (see surrounding utterances). Classify as on_topic or off_topic.\" />\n  <Text name=\"context_before\" value=\"$context_before\" />\n  <Text name=\"utterance\" value=\"$utterance\" />\n  <Text name=\"context_after\" value=\"$context_after\" />\n  <Header value=\"Label\" />\n  <Choices name=\"relevance\" toName=\"utterance\" choice=\"single\" showInline=\"true\">\n    <Choice value=\"on_topic\" />\n    <Choice value=\"off_topic\" />\n  </Choices>\n  <Header value=\"Confidence\" />\n  <Rating name=\"confidence\" toName=\"utterance\" />\n  <Choices name=\"flag\" toName=\"utterance\" choice=\"single\" showInline=\"true\">\n    <Choice value=\"normal\" />\n    <Choice value=\"ambiguous\" />\n  </Choices>\n  <TextArea name=\"notes\" toName=\"utterance\" rows=\"1\" placeholder=\"Reason for decision (optional)...\" />\n</View>"
+}

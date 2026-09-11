@@ -1,0 +1,81 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# UV
+.uv/
+uv.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test coverage
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.tox/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# SQLFluff
+.sqlfluffignore
+
+# Docker
+docker-compose.override.yml
+
+# Secrets (managed via SOPS)
+.secrets/
+secrets/
+*.key
+*.pem
+*.crt
+
+# Models (large, cached in volume)
+models/
+/models/
+
+# DVC
+.dvc/
+data/
+*.dvc
+
+# MLflow
+mlruns/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Temporary
+tmp/
+temp/
+*.tmp

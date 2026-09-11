@@ -1,0 +1,15 @@
+all:
+  hosts:
+    gpu-host:
+      ansible_host: "<GPU_HOST_IP>"
+      ansible_user: "<SSH_USER>"
+      ansible_ssh_private_key_file: "~/.ssh/id_ed25519"
+  vars:
+    nvidia_driver_version: "560"
+    cuda_version: "12.6"
+    cudnn_version: "9.5"
+    docker_version: "latest"
+    gpu_host_user: "lis"
+    workspace: "/home/{{ gpu_host_user }}/lis"
+    hf_home: "/models/huggingface"
+    cuda_visible_devices: "0"

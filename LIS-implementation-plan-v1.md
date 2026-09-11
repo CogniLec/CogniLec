@@ -59,33 +59,58 @@ Seven stages are **hard gates** — work downstream does not begin until they pa
 ### S01 — Repository, Tooling & CI Skeleton
 **Deps:** —
 **SRS:** infrastructure precondition
-**Scope:** Monorepo with `src/` (api, workers, agents, ml), `migrations/`, `notebooks/`, `docker/`, `config/`, `tests/`, `docs/`. Python 3.12 managed by `uv`. Ruff + mypy + pre-commit + gitleaks + sqlfluff. GitHub Actions running lint, type-check and unit tests on PR. Conventional Commits. ADR register initialised in Notion with ADR-001…014 from Architecture v1.0.
-**Deliverables:** repo skeleton · `pyproject.toml` · `.pre-commit-config.yaml` · CI workflow · ADR register
+**Scope:** Monorepo with `src/` (api, workers, agents, ml, eval), `migrations/`, `notebooks/`, `docker/`, `config/`, `tests/`, `docs/adrs/`. Python 3.12 managed by `uv`. Ruff + mypy + pre-commit + gitleaks + sqlfluff. GitHub Actions running lint, type-check, unit tests, gitleaks, sqlfluff on PR. Conventional Commits enforced. ADR register initialised in `docs/adrs/` with ADR-001…014 from Architecture v1.0 plus ADR-015…018 for 4GB VRAM, hybrid LLM ladder, 8-bit quantization, local-first ASR/embedding.
+**Deliverables:** repo skeleton · `pyproject.toml` · `.pre-commit-config.yaml` · CI workflow (`.github/workflows/ci.yml`) · ADR register (`docs/adrs/001-*.md` through `018-*.md`)
 **Tests:**
 - `T01.1` U — `uv sync` resolves on clean checkout, all three OS runners
 - `T01.2` U — pre-commit passes on empty repo; fails on a deliberately unformatted file
 - `T01.3` S — gitleaks detects a planted dummy secret and fails CI
 - `T01.4` U — mypy strict passes on skeleton
+- `T01.5` U — sqlfluff lint passes on migration files
+- `T01.6` U — conventional commit check passes on valid messages, fails on invalid
 **Exit:** a PR with a trivial change goes green through all CI gates.
 
 ### S02 — GPU Host Provisioning & CUDA Matrix Pin
 **Deps:** S01
-**SRS:** D-33 · v2.1 §5
-**Scope:** Provision the GPU host with Ansible: NVIDIA driver (held/pinned), NVIDIA Container Toolkit, Docker Engine. Author the single **CUDA version matrix table** in `docs/cuda-matrix.md` fixing driver ≥ X, CUDA 12.x, cuDNN, PyTorch build tag, flash-attn, bitsandbytes, faiss-gpu-cu12, CTranslate2 versions. Every GPU Dockerfile references this table. Base images are `nvidia/cuda:12.x-cudnn-runtime`.
+**SRS:** D-33 · v2.1 §5 · ADR-015
+**Scope:** Provision the GPU host (Quadro T1000 Mobile, 4GB VRAM) with Ansible: NVIDIA driver 560.x (held/pinned via `apt-mark hold`), NVIDIA Container Toolkit, Docker Engine. Author the single **CUDA version matrix table** in `docs/cuda-matrix.md` fixing:
+- NVIDIA Driver: 560.x
+- CUDA Toolkit: 12.6
+- cuDNN: 9.5.x
+- PyTorch: 2.5.1+cu126
+- flash-attn: 2.8.3
+- bitsandbytes: 0.50.2
+- faiss-gpu: 1.7.2
+- ctranslate2: 4.8.2
+- faster-whisper: 1.1.0
+Every GPU Dockerfile references this matrix via build ARGs. Base image: `nvidia/cuda:12.6-cudnn-runtime-ubuntu22.04`. All models run with 8-bit quantization where needed (ADR-017).
 **Deliverables:** Ansible playbook · `docs/cuda-matrix.md` · `docker/base-gpu.Dockerfile` · driver hold config
 **Tests:**
 - `T02.1` I — `docker run --gpus all base-gpu nvidia-smi` lists all cards
-- `T02.2` I — `torch.cuda.is_available()` true; `torch.version.cuda` equals matrix value
+- `T02.2` I — `torch.cuda.is_available()` true; `torch.version.cuda` equals "12.6"
 - `T02.3` I — flash-attn imports and runs a forward pass
 - `T02.4` S — `apt-mark showhold` confirms driver held against unattended upgrade
 - `T02.5` U — CI fails if any GPU Dockerfile pins a CUDA version differing from the matrix
-**Exit:** all GPU containers build and see the GPUs; version matrix enforced in CI.
+- `T02.6` I — bitsandbytes 8-bit linear layer works: `import bitsandbytes; bitsandbytes.nn.Linear8bitLt`
+**Exit:** all GPU containers build and see the GPUs; version matrix enforced in CI; 4GB VRAM constraint documented.
 
 ### S03 — Core Infrastructure Compose Stack
 **Deps:** S02
 **SRS:** FR-5.1, FR-5.2, FR-5.3
-**Scope:** `docker-compose.yml` bringing up PostgreSQL 17 + pgvector (PG-MAIN), a **second** PostgreSQL instance (PG-SYLLABUS), PgBouncer, Valkey, MinIO, pgAdmin 4 with both servers pre-registered, Traefik with mkcert local TLS, Dozzle, Portainer CE. Shared `models` volume. `internal: true` network for data/model services; `edge` for ingress only. PG tuned: `shared_preload_libraries=pg_stat_statements,pg_cron,pg_partman_bgw`, `maintenance_work_mem=1GB`.
-**Deliverables:** compose file · PG config · pgAdmin server definitions · secrets via SOPS+age
+**Scope:** `docker-compose.yml` bringing up:
+- PostgreSQL 17 + pgvector (PG-MAIN, port 5432)
+- PostgreSQL 17 (PG-SYLLABUS, port 5433, separate instance)
+- PgBouncer (port 6432, pools PG-MAIN)
+- Valkey 8 (port 6379)
+- MinIO (ports 9000/9001, buckets: lis-audio, lis-uploads, lis-generated, lis-exports, lis-eval with ILM)
+- pgAdmin 4 (port 5050, both servers pre-registered via `servers.json`)
+- Traefik v3 (ports 80/443/8080, mkcert local TLS via `docker/traefik/certs/`)
+- Dozzle (logs, behind Traefik)
+- Portainer CE (management, behind Traefik)
+- Label Studio (port 8080, for S05 labelling, behind Traefik)
+- MLflow (port 5000, tracking URI postgresql://pg-main, artifacts S3://lis-eval/mlflow/, behind Traefik)
+Shared `models` volume (HF_HOME). Networks: `internal` (no egress, data/model services), `edge` (ingress only). PG tuned: `shared_preload_libraries=pg_stat_statements,pg_cron,pg_partman_bgw,vector`, `maintenance_work_mem=1GB`. Secrets via SOPS+age (`.sops.yaml`, age public keys in repo, private keys in 1Password).
+**Deliverables:** compose file · PG configs (`docker/postgres/main.conf`, `syllabus.conf`) · init SQLs · pgAdmin server definitions · PgBouncer config · MinIO bucket init script · Traefik certs · SOPS config · Label Studio project templates
 **Tests:**
 - `T03.1` I — `docker compose up` reaches healthy on all services
 - `T03.2` I — `CREATE EXTENSION vector; CREATE EXTENSION pg_partman;` succeed on PG-MAIN
@@ -93,42 +118,55 @@ Seven stages are **hard gates** — work downstream does not begin until they pa
 - `T03.4` S — a container on `internal` cannot reach the public internet (egress denied)
 - `T03.5` I — MinIO bucket creation and object round-trip succeed
 - `T03.6` I — HTTPS via mkcert works; `getUserMedia` secure-context requirement satisfied
-**Exit:** full local stack up, both databases reachable, no egress from internal network.
+- `T03.7` I — Label Studio accessible at `https://label.lis.local`, projects creatable
+- `T03.8` I — MLflow UI accessible at `https://mlflow.lis.local`, experiments creatable
+**Exit:** full local stack up, both databases reachable, no egress from internal network, Label Studio and MLflow operational.
 
 ### S04 — Real-Environment Audio Corpus
 **Deps:** S03
 **SRS:** Phase 0 / R-01
-**Scope:** Record 8–10 real lectures in the actual target rooms with the actual intended device(s). Capture varied conditions deliberately: front row vs back, quiet vs busy room, lecturer stationary vs moving, one session with heavy student discussion. Store raw in MinIO under `lis-eval/phase0/v1/`, versioned with DVC. Record consent for each (NFR-S5) and metadata: room, device, position, duration, subject.
-**Deliverables:** 8–10 sessions of raw audio · metadata manifest · DVC-tracked dataset · consent records
+**Scope:** Record 8–10 real lectures in the actual target rooms with the actual intended device(s) (phone, USB mic, or any mic-enabled device). Capture varied conditions deliberately: front row vs back, quiet vs busy room, lecturer stationary vs moving, one session with heavy student discussion. Store raw in MinIO under `lis-eval/phase0/v1/{session_id}/audio.opus` (Opus 48kHz mono, ≤15MB/60min). Version with DVC (remote: MinIO `lis-eval` bucket). Record consent for each (NFR-S5) using template in `docs/consent-form.md` and metadata: room, device, position, duration, subject, consent_id. Consent forms stored separately (not in repo).
+**Deliverables:** 8–10 sessions of raw audio · metadata manifest (`lis-eval/phase0/v1/manifest.json`) · DVC-tracked dataset · consent records
 **Tests:**
 - `T04.1` M — each recording has complete metadata and a consent record
 - `T04.2` U — DVC checkout reproduces the dataset byte-identically
-- `T04.3` M — corpus covers all declared condition variations
+- `T04.3` M — corpus covers all declared condition variations (front/back, quiet/busy, stationary/moving, discussion)
 **Exit:** versioned, consented, condition-diverse corpus available to the bake-off.
 
 ### S05 — Ground Truth & Labelling Infrastructure
 **Deps:** S04
 **SRS:** §12.4 eval framework
-**Scope:** Deploy Label Studio. Hand-transcribe 5 hours of S04 audio to word level. On 30 lecture-equivalents (may reuse sessions), hand-mark **topic boundaries** and **topic labels**. Label 2,000 utterances for on/off-topic relevance with a written rubric. Store all labels DVC-versioned. Build `src/eval/` harness wrapping jiwer (WER), segeval (P_k, WindowDiff), scikit-learn (purity, V-measure) with a single `run_eval(dataset, predictions)` entry point.
-**Deliverables:** Label Studio deployment · 5h word-level transcripts · boundary + topic labels · 2k relevance labels + rubric · eval harness
+**Scope:** Deploy Label Studio (via docker-compose, S03). Hand-transcribe 5 hours of S04 audio to word level. On 30 lecture-equivalents (may reuse sessions), hand-mark **topic boundaries** and **topic labels**. Label 2,000 utterances for on/off-topic relevance with a written rubric (`docs/relevance-rubric.md`). Store all labels DVC-versioned in `lis-eval/labels/v1/`. Build `src/eval/harness.py` wrapping jiwer (WER), segeval (P_k, WindowDiff), scikit-learn (purity, V-measure) with a single `run_eval(dataset, predictions)` entry point. Inter-annotator agreement: if 2 annotators, Cohen's κ ≥ 0.75 on 200-utterance overlap; if 1 annotator, self-consistency check on 10% re-label.
+**Deliverables:** Label Studio deployment (3 projects) · 5h word-level transcripts · boundary + topic labels · 2k relevance labels + rubric · eval harness (`src/eval/harness.py`)
 **Tests:**
 - `T05.1` U — eval harness reproduces a known WER on a synthetic reference/hypothesis pair
 - `T05.2` U — segeval P_k on identical segmentations returns 0.0; on inverted returns >0.5
-- `T05.3` M — inter-annotator agreement on a 200-utterance relevance overlap ≥ 0.75 Cohen's κ
+- `T05.3` M — inter-annotator agreement ≥ 0.75 Cohen's κ (or self-consistency if solo)
 - `T05.4` U — label export is DVC-reproducible
 **Exit:** all three label sets complete, eval harness validated against known inputs.
 
 ### S06 ⛔ — ASR & Embedding Bake-Off (HARD GATE)
 **Deps:** S05
-**SRS:** Phase 0 gate · R-01 · D-01 · D-02 · v2.0 §7.1
-**Scope:** Run in parallel on the GPU host: Whisper large-v3, large-v3-turbo, Canary-Qwen 2.5B, Parakeet TDT, plus one hosted API as reference ceiling. Measure WER per model per condition with `whisper-normalizer` applied. Separately, embed hand-transcribed text with Qwen3-Embedding-0.6B / 4B / 8B at candidate dimensions, cluster with BERTopic, measure purity and V-measure against S05 topic labels. **Also measure pairwise ASR disagreement** to quantify the ensemble value proposed in v2.0 §3.1. Log everything to MLflow.
-**Deliverables:** WER table (model × condition) · embedding/clustering quality table · disagreement analysis · **decisions locked: ASR model, embedding model, embedding dimension** · MLflow experiment
+**SRS:** Phase 0 gate · R-01 · D-01 · D-02 · v2.0 §7.1 · ADR-015 · ADR-017 · ADR-018
+**Scope:** Run on GPU host (4GB VRAM, sequential model loading) using 8-bit quantization where needed:
+- **ASR Models** (via `faster-whisper` CTranslate2 backend, word-level timestamps):
+  1. Whisper large-v3 (8-bit int8_float16)
+  2. Whisper large-v3-turbo (FP16, ~2.5GB)
+  3. Canary-Qwen 2.5B (8-bit via bitsandbytes)
+  4. Parakeet TDT 1.1B (FP16, ~2.5GB)
+- **Embedding Model**: Qwen3-Embedding-0.6B only (1024 dim, FP16 fits ~1.5GB; 4B/8B excluded per ADR-015)
+- Measure WER per model per condition with `whisper-normalizer` applied.
+- Embed hand-transcribed text (S05) with Qwen3-0.6B, cluster with BERTopic (UMAP+HDBSCAN), measure purity/V-measure against S05 topic labels.
+- **Pairwise ASR disagreement**: quantify cross-model disagreement rate; correlate with transcription error (v2.0 §3.1).
+- Log everything to MLflow (local, S03). No hosted API reference ceiling (ADR-018).
+**Deliverables:** WER table (model × condition) · embedding/clustering quality table · disagreement analysis · **decisions locked: ASR model, embedding model=Qwen3-0.6B, embedding_dim=1024** · MLflow experiment · `config/models.yaml` frozen
 **Tests:**
-- `T06.1` V — **GATE: best ASR WER < 20% on the median condition**
-- `T06.2` V — **GATE: clustering purity > 0.60 against hand labels** (relaxed from the 0.70 production target at this stage)
-- `T06.3` V — worst-condition WER recorded; if >35%, escalate as a capture problem not a model problem
-- `T06.4` V — ASR pairwise disagreement rate quantified; correlation between disagreement and transcription error demonstrated
-- `T06.5` M — chosen embedding dimension recorded and frozen in `config/models.yaml`
+- `T06.1` V — **GATE: best ASR WER < 20% on the median condition** (quantized models)
+- `T06.2` V — **GATE: clustering purity > 0.60 against hand labels** (Qwen3-0.6B, relaxed from 0.70 production target)
+- `T06.3` V — worst-condition WER recorded; if >35%, escalate as capture problem not model problem
+- `T06.4` V — ASR pairwise disagreement rate quantified; correlation between disagreement and error demonstrated
+- `T06.5` M — chosen embedding dimension (1024) recorded and frozen in `config/models.yaml`
+- `T06.6` I — all 4 ASR models load and infer sequentially without OOM on 4GB VRAM
 **Exit:** **Both gate tests pass.** If T06.1 fails, the project halts here and addresses audio capture (external mic, placement, room) before any further stage. No downstream work begins on a failed gate.
 
 ---
@@ -303,13 +341,13 @@ Seven stages are **hard gates** — work downstream does not begin until they pa
 
 ### S19 — ASR Worker (Primary Model)
 **Deps:** S17, S06, S09
-**SRS:** FR-2.1, FR-2.2, FR-7.8
-**Scope:** GPU worker running the S06-selected model via WhisperX/faster-whisper with wav2vec2 forced alignment for **word-level timestamps** (required by provenance). Emits utterances with text, start/end ms, confidence. Persists to `utterances` in DB-1. Session transitions `recording → transcribed`. **NFR-R3 durability gate: transcript is committed before any downstream stage is permitted to start.**
-**Deliverables:** ASR worker · alignment · utterance persistence · state transition
+**SRS:** FR-2.1, FR-2.2, FR-7.8 · ADR-015 · ADR-017 · ADR-018
+**Scope:** GPU worker running the S06-selected model via `faster-whisper` (CTranslate2 backend) with wav2vec2 forced alignment for **word-level timestamps** (required by provenance). Model loaded at production quantization: `large-v3-turbo` at FP16 or `large-v3` at int8_float16. Emits utterances with text, start/end ms, confidence. Persists to `utterances` in DB-1 with `embed_model_ver` from config. Session transitions `recording → transcribed`. **NFR-R3 durability gate: transcript is committed before any downstream stage is permitted to start.**
+**Deliverables:** ASR worker (`src/workers/asr_worker.py`) · alignment · utterance persistence · state transition
 **Tests:**
 - `T19.1` V — WER on the S05 held-out set matches the S06 benchmark within tolerance
 - `T19.2` I — word-level timestamps present and monotonically increasing
-- `T19.3` I — utterances persisted with confidence and correct session/subject
+- `T19.3` I — utterances persisted with confidence, correct session/subject, `embed_model_ver`
 - `T19.4` I — session status reaches `transcribed` only after commit
 - `T19.5` I — worker killed mid-session → on restart, already-transcribed chunks are not reprocessed
 - `T19.6` P — real-time factor < 1.0 (NFR-P1)
@@ -390,11 +428,11 @@ Seven stages are **hard gates** — work downstream does not begin until they pa
 
 ### S25 — Embedding Service & Version Governance
 **Deps:** S06, S09
-**SRS:** FR-5.7, R-11 · v1.0 §19
-**Scope:** HF TEI serving the S06-selected Qwen3-Embedding variant at the frozen dimension. Every write stamps `embed_model_ver`; every retrieval filters on the active version. Version registry in `config/models.yaml`. Backfill flow skeleton for future model changes (per-subject, resumable).
+**SRS:** FR-5.7, R-11 · v1.0 §19 · ADR-015
+**Scope:** HF TEI (or sentence-transformers fallback) serving Qwen3-Embedding-0.6B at frozen 1024 dimension (only model fitting 4GB VRAM). Every write stamps `embed_model_ver`; every retrieval filters on the active version. Version registry in `config/models.yaml`. Backfill flow skeleton for future model changes (per-subject, resumable). Instruction prefix applied for clustering vs retrieval task modes.
 **Deliverables:** TEI service · embedding client · version registry · backfill flow skeleton
 **Tests:**
-- `T25.1` I — TEI returns vectors of exactly the declared dimension
+- `T25.1` I — TEI returns vectors of exactly 1024 dimensions
 - `T25.2` I — write without `embed_model_ver` rejected
 - `T25.3` I — retrieval with two versions present returns **only** active-version vectors
 - `T25.4` I — backfill flow re-embeds one subject and switches its active version atomically
@@ -544,29 +582,35 @@ Seven stages are **hard gates** — work downstream does not begin until they pa
 
 ### S36 — Local LLM Serving
 **Deps:** S02
-**SRS:** FR-3.1, FR-3.14 · v2.0 §2
-**Scope:** vLLM (or SGLang) serving the VRAM-tier-appropriate model from v2.0 §2, quantised AWQ/FP8 where needed, with an OpenAI-compatible endpoint. Explicit `--gpu-memory-utilization` and a fixed service start order (vLLM first) to prevent the VRAM fragmentation failure mode from v2.1 §5.3. A **secondary base model** deployed for consensus voting.
-**Deliverables:** vLLM service(s) · model pins · VRAM allocation config · start-order enforcement
+**SRS:** FR-3.1, FR-3.14 · v2.0 §2 · ADR-015 · ADR-016
+**Scope:** vLLM serving Tier 1 local model (Phi-3-mini-3.8B-4bit or Qwen2.5-3B-4bit, AWQ quantized, ~2.5GB VRAM) with OpenAI-compatible endpoint. Explicit `--gpu-memory-utilization=0.85` and fixed service start order (vLLM first) to prevent VRAM fragmentation. **No secondary base model on GPU** (4GB constraint); consensus voting uses Tier 2 CPU llama.cpp (ADR-016). Tier 1 model pinned in `config/models.yaml`.
+**Deliverables:** vLLM service · model pins · VRAM allocation config · start-order enforcement · `config/models.yaml` Tier 1 entry
 **Tests:**
 - `T36.1` I — completion endpoint responds correctly
-- `T36.2` I — **all co-resident services (ASR, TEI, LLM, reranker) start successfully together in the declared order** (fragmentation regression test)
+- `T36.2` I — **all co-resident services (ASR, TEI, LLM) start successfully together in the declared order** (fragmentation regression test)
 - `T36.3` P — throughput meets the concurrency needed for NFR-P3
 - `T36.4` I — service restart recovers without manual intervention
-- `T36.5` I — secondary model serves independently of the primary
-- `T36.6` P — VRAM headroom remains after all services loaded (no OOM at peak)
-**Exit:** local LLMs serve reliably as Tier 1, co-resident with the rest of the GPU workload.
+- `T36.5` P — VRAM headroom remains after all services loaded (no OOM at peak, <4GB total)
+- `T36.6` I — Tier 1 model loads at 4-bit AWQ, not FP16
+**Exit:** local LLM serves reliably as Tier 1, co-resident with ASR/TEI on 4GB VRAM.
 
 ### S37 — LLM Router & Failover Ladder
 **Deps:** S36
-**SRS:** FR-3.9, FR-3.10, FR-3.14 · §8.1 · v2.0 (inverted ladder)
-**Scope:** LiteLLM proxy implementing the five-tier ladder with **local pools first**: Tier 1 local primary → Tier 2 local secondary → Tier 3 hosted API → Tier 4 CPU GGUF via llama.cpp → **Tier 5 mark `failed` and enqueue for retry**. Triggers per FR-3.10: HTTP error, timeout, rate limit, schema-invalid output.
-**Deliverables:** LiteLLM config · ladder definition · Tier-5 failure handler
+**SRS:** FR-3.9, FR-3.10, FR-3.14 · §8.1 · ADR-016
+**Scope:** LiteLLM proxy implementing the five-tier hybrid ladder (local-first):
+- **Tier 1**: Local GPU (vLLM) — Phi-3-mini-3.8B-4bit / Qwen2.5-3B-4bit
+- **Tier 2**: Local CPU (llama.cpp) — Llama-3-7B-4bit / Mistral-7B-4bit (system RAM)
+- **Tier 3**: Hosted API — OpenAI GPT-4o-mini / Anthropic Haiku
+- **Tier 4**: Hosted API (cheap) — Together.ai / Fireworks / Groq
+- **Tier 5**: **FAIL** — mark session `failed`, enqueue for retry (never `complete`)
+Triggers per FR-3.10: HTTP error, timeout (60s T1, 120s T2, 30s T3/4), rate limit, schema-invalid output. Tier used recorded per invocation in `agent_runs.tier`.
+**Deliverables:** LiteLLM config (`config/litellm.yaml`) · ladder definition · Tier-5 failure handler
 **Tests:**
 - `T37.1` I — each trigger condition independently causes descent to the next tier
 - `T37.2` E — **primary model container killed mid-flow → session completes via fallback, not failed** (AC-8)
 - `T37.3` E — **all tiers exhausted → session marked `failed`, never `complete`; fully reprocessable from retained transcript** (AC-9, Tier 5)
 - `T37.4` I — timeout budget is configurable per agent
-- `T37.5` I — tier used is recorded per invocation
+- `T37.5` I — tier used is recorded per invocation in `agent_runs.tier`
 - `T37.6` I — rate-limit response descends without retry-storming the failing tier
 **Exit:** no single model failure can lose a session; total failure is explicit and recoverable.
 

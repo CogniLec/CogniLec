@@ -1,0 +1,26 @@
+fail-on-severity: high
+allow-licenses:
+  - MIT
+  - Apache-2.0
+  - BSD-2-Clause
+  - BSD-3-Clause
+  - ISC
+  - Python-2.0
+  - MPL-2.0
+  - Unicode-3.0
+deny-licenses:
+  - GPL-2.0
+  - GPL-3.0
+  - AGPL-3.0
+  - LGPL-2.1
+  - LGPL-3.0
+  - SS PL-1.0
+  - BSL-1.0
+  - Elastic-2.0
+  - Commons Clause
+  - MongoDB Public License
+deny-scopes:
+  - development
+  - test
+  - optional
+  - build

@@ -1,0 +1,26 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "PG-MAIN (Primary)",
+      "Group": "LIS",
+      "Host": "pg-main",
+      "Port": 5432,
+      "MaintenanceDB": "lis_main",
+      "Username": "lis",
+      "SSLMode": "prefer",
+      "PassFile": "/run/secrets/pg_main_password",
+      "Comment": "Primary database with pgvector, pg_partman, pg_cron"
+    },
+    "2": {
+      "Name": "PG-SYLLABUS (Separate Instance)",
+      "Group": "LIS",
+      "Host": "pg-syllabus",
+      "Port": 5432,
+      "MaintenanceDB": "lis_syllabus",
+      "Username": "lis",
+      "SSLMode": "prefer",
+      "PassFile": "/run/secrets/pg_syllabus_password",
+      "Comment": "Separate syllabus database, accessed via FDW from PG-MAIN"
+    }
+  }
+}

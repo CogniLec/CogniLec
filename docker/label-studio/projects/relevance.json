@@ -1,0 +1,5 @@
+{
+  "title": "LIS Relevance",
+  "description": "Text relevance scoring project for evaluating transcription quality and content relevance",
+  "label_config": "<View>\n  <Header value=\"Evaluate the relevance and quality of the following text.\" />\n  <Text name=\"text\" value=\"$text\" />\n  <Header value=\"Relevance Score\" />\n  <Rating name=\"relevance\" toName=\"text\" />\n  <Header value=\"Content Category\" />\n  <Choices name=\"category\" toName=\"text\" choice=\"single\">\n    <Choice value=\"transactional\" />\n    <Choice value=\"informational\" />\n    <Choice value=\"conversational\" />\n    <Choice value=\"irrelevant\" />\n  </Choices>\n  <Header value=\"Quality Issues\" />\n  <Choices name=\"issues\" toName=\"text\" choice=\"multiple\">\n    <Choice value=\"hallucination\" />\n    <Choice value=\"truncation\" />\n    <Choice value=\"misrecognition\" />\n    <Choice value=\"language_switch\" />\n    <Choice value=\"none\" />\n  </Choices>\n  <TextArea name=\"notes\" toName=\"text\" rows=\"2\" placeholder=\"Additional notes...\" />\n</View>"
+}

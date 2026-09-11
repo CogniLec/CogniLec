@@ -1,0 +1,464 @@
+# =============================================================================
+# LIS Core Infrastructure Stack
+#
+# Networks:
+#   internal - No egress, data/model services only
+#   edge     - Ingress only, Traefik terminates TLS
+#
+# Volumes:
+#   models          - Shared model cache (HF_HOME)
+#   pg-main-data    - Primary PostgreSQL + pgvector
+#   pg-syllabus-data - Separate syllabus PostgreSQL
+#   valkey-data     - Valkey (Redis-compatible)
+#   minio-data      - MinIO object storage
+#   pgadmin-data    - pgAdmin configuration
+#   label-studio-data - Label Studio annotations
+#
+# Secrets via SOPS+age (see .sops.yaml)
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # PostgreSQL MAIN — Primary database with pgvector, pg_partman, pg_cron
+  # ---------------------------------------------------------------------------
+  pg-main:
+    image: pgvector/pgvector:pg17
+    container_name: lis-pg-main
+    hostname: pg-main
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lis}
+      POSTGRES_PASSWORD_FILE: /run/secrets/pg_main_password
+      POSTGRES_DB: ${POSTGRES_DB:-lis_main}
+    secrets:
+      - pg_main_password
+    volumes:
+      - pg-main-data:/var/lib/postgresql/data
+      - ./docker/postgres/main.conf:/etc/postgresql/postgresql.conf:ro
+      - ./docker/postgres/init-main.sql:/docker-entrypoint-initdb.d/init-main.sql:ro
+    command: >
+      postgres
+      -c config_file=/etc/postgresql/postgresql.conf
+      -c shared_preload_libraries=vector
+      -c max_connections=200
+      -c shared_buffers=1GB
+      -c effective_cache_size=3GB
+      -c maintenance_work_mem=1GB
+      -c work_mem=16MB
+      -c random_page_cost=1.1
+      -c effective_io_concurrency=200
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lis} -d ${POSTGRES_DB:-lis_main}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - internal
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL SYLLABUS — Separate instance for syllabus data (FDW source)
+  # ---------------------------------------------------------------------------
+  pg-syllabus:
+    image: postgres:17
+    container_name: lis-pg-syllabus
+    hostname: pg-syllabus
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-lis}
+      POSTGRES_PASSWORD_FILE: /run/secrets/pg_syllabus_password
+      POSTGRES_DB: ${SYLLABUS_DB:-lis_syllabus}
+    secrets:
+      - pg_syllabus_password
+    volumes:
+      - pg-syllabus-data:/var/lib/postgresql/data
+      - ./docker/postgres/syllabus.conf:/etc/postgresql/postgresql.conf:ro
+      - ./docker/postgres/init-syllabus.sql:/docker-entrypoint-initdb.d/init-syllabus.sql:ro
+    command: >
+      postgres
+      -c config_file=/etc/postgresql/postgresql.conf
+      -c max_connections=100
+      -c shared_buffers=512MB
+      -c effective_cache_size=1GB
+      -c maintenance_work_mem=512MB
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lis} -d ${SYLLABUS_DB:-lis_syllabus}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - internal
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+
+  # ---------------------------------------------------------------------------
+  # PgBouncer — Connection pooler for pg-main
+  # ---------------------------------------------------------------------------
+  pgbouncer:
+    image: edoburu/pgbouncer:v1.23.1-p3
+    container_name: lis-pgbouncer
+    hostname: pgbouncer
+    environment:
+      PG_USER: ${POSTGRES_USER:-lis}
+      PG_PASSWORD_FILE: /run/secrets/pg_main_password
+      PG_HOST: pg-main
+      PG_PORT: 5432
+      PG_DB: ${POSTGRES_DB:-lis_main}
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 200
+      DEFAULT_POOL_SIZE: 25
+      MIN_POOL_SIZE: 5
+      RESERVE_POOL_SIZE: 5
+      RESERVE_POOL_TIMEOUT: 5
+    secrets:
+      - pg_main_password
+    volumes:
+      - ./docker/pgbouncer/pgbouncer.ini:/etc/pgbouncer/pgbouncer.ini:ro
+      - ./docker/pgbouncer/userlist.txt:/etc/pgbouncer/userlist.txt:ro
+    ports:
+      - "6432:6432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "localhost", "-p", "6432", "-U", "${POSTGRES_USER:-lis}", "-d", "${POSTGRES_DB:-lis_main}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - internal
+      - edge
+    depends_on:
+      pg-main:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  # ---------------------------------------------------------------------------
+  # Valkey — Redis-compatible cache/queue/streaming
+  # ---------------------------------------------------------------------------
+  valkey:
+    image: valkey/valkey:8-alpine
+    container_name: lis-valkey
+    hostname: valkey
+    command: >
+      valkey-server
+      --appendonly yes
+      --maxmemory 1gb
+      --maxmemory-policy allkeys-lru
+      --save 60 1
+      --save 300 10
+    volumes:
+      - valkey-data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - internal
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+
+  # ---------------------------------------------------------------------------
+  # MinIO — S3-compatible object storage
+  # ---------------------------------------------------------------------------
+  minio:
+    image: minio/minio:latest
+    container_name: lis-minio
+    hostname: minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER_FILE: /run/secrets/minio_root_user
+      MINIO_ROOT_PASSWORD_FILE: /run/secrets/minio_root_password
+      MINIO_PROMETHEUS_AUTH_TYPE: public
+      MINIO_PROMETHEUS_URL: http://traefik:8080/metrics
+    secrets:
+      - minio_root_user
+      - minio_root_password
+    volumes:
+      - minio-data:/data
+      - ./docker/minio/buckets.sh:/docker-entrypoint-initdb.d/buckets.sh:ro
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - internal
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # ---------------------------------------------------------------------------
+  # pgAdmin 4 — Database administration (both servers pre-registered)
+  # ---------------------------------------------------------------------------
+  pgadmin:
+    image: dpage/pgadmin4:9
+    container_name: lis-pgadmin
+    hostname: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@lis.dev}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin_dev}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "True"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      - ./docker/pgadmin/servers.json:/pgadmin4/servers.json:ro
+    ports:
+      - "5050:80"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:80/misc/ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - internal
+      - edge
+    depends_on:
+      - pg-main
+      - pg-syllabus
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+  # ---------------------------------------------------------------------------
+  # Traefik — Reverse proxy with mkcert local TLS
+  # ---------------------------------------------------------------------------
+  traefik:
+    image: traefik:v3.0
+    container_name: lis-traefik
+    hostname: traefik
+    command:
+      - --api.dashboard=true
+      - --api.insecure=false
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=edge
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.local.acme.email=${TRAEFIK_EMAIL:-admin@localhost}
+      - --certificatesresolvers.local.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.local.acme.tlschallenge=true
+      - --log.level=INFO
+      - --accesslog=true
+      - --metrics.prometheus=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./docker/traefik/certs:/letsencrypt:ro
+      - traefik-letsencrypt:/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    networks:
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  # ---------------------------------------------------------------------------
+  # Dozzle — Container log viewer
+  # ---------------------------------------------------------------------------
+  dozzle:
+    image: amir20/dozzle:v11
+    container_name: lis-dozzle
+    hostname: dozzle
+    environment:
+      DOZZLE_LEVEL: info
+      DOZZLE_FILTER: "label=enable_dozzle=true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dozzle.rule=Host(`logs.${DOMAIN:-lis.local}`)"
+      - "traefik.http.routers.dozzle.entrypoints=websecure"
+      - "traefik.http.routers.dozzle.tls.certresolver=local"
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
+      - "enable_dozzle=true"
+    networks:
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  # ---------------------------------------------------------------------------
+  # Portainer CE — Container management UI
+  # ---------------------------------------------------------------------------
+  portainer:
+    image: portainer/portainer-ce:lts
+    container_name: lis-portainer
+    hostname: portainer
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer-data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN:-lis.local}`)"
+      - "traefik.http.routers.portainer.entrypoints=websecure"
+      - "traefik.http.routers.portainer.tls.certresolver=local"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+    networks:
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  # ---------------------------------------------------------------------------
+  # Label Studio — Data labeling for S05 ground truth
+  # ---------------------------------------------------------------------------
+  label-studio:
+    image: heartexlabs/label-studio:latest
+    container_name: lis-label-studio
+    hostname: label-studio
+    environment:
+      LABEL_STUDIO_HOST: 0.0.0.0
+      LABEL_STUDIO_PORT: 8080
+      LABEL_STUDIO_DATABASE: sqlite:///label-studio/data/label-studio.db
+      LABEL_STUDIO_USERNAME: ${LABEL_STUDIO_USER:-admin@lis.dev}
+      LABEL_STUDIO_PASSWORD: ${LABEL_STUDIO_PASSWORD:-admin_dev}
+      LABEL_STUDIO_ALLOW_IMPORT: "true"
+      LABEL_STUDIO_ALLOW_EXPORT: "true"
+    volumes:
+      - label-studio-data:/label-studio/data
+      - ./docker/label-studio/projects:/label-studio/projects:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.label-studio.rule=Host(`label.${DOMAIN:-lis.local}`)"
+      - "traefik.http.routers.label-studio.entrypoints=websecure"
+      - "traefik.http.routers.label-studio.tls.certresolver=local"
+      - "traefik.http.services.label-studio.loadbalancer.server.port=8080"
+    networks:
+      - internal
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # ---------------------------------------------------------------------------
+  # MLflow — Experiment tracking for S06 bake-off
+  # ---------------------------------------------------------------------------
+  mlflow:
+    image: python:3.12-slim
+    container_name: lis-mlflow
+    hostname: mlflow
+    command: >
+      bash -c "pip install mlflow==2.16.2 psycopg2-binary==2.9.9 &&
+      mlflow server
+      --host 0.0.0.0
+      --port 5000
+      --backend-store-uri postgresql://${POSTGRES_USER:-lis}:${POSTGRES_PASSWORD:-lis}@pg-main:5432/${POSTGRES_DB:-lis_main}
+      --default-artifact-root s3://lis-eval/mlflow/
+      --artifacts-destination s3://lis-eval/mlflow/"
+    environment:
+      AWS_ACCESS_KEY_ID: ${MINIO_ACCESS_KEY:-minioadmin}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MLFLOW_S3_ENDPOINT_URL: http://minio:9000
+      MLFLOW_S3_IGNORE_TLS: "true"
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./docker/mlflow:/mlflow
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mlflow.rule=Host(`mlflow.${DOMAIN:-lis.local}`)"
+      - "traefik.http.routers.mlflow.entrypoints=websecure"
+      - "traefik.http.routers.mlflow.tls.certresolver=local"
+      - "traefik.http.services.mlflow.loadbalancer.server.port=5000"
+    networks:
+      - internal
+      - edge
+    depends_on:
+      - pg-main
+      - minio
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  internal:
+    name: lis-internal
+    driver: bridge
+    internal: true
+    enable_ipv6: false
+  edge:
+    name: lis-edge
+    driver: bridge
+    enable_ipv6: false
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  models:
+    name: lis-models
+  pg-main-data:
+    name: lis-pg-main-data
+  pg-syllabus-data:
+    name: lis-pg-syllabus-data
+  valkey-data:
+    name: lis-valkey-data
+  minio-data:
+    name: lis-minio-data
+  pgadmin-data:
+    name: lis-pgadmin-data
+  label-studio-data:
+    name: lis-label-studio-data
+  traefik-letsencrypt:
+    name: lis-traefik-letsencrypt
+  portainer-data:
+    name: lis-portainer-data
+
+# =============================================================================
+# Secrets (managed via SOPS+age)
+# =============================================================================
+secrets:
+  pg_main_password:
+    file: ./secrets/pg_main_password.txt
+  pg_syllabus_password:
+    file: ./secrets/pg_syllabus_password.txt
+  minio_root_user:
+    file: ./secrets/minio_root_user.txt
+  minio_root_password:
+    file: ./secrets/minio_root_password.txt
+  pgadmin_email:
+    file: ./secrets/pgadmin_email.txt
+  pgadmin_password:
+    file: ./secrets/pgadmin_password.txt
+  label_studio_user:
+    file: ./secrets/label_studio_user.txt
+  label_studio_password:
+    file: ./secrets/label_studio_password.txt

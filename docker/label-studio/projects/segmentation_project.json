@@ -1,0 +1,5 @@
+{
+  "title": "LIS Topic Boundaries & Labels",
+  "description": "S05 Project 2 — Segment lectures into topics with boundary annotations",
+  "label_config": "<View>\n  <Header value=\"Topic Boundary Labelling\" />\n  <Header value=\"Listen and mark where topics change. Label each segment.\" />\n  <Audio name=\"audio\" value=\"$audio\" />\n  <Header value=\"Mark topic boundaries on the timeline\" />\n  <RectangleLabels name=\"segments\" toName=\"audio\">\n    <Label value=\"topic_start\" background=\"#4CAF50\" />\n    <Label value=\"subtopic_start\" background=\"#FFC107\" />\n    <Label value=\"transition\" background=\"#2196F3\" />\n  </RectangleLabels>\n  <Header value=\"Topic Label (for each segment)\" />\n  <TextArea name=\"topic_labels\" toName=\"audio\" rows=\"3\" placeholder=\"List topic labels in order, one per segment...\" />\n  <Header value=\"Number of Topics\" />\n  <Number name=\"num_topics\" toName=\"audio\" min=\"1\" max=\"50\" />\n</View>"
+}

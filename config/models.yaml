@@ -1,0 +1,17 @@
+# S06 Locked Model Configuration
+# Frozen after bake-off gates pass — do not edit manually
+
+# ASR Model
+asr_model: "whisper-large-v3-turbo"
+asr_model_revision: "main"
+asr_compute_type: "fp16"
+asr_device: "cuda"
+asr_beam_size: 5
+asr_batch_size: 16
+
+# Embedding Model
+embedding_model: "Qwen/Qwen3-Embedding-0.6B"
+embedding_dim: 1024
+embedding_revision: "main"
+embedding_device: "cuda"
+embedding_batch_size: 32

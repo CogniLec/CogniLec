@@ -1,0 +1,5 @@
+{
+  "title": "LIS Transcription",
+  "description": "Audio transcription project for ground truth labeling",
+  "label_config": "<View>\n  <Header value=\"Listen to the audio and provide an accurate transcription.\" />\n  <Audio name=\"audio\" value=\"$audio\" />\n  <TextArea name=\"transcription\" toName=\"audio\" rows=\"4\" placeholder=\"Enter the transcription here...\" />\n  <Header value=\"Transcription Quality\" />\n  <Choices name=\"quality\" toName=\"audio\" choice=\"single\">\n    <Choice value=\"clean\" />\n    <Choice value=\"noisy\" />\n    <Choice value=\"poor\" />\n  </Choices>\n</View>"
+}
