@@ -1,0 +1,24 @@
+# S39 — LangFuse tracing backend configuration.
+# Substitution note: if LangFuse is not reachable in a given environment,
+# TraceManager (src/services/observability/trace_manager.py) still writes
+# agent_runs rows directly — LangFuse ingestion is a best-effort side channel,
+# not a hard dependency for cost attribution or agent isolation checks.
+host: "${LANGFUSE_HOST:-http://langfuse:3000}"
+public_key_env: LANGFUSE_PUBLIC_KEY
+secret_key_env: LANGFUSE_SECRET_KEY
+sample_rate: 1.0
+otel_exporter_endpoint: "${OTEL_EXPORTER_OTLP_ENDPOINT:-http://otel:4317}"
+
+# NFR-S10: traces carry only these keys, never raw transcript/free-text content.
+trace_allowed_keys:
+  - agent_id
+  - model
+  - tier
+  - prompt_version
+  - input_tokens
+  - output_tokens
+  - total_tokens
+  - latency_ms
+  - status
+  - trace_id
+  - session_id

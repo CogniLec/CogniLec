@@ -131,7 +131,7 @@ select = [
     "E", "F", "I", "N", "UP", "W", "C4", "PTH", "PIE", "T20", "TRY", "SIM", "RUF",
 ]
 ignore = []
-per-file-ignores = { "tests/*" = ["S101", "T201"], "scripts/*" = ["T201", "PTH", "TRY003", "TRY300", "TRY400", "E501", "E741", "F401", "RUF059", "C413"], "src/eval/harness.py" = ["T201", "TRY003", "TRY400"], "migrations/*" = ["S101"] }
+per-file-ignores = { "tests/*" = ["S101", "T201", "TRY003", "E501"], "scripts/*" = ["T201", "PTH", "TRY003", "TRY300", "TRY400", "E501", "E741", "F401", "RUF059", "C413"], "src/eval/harness.py" = ["T201", "TRY003", "TRY400"], "migrations/*" = ["S101"] }
 fixable = ["ALL"]
 unfixable = ["S101"]
 

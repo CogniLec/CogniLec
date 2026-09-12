@@ -15,3 +15,32 @@ embedding_dim: 1024
 embedding_revision: "main"
 embedding_device: "cuda"
 embedding_batch_size: 32
+
+# S36 — LLM Serving Tiers (Block 6)
+tiers:
+  tier_1:
+    model: "microsoft/Phi-3-mini-3.8B-4bit"
+    quantization: "awq"
+    vram_gb: 2.5
+    endpoint: "http://vllm:8000/v1"
+    timeout_s: 60
+    gpu_required: true
+  tier_2:
+    model: "llama-3-8b-instruct.Q4_K_M.gguf"
+    quantization: "q4_k_m"
+    vram_gb: 0.0
+    endpoint: "http://llamacpp:8080/v1"
+    timeout_s: 120
+    gpu_required: false
+  tier_3:
+    model: "gpt-4o-mini"
+    provider: "openai"
+    endpoint: "https://api.openai.com/v1"
+    timeout_s: 30
+    gpu_required: false
+  tier_4:
+    model: "llama-3-8b-instruct"
+    provider: "together_ai"
+    endpoint: "https://api.together.xyz/v1"
+    timeout_s: 30
+    gpu_required: false

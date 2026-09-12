@@ -1,0 +1,16 @@
+{
+  "agent_id": "A2",
+  "schema_name": "problem_coach_output",
+  "version": "1.0.0",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "hint": {"type": "string", "minLength": 5, "maxLength": 1000},
+      "step_number": {"type": "integer", "minimum": 1},
+      "is_final_step": {"type": "boolean"},
+      "worked_solution": {"type": ["string", "null"], "maxLength": 2000}
+    },
+    "required": ["hint", "step_number", "is_final_step"],
+    "additionalProperties": false
+  }
+}

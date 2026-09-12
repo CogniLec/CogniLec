@@ -1,0 +1,15 @@
+{
+  "agent_id": "A6",
+  "schema_name": "progress_analyst_output",
+  "version": "1.0.0",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": {"type": "string", "minLength": 10, "maxLength": 2000},
+      "mastery_scores": {"type": "object", "minProperties": 1},
+      "recommended_next_topics": {"type": "array", "items": {"type": "string"}, "maxItems": 10}
+    },
+    "required": ["summary", "mastery_scores", "recommended_next_topics"],
+    "additionalProperties": false
+  }
+}
