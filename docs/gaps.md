@@ -671,6 +671,40 @@ matches its spec. The system is demonstrably correct at the mechanism
 level and demonstrably **not yet** verified at the deployed, real-world,
 real-user level the plan's acceptance criteria ultimately ask for.
 
+## 14. Merge verification found a corrupted test DB schema + host memory pressure (2026-09-13)
+
+- While verifying Block 13's merge on real `main`, two full-suite `pytest`
+  runs were killed outright by the host OS for low memory, and a third run
+  (that did complete) failed one test with
+  `sqlalchemy.exc.ProgrammingError: ... UndefinedTableError: relation
+  "users" does not exist` even though `alembic current` reported the chain
+  at its correct head (`a7c2e9f4b1d8`).
+- **Cause:** `alembic_version` and the actual schema had gone out of sync
+  on the shared `pg-main` container — almost certainly from an earlier
+  `pytest` run being OOM-killed mid-migration (fixture teardown/setup in
+  `tests/conftest.py` runs `alembic upgrade head` per session), leaving a
+  partially-applied schema stamped as if it were complete.
+- **Fix applied:** `alembic downgrade base` then `alembic upgrade head`
+  against `pg-main` — the full chain re-applied cleanly through all 15
+  migrations with no errors. Re-ran the full suite twice after: **690
+  passed, 80 skipped, 0 failed**, confirmed via a clean, untruncated log
+  capture (a naive `| tail -30` on a prior attempt cut off the actual
+  pytest summary line behind harmless post-test Prefect shutdown logging —
+  worth knowing if a future run looks like it produced no summary).
+- **Host memory pressure:** `free -h` showed 25GB+ free / 53GB available
+  at the time of the kills, so this wasn't sustained memory exhaustion —
+  more likely a transient spike (Chrome/Firefox/gnome-shell plus pytest's
+  own peak while many services — Prefect temp server, torch, opencv,
+  UMAP/HDBSCAN — load in-process). Not fully root-caused; if `pytest`
+  runs continue to get OOM-killed on this host, close some browser tabs
+  before running the full suite, or run subsets (`--ignore`) instead of
+  everything at once.
+- **Action for future agents/sessions:** if a full-suite run mysteriously
+  fails on a `relation "..." does not exist` error despite `alembic
+  current` matching head, suspect this exact failure mode first — reset
+  with `alembic downgrade base && alembic upgrade head` rather than
+  debugging the failing test itself.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
