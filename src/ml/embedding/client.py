@@ -24,11 +24,13 @@ class EmbeddingClient:
         tei_base_url: str = "http://tei:80",
         fallback_local: bool = True,
         version_info: ModelVersionInfo | None = None,
+        local_device: str = "cpu",
     ) -> None:
         self.tei_base_url = tei_base_url
         self.fallback_local = fallback_local
         self._version_info = version_info
         self._local_model = None
+        self._local_device = local_device
 
     @property
     def version_info(self) -> ModelVersionInfo:
@@ -82,7 +84,7 @@ class EmbeddingClient:
             from src.ml.embedding.embed import load_embedding_model
 
             self._local_model = load_embedding_model(
-                model_name=self.version_info.model, device="cpu"
+                model_name=self.version_info.model, device=self._local_device
             )
         from src.ml.embedding.embed import encode_texts
 

@@ -68,6 +68,7 @@ class ASRWorker:
             embed_model_ver=self._settings.EMBED_MODEL_VER,
             word_timestamps=self._settings.ASR_WORD_TIMESTAMPS,
             alignment_model=self._settings.ASR_ALIGNMENT_MODEL,
+            device_index=self._settings.ASR_CUDA_DEVICE,
         )
         self._consumer_name = consumer_name or f"asr-worker-{socket.gethostname()}"
 

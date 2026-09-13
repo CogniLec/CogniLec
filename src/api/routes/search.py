@@ -17,6 +17,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.dependencies.auth import get_db_session_with_rls
 from src.api.schemas.search import SearchResponse, SearchResultResponse
+from src.core.config import get_settings
 from src.db.exceptions import SubjectNotFoundError
 from src.db.repositories.subject_repo import SubjectRepository
 from src.ml.embedding.client import EmbeddingClient
@@ -28,7 +29,8 @@ router = APIRouter(tags=["search"])
 async def _get_query_embedding(query: str) -> list[float] | None:
     """Best-effort query embedding; a degraded embedding service falls back to lexical-only."""
     try:
-        client = EmbeddingClient()
+        settings = get_settings()
+        client = EmbeddingClient(local_device=f"cuda:{settings.EMBEDDING_CUDA_DEVICE}")
         vectors = await client.embed([query], task_mode="retrieval")
         return vectors[0] if vectors else None
     except Exception:

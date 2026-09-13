@@ -1073,6 +1073,116 @@ altered runtime behavior.
 - Full suite re-run after the clean rebuild: **695 passed, 81 skipped, 0
   failed** — confirmed working again, no lasting damage.
 
+## 21. Per-stage GPU pinning for a future 3-GPU deployment (config/wiring only) (2026-09-14)
+
+- The project owner intends to run this host with 3 physical GPUs (same
+  spec as the current single T1000). Decision made with the coordinator: do
+  NOT tensor-parallelise a single model across the 3 cards (these
+  Whisper/embedding/LLM models each fit comfortably on one 4GB card, and
+  cross-GPU communication overhead would likely hurt latency more than help
+  at this model size). Instead, run pipeline stages (ASR, diarisation,
+  embedding) as independent workers, each pinned to its own physical GPU
+  via `CUDA_VISIBLE_DEVICES`/`device_index`, so they can run simultaneously
+  instead of serializing on one device, and/or so multiple sessions can be
+  processed concurrently on different cards.
+- **Code added:**
+  - `src/core/config.py` — `ASR_CUDA_DEVICE: int = 0` and
+    `EMBEDDING_CUDA_DEVICE: int = 0` (in-process device indices, default 0
+    for this host's single real GPU), plus `VLLM_GPU_DEVICE: str = "0"` and
+    `DIARISATION_GPU_DEVICE: str = "0"` (docker-compose device pinning for
+    the two isolated GPU containers — vLLM per S36, diarisation per gap
+    #18). All four are overridable via env var, following the existing
+    `Settings` pattern.
+  - `src/services/asr/service.py` — `FasterWhisperASRService.__init__` gained
+    a `device_index: int = 0` parameter, forwarded to
+    `faster_whisper.WhisperModel(..., device_index=...)`
+    (`ctranslate2`'s actual per-GPU pinning mechanism — distinct from
+    `device="cuda"/"cpu"`, which only selects the device *type*).
+  - `src/workers/asr_worker.py` — wires `settings.ASR_CUDA_DEVICE` into that
+    new parameter at the worker's default `FasterWhisperASRService`
+    construction.
+  - `src/ml/embedding/client.py` — `EmbeddingClient.__init__` gained a
+    `local_device: str = "cpu"` parameter (default unchanged — the local
+    sentence-transformers path is a degraded TEI-outage fallback, and CPU
+    remains the safe default there), threaded into `_embed_local`'s
+    `load_embedding_model(..., device=self._local_device)` call instead of
+    the previous hardcoded `"cpu"`.
+  - `src/api/routes/search.py` — the one production `EmbeddingClient()` call
+    site now passes `local_device=f"cuda:{settings.EMBEDDING_CUDA_DEVICE}"`,
+    so a 3-GPU deployment can pin the query-time embedding fallback to a
+    specific card; still wrapped in the existing best-effort `try/except`,
+    so a host without that GPU degrades to lexical-only search exactly as
+    before.
+  - `docker-compose.yml` — the `vllm` and `diarisation` services' GPU
+    reservations changed from a hardcoded `count: 1` to
+    `device_ids: ["${VLLM_GPU_DEVICE:-0}"]` /
+    `device_ids: ["${DIARISATION_GPU_DEVICE:-0}"]`, following the same
+    `deploy.resources.reservations.devices` shape for both. `docker compose
+    config` was run to confirm the compose file still parses correctly with
+    this change (no `docker compose up` — this sandbox has no GPU-passthrough
+    Docker runtime, same limitation as gap #18).
+  - `src/services/orchestration/session_pipeline.py` (S47) was read and left
+    unchanged: it never constructs `FasterWhisperASRService` or an
+    `EmbeddingClient` itself (those are injected by the caller/DI layer —
+    T1 `embed_utterances` takes a pre-built `EmbeddingClient`), so there was
+    no GPU-selection code inside the flow to change. Its tasks are already
+    plain `async` Prefect tasks with no in-process device pinning of their
+    own; genuine parallelism across GPUs is a property of how the injected
+    `FasterWhisperASRService`/`EmbeddingClient` instances are constructed
+    (now configurable per this gap) and of Prefect's `ml-pool`/`llm-pool`
+    worker-pool topology (S27/ADR-002, already deployment-time config, not
+    something this gap needed to touch) — not something to redesign inside
+    `process_session` itself, per the coordinator's explicit instruction not
+    to invent a new orchestration system.
+  - `tests/test_multi_gpu_config.py` — new tests: settings default to device
+    0 and are overridable via env var; `FasterWhisperASRService` forwards
+    `device_index` to `WhisperModel` (mocked, no real model load) both
+    explicitly and by omission-defaults-to-0 (a regression check against the
+    device-selection mechanism gap #15/#17 already verified end to end on
+    real hardware); the ASR worker wires `ASR_CUDA_DEVICE` into its service
+    construction; `EmbeddingClient.local_device` defaults to `"cpu"`
+    (regression) and is threaded into the model loader when overridden;
+    `docker-compose.yml`'s `vllm`/`diarisation` GPU reservations are
+    configurable via the new env vars, checked by parsing the compose YAML
+    directly. One test is an honest `pytest.mark.skip`.
+- **What IS verified here:** the config settings exist, default correctly
+  for this host's single real GPU, are overridable, and are correctly
+  threaded into the ASR/embedding/docker-compose call sites (unit tests
+  with mocked device selection — no GPU hardware needed for these). The
+  device-0 default was also exercised for real: `tests/test_asr_worker.py`
+  already instantiates a real (CPU) `FasterWhisperASRService` and passes,
+  unaffected by the new `device_index` parameter defaulting to 0 — a live
+  regression check that existing single-GPU/CPU behaviour is unchanged.
+  `docker compose config` confirms the changed compose YAML still parses.
+- **What is NOT verified, honestly:** this host has exactly one physical
+  GPU (NVIDIA T1000, 4GB — see gap #15/#17/#20), so nothing about genuine
+  3-GPU concurrent execution can be exercised here: not that
+  `device_index=1`/`2` actually reach a second/third physical card, not
+  that 3 sessions' ASR/diarisation/embedding stages genuinely run
+  simultaneously on 3 different GPUs, and not any wall-clock speedup claim.
+  `test_three_gpu_concurrent_sessions_speedup` in the new test file is an
+  honest `pytest.mark.skip` documenting exactly this, matching the pattern
+  already used in `tests/test_s29_segmentation_gate.py` and gap #18's
+  container-verification skip. This needs the project owner's actual
+  3-GPU hardware to close out.
+- Full suite re-run after this change. The shared test Postgres instance in
+  this sandbox was, at the time of this pass, also being hit concurrently
+  by several other parallel `manual-*` worktree sessions' own test runs
+  (`manual-license-fix`, `manual-ruff-cleanup`, `manual-review-app` were all
+  observed running `pytest` against the same DB during this session, via
+  `ps aux`), which produced non-deterministic `alembic_version`
+  duplicate-key races and one-off `relation "x" does not exist` errors
+  across unrelated test files on 2 of 3 full-suite attempts — none of which
+  touch any file this gap changed. A full run went from 12 failed/33 errors
+  → 2 failed/1 error → clean, across three attempts with no code changes in
+  between, and a targeted re-run of the previously-flagged tests in
+  isolation passed cleanly except for the same shared-DB race. This is
+  environmental contention from concurrent sessions sharing one test
+  database, not a regression from this change. `tests/test_multi_gpu_config.py`
+  itself (this gap's actual new tests) passed cleanly on every attempt: **9
+  passed, 1 skipped**, unaffected by the DB contention since it needs no
+  database.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

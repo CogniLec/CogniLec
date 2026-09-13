@@ -87,6 +87,22 @@ class Settings(BaseSettings):
     CUDA_VISIBLE_DEVICES: str = "0"
     PYTORCH_CUDA_ALLOC_CONF: str = "max_split_size_mb:128,expandable_segments:True"
 
+    # Per-stage GPU pinning (docs/gaps.md gap #21): this host has one
+    # physical GPU, so every in-process stage defaults to device 0. On a
+    # host with multiple physical GPUs, each stage can be pinned to its own
+    # card via env vars so ASR/diarisation/embedding run as independent
+    # parallel workers instead of serializing on one device.
+    ASR_CUDA_DEVICE: int = 0
+    EMBEDDING_CUDA_DEVICE: int = 0
+    # Diarisation runs out-of-process in its own container (gap #18), so its
+    # GPU is pinned at the docker-compose level instead (below), not via an
+    # in-process device index.
+    # docker-compose `deploy.resources.reservations.devices[].device_ids`
+    # values (strings, matching `docker run --gpus device=N` semantics) for
+    # the isolated GPU containers.
+    VLLM_GPU_DEVICE: str = "0"
+    DIARISATION_GPU_DEVICE: str = "0"
+
     # Model versions (locked by S06)
     ASR_MODEL: str = "whisper-large-v3-turbo"
     ASR_MODEL_REVISION: str = "main"

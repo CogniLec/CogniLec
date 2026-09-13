@@ -40,10 +40,12 @@ class FasterWhisperASRService:
         alignment_model: str | None = None,
         alignment_enabled: bool = False,
         model: Any | None = None,
+        device_index: int = 0,
     ) -> None:
         self._model_name = model_name
         self._compute_type = compute_type
         self._device = device
+        self._device_index = device_index
         self._beam_size = beam_size
         self._language = language
         self._embed_model_ver = embed_model_ver
@@ -57,12 +59,18 @@ class FasterWhisperASRService:
 
         start = time.monotonic()
         log.info(
-            "loading faster-whisper model %s (compute_type=%s, device=%s)",
+            "loading faster-whisper model %s (compute_type=%s, device=%s, device_index=%d)",
             self._model_name,
             self._compute_type,
             self._device,
+            self._device_index,
         )
-        model = WhisperModel(self._model_name, device=self._device, compute_type=self._compute_type)
+        model = WhisperModel(
+            self._model_name,
+            device=self._device,
+            device_index=self._device_index,
+            compute_type=self._compute_type,
+        )
         log.info("model load took %.2fs", time.monotonic() - start)
         return model
 
