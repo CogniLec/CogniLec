@@ -79,6 +79,36 @@ class NoteRepository:
         )
         return list(result.fetchall())
 
+    async def get_sections_by_topic(
+        self, subject_id: uuid.UUID, topic_id: uuid.UUID
+    ) -> list[object]:
+        """S46 T46.2: all sections across every session sharing this topic,
+
+        merged into consolidated topic notes (FR-7.2).
+        """
+        result = await self._session.execute(
+            text("""
+                SELECT * FROM note_sections
+                WHERE subject_id = :subject_id AND topic_id = :topic_id
+                ORDER BY session_id, ordinal
+            """),
+            {"subject_id": str(subject_id), "topic_id": str(topic_id)},
+        )
+        return list(result.fetchall())
+
+    async def get_provenance_for_section(
+        self, subject_id: uuid.UUID, note_section_id: uuid.UUID
+    ) -> list[uuid.UUID]:
+        """Utterance IDs backing one note section (S46 provenance navigation)."""
+        result = await self._session.execute(
+            text("""
+                SELECT utterance_id FROM note_provenance
+                WHERE subject_id = :subject_id AND note_section_id = :note_section_id
+            """),
+            {"subject_id": str(subject_id), "note_section_id": str(note_section_id)},
+        )
+        return [row[0] for row in result.fetchall()]
+
     async def get_assets(self, note_section_id: uuid.UUID) -> list[object]:
         """Get assets for a note section."""
         result = await self._session.execute(

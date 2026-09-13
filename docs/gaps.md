@@ -99,6 +99,44 @@ by code changes alone.
   (S06, S29, S34, S35) plus S19's benchmark. Recording and hand-labelling the
   real corpus is the highest-leverage remaining gap in the whole S01-S40 range.
 
+## 7. Block 7 (S41-S46) complete; S05 gap now also blocks the A1 relevance gate
+
+- Block 7 (S41-S46: A1 relevance filter, A1 evaluation gate, A1 ensemble
+  voting, A2 note synthesis, note persistence, note read API) implemented.
+  Full suite: **523 passed, 28 skipped, 0 failed**.
+- **S42 (hard gate)** - precision-on-discard > 0.90, recall-on-off-topic >
+  0.80, and zero-core-content-discarded gates have real evaluation code
+  (`src/eval/relevance_evaluation.py`: confusion-matrix precision/recall,
+  per-category error analysis, outlier-score ablation) but cannot honestly
+  run: the S05 2,000-utterance hand-labelled relevance corpus doesn't exist
+  in this environment (no file at `lis-eval/labels/v1/relevance/utterances.json`).
+  `tests/test_s42_relevance_gate.py` skips `TestT421T422T424HardGate`
+  explicitly, mirroring `tests/test_s29_segmentation_gate.py`'s handling of
+  the same underlying gap. Downstream S43+ do not assume this gate passed -
+  A1's default thresholds are the spec's stated targets, uncalibrated
+  against real data.
+- **T44.4/T44.5** (human-rated note quality, full-context vs
+  segment-by-segment head-to-head) and **T46.3/T46.4/T46.6** (client
+  provenance-tap navigation, KaTeX/Mermaid client rendering, page-load
+  timing) require a human rater panel / real lecture sessions / a real
+  browser client respectively - none exist in this environment. Skipped
+  with explicit reasons in `tests/test_s44_note_synthesis.py` and
+  `tests/test_s46_notes_api.py`, following the same pattern as
+  `tests/test_transcript_api.py`'s T24.3/T24.4.
+- **T46.5** (RLS: no cross-user note access) reuses gap #4 (the `lis` role
+  is superuser/BYPASSRLS) - the test asserts either a real 404 or the
+  current bypassed 200, documented inline, rather than a fabricated pass.
+- No new Alembic migration was needed: `is_relevant`/`filter_reason`/
+  `outlier_score` (S22), `note_sections`/`note_provenance` (S09/S10), and
+  `notes_ready` (S07) already existed from earlier blocks.
+- This worktree's checkout was missing two untracked, non-git scaffold
+  directories (`migrations/`, `notebooks/`) that `tests/test_s01_skeleton.py`
+  asserts exist alongside the repo; they aren't part of git history (verified
+  via `git status`/`git ls-files`) and are believed to be a leftover local
+  artifact in the primary checkout. Recreated empty in this worktree so the
+  full suite could run; harmless, but flag in case `test_s01_skeleton.py`
+  should instead be tracking real content there.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
