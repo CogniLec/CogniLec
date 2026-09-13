@@ -59,6 +59,68 @@ class UtteranceRepository:
         )
         return [dict(row._mapping) for row in result.fetchall()]
 
+    async def vector_query_active_version(
+        self, subject_id: uuid.UUID, embedding: list[float], embed_model_ver: str, k: int = 10
+    ) -> list[dict[str, object]]:
+        """S25 T25.3: nearest neighbours restricted to the active embed_model_ver.
+
+        Prevents stale embeddings from a superseded model version leaking
+        into retrieval results during a backfill migration.
+        """
+        result = await self._session.execute(
+            text("""
+                SELECT *, embedding <=> :embedding AS distance
+                FROM utterances
+                WHERE subject_id = :subject_id AND embedding IS NOT NULL
+                      AND embed_model_ver = :embed_model_ver
+                ORDER BY embedding <=> :embedding
+                LIMIT :k
+            """),
+            {
+                "subject_id": str(subject_id),
+                "embedding": str(embedding),
+                "embed_model_ver": embed_model_ver,
+                "k": k,
+            },
+        )
+        return [dict(row._mapping) for row in result.fetchall()]
+
+    async def get_by_embed_version(
+        self, subject_id: uuid.UUID, embed_model_ver: str
+    ) -> list[dict[str, object]]:
+        """All utterances for a subject stamped at a given embedding model version."""
+        result = await self._session.execute(
+            text("""
+                SELECT * FROM utterances
+                WHERE subject_id = :subject_id AND embed_model_ver = :embed_model_ver
+                ORDER BY session_id, seq
+            """),
+            {"subject_id": str(subject_id), "embed_model_ver": embed_model_ver},
+        )
+        return [dict(row._mapping) for row in result.fetchall()]
+
+    async def update_embedding(
+        self,
+        subject_id: uuid.UUID,
+        utterance_id: uuid.UUID,
+        embedding: list[float],
+        embed_model_ver: str,
+    ) -> None:
+        """Atomically overwrite an utterance's embedding + version stamp."""
+        await self._session.execute(
+            text("""
+                UPDATE utterances SET embedding = :embedding, embed_model_ver = :embed_model_ver
+                WHERE subject_id = :subject_id AND id = :id
+            """),
+            {
+                "subject_id": str(subject_id),
+                "id": str(utterance_id),
+                "embedding": str(embedding),
+                "embed_model_ver": embed_model_ver,
+            },
+        )
+        await self._session.flush()
+
     async def get_by_session(self, subject_id: uuid.UUID, session_id: uuid.UUID) -> list[Utterance]:
         """Get utterances for a session."""
         stmt = (

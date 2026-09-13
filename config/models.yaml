@@ -16,6 +16,25 @@ embedding_revision: "main"
 embedding_device: "cuda"
 embedding_batch_size: 32
 
+# S25 — embedding version governance
+embedding_versions:
+  active: "qwen3-0.6b-v1"
+  registry:
+    qwen3-0.6b-v1:
+      model: "Qwen/Qwen3-Embedding-0.6B"
+      dim: 1024
+      revision: "main"
+      instruction_prefix_retrieval: "Retrieve semantically similar content: "
+      instruction_prefix_clustering: "Cluster semantically similar content: "
+      registered_at: "2026-09-12"
+      status: "active"
+
+# S26 — context-window embedding
+embedding:
+  window_size: 5
+  window_stride: 1
+  min_window: 1
+
 # S36 — LLM Serving Tiers (Block 6)
 tiers:
   tier_1:
