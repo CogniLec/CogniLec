@@ -79,6 +79,26 @@ by code changes alone.
   (`--no-verify`, disclosed in each commit message) to land this work. Lint/
   type cleanup across the codebase is still outstanding.
 
+## 6. Blocks 4-6 complete; S05 corpus gap now widely felt (2026-09-13)
+
+- Blocks 4 (S25-S32), 5 (S33-S35), and 6 (S36-S40) implemented in parallel via
+  background agents in isolated worktrees, merged cleanly onto main
+  (`49c07b9`, `b21201d`, `a9b4584`). Full suite: **484 passed, 20 skipped, 0
+  failed**.
+- **S29 (hard gate)** — P_k < 0.30 segmentation gate has real evaluation code
+  (`src/eval/segmentation_report.py`) but cannot honestly run: the S05
+  30-lecture hand-marked corpus doesn't exist, only a 1-lecture Label Studio
+  stub in the wrong format/scale (`lis-eval/labels/v1/boundaries/sample.json`).
+  Honest skip, not a fabricated pass — downstream S30+ do not assume this
+  gate passed.
+- **T34.2/T34.3** (cue precision, P_k improvement) and **T35.1** (session-type
+  classification accuracy) are unevaluated for the same reason — no S05
+  corpus to measure against.
+- **Net effect:** the S05 gap (item #1, previously scoped just to S06/S19) is
+  now the single blocking dependency for *four* separate evaluation gates
+  (S06, S29, S34, S35) plus S19's benchmark. Recording and hand-labelling the
+  real corpus is the highest-leverage remaining gap in the whole S01-S40 range.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
