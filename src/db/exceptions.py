@@ -2,9 +2,14 @@
 
 from __future__ import annotations
 
+import uuid
+
 
 class SubjectNotFoundError(Exception):
     """Raised when a subject is not found."""
+
+    def __init__(self, subject_id: uuid.UUID) -> None:
+        super().__init__(f"Subject {subject_id} not found")
 
 
 class SubjectAlreadyExistsError(Exception):
@@ -13,6 +18,9 @@ class SubjectAlreadyExistsError(Exception):
 
 class SessionNotFoundError(Exception):
     """Raised when a session is not found."""
+
+    def __init__(self, session_id: uuid.UUID) -> None:
+        super().__init__(f"Session {session_id} not found")
 
 
 class DuplicateKeyError(Exception):

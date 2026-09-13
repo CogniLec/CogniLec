@@ -64,7 +64,7 @@ class TestPyprojectToml:
     def test_ruff_line_length(self) -> None:
         import tomllib
 
-        with open(ROOT / "pyproject.toml", "rb") as f:
+        with (ROOT / "pyproject.toml").open("rb") as f:
             data = tomllib.load(f)
         assert data["tool"]["ruff"]["line-length"] == 100
 
@@ -72,7 +72,7 @@ class TestPyprojectToml:
     def test_ruff_target_version(self) -> None:
         import tomllib
 
-        with open(ROOT / "pyproject.toml", "rb") as f:
+        with (ROOT / "pyproject.toml").open("rb") as f:
             data = tomllib.load(f)
         assert data["tool"]["ruff"]["target-version"] == "py312"
 
@@ -80,7 +80,7 @@ class TestPyprojectToml:
     def test_ruff_select_rules(self) -> None:
         import tomllib
 
-        with open(ROOT / "pyproject.toml", "rb") as f:
+        with (ROOT / "pyproject.toml").open("rb") as f:
             data = tomllib.load(f)
         select = data["tool"]["ruff"]["lint"]["select"]
         for rule in ["E", "F", "I", "N", "UP", "W", "C4", "PTH", "PIE", "T20", "TRY", "SIM", "RUF"]:
@@ -90,7 +90,7 @@ class TestPyprojectToml:
     def test_ruff_format_double_quotes(self) -> None:
         import tomllib
 
-        with open(ROOT / "pyproject.toml", "rb") as f:
+        with (ROOT / "pyproject.toml").open("rb") as f:
             data = tomllib.load(f)
         assert data["tool"]["ruff"]["format"]["quote-style"] == "double"
 
@@ -98,7 +98,7 @@ class TestPyprojectToml:
     def test_mypy_strict(self) -> None:
         import tomllib
 
-        with open(ROOT / "pyproject.toml", "rb") as f:
+        with (ROOT / "pyproject.toml").open("rb") as f:
             data = tomllib.load(f)
         mypy = data["tool"]["mypy"]
         assert mypy["strict"] is True
@@ -110,7 +110,7 @@ class TestPyprojectToml:
     def test_pytest_config(self) -> None:
         import tomllib
 
-        with open(ROOT / "pyproject.toml", "rb") as f:
+        with (ROOT / "pyproject.toml").open("rb") as f:
             data = tomllib.load(f)
         pytest_cfg = data["tool"]["pytest"]["ini_options"]
         markers_str = " ".join(pytest_cfg["markers"])
@@ -123,7 +123,7 @@ class TestPyprojectToml:
     def test_requires_python(self) -> None:
         import tomllib
 
-        with open(ROOT / "pyproject.toml", "rb") as f:
+        with (ROOT / "pyproject.toml").open("rb") as f:
             data = tomllib.load(f)
         rp = data["project"]["requires-python"]
         assert "3.12" in rp
@@ -140,7 +140,7 @@ class TestPreCommitConfig:
     def test_ruff_hook(self) -> None:
         import yaml
 
-        with open(ROOT / ".pre-commit-config.yaml") as f:
+        with (ROOT / ".pre-commit-config.yaml").open() as f:
             data = yaml.safe_load(f)
         repos = [r["repo"] for r in data["repos"]]
         assert "https://github.com/astral-sh/ruff-pre-commit" in repos
@@ -149,7 +149,7 @@ class TestPreCommitConfig:
     def test_mypy_hook(self) -> None:
         import yaml
 
-        with open(ROOT / ".pre-commit-config.yaml") as f:
+        with (ROOT / ".pre-commit-config.yaml").open() as f:
             data = yaml.safe_load(f)
         repos = [r["repo"] for r in data["repos"]]
         assert "https://github.com/pre-commit/mirrors-mypy" in repos
@@ -158,7 +158,7 @@ class TestPreCommitConfig:
     def test_gitleaks_hook(self) -> None:
         import yaml
 
-        with open(ROOT / ".pre-commit-config.yaml") as f:
+        with (ROOT / ".pre-commit-config.yaml").open() as f:
             data = yaml.safe_load(f)
         repos = [r["repo"] for r in data["repos"]]
         assert "https://github.com/gitleaks/gitleaks" in repos
@@ -167,7 +167,7 @@ class TestPreCommitConfig:
     def test_sqlfluff_hook(self) -> None:
         import yaml
 
-        with open(ROOT / ".pre-commit-config.yaml") as f:
+        with (ROOT / ".pre-commit-config.yaml").open() as f:
             data = yaml.safe_load(f)
         repos = [r["repo"] for r in data["repos"]]
         assert "https://github.com/sqlfluff/sqlfluff" in repos
@@ -184,7 +184,7 @@ class TestCIGithubActions:
     def test_lint_job_exists(self) -> None:
         import yaml
 
-        with open(ROOT / ".github" / "workflows" / "ci.yml") as f:
+        with (ROOT / ".github" / "workflows" / "ci.yml").open() as f:
             data = yaml.safe_load(f)
         assert "lint-and-typecheck" in data["jobs"]
 
@@ -192,7 +192,7 @@ class TestCIGithubActions:
     def test_gitleaks_job_exists(self) -> None:
         import yaml
 
-        with open(ROOT / ".github" / "workflows" / "ci.yml") as f:
+        with (ROOT / ".github" / "workflows" / "ci.yml").open() as f:
             data = yaml.safe_load(f)
         assert "gitleaks" in data["jobs"]
 
@@ -200,7 +200,7 @@ class TestCIGithubActions:
     def test_unit_tests_job_exists(self) -> None:
         import yaml
 
-        with open(ROOT / ".github" / "workflows" / "ci.yml") as f:
+        with (ROOT / ".github" / "workflows" / "ci.yml").open() as f:
             data = yaml.safe_load(f)
         assert "unit-tests" in data["jobs"]
 
@@ -208,7 +208,7 @@ class TestCIGithubActions:
     def test_integration_tests_job_exists(self) -> None:
         import yaml
 
-        with open(ROOT / ".github" / "workflows" / "ci.yml") as f:
+        with (ROOT / ".github" / "workflows" / "ci.yml").open() as f:
             data = yaml.safe_load(f)
         assert "integration-tests" in data["jobs"]
 
@@ -216,7 +216,7 @@ class TestCIGithubActions:
     def test_docker_build_job_exists(self) -> None:
         import yaml
 
-        with open(ROOT / ".github" / "workflows" / "ci.yml") as f:
+        with (ROOT / ".github" / "workflows" / "ci.yml").open() as f:
             data = yaml.safe_load(f)
         assert "docker-build" in data["jobs"]
 
@@ -224,7 +224,7 @@ class TestCIGithubActions:
     def test_cuda_matrix_job_exists(self) -> None:
         import yaml
 
-        with open(ROOT / ".github" / "workflows" / "ci.yml") as f:
+        with (ROOT / ".github" / "workflows" / "ci.yml").open() as f:
             data = yaml.safe_load(f)
         assert "cuda-matrix-check" in data["jobs"]
 
@@ -232,7 +232,7 @@ class TestCIGithubActions:
     def test_lint_job_runs_ruff_and_mypy(self) -> None:
         import yaml
 
-        with open(ROOT / ".github" / "workflows" / "ci.yml") as f:
+        with (ROOT / ".github" / "workflows" / "ci.yml").open() as f:
             data = yaml.safe_load(f)
         steps = data["jobs"]["lint-and-typecheck"]["steps"]
         step_names = [s["name"].lower() for s in steps]
@@ -306,7 +306,7 @@ class TestEnvAndSops:
     def test_sops_yaml_has_creation_rules(self) -> None:
         import yaml
 
-        with open(ROOT / ".sops.yaml") as f:
+        with (ROOT / ".sops.yaml").open() as f:
             data = yaml.safe_load(f)
         assert "creation_rules" in data
         assert len(data["creation_rules"]) > 0

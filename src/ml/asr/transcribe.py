@@ -77,7 +77,8 @@ def load_model(
     elif engine == "nemo":
         return load_nemo_parakeet(model_id, device)
     else:
-        raise ValueError(f"Unknown engine: {engine} for model {name}")
+        msg = f"Unknown engine: {engine} for model {name}"
+        raise ValueError(msg)
 
 
 def transcribe(model: Any, audio_path: Path, engine: str, beam_size: int = 5) -> str:
@@ -98,7 +99,8 @@ def transcribe(model: Any, audio_path: Path, engine: str, beam_size: int = 5) ->
     elif engine == "nemo":
         return _transcribe_nemo(model, audio_path)
     else:
-        raise ValueError(f"Unknown engine: {engine}")
+        msg = f"Unknown engine: {engine}"
+        raise ValueError(msg)
 
 
 def _transcribe_nemo(model: Any, audio_path: Path) -> str:

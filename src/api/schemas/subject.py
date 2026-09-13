@@ -10,7 +10,8 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 def _reject_blank(value: str | None) -> str | None:
     if value is not None and not value.strip():
-        raise ValueError("name must not be blank")
+        msg = "name must not be blank"
+        raise ValueError(msg)
     return value
 
 

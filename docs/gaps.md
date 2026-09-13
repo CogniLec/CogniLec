@@ -928,7 +928,8 @@ on branch `manual-lint-cleanup`, in the order the task specified.
 **Now fully passing**: `ruff-format`, `mypy` (strict, as run by the actual
 pre-commit hook), `sqlfluff-lint`, `check-yaml`, `check-toml`, `check-json`,
 `check-merge-conflict`, `end-of-file-fixer`, `trailing-whitespace`,
-`mixed-line-ending`, `detect-private-key`, gitleaks.
+`mixed-line-ending`, `detect-private-key`, gitleaks, and — as of the
+2026-09-14 `manual-ruff-cleanup` follow-up below — `ruff` itself.
 
 What was done:
 - `ruff format .` reformatted 101 files; `ruff check --fix .` auto-fixed the
@@ -1010,30 +1011,46 @@ using `log.error` with an exception object formatted as `%s`, discarding the
 traceback that `log.exception` would have preserved — meaningful when
 diagnosing a failed NeMo transcription in production logs.
 
-**Remaining debt** (left deliberately, `ruff` hook still fails on this):
-- **29 `PTH123`** findings (`open()` should be `Path.open()`) — almost all in
-  test files (`tests/test_s01_skeleton.py`, `tests/test_s06_config.py`,
-  `tests/test_s06_gates.py`) plus one in `src/ml/gates.py`. Purely stylistic,
-  mechanical but 29 individual call sites; left for a follow-up pass rather
-  than rushed edits across test files this session didn't otherwise touch.
-- **8 `TRY003`** findings (exception raised with an inline long message
-  outside the exception class) in `src/api/schemas/subject.py`,
-  `src/db/repositories/base.py`, `src/db/repositories/session_repo.py`,
-  `src/db/repositories/subject_repo.py`, `src/ml/asr/transcribe.py`. Ruff's
-  suggested fix (move messages onto custom exception `__init__`s) is a real
-  refactor of the exception classes, not a mechanical fix, so left as-is.
-- `src/services/valkey_stream.py` and `src/workers/retry_queue.py`'s use of
-  `redis.asyncio` is still under a blanket `ignore_missing_imports` override
-  rather than fully typed — see mypy note above.
-- Did not touch `src/services/diarisation/` beyond what `ruff format`/
-  `ruff check --fix` did automatically (whitespace/import-order only, no
-  manual edits), per instruction to avoid conflicting with parallel
-  diarisation work.
+**Update (2026-09-14, branch `manual-ruff-cleanup`): the remaining `ruff`
+debt below is now closed.** `ruff check .` is fully clean and
+`pre-commit run --all-files` passes on every hook, including `ruff`.
 
-Full test suite after all changes: **690 passed, 80 skipped, 0 failed**
+- **29 `PTH123`** findings (`open()` → `Path.open()`) fixed across
+  `tests/test_s01_skeleton.py`, `tests/test_s06_config.py`,
+  `tests/test_s06_gates.py`, and `src/ml/gates.py` — mechanical, using
+  whatever `Path` was already in scope at each call site (e.g. `ROOT / "..."`,
+  `CONFIG_PATH`, or the function's own `path`/`config_path` parameter).
+- **8 `TRY003`** findings fixed:
+  - `src/db/exceptions.py`'s `SubjectNotFoundError` and
+    `SessionNotFoundError` gained a proper `__init__(self, subject_id)` /
+    `__init__(self, session_id)` that builds the `"X {id} not found"` message
+    internally, so call sites in `src/db/repositories/subject_repo.py` and
+    `session_repo.py` now just do `raise SubjectNotFoundError(subject_id)`.
+  - The two `DuplicateKeyError` call sites (`session_repo.py`,
+    `subject_repo.py`) and the plain `ValueError` raises
+    (`src/api/schemas/subject.py`, `src/db/repositories/base.py`,
+    `src/ml/asr/transcribe.py` x2) assign the message to a local `msg`/
+    `detail` variable before the `raise`, per ruff's own documented fix for
+    this rule — `ValueError` itself can't gain a custom `__init__` without
+    changing the exception type, which the existing tests (e.g.
+    `tests/test_partitions.py`'s `pytest.raises(ValueError, match=...)` for
+    `_require_subject_id`) depend on staying exactly `ValueError`.
+  - All of these are behavior-preserving: same exception type, same rendered
+    message text, same `str(exc)` value consumed by the API routes that
+    forward it as the HTTP error detail.
+
+Full test suite after these fixes: **695 passed, 81 skipped, 0 failed**
 (`python -m pytest tests/ -q --timeout=300 --ignore=tests/client`) — identical
-to the pre-cleanup baseline, confirming none of the formatting/typing changes
-altered runtime behavior.
+to the pre-fix baseline, confirming the refactor changed no behavior.
+
+Two pieces of debt noted above remain untouched (out of scope for this pass):
+`redis.asyncio`'s `ignore_missing_imports` override, and a pre-existing
+`UP038` finding in `scripts/s04_validate_manifest.py` plus stale
+end-of-file-fixer failures under `lis-eval/phase0/real_video_evidence_medium_en/`
+that surface only when running `ruff`/`pre-commit` against the *entire* repo
+with the pinned pre-commit-hook ruff version (v0.11.13) rather than the
+venv's ruff (0.16.7) — pre-existing at this branch's base commit, unrelated
+to PTH123/TRY003, and outside gap #19's scope.
 
 ## 20. Re-ran video evidence with a bigger GPU model (medium.en, real GPU) (2026-09-14)
 
