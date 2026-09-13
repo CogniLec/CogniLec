@@ -55,8 +55,7 @@ secrets/
 *.pem
 *.crt
 
-# Models (large, cached in volume)
-models/
+# Models (large, cached in volume) — root-level only, not src/**/models packages
 /models/
 
 # DVC
