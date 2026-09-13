@@ -311,10 +311,19 @@ async def test_t65_5_correction_immediately_visible_in_live_row(db_session, test
 def test_t65_4_export_is_dvc_reproducible_and_versioned(tmp_path: Path):
     from src.services.finetuning.export import ExportedExample
 
+    dvc_bin = str(Path(__file__).resolve().parents[1] / ".venv" / "bin" / "dvc")
+    if not Path(dvc_bin).exists():
+        pytest.skip(
+            "dvc is not installed by default (gap #22: scoped out of the "
+            "default dev install into the 'finetuning-ops' extra to avoid "
+            "pulling in its copyleft-licensed transitive dependencies -- "
+            "install with `uv sync --extra dev --extra finetuning-ops` to "
+            "exercise this test)"
+        )
+
     repo_root = tmp_path / "repo"
     repo_root.mkdir()
     subprocess.run(["git", "init", "-q"], cwd=repo_root, check=True)
-    dvc_bin = str(Path(__file__).resolve().parents[1] / ".venv" / "bin" / "dvc")
     subprocess.run([dvc_bin, "init", "-q"], cwd=repo_root, check=True)
 
     examples = [
