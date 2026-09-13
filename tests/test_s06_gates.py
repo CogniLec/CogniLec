@@ -25,7 +25,7 @@ def tmp_docs(tmp_path: Path):
 
 def _write_csv(path: Path, rows: list[dict]) -> None:
     """Write a list of dicts to a CSV file with headers."""
-    with open(path, "w", newline="") as f:
+    with path.open("w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         writer.writeheader()
         writer.writerows(rows)
@@ -143,7 +143,7 @@ class TestCheckConfigFrozen:
         config_path = tmp_path / "models.yaml"
         import yaml
 
-        with open(config_path, "w") as f:
+        with config_path.open("w") as f:
             yaml.dump(config, f)
 
         monkeypatch.setattr("src.ml.gates.CONFIG_PATH", config_path)
@@ -156,7 +156,7 @@ class TestCheckConfigFrozen:
         config_path = tmp_path / "models.yaml"
         import yaml
 
-        with open(config_path, "w") as f:
+        with config_path.open("w") as f:
             yaml.dump(config, f)
 
         monkeypatch.setattr("src.ml.gates.CONFIG_PATH", config_path)

@@ -26,7 +26,8 @@ class SessionRepository:
         try:
             await self._session.flush()
         except IntegrityError as exc:
-            raise DuplicateKeyError("Failed to create session") from exc
+            detail = "Failed to create session"
+            raise DuplicateKeyError(detail) from exc
         return session_obj
 
     async def get(self, session_id: uuid.UUID) -> Session | None:
@@ -35,7 +36,7 @@ class SessionRepository:
     async def get_or_raise(self, session_id: uuid.UUID) -> Session:
         session_obj = await self.get(session_id)
         if session_obj is None:
-            raise SessionNotFoundError(f"Session {session_id} not found")
+            raise SessionNotFoundError(session_id)
         return session_obj
 
     async def list_for_subject(

@@ -82,7 +82,7 @@ def check_config_frozen() -> tuple[bool, dict[str, object]]:
     if not CONFIG_PATH.exists():
         return False, {"error": "config_missing"}
 
-    with open(CONFIG_PATH) as f:
+    with CONFIG_PATH.open() as f:
         config = yaml.safe_load(f)
 
     required = [

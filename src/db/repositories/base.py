@@ -16,5 +16,6 @@ class BaseRepository:
         would scan all partitions, defeating the purpose of partitioning.
         """
         if subject_id is None:
-            raise ValueError("subject_id is required for partitioned queries")
+            msg = "subject_id is required for partitioned queries"
+            raise ValueError(msg)
         return subject_id

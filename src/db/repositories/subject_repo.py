@@ -24,7 +24,8 @@ class SubjectRepository:
         try:
             await self._session.flush()
         except IntegrityError as exc:
-            raise DuplicateKeyError(f"Subject '{name}' already exists for this user") from exc
+            detail = f"Subject '{name}' already exists for this user"
+            raise DuplicateKeyError(detail) from exc
         return subject
 
     async def get(self, subject_id: uuid.UUID) -> Subject | None:
@@ -33,7 +34,7 @@ class SubjectRepository:
     async def get_or_raise(self, subject_id: uuid.UUID) -> Subject:
         subject = await self.get(subject_id)
         if subject is None:
-            raise SubjectNotFoundError(f"Subject {subject_id} not found")
+            raise SubjectNotFoundError(subject_id)
         return subject
 
     async def list_for_user(
