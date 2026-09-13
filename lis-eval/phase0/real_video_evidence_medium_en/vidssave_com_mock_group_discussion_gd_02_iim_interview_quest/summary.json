@@ -1,0 +1,13 @@
+{
+  "source_video": "vidssave.com Mock Group Discussion (GD) 02 _ IIM Interview Questions and Answers 240P.mp4",
+  "slug": "vidssave_com_mock_group_discussion_gd_02_iim_interview_quest",
+  "duration_s": 2400.9,
+  "n_chunks": 80,
+  "n_speech_chunks": 77,
+  "speech_chunk_ratio": 0.963,
+  "n_utterances": 580,
+  "extract_time_s": 0.9,
+  "pipeline_time_s": 641.6,
+  "real_time_factor": 0.267,
+  "asr_model": "medium.en (GPU, int8_float16) -- closer to production quality than tiny.en; still not large-v3/large-v3-turbo"
+}

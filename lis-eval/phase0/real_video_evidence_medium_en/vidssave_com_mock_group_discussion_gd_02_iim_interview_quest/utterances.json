@@ -1,0 +1,4642 @@
+[
+  {
+    "chunk_idx": 0,
+    "seq": 0,
+    "start_ms": 0,
+    "end_ms": 9680,
+    "confidence": 0.7794552834811531,
+    "text": "I'll be giving you a topic and as soon as you'll get a topic, you'll have two minutes to think upon that and then 12 minutes of discussion followed by two minutes of thinking."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 1,
+    "start_ms": 10380,
+    "end_ms": 15840,
+    "confidence": 0.7794552834811531,
+    "text": "So when two minutes are up, I'll signal you. You can start the GD and then after 12 minutes, I'll ask you to stop."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 2,
+    "start_ms": 16880,
+    "end_ms": 21300,
+    "confidence": 0.7794552834811531,
+    "text": "Try to come up with a collaborative solution at the end if it is possible."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 3,
+    "start_ms": 23260,
+    "end_ms": 25920,
+    "confidence": 0.5571276324867931,
+    "text": "You will also be rated as a team."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 4,
+    "start_ms": 1700,
+    "end_ms": 7460,
+    "confidence": 0.5835797045508061,
+    "text": "So, some constructive things should also come out."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 5,
+    "start_ms": 8240,
+    "end_ms": 14460,
+    "confidence": 0.5835797045508061,
+    "text": "Alright. Okay. So, your topic is AI's impact on Indian job market."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 6,
+    "start_ms": 25160,
+    "end_ms": 29980,
+    "confidence": 0.591902073055145,
+    "text": "AI jobs, we have to divide some sectors if you want to identify the effect of AI jobs."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 7,
+    "start_ms": 0,
+    "end_ms": 4480,
+    "confidence": 0.8309793144158906,
+    "text": "of AI jobs in different sectors so if I start with some creative sectors AI has"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 8,
+    "start_ms": 4480,
+    "end_ms": 7980,
+    "confidence": 0.8309793144158906,
+    "text": "been taking over some jobs which are very redundant or very manual like if I"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 9,
+    "start_ms": 7980,
+    "end_ms": 11520,
+    "confidence": 0.8309793144158906,
+    "text": "take the tips of a data entry or an Excel operator those are the jobs that"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 10,
+    "start_ms": 11520,
+    "end_ms": 14840,
+    "confidence": 0.8309793144158906,
+    "text": "slowly AI is taking I guess because there are power BI, there are automatic"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 11,
+    "start_ms": 14840,
+    "end_ms": 18140,
+    "confidence": 0.8309793144158906,
+    "text": "analysis coming on and I think the jobs which require a human touch"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 12,
+    "start_ms": 18140,
+    "end_ms": 21960,
+    "confidence": 0.8309793144158906,
+    "text": "something like doctors or something like physiotherapist where the human"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 13,
+    "start_ms": 21960,
+    "end_ms": 25040,
+    "confidence": 0.8309793144158906,
+    "text": "connect is required or emotions are required or some critical thinking or"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 14,
+    "start_ms": 25040,
+    "end_ms": 28280,
+    "confidence": 0.8309793144158906,
+    "text": "on-the-spot modification is required they are the jobs which AI is not"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 15,
+    "start_ms": 28280,
+    "end_ms": 29980,
+    "confidence": 0.6985321749247843,
+    "text": "able to take right now and even in the future"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 16,
+    "start_ms": 0,
+    "end_ms": 6100,
+    "confidence": 0.7849089889786325,
+    "text": "I think moreover AI will act as a tool and will be manipulated by humans itself for use like how can we use it as"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 17,
+    "start_ms": 6100,
+    "end_ms": 7160,
+    "confidence": 0.7849089889786325,
+    "text": "a tool to improve overall?"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 18,
+    "start_ms": 7800,
+    "end_ms": 14980,
+    "confidence": 0.7849089889786325,
+    "text": "Yeah, I would like to add on to that and divide these jobs into two segments of IQ and EQ like the jobs which have"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 19,
+    "start_ms": 14980,
+    "end_ms": 20020,
+    "confidence": 0.7849089889786325,
+    "text": "high IQ, AI may replace them but jobs which have emotional quotient as you also mentioned"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 20,
+    "start_ms": 20540,
+    "end_ms": 24400,
+    "confidence": 0.7849089889786325,
+    "text": "may or may not I'm still a little hesitant on that part because"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 21,
+    "start_ms": 24400,
+    "end_ms": 29900,
+    "confidence": 0.7849089889786325,
+    "text": "we know that there are mainly two subsets of AI machine learning and deep learning so deep learning may also provide"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 22,
+    "start_ms": 0,
+    "end_ms": 2960,
+    "confidence": 0.8658035646505804,
+    "text": "some EQ may take some EQ jobs also."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 23,
+    "start_ms": 3000,
+    "end_ms": 6540,
+    "confidence": 0.8658035646505804,
+    "text": "I want to take this discussion towards implications more than semantics."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 24,
+    "start_ms": 7220,
+    "end_ms": 11760,
+    "confidence": 0.8658035646505804,
+    "text": "So when it comes to the real implication of any advancement such as AI,"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 25,
+    "start_ms": 12060,
+    "end_ms": 15180,
+    "confidence": 0.8658035646505804,
+    "text": "what initially happens is that there is a lot of job loss in the market."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 26,
+    "start_ms": 15400,
+    "end_ms": 19160,
+    "confidence": 0.8658035646505804,
+    "text": "However, with enough government support and enough social governance,"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 27,
+    "start_ms": 19460,
+    "end_ms": 21260,
+    "confidence": 0.8658035646505804,
+    "text": "those jobs get made up in other sectors."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 28,
+    "start_ms": 21380,
+    "end_ms": 25620,
+    "confidence": 0.8658035646505804,
+    "text": "However, India historically has lacked proper responsible governance."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 29,
+    "start_ms": 26000,
+    "end_ms": 29000,
+    "confidence": 0.8658035646505804,
+    "text": "And that is why every time there is some sort of an invent in the market,"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 30,
+    "start_ms": 0,
+    "end_ms": 4300,
+    "confidence": 0.7710334099438247,
+    "text": "a massive job loss in India. So I think AI is going to have a negative impact overall."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 31,
+    "start_ms": 5000,
+    "end_ms": 11260,
+    "confidence": 0.7710334099438247,
+    "text": "Like I want to cover a problem of a large number of the population. We have seen a court"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 32,
+    "start_ms": 12220,
+    "end_ms": 17500,
+    "confidence": 0.7710334099438247,
+    "text": "basically saying that India works at night. We have seen in the early 2000s like a large"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 33,
+    "start_ms": 17500,
+    "end_ms": 21660,
+    "confidence": 0.7710334099438247,
+    "text": "number of BPO has been created and which has given the jobs to a large sector of"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 34,
+    "start_ms": 21660,
+    "end_ms": 26300,
+    "confidence": 0.7710334099438247,
+    "text": "Indian youth. But now with AI check box coming, you know the customer care service"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 35,
+    "start_ms": 26300,
+    "end_ms": 29740,
+    "confidence": 0.6632010477950105,
+    "text": "will be kind of decline. We will see the decline."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 36,
+    "start_ms": 0,
+    "end_ms": 7360,
+    "confidence": 0.8326640683326564,
+    "text": "which has created a large amount of jobs for a large chunk of youth in the early years of 21st century."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 37,
+    "start_ms": 7960,
+    "end_ms": 13080,
+    "confidence": 0.8326640683326564,
+    "text": "So for now obviously it will create jobs, it will create high quality of jobs"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 38,
+    "start_ms": 13080,
+    "end_ms": 18820,
+    "confidence": 0.8326640683326564,
+    "text": "but we have to address the population which don't have that kind of skill sets,"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 39,
+    "start_ms": 19160,
+    "end_ms": 22660,
+    "confidence": 0.8326640683326564,
+    "text": "don't have that kind of mind to do these kind of jobs."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 40,
+    "start_ms": 22880,
+    "end_ms": 27180,
+    "confidence": 0.8326640683326564,
+    "text": "For them we have to create up new solutions to provide jobs for such kind of population."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 41,
+    "start_ms": 27180,
+    "end_ms": 29500,
+    "confidence": 0.8516541399513503,
+    "text": "I think I have a sincere rebuttal to that."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 42,
+    "start_ms": 0,
+    "end_ms": 4900,
+    "confidence": 0.7757645236718782,
+    "text": "that chatbots have decreased and I completely agree to that. However, any average customer"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 43,
+    "start_ms": 4900,
+    "end_ms": 9820,
+    "confidence": 0.7757645236718782,
+    "text": "feels more comfortable talking to a real person than a chatbot, let's say. So this"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 44,
+    "start_ms": 9820,
+    "end_ms": 14060,
+    "confidence": 0.7757645236718782,
+    "text": "is obviously going to drive demand down for the entry level operators. However, good"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 45,
+    "start_ms": 14060,
+    "end_ms": 19340,
+    "confidence": 0.7757645236718782,
+    "text": "BP operators with good conversions, with lower call times, with higher satisfaction"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 46,
+    "start_ms": 19340,
+    "end_ms": 22740,
+    "confidence": 0.7757645236718782,
+    "text": "ratings, their salaries are going to significantly increase because they are going to be in"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 47,
+    "start_ms": 22740,
+    "end_ms": 26060,
+    "confidence": 0.7757645236718782,
+    "text": "high demand because customers will be fed up of dealing with chatbots after all."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 48,
+    "start_ms": 26060,
+    "end_ms": 29860,
+    "confidence": 0.718995225749818,
+    "text": "But let's say in this situation, like when I am seeing the monotonous jobs."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 49,
+    "start_ms": 0,
+    "end_ms": 5840,
+    "confidence": 0.8028519778673995,
+    "text": "Like when you go to MACD, KFC, all the operating jobs, now you see more chaos jobs rather than"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 50,
+    "start_ms": 5840,
+    "end_ms": 6820,
+    "confidence": 0.8028519778673995,
+    "text": "the people encounters."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 51,
+    "start_ms": 7320,
+    "end_ms": 11100,
+    "confidence": 0.8028519778673995,
+    "text": "So I think the effect has already started and it's already taking many jobs."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 52,
+    "start_ms": 11960,
+    "end_ms": 17120,
+    "confidence": 0.8028519778673995,
+    "text": "And I find that kind of worrying because let's just say our government is already"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 53,
+    "start_ms": 17120,
+    "end_ms": 18880,
+    "confidence": 0.8028519778673995,
+    "text": "struggling to create jobs right now."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 54,
+    "start_ms": 18880,
+    "end_ms": 20000,
+    "confidence": 0.8028519778673995,
+    "text": "So what do you think that solution could be?"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 55,
+    "start_ms": 20620,
+    "end_ms": 26460,
+    "confidence": 0.8028519778673995,
+    "text": "According to me, we need better governance, more social governance because let's face"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 56,
+    "start_ms": 26460,
+    "end_ms": 28120,
+    "confidence": 0.8028519778673995,
+    "text": "it, we live in a capitalistic society."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 57,
+    "start_ms": 28280,
+    "end_ms": 28980,
+    "confidence": 0.8028519778673995,
+    "text": "This is inevitable."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 58,
+    "start_ms": 28980,
+    "end_ms": 29860,
+    "confidence": 0.4861726816028314,
+    "text": "Whenever there's a..."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 59,
+    "start_ms": 0,
+    "end_ms": 4880,
+    "confidence": 0.7682255624001278,
+    "text": "there is a loss of jobs and there's a creation of newer more skilled jobs, more"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 60,
+    "start_ms": 4880,
+    "end_ms": 9040,
+    "confidence": 0.7682255624001278,
+    "text": "augmented jobs, however those jobs require severe investment from the"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 61,
+    "start_ms": 9040,
+    "end_ms": 14000,
+    "confidence": 0.7682255624001278,
+    "text": "government, they require subsidies to get them floating. Government is not only having"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 62,
+    "start_ms": 14000,
+    "end_ms": 16720,
+    "confidence": 0.7682255624001278,
+    "text": "a list of skill based centres as well, we are saying skill India missions are"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 63,
+    "start_ms": 16720,
+    "end_ms": 19960,
+    "confidence": 0.7682255624001278,
+    "text": "going on, we are also investing on technologies, India is right now even if I"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 64,
+    "start_ms": 19960,
+    "end_ms": 22840,
+    "confidence": 0.7682255624001278,
+    "text": "lead in the automobile sector for example, right now we have very latest"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 65,
+    "start_ms": 22840,
+    "end_ms": 26500,
+    "confidence": 0.7682255624001278,
+    "text": "technologies in manufacturing and production itself, like if I used to go"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 66,
+    "start_ms": 26500,
+    "end_ms": 29620,
+    "confidence": 0.38653962908448997,
+    "text": "on research course of between right, how technology"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 67,
+    "start_ms": 0,
+    "end_ms": 5240,
+    "confidence": 0.7789686564024549,
+    "text": "want to bring and how humans want to bring. So which side do you prefer, more on the technological side?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 68,
+    "start_ms": 5240,
+    "end_ms": 9160,
+    "confidence": 0.7789686564024549,
+    "text": "I think more on the technological side because on an operational level if I am in a corporation or I am in a government"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 69,
+    "start_ms": 9160,
+    "end_ms": 13040,
+    "confidence": 0.7789686564024549,
+    "text": "I will think more of the revenue that I can generate at the same time I am increasing my profit"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 70,
+    "start_ms": 13040,
+    "end_ms": 17140,
+    "confidence": 0.7789686564024549,
+    "text": "and coming to the point which you said good governance. I think people need to be more skilled up"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 71,
+    "start_ms": 17140,
+    "end_ms": 21760,
+    "confidence": 0.7789686564024549,
+    "text": "but if even I see now college, beta colleges are opening up, there are specialized programs in AI launching"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 72,
+    "start_ms": 21760,
+    "end_ms": 28120,
+    "confidence": 0.7789686564024549,
+    "text": "so college and private institutions are doing their part but are there enough, would there be enough skilled jobs created by AI"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 73,
+    "start_ms": 28120,
+    "end_ms": 29900,
+    "confidence": 0.5753002347893906,
+    "text": "if I treat that 100%"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 74,
+    "start_ms": 0,
+    "end_ms": 29980,
+    "confidence": 0.6770871062591427,
+    "text": "population becomes AI efficient. Are we deeming of a place like this? I am more worried about the gig economy. Let's say now chatbots are replacing Zomato's customer, KLC customer. So I am more worried about the gig's economy and all that. That they are reducing more humans and collaborating with more AI technologies. They are more accessible. You see that if at night 12.30, I am looking for a WhatsApp business store. Like nowadays very Instagram stores are, social media is very trending these days. We see a lot of stores opening up. They have a lot of Instagram helplines, WhatsApp, I just click on three or four"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 75,
+    "start_ms": 0,
+    "end_ms": 4000,
+    "confidence": 0.7642613934618752,
+    "text": "shops and even at night 2 p.m. I have a night 2 a.m. I can see all the catalogs"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 76,
+    "start_ms": 4000,
+    "end_ms": 8320,
+    "confidence": 0.7642613934618752,
+    "text": "if I know the population we have do you feel that it's the right way to go no I"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 77,
+    "start_ms": 8320,
+    "end_ms": 12140,
+    "confidence": 0.7642613934618752,
+    "text": "don't think so it is the right way exactly but if we are going by the"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 78,
+    "start_ms": 12140,
+    "end_ms": 15300,
+    "confidence": 0.7642613934618752,
+    "text": "physical economics like earlier also even in the industry we have seen"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 79,
+    "start_ms": 15300,
+    "end_ms": 17960,
+    "confidence": 0.7642613934618752,
+    "text": "that when tractors came up or a different technologies came up"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 80,
+    "start_ms": 17960,
+    "end_ms": 23680,
+    "confidence": 0.7642613934618752,
+    "text": "I think we have to address you know a large population we your discussion is"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 81,
+    "start_ms": 23680,
+    "end_ms": 27180,
+    "confidence": 0.7642613934618752,
+    "text": "related you know particular to a domain which is quietly educated see we"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 82,
+    "start_ms": 27180,
+    "end_ms": 29620,
+    "confidence": 0.6942599337907018,
+    "text": "have to look after the elders population as well"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 83,
+    "start_ms": 0,
+    "end_ms": 5080,
+    "confidence": 0.8083406280659595,
+    "text": "Because for now, using a smartphone also is a big deal and with coming of AI, things"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 84,
+    "start_ms": 5080,
+    "end_ms": 6820,
+    "confidence": 0.8083406280659595,
+    "text": "will be changing with a rapid rate."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 85,
+    "start_ms": 7040,
+    "end_ms": 10720,
+    "confidence": 0.8083406280659595,
+    "text": "So a large amount of, I think the government should take initiative in upscaling every"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 86,
+    "start_ms": 10720,
+    "end_ms": 12000,
+    "confidence": 0.8083406280659595,
+    "text": "age of people."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 87,
+    "start_ms": 12360,
+    "end_ms": 17800,
+    "confidence": 0.8083406280659595,
+    "text": "I have seen the data from World Economic Forum that only 10 or 15% of our population"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 88,
+    "start_ms": 17800,
+    "end_ms": 20660,
+    "confidence": 0.8083406280659595,
+    "text": "is ready for the future technology and AI."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 89,
+    "start_ms": 20800,
+    "end_ms": 25500,
+    "confidence": 0.8083406280659595,
+    "text": "So I think the main motive or the main initiative of government should be to upscale"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 90,
+    "start_ms": 25500,
+    "end_ms": 28000,
+    "confidence": 0.8083406280659595,
+    "text": "every category of people."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 91,
+    "start_ms": 28000,
+    "end_ms": 29980,
+    "confidence": 0.5333640131803844,
+    "text": "So are you worried about the EQ..."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 92,
+    "start_ms": 0,
+    "end_ms": 6140,
+    "confidence": 0.8372027920012872,
+    "text": "To your point, we are missing a very important point here, we are only talking about implications,"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 93,
+    "start_ms": 6640,
+    "end_ms": 9020,
+    "confidence": 0.8372027920012872,
+    "text": "we are not talking about the belief of the people."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 94,
+    "start_ms": 9420,
+    "end_ms": 12920,
+    "confidence": 0.8372027920012872,
+    "text": "If a huge chunk of the population believes that they are going to lose their jobs, it's"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 95,
+    "start_ms": 12920,
+    "end_ms": 16960,
+    "confidence": 0.8372027920012872,
+    "text": "going to create panic in the country and it's going to create even larger job loss."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 96,
+    "start_ms": 17260,
+    "end_ms": 21380,
+    "confidence": 0.8372027920012872,
+    "text": "So along with upskilling programs, I think the government should also invest in qualitative"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 97,
+    "start_ms": 21380,
+    "end_ms": 25500,
+    "confidence": 0.8372027920012872,
+    "text": "measures such as giving the people a little bit of hope that even if AI replaces your"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 98,
+    "start_ms": 25500,
+    "end_ms": 27280,
+    "confidence": 0.8372027920012872,
+    "text": "job, there will be better jobs in the future."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 99,
+    "start_ms": 27280,
+    "end_ms": 29500,
+    "confidence": 0.6509079605576841,
+    "text": "We as a government will help you upskill."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 100,
+    "start_ms": 0,
+    "end_ms": 1760,
+    "confidence": 0.7545265420908251,
+    "text": "there will be better educational programs etc."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 101,
+    "start_ms": 2040,
+    "end_ms": 6880,
+    "confidence": 0.7545265420908251,
+    "text": "And also like I think one seminar I was seeing of Nithin Gartar, he said that"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 102,
+    "start_ms": 6880,
+    "end_ms": 12320,
+    "confidence": 0.7545265420908251,
+    "text": "they won't implement all AI together like the way rapidly isn't implementing in European countries,"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 103,
+    "start_ms": 12360,
+    "end_ms": 13780,
+    "confidence": 0.7545265420908251,
+    "text": "it's not going to happen in India."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 104,
+    "start_ms": 14180,
+    "end_ms": 19000,
+    "confidence": 0.7545265420908251,
+    "text": "They are not going to implement or drive AI cars in the early future"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 105,
+    "start_ms": 19000,
+    "end_ms": 26160,
+    "confidence": 0.7545265420908251,
+    "text": "because they want to make the economy so capitalist or driven towards a certain kind of population only."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 106,
+    "start_ms": 26280,
+    "end_ms": 28020,
+    "confidence": 0.7545265420908251,
+    "text": "Also I want to know something unanimously."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 107,
+    "start_ms": 28020,
+    "end_ms": 29880,
+    "confidence": 0.8092976213201155,
+    "text": "As of now with the discussion"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 108,
+    "start_ms": 0,
+    "end_ms": 4680,
+    "confidence": 0.7066983484702547,
+    "text": "we have had so far, what does everyone think? Will AI be positive or will AI be negative"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 109,
+    "start_ms": 4680,
+    "end_ms": 8460,
+    "confidence": 0.7066983484702547,
+    "text": "towards the market? Can we all have a round robin and everyone says what they think about"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 110,
+    "start_ms": 8460,
+    "end_ms": 10080,
+    "confidence": 0.7066983484702547,
+    "text": "it? First I want to clarify, are we talking about"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 111,
+    "start_ms": 10080,
+    "end_ms": 13960,
+    "confidence": 0.7066983484702547,
+    "text": "economics or the number of jobs? We are talking about combining both the"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 112,
+    "start_ms": 13960,
+    "end_ms": 16720,
+    "confidence": 0.7066983484702547,
+    "text": "factors. And I would like to push one more question"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 113,
+    "start_ms": 16720,
+    "end_ms": 20200,
+    "confidence": 0.7066983484702547,
+    "text": "into it. What are your views on EQ, like getting into this picture?"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 114,
+    "start_ms": 20200,
+    "end_ms": 23340,
+    "confidence": 0.7066983484702547,
+    "text": "So who would like to begin? We can go in on, we can go in on a counterclockwise"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 115,
+    "start_ms": 23340,
+    "end_ms": 29440,
+    "confidence": 0.7066983484702547,
+    "text": "fashion. There would be employee deficit for sure because I believe AI is taking"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 116,
+    "start_ms": 29440,
+    "end_ms": 29720,
+    "confidence": 0.3181244883527684,
+    "text": "over."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 117,
+    "start_ms": 0,
+    "end_ms": 6900,
+    "confidence": 0.7407935972882246,
+    "text": "jobs of we can say 1000 people but it is giving jobs to say 100 people. So those 900 jobs"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 118,
+    "start_ms": 6900,
+    "end_ms": 11920,
+    "confidence": 0.7407935972882246,
+    "text": "are lost for sure. Like for me like even if you like in the"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 119,
+    "start_ms": 11920,
+    "end_ms": 16379,
+    "confidence": 0.7407935972882246,
+    "text": "introductory phase if you want to like search for something like even if Google"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 120,
+    "start_ms": 16379,
+    "end_ms": 21720,
+    "confidence": 0.7407935972882246,
+    "text": "is also have implemented like labs experiments like you do not have to go through all"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 121,
+    "start_ms": 21720,
+    "end_ms": 26200,
+    "confidence": 0.7407935972882246,
+    "text": "the articles like there is a lab experiment here which like sums up all the articles"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 122,
+    "start_ms": 26200,
+    "end_ms": 29620,
+    "confidence": 0.5425590728272423,
+    "text": "now like there is a new technology if like you talked about"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 123,
+    "start_ms": 0,
+    "end_ms": 4680,
+    "confidence": 0.663924138297255,
+    "text": "But even so, tools are also now being AI-generated."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 124,
+    "start_ms": 4980,
+    "end_ms": 9680,
+    "confidence": 0.663924138297255,
+    "text": "So like tools, like on one face,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 125,
+    "start_ms": 9960,
+    "end_ms": 12240,
+    "confidence": 0.663924138297255,
+    "text": "like Nathan McCree saying that AI will take time,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 126,
+    "start_ms": 12240,
+    "end_ms": 14920,
+    "confidence": 0.663924138297255,
+    "text": "but he is also implementing AI-generated tools."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 127,
+    "start_ms": 16140,
+    "end_ms": 18920,
+    "confidence": 0.663924138297255,
+    "text": "Like even Microsoft is investing in India,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 128,
+    "start_ms": 19560,
+    "end_ms": 21840,
+    "confidence": 0.663924138297255,
+    "text": "$3 billion in AI infrastructure."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 129,
+    "start_ms": 22860,
+    "end_ms": 24000,
+    "confidence": 0.663924138297255,
+    "text": "Like even if we like,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 130,
+    "start_ms": 24560,
+    "end_ms": 26480,
+    "confidence": 0.663924138297255,
+    "text": "in the earlier times, we used to go to a doctor,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 131,
+    "start_ms": 26880,
+    "end_ms": 28160,
+    "confidence": 0.663924138297255,
+    "text": "like to consult some medicine,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 132,
+    "start_ms": 28160,
+    "end_ms": 29860,
+    "confidence": 0.4927208551087844,
+    "text": "but now we go to some..."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 133,
+    "start_ms": 0,
+    "end_ms": 6120,
+    "confidence": 0.7722127716021776,
+    "text": "JPT or Google what medicine do we need we don't like to take doctor's prescription"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 134,
+    "start_ms": 6120,
+    "end_ms": 11820,
+    "confidence": 0.7722127716021776,
+    "text": "but sometimes then the disease might be better we might need doctors see but in"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 135,
+    "start_ms": 11820,
+    "end_ms": 15260,
+    "confidence": 0.7722127716021776,
+    "text": "case of human perspective I don't think that the mindset Indian mindset is not"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 136,
+    "start_ms": 15260,
+    "end_ms": 19620,
+    "confidence": 0.7722127716021776,
+    "text": "always too inclined towards you know that technology they are more I would"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 137,
+    "start_ms": 19620,
+    "end_ms": 22240,
+    "confidence": 0.7722127716021776,
+    "text": "disagree strongly no it's a perspective I'm not saying that the"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 138,
+    "start_ms": 22240,
+    "end_ms": 28920,
+    "confidence": 0.7722127716021776,
+    "text": "whole chunk of the population agrees with it but I am not agree with my"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 139,
+    "start_ms": 28920,
+    "end_ms": 29880,
+    "confidence": 0.40057921170301913,
+    "text": "filament because"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 140,
+    "start_ms": 0,
+    "end_ms": 7180,
+    "confidence": 0.587869679283184,
+    "text": "Because as of doctor we like to, AI will give generic answer but if doctor health care sector"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 141,
+    "start_ms": 7180,
+    "end_ms": 12220,
+    "confidence": 0.587869679283184,
+    "text": "there should be specific to the patient like when we consult to the doctor we give many"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 142,
+    "start_ms": 12220,
+    "end_ms": 16920,
+    "confidence": 0.587869679283184,
+    "text": "symptoms not generic symptoms like I have fever, doctor will have you fever with headache"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 143,
+    "start_ms": 16920,
+    "end_ms": 23220,
+    "confidence": 0.587869679283184,
+    "text": "or cough but if a chat deputy will not ask, if I type I have a fever then he will"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 144,
+    "start_ms": 23220,
+    "end_ms": 24520,
+    "confidence": 0.587869679283184,
+    "text": "give me a positive feedback."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 145,
+    "start_ms": 24520,
+    "end_ms": 29860,
+    "confidence": 0.48573200510880893,
+    "text": "All part of AI is to personalize your choices but not as personalize as all."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 146,
+    "start_ms": 0,
+    "end_ms": 2140,
+    "confidence": 0.7732401553497026,
+    "text": "That is correct, but AI will give you value."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 147,
+    "start_ms": 2160,
+    "end_ms": 5120,
+    "confidence": 0.7732401553497026,
+    "text": "We are not talking about the ills and cons of personalization."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 148,
+    "start_ms": 5300,
+    "end_ms": 6040,
+    "confidence": 0.7732401553497026,
+    "text": "We are talking about AI or not."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 149,
+    "start_ms": 6040,
+    "end_ms": 10420,
+    "confidence": 0.7732401553497026,
+    "text": "No, I am just pointing him out that he is saying AI is a generic answer, right?"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 150,
+    "start_ms": 10780,
+    "end_ms": 11920,
+    "confidence": 0.7732401553497026,
+    "text": "Well, I think now it's your turn."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 151,
+    "start_ms": 12360,
+    "end_ms": 15520,
+    "confidence": 0.7732401553497026,
+    "text": "Yeah, so like everybody has discussed about the positives and negatives."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 152,
+    "start_ms": 15720,
+    "end_ms": 18060,
+    "confidence": 0.7732401553497026,
+    "text": "So yes, definitely it will lead to decline of jobs,"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 153,
+    "start_ms": 18100,
+    "end_ms": 21580,
+    "confidence": 0.7732401553497026,
+    "text": "but we have to, you know, look at our own perspective or our ecosystem."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 154,
+    "start_ms": 22100,
+    "end_ms": 24260,
+    "confidence": 0.7732401553497026,
+    "text": "So, definitely it will decline our job,"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 155,
+    "start_ms": 24260,
+    "end_ms": 26680,
+    "confidence": 0.7732401553497026,
+    "text": "but we have to subsidize some kind of categories of jobs,"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 156,
+    "start_ms": 26880,
+    "end_ms": 28000,
+    "confidence": 0.7732401553497026,
+    "text": "so that they can sustain,"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 157,
+    "start_ms": 28000,
+    "end_ms": 29820,
+    "confidence": 0.645648526427892,
+    "text": "they can sustain other population."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 158,
+    "start_ms": 0,
+    "end_ms": 3780,
+    "confidence": 0.7955122086380148,
+    "text": "doesn't have that skills so we have to you know take the measures according to"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 159,
+    "start_ms": 3780,
+    "end_ms": 8340,
+    "confidence": 0.7955122086380148,
+    "text": "our situation according to our ecosystem. For a very superficial level what worries"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 160,
+    "start_ms": 8340,
+    "end_ms": 12400,
+    "confidence": 0.7955122086380148,
+    "text": "me is that it's taking unskilled job and creating more skilled jobs so I"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 161,
+    "start_ms": 12400,
+    "end_ms": 15980,
+    "confidence": 0.7955122086380148,
+    "text": "feel it's not feasible for all to just skill up themselves at every"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 162,
+    "start_ms": 15980,
+    "end_ms": 22040,
+    "confidence": 0.7955122086380148,
+    "text": "point of time and look for skilled jobs so that's my take. Exactly that's all I would like to add a few things even if"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 163,
+    "start_ms": 22040,
+    "end_ms": 25560,
+    "confidence": 0.7955122086380148,
+    "text": "people scale up the number of skilled people cannot even cannot reach"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 164,
+    "start_ms": 25560,
+    "end_ms": 28660,
+    "confidence": 0.7955122086380148,
+    "text": "in a country like India equal to the unskilled labels who are working on"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 165,
+    "start_ms": 28660,
+    "end_ms": 29980,
+    "confidence": 0.47462716713592285,
+    "text": "a normal level and even if"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 166,
+    "start_ms": 0,
+    "end_ms": 3780,
+    "confidence": 0.8659296503635322,
+    "text": "skill up to that level, can AI create that many jobs? That is a question that is very,"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 167,
+    "start_ms": 4200,
+    "end_ms": 8220,
+    "confidence": 0.8659296503635322,
+    "text": "because even if AI creates that many jobs, we don't have any positive. If I'm still hiring"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 168,
+    "start_ms": 8220,
+    "end_ms": 12980,
+    "confidence": 0.8659296503635322,
+    "text": "100 people for a job, even after you buying an AI very expensive AI tool, I'm not able to"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 169,
+    "start_ms": 12980,
+    "end_ms": 16440,
+    "confidence": 0.8659296503635322,
+    "text": "increase my profits. So that is also a question. Even if people scale up, we won't"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 170,
+    "start_ms": 16440,
+    "end_ms": 20160,
+    "confidence": 0.8659296503635322,
+    "text": "be able to increase that many jobs. Me being last, I would like to augment everyone's"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 171,
+    "start_ms": 20160,
+    "end_ms": 25440,
+    "confidence": 0.8659296503635322,
+    "text": "arguments in the room. I completely agree with the negative viewpoints in this room. And I"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 172,
+    "start_ms": 25440,
+    "end_ms": 29500,
+    "confidence": 0.8659296503635322,
+    "text": "believe that whatever you guys are saying is absolutely right. AI may or may not be able"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 173,
+    "start_ms": 0,
+    "end_ms": 4820,
+    "confidence": 0.8373744157039122,
+    "text": "the jobs that we already have and even if AI does replace the jobs, there is no guarantee"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 174,
+    "start_ms": 4820,
+    "end_ms": 8039,
+    "confidence": 0.8373744157039122,
+    "text": "that those jobs are going to flow through the economy, they are going to trickle down"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 175,
+    "start_ms": 8039,
+    "end_ms": 9020,
+    "confidence": 0.8373744157039122,
+    "text": "through the economy equally."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 176,
+    "start_ms": 9460,
+    "end_ms": 13380,
+    "confidence": 0.8373744157039122,
+    "text": "I think the advent of AI is only going to add to even greater wealth inequality"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 177,
+    "start_ms": 13380,
+    "end_ms": 19060,
+    "confidence": 0.8373744157039122,
+    "text": "in this country and our private sector along with the government sector, they lack"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 178,
+    "start_ms": 19060,
+    "end_ms": 22120,
+    "confidence": 0.8373744157039122,
+    "text": "any proper form of governance, any proper form of accountability."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 179,
+    "start_ms": 22420,
+    "end_ms": 26860,
+    "confidence": 0.8373744157039122,
+    "text": "Why do you think what are the jobs specific to the Indian market will actually be beneficial"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 180,
+    "start_ms": 26860,
+    "end_ms": 29980,
+    "confidence": 0.6069750700653822,
+    "text": "from the AI's impact if we break it down a little?"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 181,
+    "start_ms": 519,
+    "end_ms": 6760,
+    "confidence": 0.8471271567148078,
+    "text": "That's a great question. So the Indian economy has a lot of jobs in the unskilled division which are not even taxed."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 182,
+    "start_ms": 7460,
+    "end_ms": 13960,
+    "confidence": 0.8471271567148078,
+    "text": "Think sanitation workers, think manual labour jobs. Now these jobs should, yeah, I agree with that."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 183,
+    "start_ms": 14460,
+    "end_ms": 18820,
+    "confidence": 0.8471271567148078,
+    "text": "So these jobs with the help of robotics and AI could actually be replaced because let's face it,"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 184,
+    "start_ms": 19000,
+    "end_ms": 22380,
+    "confidence": 0.8471271567148078,
+    "text": "we have been trying for a hundred years to make these jobs safer, we haven't been able to."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 185,
+    "start_ms": 22640,
+    "end_ms": 27580,
+    "confidence": 0.8471271567148078,
+    "text": "So this is one of the positive implications I can actually think of, but the job loss aspect is still there."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 186,
+    "start_ms": 27580,
+    "end_ms": 29980,
+    "confidence": 0.5949542058951127,
+    "text": "There is a data that around 8% of people have..."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 187,
+    "start_ms": 0,
+    "end_ms": 2600,
+    "confidence": 0.5144299089018268,
+    "text": "very high risk of debt and extended situation."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 188,
+    "start_ms": 2640,
+    "end_ms": 3760,
+    "confidence": 0.5144299089018268,
+    "text": "Okay, thank you very much."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 189,
+    "start_ms": 4059,
+    "end_ms": 4720,
+    "confidence": 0.5144299089018268,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 190,
+    "start_ms": 6360,
+    "end_ms": 8840,
+    "confidence": 0.5144299089018268,
+    "text": "What is the topic?"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 191,
+    "start_ms": 9940,
+    "end_ms": 11420,
+    "confidence": 0.5144299089018268,
+    "text": "Sir, AI in the talks."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 192,
+    "start_ms": 11880,
+    "end_ms": 12840,
+    "confidence": 0.5144299089018268,
+    "text": "Where are you from, sir?"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 193,
+    "start_ms": 13200,
+    "end_ms": 15340,
+    "confidence": 0.5144299089018268,
+    "text": "Sir, I have purchased the role of the government discussion."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 194,
+    "start_ms": 16120,
+    "end_ms": 18680,
+    "confidence": 0.5144299089018268,
+    "text": "What should be the role of the government in the AI?"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 195,
+    "start_ms": 19880,
+    "end_ms": 24700,
+    "confidence": 0.5144299089018268,
+    "text": "Or at the end I will say I will give one point extra to Shadhadru to involve"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 196,
+    "start_ms": 24700,
+    "end_ms": 25440,
+    "confidence": 0.5144299089018268,
+    "text": "the entire panel."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 197,
+    "start_ms": 25620,
+    "end_ms": 27660,
+    "confidence": 0.5144299089018268,
+    "text": "I will give one point extra to both of you to involve the entire panel."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 198,
+    "start_ms": 28480,
+    "end_ms": 29920,
+    "confidence": 0.5144299089018268,
+    "text": "Sir, I will give one point extra to all of you."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 199,
+    "start_ms": 29920,
+    "end_ms": 29980,
+    "confidence": 0.6035158800126065,
+    "text": "Sir, I will give one point extra to all of you to involve the entire panel."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 200,
+    "start_ms": 0,
+    "end_ms": 2740,
+    "confidence": 0.6434644176693912,
+    "text": "If I interrupt you, then what will you do?"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 201,
+    "start_ms": 2960,
+    "end_ms": 4019,
+    "confidence": 0.6434644176693912,
+    "text": "We will come to that."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 202,
+    "start_ms": 4180,
+    "end_ms": 4780,
+    "confidence": 0.6434644176693912,
+    "text": "We will come to that."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 203,
+    "start_ms": 5240,
+    "end_ms": 6020,
+    "confidence": 0.6434644176693912,
+    "text": "We will definitely come to that."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 204,
+    "start_ms": 6540,
+    "end_ms": 7460,
+    "confidence": 0.6434644176693912,
+    "text": "At last, we will open it up."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 205,
+    "start_ms": 8639,
+    "end_ms": 11520,
+    "confidence": 0.6434644176693912,
+    "text": "But one thing, you are just looking at me."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 206,
+    "start_ms": 11860,
+    "end_ms": 13420,
+    "confidence": 0.6434644176693912,
+    "text": "Don't look at moderator too much."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 207,
+    "start_ms": 14000,
+    "end_ms": 16880,
+    "confidence": 0.6434644176693912,
+    "text": "These are your fellow mates, you as a team right now."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 208,
+    "start_ms": 16980,
+    "end_ms": 18760,
+    "confidence": 0.6434644176693912,
+    "text": "First, I will just talk about your gestures"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 209,
+    "start_ms": 18760,
+    "end_ms": 20660,
+    "confidence": 0.6434644176693912,
+    "text": "and then we will move to the topics."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 210,
+    "start_ms": 21860,
+    "end_ms": 23820,
+    "confidence": 0.6434644176693912,
+    "text": "You are a lot devoted from the topic."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 211,
+    "start_ms": 24080,
+    "end_ms": 24960,
+    "confidence": 0.6434644176693912,
+    "text": "You are a lot devoted from the topics."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 212,
+    "start_ms": 24960,
+    "end_ms": 25920,
+    "confidence": 0.6434644176693912,
+    "text": "You are a lot devoted from the topics."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 213,
+    "start_ms": 25920,
+    "end_ms": 27440,
+    "confidence": 0.6434644176693912,
+    "text": "You are a lot devoted from the topics."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 214,
+    "start_ms": 27580,
+    "end_ms": 29340,
+    "confidence": 0.6434644176693912,
+    "text": "You are a lot devoted from the topics."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 215,
+    "start_ms": 29340,
+    "end_ms": 29980,
+    "confidence": 0.7706049451280801,
+    "text": "You are a lot devoted from the topics."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 216,
+    "start_ms": 0,
+    "end_ms": 1740,
+    "confidence": 0.6069821061489804,
+    "text": "We have to capitalize on it."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 217,
+    "start_ms": 3060,
+    "end_ms": 6620,
+    "confidence": 0.6069821061489804,
+    "text": "We have to capitalize on it."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 218,
+    "start_ms": 6620,
+    "end_ms": 19600,
+    "confidence": 0.6069821061489804,
+    "text": "I have been listening to my fellow mates from so far and now let me just counter each and every point or let me be in the favor of this one or I am aligned with this particular fellow mate."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 219,
+    "start_ms": 19600,
+    "end_ms": 29980,
+    "confidence": 0.7483933775937701,
+    "text": "I have been listening to my fellow mates from so far and now let me be in the favor of this one or I am aligned with this particular fellow mates from so far and now let me be in the favor of this particular fellow mate."
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 220,
+    "start_ms": 3480,
+    "end_ms": 25360,
+    "confidence": 0.5401083146119613,
+    "text": "He pointed out twice to bring all of you back, so first of all commendable job I would say."
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 221,
+    "start_ms": 26560,
+    "end_ms": 29980,
+    "confidence": 0.6769275788215207,
+    "text": "I'd like to tell you what all positives and negatives will be there."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 222,
+    "start_ms": 0,
+    "end_ms": 1520,
+    "confidence": 0.5293752759463861,
+    "text": "So, round sir."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 223,
+    "start_ms": 2080,
+    "end_ms": 7300,
+    "confidence": 0.5293752759463861,
+    "text": "Doosra, again, you know, PR is generative and descriptive."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 224,
+    "start_ms": 7940,
+    "end_ms": 12740,
+    "confidence": 0.5293752759463861,
+    "text": "You did not go into generative or descriptive."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 225,
+    "start_ms": 13300,
+    "end_ms": 15440,
+    "confidence": 0.5293752759463861,
+    "text": "You have to start with jobs."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 226,
+    "start_ms": 16620,
+    "end_ms": 21580,
+    "confidence": 0.5293752759463861,
+    "text": "So, you have to start by something like, jobs are not jobs."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 227,
+    "start_ms": 21580,
+    "end_ms": 24900,
+    "confidence": 0.6323531091074778,
+    "text": "You have to start by something like, jobs are not jobs."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 228,
+    "start_ms": 25240,
+    "end_ms": 29100,
+    "confidence": 0.6323531091074778,
+    "text": "You have to start by something like, jobs are not jobs."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 229,
+    "start_ms": 0,
+    "end_ms": 2340,
+    "confidence": 0.3878862128509609,
+    "text": "Its not about starting, I have to go."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 230,
+    "start_ms": 2620,
+    "end_ms": 3020,
+    "confidence": 0.3878862128509609,
+    "text": "No, its about beginning."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 231,
+    "start_ms": 3680,
+    "end_ms": 4600,
+    "confidence": 0.3878862128509609,
+    "text": "But then you have to go."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 232,
+    "start_ms": 5320,
+    "end_ms": 7140,
+    "confidence": 0.3878862128509609,
+    "text": "So, you have to pick up the government role,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 233,
+    "start_ms": 7140,
+    "end_ms": 10840,
+    "confidence": 0.3878862128509609,
+    "text": "then you have to choose the role you want to play,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 234,
+    "start_ms": 11040,
+    "end_ms": 12800,
+    "confidence": 0.3878862128509609,
+    "text": "and then you have to come into the picture."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 235,
+    "start_ms": 12860,
+    "end_ms": 14800,
+    "confidence": 0.3878862128509609,
+    "text": "So, it was all about looking at the role of the government."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 236,
+    "start_ms": 16200,
+    "end_ms": 16720,
+    "confidence": 0.3878862128509609,
+    "text": "So, you have to pick up the role of the government."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 237,
+    "start_ms": 17240,
+    "end_ms": 20560,
+    "confidence": 0.3878862128509609,
+    "text": "If you have any question, then what is the problem?"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 238,
+    "start_ms": 21040,
+    "end_ms": 23780,
+    "confidence": 0.3878862128509609,
+    "text": "But right now, what went missing in the topic?"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 239,
+    "start_ms": 24420,
+    "end_ms": 28460,
+    "confidence": 0.3878862128509609,
+    "text": "The idea was to start a simple job,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 240,
+    "start_ms": 28460,
+    "end_ms": 29980,
+    "confidence": 0.42860384615383695,
+    "text": "and then the reason so and"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 241,
+    "start_ms": 0,
+    "end_ms": 3920,
+    "confidence": 0.4992672210777535,
+    "text": "So, if I have a job in this sector, and I have a job in this sector,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 242,
+    "start_ms": 4360,
+    "end_ms": 6420,
+    "confidence": 0.4992672210777535,
+    "text": "and if it is backed by some specific data,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 243,
+    "start_ms": 6880,
+    "end_ms": 7280,
+    "confidence": 0.4992672210777535,
+    "text": "it is not generic,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 244,
+    "start_ms": 8620,
+    "end_ms": 10540,
+    "confidence": 0.4992672210777535,
+    "text": "then I will have to manufacture it."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 245,
+    "start_ms": 11120,
+    "end_ms": 13020,
+    "confidence": 0.4992672210777535,
+    "text": "If I have a biscuit,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 246,
+    "start_ms": 13120,
+    "end_ms": 14600,
+    "confidence": 0.4992672210777535,
+    "text": "then I will have to sell it."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 247,
+    "start_ms": 15140,
+    "end_ms": 17000,
+    "confidence": 0.4992672210777535,
+    "text": "Then you can go on to the impact of it."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 248,
+    "start_ms": 17140,
+    "end_ms": 20160,
+    "confidence": 0.4992672210777535,
+    "text": "If you have a very skilled user,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 249,
+    "start_ms": 21000,
+    "end_ms": 23580,
+    "confidence": 0.4992672210777535,
+    "text": "if you have a decision-making ability,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 250,
+    "start_ms": 24120,
+    "end_ms": 25240,
+    "confidence": 0.4992672210777535,
+    "text": "then you have to sell it."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 251,
+    "start_ms": 25660,
+    "end_ms": 26780,
+    "confidence": 0.4992672210777535,
+    "text": "Then you will labour work."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 252,
+    "start_ms": 26780,
+    "end_ms": 28280,
+    "confidence": 0.6272524081837553,
+    "text": "If you have a very skilled user,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 253,
+    "start_ms": 28300,
+    "end_ms": 29780,
+    "confidence": 0.6272524081837553,
+    "text": "then you have to sell it."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 254,
+    "start_ms": 0,
+    "end_ms": 8580,
+    "confidence": 0.3856020248892041,
+    "text": "impact is that rich will get richer, poor will get poorer, the economy is developing, the gap is widening, rich and poor will get richer."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 255,
+    "start_ms": 8580,
+    "end_ms": 13660,
+    "confidence": 0.3856020248892041,
+    "text": "If you look at the nation's growth, you can see that there is a line between the government and the government."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 256,
+    "start_ms": 15180,
+    "end_ms": 20120,
+    "confidence": 0.3856020248892041,
+    "text": "So, what is the depth and breadth of your topic?"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 257,
+    "start_ms": 20800,
+    "end_ms": 21640,
+    "confidence": 0.3856020248892041,
+    "text": "Not at all."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 258,
+    "start_ms": 21960,
+    "end_ms": 23160,
+    "confidence": 0.3856020248892041,
+    "text": "Sir, what is your job?"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 259,
+    "start_ms": 0,
+    "end_ms": 6540,
+    "confidence": 0.5254751461043536,
+    "text": "There is no such thing as a sector, but we have to see the sector first."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 260,
+    "start_ms": 7260,
+    "end_ms": 11980,
+    "confidence": 0.5254751461043536,
+    "text": "First you are going to tell me that you are not a job, you are not a sector, you are not a job, you are not a sector."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 261,
+    "start_ms": 12360,
+    "end_ms": 16059,
+    "confidence": 0.5254751461043536,
+    "text": "And then some of you are in favour of that, some of you are in against of that."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 262,
+    "start_ms": 16280,
+    "end_ms": 19700,
+    "confidence": 0.5254751461043536,
+    "text": "Then you can later on tell me what is the impact of the job."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 263,
+    "start_ms": 21440,
+    "end_ms": 24500,
+    "confidence": 0.5254751461043536,
+    "text": "What are the implications of the job?"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 264,
+    "start_ms": 24500,
+    "end_ms": 26920,
+    "confidence": 0.39132757946100655,
+    "text": "I am in control of the job."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 265,
+    "start_ms": 0,
+    "end_ms": 940,
+    "confidence": 0.5588311564008996,
+    "text": "beneficial drivers."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 266,
+    "start_ms": 1060,
+    "end_ms": 1720,
+    "confidence": 0.5588311564008996,
+    "text": "Yes, that's right."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 267,
+    "start_ms": 1820,
+    "end_ms": 3920,
+    "confidence": 0.5588311564008996,
+    "text": "You have to have a view point on the points."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 268,
+    "start_ms": 5920,
+    "end_ms": 12280,
+    "confidence": 0.5588311564008996,
+    "text": "So first of all, Whosoever is starting."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 269,
+    "start_ms": 12800,
+    "end_ms": 16180,
+    "confidence": 0.5588311564008996,
+    "text": "So it's your job to give the structure to the GD."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 270,
+    "start_ms": 17060,
+    "end_ms": 22080,
+    "confidence": 0.5588311564008996,
+    "text": "So if you have to take a stand, probably you will have to stick to that point."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 271,
+    "start_ms": 22400,
+    "end_ms": 25060,
+    "confidence": 0.5588311564008996,
+    "text": "If you have to take a stand, you will have to take that stand."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 272,
+    "start_ms": 26120,
+    "end_ms": 29980,
+    "confidence": 0.673703433553888,
+    "text": "So it's very confusing that should we take a stand in a GD."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 273,
+    "start_ms": 0,
+    "end_ms": 5500,
+    "confidence": 0.7010937715945056,
+    "text": "or not. So jobs jain gi, yaar til nahi jain gi. So other many first statement"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 274,
+    "start_ms": 5500,
+    "end_ms": 9380,
+    "confidence": 0.7010937715945056,
+    "text": "both here like jobs definitely jain gi. So I'll have to support myself. So why"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 275,
+    "start_ms": 9380,
+    "end_ms": 13980,
+    "confidence": 0.7010937715945056,
+    "text": "can't we be open-ended? We can think from both the perspectives, ki job"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 276,
+    "start_ms": 13980,
+    "end_ms": 17820,
+    "confidence": 0.7010937715945056,
+    "text": "jain gi fine and job create bhi home gi. So let's discuss on that"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 277,
+    "start_ms": 17820,
+    "end_ms": 22320,
+    "confidence": 0.7010937715945056,
+    "text": "particular thing. Right? So good you started with the points that you have"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 278,
+    "start_ms": 22320,
+    "end_ms": 29980,
+    "confidence": 0.6496666096651322,
+    "text": "given that was that that were good but I like somewhere the structure of"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 279,
+    "start_ms": 0,
+    "end_ms": 2520,
+    "confidence": 0.7293098794168482,
+    "text": "that GD was missing. Okay. Right."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 280,
+    "start_ms": 6139,
+    "end_ms": 9340,
+    "confidence": 0.7293098794168482,
+    "text": "Shatadru, commendable job done in the entire GD,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 281,
+    "start_ms": 9580,
+    "end_ms": 14000,
+    "confidence": 0.7293098794168482,
+    "text": "I would say, okay. At lots of like places,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 282,
+    "start_ms": 14000,
+    "end_ms": 17620,
+    "confidence": 0.7293098794168482,
+    "text": "I felt that like you were contributing to the GD, huh?"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 283,
+    "start_ms": 17860,
+    "end_ms": 21040,
+    "confidence": 0.7293098794168482,
+    "text": "You were giving dimension to the GD. Okay."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 284,
+    "start_ms": 21220,
+    "end_ms": 24000,
+    "confidence": 0.7293098794168482,
+    "text": "You were giving other people chance to speak as well."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 285,
+    "start_ms": 24360,
+    "end_ms": 27680,
+    "confidence": 0.7293098794168482,
+    "text": "So you're not missing out on those things, but last minute,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 286,
+    "start_ms": 27680,
+    "end_ms": 28180,
+    "confidence": 0.3188132492163656,
+    "text": "you know, you're not missing out on those things."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 287,
+    "start_ms": 0,
+    "end_ms": 6800,
+    "confidence": 0.5530651789168481,
+    "text": "When you asked people to speak, to go for confusion one by one,"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 288,
+    "start_ms": 7100,
+    "end_ms": 11840,
+    "confidence": 0.5530651789168481,
+    "text": "you asked them to counter-clockwise the number of times they played."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 289,
+    "start_ms": 14060,
+    "end_ms": 16239,
+    "confidence": 0.5530651789168481,
+    "text": "So it was a gamble that you played."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 290,
+    "start_ms": 16280,
+    "end_ms": 17380,
+    "confidence": 0.5530651789168481,
+    "text": "Yeah, it was a massive gamble."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 291,
+    "start_ms": 18180,
+    "end_ms": 22520,
+    "confidence": 0.5530651789168481,
+    "text": "And luckily, in that limited amount of time,"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 292,
+    "start_ms": 23040,
+    "end_ms": 28580,
+    "confidence": 0.5530651789168481,
+    "text": "the last number of times you played, you could give your confusion."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 293,
+    "start_ms": 28580,
+    "end_ms": 29980,
+    "confidence": 0.5221817438853318,
+    "text": "But let's say time of"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 294,
+    "start_ms": 1580,
+    "end_ms": 4160,
+    "confidence": 0.5540483846480689,
+    "text": "So, it was a gamble."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 295,
+    "start_ms": 4960,
+    "end_ms": 10900,
+    "confidence": 0.5540483846480689,
+    "text": "Otherwise, start from yourself."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 296,
+    "start_ms": 11320,
+    "end_ms": 15760,
+    "confidence": 0.5540483846480689,
+    "text": "If there is no chance for a gamble, I believe there is no chance."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 297,
+    "start_ms": 16239,
+    "end_ms": 19320,
+    "confidence": 0.5540483846480689,
+    "text": "If there is no chance, I believe there is no chance."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 298,
+    "start_ms": 19920,
+    "end_ms": 22480,
+    "confidence": 0.5540483846480689,
+    "text": "If there is no chance, I believe there is no chance."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 299,
+    "start_ms": 22640,
+    "end_ms": 28700,
+    "confidence": 0.5540483846480689,
+    "text": "You could have just added one line."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 300,
+    "start_ms": 28700,
+    "end_ms": 29860,
+    "confidence": 0.6347364189402819,
+    "text": "You could have just added one line."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 301,
+    "start_ms": 0,
+    "end_ms": 4100,
+    "confidence": 0.38862934473230853,
+    "text": "Let us have the view points of the panelists who have not taken part."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 302,
+    "start_ms": 4560,
+    "end_ms": 10120,
+    "confidence": 0.38862934473230853,
+    "text": "Let us also have a look at the view points of the fellow mates."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 303,
+    "start_ms": 10440,
+    "end_ms": 13440,
+    "confidence": 0.38862934473230853,
+    "text": "If somebody wants to speak, he will come to you."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 304,
+    "start_ms": 13440,
+    "end_ms": 17700,
+    "confidence": 0.1623984944155765,
+    "text": "Like for example, if you are trying to get your third grade job..."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 305,
+    "start_ms": 18400,
+    "end_ms": 22440,
+    "confidence": 0.1623984944155765,
+    "text": "...if you have 8-10 people on the site, it's too much."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 306,
+    "start_ms": 22700,
+    "end_ms": 24260,
+    "confidence": 0.1623984944155765,
+    "text": "It's only a panelist."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 307,
+    "start_ms": 24900,
+    "end_ms": 25540,
+    "confidence": 0.1623984944155765,
+    "text": "It's just too much."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 308,
+    "start_ms": 26200,
+    "end_ms": 29740,
+    "confidence": 0.1623984944155765,
+    "text": "But if you get 10 people on the site, it's approximately 50%."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 309,
+    "start_ms": 0,
+    "end_ms": 3360,
+    "confidence": 0.4826486225889473,
+    "text": "But you guys are not a good team player then."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 310,
+    "start_ms": 3900,
+    "end_ms": 6180,
+    "confidence": 0.4826486225889473,
+    "text": "That shows the quality of the team player."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 311,
+    "start_ms": 6440,
+    "end_ms": 8860,
+    "confidence": 0.4826486225889473,
+    "text": "If you are not a good team player, then you are better than the other team player."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 312,
+    "start_ms": 9140,
+    "end_ms": 9780,
+    "confidence": 0.4826486225889473,
+    "text": "And you are better at developing."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 313,
+    "start_ms": 11980,
+    "end_ms": 14040,
+    "confidence": 0.4826486225889473,
+    "text": "Then, second thing is..."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 314,
+    "start_ms": 14040,
+    "end_ms": 16600,
+    "confidence": 0.4826486225889473,
+    "text": "...Batsal and Deepak."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 315,
+    "start_ms": 17219,
+    "end_ms": 20480,
+    "confidence": 0.4826486225889473,
+    "text": "So, both of you said, you said, I strongly disagree."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 316,
+    "start_ms": 22379,
+    "end_ms": 24420,
+    "confidence": 0.4826486225889473,
+    "text": "So, you disagree to a point."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 317,
+    "start_ms": 24740,
+    "end_ms": 26340,
+    "confidence": 0.4826486225889473,
+    "text": "And you mentioned, I strongly disagree."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 318,
+    "start_ms": 26960,
+    "end_ms": 28300,
+    "confidence": 0.4826486225889473,
+    "text": "I don't agree with that."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 319,
+    "start_ms": 28300,
+    "end_ms": 29640,
+    "confidence": 0.669894682433702,
+    "text": "Fine, it happens."
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 320,
+    "start_ms": 0,
+    "end_ms": 5020,
+    "confidence": 0.7805923637996867,
+    "text": "I may not agree with each and everyone, but you don't have to explicitly mention that"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 321,
+    "start_ms": 5020,
+    "end_ms": 8480,
+    "confidence": 0.7805923637996867,
+    "text": "I don't disagree with you, I don't agree with you, I disagree with you."
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 322,
+    "start_ms": 8820,
+    "end_ms": 10160,
+    "confidence": 0.7805923637996867,
+    "text": "You should not be saying this thing."
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 323,
+    "start_ms": 10540,
+    "end_ms": 17420,
+    "confidence": 0.7805923637996867,
+    "text": "You can use the words like but, however, he mentioned something, you were not agreeing"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 324,
+    "start_ms": 17420,
+    "end_ms": 17900,
+    "confidence": 0.7805923637996867,
+    "text": "to him."
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 325,
+    "start_ms": 18180,
+    "end_ms": 26100,
+    "confidence": 0.7805923637996867,
+    "text": "So you can say that, okay fine, but I feel, and you can continue, it will be going"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 326,
+    "start_ms": 26100,
+    "end_ms": 26860,
+    "confidence": 0.4563030087576492,
+    "text": "in opposite direction."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 327,
+    "start_ms": 0,
+    "end_ms": 3500,
+    "confidence": 0.7202729717594042,
+    "text": "Why are you not disagreeing? Why you are not agreeing with them?"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 328,
+    "start_ms": 4000,
+    "end_ms": 8400,
+    "confidence": 0.7202729717594042,
+    "text": "Fine, I agree with you but I can give some other dimension to what you are thinking."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 329,
+    "start_ms": 9260,
+    "end_ms": 9340,
+    "confidence": 0.7202729717594042,
+    "text": "Okay?"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 330,
+    "start_ms": 10840,
+    "end_ms": 13920,
+    "confidence": 0.7202729717594042,
+    "text": "Parvinder sir, I have a question for you."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 331,
+    "start_ms": 15440,
+    "end_ms": 18600,
+    "confidence": 0.7202729717594042,
+    "text": "What is the solution of this problem then?"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 332,
+    "start_ms": 19400,
+    "end_ms": 21620,
+    "confidence": 0.7202729717594042,
+    "text": "Which side do you prefer in that case?"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 333,
+    "start_ms": 22000,
+    "end_ms": 26660,
+    "confidence": 0.7202729717594042,
+    "text": "You said just a second, just pointing out this, this, this."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 334,
+    "start_ms": 26900,
+    "end_ms": 28100,
+    "confidence": 0.7202729717594042,
+    "text": "No, you cannot do that."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 335,
+    "start_ms": 28100,
+    "end_ms": 29380,
+    "confidence": 0.6652149288371315,
+    "text": "Take it off."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 336,
+    "start_ms": 0,
+    "end_ms": 8380,
+    "confidence": 0.5890560762290574,
+    "text": "You should not be asking questions and you kept it on doing that and the final last step will be to ask questions."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 337,
+    "start_ms": 8820,
+    "end_ms": 10020,
+    "confidence": 0.5890560762290574,
+    "text": "So please avoid this."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 338,
+    "start_ms": 10920,
+    "end_ms": 11340,
+    "confidence": 0.5890560762290574,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 339,
+    "start_ms": 13260,
+    "end_ms": 17240,
+    "confidence": 0.5890560762290574,
+    "text": "Next is, see we need masala to speak."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 340,
+    "start_ms": 17640,
+    "end_ms": 19740,
+    "confidence": 0.5890560762290574,
+    "text": "If there is a masala, the point is generated."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 341,
+    "start_ms": 20700,
+    "end_ms": 29820,
+    "confidence": 0.5890560762290574,
+    "text": "So if you keep thinking from one direction, one point of view, you will have limited points that you can speak."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 342,
+    "start_ms": 29820,
+    "end_ms": 29860,
+    "confidence": 0.39375308655625085,
+    "text": "."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 343,
+    "start_ms": 29860,
+    "end_ms": 29920,
+    "confidence": 0.700707974786109,
+    "text": "."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 344,
+    "start_ms": 29920,
+    "end_ms": 29980,
+    "confidence": 0.7257803831272652,
+    "text": "."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 345,
+    "start_ms": 0,
+    "end_ms": 5600,
+    "confidence": 0.5210855395028356,
+    "text": "Okay, so when you were given this topic, when you were given two minutes to think upon,"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 346,
+    "start_ms": 6280,
+    "end_ms": 10240,
+    "confidence": 0.5210855395028356,
+    "text": "so what direction should I take? Anything that you can tell me."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 347,
+    "start_ms": 10700,
+    "end_ms": 19780,
+    "confidence": 0.5210855395028356,
+    "text": "Yes sir, sir, I started my paper with two marks up and down, so the outcome was negative, positive and negative."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 348,
+    "start_ms": 20080,
+    "end_ms": 25360,
+    "confidence": 0.5210855395028356,
+    "text": "So I was trying to drive the direction, but it was negative, so it was a bit difficult to get to the end."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 349,
+    "start_ms": 25360,
+    "end_ms": 29340,
+    "confidence": 0.59712727989282,
+    "text": "Fine, but still, negative points."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 350,
+    "start_ms": 0,
+    "end_ms": 1360,
+    "confidence": 0.426858329336308,
+    "text": "From which direction?"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 351,
+    "start_ms": 2320,
+    "end_ms": 3520,
+    "confidence": 0.426858329336308,
+    "text": "This is what I wanted to highlight."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 352,
+    "start_ms": 3540,
+    "end_ms": 5060,
+    "confidence": 0.426858329336308,
+    "text": "That job loss is not a big thing."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 353,
+    "start_ms": 5080,
+    "end_ms": 8500,
+    "confidence": 0.426858329336308,
+    "text": "If you make a big money, then you will be in a bad mood."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 354,
+    "start_ms": 9340,
+    "end_ms": 10600,
+    "confidence": 0.426858329336308,
+    "text": "That's what I wanted to highlight."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 355,
+    "start_ms": 11100,
+    "end_ms": 11280,
+    "confidence": 0.426858329336308,
+    "text": "What do you mean?"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 356,
+    "start_ms": 11280,
+    "end_ms": 13840,
+    "confidence": 0.426858329336308,
+    "text": "I was thinking about a large chunk of the population."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 357,
+    "start_ms": 14100,
+    "end_ms": 15020,
+    "confidence": 0.426858329336308,
+    "text": "There are a lot of people in the sector."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 358,
+    "start_ms": 16079,
+    "end_ms": 17200,
+    "confidence": 0.426858329336308,
+    "text": "So I was thinking about..."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 359,
+    "start_ms": 17200,
+    "end_ms": 17720,
+    "confidence": 0.426858329336308,
+    "text": "I was thinking about this."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 360,
+    "start_ms": 18400,
+    "end_ms": 21440,
+    "confidence": 0.426858329336308,
+    "text": "For example, if you are in India, you are in a house."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 361,
+    "start_ms": 21920,
+    "end_ms": 23580,
+    "confidence": 0.426858329336308,
+    "text": "You know, you are in a house."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 362,
+    "start_ms": 23780,
+    "end_ms": 26080,
+    "confidence": 0.426858329336308,
+    "text": "You know, you have to get the actual data."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 363,
+    "start_ms": 26740,
+    "end_ms": 27920,
+    "confidence": 0.5017415451348864,
+    "text": "What do you think about this job?"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 364,
+    "start_ms": 28340,
+    "end_ms": 29160,
+    "confidence": 0.5017415451348864,
+    "text": "What is the percentage?"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 365,
+    "start_ms": 0,
+    "end_ms": 700,
+    "confidence": 0.47002101331049373,
+    "text": "I don't know what you are going to figure out."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 366,
+    "start_ms": 720,
+    "end_ms": 2080,
+    "confidence": 0.47002101331049373,
+    "text": "I am not sure if you are going to do any preparation."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 367,
+    "start_ms": 3600,
+    "end_ms": 4380,
+    "confidence": 0.47002101331049373,
+    "text": "Perficient security."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 368,
+    "start_ms": 5300,
+    "end_ms": 6380,
+    "confidence": 0.47002101331049373,
+    "text": "If we don't have numbers."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 369,
+    "start_ms": 6860,
+    "end_ms": 11040,
+    "confidence": 0.47002101331049373,
+    "text": "What are the major sectors that have taken the hit?"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 370,
+    "start_ms": 12680,
+    "end_ms": 16160,
+    "confidence": 0.47002101331049373,
+    "text": "At least a rough number of ideas that are not great or not great."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 371,
+    "start_ms": 17020,
+    "end_ms": 18940,
+    "confidence": 0.47002101331049373,
+    "text": "So that you can eventually have the data."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 372,
+    "start_ms": 19140,
+    "end_ms": 21060,
+    "confidence": 0.47002101331049373,
+    "text": "If you pass the data, you will be the absolute winner."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 373,
+    "start_ms": 21820,
+    "end_ms": 23080,
+    "confidence": 0.47002101331049373,
+    "text": "That's why it is so tiny."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 374,
+    "start_ms": 23080,
+    "end_ms": 29580,
+    "confidence": 0.4642789518715005,
+    "text": "If a customer calls me and asks me to do a service helpline."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 375,
+    "start_ms": 0,
+    "end_ms": 1940,
+    "confidence": 0.47236655444739295,
+    "text": "This is a human interaction service."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 376,
+    "start_ms": 2700,
+    "end_ms": 5260,
+    "confidence": 0.47236655444739295,
+    "text": "You have to call multiple customers."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 377,
+    "start_ms": 6060,
+    "end_ms": 7700,
+    "confidence": 0.47236655444739295,
+    "text": "You have to resolve this."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 378,
+    "start_ms": 8119,
+    "end_ms": 9080,
+    "confidence": 0.47236655444739295,
+    "text": "You have to do counseling."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 379,
+    "start_ms": 9580,
+    "end_ms": 10640,
+    "confidence": 0.47236655444739295,
+    "text": "You have to do all these things."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 380,
+    "start_ms": 11380,
+    "end_ms": 12400,
+    "confidence": 0.47236655444739295,
+    "text": "And you have to replace everything."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 381,
+    "start_ms": 14000,
+    "end_ms": 16340,
+    "confidence": 0.47236655444739295,
+    "text": "Now, you have to call the call center."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 382,
+    "start_ms": 16980,
+    "end_ms": 18180,
+    "confidence": 0.47236655444739295,
+    "text": "You have to computerize voice."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 383,
+    "start_ms": 18880,
+    "end_ms": 19440,
+    "confidence": 0.47236655444739295,
+    "text": "Chatbots."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 384,
+    "start_ms": 20660,
+    "end_ms": 21380,
+    "confidence": 0.47236655444739295,
+    "text": "Chatbots."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 385,
+    "start_ms": 22280,
+    "end_ms": 22380,
+    "confidence": 0.47236655444739295,
+    "text": "Right."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 386,
+    "start_ms": 22860,
+    "end_ms": 23520,
+    "confidence": 0.47236655444739295,
+    "text": "Audio bots."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 387,
+    "start_ms": 24220,
+    "end_ms": 24940,
+    "confidence": 0.47236655444739295,
+    "text": "Correct."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 388,
+    "start_ms": 24940,
+    "end_ms": 27060,
+    "confidence": 0.5054573288485174,
+    "text": "You have to do all these things."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 389,
+    "start_ms": 27880,
+    "end_ms": 27960,
+    "confidence": 0.5054573288485174,
+    "text": "You have to do everything."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 390,
+    "start_ms": 28440,
+    "end_ms": 29720,
+    "confidence": 0.5054573288485174,
+    "text": "You have to do everything."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 391,
+    "start_ms": 0,
+    "end_ms": 760,
+    "confidence": 0.13527824438742111,
+    "text": "This is my chance."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 392,
+    "start_ms": 1440,
+    "end_ms": 5520,
+    "confidence": 0.13527824438742111,
+    "text": "I can see it directly in the eyes making an in-house reaction."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 393,
+    "start_ms": 5900,
+    "end_ms": 6240,
+    "confidence": 0.13527824438742111,
+    "text": "I got it at last."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 394,
+    "start_ms": 6840,
+    "end_ms": 10900,
+    "confidence": 0.13527824438742111,
+    "text": "So you talked about doctor's prescription, tolls, right?"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 395,
+    "start_ms": 12020,
+    "end_ms": 12260,
+    "confidence": 0.13527824438742111,
+    "text": "Do you have a problem with the"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 396,
+    "start_ms": 12580,
+    "end_ms": 20760,
+    "confidence": 0.13527824438742111,
+    "text": "You may want to raise your hand if you go to bed."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 397,
+    "start_ms": 21360,
+    "end_ms": 22920,
+    "confidence": 0.13527824438742111,
+    "text": "If you get anger on the bed,"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 398,
+    "start_ms": 23140,
+    "end_ms": 23900,
+    "confidence": 0.13527824438742111,
+    "text": "then you'll become more moderate."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 399,
+    "start_ms": 25799,
+    "end_ms": 27380,
+    "confidence": 0.13527824438742111,
+    "text": "You will get this pain."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 400,
+    "start_ms": 28080,
+    "end_ms": 28940,
+    "confidence": 0.13527824438742111,
+    "text": "If you get anger on the bed,"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 401,
+    "start_ms": 28940,
+    "end_ms": 29900,
+    "confidence": 0.501523824279991,
+    "text": "and you will get that."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 402,
+    "start_ms": 10900,
+    "end_ms": 15680,
+    "confidence": 0.39992147287260127,
+    "text": "We were not very specific, we were not very specific details were missing."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 403,
+    "start_ms": 18740,
+    "end_ms": 22260,
+    "confidence": 0.39992147287260127,
+    "text": "We did not dive into the topic."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 404,
+    "start_ms": 22260,
+    "end_ms": 24540,
+    "confidence": 0.451675324147155,
+    "text": "We were not very specific, we were not very specific."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 405,
+    "start_ms": 0,
+    "end_ms": 1880,
+    "confidence": 0.5825710107247035,
+    "text": "I don't know how to answer this question."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 406,
+    "start_ms": 1880,
+    "end_ms": 2880,
+    "confidence": 0.5825710107247035,
+    "text": "I have to ask myself a lot of questions."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 407,
+    "start_ms": 4700,
+    "end_ms": 6360,
+    "confidence": 0.5825710107247035,
+    "text": "I have to ask myself a lot of questions."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 408,
+    "start_ms": 7260,
+    "end_ms": 8200,
+    "confidence": 0.5825710107247035,
+    "text": "I have to ask myself a lot of questions."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 409,
+    "start_ms": 8200,
+    "end_ms": 9040,
+    "confidence": 0.5825710107247035,
+    "text": "I have to ask myself a lot of questions."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 410,
+    "start_ms": 9300,
+    "end_ms": 12320,
+    "confidence": 0.5825710107247035,
+    "text": "Let us talk about multiple sectors."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 411,
+    "start_ms": 13320,
+    "end_ms": 16480,
+    "confidence": 0.5825710107247035,
+    "text": "In one where we require active decision making."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 412,
+    "start_ms": 17640,
+    "end_ms": 21820,
+    "confidence": 0.5825710107247035,
+    "text": "You know one decision making can change certain scenario."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 413,
+    "start_ms": 21960,
+    "end_ms": 22700,
+    "confidence": 0.5825710107247035,
+    "text": "Different scenario changes."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 414,
+    "start_ms": 23360,
+    "end_ms": 25180,
+    "confidence": 0.5825710107247035,
+    "text": "It will take some time."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 415,
+    "start_ms": 25480,
+    "end_ms": 26840,
+    "confidence": 0.5825710107247035,
+    "text": "Right now it is not feasible."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 416,
+    "start_ms": 26840,
+    "end_ms": 29360,
+    "confidence": 0.5740647863458662,
+    "text": "But there are some things that can change."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 417,
+    "start_ms": 0,
+    "end_ms": 2720,
+    "confidence": 0.4647867907654321,
+    "text": "There is a lot of sectors, such as assembling."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 418,
+    "start_ms": 3759,
+    "end_ms": 9180,
+    "confidence": 0.4647867907654321,
+    "text": "For example, in automobile, for example, the majority is assembled."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 419,
+    "start_ms": 10080,
+    "end_ms": 13320,
+    "confidence": 0.4647867907654321,
+    "text": "Assembling is replaced by manufacturing and manufacturing."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 420,
+    "start_ms": 13940,
+    "end_ms": 17700,
+    "confidence": 0.4647867907654321,
+    "text": "There is a service sector and there is a human relations sector."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 421,
+    "start_ms": 18300,
+    "end_ms": 19580,
+    "confidence": 0.4647867907654321,
+    "text": "There is a customer relations sector."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 422,
+    "start_ms": 19700,
+    "end_ms": 21960,
+    "confidence": 0.4647867907654321,
+    "text": "There is an adaptation."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 423,
+    "start_ms": 23080,
+    "end_ms": 25340,
+    "confidence": 0.4647867907654321,
+    "text": "So, sector wise, everything is done."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 424,
+    "start_ms": 25340,
+    "end_ms": 27160,
+    "confidence": 0.5544139051397897,
+    "text": "This is my personal experience."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 425,
+    "start_ms": 0,
+    "end_ms": 2620,
+    "confidence": 0.41462204190232266,
+    "text": "I was told that my role was in automizing my business."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 426,
+    "start_ms": 4900,
+    "end_ms": 7420,
+    "confidence": 0.41462204190232266,
+    "text": "I was told that my personal experience was there."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 427,
+    "start_ms": 7880,
+    "end_ms": 10720,
+    "confidence": 0.41462204190232266,
+    "text": "You can see from my personal experience, I have..."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 428,
+    "start_ms": 10720,
+    "end_ms": 12560,
+    "confidence": 0.41462204190232266,
+    "text": "I was told by Dr. Reddy's internship."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 429,
+    "start_ms": 12800,
+    "end_ms": 12900,
+    "confidence": 0.41462204190232266,
+    "text": "Exactly."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 430,
+    "start_ms": 14460,
+    "end_ms": 15980,
+    "confidence": 0.41462204190232266,
+    "text": "The brilliant idea."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 431,
+    "start_ms": 16219,
+    "end_ms": 17180,
+    "confidence": 0.41462204190232266,
+    "text": "In fact, they studied a lot."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 432,
+    "start_ms": 18000,
+    "end_ms": 20040,
+    "confidence": 0.41462204190232266,
+    "text": "There was a lot of work to be done."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 433,
+    "start_ms": 20440,
+    "end_ms": 24480,
+    "confidence": 0.41462204190232266,
+    "text": "I had no idea that I was going to be a doctor."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 434,
+    "start_ms": 25180,
+    "end_ms": 29400,
+    "confidence": 0.41462204190232266,
+    "text": "I was told that I was going to be a doctor."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 435,
+    "start_ms": 29400,
+    "end_ms": 29980,
+    "confidence": 0.5131497961421057,
+    "text": "I will be on gradia."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 436,
+    "start_ms": 8560,
+    "end_ms": 14480,
+    "confidence": 0.6800406580537796,
+    "text": "There is an application for that. You know the name of the application which does this."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 437,
+    "start_ms": 14900,
+    "end_ms": 16280,
+    "confidence": 0.6800406580537796,
+    "text": "Netflix also does this nowadays."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 438,
+    "start_ms": 16920,
+    "end_ms": 22960,
+    "confidence": 0.6800406580537796,
+    "text": "70% of the time AI was correct, 30% of the time doctor was correct in identifying the things daily days."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 439,
+    "start_ms": 0,
+    "end_ms": 1800,
+    "confidence": 0.5272480060916063,
+    "text": "Obviously I will not have trust on him."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 440,
+    "start_ms": 2140,
+    "end_ms": 2760,
+    "confidence": 0.5272480060916063,
+    "text": "This is a counter point."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 441,
+    "start_ms": 3580,
+    "end_ms": 6600,
+    "confidence": 0.5272480060916063,
+    "text": "This is a time point."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 442,
+    "start_ms": 7240,
+    "end_ms": 7900,
+    "confidence": 0.5272480060916063,
+    "text": "This is a time point."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 443,
+    "start_ms": 8140,
+    "end_ms": 8460,
+    "confidence": 0.5272480060916063,
+    "text": "This is a time point."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 444,
+    "start_ms": 8660,
+    "end_ms": 10900,
+    "confidence": 0.5272480060916063,
+    "text": "This is a time point."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 445,
+    "start_ms": 10900,
+    "end_ms": 12660,
+    "confidence": 0.5272480060916063,
+    "text": "This is a straightforward line."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 446,
+    "start_ms": 13280,
+    "end_ms": 17780,
+    "confidence": 0.5272480060916063,
+    "text": "The jobs in this sector will tend to fade away very soon."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 447,
+    "start_ms": 18280,
+    "end_ms": 20320,
+    "confidence": 0.5272480060916063,
+    "text": "Because of this decision, then counter will be changed."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 448,
+    "start_ms": 21040,
+    "end_ms": 22820,
+    "confidence": 0.5272480060916063,
+    "text": "This is a multiple angle."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 449,
+    "start_ms": 23440,
+    "end_ms": 26260,
+    "confidence": 0.5272480060916063,
+    "text": "When you talk about the situation, you will see the same angle."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 450,
+    "start_ms": 26260,
+    "end_ms": 28600,
+    "confidence": 0.40054444071118267,
+    "text": "You will see the same angle."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 451,
+    "start_ms": 28800,
+    "end_ms": 29500,
+    "confidence": 0.40054444071118267,
+    "text": "This is a counter point."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 452,
+    "start_ms": 0,
+    "end_ms": 1280,
+    "confidence": 0.24981140375686775,
+    "text": "You asked a question and then I answered the question."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 453,
+    "start_ms": 1880,
+    "end_ms": 3380,
+    "confidence": 0.24981140375686775,
+    "text": "So, you have to counter the topic."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 454,
+    "start_ms": 4740,
+    "end_ms": 7260,
+    "confidence": 0.24981140375686775,
+    "text": "8 lines in each direction will not be changed."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 455,
+    "start_ms": 7400,
+    "end_ms": 8800,
+    "confidence": 0.24981140375686775,
+    "text": "The charge direction should be changed."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 456,
+    "start_ms": 9420,
+    "end_ms": 11700,
+    "confidence": 0.24981140375686775,
+    "text": "So, if you use counter, you will not know what is going to happen."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 457,
+    "start_ms": 12980,
+    "end_ms": 15380,
+    "confidence": 0.24981140375686775,
+    "text": "We will do our best to build up the topic."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 458,
+    "start_ms": 16680,
+    "end_ms": 18620,
+    "confidence": 0.24981140375686775,
+    "text": "We will not work on the topic as much as we do."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 459,
+    "start_ms": 19920,
+    "end_ms": 23420,
+    "confidence": 0.24981140375686775,
+    "text": "I just thought, if someone has different mind point of view,"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 460,
+    "start_ms": 23720,
+    "end_ms": 24260,
+    "confidence": 0.24981140375686775,
+    "text": "what is your topic?"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 461,
+    "start_ms": 24680,
+    "end_ms": 25160,
+    "confidence": 0.24981140375686775,
+    "text": "And, we are different."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 462,
+    "start_ms": 25760,
+    "end_ms": 27040,
+    "confidence": 0.24981140375686775,
+    "text": "But, at the end, I agree with him."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 463,
+    "start_ms": 27160,
+    "end_ms": 29180,
+    "confidence": 0.24981140375686775,
+    "text": "So, does it count in a negative way for me?"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 464,
+    "start_ms": 29180,
+    "end_ms": 29800,
+    "confidence": 0.37837292334757994,
+    "text": "No."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 465,
+    "start_ms": 0,
+    "end_ms": 640,
+    "confidence": 0.4859802700443501,
+    "text": "Not probably."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 466,
+    "start_ms": 1240,
+    "end_ms": 1340,
+    "confidence": 0.4859802700443501,
+    "text": "I am not sure."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 467,
+    "start_ms": 1980,
+    "end_ms": 5740,
+    "confidence": 0.4859802700443501,
+    "text": "If someone doesn't count as a supporter, we will convince them."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 468,
+    "start_ms": 6360,
+    "end_ms": 7340,
+    "confidence": 0.4859802700443501,
+    "text": "For you it will be possible."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 469,
+    "start_ms": 7780,
+    "end_ms": 8540,
+    "confidence": 0.4859802700443501,
+    "text": "It will not be negative."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 470,
+    "start_ms": 9340,
+    "end_ms": 13140,
+    "confidence": 0.4859802700443501,
+    "text": "If you have a particular point of inclusion, you are not allowed to do it."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 471,
+    "start_ms": 13140,
+    "end_ms": 15940,
+    "confidence": 0.4859802700443501,
+    "text": "Wait, also add something to your adapter."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 472,
+    "start_ms": 16120,
+    "end_ms": 20440,
+    "confidence": 0.4859802700443501,
+    "text": "I am somewhat aligned with your particular x regions."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 473,
+    "start_ms": 20920,
+    "end_ms": 22720,
+    "confidence": 0.4859802700443501,
+    "text": "But why I still doubt it?"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 474,
+    "start_ms": 22800,
+    "end_ms": 25300,
+    "confidence": 0.4859802700443501,
+    "text": "Because you are not allowed to do it."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 475,
+    "start_ms": 25320,
+    "end_ms": 27260,
+    "confidence": 0.4859802700443501,
+    "text": "This is the best way of disagreeing."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 476,
+    "start_ms": 27280,
+    "end_ms": 27920,
+    "confidence": 0.4859802700443501,
+    "text": "Diplomatic way."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 477,
+    "start_ms": 27920,
+    "end_ms": 29220,
+    "confidence": 0.8445550836956166,
+    "text": "Do you not say I disagree?"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 478,
+    "start_ms": 0,
+    "end_ms": 2620,
+    "confidence": 0.5471853925730822,
+    "text": "See, it's such a political way of conveying."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 479,
+    "start_ms": 3440,
+    "end_ms": 4960,
+    "confidence": 0.5471853925730822,
+    "text": "It's not a fake, it's fake."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 480,
+    "start_ms": 5160,
+    "end_ms": 6920,
+    "confidence": 0.5471853925730822,
+    "text": "Not at all, not at all."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 481,
+    "start_ms": 7140,
+    "end_ms": 9160,
+    "confidence": 0.5471853925730822,
+    "text": "Exactly, it's not a number, it's a sector."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 482,
+    "start_ms": 10560,
+    "end_ms": 14400,
+    "confidence": 0.5471853925730822,
+    "text": "But it's not a sector where there are 20-22% jobs."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 483,
+    "start_ms": 14680,
+    "end_ms": 17020,
+    "confidence": 0.5471853925730822,
+    "text": "It's not a job, it's a job trying to be a GD."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 484,
+    "start_ms": 18700,
+    "end_ms": 22820,
+    "confidence": 0.5471853925730822,
+    "text": "One more thing, like you said, that we went very wide in the GD topics."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 485,
+    "start_ms": 23000,
+    "end_ms": 24760,
+    "confidence": 0.5471853925730822,
+    "text": "We went very off the topic and I knew that from the beginning."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 486,
+    "start_ms": 24980,
+    "end_ms": 27900,
+    "confidence": 0.5471853925730822,
+    "text": "So, in that moment, do I put forward my topic,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 487,
+    "start_ms": 27900,
+    "end_ms": 29920,
+    "confidence": 0.6499307741466791,
+    "text": "going off from all the discussions, breaking it?"
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 488,
+    "start_ms": 0,
+    "end_ms": 5200,
+    "confidence": 0.7087152410285413,
+    "text": "Or do I keep openly saying that we should come back to the main point?"
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 489,
+    "start_ms": 6100,
+    "end_ms": 8160,
+    "confidence": 0.7087152410285413,
+    "text": "We are diverting from the topic."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 490,
+    "start_ms": 8800,
+    "end_ms": 14240,
+    "confidence": 0.7087152410285413,
+    "text": "Guys, I think we are diverting from the topic."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 491,
+    "start_ms": 14920,
+    "end_ms": 17740,
+    "confidence": 0.7087152410285413,
+    "text": "Guys, I think we are diverting from the topic."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 492,
+    "start_ms": 18260,
+    "end_ms": 20660,
+    "confidence": 0.7087152410285413,
+    "text": "The topic is not the role of government."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 493,
+    "start_ms": 22340,
+    "end_ms": 28280,
+    "confidence": 0.7087152410285413,
+    "text": "But rather the topic is that impact of AI in Indian job market."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 494,
+    "start_ms": 28280,
+    "end_ms": 29960,
+    "confidence": 0.6435883165490004,
+    "text": "I think whether we will lose more..."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 495,
+    "start_ms": 0,
+    "end_ms": 3880,
+    "confidence": 0.5552907907567839,
+    "text": "or we will create more jobs or what will happen to the net job market."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 496,
+    "start_ms": 3940,
+    "end_ms": 6020,
+    "confidence": 0.5552907907567839,
+    "text": "Sir, I have a question about a specific scenario."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 497,
+    "start_ms": 6160,
+    "end_ms": 7500,
+    "confidence": 0.5552907907567839,
+    "text": "Let's start with the sectors."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 498,
+    "start_ms": 9420,
+    "end_ms": 11000,
+    "confidence": 0.5552907907567839,
+    "text": "Let's bring it back to the implications."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 499,
+    "start_ms": 11380,
+    "end_ms": 12260,
+    "confidence": 0.5552907907567839,
+    "text": "What do you mean by that?"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 500,
+    "start_ms": 12260,
+    "end_ms": 15140,
+    "confidence": 0.5552907907567839,
+    "text": "Let's talk about the negative impact on jobs."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 501,
+    "start_ms": 15640,
+    "end_ms": 18040,
+    "confidence": 0.5552907907567839,
+    "text": "If the government doesn't create jobs, it won't work."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 502,
+    "start_ms": 18800,
+    "end_ms": 20180,
+    "confidence": 0.5552907907567839,
+    "text": "But let's talk about the topic."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 503,
+    "start_ms": 21140,
+    "end_ms": 22000,
+    "confidence": 0.5552907907567839,
+    "text": "So, what is the case?"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 504,
+    "start_ms": 23300,
+    "end_ms": 25900,
+    "confidence": 0.5552907907567839,
+    "text": "Government is scared of jobs."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 505,
+    "start_ms": 25900,
+    "end_ms": 27800,
+    "confidence": 0.5552907907567839,
+    "text": "If the government doesn't create jobs, it won't work."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 506,
+    "start_ms": 27800,
+    "end_ms": 29640,
+    "confidence": 0.710319065961871,
+    "text": "If the government doesn't create jobs, it won't work."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 507,
+    "start_ms": 7119,
+    "end_ms": 14600,
+    "confidence": 0.5197590925850789,
+    "text": "What do you think will be the role of the Government when AI comes into picture?"
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 508,
+    "start_ms": 14600,
+    "end_ms": 27980,
+    "confidence": 0.7120206038128785,
+    "text": "What do you think will be the role of the Government when AI comes into picture?"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 509,
+    "start_ms": 440,
+    "end_ms": 1980,
+    "confidence": 0.4905005914986555,
+    "text": "So, you have to accept it."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 510,
+    "start_ms": 2040,
+    "end_ms": 4019,
+    "confidence": 0.4905005914986555,
+    "text": "If you don't have a point of view,"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 511,
+    "start_ms": 4059,
+    "end_ms": 4800,
+    "confidence": 0.4905005914986555,
+    "text": "I will give it to you."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 512,
+    "start_ms": 4920,
+    "end_ms": 6540,
+    "confidence": 0.4905005914986555,
+    "text": "And if you want to share it better,"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 513,
+    "start_ms": 6680,
+    "end_ms": 7260,
+    "confidence": 0.4905005914986555,
+    "text": "I will give you a line."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 514,
+    "start_ms": 8360,
+    "end_ms": 9360,
+    "confidence": 0.4905005914986555,
+    "text": "So, you have to introduce it."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 515,
+    "start_ms": 9840,
+    "end_ms": 10000,
+    "confidence": 0.4905005914986555,
+    "text": "Right?"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 516,
+    "start_ms": 10500,
+    "end_ms": 11780,
+    "confidence": 0.4905005914986555,
+    "text": "Your personal experience is very helpful."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 517,
+    "start_ms": 12360,
+    "end_ms": 14740,
+    "confidence": 0.4905005914986555,
+    "text": "You had that Dr. Reddy's personal experience."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 518,
+    "start_ms": 14820,
+    "end_ms": 15360,
+    "confidence": 0.4905005914986555,
+    "text": "If you do that,"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 519,
+    "start_ms": 15460,
+    "end_ms": 18140,
+    "confidence": 0.4905005914986555,
+    "text": "then you will outline these guys."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 520,
+    "start_ms": 18860,
+    "end_ms": 19820,
+    "confidence": 0.4905005914986555,
+    "text": "You will say,"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 521,
+    "start_ms": 19960,
+    "end_ms": 20460,
+    "confidence": 0.4905005914986555,
+    "text": "I don't know how to do this."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 522,
+    "start_ms": 20900,
+    "end_ms": 21200,
+    "confidence": 0.4905005914986555,
+    "text": "No."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 523,
+    "start_ms": 22500,
+    "end_ms": 24760,
+    "confidence": 0.4905005914986555,
+    "text": "You knew that you had this particular number"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 524,
+    "start_ms": 24760,
+    "end_ms": 25780,
+    "confidence": 0.4905005914986555,
+    "text": "that you had to invest in Microsoft."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 525,
+    "start_ms": 28100,
+    "end_ms": 29980,
+    "confidence": 0.526775870729717,
+    "text": "Whatever you had, the other idea..."
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 526,
+    "start_ms": 0,
+    "end_ms": 4500,
+    "confidence": 0.43078193239858703,
+    "text": "follow up this idea so that you will outnumber them these guys and I extract"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 527,
+    "start_ms": 4500,
+    "end_ms": 7380,
+    "confidence": 0.43078193239858703,
+    "text": "their go-ahead milk data whoo-hoo them lining but of course your topic them"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 528,
+    "start_ms": 7380,
+    "end_ms": 11280,
+    "confidence": 0.43078193239858703,
+    "text": "Larry on the table Tumko ooh skin knowledge bahil oh gosh is a data to"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 529,
+    "start_ms": 11280,
+    "end_ms": 15040,
+    "confidence": 0.43078193239858703,
+    "text": "honey day for knowledge me whoo-hoo yeah the line you are too big at"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 530,
+    "start_ms": 15040,
+    "end_ms": 18700,
+    "confidence": 0.43078193239858703,
+    "text": "the moment you don't know how to pick the open food yeah it would a"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 531,
+    "start_ms": 18700,
+    "end_ms": 22760,
+    "confidence": 0.43078193239858703,
+    "text": "panel that I was at that I'm but just to you darling or some of it"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 532,
+    "start_ms": 23280,
+    "end_ms": 26660,
+    "confidence": 0.43078193239858703,
+    "text": "basically push me say point you need to start at the unskilled jobs"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 533,
+    "start_ms": 0,
+    "end_ms": 4500,
+    "confidence": 0.5758622540964389,
+    "text": "you guys. I don't know if it's a crowd number point or not, but there is data missing."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 534,
+    "start_ms": 5180,
+    "end_ms": 6100,
+    "confidence": 0.5758622540964389,
+    "text": "There is knowledge missing."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 535,
+    "start_ms": 6220,
+    "end_ms": 6960,
+    "confidence": 0.5758622540964389,
+    "text": "What is the data create?"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 536,
+    "start_ms": 8720,
+    "end_ms": 11580,
+    "confidence": 0.5758622540964389,
+    "text": "So, if you want to think from different dimensions."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 537,
+    "start_ms": 12460,
+    "end_ms": 14580,
+    "confidence": 0.5758622540964389,
+    "text": "So, I'll give you a keyword."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 538,
+    "start_ms": 15340,
+    "end_ms": 18640,
+    "confidence": 0.5758622540964389,
+    "text": "So, S P E L T, spelt."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 539,
+    "start_ms": 19380,
+    "end_ms": 22140,
+    "confidence": 0.5758622540964389,
+    "text": "Now, S, social."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 540,
+    "start_ms": 22720,
+    "end_ms": 25300,
+    "confidence": 0.5758622540964389,
+    "text": "So, implications or impacts."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 541,
+    "start_ms": 25500,
+    "end_ms": 27360,
+    "confidence": 0.5758622540964389,
+    "text": "So, you can think in different directions."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 542,
+    "start_ms": 27360,
+    "end_ms": 29980,
+    "confidence": 0.5401624147085367,
+    "text": "Social, P polity."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 543,
+    "start_ms": 2940,
+    "end_ms": 11660,
+    "confidence": 0.5341474715163643,
+    "text": "E- economical, L- legalities, legal impacts, and T- technical or technological."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 544,
+    "start_ms": 13520,
+    "end_ms": 18820,
+    "confidence": 0.5341474715163643,
+    "text": "So, if you say something like this, then probably pointers, masala and zara should be generated."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 545,
+    "start_ms": 19920,
+    "end_ms": 22760,
+    "confidence": 0.5341474715163643,
+    "text": "Let's talk about the economical impact of this."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 546,
+    "start_ms": 23420,
+    "end_ms": 27000,
+    "confidence": 0.5341474715163643,
+    "text": "Let's talk about the political impact on this."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 547,
+    "start_ms": 28040,
+    "end_ms": 29260,
+    "confidence": 0.5352614412806174,
+    "text": "Let's talk about the topic."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 548,
+    "start_ms": 0,
+    "end_ms": 9880,
+    "confidence": 0.7302831781789688,
+    "text": "I think it will have a negative impact on the job market, will lose many jobs, which"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 549,
+    "start_ms": 9880,
+    "end_ms": 16820,
+    "confidence": 0.7302831781789688,
+    "text": "will further create more, widen the gap between the rich and the poor and I think that because"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 550,
+    "start_ms": 17680,
+    "end_ms": 25420,
+    "confidence": 0.7302831781789688,
+    "text": "and then you go with specifically in the sectors like manufacturing and your customer"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 551,
+    "start_ms": 25420,
+    "end_ms": 29480,
+    "confidence": 0.5707954240492742,
+    "text": "service, majority of low income jobs."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 552,
+    "start_ms": 0,
+    "end_ms": 3120,
+    "confidence": 0.5807784648686464,
+    "text": "are, you know, taken away by the AI."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 553,
+    "start_ms": 3860,
+    "end_ms": 5100,
+    "confidence": 0.5807784648686464,
+    "text": "And this number is huge."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 554,
+    "start_ms": 5360,
+    "end_ms": 7200,
+    "confidence": 0.5807784648686464,
+    "text": "And now, if you know that percentage,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 555,
+    "start_ms": 7820,
+    "end_ms": 12160,
+    "confidence": 0.5807784648686464,
+    "text": "the percent of our working class people work,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 556,
+    "start_ms": 12440,
+    "end_ms": 15540,
+    "confidence": 0.5807784648686464,
+    "text": "you look at the jobs, the normal jobs,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 557,
+    "start_ms": 15960,
+    "end_ms": 20380,
+    "confidence": 0.5807784648686464,
+    "text": "the salary, the tax, the company,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 558,
+    "start_ms": 21060,
+    "end_ms": 22120,
+    "confidence": 0.5807784648686464,
+    "text": "then you start."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 559,
+    "start_ms": 22800,
+    "end_ms": 25100,
+    "confidence": 0.5807784648686464,
+    "text": "But if you are aligned with you,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 560,
+    "start_ms": 25340,
+    "end_ms": 27020,
+    "confidence": 0.5807784648686464,
+    "text": "but in the sectors where, you know,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 561,
+    "start_ms": 27080,
+    "end_ms": 28240,
+    "confidence": 0.5807784648686464,
+    "text": "you have that decision-making"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 562,
+    "start_ms": 28240,
+    "end_ms": 29980,
+    "confidence": 0.3733808727137051,
+    "text": "or a single year's or."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 563,
+    "start_ms": 0,
+    "end_ms": 5160,
+    "confidence": 0.6402071188803643,
+    "text": "know can create a huge impact in that cases it won't go so if we have some"
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 564,
+    "start_ms": 5160,
+    "end_ms": 5540,
+    "confidence": 0.6402071188803643,
+    "text": "program"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 565,
+    "start_ms": 0,
+    "end_ms": 10320,
+    "confidence": 0.40427272464176967,
+    "text": "There will be positives of it, there is the negatives of it, right?"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 566,
+    "start_ms": 11760,
+    "end_ms": 14040,
+    "confidence": 0.40427272464176967,
+    "text": "Everything is positive and negative, so I have to conclude this."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 567,
+    "start_ms": 15400,
+    "end_ms": 18120,
+    "confidence": 0.40427272464176967,
+    "text": "Everything used up to a particular thing is going to be a boon."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 568,
+    "start_ms": 18700,
+    "end_ms": 20020,
+    "confidence": 0.40427272464176967,
+    "text": "Otherwise, it will turn into a curse."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 569,
+    "start_ms": 20440,
+    "end_ms": 24340,
+    "confidence": 0.40427272464176967,
+    "text": "This panel is a bit more specific. I feel that this panel was towards the positive side."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 570,
+    "start_ms": 24360,
+    "end_ms": 26040,
+    "confidence": 0.40427272464176967,
+    "text": "I think it was a point in the line."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 571,
+    "start_ms": 27500,
+    "end_ms": 28940,
+    "confidence": 0.40427272464176967,
+    "text": "No, it is not."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 572,
+    "start_ms": 28940,
+    "end_ms": 29680,
+    "confidence": 0.41361796473948265,
+    "text": "It was a point in the line."
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 573,
+    "start_ms": 0,
+    "end_ms": 6140,
+    "confidence": 0.5025807737871211,
+    "text": "If you say that out of 7 who are sitting here, 3 R plus 3 R minus, 2 R."
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 574,
+    "start_ms": 6860,
+    "end_ms": 7880,
+    "confidence": 0.5025807737871211,
+    "text": "Overall, it's all good."
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 575,
+    "start_ms": 9700,
+    "end_ms": 11500,
+    "confidence": 0.5025807737871211,
+    "text": "Summarise the last minute."
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 576,
+    "start_ms": 15300,
+    "end_ms": 17640,
+    "confidence": 0.5025807737871211,
+    "text": "He's wearing a watch, why can't he?"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 577,
+    "start_ms": 18720,
+    "end_ms": 21400,
+    "confidence": 0.5025807737871211,
+    "text": "He's wearing a watch, why can't he?"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 578,
+    "start_ms": 21900,
+    "end_ms": 28960,
+    "confidence": 0.5025807737871211,
+    "text": "He's wearing a watch, why can't he?"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 579,
+    "start_ms": 28960,
+    "end_ms": 29420,
+    "confidence": 0.5109717509410834,
+    "text": "He's wearing a watch."
+  }
+]

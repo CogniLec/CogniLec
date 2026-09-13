@@ -1,0 +1,1842 @@
+[
+  {
+    "chunk_idx": 0,
+    "seq": 0,
+    "start_ms": 619,
+    "end_ms": 5960,
+    "confidence": 0.4478751676799685,
+    "text": "Yeah, hello to someone. It's been a long time since we've been working on this."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 1,
+    "start_ms": 9420,
+    "end_ms": 15480,
+    "confidence": 0.4478751676799685,
+    "text": "Today we're going to do the Jacobi matrix, and then we're going to do the direct analysis,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 2,
+    "start_ms": 16939,
+    "end_ms": 19520,
+    "confidence": 0.4478751676799685,
+    "text": "and then we're going to do the keton-regular analysis in more detail,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 3,
+    "start_ms": 20400,
+    "end_ms": 23460,
+    "confidence": 0.4478751676799685,
+    "text": "and then we're going to do it again, also."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 4,
+    "start_ms": 23460,
+    "end_ms": 29040,
+    "confidence": 0.6698713169863088,
+    "text": "Sol on the Jacobi matrix again. Jacobi."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 5,
+    "start_ms": 0,
+    "end_ms": 12280,
+    "confidence": 0.42837005893121805,
+    "text": "matrix, and the more dimensional Kattenrege."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 6,
+    "start_ms": 18540,
+    "end_ms": 21620,
+    "confidence": 0.42837005893121805,
+    "text": "We'll first of all talk about Jacobi matrix."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 7,
+    "start_ms": 24560,
+    "end_ms": 25300,
+    "confidence": 0.42837005893121805,
+    "text": "What was that like?"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 8,
+    "start_ms": 25300,
+    "end_ms": 25840,
+    "confidence": 0.34398273769117405,
+    "text": "Not anymore?"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 9,
+    "start_ms": 28320,
+    "end_ms": 29280,
+    "confidence": 0.34398273769117405,
+    "text": "No, we'll talk about it later."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 10,
+    "start_ms": 0,
+    "end_ms": 8620,
+    "confidence": 0.4602872143765037,
+    "text": "Zone F, the building in the form Rn, Rm up,"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 11,
+    "start_ms": 13860,
+    "end_ms": 19600,
+    "confidence": 0.4602872143765037,
+    "text": "then is the Jacobi matrix with the sign in mid-yacht, F."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 12,
+    "start_ms": 19600,
+    "end_ms": 22000,
+    "confidence": 0.39992976045583756,
+    "text": "Now let's look at the step x."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 13,
+    "start_ms": 24040,
+    "end_ms": 25300,
+    "confidence": 0.39992976045583756,
+    "text": "This is the matrix."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 14,
+    "start_ms": 27060,
+    "end_ms": 29520,
+    "confidence": 0.39992976045583756,
+    "text": "This is the one."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 15,
+    "start_ms": 0,
+    "end_ms": 5320,
+    "confidence": 0.5350190790704937,
+    "text": "f of the vector x, the second vector."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 16,
+    "start_ms": 5680,
+    "end_ms": 10700,
+    "confidence": 0.5350190790704937,
+    "text": "The second vector f of the vector x is also a vector."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 17,
+    "start_ms": 11520,
+    "end_ms": 17800,
+    "confidence": 0.5350190790704937,
+    "text": "And so on and so forth with dn f of the vector x."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 18,
+    "start_ms": 20080,
+    "end_ms": 21800,
+    "confidence": 0.5350190790704937,
+    "text": "This is the Jacobi matrix."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 19,
+    "start_ms": 22680,
+    "end_ms": 25100,
+    "confidence": 0.5350190790704937,
+    "text": "So let's see if the matrix is best for me."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 20,
+    "start_ms": 25100,
+    "end_ms": 29080,
+    "confidence": 0.5187931714518549,
+    "text": "As it was stated here, as it is f on x."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 21,
+    "start_ms": 0,
+    "end_ms": 6760,
+    "confidence": 0.4070710214068154,
+    "text": "f of x here in the left in m and the size we name the"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 22,
+    "start_ms": 7800,
+    "end_ms": 8800,
+    "confidence": 0.4070710214068154,
+    "text": "upload on"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 23,
+    "start_ms": 8800,
+    "end_ms": 15980,
+    "confidence": 0.4070710214068154,
+    "text": "Not the assen variable in Jada Einselen component as a here student vector there. M. I'm triggered hot"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 24,
+    "start_ms": 17599,
+    "end_ms": 20460,
+    "confidence": 0.4070710214068154,
+    "text": "It's coming us into our our shrine"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 25,
+    "start_ms": 22459,
+    "end_ms": 25880,
+    "confidence": 0.4070710214068154,
+    "text": "Also, Oscar shrim she didn't"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 26,
+    "start_ms": 27020,
+    "end_ms": 29340,
+    "confidence": 0.5292321349211495,
+    "text": "Allah yes, I interact the ions"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 27,
+    "start_ms": 0,
+    "end_ms": 25840,
+    "confidence": 0.5343329755548262,
+    "text": "f1 of x. In second, f2 of x. And the second one is fm of x. Here we have f1 of x. And"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 28,
+    "start_ms": 25840,
+    "end_ms": 29060,
+    "confidence": 0.512749039652244,
+    "text": "the second one is fm of x."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 29,
+    "start_ms": 0,
+    "end_ms": 12760,
+    "confidence": 0.5851742756911567,
+    "text": "dn f1 of x with dn fm of x."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 30,
+    "start_ms": 17160,
+    "end_ms": 22340,
+    "confidence": 0.5851742756911567,
+    "text": "That is, when our function of the Rn in the Rn"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 31,
+    "start_ms": 22340,
+    "end_ms": 29680,
+    "confidence": 0.4447113402107853,
+    "text": "are built, then there is this matrix, an element of Rn."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 32,
+    "start_ms": 0,
+    "end_ms": 9760,
+    "confidence": 0.46564910577708196,
+    "text": "Yes, how many times has it been? It's been m times 2 and n times 3."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 33,
+    "start_ms": 12860,
+    "end_ms": 20600,
+    "confidence": 0.46564910577708196,
+    "text": "So now we have our n for the m and the matrix comes to first the m and then the n."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 34,
+    "start_ms": 20600,
+    "end_ms": 29140,
+    "confidence": 0.5096870702353069,
+    "text": "So when we use Jacobi matrix and the dimension of the proof, we get the first hint as to what is going to happen."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 35,
+    "start_ms": 0,
+    "end_ms": 9460,
+    "confidence": 0.38416289078463284,
+    "text": "You know, but I think that for me, the most important thing is the Jacobi matrix, to"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 36,
+    "start_ms": 9460,
+    "end_ms": 9920,
+    "confidence": 0.38416289078463284,
+    "text": "be honest."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 37,
+    "start_ms": 10780,
+    "end_ms": 11200,
+    "confidence": 0.38416289078463284,
+    "text": "Or to make."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 38,
+    "start_ms": 12880,
+    "end_ms": 21380,
+    "confidence": 0.38416289078463284,
+    "text": "And of course, what is the most important thing is that when we have our Rn with"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 39,
+    "start_ms": 21380,
+    "end_ms": 29860,
+    "confidence": 0.44275790923246405,
+    "text": "the original basis of the standard basis, then it is this matrix, this matrix, that belongs"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 40,
+    "start_ms": 29860,
+    "end_ms": 29980,
+    "confidence": 0.44275790923246405,
+    "text": "to Rn."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 41,
+    "start_ms": 0,
+    "end_ms": 8160,
+    "confidence": 0.5122969596325797,
+    "text": "matrix, our total differential. As in Grunde, Meurer-Weiniger, that's our total differential."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 42,
+    "start_ms": 10480,
+    "end_ms": 17840,
+    "confidence": 0.5122969596325797,
+    "text": "Good. That's why we're going to create a Jacobi matrix now,"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 43,
+    "start_ms": 18780,
+    "end_ms": 25220,
+    "confidence": 0.5122969596325797,
+    "text": "but also directly into Samhang with the Kettenregel."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 44,
+    "start_ms": 28299,
+    "end_ms": 29980,
+    "confidence": 0.3753184180325237,
+    "text": "As I said before..."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 45,
+    "start_ms": 0,
+    "end_ms": 21360,
+    "confidence": 0.5116058036713536,
+    "text": "three functions here. I will write f concrete, also psi f of x epsilon and z. So I write"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 46,
+    "start_ms": 21360,
+    "end_ms": 26280,
+    "confidence": 0.5345649323942254,
+    "text": "small z plus sinus epsilon."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 47,
+    "start_ms": 0,
+    "end_ms": 16000,
+    "confidence": 0.7080682111167043,
+    "text": "and g of x epsilon is x squared plus epsilon, x minus epsilon, and e of epsilon."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 48,
+    "start_ms": 18080,
+    "end_ms": 27080,
+    "confidence": 0.5091096252929728,
+    "text": "and the third function is the other function, so ha is equal to"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 49,
+    "start_ms": 0,
+    "end_ms": 6420,
+    "confidence": 0.43887994107595124,
+    "text": "First of all, we have G, and then F, so we have F, Kringle, G."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 50,
+    "start_ms": 10100,
+    "end_ms": 12740,
+    "confidence": 0.43887994107595124,
+    "text": "And how long will it take to get to the first row?"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 51,
+    "start_ms": 21040,
+    "end_ms": 23800,
+    "confidence": 0.43887994107595124,
+    "text": "From 1, 2 to 1."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 52,
+    "start_ms": 23800,
+    "end_ms": 26800,
+    "confidence": 0.5135199726061853,
+    "text": "So we start with K1, which is epsilon."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 53,
+    "start_ms": 27680,
+    "end_ms": 29120,
+    "confidence": 0.5135199726061853,
+    "text": "Then we will do the third row."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 54,
+    "start_ms": 0,
+    "end_ms": 6660,
+    "confidence": 0.40511252217914545,
+    "text": "This argument should be defined as F, and F is a real number, also from 1, 2 to 1."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 55,
+    "start_ms": 10180,
+    "end_ms": 16820,
+    "confidence": 0.40511252217914545,
+    "text": "Ok, now we have the Jacobi matrix of this matrix."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 56,
+    "start_ms": 20000,
+    "end_ms": 20960,
+    "confidence": 0.40511252217914545,
+    "text": "We function this."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 57,
+    "start_ms": 7539,
+    "end_ms": 17240,
+    "confidence": 0.41790547053685884,
+    "text": "We see the Jacobi matrix of R under the x epsilon of x."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 58,
+    "start_ms": 25720,
+    "end_ms": 25960,
+    "confidence": 0.41790547053685884,
+    "text": "Yeah?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 59,
+    "start_ms": 25960,
+    "end_ms": 29980,
+    "confidence": 0.41856464886452455,
+    "text": "Yeah, I would like to see the matrix of R under the x epsilon of x."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 60,
+    "start_ms": 0,
+    "end_ms": 6540,
+    "confidence": 0.44633940850695975,
+    "text": "or just n equals 1?"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 61,
+    "start_ms": 6540,
+    "end_ms": 7740,
+    "confidence": 0.44633940850695975,
+    "text": "n equals 1?"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 62,
+    "start_ms": 7820,
+    "end_ms": 7860,
+    "confidence": 0.44633940850695975,
+    "text": "or just n equals 2?"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 63,
+    "start_ms": 7860,
+    "end_ms": 10480,
+    "confidence": 0.44633940850695975,
+    "text": "Of course, we have to write it two times,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 64,
+    "start_ms": 11340,
+    "end_ms": 13600,
+    "confidence": 0.44633940850695975,
+    "text": "and we have to write n equals 2,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 65,
+    "start_ms": 13660,
+    "end_ms": 14500,
+    "confidence": 0.44633940850695975,
+    "text": "m equals 1,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 66,
+    "start_ms": 14540,
+    "end_ms": 16680,
+    "confidence": 0.44633940850695975,
+    "text": "so the solution must be 1 plus 2."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 67,
+    "start_ms": 17200,
+    "end_ms": 17900,
+    "confidence": 0.44633940850695975,
+    "text": "1 plus 2."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 68,
+    "start_ms": 19100,
+    "end_ms": 19980,
+    "confidence": 0.44633940850695975,
+    "text": "That's the solution."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 69,
+    "start_ms": 21780,
+    "end_ms": 24680,
+    "confidence": 0.44633940850695975,
+    "text": "I will now talk about the Jacobi matrix of R,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 70,
+    "start_ms": 25020,
+    "end_ms": 28300,
+    "confidence": 0.44633940850695975,
+    "text": "with the Jacobi matrix of F and G."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 71,
+    "start_ms": 28300,
+    "end_ms": 28780,
+    "confidence": 0.6239533409668611,
+    "text": "Thank you for listening."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 72,
+    "start_ms": 0,
+    "end_ms": 2860,
+    "confidence": 0.377192363555342,
+    "text": "So now we have one dimensional file."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 73,
+    "start_ms": 3520,
+    "end_ms": 6520,
+    "confidence": 0.377192363555342,
+    "text": "And then we have the Jacobi matrix that is applied."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 74,
+    "start_ms": 6980,
+    "end_ms": 9140,
+    "confidence": 0.377192363555342,
+    "text": "What will be the first step?"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 75,
+    "start_ms": 22360,
+    "end_ms": 27360,
+    "confidence": 0.377192363555342,
+    "text": "So when that is applied from here,"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 76,
+    "start_ms": 0,
+    "end_ms": 3020,
+    "confidence": 0.4209627739635903,
+    "text": "And here, it's given by f cringled g."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 77,
+    "start_ms": 3100,
+    "end_ms": 4140,
+    "confidence": 0.4209627739635903,
+    "text": "What is that in one dimensional?"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 78,
+    "start_ms": 8240,
+    "end_ms": 8540,
+    "confidence": 0.4209627739635903,
+    "text": "Yeah?"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 79,
+    "start_ms": 9160,
+    "end_ms": 12180,
+    "confidence": 0.4209627739635903,
+    "text": "It's a kind of a triangle spine."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 80,
+    "start_ms": 14380,
+    "end_ms": 18300,
+    "confidence": 0.4209627739635903,
+    "text": "I would like to know what is in one dimensional."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 81,
+    "start_ms": 19500,
+    "end_ms": 21540,
+    "confidence": 0.4209627739635903,
+    "text": "How do you get the k-th dimensional in one dimensional?"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 82,
+    "start_ms": 23520,
+    "end_ms": 23620,
+    "confidence": 0.4209627739635903,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 83,
+    "start_ms": 24000,
+    "end_ms": 26300,
+    "confidence": 0.4209627739635903,
+    "text": "So f3 for g-wise?"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 84,
+    "start_ms": 0,
+    "end_ms": 720,
+    "confidence": 0.5031397920250613,
+    "text": "In argument?"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 85,
+    "start_ms": 840,
+    "end_ms": 3540,
+    "confidence": 0.5031397920250613,
+    "text": "You know, that's the Mach-Gestric."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 86,
+    "start_ms": 3940,
+    "end_ms": 4820,
+    "confidence": 0.5031397920250613,
+    "text": "Mach-Gestric."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 87,
+    "start_ms": 6380,
+    "end_ms": 8260,
+    "confidence": 0.5031397920250613,
+    "text": "So let's say now that it's more dimensional."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 88,
+    "start_ms": 8540,
+    "end_ms": 10380,
+    "confidence": 0.5031397920250613,
+    "text": "When we say the Jacobi matrix is only the same,"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 89,
+    "start_ms": 11020,
+    "end_ms": 14840,
+    "confidence": 0.5031397920250613,
+    "text": "then we have the Jacobi matrix of F."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 90,
+    "start_ms": 15960,
+    "end_ms": 19720,
+    "confidence": 0.5031397920250613,
+    "text": "We have to understand that g of x epsilon"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 91,
+    "start_ms": 19720,
+    "end_ms": 24580,
+    "confidence": 0.5031397920250613,
+    "text": "is also multiplied by g."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 92,
+    "start_ms": 25080,
+    "end_ms": 27960,
+    "confidence": 0.5031397920250613,
+    "text": "That is the more dimensional Jacobi matrix of g."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 93,
+    "start_ms": 27960,
+    "end_ms": 29980,
+    "confidence": 0.44647958080085126,
+    "text": "That is the more dimensional Jacobi matrix of g."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 94,
+    "start_ms": 0,
+    "end_ms": 2360,
+    "confidence": 0.5224397184364215,
+    "text": "under style x epsilon."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 95,
+    "start_ms": 5540,
+    "end_ms": 6540,
+    "confidence": 0.5224397184364215,
+    "text": "That's it for today."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 96,
+    "start_ms": 6960,
+    "end_ms": 9820,
+    "confidence": 0.5224397184364215,
+    "text": "We're going to talk about the Jacobi matrix of f"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 97,
+    "start_ms": 9820,
+    "end_ms": 11520,
+    "confidence": 0.5224397184364215,
+    "text": "and the Jacobi matrix of g."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 98,
+    "start_ms": 23080,
+    "end_ms": 27060,
+    "confidence": 0.5224397184364215,
+    "text": "OK, so first of all, the Jacobi matrix of f"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 99,
+    "start_ms": 27060,
+    "end_ms": 29980,
+    "confidence": 0.3803487626347393,
+    "text": "yot f ausgew\u00e4tter on."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 100,
+    "start_ms": 0,
+    "end_ms": 7540,
+    "confidence": 0.5779150095507312,
+    "text": "of x, epsilon, z, where f has three arguments."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 101,
+    "start_ms": 8380,
+    "end_ms": 11320,
+    "confidence": 0.5779150095507312,
+    "text": "So the Jacobi matrix of three arguments."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 102,
+    "start_ms": 12740,
+    "end_ms": 22840,
+    "confidence": 0.5779150095507312,
+    "text": "That is, you know, D1, f."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 103,
+    "start_ms": 22840,
+    "end_ms": 29980,
+    "confidence": 0.36855631207757683,
+    "text": "The English word is a vector, they are so gross is we..."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 104,
+    "start_ms": 0,
+    "end_ms": 6760,
+    "confidence": 0.5940253281070577,
+    "text": "or d dimension had be the vertebrae."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 105,
+    "start_ms": 6940,
+    "end_ms": 9560,
+    "confidence": 0.5940253281070577,
+    "text": "But also, in fact, is f real vertex."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 106,
+    "start_ms": 9700,
+    "end_ms": 11600,
+    "confidence": 0.5940253281070577,
+    "text": "So that's in front of one dimension."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 107,
+    "start_ms": 11720,
+    "end_ms": 14960,
+    "confidence": 0.5940253281070577,
+    "text": "That's vector one dimension, or in front of a real itself."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 108,
+    "start_ms": 16920,
+    "end_ms": 29640,
+    "confidence": 0.5940253281070577,
+    "text": "x epsilon z, d2 f x epsilon z, d3 f x"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 109,
+    "start_ms": 27060,
+    "end_ms": 28660,
+    "confidence": 0.5545805208876388,
+    "text": "epsilon z."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 110,
+    "start_ms": 0,
+    "end_ms": 2280,
+    "confidence": 0.4819968404046552,
+    "text": "So that's 1 over z."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 111,
+    "start_ms": 2680,
+    "end_ms": 4460,
+    "confidence": 0.4819968404046552,
+    "text": "And then I have plus z minus epsilon."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 112,
+    "start_ms": 4460,
+    "end_ms": 6320,
+    "confidence": 0.4819968404046552,
+    "text": "That's going to give me x4."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 113,
+    "start_ms": 6500,
+    "end_ms": 9660,
+    "confidence": 0.4819968404046552,
+    "text": "This is a constant, because x is directly equal to 0."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 114,
+    "start_ms": 10400,
+    "end_ms": 15340,
+    "confidence": 0.4819968404046552,
+    "text": "So let's say the function f of x"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 115,
+    "start_ms": 15340,
+    "end_ms": 17420,
+    "confidence": 0.4819968404046552,
+    "text": "applied to it is 1 over z here."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 116,
+    "start_ms": 19500,
+    "end_ms": 22600,
+    "confidence": 0.4819968404046552,
+    "text": "So let's just do the same, but the function"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 117,
+    "start_ms": 22600,
+    "end_ms": 26340,
+    "confidence": 0.4819968404046552,
+    "text": "of the two variables applied to it is written."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 118,
+    "start_ms": 13959,
+    "end_ms": 15360,
+    "confidence": 0.39340651801652937,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 119,
+    "start_ms": 27180,
+    "end_ms": 29980,
+    "confidence": 0.39340651801652937,
+    "text": "Okay now."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 120,
+    "start_ms": 0,
+    "end_ms": 720,
+    "confidence": 0.4989920649091662,
+    "text": "Yeah, cosine."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 121,
+    "start_ms": 980,
+    "end_ms": 3560,
+    "confidence": 0.4989920649091662,
+    "text": "So the first one is epsilon."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 122,
+    "start_ms": 3600,
+    "end_ms": 4620,
+    "confidence": 0.4989920649091662,
+    "text": "So that's what we'll do."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 123,
+    "start_ms": 5060,
+    "end_ms": 7040,
+    "confidence": 0.4989920649091662,
+    "text": "And the second is cosine epsilon."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 124,
+    "start_ms": 10400,
+    "end_ms": 11180,
+    "confidence": 0.4989920649091662,
+    "text": "And the last one?"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 125,
+    "start_ms": 15320,
+    "end_ms": 15680,
+    "confidence": 0.4989920649091662,
+    "text": "No."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 126,
+    "start_ms": 18840,
+    "end_ms": 19400,
+    "confidence": 0.4180699533394871,
+    "text": "No."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 127,
+    "start_ms": 23840,
+    "end_ms": 25920,
+    "confidence": 0.4180699533394871,
+    "text": "And the last one we'll do is k."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 128,
+    "start_ms": 28860,
+    "end_ms": 29980,
+    "confidence": 0.4180699533394871,
+    "text": "k, k."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 129,
+    "start_ms": 0,
+    "end_ms": 16880,
+    "confidence": 0.44722765070714393,
+    "text": "of x epsilon, we get the first variable, and the second one."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 130,
+    "start_ms": 18040,
+    "end_ms": 22820,
+    "confidence": 0.44722765070714393,
+    "text": "This must be a circle vector, because we must have every component of the spring."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 131,
+    "start_ms": 22820,
+    "end_ms": 29480,
+    "confidence": 0.36923442837601195,
+    "text": "We get the first variable, because the first one is a spring."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 132,
+    "start_ms": 920,
+    "end_ms": 3500,
+    "confidence": 0.5125705886585783,
+    "text": "Rhein und leite nur nachte erste mariable in ab."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 133,
+    "start_ms": 4000,
+    "end_ms": 7620,
+    "confidence": 0.5125705886585783,
+    "text": "As x was raised to epsilon, nach x ab geleite,"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 134,
+    "start_ms": 7720,
+    "end_ms": 9180,
+    "confidence": 0.5125705886585783,
+    "text": "it is einfach nur zwei x."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 135,
+    "start_ms": 11000,
+    "end_ms": 13000,
+    "confidence": 0.5125705886585783,
+    "text": "Ah, kon, bei epsilon kom kann ik zwohr."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 136,
+    "start_ms": 18900,
+    "end_ms": 22360,
+    "confidence": 0.5125705886585783,
+    "text": "Dan, eimel bitte die Jacobi matrix here ausrechnen."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 137,
+    "start_ms": 9060,
+    "end_ms": 10140,
+    "confidence": 0.34815154502550555,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 138,
+    "start_ms": 13580,
+    "end_ms": 14120,
+    "confidence": 0.34815154502550555,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 139,
+    "start_ms": 17880,
+    "end_ms": 19000,
+    "confidence": 0.12326097605771956,
+    "text": "Yes?"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 140,
+    "start_ms": 22620,
+    "end_ms": 22980,
+    "confidence": 0.12326097605771956,
+    "text": "Where is the rest?"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 141,
+    "start_ms": 24160,
+    "end_ms": 25440,
+    "confidence": 0.12326097605771956,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 142,
+    "start_ms": 26960,
+    "end_ms": 27440,
+    "confidence": 0.12326097605771956,
+    "text": "What's that?"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 143,
+    "start_ms": 28620,
+    "end_ms": 29740,
+    "confidence": 0.12326097605771956,
+    "text": "Upsilon?"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 144,
+    "start_ms": 3260,
+    "end_ms": 4080,
+    "confidence": 0.4098795629974453,
+    "text": "Then..."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 145,
+    "start_ms": 9980,
+    "end_ms": 10800,
+    "confidence": 0.4098795629974453,
+    "text": "Then..."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 146,
+    "start_ms": 15759,
+    "end_ms": 17140,
+    "confidence": 0.4098795629974453,
+    "text": "Yes, absolutely."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 147,
+    "start_ms": 18100,
+    "end_ms": 18580,
+    "confidence": 0.4098795629974453,
+    "text": "Yes, no."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 148,
+    "start_ms": 22180,
+    "end_ms": 25140,
+    "confidence": 0.4098795629974453,
+    "text": "Now I'm going to use the same Jacobi matrices."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 149,
+    "start_ms": 25140,
+    "end_ms": 29320,
+    "confidence": 0.4382920645591124,
+    "text": "Now I'm going to write a letter."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 150,
+    "start_ms": 640,
+    "end_ms": 5280,
+    "confidence": 0.4605238583037394,
+    "text": "Um, let's see what we have here."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 151,
+    "start_ms": 9760,
+    "end_ms": 12000,
+    "confidence": 0.4605238583037394,
+    "text": "So this is our name right now."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 152,
+    "start_ms": 12000,
+    "end_ms": 12240,
+    "confidence": 0.5416108376404749,
+    "text": "Ahem."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 153,
+    "start_ms": 17500,
+    "end_ms": 24920,
+    "confidence": 0.5416108376404749,
+    "text": "Also, jot gx ipsum ham wir direct das sted here, das ist, das ist,"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 154,
+    "start_ms": 24920,
+    "end_ms": 25520,
+    "confidence": 0.5416108376404749,
+    "text": "zwei,"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 155,
+    "start_ms": 26740,
+    "end_ms": 29480,
+    "confidence": 0.5416108376404749,
+    "text": "ix, ipsilon, null,"
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 156,
+    "start_ms": 0,
+    "end_ms": 5000,
+    "confidence": 0.4576098691563684,
+    "text": "1, x, e to the power of epsilon."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 157,
+    "start_ms": 7380,
+    "end_ms": 13000,
+    "confidence": 0.4576098691563684,
+    "text": "Next, we will write f times gx epsilon."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 158,
+    "start_ms": 13000,
+    "end_ms": 29980,
+    "confidence": 0.6200586699486579,
+    "text": "2, x, e to the power of epsilon."
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 159,
+    "start_ms": 22560,
+    "end_ms": 23960,
+    "confidence": 0.28792364168423634,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 160,
+    "start_ms": 0,
+    "end_ms": 2840,
+    "confidence": 0.42725596229136736,
+    "text": "E hoch upselon."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 161,
+    "start_ms": 4440,
+    "end_ms": 6120,
+    "confidence": 0.42725596229136736,
+    "text": "A moment."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 162,
+    "start_ms": 7820,
+    "end_ms": 13480,
+    "confidence": 0.42725596229136736,
+    "text": "E hoch upselon."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 163,
+    "start_ms": 13560,
+    "end_ms": 13640,
+    "confidence": 0.42725596229136736,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 164,
+    "start_ms": 0,
+    "end_ms": 840,
+    "confidence": 0.48067106335891224,
+    "text": "Richtig."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 165,
+    "start_ms": 3020,
+    "end_ms": 6000,
+    "confidence": 0.48067106335891224,
+    "text": "So and yet we must know with an under multiplication."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 166,
+    "start_ms": 6340,
+    "end_ms": 9340,
+    "confidence": 0.48067106335891224,
+    "text": "So here state a matrix product."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 167,
+    "start_ms": 10360,
+    "end_ms": 16059,
+    "confidence": 0.48067106335891224,
+    "text": "So I multiply these two with this side here."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 168,
+    "start_ms": 17360,
+    "end_ms": 21020,
+    "confidence": 0.48067106335891224,
+    "text": "And then come here in this row."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 169,
+    "start_ms": 21020,
+    "end_ms": 29980,
+    "confidence": 0.4512852958097307,
+    "text": "Because two x a of epsilon plus epsilon plus epsilon."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 170,
+    "start_ms": 0,
+    "end_ms": 25580,
+    "confidence": 0.6620362990754979,
+    "text": "cosine x epsilon plus x cosine x epsilon plus a of epsilon"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 171,
+    "start_ms": 25580,
+    "end_ms": 27700,
+    "confidence": 0.5137514868625473,
+    "text": "x quadratic epsilon"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 172,
+    "start_ms": 0,
+    "end_ms": 5800,
+    "confidence": 0.5060426976431458,
+    "text": "So this here is the first one, and this whole thing here is the second one."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 173,
+    "start_ms": 13340,
+    "end_ms": 14540,
+    "confidence": 0.5060426976431458,
+    "text": "What controls?"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 174,
+    "start_ms": 16420,
+    "end_ms": 20840,
+    "confidence": 0.5060426976431458,
+    "text": "Vector one, two. One at the side, two at the bottom."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 175,
+    "start_ms": 22920,
+    "end_ms": 24120,
+    "confidence": 0.5060426976431458,
+    "text": "Excuse me, what do you have?"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 176,
+    "start_ms": 0,
+    "end_ms": 3560,
+    "confidence": 0.5514613854862317,
+    "text": "And for you guys, for you guys, it's very, very simple."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 177,
+    "start_ms": 3820,
+    "end_ms": 5400,
+    "confidence": 0.5514613854862317,
+    "text": "So what we're going to do here is,"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 178,
+    "start_ms": 6620,
+    "end_ms": 8540,
+    "confidence": 0.5514613854862317,
+    "text": "yeah, so we're going to write it like this."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 179,
+    "start_ms": 10160,
+    "end_ms": 11700,
+    "confidence": 0.5514613854862317,
+    "text": "You have f."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 180,
+    "start_ms": 12900,
+    "end_ms": 15380,
+    "confidence": 0.5514613854862317,
+    "text": "Now we're going to write it as gx epsilon."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 181,
+    "start_ms": 16980,
+    "end_ms": 19320,
+    "confidence": 0.5514613854862317,
+    "text": "I set here, of course, gx epsilon 1."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 182,
+    "start_ms": 20060,
+    "end_ms": 26860,
+    "confidence": 0.5514613854862317,
+    "text": "This is x squared plus epsilon, x small epsilon,"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 183,
+    "start_ms": 26940,
+    "end_ms": 27840,
+    "confidence": 0.5514613854862317,
+    "text": "and a whole epsilon."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 184,
+    "start_ms": 0,
+    "end_ms": 1880,
+    "confidence": 0.6135623728027774,
+    "text": "That's my argument."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 185,
+    "start_ms": 4660,
+    "end_ms": 5480,
+    "confidence": 0.6135623728027774,
+    "text": "That's what I'm talking about."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 186,
+    "start_ms": 6420,
+    "end_ms": 7420,
+    "confidence": 0.6135623728027774,
+    "text": "Jot f1."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 187,
+    "start_ms": 8380,
+    "end_ms": 11800,
+    "confidence": 0.6135623728027774,
+    "text": "The third argument is epsilon."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 188,
+    "start_ms": 13360,
+    "end_ms": 16320,
+    "confidence": 0.6135623728027774,
+    "text": "The second argument is epsilon."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 189,
+    "start_ms": 16600,
+    "end_ms": 19120,
+    "confidence": 0.6135623728027774,
+    "text": "And the third argument is epsilon."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 190,
+    "start_ms": 24000,
+    "end_ms": 24300,
+    "confidence": 0.6135623728027774,
+    "text": "OK."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 191,
+    "start_ms": 24300,
+    "end_ms": 24360,
+    "confidence": 0.3899096326826317,
+    "text": "OK."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 192,
+    "start_ms": 24740,
+    "end_ms": 24960,
+    "confidence": 0.3899096326826317,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 193,
+    "start_ms": 0,
+    "end_ms": 1960,
+    "confidence": 0.4177772021885055,
+    "text": "This is the second part of the question."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 194,
+    "start_ms": 2580,
+    "end_ms": 4440,
+    "confidence": 0.4177772021885055,
+    "text": "And my question is, how do you define it?"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 195,
+    "start_ms": 5260,
+    "end_ms": 6680,
+    "confidence": 0.4177772021885055,
+    "text": "How do you define it in a systematic way?"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 196,
+    "start_ms": 11880,
+    "end_ms": 14780,
+    "confidence": 0.4177772021885055,
+    "text": "What do you mean by that?"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 197,
+    "start_ms": 14780,
+    "end_ms": 18120,
+    "confidence": 0.4177772021885055,
+    "text": "Is it possible for you to write a comma or what?"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 198,
+    "start_ms": 18640,
+    "end_ms": 19000,
+    "confidence": 0.4177772021885055,
+    "text": "No."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 199,
+    "start_ms": 19560,
+    "end_ms": 22280,
+    "confidence": 0.4177772021885055,
+    "text": "It's possible for me to write a comma or what."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 200,
+    "start_ms": 22280,
+    "end_ms": 25220,
+    "confidence": 0.4177772021885055,
+    "text": "So it's actually a comma, a comma, a comma, a comma,"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 201,
+    "start_ms": 25820,
+    "end_ms": 27100,
+    "confidence": 0.4177772021885055,
+    "text": "a comma, a comma, a comma, a comma, a comma,"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 202,
+    "start_ms": 27100,
+    "end_ms": 28760,
+    "confidence": 0.7309808190787834,
+    "text": "a comma, a comma, a comma, a comma, a comma."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 203,
+    "start_ms": 0,
+    "end_ms": 7260,
+    "confidence": 0.5190590155239136,
+    "text": "How do you define a vector in what sense can it be defined as a sine vector or a sine vector?"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 204,
+    "start_ms": 7800,
+    "end_ms": 11860,
+    "confidence": 0.5190590155239136,
+    "text": "So when I say sine, I define a sine vector."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 205,
+    "start_ms": 12720,
+    "end_ms": 16820,
+    "confidence": 0.5190590155239136,
+    "text": "And I write here a comma, so that you can see my z, my cosine, my epsilon, my x."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 206,
+    "start_ms": 17100,
+    "end_ms": 21700,
+    "confidence": 0.5190590155239136,
+    "text": "And when I write a sine vector, I write it in this notation."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 207,
+    "start_ms": 22280,
+    "end_ms": 29300,
+    "confidence": 0.5190590155239136,
+    "text": "And I can write that as a sine vector, and then here a transpose, a transpose, and then a sine vector."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 208,
+    "start_ms": 29300,
+    "end_ms": 29980,
+    "confidence": 0.48736108429161495,
+    "text": "On the other hand, when I write a sine vector, I write a sine vector."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 209,
+    "start_ms": 0,
+    "end_ms": 3180,
+    "confidence": 0.3850811844042334,
+    "text": "But if you want to do it in a more efficient way,"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 210,
+    "start_ms": 4059,
+    "end_ms": 6060,
+    "confidence": 0.3850811844042334,
+    "text": "then you have to do it in a more complex way."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 211,
+    "start_ms": 6280,
+    "end_ms": 8360,
+    "confidence": 0.3850811844042334,
+    "text": "And that's a simple way to do it."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 212,
+    "start_ms": 9900,
+    "end_ms": 10300,
+    "confidence": 0.3850811844042334,
+    "text": "Yeah?"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 213,
+    "start_ms": 14500,
+    "end_ms": 15780,
+    "confidence": 0.3850811844042334,
+    "text": "What was the last part of the question?"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 214,
+    "start_ms": 17220,
+    "end_ms": 18220,
+    "confidence": 0.3850811844042334,
+    "text": "What was the last part?"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 215,
+    "start_ms": 18360,
+    "end_ms": 19740,
+    "confidence": 0.3850811844042334,
+    "text": "The last part, yes."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 216,
+    "start_ms": 19840,
+    "end_ms": 20640,
+    "confidence": 0.3850811844042334,
+    "text": "Ah, OK."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 217,
+    "start_ms": 26580,
+    "end_ms": 28200,
+    "confidence": 0.3850811844042334,
+    "text": "Yeah, then we'll end with the last part."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 218,
+    "start_ms": 0,
+    "end_ms": 6000,
+    "confidence": 0.4306669587237299,
+    "text": "Can you tell us how much time we have left?"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 219,
+    "start_ms": 7040,
+    "end_ms": 8940,
+    "confidence": 0.4306669587237299,
+    "text": "Yes, you know how much time we have left."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 220,
+    "start_ms": 12160,
+    "end_ms": 18340,
+    "confidence": 0.4306669587237299,
+    "text": "I think here is all the time we have left."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 221,
+    "start_ms": 20160,
+    "end_ms": 24460,
+    "confidence": 0.4306669587237299,
+    "text": "Ah, okay."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 222,
+    "start_ms": 24460,
+    "end_ms": 24780,
+    "confidence": 0.6524091825306503,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 223,
+    "start_ms": 29660,
+    "end_ms": 29880,
+    "confidence": 0.6524091825306503,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 224,
+    "start_ms": 0,
+    "end_ms": 780,
+    "confidence": 0.617350039669024,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 225,
+    "start_ms": 1600,
+    "end_ms": 1860,
+    "confidence": 0.617350039669024,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 226,
+    "start_ms": 2340,
+    "end_ms": 3900,
+    "confidence": 0.617350039669024,
+    "text": "Yeah, yeah, yeah."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 227,
+    "start_ms": 7720,
+    "end_ms": 8760,
+    "confidence": 0.617350039669024,
+    "text": "OK."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 228,
+    "start_ms": 9020,
+    "end_ms": 9720,
+    "confidence": 0.617350039669024,
+    "text": "Sounds enough."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 229,
+    "start_ms": 10240,
+    "end_ms": 10460,
+    "confidence": 0.617350039669024,
+    "text": "Frag."
+  }
+]

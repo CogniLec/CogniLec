@@ -1035,6 +1035,44 @@ Full test suite after all changes: **690 passed, 80 skipped, 0 failed**
 to the pre-cleanup baseline, confirming none of the formatting/typing changes
 altered runtime behavior.
 
+## 20. Re-ran video evidence with a bigger GPU model (medium.en, real GPU) (2026-09-14)
+
+- Gap #16's evidence used `tiny.en` on CPU. Re-ran all 9 videos with
+  `medium.en` on GPU (`compute_type=int8_float16`), now that gap #15/#17
+  established the GPU genuinely works. Real quality improvement, spot-checked:
+  better punctuation and sentence breaks, fewer dropped articles (e.g. "It
+  will take some time. Okay." vs. the tiny.en run's run-on "it will take
+  some time, okay guys"). Real-time factors: 0.16-0.43 across all 9 videos —
+  still comfortably real-time despite the larger model.
+- Results saved to `lis-eval/phase0/real_video_evidence_medium_en/`
+  (per-video `summary.json`/`chunk_stats.json`/`utterances.json`/
+  `transcript.txt` + a top-level `manifest.json`), alongside (not replacing)
+  the original tiny.en evidence in `real_video_evidence/` for comparison.
+- **Real infra bug hit and fixed along the way**: `ctranslate2` (faster-whisper's
+  backend) needs `libcublas.so.12`/`libcudnn.so.9` at runtime — these ship as
+  separate `nvidia-cublas-cu12`/`nvidia-cudnn-cu12` pip packages, not bundled
+  in `torch`'s own wheel, and are not on the system `LD_LIBRARY_PATH` by
+  default even once installed into the venv (`site-packages/nvidia/*/lib/`
+  isn't a linker search path). Fixed per-invocation with an explicit
+  `LD_LIBRARY_PATH` export pointing at those two package directories.
+- **Self-inflicted regression, found and fixed**: manually `uv pip install`-ing
+  `nvidia-cublas-cu12`/`nvidia-cudnn-cu12` outside the lockfile, then later
+  running `uv sync --extra dev` (to restore dev tools stripped by an
+  unrelated `uv sync` mishap), left the venv in a broken half-state where
+  `torch` itself couldn't import (`libcudnn.so.9` missing) — because `uv
+  sync` partially reconciled the manually-added packages against the
+  lockfile in a way that removed a library torch's own wheel needs.
+  Fixed with a full `rm -rf .venv && uv sync --extra dev` (clean rebuild from
+  the lockfile) rather than trying to patch the half-broken state further.
+  **Lesson for future sessions**: avoid `uv pip install <package>` for
+  anything not in `pyproject.toml` inside this repo's shared `.venv` if at
+  all avoidable (this is now the second time it's caused real breakage,
+  after the vLLM incident in gap #15) — prefer a disposable venv
+  (`uv venv /tmp/...`) for one-off experiments, exactly as gap #17 already
+  did for pyannote.
+- Full suite re-run after the clean rebuild: **695 passed, 81 skipped, 0
+  failed** — confirmed working again, no lasting damage.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

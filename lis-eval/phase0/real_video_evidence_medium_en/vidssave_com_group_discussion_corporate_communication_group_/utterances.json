@@ -1,0 +1,4882 @@
+[
+  {
+    "chunk_idx": 0,
+    "seq": 0,
+    "start_ms": 2020,
+    "end_ms": 6720,
+    "confidence": 0.7796809395406344,
+    "text": "Okay, I'm recording the session. So as you all know that today is the group discussion"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 1,
+    "start_ms": 6720,
+    "end_ms": 11300,
+    "confidence": 0.7796809395406344,
+    "text": "of your favorite subject that is corporate communication. Now I request all to switch"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 2,
+    "start_ms": 11300,
+    "end_ms": 19260,
+    "confidence": 0.7796809395406344,
+    "text": "on their cameras. Doesn't matter the, no matter what the attendance is. Okay, what is equally"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 3,
+    "start_ms": 19260,
+    "end_ms": 24720,
+    "confidence": 0.7796809395406344,
+    "text": "important that we should speak in class. When our turn comes, we should speak. So"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 4,
+    "start_ms": 24720,
+    "end_ms": 29800,
+    "confidence": 0.8190797128241799,
+    "text": "I request each one of you to switch on the camera. So we had discussions in a class"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 5,
+    "start_ms": 0,
+    "end_ms": 6320,
+    "confidence": 0.7775390082578657,
+    "text": "and C class and this is the B class where we are going to have discussion. So I appreciate"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 6,
+    "start_ms": 6320,
+    "end_ms": 11920,
+    "confidence": 0.7775390082578657,
+    "text": "Rashi, very participative that she has turned on the camera even without me telling. So"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 7,
+    "start_ms": 11920,
+    "end_ms": 15520,
+    "confidence": 0.7775390082578657,
+    "text": "Padmini, I can see Padmini, very good Padmini, thank you for switching on your"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 8,
+    "start_ms": 15520,
+    "end_ms": 20340,
+    "confidence": 0.7775390082578657,
+    "text": "camera. And what about others switch on your camera. As you all know that we are"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 9,
+    "start_ms": 20340,
+    "end_ms": 24780,
+    "confidence": 0.7775390082578657,
+    "text": "having a group discussion and there is no wrong answer. First of all, feel free"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 10,
+    "start_ms": 24780,
+    "end_ms": 29780,
+    "confidence": 0.6376281516217733,
+    "text": "that you will not be criticized or"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 11,
+    "start_ms": 0,
+    "end_ms": 10340,
+    "confidence": 0.7744861098980496,
+    "text": "or we will not tell you even if your views are somewhat different. In fact, the diversity of views is encouraged."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 12,
+    "start_ms": 10900,
+    "end_ms": 17480,
+    "confidence": 0.7744861098980496,
+    "text": "So, I would request all of you to turn on their cameras because it's a group discussion and we will participate nicely."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 13,
+    "start_ms": 17480,
+    "end_ms": 26680,
+    "confidence": 0.7744861098980496,
+    "text": "I am happy that less number of people are there. So, we can have a compact class where few people are there and they can talk and they can speak."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 14,
+    "start_ms": 26680,
+    "end_ms": 28960,
+    "confidence": 0.6687508230792285,
+    "text": "So, what about others?"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 15,
+    "start_ms": 0,
+    "end_ms": 5820,
+    "confidence": 0.7514269815776877,
+    "text": "Kanuja, Vedika, why don't you all turn on your cameras. Yes, just a request to all"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 16,
+    "start_ms": 5820,
+    "end_ms": 10540,
+    "confidence": 0.7514269815776877,
+    "text": "of you, turn on your cameras and then we'll start. I'll teach you the way how we'll"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 17,
+    "start_ms": 10540,
+    "end_ms": 16100,
+    "confidence": 0.7514269815776877,
+    "text": "go about it in a beautiful way, systematic way so that we can learn and we can understand"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 18,
+    "start_ms": 16100,
+    "end_ms": 20660,
+    "confidence": 0.7514269815776877,
+    "text": "and we can interpret. Vedika, is there a problem at your end related to camera?"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 19,
+    "start_ms": 21160,
+    "end_ms": 21560,
+    "confidence": 0.7514269815776877,
+    "text": "Kanuja?"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 20,
+    "start_ms": 26460,
+    "end_ms": 29480,
+    "confidence": 0.6276671865917479,
+    "text": "Yeah sir, it's not supporting the camera."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 21,
+    "start_ms": 0,
+    "end_ms": 4400,
+    "confidence": 0.6512960398236874,
+    "text": "It's not supporting the camera. It's okay. So, let us start. So, whenever it supports"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 22,
+    "start_ms": 4400,
+    "end_ms": 10660,
+    "confidence": 0.6512960398236874,
+    "text": "you, switch on. What about and then see? Same case. Okay. So, the moment I'm telling people"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 23,
+    "start_ms": 10660,
+    "end_ms": 17720,
+    "confidence": 0.6512960398236874,
+    "text": "something, they're like exit. Let's run away from this class. Okay. Okay. So, I"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 24,
+    "start_ms": 17720,
+    "end_ms": 23680,
+    "confidence": 0.6512960398236874,
+    "text": "can participate by keeping it off because I'm not able to live. If at all, I'm touching"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 25,
+    "start_ms": 23680,
+    "end_ms": 29240,
+    "confidence": 0.6512960398236874,
+    "text": "on start video, it does not give me any response. It's okay. You try if you can"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 26,
+    "start_ms": 29240,
+    "end_ms": 29880,
+    "confidence": 0.47075477119043024,
+    "text": "manage it. So,"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 27,
+    "start_ms": 839,
+    "end_ms": 10400,
+    "confidence": 0.8212695213419593,
+    "text": "So, let us start. So, see, as you all know that over the past week, we did set the background"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 28,
+    "start_ms": 10400,
+    "end_ms": 15160,
+    "confidence": 0.8212695213419593,
+    "text": "for corporate communication as to what corporate communication is. So, initially let us discuss"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 29,
+    "start_ms": 15160,
+    "end_ms": 19540,
+    "confidence": 0.8212695213419593,
+    "text": "and let us talk about it. There is no wrong answer in the class, no wrong answer, feel"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 30,
+    "start_ms": 19540,
+    "end_ms": 19820,
+    "confidence": 0.8212695213419593,
+    "text": "free."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 31,
+    "start_ms": 20960,
+    "end_ms": 24520,
+    "confidence": 0.8212695213419593,
+    "text": "First of all, let us discuss what is corporate communication. We will discuss around"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 32,
+    "start_ms": 24520,
+    "end_ms": 28820,
+    "confidence": 0.8212695213419593,
+    "text": "the meaning of corporate communication and slowly and gradually we will take up other"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 33,
+    "start_ms": 28820,
+    "end_ms": 29640,
+    "confidence": 0.6726807805739393,
+    "text": "important points."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 34,
+    "start_ms": 0,
+    "end_ms": 6780,
+    "confidence": 0.7121482370430371,
+    "text": "So, let us discuss what is corporate communication. Come on. Start. Yes. Okay. What is corporate"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 35,
+    "start_ms": 6780,
+    "end_ms": 7180,
+    "confidence": 0.7121482370430371,
+    "text": "communication?"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 36,
+    "start_ms": 7300,
+    "end_ms": 13680,
+    "confidence": 0.7121482370430371,
+    "text": "So, I would like to start. First, turning to the background from where it started."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 37,
+    "start_ms": 14740,
+    "end_ms": 23040,
+    "confidence": 0.7121482370430371,
+    "text": "So, according to the research I did, around the native America, where in 70s, this"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 38,
+    "start_ms": 23040,
+    "end_ms": 29980,
+    "confidence": 0.6475428544066156,
+    "text": "term was derived and should be coming to the picture and I get"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 39,
+    "start_ms": 0,
+    "end_ms": 13440,
+    "confidence": 0.7743434209533414,
+    "text": "Yes, it got 40 years old now. The discipline is 40 years old or 47 years old, corporate communication and now I would like to someone else to take it further at the definition and what they think about it."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 40,
+    "start_ms": 13980,
+    "end_ms": 20720,
+    "confidence": 0.7743434209533414,
+    "text": "So, Rashi has talked about the origin of corporate communication from where it came and she's saying it came from America 40 years back."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 41,
+    "start_ms": 21200,
+    "end_ms": 25560,
+    "confidence": 0.7743434209533414,
+    "text": "So, if you take example of literature, 40 years is not considered to be old."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 42,
+    "start_ms": 26220,
+    "end_ms": 29900,
+    "confidence": 0.8339824143228428,
+    "text": "It is not considered to be old. In fact, it has a recent history."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 43,
+    "start_ms": 0,
+    "end_ms": 4340,
+    "confidence": 0.7822014036972903,
+    "text": "can put it this way, that corporate communication has a decent history. It started in America."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 44,
+    "start_ms": 4820,
+    "end_ms": 9380,
+    "confidence": 0.7822014036972903,
+    "text": "And in fact, all the literatures that we are learning, it has come from the West. You"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 45,
+    "start_ms": 9380,
+    "end_ms": 15340,
+    "confidence": 0.7822014036972903,
+    "text": "take any textbook strategy, HR, corporate finance, everything like most of the Western"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 46,
+    "start_ms": 15340,
+    "end_ms": 19840,
+    "confidence": 0.7822014036972903,
+    "text": "thing that we are learning. So, okay. So she talked about origin of corporate communication"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 47,
+    "start_ms": 19840,
+    "end_ms": 23660,
+    "confidence": 0.7822014036972903,
+    "text": "in seventies in America. Anybody would like to pick up from where Rashi left"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 48,
+    "start_ms": 23660,
+    "end_ms": 27400,
+    "confidence": 0.6946366800037188,
+    "text": "and talk about what is corporate communication per se. Come on. Yes."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 49,
+    "start_ms": 0,
+    "end_ms": 5940,
+    "confidence": 0.7112820192601904,
+    "text": "Hello, there is no wrong answer. My question is what is corporate communication? Go ahead."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 50,
+    "start_ms": 7039,
+    "end_ms": 15820,
+    "confidence": 0.7112820192601904,
+    "text": "Sir, I would like to speak. So corporate communication is internal as well as external and it is"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 51,
+    "start_ms": 15820,
+    "end_ms": 19760,
+    "confidence": 0.7112820192601904,
+    "text": "necessary to achieve some planned objectives of the company or the corporation."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 52,
+    "start_ms": 20780,
+    "end_ms": 24820,
+    "confidence": 0.7112820192601904,
+    "text": "Okay, so I will come to you. Now you can raise your hand so that I can prioritize."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 53,
+    "start_ms": 25020,
+    "end_ms": 29860,
+    "confidence": 0.7112820192601904,
+    "text": "I can give those person chance to raise their hand first. So let me talk about"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 54,
+    "start_ms": 0,
+    "end_ms": 4160,
+    "confidence": 0.7942466325393095,
+    "text": "Purnima says. Purnima is saying that corporate communication is communication that happens"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 55,
+    "start_ms": 4160,
+    "end_ms": 8820,
+    "confidence": 0.7942466325393095,
+    "text": "with internal as well as communication that takes place internally as well externally."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 56,
+    "start_ms": 9420,
+    "end_ms": 14100,
+    "confidence": 0.7942466325393095,
+    "text": "So corporate communication has two components. One is internal communication, which happens"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 57,
+    "start_ms": 14100,
+    "end_ms": 17420,
+    "confidence": 0.7942466325393095,
+    "text": "within the company. And the second is the external communication, which happens"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 58,
+    "start_ms": 17420,
+    "end_ms": 22540,
+    "confidence": 0.7942466325393095,
+    "text": "outside the company. Okay. So yeah, let us go to Suzanne, then we'll discuss what"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 59,
+    "start_ms": 22540,
+    "end_ms": 25280,
+    "confidence": 0.7942466325393095,
+    "text": "Purnima says and what Suzanne will say. Suzanne, over to you."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 60,
+    "start_ms": 25980,
+    "end_ms": 29860,
+    "confidence": 0.708710578204864,
+    "text": "Yes. So I would like to add to what Purnima said is that corporate communication"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 61,
+    "start_ms": 0,
+    "end_ms": 7560,
+    "confidence": 0.8196490054258482,
+    "text": "is basically it is like a way or a process where the company like you know gives out their strategies"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 62,
+    "start_ms": 7560,
+    "end_ms": 12240,
+    "confidence": 0.8196490054258482,
+    "text": "or messages to their audience like Purnima mentioned internal and external so that is"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 63,
+    "start_ms": 12240,
+    "end_ms": 17880,
+    "confidence": 0.8196490054258482,
+    "text": "what a corporate communication is all about according to me. Corporate communication has"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 64,
+    "start_ms": 17880,
+    "end_ms": 22960,
+    "confidence": 0.8196490054258482,
+    "text": "many facets with good strategy including HR. In fact corporate communication touch every"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 65,
+    "start_ms": 22960,
+    "end_ms": 27060,
+    "confidence": 0.8196490054258482,
+    "text": "functional aspects of the company be it marketing, be it advertising, everywhere you see"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 66,
+    "start_ms": 27060,
+    "end_ms": 29480,
+    "confidence": 0.4580122324030871,
+    "text": "the communication is communication is happening."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 67,
+    "start_ms": 0,
+    "end_ms": 4840,
+    "confidence": 0.8013284393243246,
+    "text": "but who is the company communicating? Come on, let me go to Vedika. Vedika raise her hand and"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 68,
+    "start_ms": 4840,
+    "end_ms": 8520,
+    "confidence": 0.8013284393243246,
+    "text": "I'm coming to Rashi. Rashi, you can take the option of raising her hand in Zoom."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 69,
+    "start_ms": 9160,
+    "end_ms": 13340,
+    "confidence": 0.8013284393243246,
+    "text": "Now, let me go to Vedika. She has raised her hand. Okay, let us go to Vedika. Vedika,"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 70,
+    "start_ms": 13460,
+    "end_ms": 18000,
+    "confidence": 0.8013284393243246,
+    "text": "can you just build upon from where Rashi, Purnima and Suzanne have left?"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 71,
+    "start_ms": 19779,
+    "end_ms": 26000,
+    "confidence": 0.8013284393243246,
+    "text": "Yeah, yeah, yeah. Actually, like according to me, I guess corporate communication is"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 72,
+    "start_ms": 26000,
+    "end_ms": 29980,
+    "confidence": 0.37412210898491677,
+    "text": "basic like interaction or the way we do it."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 73,
+    "start_ms": 0,
+    "end_ms": 7140,
+    "confidence": 0.7156891148316535,
+    "text": "deliver the messages or whatever to all the stakeholders of the company internally, externally"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 74,
+    "start_ms": 7140,
+    "end_ms": 8260,
+    "confidence": 0.7156891148316535,
+    "text": "and everywhere."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 75,
+    "start_ms": 9240,
+    "end_ms": 14100,
+    "confidence": 0.7156891148316535,
+    "text": "Vedika, you have touched an interesting chord corporate communication happens with stakeholders."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 76,
+    "start_ms": 14420,
+    "end_ms": 15880,
+    "confidence": 0.7156891148316535,
+    "text": "It cannot happen in vacuum."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 77,
+    "start_ms": 17080,
+    "end_ms": 18040,
+    "confidence": 0.7156891148316535,
+    "text": "So who are the stakeholders?"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 78,
+    "start_ms": 18560,
+    "end_ms": 21700,
+    "confidence": 0.7156891148316535,
+    "text": "According to you internal, external, can you elaborate more on the stakeholders?"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 79,
+    "start_ms": 24000,
+    "end_ms": 28020,
+    "confidence": 0.7156891148316535,
+    "text": "Stakeholders is like everyone, employees, everyone who comes in middle level, top"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 80,
+    "start_ms": 28020,
+    "end_ms": 29320,
+    "confidence": 0.6348942059061028,
+    "text": "level, lower level, anyone."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 81,
+    "start_ms": 0,
+    "end_ms": 4780,
+    "confidence": 0.7474271536267235,
+    "text": "the customers, the employees or the external factors also."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 82,
+    "start_ms": 5160,
+    "end_ms": 9620,
+    "confidence": 0.7474271536267235,
+    "text": "Okay, so Vedika is saying, when you say stakeholders, they are internal, external, internal. Let"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 83,
+    "start_ms": 9620,
+    "end_ms": 12880,
+    "confidence": 0.7474271536267235,
+    "text": "me throw some light on what Vedika is saying, then I am coming to Rashi. Okay, let Rashi"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 84,
+    "start_ms": 12880,
+    "end_ms": 15880,
+    "confidence": 0.7474271536267235,
+    "text": "speak, then I will add my perspective. Rashi, over to you. You can lower your hand,"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 85,
+    "start_ms": 15920,
+    "end_ms": 18700,
+    "confidence": 0.7474271536267235,
+    "text": "if you are finished, you can lower your hand. Rashi, over to you. Yes, Rashi."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 86,
+    "start_ms": 20320,
+    "end_ms": 26740,
+    "confidence": 0.7474271536267235,
+    "text": "Sir, what I was saying is, why it is important to communicate internally? Like"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 87,
+    "start_ms": 26740,
+    "end_ms": 29820,
+    "confidence": 0.6885433007141681,
+    "text": "we understand that why it is important to the external environment."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 88,
+    "start_ms": 0,
+    "end_ms": 1800,
+    "confidence": 0.8428409546773057,
+    "text": "Obviously, a company is established,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 89,
+    "start_ms": 2040,
+    "end_ms": 5120,
+    "confidence": 0.8428409546773057,
+    "text": "and they want to communicate what their motive is"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 90,
+    "start_ms": 5120,
+    "end_ms": 7100,
+    "confidence": 0.8428409546773057,
+    "text": "and what their vision, mission."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 91,
+    "start_ms": 8140,
+    "end_ms": 10500,
+    "confidence": 0.8428409546773057,
+    "text": "So that is obvious."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 92,
+    "start_ms": 11300,
+    "end_ms": 14740,
+    "confidence": 0.8428409546773057,
+    "text": "But why it is so important to communicate internally?"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 93,
+    "start_ms": 15900,
+    "end_ms": 20880,
+    "confidence": 0.8428409546773057,
+    "text": "So the main reason is to establish a corporate culture"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 94,
+    "start_ms": 20880,
+    "end_ms": 22060,
+    "confidence": 0.8428409546773057,
+    "text": "in the company."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 95,
+    "start_ms": 22660,
+    "end_ms": 24660,
+    "confidence": 0.8428409546773057,
+    "text": "When an organization is started,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 96,
+    "start_ms": 25480,
+    "end_ms": 29500,
+    "confidence": 0.8428409546773057,
+    "text": "they have to build a commitment towards the employee"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 97,
+    "start_ms": 0,
+    "end_ms": 6120,
+    "confidence": 0.9052374681694316,
+    "text": "ways the employees are the one who are going to take it further so it is very important to"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 98,
+    "start_ms": 6120,
+    "end_ms": 11880,
+    "confidence": 0.9052374681694316,
+    "text": "contribute your company's corporate culture finding the right tone you know the frequency"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 99,
+    "start_ms": 12400,
+    "end_ms": 19080,
+    "confidence": 0.9052374681694316,
+    "text": "and the method for internal communication so that as strong as you want and for longer term"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 100,
+    "start_ms": 19080,
+    "end_ms": 25900,
+    "confidence": 0.9052374681694316,
+    "text": "it can be communicated to all the employees or the customers that what is that particular"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 101,
+    "start_ms": 25900,
+    "end_ms": 29520,
+    "confidence": 0.5978453949905734,
+    "text": "company stands for for example tata my favorite company"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 102,
+    "start_ms": 28360,
+    "end_ms": 29980,
+    "confidence": 0.4468396133602099,
+    "text": "It stands for ethics and then"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 103,
+    "start_ms": 0,
+    "end_ms": 14200,
+    "confidence": 0.8331368200490222,
+    "text": "discussion further, when you say internal stakeholders, they are the employees, they are the board of directors, they are the managers, they are the shareholders, shareholders who have invested in the company, who are the owners of the company."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 104,
+    "start_ms": 14360,
+    "end_ms": 25660,
+    "confidence": 0.8331368200490222,
+    "text": "And when you talk about external stakeholders, they could be government, they could be creditors, they could be bankers, they could be other investors, they could be media houses, they could be press, it could be anything."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 105,
+    "start_ms": 25660,
+    "end_ms": 29980,
+    "confidence": 0.701898594981406,
+    "text": "And then Rashi talked about why internal communication..."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 106,
+    "start_ms": 0,
+    "end_ms": 4620,
+    "confidence": 0.7843894940065682,
+    "text": "is important. It is all about building an organizational culture. It is following the"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 107,
+    "start_ms": 4620,
+    "end_ms": 8480,
+    "confidence": 0.7843894940065682,
+    "text": "right methods and communicating to people and having a strong and robust culture. And"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 108,
+    "start_ms": 8480,
+    "end_ms": 14560,
+    "confidence": 0.7843894940065682,
+    "text": "she gave an example of TATA, the way they deal with so many people, they stand for"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 109,
+    "start_ms": 14560,
+    "end_ms": 19380,
+    "confidence": 0.7843894940065682,
+    "text": "ethics, they stand for values, they stand for integrity and what not. TATA is the"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 110,
+    "start_ms": 19380,
+    "end_ms": 24500,
+    "confidence": 0.7843894940065682,
+    "text": "epitome of or a perfect example of how the corporate world should be that even if"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 111,
+    "start_ms": 24500,
+    "end_ms": 27660,
+    "confidence": 0.7843894940065682,
+    "text": "there are no laws, there are no regulations, still you have to follow ethics."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 112,
+    "start_ms": 28080,
+    "end_ms": 29220,
+    "confidence": 0.40246133933471356,
+    "text": "Is that, yes, he normally"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 113,
+    "start_ms": 0,
+    "end_ms": 5520,
+    "confidence": 0.7270031971720665,
+    "text": "is enforced, but Tata's ethics was not enforced. They took it as a part of the corporate culture,"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 114,
+    "start_ms": 5940,
+    "end_ms": 11800,
+    "confidence": 0.7270031971720665,
+    "text": "which Rashi did touched upon it. Okay. So yeah. Any other discussion from where Rashi"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 115,
+    "start_ms": 11800,
+    "end_ms": 16800,
+    "confidence": 0.7270031971720665,
+    "text": "left and can we add something to the entire, we are still at the meaning of corporate"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 116,
+    "start_ms": 16800,
+    "end_ms": 20160,
+    "confidence": 0.7270031971720665,
+    "text": "communication. We are discussing about what is corporate communication, how it happens"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 117,
+    "start_ms": 20160,
+    "end_ms": 29620,
+    "confidence": 0.7540640529928533,
+    "text": "and okay. Come on. Yes. Next. Yeah. Come on. Come on. Quickly. Quickly. Quickly. Yes. Yes. Okay. So."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 118,
+    "start_ms": 0,
+    "end_ms": 5740,
+    "confidence": 0.7728562061430401,
+    "text": "aspects, so there is an external aspect. So why should a company, since the meaning part"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 119,
+    "start_ms": 5740,
+    "end_ms": 10280,
+    "confidence": 0.7728562061430401,
+    "text": "is settled now, we all know what is corporate communication, communication with corporate"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 120,
+    "start_ms": 10280,
+    "end_ms": 13340,
+    "confidence": 0.7728562061430401,
+    "text": "communication takes place internally as well as externally with all the stakeholders."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 121,
+    "start_ms": 14100,
+    "end_ms": 19480,
+    "confidence": 0.7728562061430401,
+    "text": "Now let us enter into a new realm, a new area, why corporate communication is important?"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 122,
+    "start_ms": 20420,
+    "end_ms": 23520,
+    "confidence": 0.7728562061430401,
+    "text": "Why? Other than building organizational culture, trust and ethics, all those things,"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 123,
+    "start_ms": 24020,
+    "end_ms": 27120,
+    "confidence": 0.7728562061430401,
+    "text": "why is corporate communication very very important?"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 124,
+    "start_ms": 28220,
+    "end_ms": 29980,
+    "confidence": 0.6811800826120207,
+    "text": "Yes, come on, let us discuss some of the"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 125,
+    "start_ms": 0,
+    "end_ms": 1780,
+    "confidence": 0.5901705220535144,
+    "text": "What are the merits of Yes, come"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 126,
+    "start_ms": 1780,
+    "end_ms": 2900,
+    "confidence": 0.5901705220535144,
+    "text": "on. There is no wrong answer."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 127,
+    "start_ms": 3020,
+    "end_ms": 4520,
+    "confidence": 0.5901705220535144,
+    "text": "Whatever you say will be what"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 128,
+    "start_ms": 4520,
+    "end_ms": 8320,
+    "confidence": 0.5901705220535144,
+    "text": "are the merits of Yes, go ahead"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 129,
+    "start_ms": 8320,
+    "end_ms": 9980,
+    "confidence": 0.5901705220535144,
+    "text": "to create a good public image."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 130,
+    "start_ms": 10220,
+    "end_ms": 11660,
+    "confidence": 0.5901705220535144,
+    "text": "Okay, Susan Susan, let me go"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 131,
+    "start_ms": 11660,
+    "end_ms": 13620,
+    "confidence": 0.5901705220535144,
+    "text": "to Densy because uh Densy has"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 132,
+    "start_ms": 13620,
+    "end_ms": 14640,
+    "confidence": 0.5901705220535144,
+    "text": "raised her hand first. Then"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 133,
+    "start_ms": 14640,
+    "end_ms": 15460,
+    "confidence": 0.5901705220535144,
+    "text": "we are coming to the"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 134,
+    "start_ms": 16740,
+    "end_ms": 18640,
+    "confidence": 0.5901705220535144,
+    "text": "Susan, raise your hand, huh?"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 135,
+    "start_ms": 18900,
+    "end_ms": 19860,
+    "confidence": 0.5901705220535144,
+    "text": "We will definitely give you"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 136,
+    "start_ms": 19860,
+    "end_ms": 20680,
+    "confidence": 0.5901705220535144,
+    "text": "an opportunity. I'm very"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 137,
+    "start_ms": 20680,
+    "end_ms": 23320,
+    "confidence": 0.5901705220535144,
+    "text": "happy to be in class. So,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 138,
+    "start_ms": 23380,
+    "end_ms": 24600,
+    "confidence": 0.5901705220535144,
+    "text": "let us go to Densy. Densy"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 139,
+    "start_ms": 24600,
+    "end_ms": 25880,
+    "confidence": 0.5901705220535144,
+    "text": "hasn't spoken yet and follow"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 140,
+    "start_ms": 25880,
+    "end_ms": 26980,
+    "confidence": 0.5901705220535144,
+    "text": "raise your hands. I will give"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 141,
+    "start_ms": 26980,
+    "end_ms": 28200,
+    "confidence": 0.5901705220535144,
+    "text": "the opportunity. Yeah. Okay,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 142,
+    "start_ms": 28200,
+    "end_ms": 29180,
+    "confidence": 0.7004127161518059,
+    "text": "Susan, let us go to Densy."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 143,
+    "start_ms": 29360,
+    "end_ms": 29700,
+    "confidence": 0.7004127161518059,
+    "text": "Densy."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 144,
+    "start_ms": 3780,
+    "end_ms": 12480,
+    "confidence": 0.6628910911858155,
+    "text": "For running business successfully, to run a business successfully you have to communicate,"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 145,
+    "start_ms": 12660,
+    "end_ms": 17040,
+    "confidence": 0.6628910911858155,
+    "text": "you have to talk, either in oral terms, written terms or through so many other forums. So"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 146,
+    "start_ms": 17040,
+    "end_ms": 21000,
+    "confidence": 0.6628910911858155,
+    "text": "yeah, to run your business successfully. Any other thing, Dentsi, that you think"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 147,
+    "start_ms": 21000,
+    "end_ms": 27540,
+    "confidence": 0.6628910911858155,
+    "text": "of why corporate communication is important? Okay, let me ask Dentsi, let me slightly"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 148,
+    "start_ms": 27540,
+    "end_ms": 29940,
+    "confidence": 0.6131097573738886,
+    "text": "explain. I'm coming to all of you, all those who have raised your hand."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 149,
+    "start_ms": 0,
+    "end_ms": 6300,
+    "confidence": 0.6877563485744488,
+    "text": "Then say you were part of placement cell and she can give us a good example. How communication"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 150,
+    "start_ms": 6300,
+    "end_ms": 10440,
+    "confidence": 0.6877563485744488,
+    "text": "happened in placement cell? Would you just throw light on it because it was your association"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 151,
+    "start_ms": 10440,
+    "end_ms": 14760,
+    "confidence": 0.6877563485744488,
+    "text": "with placement cell is almost for two years. So can you just elaborate more on that then"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 152,
+    "start_ms": 14760,
+    "end_ms": 14980,
+    "confidence": 0.6877563485744488,
+    "text": "see?"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 153,
+    "start_ms": 16340,
+    "end_ms": 20040,
+    "confidence": 0.6877563485744488,
+    "text": "Like how we talk to the corporate people, you mean to say?"
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 154,
+    "start_ms": 21140,
+    "end_ms": 22440,
+    "confidence": 0.6877563485744488,
+    "text": "Yeah, just focus on that aspect."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 155,
+    "start_ms": 23640,
+    "end_ms": 29980,
+    "confidence": 0.6271824054844983,
+    "text": "Yeah, so accordingly, we just saw me first market research about it about the company."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 156,
+    "start_ms": 0,
+    "end_ms": 7780,
+    "confidence": 0.6850452734861925,
+    "text": "companies about the working procedures and all about like uh uh uh placement cell members"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 157,
+    "start_ms": 8380,
+    "end_ms": 13660,
+    "confidence": 0.6850452734861925,
+    "text": "and then email is been forwarded and then the number is been checked and contacted."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 158,
+    "start_ms": 14060,
+    "end_ms": 17140,
+    "confidence": 0.6850452734861925,
+    "text": "I can say this is how the placement cell works."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 159,
+    "start_ms": 17380,
+    "end_ms": 21540,
+    "confidence": 0.6850452734861925,
+    "text": "Okay, so maybe for the external people you were just finding their email ids and"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 160,
+    "start_ms": 21540,
+    "end_ms": 27200,
+    "confidence": 0.6850452734861925,
+    "text": "mailing them about and you're inviting and recruit our students to that that was"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 161,
+    "start_ms": 27200,
+    "end_ms": 28060,
+    "confidence": 0.48899559254700925,
+    "text": "the external aspect."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 162,
+    "start_ms": 28440,
+    "end_ms": 29620,
+    "confidence": 0.48899559254700925,
+    "text": "How was communication happening?"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 163,
+    "start_ms": 0,
+    "end_ms": 6100,
+    "confidence": 0.800515010949097,
+    "text": "be members because you all have a hierarchy. There is a president, there are vice presidents,"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 164,
+    "start_ms": 6300,
+    "end_ms": 9440,
+    "confidence": 0.800515010949097,
+    "text": "and there are teams, there are coordinators, and there are team leaders, and there are other"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 165,
+    "start_ms": 9440,
+    "end_ms": 13280,
+    "confidence": 0.800515010949097,
+    "text": "people. How communication takes place and what was disclosed, what was not disclosed?"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 166,
+    "start_ms": 13580,
+    "end_ms": 16480,
+    "confidence": 0.800515010949097,
+    "text": "Because placement cell has a very robust culture in our policy. So, can you throw"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 167,
+    "start_ms": 16480,
+    "end_ms": 21120,
+    "confidence": 0.800515010949097,
+    "text": "some aspect of the communication that took place or that takes place in our placement cell?"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 168,
+    "start_ms": 21160,
+    "end_ms": 23040,
+    "confidence": 0.800515010949097,
+    "text": "That will be an interesting insight from yourself."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 169,
+    "start_ms": 24000,
+    "end_ms": 26660,
+    "confidence": 0.800515010949097,
+    "text": "Yeah, as it works, as per the hierarchy,"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 170,
+    "start_ms": 26660,
+    "end_ms": 29980,
+    "confidence": 0.45050062729567897,
+    "text": "only the who are the vice presidents, they come in."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 171,
+    "start_ms": 0,
+    "end_ms": 7900,
+    "confidence": 0.735533035341011,
+    "text": "with the coordinators. President just make a decision and tell the Vice President and"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 172,
+    "start_ms": 7900,
+    "end_ms": 13780,
+    "confidence": 0.735533035341011,
+    "text": "all the decisions are taken and the coordinators are the one who works. So in this way the"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 173,
+    "start_ms": 13780,
+    "end_ms": 20220,
+    "confidence": 0.735533035341011,
+    "text": "hierarchy works and whatever decision is taken by the President, all the coordinators"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 174,
+    "start_ms": 20220,
+    "end_ms": 27760,
+    "confidence": 0.735533035341011,
+    "text": "agree to it. Like they ask for suggestion but once it is like lasted then we have"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 175,
+    "start_ms": 27760,
+    "end_ms": 29660,
+    "confidence": 0.6134623503660598,
+    "text": "to agree for it. There is like"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 176,
+    "start_ms": 0,
+    "end_ms": 2640,
+    "confidence": 0.8227848939724458,
+    "text": "No other way we can say."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 177,
+    "start_ms": 3239,
+    "end_ms": 10020,
+    "confidence": 0.8227848939724458,
+    "text": "See, normally if you really want to have a very long lasting relationship with people,"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 178,
+    "start_ms": 10320,
+    "end_ms": 17120,
+    "confidence": 0.8227848939724458,
+    "text": "so it is better that you always communicate. So, I just thought maybe not connected to what"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 179,
+    "start_ms": 17120,
+    "end_ms": 21460,
+    "confidence": 0.8227848939724458,
+    "text": "then she said, just a thought came in my mind that communication is the crux of everything."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 180,
+    "start_ms": 21940,
+    "end_ms": 26840,
+    "confidence": 0.8227848939724458,
+    "text": "If you don't communicate to someone for a very long period of time, that relationship itself"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 181,
+    "start_ms": 26840,
+    "end_ms": 29540,
+    "confidence": 0.6570125969069526,
+    "text": "breaks and it has no meaning at certain point in time."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 182,
+    "start_ms": 0,
+    "end_ms": 4420,
+    "confidence": 0.7157298489243692,
+    "text": "So, I was just thinking about how this internal mechanism works and all. Thank you, Danshi."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 183,
+    "start_ms": 5000,
+    "end_ms": 5260,
+    "confidence": 0.7157298489243692,
+    "text": "Sorry to interrupt."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 184,
+    "start_ms": 6040,
+    "end_ms": 11260,
+    "confidence": 0.7157298489243692,
+    "text": "Yes, let me go to Poornima, then I am coming to Padmini, then I am coming to Vedika, then"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 185,
+    "start_ms": 11260,
+    "end_ms": 14220,
+    "confidence": 0.7157298489243692,
+    "text": "I am coming to Rashi once again, then I am coming to Suzanne. Okay, come on."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 186,
+    "start_ms": 14420,
+    "end_ms": 16880,
+    "confidence": 0.7157298489243692,
+    "text": "Let me go to Poornima. Poornima, over to you."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 187,
+    "start_ms": 18880,
+    "end_ms": 25120,
+    "confidence": 0.7157298489243692,
+    "text": "Sir, since you asked that why is communication necessary, like internally Rashi talked about"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 188,
+    "start_ms": 25120,
+    "end_ms": 29800,
+    "confidence": 0.8676845179168976,
+    "text": "it, right? Externally talking, building up the image of the company is necessary."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 189,
+    "start_ms": 0,
+    "end_ms": 6240,
+    "confidence": 0.7077050540320047,
+    "text": "PR is also necessary. Accordingly, this demand will increase, the sales will increase and"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 190,
+    "start_ms": 6240,
+    "end_ms": 10880,
+    "confidence": 0.7077050540320047,
+    "text": "the image of the company would be built up. So, everything is in direct connection."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 191,
+    "start_ms": 12120,
+    "end_ms": 21060,
+    "confidence": 0.7077050540320047,
+    "text": "Good, good, good. Sorry. The communication is like good. If the influence is good,"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 192,
+    "start_ms": 21180,
+    "end_ms": 26120,
+    "confidence": 0.7077050540320047,
+    "text": "it will directly affect the sales and simultaneously the company's image also."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 193,
+    "start_ms": 26120,
+    "end_ms": 29780,
+    "confidence": 0.49917843662694084,
+    "text": "Okay. So, Puranima is talking about economic..."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 194,
+    "start_ms": 0,
+    "end_ms": 4000,
+    "confidence": 0.7610841329165776,
+    "text": "objectives of corporate communication. See, there is something known as top line and bottom"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 195,
+    "start_ms": 4000,
+    "end_ms": 7620,
+    "confidence": 0.7610841329165776,
+    "text": "line. Can you tell me what's the, now this question is the whole class, I'm coming to"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 196,
+    "start_ms": 7620,
+    "end_ms": 12000,
+    "confidence": 0.7610841329165776,
+    "text": "all of you. What's the difference between top line and bottom line? What is top line"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 197,
+    "start_ms": 12000,
+    "end_ms": 19220,
+    "confidence": 0.7610841329165776,
+    "text": "and bottom line in corporate perspective? Or, see, anyone, come on, top line and"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 198,
+    "start_ms": 19220,
+    "end_ms": 27500,
+    "confidence": 0.7610841329165776,
+    "text": "bottom line. Yes, Rashi. So, as we studied the hierarchy level, the top line is obviously"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 199,
+    "start_ms": 27500,
+    "end_ms": 29760,
+    "confidence": 0.6209141265350714,
+    "text": "the ones who have the conceptual knowledge."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 200,
+    "start_ms": 720,
+    "end_ms": 6360,
+    "confidence": 0.7812082024342466,
+    "text": "higher on the conceptual knowledge obviously and the bottom lines are the one who has the"
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 201,
+    "start_ms": 6360,
+    "end_ms": 13060,
+    "confidence": 0.7812082024342466,
+    "text": "knowledge of functional like what they have to do and see when the hierarchy goes it goes"
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 202,
+    "start_ms": 13060,
+    "end_ms": 21120,
+    "confidence": 0.7812082024342466,
+    "text": "as a triangle so in the conceptual level the top level comes the top line where all the CEO"
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 203,
+    "start_ms": 21120,
+    "end_ms": 26100,
+    "confidence": 0.7812082024342466,
+    "text": "board of directors are there. One second Rashi, one second what Purnima is mentioning"
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 204,
+    "start_ms": 26100,
+    "end_ms": 29800,
+    "confidence": 0.7236975673247111,
+    "text": "that is economic objectives so top line and bottom line."
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 205,
+    "start_ms": 0,
+    "end_ms": 9060,
+    "confidence": 0.7871420207408643,
+    "text": "When we prepare a vertical profit and loss account, what is at the top line, top we have"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 206,
+    "start_ms": 9060,
+    "end_ms": 14640,
+    "confidence": 0.7871420207408643,
+    "text": "sales, bottom we have profit. So top line is sales and bottom line is profit. You just"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 207,
+    "start_ms": 14640,
+    "end_ms": 20240,
+    "confidence": 0.7871420207408643,
+    "text": "remember the vertical profit and loss account that we prepared. At the top we have sales"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 208,
+    "start_ms": 20240,
+    "end_ms": 24540,
+    "confidence": 0.7871420207408643,
+    "text": "at the bottom we have profit. So when I say top line, this has to do with sales"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 209,
+    "start_ms": 24540,
+    "end_ms": 29720,
+    "confidence": 0.7871420207408643,
+    "text": "of the company. So if you have a brand image, if you have made a name for yourself or"
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 210,
+    "start_ms": 0,
+    "end_ms": 4940,
+    "confidence": 0.7146050397299488,
+    "text": "corporate identity is huge, then automatically customers are attracted and you need not push"
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 211,
+    "start_ms": 4940,
+    "end_ms": 12840,
+    "confidence": 0.7146050397299488,
+    "text": "your product, the product gets pulled. So, top line is sales and bottom line is profit."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 212,
+    "start_ms": 13760,
+    "end_ms": 17720,
+    "confidence": 0.7146050397299488,
+    "text": "What Rashi is saying that is the organizational hierarchy by your top level, middle level"
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 213,
+    "start_ms": 17720,
+    "end_ms": 18420,
+    "confidence": 0.7146050397299488,
+    "text": "and bottom level."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 214,
+    "start_ms": 19200,
+    "end_ms": 27080,
+    "confidence": 0.7146050397299488,
+    "text": "Okay, now let me go to Padmini, then again I will come to Vedika and then I"
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 215,
+    "start_ms": 27080,
+    "end_ms": 28660,
+    "confidence": 0.5464749505346617,
+    "text": "come on. Padmini, over to you."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 216,
+    "start_ms": 0,
+    "end_ms": 7900,
+    "confidence": 0.795388649884397,
+    "text": "Yes sir, so I would like to talk about two examples. One is of Nestle and when it is when"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 217,
+    "start_ms": 7900,
+    "end_ms": 14420,
+    "confidence": 0.795388649884397,
+    "text": "Maggi failed the FDA's food standard. It was like a nightmare to their PR department,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 218,
+    "start_ms": 14420,
+    "end_ms": 20900,
+    "confidence": 0.795388649884397,
+    "text": "but they handled it very efficiently by making public statements and being clear"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 219,
+    "start_ms": 21760,
+    "end_ms": 28440,
+    "confidence": 0.795388649884397,
+    "text": "through their processes. And the second was when there was an attack on the Taj Hotel, 2611."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 220,
+    "start_ms": 28440,
+    "end_ms": 29340,
+    "confidence": 0.28471972603691026,
+    "text": "Yes."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 221,
+    "start_ms": 0,
+    "end_ms": 7800,
+    "confidence": 0.8280669104234324,
+    "text": "so the hardware business review they praised the Taj Hotel because of how efficiently they took"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 222,
+    "start_ms": 7800,
+    "end_ms": 14700,
+    "confidence": 0.8280669104234324,
+    "text": "care of the crisis. So PR and communication helps company to come out of their crisis"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 223,
+    "start_ms": 14700,
+    "end_ms": 20760,
+    "confidence": 0.8280669104234324,
+    "text": "very efficiently and therefore it also helps them to keep the image in the market."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 224,
+    "start_ms": 21720,
+    "end_ms": 26460,
+    "confidence": 0.8280669104234324,
+    "text": "Very good. Padmini she is talking about corporate communication takes care of crisis"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 225,
+    "start_ms": 26460,
+    "end_ms": 29860,
+    "confidence": 0.4353190251576063,
+    "text": "in terms of crisis management, corporate communication"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 226,
+    "start_ms": 0,
+    "end_ms": 4460,
+    "confidence": 0.7982686242386515,
+    "text": "a very significant role that you come forward and you talk to people and you build trust and"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 227,
+    "start_ms": 4460,
+    "end_ms": 11140,
+    "confidence": 0.7982686242386515,
+    "text": "even if something wrong has happened, you admit that something wrong has happened. Take the case"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 228,
+    "start_ms": 11140,
+    "end_ms": 14820,
+    "confidence": 0.7982686242386515,
+    "text": "of Maggi, take the case of British petroleum, take the case of so many other firms, people"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 229,
+    "start_ms": 14820,
+    "end_ms": 18940,
+    "confidence": 0.7982686242386515,
+    "text": "come and people admit. So, there the corporate communication plays a very very important role."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 230,
+    "start_ms": 19300,
+    "end_ms": 22600,
+    "confidence": 0.7982686242386515,
+    "text": "Okay, now let me go to Suzanne. Suzanne has been facing a hand for a very long"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 231,
+    "start_ms": 22600,
+    "end_ms": 26260,
+    "confidence": 0.7982686242386515,
+    "text": "point of time. Then I'm coming to Vindica, Rashi. Yes, Suzanne over to you."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 232,
+    "start_ms": 26260,
+    "end_ms": 29980,
+    "confidence": 0.49452051087469107,
+    "text": "Actually, you told my point already about, you know,"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 233,
+    "start_ms": 0,
+    "end_ms": 4660,
+    "confidence": 0.7563753864870902,
+    "text": "being like the audience is very supportive during the crisis like if you have a good"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 234,
+    "start_ms": 4660,
+    "end_ms": 9100,
+    "confidence": 0.7563753864870902,
+    "text": "trust with the audience they know that you know you're you're not doing anything wrong"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 235,
+    "start_ms": 9100,
+    "end_ms": 13500,
+    "confidence": 0.7563753864870902,
+    "text": "in future so that if you build that trust from the very beginning so even if it's there"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 236,
+    "start_ms": 13500,
+    "end_ms": 17860,
+    "confidence": 0.7563753864870902,
+    "text": "is a point where the company is like on the verge of breaking down the audience"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 237,
+    "start_ms": 17860,
+    "end_ms": 21720,
+    "confidence": 0.7563753864870902,
+    "text": "will support it so that is what i was about like you know supporting the crisis"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 238,
+    "start_ms": 21720,
+    "end_ms": 25400,
+    "confidence": 0.7563753864870902,
+    "text": "okay thank you susan we'll come to vedika then we come to rashi pranima and dentsi"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 239,
+    "start_ms": 25400,
+    "end_ms": 29400,
+    "confidence": 0.6816604012848867,
+    "text": "come on vedika over to you vedika what are the merits of"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 240,
+    "start_ms": 0,
+    "end_ms": 5440,
+    "confidence": 0.8217508247271806,
+    "text": "Okay, so first of all, I will tell the merits like for internal corporate communication,"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 241,
+    "start_ms": 5680,
+    "end_ms": 7180,
+    "confidence": 0.8217508247271806,
+    "text": "I will tell about external."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 242,
+    "start_ms": 8119,
+    "end_ms": 13860,
+    "confidence": 0.8217508247271806,
+    "text": "So firstly, what I think is it facilitates transparency through corporate communication,"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 243,
+    "start_ms": 14360,
+    "end_ms": 17940,
+    "confidence": 0.8217508247271806,
+    "text": "it creates a sense of transparency and employees."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 244,
+    "start_ms": 18200,
+    "end_ms": 23260,
+    "confidence": 0.8217508247271806,
+    "text": "So now if I'm talking about internal corporate communication, then it first and major thing"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 245,
+    "start_ms": 23260,
+    "end_ms": 24080,
+    "confidence": 0.8217508247271806,
+    "text": "is employees."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 246,
+    "start_ms": 24740,
+    "end_ms": 29640,
+    "confidence": 0.8217508247271806,
+    "text": "So employees are more likely to buy to be in the company culture when they know what"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 247,
+    "start_ms": 0,
+    "end_ms": 6500,
+    "confidence": 0.880171956518067,
+    "text": "is about. It builds a sense of trust. It builds a sense of trust and loyalty."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 248,
+    "start_ms": 7380,
+    "end_ms": 11880,
+    "confidence": 0.880171956518067,
+    "text": "And they're more likely to feel that they're the part of the bigger picture when managers"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 249,
+    "start_ms": 11880,
+    "end_ms": 20320,
+    "confidence": 0.880171956518067,
+    "text": "communicate clearly with them. And externally being transparent is also helpful in building"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 250,
+    "start_ms": 20320,
+    "end_ms": 25920,
+    "confidence": 0.880171956518067,
+    "text": "trust with the clients. Many people are concerned with what a company stands for,"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 251,
+    "start_ms": 25920,
+    "end_ms": 27400,
+    "confidence": 0.722151135294083,
+    "text": "not only what it makes."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 252,
+    "start_ms": 0,
+    "end_ms": 5580,
+    "confidence": 0.6819935047752507,
+    "text": "The first thing is building the trust and the customers, the external stakeholders,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 253,
+    "start_ms": 5600,
+    "end_ms": 11880,
+    "confidence": 0.6819935047752507,
+    "text": "they also feel more likely to stay loyal to the company that communicates openly and"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 254,
+    "start_ms": 11880,
+    "end_ms": 12820,
+    "confidence": 0.6819935047752507,
+    "text": "transparently."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 255,
+    "start_ms": 12980,
+    "end_ms": 14420,
+    "confidence": 0.6819935047752507,
+    "text": "So, this is what I feel."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 256,
+    "start_ms": 15180,
+    "end_ms": 15500,
+    "confidence": 0.6819935047752507,
+    "text": "Very good."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 257,
+    "start_ms": 15620,
+    "end_ms": 17860,
+    "confidence": 0.6819935047752507,
+    "text": "I think Vedika has touched both the aspects."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 258,
+    "start_ms": 18240,
+    "end_ms": 22380,
+    "confidence": 0.6819935047752507,
+    "text": "Let us go to Rashi, then we come to Purnima and then see, Rashi over to you."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 259,
+    "start_ms": 23920,
+    "end_ms": 24940,
+    "confidence": 0.6819935047752507,
+    "text": "Yes, Rashi."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 260,
+    "start_ms": 24940,
+    "end_ms": 29980,
+    "confidence": 0.5935614242240965,
+    "text": "So, going back to the days when we were in\u2026"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 261,
+    "start_ms": 0,
+    "end_ms": 5900,
+    "confidence": 0.7412880810808713,
+    "text": "first year and we had input to communication and there was direct communication and indirect"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 262,
+    "start_ms": 5900,
+    "end_ms": 11660,
+    "confidence": 0.7412880810808713,
+    "text": "communication and indirect communication we had body language so if we are talking about"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 263,
+    "start_ms": 11660,
+    "end_ms": 18700,
+    "confidence": 0.7412880810808713,
+    "text": "corporate communication don't we talk about body language of the company so when we talk"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 264,
+    "start_ms": 18700,
+    "end_ms": 25400,
+    "confidence": 0.7412880810808713,
+    "text": "about body language of company that means indirectly or without you know actually communicating"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 265,
+    "start_ms": 25400,
+    "end_ms": 29980,
+    "confidence": 0.6709936968543347,
+    "text": "to the employees how they are showing their concern or show"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 266,
+    "start_ms": 0,
+    "end_ms": 6260,
+    "confidence": 0.8077777634218719,
+    "text": "what they value to the employees even to the external resources like customers"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 267,
+    "start_ms": 6260,
+    "end_ms": 12880,
+    "confidence": 0.8077777634218719,
+    "text": "and stakeholders so I have a very beautiful example of that niche recently"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 268,
+    "start_ms": 12880,
+    "end_ms": 19380,
+    "confidence": 0.8077777634218719,
+    "text": "back two years ago we had an ad of Tanishk where they wanted to value to"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 269,
+    "start_ms": 19380,
+    "end_ms": 25860,
+    "confidence": 0.8077777634218719,
+    "text": "customs it was add I'll just sum up very quickly that the ad was about a"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 270,
+    "start_ms": 25860,
+    "end_ms": 29400,
+    "confidence": 0.5436905792349455,
+    "text": "Hindu bride married to a Muslim guy"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 271,
+    "start_ms": 0,
+    "end_ms": 7100,
+    "confidence": 0.6883058807304521,
+    "text": "and the Muslim family is accepting her and they wanted to show Iktak, in Hindi where Iktakwam"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 272,
+    "start_ms": 7100,
+    "end_ms": 15000,
+    "confidence": 0.6883058807304521,
+    "text": "so to show the values like India holds and that the name of the jewelry was Iktakwam"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 273,
+    "start_ms": 15680,
+    "end_ms": 24840,
+    "confidence": 0.6883058807304521,
+    "text": "but there was a load of controversy on that when the ad was on YouTube it had hatred as like what"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 274,
+    "start_ms": 24840,
+    "end_ms": 29800,
+    "confidence": 0.843291401814553,
+    "text": "people criticized it but on the brighter side I want to quote"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 275,
+    "start_ms": 0,
+    "end_ms": 6860,
+    "confidence": 0.8252769197710866,
+    "text": "spokespersons of Tanishk what he said was very nice like we are deeply saddened with the"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 276,
+    "start_ms": 6860,
+    "end_ms": 16400,
+    "confidence": 0.8252769197710866,
+    "text": "inadherent stirring of emotions and withdrawal this film clipping in mind that hurt sentiments"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 277,
+    "start_ms": 16400,
+    "end_ms": 24000,
+    "confidence": 0.8252769197710866,
+    "text": "and well-being of our employees partner store staff and they added the idea behind like I"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 278,
+    "start_ms": 24320,
+    "end_ms": 29980,
+    "confidence": 0.6997809926970131,
+    "text": "explained that what they wanted to show now at this very moment we realize that"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 279,
+    "start_ms": 0,
+    "end_ms": 6600,
+    "confidence": 0.8711100020920249,
+    "text": "whenever there is a controversy people not only point out those people involved directly to that"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 280,
+    "start_ms": 6600,
+    "end_ms": 13180,
+    "confidence": 0.8711100020920249,
+    "text": "thing but indirectly like family members obviously we have seen there are rape threats and what"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 281,
+    "start_ms": 13180,
+    "end_ms": 21400,
+    "confidence": 0.8711100020920249,
+    "text": "they're not people do on twitter and instagram but after this spokesperson said uh of tanesh"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 282,
+    "start_ms": 21400,
+    "end_ms": 26740,
+    "confidence": 0.8711100020920249,
+    "text": "it was beautifully conveyed that they care their employees and the safety of the employees so"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 283,
+    "start_ms": 26740,
+    "end_ms": 29720,
+    "confidence": 0.6334354224003629,
+    "text": "they withdrew it they apologized and"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 284,
+    "start_ms": 0,
+    "end_ms": 3220,
+    "confidence": 0.7622818079761824,
+    "text": "That showed that they valued the emotions and sentiments"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 285,
+    "start_ms": 3220,
+    "end_ms": 7140,
+    "confidence": 0.7622818079761824,
+    "text": "of people at large and even protected their employees."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 286,
+    "start_ms": 7920,
+    "end_ms": 10880,
+    "confidence": 0.7622818079761824,
+    "text": "So this is how you communicate your internal as well"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 287,
+    "start_ms": 10880,
+    "end_ms": 14920,
+    "confidence": 0.7622818079761824,
+    "text": "as external stakeholders that we care for you"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 288,
+    "start_ms": 14920,
+    "end_ms": 17800,
+    "confidence": 0.7622818079761824,
+    "text": "and we have as a company hold ethics."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 289,
+    "start_ms": 19260,
+    "end_ms": 19840,
+    "confidence": 0.7622818079761824,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 290,
+    "start_ms": 20480,
+    "end_ms": 23180,
+    "confidence": 0.7622818079761824,
+    "text": "For example, like how she gave how a company came forward"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 291,
+    "start_ms": 23180,
+    "end_ms": 28700,
+    "confidence": 0.7622818079761824,
+    "text": "and supported its people and apologized also"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 292,
+    "start_ms": 0,
+    "end_ms": 5360,
+    "confidence": 0.7100619863833151,
+    "text": "try to tell what message it wanted to give to that advertisements. Yeah. I remember it"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 293,
+    "start_ms": 5360,
+    "end_ms": 10340,
+    "confidence": 0.7100619863833151,
+    "text": "was a big controversy that happened and company managed it systematically. Okay. Very good"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 294,
+    "start_ms": 10340,
+    "end_ms": 15940,
+    "confidence": 0.7100619863833151,
+    "text": "Rashi for bringing that point. Okay. Let us go to Densee. Okay. Densee over to you."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 295,
+    "start_ms": 18520,
+    "end_ms": 23260,
+    "confidence": 0.7100619863833151,
+    "text": "Yes, Densee. Can you hear me now? Everybody's camera is gone now suddenly. Only Rashi's"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 296,
+    "start_ms": 23260,
+    "end_ms": 28080,
+    "confidence": 0.7100619863833151,
+    "text": "camera is on, but I think there is a bandwidth issue Rashi. Everybody's camera is with"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 297,
+    "start_ms": 28080,
+    "end_ms": 29860,
+    "confidence": 0.567746229525551,
+    "text": "all nine people. This is the only."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 298,
+    "start_ms": 0,
+    "end_ms": 5360,
+    "confidence": 0.7871378806773446,
+    "text": "class and first class in entire lockdown period where you have to switch on your camera. Do"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 299,
+    "start_ms": 5360,
+    "end_ms": 10220,
+    "confidence": 0.7871378806773446,
+    "text": "you remember? Have you ever switched on your camera before any classes last year? No."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 300,
+    "start_ms": 10920,
+    "end_ms": 13980,
+    "confidence": 0.7871378806773446,
+    "text": "So this is the only class I'm telling you to, and I will never tell you to switch on your"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 301,
+    "start_ms": 13980,
+    "end_ms": 18420,
+    "confidence": 0.7871378806773446,
+    "text": "camera before this session. But this is a lively session where we need to feel that"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 302,
+    "start_ms": 18420,
+    "end_ms": 23700,
+    "confidence": 0.7871378806773446,
+    "text": "we are in. To a certain extent, I sometimes forget that I'm in my home, people that"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 303,
+    "start_ms": 23700,
+    "end_ms": 27780,
+    "confidence": 0.7871378806773446,
+    "text": "have in college talking to you. Okay. Let us go to Densy. Densy wants to say something."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 304,
+    "start_ms": 27780,
+    "end_ms": 29700,
+    "confidence": 0.6595840662632435,
+    "text": "Thank you, Rashi, for bringing that beautiful point."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 305,
+    "start_ms": 5159,
+    "end_ms": 14660,
+    "confidence": 0.6806101443871894,
+    "text": "We talk about external communication and all about the audience and all but internal communication"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 306,
+    "start_ms": 14660,
+    "end_ms": 19560,
+    "confidence": 0.6806101443871894,
+    "text": "is also important as per like customers what they require, what are their requirements"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 307,
+    "start_ms": 20960,
+    "end_ms": 25040,
+    "confidence": 0.6806101443871894,
+    "text": "and I guess corporate looks after it very efficiently."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 308,
+    "start_ms": 25040,
+    "end_ms": 26560,
+    "confidence": 0.3690308625840313,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 309,
+    "start_ms": 0,
+    "end_ms": 4160,
+    "confidence": 0.7201733946115974,
+    "text": "is important. Anybody else would like to, then we will proceed further. There is another"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 310,
+    "start_ms": 4160,
+    "end_ms": 8800,
+    "confidence": 0.7201733946115974,
+    "text": "aspect that we will be discussing here. Okay, so we talked about meaning of corporate communication,"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 311,
+    "start_ms": 9040,
+    "end_ms": 13400,
+    "confidence": 0.7201733946115974,
+    "text": "we talked about merits of corporate communication, why it is important and everybody spoke their"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 312,
+    "start_ms": 13400,
+    "end_ms": 19900,
+    "confidence": 0.7201733946115974,
+    "text": "point, took their points. If you have further to say, let us go to Padmini. Padmini,"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 313,
+    "start_ms": 20020,
+    "end_ms": 24880,
+    "confidence": 0.7201733946115974,
+    "text": "then again, Rashi has raised her hand. Padmini, over to you. Yes, sir. So I would"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 314,
+    "start_ms": 24880,
+    "end_ms": 29980,
+    "confidence": 0.6855017914284717,
+    "text": "like to add to what Dentsi said, because there is a gradual change in the"
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 315,
+    "start_ms": 0,
+    "end_ms": 5340,
+    "confidence": 0.7860017713915035,
+    "text": "two years like during the pandemic situations, there is a change in the way the company"
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 316,
+    "start_ms": 5340,
+    "end_ms": 13480,
+    "confidence": 0.7860017713915035,
+    "text": "takes care of its internal communication. Like during the starting stages, they used"
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 317,
+    "start_ms": 13480,
+    "end_ms": 22080,
+    "confidence": 0.7860017713915035,
+    "text": "to do the internal communication through letters or by personally going to each employee"
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 318,
+    "start_ms": 22080,
+    "end_ms": 27820,
+    "confidence": 0.7860017713915035,
+    "text": "and telling them about the changes in the organization's rules and the upcoming details."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 319,
+    "start_ms": 27820,
+    "end_ms": 29980,
+    "confidence": 0.4390059983200271,
+    "text": "But now, but after"
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 320,
+    "start_ms": 0,
+    "end_ms": 6720,
+    "confidence": 0.7475229532639416,
+    "text": "sometime they started doing this through emails, but nowadays they have taken, they are taking"
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 321,
+    "start_ms": 6720,
+    "end_ms": 12880,
+    "confidence": 0.7475229532639416,
+    "text": "care of this through email, through their social media and on a group, on online group"
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 322,
+    "start_ms": 12880,
+    "end_ms": 20760,
+    "confidence": 0.7475229532639416,
+    "text": "discussions like before the pandemic, free work was like people used to travel to one"
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 323,
+    "start_ms": 20760,
+    "end_ms": 25540,
+    "confidence": 0.7475229532639416,
+    "text": "place to another for attending meetings and conferences. And there was a very minimum"
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 324,
+    "start_ms": 25540,
+    "end_ms": 29800,
+    "confidence": 0.76672659607082,
+    "text": "use of online platforms, but during the pandemic and now also when"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 325,
+    "start_ms": 0,
+    "end_ms": 7540,
+    "confidence": 0.6963616351586767,
+    "text": "the working conditions are starting to get normal, people prefer online modes more than"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 326,
+    "start_ms": 7540,
+    "end_ms": 8700,
+    "confidence": 0.6963616351586767,
+    "text": "the offline mode."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 327,
+    "start_ms": 9260,
+    "end_ms": 15160,
+    "confidence": 0.6963616351586767,
+    "text": "Okay, so now, even that is a web meeting, virtual meeting, that is a part of corporate"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 328,
+    "start_ms": 15160,
+    "end_ms": 20460,
+    "confidence": 0.6963616351586767,
+    "text": "communication. Yeah. I'll give one example of what Arjun is saying. In the other class,"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 329,
+    "start_ms": 20600,
+    "end_ms": 24840,
+    "confidence": 0.6963616351586767,
+    "text": "somebody spoke that, sir, I'm working as an intern in certain firm in a startup and"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 330,
+    "start_ms": 24840,
+    "end_ms": 28960,
+    "confidence": 0.6963616351586767,
+    "text": "there we have a lot of WhatsApp group and this WhatsApp group is a way of communicating."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 331,
+    "start_ms": 28960,
+    "end_ms": 29920,
+    "confidence": 0.6367431716784095,
+    "text": "That's a very nice."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 332,
+    "start_ms": 0,
+    "end_ms": 3320,
+    "confidence": 0.7404875703913648,
+    "text": "In fact, none of the textbooks talk about that, WhatsApp as a medium of communication."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 333,
+    "start_ms": 3600,
+    "end_ms": 7000,
+    "confidence": 0.7404875703913648,
+    "text": "People are saying companies are using apps to communicate, but nobody is specific about"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 334,
+    "start_ms": 7000,
+    "end_ms": 9440,
+    "confidence": 0.7404875703913648,
+    "text": "which app and WhatsApp is so handy."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 335,
+    "start_ms": 10160,
+    "end_ms": 10540,
+    "confidence": 0.7404875703913648,
+    "text": "So handy."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 336,
+    "start_ms": 10840,
+    "end_ms": 17540,
+    "confidence": 0.7404875703913648,
+    "text": "Sending an email is rather somewhat difficult now and tedious than simply typing and sending"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 337,
+    "start_ms": 17540,
+    "end_ms": 19280,
+    "confidence": 0.7404875703913648,
+    "text": "it to a big group."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 338,
+    "start_ms": 19800,
+    "end_ms": 21600,
+    "confidence": 0.7404875703913648,
+    "text": "So yeah, that is one aspect."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 339,
+    "start_ms": 21940,
+    "end_ms": 24060,
+    "confidence": 0.7404875703913648,
+    "text": "Let us go to Rashi again, Nancy has raised her hand."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 340,
+    "start_ms": 24060,
+    "end_ms": 29900,
+    "confidence": 0.5451082631637775,
+    "text": "Then what is the discussion setters will take forward a beautiful sub topic, which is."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 341,
+    "start_ms": 3840,
+    "end_ms": 11280,
+    "confidence": 0.7696072192092235,
+    "text": "So, taking Padmini's point further and yours too, there is a term called as digital corporate"
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 342,
+    "start_ms": 11280,
+    "end_ms": 12020,
+    "confidence": 0.7696072192092235,
+    "text": "communication."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 343,
+    "start_ms": 13100,
+    "end_ms": 19600,
+    "confidence": 0.7696072192092235,
+    "text": "Now, when we talk about this, as we know it is not that old concept corporate communication"
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 344,
+    "start_ms": 19600,
+    "end_ms": 27840,
+    "confidence": 0.7696072192092235,
+    "text": "but the company has to be well versed with the changing environment, it has to be dynamic"
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 345,
+    "start_ms": 27840,
+    "end_ms": 28760,
+    "confidence": 0.7696072192092235,
+    "text": "and universal."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 346,
+    "start_ms": 28760,
+    "end_ms": 29040,
+    "confidence": 0.3887605604270125,
+    "text": "It has to be different."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 347,
+    "start_ms": 29620,
+    "end_ms": 29980,
+    "confidence": 0.3887605604270125,
+    "text": "So I think\u2026"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 348,
+    "start_ms": 0,
+    "end_ms": 3280,
+    "confidence": 0.7947555095833971,
+    "text": "When it comes to that, we have seen there is an error."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 349,
+    "start_ms": 3660,
+    "end_ms": 5560,
+    "confidence": 0.7947555095833971,
+    "text": "Some companies that many of the companies"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 350,
+    "start_ms": 5560,
+    "end_ms": 9020,
+    "confidence": 0.7947555095833971,
+    "text": "are not noticing that nowadays the time has changed."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 351,
+    "start_ms": 9580,
+    "end_ms": 12280,
+    "confidence": 0.7947555095833971,
+    "text": "To communicate, WhatsApp is not enough."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 352,
+    "start_ms": 13100,
+    "end_ms": 15660,
+    "confidence": 0.7947555095833971,
+    "text": "But the time has changed to memes."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 353,
+    "start_ms": 16500,
+    "end_ms": 20620,
+    "confidence": 0.7947555095833971,
+    "text": "Now memes are the best way to communicate people at large."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 354,
+    "start_ms": 21700,
+    "end_ms": 25240,
+    "confidence": 0.7947555095833971,
+    "text": "And Zomato has rectified."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 355,
+    "start_ms": 26000,
+    "end_ms": 28180,
+    "confidence": 0.7947555095833971,
+    "text": "Zomato's memes are so beautiful."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 356,
+    "start_ms": 28180,
+    "end_ms": 29980,
+    "confidence": 0.4282087295787403,
+    "text": "Even their answers to."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 357,
+    "start_ms": 0,
+    "end_ms": 2320,
+    "confidence": 0.7182803055767976,
+    "text": "to the customers on Twitter"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 358,
+    "start_ms": 2320,
+    "end_ms": 3780,
+    "confidence": 0.7182803055767976,
+    "text": "handles or instagram is"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 359,
+    "start_ms": 3780,
+    "end_ms": 5660,
+    "confidence": 0.7182803055767976,
+    "text": "hilarious but for that, I have"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 360,
+    "start_ms": 5660,
+    "end_ms": 7180,
+    "confidence": 0.7182803055767976,
+    "text": "to share my screen. So, can I"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 361,
+    "start_ms": 7180,
+    "end_ms": 9340,
+    "confidence": 0.7182803055767976,
+    "text": "share my screen now? I want to"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 362,
+    "start_ms": 9340,
+    "end_ms": 11160,
+    "confidence": 0.7182803055767976,
+    "text": "show some news. Please, please"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 363,
+    "start_ms": 11160,
+    "end_ms": 12960,
+    "confidence": 0.7182803055767976,
+    "text": "do and I really appreciate"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 364,
+    "start_ms": 12960,
+    "end_ms": 14000,
+    "confidence": 0.7182803055767976,
+    "text": "that. You are so well"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 365,
+    "start_ms": 14000,
+    "end_ms": 15380,
+    "confidence": 0.7182803055767976,
+    "text": "prepared. So, I'm allowing you"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 366,
+    "start_ms": 15380,
+    "end_ms": 16360,
+    "confidence": 0.7182803055767976,
+    "text": "to share your screen. You can"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 367,
+    "start_ms": 16360,
+    "end_ms": 18280,
+    "confidence": 0.7182803055767976,
+    "text": "share. I'm happy that this"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 368,
+    "start_ms": 18280,
+    "end_ms": 19720,
+    "confidence": 0.7182803055767976,
+    "text": "class is so well prepared and"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 369,
+    "start_ms": 19720,
+    "end_ms": 21520,
+    "confidence": 0.7182803055767976,
+    "text": "she is at her best. My"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 370,
+    "start_ms": 21520,
+    "end_ms": 22660,
+    "confidence": 0.7182803055767976,
+    "text": "goodness. She is giving a lot"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 371,
+    "start_ms": 22660,
+    "end_ms": 24620,
+    "confidence": 0.7182803055767976,
+    "text": "of good examples that it's a"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 372,
+    "start_ms": 24620,
+    "end_ms": 25660,
+    "confidence": 0.7182803055767976,
+    "text": "food for thought for meals."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 373,
+    "start_ms": 25660,
+    "end_ms": 27660,
+    "confidence": 0.5405141974474641,
+    "text": "Thank you so much."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 374,
+    "start_ms": 0,
+    "end_ms": 9160,
+    "confidence": 0.7447219770118407,
+    "text": "This is the one Zomato has shared like reasons to smile today, it's Friday, it's end of the feb, it's salary day, I'll display a picture."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 375,
+    "start_ms": 9420,
+    "end_ms": 11560,
+    "confidence": 0.7447219770118407,
+    "text": "Now I'll share the story behind it."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 376,
+    "start_ms": 11680,
+    "end_ms": 23020,
+    "confidence": 0.7447219770118407,
+    "text": "Recently there was a thing called Zomato guy, smiling Zomato guy and that came because happy rider Sonu."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 377,
+    "start_ms": 23560,
+    "end_ms": 24960,
+    "confidence": 0.7447219770118407,
+    "text": "Anyone remember Sonu here?"
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 378,
+    "start_ms": 25960,
+    "end_ms": 29140,
+    "confidence": 0.7039627584679313,
+    "text": "Yeah, I remember that person smiling."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 379,
+    "start_ms": 0,
+    "end_ms": 1580,
+    "confidence": 0.7750655250488978,
+    "text": "You are talking about the same person, Sonu?"
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 380,
+    "start_ms": 3380,
+    "end_ms": 4840,
+    "confidence": 0.7750655250488978,
+    "text": "Yes, yes, absolutely."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 381,
+    "start_ms": 5300,
+    "end_ms": 8980,
+    "confidence": 0.7750655250488978,
+    "text": "Sonu. So, what Zomato did, it was not on purpose."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 382,
+    "start_ms": 9520,
+    "end_ms": 14640,
+    "confidence": 0.7750655250488978,
+    "text": "It randomly had to happen. Some TikToker took a video of Sonu and he was happy."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 383,
+    "start_ms": 15020,
+    "end_ms": 23400,
+    "confidence": 0.7750655250488978,
+    "text": "So, what Zomato did, they changed the display picture to Sonu and wrote fan account, happy rider."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 384,
+    "start_ms": 23400,
+    "end_ms": 29980,
+    "confidence": 0.8621304225278775,
+    "text": "So, that was beautifully pictured and portrayed how happy Zomato people are as a family."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 385,
+    "start_ms": 0,
+    "end_ms": 7220,
+    "confidence": 0.6094333349537024,
+    "text": "Now another another have to share a meme and that meme is really here is one second."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 386,
+    "start_ms": 8900,
+    "end_ms": 17700,
+    "confidence": 0.6094333349537024,
+    "text": "See this is not me rashi rasode vikanta definitely not yash from bangluru placed 1380 orders"
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 387,
+    "start_ms": 17700,
+    "end_ms": 18440,
+    "confidence": 0.6094333349537024,
+    "text": "this year."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 388,
+    "start_ms": 18480,
+    "end_ms": 21600,
+    "confidence": 0.6094333349537024,
+    "text": "That's almost four orders a day."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 389,
+    "start_ms": 22180,
+    "end_ms": 22440,
+    "confidence": 0.6094333349537024,
+    "text": "Sorry."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 390,
+    "start_ms": 22720,
+    "end_ms": 22840,
+    "confidence": 0.6094333349537024,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 391,
+    "start_ms": 24080,
+    "end_ms": 29320,
+    "confidence": 0.680344315988194,
+    "text": "This showed how much customers are important to zomato."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 392,
+    "start_ms": 0,
+    "end_ms": 4360,
+    "confidence": 0.6671356340044914,
+    "text": "the highest ordering customers is mentioned on the me."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 393,
+    "start_ms": 4820,
+    "end_ms": 7200,
+    "confidence": 0.6671356340044914,
+    "text": "So there is a recognition to the customers too,"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 394,
+    "start_ms": 7300,
+    "end_ms": 8360,
+    "confidence": 0.6671356340044914,
+    "text": "which is beautiful."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 395,
+    "start_ms": 9300,
+    "end_ms": 14220,
+    "confidence": 0.6671356340044914,
+    "text": "Now I'll go back sharing the screen of one second."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 396,
+    "start_ms": 16280,
+    "end_ms": 18880,
+    "confidence": 0.6671356340044914,
+    "text": "There's one more and then we are done."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 397,
+    "start_ms": 20700,
+    "end_ms": 23080,
+    "confidence": 0.6671356340044914,
+    "text": "This is the main area"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 398,
+    "start_ms": 23860,
+    "end_ms": 26580,
+    "confidence": 0.6671356340044914,
+    "text": "and the main entrance is not here."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 399,
+    "start_ms": 27340,
+    "end_ms": 28320,
+    "confidence": 0.6671356340044914,
+    "text": "This is for Biryani."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 400,
+    "start_ms": 28320,
+    "end_ms": 29780,
+    "confidence": 0.4829391781094414,
+    "text": "Here Biryani, there was anyone?"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 401,
+    "start_ms": 640,
+    "end_ms": 6760,
+    "confidence": 0.8051859888736175,
+    "text": "I love biryani over Italian pasta everything I love biryani the most because it's Indian culture"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 402,
+    "start_ms": 7740,
+    "end_ms": 11140,
+    "confidence": 0.8051859888736175,
+    "text": "then therefore pizzas everything"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 403,
+    "start_ms": 13680,
+    "end_ms": 20540,
+    "confidence": 0.8051859888736175,
+    "text": "this is oh my god they have kept each and every track of recent"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 404,
+    "start_ms": 22340,
+    "end_ms": 29480,
+    "confidence": 0.8051859888736175,
+    "text": "trends or recent uh virals they have kept they have kept the hold on everything which is"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 405,
+    "start_ms": 29480,
+    "end_ms": 29920,
+    "confidence": 0.28598748077569963,
+    "text": "awesome"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 406,
+    "start_ms": 0,
+    "end_ms": 6420,
+    "confidence": 0.8151484151178165,
+    "text": "So, every company should follow it but only Zomato is doing recently. Thank you, sir."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 407,
+    "start_ms": 6620,
+    "end_ms": 11420,
+    "confidence": 0.8151484151178165,
+    "text": "Thank you, Rashi. Thank you for being so well prepared for this group discussion. I didn't"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 408,
+    "start_ms": 11420,
+    "end_ms": 16960,
+    "confidence": 0.8151484151178165,
+    "text": "anticipate that you will cross this limit. I'm happy and I appreciate you and I really"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 409,
+    "start_ms": 16960,
+    "end_ms": 20880,
+    "confidence": 0.8151484151178165,
+    "text": "have a lot of best wishes for you that you do great in life. Let's go to Purnima."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 410,
+    "start_ms": 20920,
+    "end_ms": 21920,
+    "confidence": 0.8151484151178165,
+    "text": "Thank you, sir. Thank you so much."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 411,
+    "start_ms": 22300,
+    "end_ms": 26660,
+    "confidence": 0.8151484151178165,
+    "text": "I need to really appreciate this class. Though, we are 10 in number including myself"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 412,
+    "start_ms": 26660,
+    "end_ms": 29640,
+    "confidence": 0.740625333216819,
+    "text": "but I've enjoyed the kind of discussion that is happening."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 413,
+    "start_ms": 520,
+    "end_ms": 5440,
+    "confidence": 0.7248726714438463,
+    "text": "Great, great, great. Awesome, awesome. Let's go to Purnima. Purnima, as it is that. Purnima, over to you."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 414,
+    "start_ms": 6700,
+    "end_ms": 13020,
+    "confidence": 0.7248726714438463,
+    "text": "Sir, Rashi just now mentioned the name of that musical composer, Yash Raj Muthday."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 415,
+    "start_ms": 13780,
+    "end_ms": 20580,
+    "confidence": 0.7248726714438463,
+    "text": "Also, now he has composed a music of Pepsi national theme like Pepsi theme something."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 416,
+    "start_ms": 20580,
+    "end_ms": 29540,
+    "confidence": 0.702773999849501,
+    "text": "So, just, it's trending now on Instagram. So just, they bring the Pepsi and sing the national anthem."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 417,
+    "start_ms": 1879,
+    "end_ms": 5340,
+    "confidence": 0.6915210991536748,
+    "text": "And just for the sake of making reels, people are mind-pepsi."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 418,
+    "start_ms": 6420,
+    "end_ms": 15940,
+    "confidence": 0.6915210991536748,
+    "text": "So, it's really like, it's because of the, this musical comes to the stage, so just"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 419,
+    "start_ms": 15940,
+    "end_ms": 18800,
+    "confidence": 0.6915210991536748,
+    "text": "for the sake of making reels, people are mind-pepsi."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 420,
+    "start_ms": 19560,
+    "end_ms": 24460,
+    "confidence": 0.6915210991536748,
+    "text": "So it's, it's, it's really cool if, if you, if this is the best way, like if"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 421,
+    "start_ms": 24460,
+    "end_ms": 29680,
+    "confidence": 0.6915210991536748,
+    "text": "you, because Instagram, Facebook, Twitter, all these apps now, we are the ones who"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 422,
+    "start_ms": 29680,
+    "end_ms": 29980,
+    "confidence": 0.5061159056382878,
+    "text": "use it."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 423,
+    "start_ms": 0,
+    "end_ms": 4580,
+    "confidence": 0.7445230517513609,
+    "text": "most like sitting home to this is the only thing we do now. So this is the best for PR."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 424,
+    "start_ms": 5520,
+    "end_ms": 10320,
+    "confidence": 0.7445230517513609,
+    "text": "If you want to increase the sales. So this musical, he is the one he, he also has helped"
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 425,
+    "start_ms": 10320,
+    "end_ms": 14240,
+    "confidence": 0.7445230517513609,
+    "text": "many companies like this, like not only Pepsi, but others also."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 426,
+    "start_ms": 16279,
+    "end_ms": 20880,
+    "confidence": 0.7445230517513609,
+    "text": "Yeah. It's a very good topic. In fact, to study the impact of social media advertisements"
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 427,
+    "start_ms": 20880,
+    "end_ms": 25520,
+    "confidence": 0.7445230517513609,
+    "text": "of corporate sales, people can take a topic in their black book, maybe the fifth semester."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 428,
+    "start_ms": 25520,
+    "end_ms": 29800,
+    "confidence": 0.6022025424852511,
+    "text": "It's a very decent topic, but what Rashi and Purnima are talking about. Yeah."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 429,
+    "start_ms": 0,
+    "end_ms": 7340,
+    "confidence": 0.687289280032355,
+    "text": "Okay. So, yeah. Now, this is still my topic. I've already planned for black book that"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 430,
+    "start_ms": 7340,
+    "end_ms": 15800,
+    "confidence": 0.687289280032355,
+    "text": "digital conference. I'm not, I'm not a marketing researcher. I'm an OB HR researcher. So maybe"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 431,
+    "start_ms": 15800,
+    "end_ms": 23400,
+    "confidence": 0.687289280032355,
+    "text": "your topic can be borrowed by any of these guys. Not by me. Okay. So yeah, let us talk"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 432,
+    "start_ms": 23400,
+    "end_ms": 28040,
+    "confidence": 0.687289280032355,
+    "text": "about, uh, see, uh, since already you, you people have went ahead, far ahead and"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 433,
+    "start_ms": 28040,
+    "end_ms": 29980,
+    "confidence": 0.6024520822871688,
+    "text": "in the sense that my next stop."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 434,
+    "start_ms": 0,
+    "end_ms": 5520,
+    "confidence": 0.6723225700450682,
+    "text": "is that how do companies communicate? So I think a new interesting insight,"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 435,
+    "start_ms": 5920,
+    "end_ms": 13100,
+    "confidence": 0.6723225700450682,
+    "text": "meme, it's called meme communication or meme, how do you pronounce meme or meme? How do you"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 436,
+    "start_ms": 13100,
+    "end_ms": 22420,
+    "confidence": 0.6723225700450682,
+    "text": "pronounce? So it's the meme, you can say meme. To me it's a tongue twister, meme, so meme"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 437,
+    "start_ms": 22420,
+    "end_ms": 27720,
+    "confidence": 0.6723225700450682,
+    "text": "advertisements or through memes you communicate. So what are the other channels or other forums"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 438,
+    "start_ms": 27720,
+    "end_ms": 29900,
+    "confidence": 0.5488728814636165,
+    "text": "communicate by which companies"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 439,
+    "start_ms": 0,
+    "end_ms": 3660,
+    "confidence": 0.6412876973441844,
+    "text": "companies communicate to so many people, internal as the external. So how do companies communicate?"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 440,
+    "start_ms": 3880,
+    "end_ms": 8740,
+    "confidence": 0.6412876973441844,
+    "text": "Come on. Other than mean, what are the other techniques of communicating? Come on. Yeah."
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 441,
+    "start_ms": 10380,
+    "end_ms": 15500,
+    "confidence": 0.6412876973441844,
+    "text": "Twitter, anything. Yeah. So social media profiles are there of companies. Companies"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 442,
+    "start_ms": 15500,
+    "end_ms": 25360,
+    "confidence": 0.6412876973441844,
+    "text": "have YouTube channels. Spokesperson, advertisement, sponsors. Advertisements, sponsorships. So"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 443,
+    "start_ms": 25360,
+    "end_ms": 29440,
+    "confidence": 0.5918495410266296,
+    "text": "journals and magazines, journals and magazines."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 444,
+    "start_ms": 0,
+    "end_ms": 7280,
+    "confidence": 0.7113055795227547,
+    "text": "papers, trade fairs, in marathons, companies take sponsors, they set up their banners,"
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 445,
+    "start_ms": 7560,
+    "end_ms": 11920,
+    "confidence": 0.7113055795227547,
+    "text": "posters and placards. So many things are there that is part of it. Other than this,"
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 446,
+    "start_ms": 11980,
+    "end_ms": 14860,
+    "confidence": 0.7113055795227547,
+    "text": "how do companies communicate? Come on. Yes, Rashi, you are in."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 447,
+    "start_ms": 14860,
+    "end_ms": 20780,
+    "confidence": 0.7113055795227547,
+    "text": "Linking back, linking back to my topic, body language of the communication, there is a term"
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 448,
+    "start_ms": 20780,
+    "end_ms": 29480,
+    "confidence": 0.7113055795227547,
+    "text": "which was coined by George Silverman, word of mouth, somewhat like that. Yeah, word of mouth."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 449,
+    "start_ms": 0,
+    "end_ms": 2780,
+    "confidence": 0.8454089728551538,
+    "text": "So for that, you don't have to hire someone"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 450,
+    "start_ms": 2780,
+    "end_ms": 5520,
+    "confidence": 0.8454089728551538,
+    "text": "or you have to make a social media account and do something."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 451,
+    "start_ms": 6120,
+    "end_ms": 10060,
+    "confidence": 0.8454089728551538,
+    "text": "You just have to make quality products or do a CSR."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 452,
+    "start_ms": 10360,
+    "end_ms": 13580,
+    "confidence": 0.8454089728551538,
+    "text": "Best thing nowadays, your companies are holding it"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 453,
+    "start_ms": 13580,
+    "end_ms": 16239,
+    "confidence": 0.8454089728551538,
+    "text": "and they are competing in CSR now."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 454,
+    "start_ms": 16580,
+    "end_ms": 18620,
+    "confidence": 0.8454089728551538,
+    "text": "Even for charity or something they're competing"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 455,
+    "start_ms": 18620,
+    "end_ms": 21260,
+    "confidence": 0.8454089728551538,
+    "text": "like who will invest or who will donate more."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 456,
+    "start_ms": 21780,
+    "end_ms": 23460,
+    "confidence": 0.8454089728551538,
+    "text": "So that is the way of communicating."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 457,
+    "start_ms": 23900,
+    "end_ms": 25460,
+    "confidence": 0.8454089728551538,
+    "text": "I'm linking to that topic also"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 458,
+    "start_ms": 25460,
+    "end_ms": 28760,
+    "confidence": 0.8454089728551538,
+    "text": "that how companies communicate."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 459,
+    "start_ms": 28760,
+    "end_ms": 29840,
+    "confidence": 0.5205331075661725,
+    "text": "So in that."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 460,
+    "start_ms": 0,
+    "end_ms": 6560,
+    "confidence": 0.7390198006896118,
+    "text": "and by doing CSR, they can spread word of mouth that this company is really awesome."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 461,
+    "start_ms": 6620,
+    "end_ms": 12360,
+    "confidence": 0.7390198006896118,
+    "text": "Why do I love Tata? Because ethics. I love ethics, so I love Tata. So they have made"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 462,
+    "start_ms": 12360,
+    "end_ms": 18740,
+    "confidence": 0.7390198006896118,
+    "text": "a well established communication between, they don't even know me, but they have"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 463,
+    "start_ms": 18740,
+    "end_ms": 25920,
+    "confidence": 0.7390198006896118,
+    "text": "built, they have got one thing that I like and now I'm into Tata. Same as Godrej."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 464,
+    "start_ms": 25920,
+    "end_ms": 28880,
+    "confidence": 0.6346843990458877,
+    "text": "Godrej cares about the employee's family."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 465,
+    "start_ms": 0,
+    "end_ms": 6360,
+    "confidence": 0.742637646488235,
+    "text": "a lot when it comes to me, I have a sentimental connection to God like, yeah, they love my"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 466,
+    "start_ms": 6360,
+    "end_ms": 12320,
+    "confidence": 0.742637646488235,
+    "text": "father and how they treat us, how the hospitals are free for us. So this is the way you can"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 467,
+    "start_ms": 12320,
+    "end_ms": 18860,
+    "confidence": 0.742637646488235,
+    "text": "spread word of mouth again, body language. Okay, so body language of companies, that's"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 468,
+    "start_ms": 18860,
+    "end_ms": 23600,
+    "confidence": 0.742637646488235,
+    "text": "an interesting topic, which she has touched upon. Okay, great. That's an awesome topic."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 469,
+    "start_ms": 23600,
+    "end_ms": 29840,
+    "confidence": 0.7198711581220685,
+    "text": "Okay, so let me carry forward this discussion. And when she talked about CSR,"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 470,
+    "start_ms": 0,
+    "end_ms": 7720,
+    "confidence": 0.6973049851002565,
+    "text": "companies build a very powerful brand about themselves. And so yeah, that is something"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 471,
+    "start_ms": 7720,
+    "end_ms": 13480,
+    "confidence": 0.6973049851002565,
+    "text": "very, very meaningful about it. So what are the other vehicles by which companies communicate?"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 472,
+    "start_ms": 14200,
+    "end_ms": 17300,
+    "confidence": 0.6973049851002565,
+    "text": "Okay, CSR is a powerful name of communication, what are powerful things?"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 473,
+    "start_ms": 17540,
+    "end_ms": 26600,
+    "confidence": 0.6973049851002565,
+    "text": "Through offers, through offers like Jio provide various offers like compared to Jio and Airtel,"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 474,
+    "start_ms": 26600,
+    "end_ms": 28620,
+    "confidence": 0.5483830509809761,
+    "text": "Jio is running more better."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 475,
+    "start_ms": 0,
+    "end_ms": 8160,
+    "confidence": 0.8101491874533585,
+    "text": "Let's recharge ranges are different less we can say it provides own mobiles so geo we can say"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 476,
+    "start_ms": 8160,
+    "end_ms": 14680,
+    "confidence": 0.8101491874533585,
+    "text": "body language the body language of geo so body language of corporates okay it reflects on their"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 477,
+    "start_ms": 14680,
+    "end_ms": 19880,
+    "confidence": 0.8101491874533585,
+    "text": "policies and it reflects on how they engage with so many people okay great great awesome"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 478,
+    "start_ms": 19880,
+    "end_ms": 24760,
+    "confidence": 0.8101491874533585,
+    "text": "nice point something very interesting just think about what are the other vehicles other"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 479,
+    "start_ms": 24760,
+    "end_ms": 29840,
+    "confidence": 0.731972958550475,
+    "text": "than what we just mentioned about so many things advertisements social media posts"
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 480,
+    "start_ms": 5639,
+    "end_ms": 16219,
+    "confidence": 0.6558160074475111,
+    "text": "I can give you an example, recently a cold war happened on Twitter. I am on Twitter."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 481,
+    "start_ms": 17140,
+    "end_ms": 22700,
+    "confidence": 0.6558160074475111,
+    "text": "I am not a person to tweet but I observe how people behave on Twitter. So on Twitter only"
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 482,
+    "start_ms": 22700,
+    "end_ms": 29980,
+    "confidence": 0.6386686107084011,
+    "text": "it happened between HDFC and ICICI bank and personally I like ICICI bank because obviously"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 483,
+    "start_ms": 0,
+    "end_ms": 7440,
+    "confidence": 0.8771016405507769,
+    "text": "it's hustle free but HDFC sorry if this is gonna go on YouTube HDFC is not doing my bank account"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 484,
+    "start_ms": 8000,
+    "end_ms": 16560,
+    "confidence": 0.8771016405507769,
+    "text": "so HDFC is really slow and app is really really even to add a pay you have to do a hell lot of"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 485,
+    "start_ms": 16560,
+    "end_ms": 22920,
+    "confidence": 0.8771016405507769,
+    "text": "process but coming back uh it have it had a cold war between them how they were trolling"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 486,
+    "start_ms": 22920,
+    "end_ms": 28740,
+    "confidence": 0.8771016405507769,
+    "text": "each other and how they were talking to each other not hurting the sentiments but you can"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 487,
+    "start_ms": 28740,
+    "end_ms": 29800,
+    "confidence": 0.44548409679790035,
+    "text": "clearly see that"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 488,
+    "start_ms": 0,
+    "end_ms": 3980,
+    "confidence": 0.7351596918062702,
+    "text": "how much hated those two company have for each other."
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 489,
+    "start_ms": 4340,
+    "end_ms": 7480,
+    "confidence": 0.7351596918062702,
+    "text": "So that is a Cold War between on social platform."
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 490,
+    "start_ms": 8800,
+    "end_ms": 10740,
+    "confidence": 0.7351596918062702,
+    "text": "I understand that this corporate rivalries,"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 491,
+    "start_ms": 10940,
+    "end_ms": 13300,
+    "confidence": 0.7351596918062702,
+    "text": "they take various forms, but Cold War,"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 492,
+    "start_ms": 13540,
+    "end_ms": 15140,
+    "confidence": 0.7351596918062702,
+    "text": "is it a form of a communication"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 493,
+    "start_ms": 15140,
+    "end_ms": 17020,
+    "confidence": 0.7351596918062702,
+    "text": "where company is talking to people"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 494,
+    "start_ms": 17020,
+    "end_ms": 18620,
+    "confidence": 0.7351596918062702,
+    "text": "or maybe the reaction,"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 495,
+    "start_ms": 19040,
+    "end_ms": 22160,
+    "confidence": 0.7351596918062702,
+    "text": "maybe ICIC or HDFC reacting systematically"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 496,
+    "start_ms": 22160,
+    "end_ms": 24600,
+    "confidence": 0.7351596918062702,
+    "text": "or reacting constricting norms,"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 497,
+    "start_ms": 25580,
+    "end_ms": 27560,
+    "confidence": 0.7351596918062702,
+    "text": "it is equally respectable"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 498,
+    "start_ms": 27560,
+    "end_ms": 29540,
+    "confidence": 0.5624118696629359,
+    "text": "that how a company responds."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 499,
+    "start_ms": 0,
+    "end_ms": 5340,
+    "confidence": 0.7638742821840815,
+    "text": "when something wrong happens. So how you respond, that equally tells more about the company."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 500,
+    "start_ms": 6180,
+    "end_ms": 11580,
+    "confidence": 0.7638742821840815,
+    "text": "I remember in 90s, this Kola and Pepsi war was very common. They had all the celebrity"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 501,
+    "start_ms": 11580,
+    "end_ms": 15600,
+    "confidence": 0.7638742821840815,
+    "text": "endorsements, Salman Khan and so many other people and so many celebrities endorsing"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 502,
+    "start_ms": 15600,
+    "end_ms": 19180,
+    "confidence": 0.7638742821840815,
+    "text": "a particular brand. I think Akshay Kumar was there, Shah Rukh Khan was there, Hrithik"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 503,
+    "start_ms": 19180,
+    "end_ms": 25680,
+    "confidence": 0.7638742821840815,
+    "text": "Roshan was advertising for Kolas. There was a big war between Pepsi and Kola and"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 504,
+    "start_ms": 25680,
+    "end_ms": 29900,
+    "confidence": 0.6252201556019651,
+    "text": "that war was very visible. And then we all"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 505,
+    "start_ms": 0,
+    "end_ms": 8340,
+    "confidence": 0.8275584283211267,
+    "text": "this war between this Nirma and Sarv and so many wars are there. But even how you react to those"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 506,
+    "start_ms": 8340,
+    "end_ms": 15100,
+    "confidence": 0.8275584283211267,
+    "text": "cold wars, even that tells a lot about your strategy, about your way of dealing with your"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 507,
+    "start_ms": 15100,
+    "end_ms": 21320,
+    "confidence": 0.8275584283211267,
+    "text": "opponents, even that becomes a part of the oral strategy. Anything else that you like to"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 508,
+    "start_ms": 21320,
+    "end_ms": 26080,
+    "confidence": 0.8275584283211267,
+    "text": "contribute, that you like to add upon and reflect on it or share your perspective?"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 509,
+    "start_ms": 26080,
+    "end_ms": 29980,
+    "confidence": 0.6870452637720162,
+    "text": "Okay, so let me slightly take this"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 510,
+    "start_ms": 0,
+    "end_ms": 5820,
+    "confidence": 0.7598018575349056,
+    "text": "Let's stop it to a different level. How many of you are doing internships or have done"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 511,
+    "start_ms": 5820,
+    "end_ms": 11200,
+    "confidence": 0.7598018575349056,
+    "text": "internship in the past and what were your experiences there when you were working in"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 512,
+    "start_ms": 11200,
+    "end_ms": 17960,
+    "confidence": 0.7598018575349056,
+    "text": "that company? How was company, what strategy companies, companies had in place, how the"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 513,
+    "start_ms": 17960,
+    "end_ms": 23460,
+    "confidence": 0.7598018575349056,
+    "text": "PR machinery or the PR department of the company was functioning so that ultimately"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 514,
+    "start_ms": 23460,
+    "end_ms": 27680,
+    "confidence": 0.7598018575349056,
+    "text": "they achieved the desired outcomes which they are wanting for themselves. Anybody"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 515,
+    "start_ms": 27680,
+    "end_ms": 29840,
+    "confidence": 0.6467002439222119,
+    "text": "wants to share their experiences on that front?"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 516,
+    "start_ms": 0,
+    "end_ms": 29980,
+    "confidence": 0.3815392017710777,
+    "text": "Maybe. Hello. Yes. No, no"
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 517,
+    "start_ms": 679,
+    "end_ms": 5980,
+    "confidence": 0.7271464012024722,
+    "text": "I would, I would really love to advise you that, please, please, please have some internship"
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 518,
+    "start_ms": 5980,
+    "end_ms": 11640,
+    "confidence": 0.7271464012024722,
+    "text": "experience on your resume that really adds a lot of value and you should really have."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 519,
+    "start_ms": 13340,
+    "end_ms": 16760,
+    "confidence": 0.7271464012024722,
+    "text": "I can, Tenzi, Tenzi wants to say something, yes, Tenzi, go ahead."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 520,
+    "start_ms": 16980,
+    "end_ms": 23600,
+    "confidence": 0.7271464012024722,
+    "text": "Like I haven't completed internship, but now I have some through some link or some"
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 521,
+    "start_ms": 23600,
+    "end_ms": 23940,
+    "confidence": 0.7271464012024722,
+    "text": "Google."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 522,
+    "start_ms": 24020,
+    "end_ms": 27500,
+    "confidence": 0.7271464012024722,
+    "text": "I just searched about it and I joined that meeting."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 523,
+    "start_ms": 27500,
+    "end_ms": 29640,
+    "confidence": 0.45640486026292704,
+    "text": "It was very, approx 400."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 524,
+    "start_ms": 0,
+    "end_ms": 6620,
+    "confidence": 0.8286482203881818,
+    "text": "so in which it depends upon us we have to do internship or not so they gave us"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 525,
+    "start_ms": 6620,
+    "end_ms": 12540,
+    "confidence": 0.8286482203881818,
+    "text": "some target to that target after achieving that target now they will had"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 526,
+    "start_ms": 12540,
+    "end_ms": 18460,
+    "confidence": 0.8286482203881818,
+    "text": "given some gift or like cash amount so this is the one way and they said us"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 527,
+    "start_ms": 18460,
+    "end_ms": 23760,
+    "confidence": 0.8286482203881818,
+    "text": "keep your if you want to join people like if we are giving"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 528,
+    "start_ms": 23760,
+    "end_ms": 28720,
+    "confidence": 0.8286482203881818,
+    "text": "presentations in college they can collect more number of people and not"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 529,
+    "start_ms": 28720,
+    "end_ms": 29980,
+    "confidence": 0.480877425413109,
+    "text": "only in Mumbai like"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 530,
+    "start_ms": 0,
+    "end_ms": 5400,
+    "confidence": 0.8682138302396175,
+    "text": "all over contact wherever we have through friends. So I thought this was also one of"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 531,
+    "start_ms": 6240,
+    "end_ms": 14700,
+    "confidence": 0.8682138302396175,
+    "text": "the communication where college students has like they are in the mindset to do internships."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 532,
+    "start_ms": 14820,
+    "end_ms": 20400,
+    "confidence": 0.8682138302396175,
+    "text": "So this was one of the best way. They said like give us the contact number and we will"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 533,
+    "start_ms": 20400,
+    "end_ms": 24760,
+    "confidence": 0.8682138302396175,
+    "text": "communicate with the college and with the authority and everything was done that way."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 534,
+    "start_ms": 24760,
+    "end_ms": 29240,
+    "confidence": 0.751641412719356,
+    "text": "So I just left it. It was not comfortable for me. So this was one of these."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 535,
+    "start_ms": 0,
+    "end_ms": 7160,
+    "confidence": 0.7472223017417081,
+    "text": "we can say they have kept as HR department and marketing where this department work like"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 536,
+    "start_ms": 8400,
+    "end_ms": 9860,
+    "confidence": 0.7472223017417081,
+    "text": "creating sessions and all."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 537,
+    "start_ms": 11080,
+    "end_ms": 15220,
+    "confidence": 0.7472223017417081,
+    "text": "Thank you, sir. Densy for sharing that. Let us go to Padmini. She has raised her hand."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 538,
+    "start_ms": 15600,
+    "end_ms": 20200,
+    "confidence": 0.7472223017417081,
+    "text": "Padmini over to you. We have last four or five minutes. So maybe one or two comments"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 539,
+    "start_ms": 20200,
+    "end_ms": 23280,
+    "confidence": 0.7472223017417081,
+    "text": "and then we'll wind up the session and I'll upload this on YouTube. It will be there"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 540,
+    "start_ms": 23280,
+    "end_ms": 27040,
+    "confidence": 0.7472223017417081,
+    "text": "for your future reference because this is one of the excellent group discussion that"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 541,
+    "start_ms": 27040,
+    "end_ms": 29980,
+    "confidence": 0.7628854958391593,
+    "text": "I had. Thank you so much and come on."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 542,
+    "start_ms": 0,
+    "end_ms": 11980,
+    "confidence": 0.7252036077375688,
+    "text": "Any final quick comments about corporate communication, any experience, any notes or any personal insights that you have or you have read or you have come across or whatever notes I have shared, maybe you agree or disagree, whatever you can share."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 543,
+    "start_ms": 12300,
+    "end_ms": 15940,
+    "confidence": 0.7252036077375688,
+    "text": "Let us go to Padmini. Padmini, you raised your hand. Padmini?"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 544,
+    "start_ms": 17160,
+    "end_ms": 17900,
+    "confidence": 0.7267525670498363,
+    "text": "Yes sir."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 545,
+    "start_ms": 18220,
+    "end_ms": 19000,
+    "confidence": 0.7267525670498363,
+    "text": "Padmini, go ahead."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 546,
+    "start_ms": 19100,
+    "end_ms": 29980,
+    "confidence": 0.7267525670498363,
+    "text": "Yes sir, I was reading an article. It was about the sixth corporate communication summit. I guess it was held at..."
+  },
+  {
+    "chunk_idx": 89,
+    "seq": 547,
+    "start_ms": 0,
+    "end_ms": 4640,
+    "confidence": 0.814228123390971,
+    "text": "Delhi or Mumbai, I don't know the location properly, there were many big companies that"
+  },
+  {
+    "chunk_idx": 89,
+    "seq": 548,
+    "start_ms": 4640,
+    "end_ms": 10720,
+    "confidence": 0.814228123390971,
+    "text": "participated like Coca Cola, Dell, and then Bajaj Alliance and all. So they came to a"
+  },
+  {
+    "chunk_idx": 89,
+    "seq": 549,
+    "start_ms": 10720,
+    "end_ms": 17360,
+    "confidence": 0.814228123390971,
+    "text": "conclusion that currently there are about 50% of the Gen Y people in the corporate"
+  },
+  {
+    "chunk_idx": 89,
+    "seq": 550,
+    "start_ms": 17360,
+    "end_ms": 26240,
+    "confidence": 0.814228123390971,
+    "text": "world. And up till 2025, this percentage will go up to 75%. So what companies are"
+  },
+  {
+    "chunk_idx": 89,
+    "seq": 551,
+    "start_ms": 26240,
+    "end_ms": 29580,
+    "confidence": 0.6542807501407862,
+    "text": "trying to do is they are trying to target the younger."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 552,
+    "start_ms": 0,
+    "end_ms": 11460,
+    "confidence": 0.7922351991096717,
+    "text": "And as the younger audience is more techno-savvy, they are trying to develop their ways and they are trying to adopt more technical ways of communicating with people."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 553,
+    "start_ms": 11460,
+    "end_ms": 29620,
+    "confidence": 0.7722228258796392,
+    "text": "I guess there is an influence of artificial intelligence, like artificial intelligence is being adopted and it is affecting the corporate world and it is changing everything up and down."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 554,
+    "start_ms": 639,
+    "end_ms": 6180,
+    "confidence": 0.7318815193616155,
+    "text": "Thank you Padmini for touching that interesting aspects. Now, we will go to Rashi and we will"
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 555,
+    "start_ms": 6180,
+    "end_ms": 10920,
+    "confidence": 0.7318815193616155,
+    "text": "tell Vedika to wind up the session. Rashi is today very well prepared and she gave"
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 556,
+    "start_ms": 10920,
+    "end_ms": 15400,
+    "confidence": 0.7318815193616155,
+    "text": "us lot of food for thought like other guys. Rashi second last and then after Vedika's"
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 557,
+    "start_ms": 15400,
+    "end_ms": 15680,
+    "confidence": 0.7318815193616155,
+    "text": "comment."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 558,
+    "start_ms": 16820,
+    "end_ms": 18480,
+    "confidence": 0.7318815193616155,
+    "text": "One more beautiful thought."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 559,
+    "start_ms": 20660,
+    "end_ms": 21380,
+    "confidence": 0.7318815193616155,
+    "text": "Go ahead Rashi."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 560,
+    "start_ms": 21380,
+    "end_ms": 29920,
+    "confidence": 0.597386487627747,
+    "text": "Sir, there is one more thing. Whenever a company is trying to promote"
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 561,
+    "start_ms": 1939,
+    "end_ms": 5980,
+    "confidence": 0.7235992048195221,
+    "text": "There are executives not in the hands of company to control."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 562,
+    "start_ms": 6660,
+    "end_ms": 13460,
+    "confidence": 0.7235992048195221,
+    "text": "Linking back to again to my example of Tanishq, I want to show, I had a screenshot of it."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 563,
+    "start_ms": 13800,
+    "end_ms": 15780,
+    "confidence": 0.7235992048195221,
+    "text": "I want to show the tweets of two people."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 564,
+    "start_ms": 16239,
+    "end_ms": 22720,
+    "confidence": 0.7235992048195221,
+    "text": "One is support, two, both of them actually are supporting the Tanishq ad, but you can"
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 565,
+    "start_ms": 22720,
+    "end_ms": 29300,
+    "confidence": 0.720876147101673,
+    "text": "see sometimes people's tweet really ruins the whole environment."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 566,
+    "start_ms": 1660,
+    "end_ms": 11460,
+    "confidence": 0.7751305295418323,
+    "text": "Tanishk built awesome thing that even after withdrawing the ad, it made us believe that we did wrong. Tanishk was not wrong."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 567,
+    "start_ms": 11720,
+    "end_ms": 18460,
+    "confidence": 0.7751305295418323,
+    "text": "But when there was others guy tweet, even if it was of supporting Tanishk, they had errors."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 568,
+    "start_ms": 19200,
+    "end_ms": 25140,
+    "confidence": 0.7751305295418323,
+    "text": "And he is none other. I don't want to mention the name but anyways screenshot will show the name. I want to share."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 569,
+    "start_ms": 25140,
+    "end_ms": 29700,
+    "confidence": 0.7087600237025425,
+    "text": "Don't share the screen because social media is full of abuses."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 570,
+    "start_ms": 0,
+    "end_ms": 2960,
+    "confidence": 0.6943252134255176,
+    "text": "So it has a negative aspects also no positive aspects are also there."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 571,
+    "start_ms": 3320,
+    "end_ms": 5620,
+    "confidence": 0.6943252134255176,
+    "text": "So I am happy that you touched upon that part."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 572,
+    "start_ms": 5940,
+    "end_ms": 7340,
+    "confidence": 0.6943252134255176,
+    "text": "Let us give Vedika the final word."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 573,
+    "start_ms": 7580,
+    "end_ms": 11260,
+    "confidence": 0.6943252134255176,
+    "text": "Vedika she has raised a hand and she's only student she has raised a hand."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 574,
+    "start_ms": 11400,
+    "end_ms": 14520,
+    "confidence": 0.6943252134255176,
+    "text": "So Vedika just closing remarks from your side."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 575,
+    "start_ms": 15780,
+    "end_ms": 16079,
+    "confidence": 0.6943252134255176,
+    "text": "Yeah, sir."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 576,
+    "start_ms": 16300,
+    "end_ms": 17760,
+    "confidence": 0.6943252134255176,
+    "text": "I actually I want to conclude."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 577,
+    "start_ms": 18460,
+    "end_ms": 19420,
+    "confidence": 0.6943252134255176,
+    "text": "So can I do that?"
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 578,
+    "start_ms": 19660,
+    "end_ms": 21240,
+    "confidence": 0.6943252134255176,
+    "text": "I have to give some conclusion."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 579,
+    "start_ms": 22300,
+    "end_ms": 22820,
+    "confidence": 0.6943252134255176,
+    "text": "The stage is yours."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 580,
+    "start_ms": 22820,
+    "end_ms": 22860,
+    "confidence": 0.6943252134255176,
+    "text": "The stage is yours."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 581,
+    "start_ms": 23020,
+    "end_ms": 24060,
+    "confidence": 0.6943252134255176,
+    "text": "We have only one left."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 582,
+    "start_ms": 24620,
+    "end_ms": 25280,
+    "confidence": 0.6943252134255176,
+    "text": "Go ahead Vedika."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 583,
+    "start_ms": 26280,
+    "end_ms": 29980,
+    "confidence": 0.4529075192838401,
+    "text": "Yeah, so according to me in conclusion the\u2026"
+  },
+  {
+    "chunk_idx": 95,
+    "seq": 584,
+    "start_ms": 0,
+    "end_ms": 6580,
+    "confidence": 0.7155772732024824,
+    "text": "organization has to be very much sustained and successful so that their effective corporate"
+  },
+  {
+    "chunk_idx": 95,
+    "seq": 585,
+    "start_ms": 6580,
+    "end_ms": 12620,
+    "confidence": 0.7155772732024824,
+    "text": "communication strategies, because it is very essential and because of that they can achieve"
+  },
+  {
+    "chunk_idx": 95,
+    "seq": 586,
+    "start_ms": 12620,
+    "end_ms": 19040,
+    "confidence": 0.7155772732024824,
+    "text": "like great heights. And I can say from the unpredictable nature and the diversity,"
+  },
+  {
+    "chunk_idx": 95,
+    "seq": 587,
+    "start_ms": 19300,
+    "end_ms": 24380,
+    "confidence": 0.7155772732024824,
+    "text": "the changes in the stakeholders, drawing up a corporate communication strategy can in"
+  },
+  {
+    "chunk_idx": 95,
+    "seq": 588,
+    "start_ms": 24380,
+    "end_ms": 29980,
+    "confidence": 0.7155772732024824,
+    "text": "fact be very challenging for every organization, for every company. So sometimes stakeholders"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 589,
+    "start_ms": 0,
+    "end_ms": 5640,
+    "confidence": 0.6760918910897712,
+    "text": "still lack a commitment to an organization, no matter how the organization tries to keep"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 590,
+    "start_ms": 5640,
+    "end_ms": 13380,
+    "confidence": 0.6760918910897712,
+    "text": "them informed or involved, no matter how transparent they are. So, according to me,"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 591,
+    "start_ms": 14340,
+    "end_ms": 20300,
+    "confidence": 0.6760918910897712,
+    "text": "whatever the circumstances are, transparency and building the trust is very much important"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 592,
+    "start_ms": 20300,
+    "end_ms": 27500,
+    "confidence": 0.6760918910897712,
+    "text": "for every organization. So, thank you Vedika for the support. And we are end of the"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 593,
+    "start_ms": 27500,
+    "end_ms": 29920,
+    "confidence": 0.6553891877629878,
+    "text": "session. Now, let me thank each one of you. I really."
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 594,
+    "start_ms": 0,
+    "end_ms": 6560,
+    "confidence": 0.7339894171296568,
+    "text": "appreciate and I have your names and I'm really thankful. I'm really glad that everybody"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 595,
+    "start_ms": 6560,
+    "end_ms": 13080,
+    "confidence": 0.7339894171296568,
+    "text": "contributed and thank you so much for making my day. It was a wonderful discussion and"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 596,
+    "start_ms": 13620,
+    "end_ms": 19480,
+    "confidence": 0.7339894171296568,
+    "text": "I wish you the very best and this is the power of giving us the opportunity to get"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 597,
+    "start_ms": 19480,
+    "end_ms": 25780,
+    "confidence": 0.7339894171296568,
+    "text": "more opportunities that only like eventful. I will be giving my best, but only I want"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 598,
+    "start_ms": 26259,
+    "end_ms": 29980,
+    "confidence": 0.6281041183570419,
+    "text": "what you call as enthusiasm from your side. If you are enthusiastic like this."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 599,
+    "start_ms": 0,
+    "end_ms": 4380,
+    "confidence": 0.7843517251417269,
+    "text": "the way you are today, I would, I would be doubly enthusiastic. And I believe that online"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 600,
+    "start_ms": 4380,
+    "end_ms": 9700,
+    "confidence": 0.7843517251417269,
+    "text": "lecture is not a constraint in itself. In fact, it has a lot of merits though we are"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 601,
+    "start_ms": 9700,
+    "end_ms": 13800,
+    "confidence": 0.7843517251417269,
+    "text": "missing a college days, but it can make us learn better if we regularly interact,"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 602,
+    "start_ms": 13960,
+    "end_ms": 17940,
+    "confidence": 0.7843517251417269,
+    "text": "if we become well-prepared in class and if we add to class discussions, because"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 603,
+    "start_ms": 18520,
+    "end_ms": 21880,
+    "confidence": 0.7843517251417269,
+    "text": "you know something, I know something, if everybody contributes, we will collectively"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 604,
+    "start_ms": 21880,
+    "end_ms": 26220,
+    "confidence": 0.7843517251417269,
+    "text": "end up learning many more things. So that is precisely the purpose and this discussion"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 605,
+    "start_ms": 26220,
+    "end_ms": 29980,
+    "confidence": 0.76218765252032,
+    "text": "has really helped us. So thank you so much for being at your best. You really made my day."
+  },
+  {
+    "chunk_idx": 99,
+    "seq": 606,
+    "start_ms": 620,
+    "end_ms": 12120,
+    "confidence": 0.8068094278996026,
+    "text": "Thank you so much. I am uploading all the class group discussion on YouTube. You can see that Class A, Class B and Class C. I will not judge who is better and who is all these things. That is none of my business."
+  },
+  {
+    "chunk_idx": 99,
+    "seq": 607,
+    "start_ms": 12980,
+    "end_ms": 20760,
+    "confidence": 0.8068094278996026,
+    "text": "But you can definitely see to yourself that which class has made more meaning and contributed more. That I leave it to you all."
+  },
+  {
+    "chunk_idx": 99,
+    "seq": 608,
+    "start_ms": 21080,
+    "end_ms": 25180,
+    "confidence": 0.8068094278996026,
+    "text": "So thank you so much. It was nice being with you all. Thank you so much. God bless you all. Take care."
+  },
+  {
+    "chunk_idx": 99,
+    "seq": 609,
+    "start_ms": 25180,
+    "end_ms": 27660,
+    "confidence": 0.7429917689165259,
+    "text": "Thank you so much. Bye."
+  }
+]

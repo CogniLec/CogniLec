@@ -1,0 +1,13 @@
+{
+  "source_video": "vidssave.com Group Discussion in SSB Interview _ SSB Interview Group Discussion Live Demo & Feedback _ SSB 2023 360P.mp4",
+  "slug": "vidssave_com_group_discussion_in_ssb_interview_ssb_interview",
+  "duration_s": 713.5,
+  "n_chunks": 24,
+  "n_speech_chunks": 24,
+  "speech_chunk_ratio": 1.0,
+  "n_utterances": 105,
+  "extract_time_s": 0.5,
+  "pipeline_time_s": 112.6,
+  "real_time_factor": 0.158,
+  "asr_model": "medium.en (GPU, int8_float16) -- closer to production quality than tiny.en; still not large-v3/large-v3-turbo"
+}
