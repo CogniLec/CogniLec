@@ -63,3 +63,19 @@ tiers:
     endpoint: "https://api.together.xyz/v1"
     timeout_s: 30
     gpu_required: false
+
+# S69 — multi-LoRA adapter registry. One base model (tier_1) served with
+# per-agent adapters loaded via vLLM's multi-LoRA support; version pinned
+# per adapter so `agent_runs.adapter_version` (T69.6) is always traceable
+# back to a specific registry entry.
+adapters:
+  A2_NOTE_SYNTHESIS:
+    name: "a2-note-style-lora"
+    version: "v1.0.0"
+    base_model: "microsoft/Phi-3-mini-3.8B-4bit"
+    path: "/models/loras/a2_note_style/v1.0.0"
+  A6_SYLLABUS_EXTRACTION:
+    name: "a6-syllabus-extraction-lora"
+    version: "v1.0.0"
+    base_model: "microsoft/Phi-3-mini-3.8B-4bit"
+    path: "/models/loras/a6_syllabus_extraction/v1.0.0"

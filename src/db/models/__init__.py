@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from src.db.models.agent_run import AgentRun
 from src.db.models.base import Base
+from src.db.models.correction import Correction
 from src.db.models.flashcard import Flashcard, FlashcardReview
 from src.db.models.note_asset import AssetType, NoteAsset
 from src.db.models.note_link import NoteLink, NoteLinkType
@@ -21,6 +22,7 @@ __all__ = [
     "AgentRun",
     "AssetType",
     "Base",
+    "Correction",
     "Flashcard",
     "FlashcardReview",
     "NoteAsset",

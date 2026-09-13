@@ -475,6 +475,53 @@ by code changes alone.
   deps (see S63 note above); it runs via `uvx semgrep` instead, callable
   by anyone with `uv`/`uvx` on PATH without touching the shared `.venv`.
 
+## 12. Block 12 (S65-S69) complete — fine-tuning & the data flywheel
+
+- **S65**: fully real against the Postgres test DB - all six correction
+  capture points (`src/services/finetuning/corrections.py`) insert into the
+  new `corrections` table (migration `c4e7f2a9b6d1`) inside the same
+  transaction as the live-row update they apply (T65.5), immutability is
+  enforced by real Postgres `RULE`s (`ON UPDATE/DELETE ... DO INSTEAD
+  NOTHING`) rather than only an app-layer convention (T65.2, genuinely
+  exercised by direct `UPDATE`/`DELETE` SQL in the test), and export
+  (`src/services/finetuning/export.py`) genuinely invokes the real `dvc`
+  CLI (`.venv/bin/dvc`) against a scratch `dvc init`-ed repo for T65.4.
+  `corrections.user_id`'s FK deliberately has no `ON DELETE` action
+  (defaults to RESTRICT): `ON DELETE SET NULL` would make Postgres issue an
+  UPDATE against `corrections` whenever a referenced user is deleted, which
+  collided with the immutability rule (`InternalServerError: referential
+  integrity query ... gave unexpected result` - found while running the
+  full suite, not anticipated up front) - RESTRICT only runs an
+  existence-check `SELECT`, which the rule doesn't intercept.
+- **S66-S69**: no GPU-loaded model exists in this sandbox (gap #2), so the
+  actual Unsloth/PEFT distillation run (S66), the sentence-transformers v3
+  contrastive training run (S67), the Whisper/Canary fine-tuning run (S68),
+  and real vLLM multi-LoRA serving with actually-trained adapters (S69) are
+  all honest skips. What's implemented for real in each: dataset merging
+  and precision/recall/throughput evaluation logic against an injectable
+  `ClassifierBackend` (`src/services/finetuning/distillation.py`, same
+  injection pattern as S54/S63's fake backends); hard-negative mining via
+  brute-force numpy cosine similarity (no `faiss`/`faiss-gpu` package is
+  installed - a new instance of gap #2, not a separate gap) and clustering
+  purity computation (`src/services/finetuning/embedding_finetune.py`) -
+  S67's staged rollout/rollback reuses S25's `backfill_version`
+  (`src/ml/embedding/backfill.py`) unchanged, since rollback is just that
+  same call with `from_version`/`to_version` reversed, already tested for
+  real in `tests/test_s25_embedding.py`; a real Levenshtein-based WER
+  function and per-condition comparison (`src/services/finetuning/
+  asr_adaptation.py`), genuinely computed against hand-constructed
+  reference/hypothesis pairs (same synthetic-but-real convention as
+  S52-S54/S64's evaluation sets) - the actual 10-20h local audio corpus
+  needed for S68 doesn't exist either (gap #1); and adapter routing with
+  load-failure fallback plus a real `config/models.yaml` `adapters`
+  registry section (`src/services/finetuning/lora_registry.py`).
+  `agent_runs.adapter_version` (T69.6) is a real new nullable column,
+  genuinely written and read in a DB test.
+- T66.6 (A/B on live sessions) and T69.4/T69.5 (LoRA quality/accuracy
+  improvement over base) are additionally blocked by having no live-session
+  pipeline with real users and no actually-trained adapters respectively -
+  same gap class as S56's human-in-the-loop evaluations, not a new gap.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
