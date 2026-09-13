@@ -145,6 +145,7 @@ class Settings(BaseSettings):
     DIARISATION_MODEL: str = "pyannote/speaker-diarization-3.1"
     DIARISATION_MAX_SPEAKERS: int = 5
     NFR_S4_AUDIT_ENABLED: bool = True
+    DIARISATION_SERVICE_URL: str = "http://localhost:8100"
 
     # Dual-ASR ensemble (S21)
     SECONDARY_ASR_MODEL: str = "nvidia/canary-25b-12b-pt"

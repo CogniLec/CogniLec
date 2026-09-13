@@ -482,6 +482,48 @@ services:
       - llm
 
   # ---------------------------------------------------------------------------
+  # Diarisation service — S20 follow-up (gap #17/#18): pyannote.audio isolated
+  # as its own container, mirroring vLLM above, because pyannote.audio
+  # requires numpy>=2 which is ABI-incompatible with the main image's
+  # numpy 1.26.x pin.
+  # ---------------------------------------------------------------------------
+  diarisation:
+    build:
+      context: ./services/diarisation-service
+    container_name: lis-diarisation
+    hostname: diarisation
+    ports:
+      - "${DIARISATION_SERVICE_PORT:-8100}:8100"
+    environment:
+      HF_TOKEN: ${HF_TOKEN:-}
+      HF_HOME: /models/huggingface
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-minio:9000}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+      MINIO_SECURE: ${MINIO_SECURE:-false}
+      MINIO_BUCKET_AUDIO: ${MINIO_BUCKET_AUDIO:-lis-audio}
+      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+    volumes:
+      - models:/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8100/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - internal
+    profiles:
+      - diarisation
+
+  # ---------------------------------------------------------------------------
   # LiteLLM proxy — S37 five-tier failover ladder router
   # ---------------------------------------------------------------------------
   litellm:

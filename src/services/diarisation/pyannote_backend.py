@@ -14,6 +14,17 @@ NFR-S4: pyannote's `DiarizeOutput.speaker_embeddings` (a real per-speaker
 voiceprint array) is deliberately never read or persisted anywhere -- only
 `speaker_diarization`'s (start, end, local-speaker-label) turns are used,
 matching the session-scoped, non-biometric SpeakerTag contract.
+
+REFERENCE ONLY (gap #17/#18 follow-up): this direct-import class is kept
+here as documentation of the shape pyannote's output takes and as a
+standalone script/notebook entry point -- it is NOT the production wiring.
+Production diarisation now goes through the isolated
+`services/diarisation-service/` container (its `app.py` contains the same
+pipeline logic, adapted into a FastAPI endpoint) via
+`src/services/diarisation/http_backend.py`'s `HTTPDiarisationBackend`,
+mirroring how S36 isolates vLLM as its own docker-compose service rather
+than an in-process import. This file is left in place, unmodified in
+behaviour, only as reference.
 """
 
 from __future__ import annotations
@@ -32,8 +43,8 @@ class PyannoteBackend:
     """Wraps pyannote.audio's speaker-diarization-3.1 pipeline."""
 
     def __init__(self, hf_token: str, device: str = "cuda") -> None:
-        from pyannote.audio import Pipeline  # lazy: see module docstring
         import torch
+        from pyannote.audio import Pipeline  # lazy: see module docstring
 
         self._pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization-3.1", token=hf_token

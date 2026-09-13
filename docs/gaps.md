@@ -843,6 +843,83 @@ real-user level the plan's acceptance criteria ultimately ask for.
   be worth the effort vs. (a)). This has not been built — only the
   Protocol-conforming backend class and one-off proof exist so far.
 
+## 18. Diarisation packaged as an isolated service (gap #17's option (a)) — not run/verified as a container (2026-09-14)
+
+- Gap #17 ended by naming two ways to make pyannote usable in production:
+  (a) an isolated service/container, matching how S36 isolates vLLM, or
+  (b) a from-scratch dependency resolution reconciling pyannote's numpy>=2
+  with the rest of the repo's numpy 1.26.x pin. This entry builds (a).
+- **Code added:**
+  - `services/diarisation-service/` — a new top-level deployable, sibling
+    to `src/`, NOT imported by it: `app.py` (a small FastAPI app wrapping
+    the same pyannote.audio pipeline logic as `pyannote_backend.py`,
+    adapted into `POST /diarise` — accepts either a MinIO `object_key`
+    (downloaded via boto3, same bucket/key convention as
+    `src/services/storage/client.py`) or a direct `audio_path`, plus
+    `max_speakers`, returns a JSON list of `{start_ms, end_ms,
+    speaker_index}`; `GET /health`), its own `requirements.txt` (fastapi,
+    uvicorn, pydantic, pyannote.audio, torch, numpy>=2, boto3 — a
+    completely separate dependency set from the shared `.venv`), and its
+    own `Dockerfile`.
+  - `docker-compose.yml` — a new `diarisation` service block, directly
+    mirroring the existing `vllm` block: `build.context` pointing at
+    `services/diarisation-service/`, an nvidia GPU device reservation, a
+    `curl -f http://localhost:8100/health` healthcheck, `HF_TOKEN`/MinIO
+    env passthrough, and gated behind its own `diarisation` compose
+    profile (matching the `llm` profile pattern used for `vllm`/`litellm`).
+  - `src/services/diarisation/http_backend.py` — `HTTPDiarisationBackend`,
+    a real implementation of the `DiarisationBackend` Protocol from
+    `src/services/diarisation/worker.py`, calling the isolated service
+    over HTTP with `httpx` (the same client library `src/services/llm/router.py`
+    already uses for the isolated vLLM/LiteLLM calls). Only stdlib/httpx is
+    imported in this file — never pyannote — so it stays importable in the
+    shared `.venv` with no ABI risk. A `get_diarisation_backend(settings)`
+    factory is the intended production wiring point: no code under
+    `src/workers/` currently constructs a `DiarisationWorker` at all (only
+    tests do, injecting fakes or `backend=None`), so there was no existing
+    call site to change — the factory is what a future orchestrator should
+    call.
+  - `src/core/config.py` — added `DIARISATION_SERVICE_URL` (default
+    `http://localhost:8100`), following the existing settings pattern
+    (compare `MLFLOW_TRACKING_URI`).
+  - `src/services/diarisation/pyannote_backend.py` — left in place,
+    behaviour unchanged, with its docstring updated to say plainly it is
+    now reference/documentation only (the shape of pyannote's real output)
+    and not the production path; the production path is the isolated
+    service + `HTTPDiarisationBackend`.
+  - `tests/test_diarisation_http_backend.py` — new tests for
+    `HTTPDiarisationBackend` against `httpx.MockTransport` (the same
+    mocking approach already used for `OpenverseClient` in
+    `tests/test_s62_image_retrieval.py`): request shape, successful
+    segment parsing, HTTP-error propagation, empty-segment handling, and
+    the `get_diarisation_backend` enabled/disabled factory logic. One
+    honest `pytest.mark.skip` documents that hitting the real running
+    container (GPU + pyannote weights + valid `HF_TOKEN`) is out of reach
+    here.
+- **What is NOT verified, honestly:** this sandbox cannot build or run the
+  new Docker image (no Docker build attempted here, no GPU passthrough to
+  a container, no live test against a running `diarisation` service). The
+  FastAPI app's pipeline logic was adapted from `pyannote_backend.py`
+  (already genuinely run against real audio per gap #17) but has NOT
+  itself been executed inside a container in this session — that
+  adaptation is unverified beyond code review. The `docker-compose.yml`
+  block has not been validated with `docker compose config` or an actual
+  build/up in this environment. Only the HTTP client half
+  (`HTTPDiarisationBackend`) is genuinely tested, and only against a
+  mocked transport, not the real service.
+- **Relation to gap #17:** this closes gap #17's stated "not yet built"
+  item structurally (the isolated service + Protocol-conforming HTTP
+  backend now exist as real files, following the vLLM precedent exactly as
+  suggested), but does not newly verify pyannote's real behaviour — that
+  verification still rests entirely on gap #17's one-off isolated-venv run.
+  Someone with Docker + GPU + a valid `HF_TOKEN` still needs to `docker
+  compose --profile diarisation up --build` and confirm the container
+  actually loads the pipeline and diarises real audio before this can be
+  called production-verified end to end.
+- Full shared-venv test suite re-run after this change (see below for
+  exact numbers) to confirm no regression to the 690 passed / 80 skipped
+  baseline from gap #17.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
