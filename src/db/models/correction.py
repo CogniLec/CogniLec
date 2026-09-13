@@ -6,7 +6,11 @@ captured here with the original prediction, the human-corrected value, and
 enough context to reconstruct a training example later (S66-S69). Rows are
 immutable once written (T65.2) - enforced both by never exposing an
 update/delete path in the repository layer and by a DB-level rule
-(migration `c4e7f2a9b6d1`) that rejects UPDATE/DELETE outright.
+(migration `c4e7f2a9b6d1`) that rejects UPDATE/DELETE outright. Migration
+`e8c1b4a7d2f9` carves out one narrow exception: nulling `user_id` alone,
+used only by account deletion to anonymize a deleted user's corrections
+while keeping the training signal (`original_value`/`corrected_value`/etc)
+untouched.
 """
 
 from __future__ import annotations
@@ -32,10 +36,13 @@ class Correction(Base):
     subject_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), nullable=True, index=True
     )
-    # No ON DELETE action (defaults to RESTRICT): deleting a user with
-    # corrections referencing them must fail rather than issue an UPDATE
-    # against this table - an UPDATE here would collide with the
+    # No ON DELETE action (still RESTRICT): ON DELETE SET NULL would make
+    # Postgres issue the nulling UPDATE itself, which collides with the
     # immutability rule below (see migration `c4e7f2a9b6d1`'s docstring).
+    # Instead, `deletion_service.delete_user_account` nulls this column
+    # explicitly and in-transaction before deleting the user - so the
+    # user is anonymized out of, not blocked by, their corrections - via
+    # a narrow rule exception added in migration `e8c1b4a7d2f9`.
     user_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("users.id"), nullable=True, index=True
     )

@@ -12,37 +12,33 @@ Real cascade across three surfaces:
     `user_id` (S11) and live in a separate database with no FK to DB-1, so
     they are deleted here explicitly by the caller-supplied `subject_ids`.
 
-**Genuine finding, not a gap in this code**: `corrections.user_id` has no
-`ON DELETE` action (defaults to RESTRICT, see `src/db/models/correction.py`
-and migration `c4e7f2a9b6d1`'s immutability `RULE`s), by deliberate S65
-design - an `ON DELETE SET NULL` would issue an `UPDATE` against
-`corrections`, which the immutability rule rejects, raising a Postgres
-error instead of nulling the column. The *practical* consequence for S72:
-deleting a user who has ever produced a training correction currently
-raises `IntegrityError` and the cascade aborts with nothing deleted,
-because Postgres evaluates the whole statement's FK constraints
-transactionally. This is surfaced here as a checked, reported failure mode
-(`DeletionBlockedError`) rather than silently swallowed or worked around -
-resolving it (e.g. a product decision to retain corrections
-pseudonymised after user deletion, which needs a schema change to drop the
-FK or repoint it at a tombstone row) is out of this stage's scope and is
-recorded in `docs/gaps.md`.
+`corrections.user_id` is a RESTRICT FK by deliberate S65 design (an
+`ON DELETE SET NULL` would issue an `UPDATE` against `corrections`, which
+the immutability rule from migration `c4e7f2a9b6d1` rejects). The product
+decision (`docs/gaps.md` gap #13) is to keep corrections as training
+signal but sever the identity link, not to block the deletion: this
+cascade nulls `corrections.user_id` for the user explicitly, in the same
+transaction and before `DELETE FROM users`, so RESTRICT never has anything
+left to object to. That UPDATE is only permitted at all because migration
+`e8c1b4a7d2f9` carves a narrow, session-flagged exception into the
+immutability rule - one that requires every other column (the actual
+training signal) to stay unchanged.
 """
 
 from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
+from typing import Any, cast
 
-from sqlalchemy import text
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy import CursorResult, text
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.services.storage.client import StorageClient
 from src.services.storage.models import BucketName
 
 
 class DeletionBlockedError(Exception):
-    """Raised when the DB-1 cascade cannot complete (e.g. RESTRICT on `corrections`)."""
+    """Raised when the DB-1 cascade cannot complete."""
 
 
 @dataclass
@@ -50,6 +46,7 @@ class DeletionReport:
     user_id: uuid.UUID
     objects_deleted: list[str] = field(default_factory=list)
     subjects_deleted: int = 0
+    corrections_anonymized: int = 0
     db1_deleted: bool = False
     blocked_reason: str | None = None
 
@@ -102,17 +99,17 @@ async def delete_user_account(
                 except ConnectionError:
                     pass
 
-    try:
-        async with db_session.begin_nested():
+    async with db_session.begin_nested():
+        await db_session.execute(text("SET LOCAL lis.allow_correction_anonymize = 'on'"))
+        anonymized = cast(
+            CursorResult[Any],
             await db_session.execute(
-                text("DELETE FROM users WHERE id = :uid"), {"uid": str(user_id)}
-            )
-        report.db1_deleted = True
-    except IntegrityError as exc:
-        report.blocked_reason = (
-            "corrections.user_id RESTRICT: user has training-signal corrections "
-            f"referencing them, cascade aborted with nothing deleted ({exc.orig})"
+                text("UPDATE corrections SET user_id = NULL WHERE user_id = :uid"),
+                {"uid": str(user_id)},
+            ),
         )
-        raise DeletionBlockedError(report.blocked_reason) from exc
+        report.corrections_anonymized = anonymized.rowcount or 0
+        await db_session.execute(text("DELETE FROM users WHERE id = :uid"), {"uid": str(user_id)})
+    report.db1_deleted = True
 
     return report

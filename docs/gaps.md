@@ -1254,6 +1254,37 @@ to PTH123/TRY003, and outside gap #19's scope.
   change; `pyproject.toml`/`vendor/` changes alone were confirmed correct
   via direct import checks (`genanki`, `slugify`) and the license audit
   above, independent of the full pytest run's shared-DB flakiness.
+## 23. Corrections-vs-deletion conflict resolved: anonymize, don't block (2026-09-14)
+
+- Gap #13 documented a real conflict found while building S72: a user who
+  had ever submitted a training correction (S65) could not be deleted at
+  all — `corrections.user_id`'s RESTRICT FK aborted the whole cascade.
+- **Product decision**: keep corrections (the training signal is valuable)
+  but sever the identity link on deletion, rather than block deletion.
+- **Implementation**: migration `e8c1b4a7d2f9` narrows `corrections`'
+  `corrections_no_update` immutability rule (from `c4e7f2a9b6d1`) so it
+  lets through only an UPDATE that (a) touches `user_id` and nothing else
+  (every other column must stay `IS NOT DISTINCT FROM` its old value), and
+  (b) is explicitly flagged via a session-local GUC
+  (`lis.allow_correction_anonymize`). `deletion_service.delete_user_account`
+  sets that GUC and nulls `user_id` explicitly, in the same transaction,
+  before `DELETE FROM users` — by the time the user row is deleted, no
+  `corrections` row references it, so RESTRICT never fires and the FK
+  action itself is untouched. `DeletionReport` gained a
+  `corrections_anonymized` count.
+- **Regression test**: `tests/test_s72_auth_multiuser.py::test_t72_3_deletion_of_user_with_corrections_anonymizes_not_blocks`
+  seeds a correction, deletes the user, and asserts: the user row is gone,
+  `report.corrections_anonymized == 1`, the correction row still exists,
+  its `user_id` is now NULL, and its actual training content
+  (`original_value`/`corrected_value`) is byte-identical to what was
+  inserted — the training signal survives untouched, only the identity
+  link is severed.
+- Full suite re-verification is affected by unrelated cross-worktree
+  database contention (multiple parallel sessions running `alembic
+  upgrade head` concurrently against the same shared `pg-main`) rather
+  than any regression from this change; the targeted test file passes
+  cleanly in isolation (3 passed, 3 pre-existing honest skips unrelated
+  to this fix).
 
 ## Not yet addressed
 
