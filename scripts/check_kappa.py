@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 """S05 — Inter-annotator agreement checker (Cohen's kappa).
 
-Reads a CSV with columns [utterance_id, annotator, label] and computes
-pairwise Cohen's kappa for every annotator pair.
+Reads overlap labels and computes pairwise Cohen's kappa for every
+annotator pair. Two input shapes are supported:
+
+  - JSON (long or wide): a list of records, either
+    {"utterance_id": ..., "annotator": ..., "label": ...}  (long)
+    or {"utterance_id": ..., "annotator1": ..., "annotator2": ..., ...}  (wide,
+    one column per annotator, as produced by the label export in
+    lis-eval/labels/v1/relevance/overlap.json)
+  - CSV with columns [utterance_id, annotator, label] (long form)
 
 Usage:
-    python scripts/check_kappa.py data/labels/overlap.csv
+    python scripts/check_kappa.py lis-eval/labels/v1/relevance/overlap.json
     python scripts/check_kappa.py data/labels/overlap.csv --threshold 0.75
 """
 
@@ -13,24 +20,43 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import sys
 from collections import defaultdict
 from itertools import combinations
+from pathlib import Path
 
 from sklearn.metrics import cohen_kappa_score
 
 
-def load_labels(csv_path: str) -> dict[str, dict[str, str]]:
-    """Load CSV → {utterance_id: {annotator: label}}."""
+def _rows_to_wide(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
+    """Normalise a list of row-dicts (long or wide) → {utterance_id: {annotator: label}}."""
     data: dict[str, dict[str, str]] = defaultdict(dict)
-    with open(csv_path, newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            uid = row["utterance_id"]
-            annotator = row["annotator"]
-            label = row["label"]
-            data[uid][annotator] = label
+    for row in rows:
+        uid = row["utterance_id"]
+        if "annotator" in row and "label" in row:
+            # Long form: one row per (utterance, annotator).
+            data[uid][row["annotator"]] = row["label"]
+        else:
+            # Wide form: one column per annotator (e.g. annotator1, annotator2).
+            for key, value in row.items():
+                if key == "utterance_id":
+                    continue
+                data[uid][key] = value
     return dict(data)
+
+
+def load_labels(path: str) -> dict[str, dict[str, str]]:
+    """Load a JSON or CSV overlap-labels file → {utterance_id: {annotator: label}}."""
+    suffix = Path(path).suffix.lower()
+    if suffix == ".json":
+        with open(path) as f:
+            rows = json.load(f)
+        return _rows_to_wide(rows)
+    with open(path, newline="") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+    return _rows_to_wide(rows)
 
 
 def compute_pairwise_kappa(
@@ -58,7 +84,7 @@ def compute_pairwise_kappa(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check inter-annotator agreement (Cohen's kappa)")
-    parser.add_argument("csv_path", help="Path to overlap labels CSV")
+    parser.add_argument("csv_path", help="Path to overlap labels file (.json or .csv)")
     parser.add_argument(
         "--threshold",
         type=float,

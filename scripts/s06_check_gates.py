@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """S06 Gate Checker — Verifies bake-off results meet thresholds."""
 
+import os
 import sys
 
 import mlflow
 import pandas as pd
 
-MLFLOW_URI = "http://mlflow:5000"
+MLFLOW_URI = os.getenv("MLFLOW_TRACKING_URI", "http://mlflow:5000")
 
 
 def check_asr_gate():

@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "data": {
+      "utterance": "The derivative of x squared is 2x.",
+      "context_before": "Let's review power rules.",
+      "context_after": "This is a fundamental concept."
+    },
+    "annotations": [{
+      "result": [{
+        "type": "choices",
+        "value": {"choices": ["on_topic"]},
+        "from_name": "relevance",
+        "to_name": "utterance"
+      }]
+    }]
+  },
+  {
+    "id": 2,
+    "data": {
+      "utterance": "Did you see the game last night?",
+      "context_before": "Any questions about the homework?",
+      "context_after": "Anyway, back to the lecture."
+    },
+    "annotations": [{
+      "result": [{
+        "type": "choices",
+        "value": {"choices": ["off_topic"]},
+        "from_name": "relevance",
+        "to_name": "utterance"
+      }]
+    }]
+  },
+  {
+    "id": 3,
+    "data": {
+      "utterance": "Wait, so photosynthesis produces oxygen?",
+      "context_before": "The light reactions occur in the thylakoid.",
+      "context_after": "Exactly, that's the key output."
+    },
+    "annotations": [{
+      "result": [{
+        "type": "choices",
+        "value": {"choices": ["on_topic"]},
+        "from_name": "relevance",
+        "to_name": "utterance"
+      }]
+    }]
+  },
+  {
+    "id": 4,
+    "data": {
+      "utterance": "Can everyone hear me in the back?",
+      "context_before": "Let me adjust the microphone.",
+      "context_after": "OK, continuing with the lecture."
+    },
+    "annotations": [{
+      "result": [{
+        "type": "choices",
+        "value": {"choices": ["off_topic"]},
+        "from_name": "relevance",
+        "to_name": "utterance"
+      }]
+    }]
+  }
+]

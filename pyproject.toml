@@ -9,38 +9,31 @@ dependencies = [
     "fastapi>=0.115.0,<1.0",
     "uvicorn[standard]>=0.32.0",
     "python-multipart>=0.0.18",
-
     # Data validation
     "pydantic>=2.9,<3.0",
     "pydantic-settings>=2.5,<3.0",
-
     # Database
     "sqlalchemy[asyncio]>=2.0.34,<3.0",
     "asyncpg>=0.30.0,<1.0",
     "alembic>=1.13,<2.0",
     "pgvector>=0.3,<1.0",
-
     # Cache / queue
     "redis>=5.1,<6.0",
-
+    "sse-starlette>=2.1,<4.0",
     # Object storage
     "minio>=7.2,<8.0",
-
+    "boto3>=1.35,<2.0",
     # Auth
     "python-jose[cryptography]>=3.3,<4.0",
     "passlib[bcrypt]>=1.7,<2.0",
     "argon2-cffi>=23.1,<25.0",
-
     # HTTP
     "httpx>=0.27,<1.0",
-
     # Config
     "python-dotenv>=1.0,<2.0",
     "pyyaml>=6.0,<7.0",
-
     # Logging
     "structlog>=24.1,<25.0",
-
     # Observability
     "prometheus-client>=0.20,<1.0",
     "opentelemetry-api>=1.27,<2.0",
@@ -48,14 +41,11 @@ dependencies = [
     "opentelemetry-instrumentation-fastapi>=0.47b0",
     "opentelemetry-instrumentation-sqlalchemy>=0.47b0",
     "opentelemetry-exporter-otlp>=1.27,<2.0",
-
     # Orchestration
     "prefect>=3.0,<4.0",
-
     # LLM / agents
     "litellm>=1.50,<2.0",
     "instructor>=1.6,<2.0",
-
     # ML / embeddings
     "sentence-transformers>=3.2,<4.0",
     "bertopic>=0.16,<1.0",
@@ -65,27 +55,25 @@ dependencies = [
     "scipy>=1.13,<2.0",
     "numpy>=1.26,<2.0",
     "pandas>=2.2,<3.0",
-
     # ASR
     "jiwer>=3.0,<4.0",
     "faster-whisper>=1.0,<2.0",
     "ctranslate2>=4.5,<5.0",
-
     # ML framework
     "torch>=2.5,<3.0",
     "torchaudio>=2.5,<3.0",
     "transformers>=4.44,<5.0",
     "accelerate>=0.33,<1.0",
-
     # Experiment tracking
     "mlflow>=2.16,<3.0",
-
     # Data versioning
     "dvc>=3.0,<4.0",
-
     # Audio processing
     "pydub>=0.25,<1.0",
     "aiofiles>=24.1,<25.0",
+    "imageio-ffmpeg>=0.6.0",
+    "silero-vad>=5.0",
+    "soundfile>=0.14.0",
 ]
 
 [project.optional-dependencies]
@@ -157,6 +145,18 @@ pretty = true
 module = ["tests.*", "migrations.*"]
 strict = false
 disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = ["pgvector.*", "alembic.*", "structlog.*", "boto3.*", "botocore.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["imageio_ffmpeg.*", "silero_vad.*", "soundfile.*", "df.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["faster_whisper.*", "torchaudio.*", "transformers.*"]
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

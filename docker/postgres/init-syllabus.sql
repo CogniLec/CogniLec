@@ -1,6 +1,7 @@
 -- PostgreSQL SYLLABUS Initialization
 -- Runs on first container startup
 
+CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; -- noqa: RF05
 CREATE EXTENSION IF NOT EXISTS citext;
 

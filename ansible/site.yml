@@ -1,0 +1,287 @@
+---
+# LIS GPU Host Provisioning Playbook
+# S02: GPU Host Provisioning & CUDA Matrix Pin
+#
+# Usage:
+#   ansible-playbook -i ansible/inventory.yml ansible/site.yml --tags gpu
+#
+# Targets: gpu-host group from inventory.yml
+# Tags: gpu, docker, nvidia, all
+
+- name: GPU Host Provisioning
+  hosts: gpu-host
+  become: true
+  gather_facts: true
+
+  vars:
+    nvidia_driver_version: "580"
+    cuda_version: "12.6"
+    docker_version: "latest"
+    nvidia_container_toolkit_version: "1.16.2"
+
+  pre_tasks:
+    - name: Validate GPU host is reachable
+      ansible.builtin.ping:
+      tags: always
+
+    - name: Gather GPU facts
+      ansible.builtin.shell: lspci | grep -i nvidia || echo "No NVIDIA GPU detected"
+      register: gpu_check
+      changed_when: false
+      tags: always
+
+    - name: Display GPU info
+      ansible.builtin.debug:
+        msg: "GPU detected: {{ gpu_check.stdout }}"
+      tags: always
+
+  tasks:
+    # =========================================================================
+    # NVIDIA Driver Installation & Hold
+    # =========================================================================
+    - name: Install NVIDIA driver prerequisites
+      ansible.builtin.apt:
+        name:
+          - linux-headers-{{ ansible_kernel }}
+          - build-essential
+          - dkms
+        state: present
+        update_cache: true
+      tags: [nvidia, gpu]
+
+    - name: Install NVIDIA driver {{ nvidia_driver_version }}
+      ansible.builtin.apt:
+        name: "nvidia-driver-{{ nvidia_driver_version }}*"
+        state: present
+        update_cache: true
+      register: nvidia_driver_install
+      tags: [nvidia, gpu]
+
+    - name: Hold NVIDIA driver version
+      ansible.builtin.shell: apt-mark hold nvidia-driver-{{ nvidia_driver_version }}*
+      register: nvidia_hold
+      changed_when: "'hold' in nvidia_hold.stdout"
+      tags: [nvidia, gpu]
+
+    - name: Verify driver hold status
+      ansible.builtin.shell: apt-mark showhold | grep nvidia
+      register: hold_status
+      changed_when: false
+      tags: [nvidia, gpu]
+
+    - name: Display driver hold status
+      ansible.builtin.debug:
+        msg: "Driver held: {{ hold_status.stdout }}"
+      tags: [nvidia, gpu]
+
+    - name: Reboot if driver was installed
+      ansible.builtin.reboot:
+        msg: "Rebooting for NVIDIA driver installation"
+        reboot_timeout: 300
+      when: nvidia_driver_install.changed
+      tags: [nvidia, gpu]
+
+    - name: Verify NVIDIA driver is loaded
+      ansible.builtin.shell: nvidia-smi --query-gpu=driver_version --format=csv,noheader
+      register: driver_version
+      changed_when: false
+      retries: 3
+      delay: 10
+      register: driver_check
+      until: driver_check.rc == 0
+      tags: [nvidia, gpu]
+
+    - name: Display driver version
+      ansible.builtin.debug:
+        msg: "NVIDIA Driver version: {{ driver_check.stdout }}"
+      tags: [nvidia, gpu]
+
+    # =========================================================================
+    # NVIDIA Container Toolkit
+    # =========================================================================
+    - name: Add NVIDIA Container Toolkit GPG key
+      ansible.builtin.shell: >
+        curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey |
+        gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+      args:
+        creates: /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+      tags: [nvidia, docker]
+
+    - name: Add NVIDIA Container Toolkit repository
+      ansible.builtin.shell: >
+        curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list |
+        sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' |
+        tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+      args:
+        creates: /etc/apt/sources.list.d/nvidia-container-toolkit.list
+      tags: [nvidia, docker]
+
+    - name: Install NVIDIA Container Toolkit
+      ansible.builtin.apt:
+        name: nvidia-container-toolkit
+        state: present
+        update_cache: true
+      tags: [nvidia, docker]
+
+    # =========================================================================
+    # Docker Engine Installation
+    # =========================================================================
+    - name: Remove old Docker packages
+      ansible.builtin.apt:
+        name:
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc
+        state: absent
+      tags: [docker]
+
+    - name: Add Docker GPG key
+      ansible.builtin.shell: >
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg |
+        gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      args:
+        creates: /usr/share/keyrings/docker-archive-keyring.gpg
+      tags: [docker]
+
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+        filename: docker
+      tags: [docker]
+
+    - name: Install Docker Engine
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+        update_cache: true
+      tags: [docker]
+
+    - name: Ensure Docker is started
+      ansible.builtin.systemd:
+        name: docker
+        state: started
+        enabled: true
+      tags: [docker]
+
+    # =========================================================================
+    # Configure Docker for GPU
+    # =========================================================================
+    - name: Configure Docker runtime for NVIDIA
+      ansible.builtin.shell: nvidia-ctk runtime configure --runtime=docker
+      register: nvidia_ctk
+      changed_when: "'Restart Docker' in nvidia_ctk.stdout"
+      tags: [docker, gpu]
+
+    - name: Restart Docker daemon
+      ansible.builtin.systemd:
+        name: docker
+        state: restarted
+      when: nvidia_ctk.changed
+      tags: [docker, gpu]
+
+    # =========================================================================
+    # User & Directory Setup
+    # =========================================================================
+    - name: Create LIS user group
+      ansible.builtin.group:
+        name: lis
+        state: present
+      tags: [setup]
+
+    - name: Create LIS user
+      ansible.builtin.user:
+        name: "{{ gpu_host_user }}"
+        group: lis
+        shell: /bin/bash
+        home: "/home/{{ gpu_host_user }}"
+        create_home: true
+        groups:
+          - docker
+        append: true
+      tags: [setup]
+
+    - name: Create workspace directory
+      ansible.builtin.file:
+        path: "{{ workspace }}"
+        state: directory
+        owner: "{{ gpu_host_user }}"
+        group: lis
+        mode: "0755"
+      tags: [setup]
+
+    - name: Create model cache directory
+      ansible.builtin.file:
+        path: "{{ hf_home }}"
+        state: directory
+        owner: "{{ gpu_host_user }}"
+        group: lis
+        mode: "0755"
+      tags: [setup]
+
+    # =========================================================================
+    # Deployment (placeholder for S03)
+    # =========================================================================
+    - name: Create deployment directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ gpu_host_user }}"
+        group: lis
+        mode: "0755"
+      loop:
+        - "{{ workspace }}/docker"
+        - "{{ workspace }}/config"
+        - "{{ workspace }}/logs"
+        - "{{ workspace }}/secrets"
+      tags: [setup]
+
+    # =========================================================================
+    # Apt preferences for driver hold (persist across upgrades)
+    # =========================================================================
+    - name: Create apt preferences directory
+      ansible.builtin.file:
+        path: /etc/apt/preferences.d
+        state: directory
+        mode: "0755"
+      tags: [nvidia]
+
+    - name: Deploy NVIDIA driver hold preferences
+      ansible.builtin.copy:
+        content: |
+          Package: nvidia-driver-{{ nvidia_driver_version }}*
+          Pin: version {{ nvidia_driver_version }}.*
+          Pin-Priority: 1001
+        dest: /etc/apt/preferences.d/nvidia-driver
+        mode: "0644"
+      tags: [nvidia]
+
+  post_tasks:
+    - name: Final GPU verification
+      ansible.builtin.shell: nvidia-smi
+      register: final_nvidia_smi
+      changed_when: false
+      tags: [always]
+
+    - name: Display final GPU status
+      ansible.builtin.debug:
+        msg: "{{ final_nvidia_smi.stdout_lines }}"
+      tags: [always]
+
+    - name: Verify Docker GPU runtime
+      ansible.builtin.shell: docker info 2>/dev/null | grep -i nvidia || echo "NVIDIA runtime not configured"
+      register: docker_nvidia
+      changed_when: false
+      tags: [always]
+
+    - name: Display Docker GPU status
+      ansible.builtin.debug:
+        msg: "Docker NVIDIA runtime: {{ docker_nvidia.stdout }}"
+      tags: [always]

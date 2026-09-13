@@ -1,0 +1,284 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  UV_VERSION: "0.5.4"
+  PYTHON_VERSION: "3.12"
+  UV_CACHE_DIR: ${{ runner.temp }}/uv-cache
+
+jobs:
+  lint-and-typecheck:
+    name: Lint & Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: ${{ env.UV_VERSION }}
+          enable-cache: true
+          cache-dependency-glob: "**/pyproject.toml"
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Run Ruff check
+        run: uv run ruff check --output-format=github .
+
+      - name: Run Ruff format check
+        run: uv run ruff format --check .
+
+      - name: Run mypy
+        run: uv run mypy --strict src/
+
+      - name: Run sqlfluff
+        run: uv run sqlfluff lint --dialect postgres migrations/
+
+  gitleaks:
+    name: Secret Detection
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: ${{ env.UV_VERSION }}
+          enable-cache: true
+          cache-dependency-glob: "**/pyproject.toml"
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Run unit tests
+        run: uv run pytest tests/ -m "unit" --cov=src --cov-report=xml --cov-report=term-missing
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          fail_ci_if_error: false
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres-main:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: lis
+          POSTGRES_PASSWORD: lis
+          POSTGRES_DB: lis_main
+        ports: [5432:5432]
+        options: >-
+          --health-cmd="pg_isready -U lis -d lis_main"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+      postgres-syllabus:
+        image: postgres:17
+        env:
+          POSTGRES_USER: lis
+          POSTGRES_PASSWORD: lis
+          POSTGRES_DB: lis_syllabus
+        ports: [5433:5432]
+        options: >-
+          --health-cmd="pg_isready -U lis -d lis_syllabus"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+      valkey:
+        image: valkey/valkey:8
+        ports: [6379:6379]
+        options: >-
+          --health-cmd="valkey-cli ping"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+      minio:
+        image: minio/minio:latest
+        command: server /data --console-address ":9001"
+        env:
+          MINIO_ROOT_USER: minioadmin
+          MINIO_ROOT_PASSWORD: minioadmin
+        ports: [9000:9000, 9001:9001]
+        options: >-
+          --health-cmd="curl -f http://localhost:9000/minio/health/live"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: ${{ env.UV_VERSION }}
+          enable-cache: true
+          cache-dependency-glob: "**/pyproject.toml"
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Wait for services
+        run: |
+          sleep 10
+          pg_isready -h localhost -p 5432 -U lis -d lis_main
+          pg_isready -h localhost -p 5433 -U lis -d lis_syllabus
+          valkey-cli -h localhost -p 6379 ping
+          curl -f http://localhost:9000/minio/health/live
+
+      - name: Run integration tests
+        env:
+          DATABASE_URL: postgresql+asyncpg://lis:lis@localhost:5432/lis_main
+          SYLLABUS_DATABASE_URL: postgresql+asyncpg://lis:lis@localhost:5433/lis_syllabus
+          VALKEY_URL: redis://localhost:6379/0
+          MINIO_ENDPOINT: localhost:9000
+          MINIO_ACCESS_KEY: minioadmin
+          MINIO_SECRET_KEY: minioadmin
+          MINIO_SECURE: "false"
+        run: uv run pytest tests/ -m "integration" --tb=short
+
+  docker-build:
+    name: Docker Build Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build base-gpu image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: docker/base-gpu.Dockerfile
+          target: base
+          load: true
+          tags: lis/base-gpu:test
+          build-args: |
+            CUDA_VERSION=12.6
+            CUDNN_VERSION=9.5
+            PYTORCH_VERSION=2.5.1
+            PYTORCH_CUDA=cu126
+
+      - name: Verify CUDA version in image
+        run: |
+          docker run --rm --gpus all lis/base-gpu:test nvidia-smi
+          docker run --rm --gpus all lis/base-gpu:test python -c "import torch; print(torch.version.cuda); assert torch.version.cuda == '12.6'"
+
+      - name: Verify flash-attn
+        run: |
+          docker run --rm --gpus all lis/base-gpu:test python -c "import flash_attn; print('flash-attn ok')"
+
+  cuda-matrix-check:
+    name: CUDA Matrix Enforcement
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check CUDA version consistency
+        run: |
+          # Extract CUDA version from cuda-matrix.md
+          MATRIX_CUDA=$(grep -E '^\| CUDA ' docs/cuda-matrix.md | head -1 | sed 's/.*| *\([0-9.]*\) *|.*/\1/')
+          echo "Matrix CUDA: $MATRIX_CUDA"
+
+          # Check all GPU Dockerfiles
+          for df in $(find docker -name "*gpu*.Dockerfile" -o -name "*.Dockerfile" | grep -v base-gpu); do
+            if [ -f "$df" ]; then
+              DOCKER_CUDA=$(grep -E '(CUDA_VERSION|FROM nvidia/cuda:)' "$df" | head -1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+              echo "Checking $df: CUDA $DOCKER_CUDA"
+              if [ "$DOCKER_CUDA" != "$MATRIX_CUDA" ]; then
+                echo "ERROR: $df uses CUDA $DOCKER_CUDA but matrix requires $MATRIX_CUDA"
+                exit 1
+              fi
+            fi
+          done
+
+  conventional-commits:
+    name: Conventional Commits
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check commit messages
+        run: |
+          # Get commits in PR
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            COMMITS=$(git log --format="%s" ${{ github.event.pull_request.base.sha }}..HEAD)
+          else
+            COMMITS=$(git log --format="%s" -1)
+          fi
+
+          echo "$COMMITS" | while IFS= read -r msg; do
+            if ! echo "$msg" | grep -qE '^(feat|fix|docs|style|refactor|test|chore|build|ci|perf)(\(.+\))?: .+'; then
+              echo "ERROR: Non-conventional commit message: $msg"
+              exit 1
+            fi
+          done
+
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Review dependencies
+        uses: actions/dependency-review-action@v4
+        with:
+          config-file: .github/dependency-review-config.yml
+          fail-on-severity: high
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true

@@ -1,0 +1,12 @@
+[
+  {"utterance_id": "u001", "annotator1": "on_topic", "annotator2": "on_topic"},
+  {"utterance_id": "u002", "annotator1": "off_topic", "annotator2": "off_topic"},
+  {"utterance_id": "u003", "annotator1": "on_topic", "annotator2": "on_topic"},
+  {"utterance_id": "u004", "annotator1": "on_topic", "annotator2": "off_topic"},
+  {"utterance_id": "u005", "annotator1": "off_topic", "annotator2": "off_topic"},
+  {"utterance_id": "u006", "annotator1": "on_topic", "annotator2": "on_topic"},
+  {"utterance_id": "u007", "annotator1": "off_topic", "annotator2": "on_topic"},
+  {"utterance_id": "u008", "annotator1": "on_topic", "annotator2": "on_topic"},
+  {"utterance_id": "u009", "annotator1": "on_topic", "annotator2": "on_topic"},
+  {"utterance_id": "u010", "annotator1": "off_topic", "annotator2": "off_topic"}
+]

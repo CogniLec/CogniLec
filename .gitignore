@@ -75,6 +75,12 @@ dist/
 build/
 *.egg-info/
 
+# Node (client PWA build tooling; real node_modules lives in src/client/).
+# No trailing slash: also matches the repo-root node_modules symlink used
+# so Vite/vitest can resolve packages when loading tests/client/setup.ts,
+# which lives outside src/client's own module-resolution tree.
+node_modules
+
 # Temporary
 tmp/
 temp/

@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "data": {"audio": "/data/lis-eval/phase0/v1/sess_001/audio.opus"},
+    "annotations": [{
+      "result": [
+        {
+          "type": "rectanglelabels",
+          "value": {"x": 0, "width": 33.3, "rotation": 0, "rectanglelabels": ["topic_start"]},
+          "from_name": "segments",
+          "to_name": "audio"
+        },
+        {
+          "type": "rectanglelabels",
+          "value": {"x": 33.3, "width": 33.3, "rotation": 0, "rectanglelabels": ["topic_start"]},
+          "from_name": "segments",
+          "to_name": "audio"
+        },
+        {
+          "type": "rectanglelabels",
+          "value": {"x": 66.6, "width": 33.4, "rotation": 0, "rectanglelabels": ["topic_start"]},
+          "from_name": "segments",
+          "to_name": "audio"
+        }
+      ]
+    }]
+  }
+]

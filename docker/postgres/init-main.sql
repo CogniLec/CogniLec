@@ -1,6 +1,13 @@
 -- PostgreSQL MAIN Initialization
 -- Runs on first container startup
 
+-- Dedicated database for MLflow's own backend store. It must not share
+-- lis_main: MLflow runs its own Alembic migrations against a default
+-- "alembic_version" table, which collides with the app's own Alembic
+-- state if both live in the same database, and lis_main's schema is
+-- dropped/recreated by the integration test suite between runs.
+CREATE DATABASE mlflow OWNER lis;
+
 -- Create extensions
 CREATE EXTENSION IF NOT EXISTS vector;
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; -- noqa: RF05

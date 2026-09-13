@@ -8,7 +8,7 @@
 
 | Component              | Version      | Notes                                                    |
 |------------------------|--------------|----------------------------------------------------------|
-| NVIDIA Driver          | 560.x        | Held via `apt-mark hold` on host                         |
+| NVIDIA Driver          | 580.x        | Held via `apt-mark hold` on host (server-open variant)   |
 | CUDA Toolkit           | 12.6         | Base image: `nvidia/cuda:12.6-cudnn-runtime-ubuntu22.04` |
 | cuDNN                  | 9.5.x        | Bundled in base image                                    |
 | PyTorch                | 2.5.1        | Build tag: `cu126`                                       |

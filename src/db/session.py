@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 from sqlalchemy.pool import NullPool
+
 from src.core.config import get_settings
 
 settings = get_settings()
@@ -55,7 +56,16 @@ async def get_main_session() -> AsyncGenerator[AsyncSession, None]:
 
 @asynccontextmanager
 async def get_syllabus_session() -> AsyncGenerator[AsyncSession, None]:
-    """Get syllabus database session (read-only via FDW)."""
+    """Get a DIRECT session to PG-SYLLABUS (read/write).
+
+    This is a plain direct connection, not FDW - it's the connection
+    ``SyllabusRepository`` uses to write syllabus_items (S50: "A6 is sole
+    writer to DB-3"). The read-only, FDW-backed path is separate: it lives
+    on PG-MAIN (see the ``syllabus_items`` foreign table created by
+    migration a2c7d4e9f1b3 and ``SyllabusFdwReader`` in
+    src/db/repositories/syllabus_repo.py), and is queried via
+    ``get_main_session``, not this function.
+    """
     async with SyllabusAsyncSession() as session:
         try:
             yield session
