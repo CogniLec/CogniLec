@@ -14,12 +14,16 @@ this stage; it is not re-asserted here, it is the same open gap
 
 What's genuinely new and tested here: `src/services/account/export_service.py`
 (T72.4) and `src/services/account/deletion_service.py` (T72.3/T72.5), run
-against the real PG-MAIN test database with real seeded rows. The deletion
-test also surfaces a genuine, previously-undocumented conflict: S65's
-`corrections.user_id` RESTRICT FK (added so the immutability rule never has
-to process an UPDATE) means a user who has any correction on record cannot
-currently be deleted at all - the cascade aborts, and this test asserts
-that failure mode explicitly rather than hiding it.
+against the real PG-MAIN test database with real seeded rows.
+
+`docs/gaps.md` gap #13 documents a conflict found here: S65's
+`corrections.user_id` RESTRICT FK meant a user who had ever submitted a
+correction could not be deleted at all. The product decision was to keep
+corrections (valuable training signal) but anonymize them rather than
+block deletion, implemented via migration `e8c1b4a7d2f9` and an explicit
+anonymize-then-delete step in `deletion_service.delete_user_account`.
+`test_t72_3_deletion_of_user_with_corrections_anonymizes_not_blocks`
+below is the regression test for that fix.
 """
 
 from __future__ import annotations
@@ -30,10 +34,7 @@ import pytest
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.partitions.provisioner import PartitionProvisioner
-from src.services.account.deletion_service import (
-    DeletionBlockedError,
-    delete_user_account,
-)
+from src.services.account.deletion_service import delete_user_account
 from src.services.account.export_service import export_user_data
 
 
@@ -136,31 +137,46 @@ async def test_t72_3_and_t72_5_deletion_cascades_db1_and_objects(
 
 
 @pytest.mark.asyncio
-async def test_t72_3_deletion_blocked_by_corrections_restrict_fk_genuine_finding(
+async def test_t72_3_deletion_of_user_with_corrections_anonymizes_not_blocks(
     db_session: AsyncSession, test_user_id: uuid.UUID
 ) -> None:
-    """Documents a real conflict: a user with any correction can't be deleted today."""
+    """Regression test for gap #13: a user with corrections can now be deleted;
+    their corrections survive, anonymized, with the training signal intact."""
     subject_id, _session_id = await _seed_subject_and_session(db_session, test_user_id)
+    correction_id = uuid.uuid4()
     await db_session.execute(
         text(
             "INSERT INTO corrections "
             "(id, correction_type, subject_id, user_id, original_value, corrected_value) "
-            "VALUES (:id, 'note_edit', :sid, :uid, '{}'::jsonb, '{}'::jsonb)"
+            "VALUES (:id, 'note_edit', :sid, :uid, "
+            '\'{"text": "origin"}\'::jsonb, \'{"text": "fixed"}\'::jsonb)'
         ),
-        {"id": str(uuid.uuid4()), "sid": str(subject_id), "uid": str(test_user_id)},
+        {"id": str(correction_id), "sid": str(subject_id), "uid": str(test_user_id)},
     )
     await db_session.flush()
 
     fake_storage = _FakeStorageClient()
-    with pytest.raises(DeletionBlockedError, match=r"corrections\.user_id RESTRICT"):
-        await delete_user_account(db_session, fake_storage, test_user_id)  # type: ignore[arg-type]
+    report = await delete_user_account(db_session, fake_storage, test_user_id)  # type: ignore[arg-type]
 
-    remaining = (
+    assert report.db1_deleted is True
+    assert report.corrections_anonymized == 1
+
+    remaining_users = (
         await db_session.execute(
             text("SELECT count(*) FROM users WHERE id = :uid"), {"uid": str(test_user_id)}
         )
     ).scalar_one()
-    assert remaining == 1, "the whole cascade must abort, not partially delete"
+    assert remaining_users == 0
+
+    row = (
+        await db_session.execute(
+            text("SELECT user_id, original_value, corrected_value FROM corrections WHERE id = :id"),
+            {"id": str(correction_id)},
+        )
+    ).one()
+    assert row.user_id is None, "correction must survive but no longer identify the user"
+    assert row.original_value == {"text": "origin"}
+    assert row.corrected_value == {"text": "fixed"}, "training signal must be unchanged"
 
 
 def test_t72_1_oidc_login_not_available() -> None:
