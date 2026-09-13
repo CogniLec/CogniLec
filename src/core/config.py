@@ -160,6 +160,30 @@ class Settings(BaseSettings):
     RETRY_BACKOFF_MULTIPLIER: float = 2.0
 
     # Observability
+    # Provisional topic window (S33)
+    FEATURE_GREETING_DETECTION: bool = True
+    FEATURE_PROVISIONAL_WINDOW: bool = True
+    PROVISIONAL_WINDOW_MINUTES: int = 10
+    PROVISIONAL_UMAP_N_NEIGHBORS: int = 15
+    PROVISIONAL_HDBSCAN_MIN_CLUSTER_SIZE: int = 3
+    PROVISIONAL_MIN_UTTERANCES: int = 5
+
+    # Transition cue detection (S34)
+    FEATURE_TRANSITION_CUES: bool = True
+    TRANSITION_CUE_BOOST_MULTIPLIER: float = 0.2
+    TRANSITION_CUE_MAX_CANDIDATES_PER_LLM_CALL: int = 20
+    TRANSITION_CUE_MIN_UTTERANCE_CONTEXT: int = 2
+
+    # Session type classification & routing (S35)
+    FEATURE_SESSION_CLASSIFICATION: bool = True
+    CLASSIFIER_LLM_ENABLED: bool = True
+    CLASSIFIER_RULE_KEYWORD_ENABLED: bool = True
+    CLASSIFIER_RULE_STRUCTURE_ENABLED: bool = True
+    CLASSIFIER_MIN_CONFIDENCE: float = 0.6
+    CLASSIFIER_SYLLABUS_KEYWORD_DENSITY_HIGH: float = 0.02
+    CLASSIFIER_SYLLABUS_KEYWORD_DENSITY_LOW: float = 0.005
+    CLASSIFIER_MIXED_DEFAULT: bool = True
+
     OTEL_EXPORTER_OTLP_ENDPOINT: str = "http://localhost:4318/v1/traces"
     OTEL_SERVICE_NAME: str = "lis"
     LANGFUSE_PUBLIC_KEY: str = ""

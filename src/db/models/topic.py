@@ -30,6 +30,7 @@ class Topic(Base):
     segment_count: Mapped[int] = mapped_column(Integer, nullable=False, server_default="0")
     utterance_count: Mapped[int] = mapped_column(Integer, nullable=False, server_default="0")
     is_user_edited: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default="false")
+    provisional: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default="true")
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=text("now()")
     )

@@ -55,6 +55,14 @@ class SegmentRepository:
         ]
         return await self.bulk_insert(subject_id, rows)
 
+    async def update_route_target(self, segment_id: uuid.UUID, route_target: str) -> None:
+        """S35: persist a segment's routing decision."""
+        await self._session.execute(
+            text("UPDATE segments SET route_target = :route_target WHERE id = :id"),
+            {"route_target": route_target, "id": segment_id},
+        )
+        await self._session.flush()
+
     async def get_by_session(self, subject_id: uuid.UUID, session_id: uuid.UUID) -> list[Segment]:
         """Get segments for a session."""
         result = await self._session.execute(

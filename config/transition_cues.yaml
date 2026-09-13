@@ -1,0 +1,27 @@
+version: "1.0"
+cues:
+  - id: "moving_on"
+    pattern: "\\b(moving\\s+on\\s+to|let'?s\\s+move\\s+on\\s+to|now\\s+we'?ll\\s+(?:look\\s+at|cover|discuss))\\b"
+    language: "en"
+    category: "forward_reference"
+    weight: 0.8
+  - id: "next_topic"
+    pattern: "\\b(next\\s+(?:we'?ll|let'?s|I'?ll|topic\\s+is)|the\\s+next\\s+(?:topic|subject|thing))\\b"
+    language: "en"
+    category: "forward_reference"
+    weight: 0.75
+  - id: "completes_section"
+    pattern: "\\b(that\\s+completes|that\\s+covers|that\\s+(?:wraps\\s+up|finishes)|so\\s+that'?s\\s+(?:the\\s+)?end\\s+of)\\b"
+    language: "en"
+    category: "completion"
+    weight: 0.85
+  - id: "break_reference"
+    pattern: "\\b(before\\s+(?:the\\s+)?break|after\\s+(?:the\\s+)?break|let'?s\\s+take\\s+a\\s+break)\\b"
+    language: "en"
+    category: "temporal"
+    weight: 0.9
+  - id: "today_we_cover"
+    pattern: "\\btoday\\s+we'?ll\\s+(?:be\\s+)?(?:covering|looking\\s+at|discussing|talking\\s+about)\\b"
+    language: "en"
+    category: "forward_reference"
+    weight: 0.7

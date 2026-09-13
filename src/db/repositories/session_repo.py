@@ -72,3 +72,19 @@ class SessionRepository:
         session_obj.audio_quality = score
         await self._session.flush()
         return session_obj
+
+    async def update_classification(
+        self,
+        session_obj: Session,
+        session_type: str,
+        confidence: float,
+        method: str,
+        details: dict[str, object],
+    ) -> Session:
+        """S35: persist a session-type classification result."""
+        session_obj.session_type = session_type
+        session_obj.classification_confidence = confidence
+        session_obj.classification_method = method
+        session_obj.classification_details = details
+        await self._session.flush()
+        return session_obj

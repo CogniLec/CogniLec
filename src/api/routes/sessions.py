@@ -3,14 +3,24 @@
 from __future__ import annotations
 
 import uuid
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.dependencies.database import get_db_session
-from src.api.schemas.session import SessionCreate, SessionResponse, SessionUpdate
+from src.api.schemas.session import (
+    ClassificationOverride,
+    SessionCreate,
+    SessionResponse,
+    SessionUpdate,
+)
 from src.db.exceptions import SessionNotFoundError
+from src.db.repositories.segment_repo import SegmentRepository
 from src.db.repositories.session_repo import SessionRepository
+from src.db.repositories.utterance_repo import UtteranceRepository
+from src.ml.session_classifier import route_segments
+from src.services.valkey_stream import ValkeyStreamProducer
 
 router = APIRouter(prefix="/sessions", tags=["sessions"])
 
@@ -50,6 +60,69 @@ async def update_session(
     except SessionNotFoundError as exc:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     session_obj = await repo.update_status(session_obj, payload.status)
+    return SessionResponse.model_validate(session_obj)
+
+
+@router.patch("/{session_id}/classification", response_model=SessionResponse)
+async def override_classification(
+    session_id: uuid.UUID,
+    payload: ClassificationOverride,
+    db: AsyncSession = Depends(get_db_session),
+) -> SessionResponse:
+    """S35: operator post-hoc correction. Updates session_type, re-runs
+    segment routing, and publishes `session.rerouted`."""
+    session_repo = SessionRepository(db)
+    segment_repo = SegmentRepository(db)
+    utterance_repo = UtteranceRepository(db)
+
+    try:
+        session_obj = await session_repo.get_or_raise(session_id)
+    except SessionNotFoundError as exc:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
+
+    previous_type = session_obj.session_type
+    segments = await segment_repo.get_by_session(session_obj.subject_id, session_id)
+    utterances = await utterance_repo.get_by_session(session_obj.subject_id, session_id)
+    utterance_by_id = {u.id: u for u in utterances}
+
+    segment_texts: dict[uuid.UUID, str] = {}
+    for segment in segments:
+        start = utterance_by_id.get(segment.start_utt)
+        end = utterance_by_id.get(segment.end_utt)
+        if start is None or end is None:
+            segment_texts[segment.id] = ""
+            continue
+        seg_utts = [u for u in utterances if start.seq <= u.seq <= end.seq]
+        segment_texts[segment.id] = " ".join(u.text for u in seg_utts)
+
+    await session_repo.update_classification(
+        session_obj,
+        session_type=payload.session_type,
+        confidence=1.0,
+        method="operator_override",
+        details={"reason": payload.reason, "previous_type": previous_type},
+    )
+
+    route_plan = route_segments(session_id, payload.session_type, segment_texts)
+    for route in route_plan.segment_routes:
+        await segment_repo.update_route_target(route.segment_id, route.route_target)
+
+    producer = ValkeyStreamProducer()
+    try:
+        await producer.publish_event(
+            str(session_id),
+            "session.rerouted",
+            {
+                "session_id": str(session_id),
+                "previous_type": previous_type,
+                "new_type": payload.session_type,
+                "segments_moved": len(route_plan.segment_routes),
+                "rerouted_at": datetime.now(UTC).isoformat(),
+            },
+        )
+    finally:
+        await producer.close()
+
     return SessionResponse.model_validate(session_obj)
 
 

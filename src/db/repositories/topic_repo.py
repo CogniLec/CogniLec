@@ -24,6 +24,7 @@ class TopicRepository:
         keyword_scores: list[float] | None = None,
         segment_count: int = 0,
         utterance_count: int = 0,
+        provisional: bool = False,
     ) -> Topic:
         topic = Topic(
             subject_id=subject_id,
@@ -34,6 +35,7 @@ class TopicRepository:
             keyword_scores=keyword_scores,
             segment_count=segment_count,
             utterance_count=utterance_count,
+            provisional=provisional,
         )
         self._session.add(topic)
         await self._session.flush()

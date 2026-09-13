@@ -1,0 +1,9 @@
+version: "1.0"
+keywords:
+  en:
+    - pattern: "\\bgood\\s+(morning|afternoon|evening)\\b"
+    - pattern: "\\bhello\\b"
+    - pattern: "\\bwelcome\\b"
+    - pattern: "\\bstart(?:ing)?\\s+(?:the\\s+)?(?:lecture|class|session|today)\\b"
+  es:
+    - pattern: "\\bbuen(?:os|as)\\s+(dias|tardes|noches)\\b"
