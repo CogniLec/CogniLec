@@ -17,7 +17,7 @@ EMBEDDING_PURITY_THRESHOLD = 0.60  # T06.2: purity > 0.60
 WORST_WER_WARNING = 0.35  # T06.3: warn if > 35%
 
 
-def check_asr_gate(asr_results_path: Path | None = None) -> tuple[bool, dict]:
+def check_asr_gate(asr_results_path: Path | None = None) -> tuple[bool, dict[str, object]]:
     """Gate T06.1: Best ASR WER < 20% on median condition.
 
     Args:
@@ -48,7 +48,7 @@ def check_asr_gate(asr_results_path: Path | None = None) -> tuple[bool, dict]:
     return passed, details
 
 
-def check_embedding_gate(emb_results_path: Path | None = None) -> tuple[bool, dict]:
+def check_embedding_gate(emb_results_path: Path | None = None) -> tuple[bool, dict[str, object]]:
     """Gate T06.2: Clustering purity > 0.60.
 
     Args:
@@ -70,14 +70,14 @@ def check_embedding_gate(emb_results_path: Path | None = None) -> tuple[bool, di
     best_purity = float(df["purity"].max())
     passed = best_purity > EMBEDDING_PURITY_THRESHOLD
 
-    details = {
+    details: dict[str, object] = {
         "best_purity": best_purity,
         "threshold": EMBEDDING_PURITY_THRESHOLD,
     }
     return passed, details
 
 
-def check_config_frozen() -> tuple[bool, dict]:
+def check_config_frozen() -> tuple[bool, dict[str, object]]:
     """T06.5: Verify config/models.yaml has all required keys."""
     if not CONFIG_PATH.exists():
         return False, {"error": "config_missing"}
@@ -110,7 +110,7 @@ def check_config_frozen() -> tuple[bool, dict]:
     return passed, details
 
 
-def check_all_gates() -> tuple[bool, list[dict]]:
+def check_all_gates() -> tuple[bool, list[dict[str, object]]]:
     """Run all S06 gate checks.
 
     Returns:

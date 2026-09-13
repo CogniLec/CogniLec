@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import json
 import uuid
+from typing import Any, cast
 
-from sqlalchemy import select, text
+from sqlalchemy import CursorResult, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.db.models.utterance import Utterance
@@ -164,7 +165,7 @@ class UtteranceRepository:
             rows,
         )
         await self._session.flush()
-        return int(result.rowcount or 0)
+        return int(cast(CursorResult[Any], result).rowcount or 0)
 
     async def apply_relevance_flags(
         self,
@@ -202,7 +203,7 @@ class UtteranceRepository:
             rows,
         )
         await self._session.flush()
-        return int(result.rowcount or 0)
+        return int(cast(CursorResult[Any], result).rowcount or 0)
 
     async def apply_agreement_scores(
         self,
@@ -232,7 +233,7 @@ class UtteranceRepository:
             rows,
         )
         await self._session.flush()
-        return int(result.rowcount or 0)
+        return int(cast(CursorResult[Any], result).rowcount or 0)
 
     async def get_transcript_page(
         self,

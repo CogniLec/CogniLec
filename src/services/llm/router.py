@@ -12,7 +12,7 @@ from collections.abc import Awaitable, Callable
 from datetime import UTC, datetime
 from enum import StrEnum
 
-import httpx  # type: ignore[import-not-found]
+import httpx
 from pydantic import BaseModel, Field
 
 

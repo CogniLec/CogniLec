@@ -1,4 +1,4 @@
-"""T07.5 – Alembic upgrade/downgrade roundtrip test."""
+"""T07.5 - Alembic upgrade/downgrade roundtrip test."""
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ def _run_alembic(command: list[str], check: bool = True) -> subprocess.Completed
 
 @pytest.mark.integration
 class TestMigrationRoundtrip:
-    """T07.5 – Alembic upgrade head then downgrade base leaves clean DB."""
+    """T07.5 - Alembic upgrade head then downgrade base leaves clean DB."""
 
     async def test_upgrade_downgrade_roundtrip(self, db_session: AsyncSession) -> None:
         # Upgrade to head (conftest already did this, but verify it's at head)

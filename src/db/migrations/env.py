@@ -1,4 +1,4 @@
-"""Alembic env.py – async SQLAlchemy with LIS dual-engine setup."""
+"""Alembic env.py - async SQLAlchemy with LIS dual-engine setup."""
 
 from __future__ import annotations
 

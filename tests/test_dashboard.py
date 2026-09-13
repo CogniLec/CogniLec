@@ -27,22 +27,31 @@ async def test_dashboard_teached_vs_outstanding(syllabus_session, db_session) ->
     for i in range(8):
         syllabus_session.add(
             SyllabusItem(
-                subject_id=subject.id, ordinal=i, title=f"Covered {i}",
-                item_type="topic", coverage_status="covered",
+                subject_id=subject.id,
+                ordinal=i,
+                title=f"Covered {i}",
+                item_type="topic",
+                coverage_status="covered",
             )
         )
     for i in range(5):
         syllabus_session.add(
             SyllabusItem(
-                subject_id=subject.id, ordinal=8 + i, title=f"Partial {i}",
-                item_type="topic", coverage_status="partial",
+                subject_id=subject.id,
+                ordinal=8 + i,
+                title=f"Partial {i}",
+                item_type="topic",
+                coverage_status="partial",
             )
         )
     for i in range(7):
         syllabus_session.add(
             SyllabusItem(
-                subject_id=subject.id, ordinal=13 + i, title=f"NotStarted {i}",
-                item_type="topic", coverage_status="not_started",
+                subject_id=subject.id,
+                ordinal=13 + i,
+                title=f"NotStarted {i}",
+                item_type="topic",
+                coverage_status="not_started",
             )
         )
     await syllabus_session.commit()

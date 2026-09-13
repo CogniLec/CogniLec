@@ -12,7 +12,21 @@ repos:
       - id: mypy
         args: [--strict, --show-error-codes, --pretty]
         additional_dependencies:
-          [pydantic, sqlalchemy, fastapi, types-requests, types-pyyaml, numpy]
+          [
+            pydantic,
+            pydantic-settings,
+            sqlalchemy,
+            fastapi,
+            types-requests,
+            types-pyyaml,
+            numpy,
+            httpx,
+            pillow,
+            pyjwt,
+            pypdf,
+            faker,
+            sse-starlette,
+          ]
         exclude: ^(tests/|scripts/|migrations/)
 
   - repo: https://github.com/gitleaks/gitleaks

@@ -26,14 +26,18 @@ async def _topic_state(
     db_session: AsyncSession, subject_id: uuid.UUID, topic_ids: list[uuid.UUID]
 ) -> list[dict[str, Any]]:
     rows = (
-        await db_session.execute(
-            text(
-                "SELECT id, subject_id, label, centroid::text AS centroid "
-                "FROM topics WHERE subject_id = :sid AND id = ANY(:ids)"
-            ),
-            {"sid": str(subject_id), "ids": topic_ids},
+        (
+            await db_session.execute(
+                text(
+                    "SELECT id, subject_id, label, centroid::text AS centroid "
+                    "FROM topics WHERE subject_id = :sid AND id = ANY(:ids)"
+                ),
+                {"sid": str(subject_id), "ids": topic_ids},
+            )
         )
-    ).mappings().all()
+        .mappings()
+        .all()
+    )
     return [dict(r) for r in rows]
 
 
@@ -59,10 +63,7 @@ async def merge_topics(
     )
     for absorbed_id in absorbed_ids:
         await db_session.execute(
-            text(
-                "UPDATE segments SET topic_id = :survivor "
-                "WHERE topic_id = :absorbed"
-            ),
+            text("UPDATE segments SET topic_id = :survivor WHERE topic_id = :absorbed"),
             {"survivor": str(survivor_id), "absorbed": str(absorbed_id)},
         )
         await db_session.execute(
@@ -94,14 +95,18 @@ async def merge_topics(
 async def reverse_merge(db_session: AsyncSession, operation_id: uuid.UUID) -> None:
     """Recreate the pre-merge topics recorded in `operation_id`'s `before_state`."""
     row = (
-        await db_session.execute(
-            text(
-                "SELECT subject_id, operation_type, before_state, reverted_at "
-                "FROM partition_operations WHERE id = :id"
-            ),
-            {"id": str(operation_id)},
+        (
+            await db_session.execute(
+                text(
+                    "SELECT subject_id, operation_type, before_state, reverted_at "
+                    "FROM partition_operations WHERE id = :id"
+                ),
+                {"id": str(operation_id)},
+            )
         )
-    ).mappings().first()
+        .mappings()
+        .first()
+    )
     if row is None:
         msg = f"no such operation: {operation_id}"
         raise ValueError(msg)

@@ -122,9 +122,7 @@ class SyllabusRepository:
         created: list[SyllabusItem] = []
         for item in deduped:
             parent_id = (
-                ordinal_to_id.get(item.parent_ordinal)
-                if item.parent_ordinal is not None
-                else None
+                ordinal_to_id.get(item.parent_ordinal) if item.parent_ordinal is not None else None
             )
             row = SyllabusItem(
                 subject_id=subject_id,

@@ -32,8 +32,8 @@ class PyannoteBackend:
     """Wraps pyannote.audio's speaker-diarization-3.1 pipeline."""
 
     def __init__(self, hf_token: str, device: str = "cuda") -> None:
-        from pyannote.audio import Pipeline  # lazy: see module docstring
         import torch
+        from pyannote.audio import Pipeline  # lazy: see module docstring
 
         self._pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization-3.1", token=hf_token

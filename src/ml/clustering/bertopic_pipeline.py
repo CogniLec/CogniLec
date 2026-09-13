@@ -60,7 +60,7 @@ def cluster_segment_embeddings(
     reduced = arr
     n_components = int(UMAP_CONFIG["n_components"])
     if n > n_components + 1:
-        import umap  # type: ignore[import-untyped]
+        import umap
 
         reducer = umap.UMAP(
             n_neighbors=min(int(UMAP_CONFIG["n_neighbors"]), n - 1),
@@ -70,7 +70,7 @@ def cluster_segment_embeddings(
         )
         reduced = reducer.fit_transform(arr)
 
-    import hdbscan  # type: ignore[import-untyped]
+    import hdbscan
 
     clusterer = hdbscan.HDBSCAN(
         min_cluster_size=mcs,

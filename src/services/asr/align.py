@@ -30,7 +30,7 @@ def _load_aligner(model_id: str, device: str) -> tuple[Any, Any]:
     if key not in _ALIGNER_CACHE:
         from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
 
-        processor = Wav2Vec2Processor.from_pretrained(model_id)  # type: ignore[no-untyped-call]
+        processor = Wav2Vec2Processor.from_pretrained(model_id)
         model = Wav2Vec2ForCTC.from_pretrained(model_id).to(device).eval()
         _ALIGNER_CACHE[key] = (model, processor)
     return _ALIGNER_CACHE[key]

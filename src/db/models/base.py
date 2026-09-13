@@ -1,4 +1,5 @@
 """SQLAlchemy declarative base and common type exports."""
+
 from __future__ import annotations
 
 from sqlalchemy import MetaData

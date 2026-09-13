@@ -255,14 +255,18 @@ class TestAC5RelevanceFilterSymmetric:
         from sqlalchemy import text as _text
 
         rows = (
-            await db_session.execute(
-                _text(
-                    "SELECT seq, is_relevant, text FROM utterances "
-                    "WHERE subject_id = :subject_id AND session_id = :session_id"
-                ),
-                {"subject_id": subject.id, "session_id": session_obj.id},
+            (
+                await db_session.execute(
+                    _text(
+                        "SELECT seq, is_relevant, text FROM utterances "
+                        "WHERE subject_id = :subject_id AND session_id = :session_id"
+                    ),
+                    {"subject_id": subject.id, "session_id": session_obj.id},
+                )
             )
-        ).mappings().all()
+            .mappings()
+            .all()
+        )
         by_seq = {r["seq"]: r for r in rows}
         assert by_seq[0]["is_relevant"] is True
         assert by_seq[1]["is_relevant"] is False
@@ -271,7 +275,9 @@ class TestAC5RelevanceFilterSymmetric:
 
 
 class TestAC6NotesPostSessionOnly:
-    async def test_note_write_without_db1_record_is_rejected(self, db_session: AsyncSession) -> None:
+    async def test_note_write_without_db1_record_is_rejected(
+        self, db_session: AsyncSession
+    ) -> None:
         _user, subject = await _user_and_subject(db_session)
         session_obj = await SessionRepository(db_session).create(subject.id)
 

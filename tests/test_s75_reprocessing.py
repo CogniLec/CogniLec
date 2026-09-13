@@ -67,8 +67,11 @@ def _relevance_transport_factory():
             for u in payload["utterances"]
         ]
         return LLMResponse(
-            content=json.dumps(decisions), tier_used=tier.tier, model=tier.model,
-            latency_ms=1, tokens_used=1,
+            content=json.dumps(decisions),
+            tier_used=tier.tier,
+            model=tier.model,
+            latency_ms=1,
+            tokens_used=1,
         )
 
     return transport
@@ -88,8 +91,11 @@ def _synthesis_transport_factory(body_text: str):
             }
         ]
         return LLMResponse(
-            content=json.dumps(sections), tier_used=tier.tier, model=tier.model,
-            latency_ms=1, tokens_used=1,
+            content=json.dumps(sections),
+            tier_used=tier.tier,
+            model=tier.model,
+            latency_ms=1,
+            tokens_used=1,
         )
 
     return transport
@@ -98,12 +104,16 @@ def _synthesis_transport_factory(body_text: str):
 def _build_filter_agent():
     from src.services.filtering.relevance_filter import RelevanceFilterAgent
 
-    config = LLMRouterConfig(tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")])
+    config = LLMRouterConfig(
+        tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
+    )
     return RelevanceFilterAgent(LLMRouter(config, transport=_relevance_transport_factory()))
 
 
 def _build_synthesis_agent(body_text: str) -> NoteSynthesisAgent:
-    config = LLMRouterConfig(tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")])
+    config = LLMRouterConfig(
+        tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
+    )
     return NoteSynthesisAgent(LLMRouter(config, transport=_synthesis_transport_factory(body_text)))
 
 
@@ -273,11 +283,17 @@ async def test_t75_4_and_t75_5_merge_audit_log_and_reversal(db_session: AsyncSes
     op_id = await merge_topics(db_session, subject.id, [topic_a, topic_b], "Merged Topic", user.id)
 
     audit_row = (
-        await db_session.execute(
-            text("SELECT operation_type, before_state, after_state FROM partition_operations WHERE id = :id"),
-            {"id": str(op_id)},
+        (
+            await db_session.execute(
+                text(
+                    "SELECT operation_type, before_state, after_state FROM partition_operations WHERE id = :id"
+                ),
+                {"id": str(op_id)},
+            )
         )
-    ).mappings().first()
+        .mappings()
+        .first()
+    )
     assert audit_row is not None
     assert audit_row["operation_type"] == "merge"
     assert len(audit_row["before_state"]["topics"]) == 2
@@ -293,11 +309,15 @@ async def test_t75_4_and_t75_5_merge_audit_log_and_reversal(db_session: AsyncSes
     await reverse_merge(db_session, op_id)
 
     restored_topics = (
-        await db_session.execute(
-            text("SELECT label FROM topics WHERE subject_id = :sid ORDER BY label"),
-            {"sid": str(subject.id)},
+        (
+            await db_session.execute(
+                text("SELECT label FROM topics WHERE subject_id = :sid ORDER BY label"),
+                {"sid": str(subject.id)},
+            )
         )
-    ).scalars().all()
+        .scalars()
+        .all()
+    )
     assert sorted(restored_topics) == ["Topic A", "Topic B"]
 
 

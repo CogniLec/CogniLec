@@ -90,9 +90,7 @@ class SyllabusExtractionAgent:
         """Extract from an isolated syllabus segment of a mixed session (AC-13)."""
         return await self.extract(TranscriptChunk(text=syllabus_segment_text), subject_id)
 
-    def _parse_lines(
-        self, lines: list[str]
-    ) -> tuple[list[ExtractedSyllabusItem], int]:
+    def _parse_lines(self, lines: list[str]) -> tuple[list[ExtractedSyllabusItem], int]:
         items: list[ExtractedSyllabusItem] = []
         module_ordinal = -1
         topic_ordinal_by_module: dict[int, int] = {}

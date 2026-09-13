@@ -106,9 +106,7 @@ class TestT481ExactPhraseQuery:
 
 
 class TestT482ConceptualQuery:
-    async def test_conceptual_query_returns_semantic_match(
-        self, db_session: AsyncSession
-    ) -> None:
+    async def test_conceptual_query_returns_semantic_match(self, db_session: AsyncSession) -> None:
         subject_id, _session_id, fixture = await _subject_with_utterances(db_session)
         await db_session.commit()
 
@@ -252,7 +250,5 @@ class TestSearchAPI:
         )
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
-            resp = await client.get(
-                f"/api/v1/subjects/{uuid.uuid4()}/search", params={"q": "exam"}
-            )
+            resp = await client.get(f"/api/v1/subjects/{uuid.uuid4()}/search", params={"q": "exam"})
         assert resp.status_code == 404

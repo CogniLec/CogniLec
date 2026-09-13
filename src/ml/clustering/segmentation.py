@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass
-from typing import Protocol
+from typing import Any, Protocol
 
 import numpy as np
 
@@ -33,7 +33,7 @@ class SegmentationResult:
     similarity_scores: list[float]
 
 
-_Vec = np.ndarray[object, np.dtype[np.float64]]
+_Vec = np.ndarray[Any, np.dtype[np.float64]]
 
 
 def _cosine(a: _Vec, b: _Vec) -> float:

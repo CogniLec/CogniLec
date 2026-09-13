@@ -198,6 +198,27 @@ ignore_missing_imports = true
 module = ["yaml.*"]
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = ["src.ml.clustering.tasks", "src.ml.embedding.flows", "src.services.orchestration.session_pipeline"]
+disallow_untyped_decorators = false
+
+[[tool.mypy.overrides]]
+module = [
+    "pandas.*",
+    "nemo.*",
+    "pyannote.*",
+    "segeval.*",
+    "jiwer.*",
+    "scipy.*",
+    "torch.*",
+    "sentence_transformers.*",
+    "prefect.*",
+    "umap.*",
+    "hdbscan.*",
+    "redis.*",
+]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]

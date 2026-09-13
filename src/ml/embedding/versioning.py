@@ -6,7 +6,7 @@ import functools
 from pathlib import Path
 from typing import Literal
 
-import yaml  # type: ignore[import-untyped]
+import yaml
 from pydantic import BaseModel
 
 MODELS_YAML_PATH = Path(__file__).resolve().parents[3] / "config" / "models.yaml"

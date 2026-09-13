@@ -40,7 +40,7 @@ class ValkeyStreamProducer:
 
     async def xadd_chunk(self, fields: dict[str, str]) -> str:
         """XADD to the audio.chunk stream and return the message id."""
-        message_id = await self._client.xadd(AUDIO_CHUNK_STREAM, fields)  # type: ignore[arg-type]
+        message_id = await self._client.xadd(AUDIO_CHUNK_STREAM, fields)
         return str(message_id)
 
     async def publish_event(self, session_id: str, event: str, data: dict[str, Any]) -> None:
@@ -56,12 +56,12 @@ class ValkeyStreamProducer:
 
     async def xadd_processed(self, fields: dict[str, str]) -> str:
         """XADD to the audio.processed stream and return the message id."""
-        message_id = await self._client.xadd(AUDIO_PROCESSED_STREAM, fields)  # type: ignore[arg-type]
+        message_id = await self._client.xadd(AUDIO_PROCESSED_STREAM, fields)
         return str(message_id)
 
     async def xadd_quality(self, fields: dict[str, str]) -> str:
         """XADD to the audio.quality stream and return the message id."""
-        message_id = await self._client.xadd(AUDIO_QUALITY_STREAM, fields)  # type: ignore[arg-type]
+        message_id = await self._client.xadd(AUDIO_QUALITY_STREAM, fields)
         return str(message_id)
 
     async def ensure_consumer_group(self, stream: str, group: str) -> None:

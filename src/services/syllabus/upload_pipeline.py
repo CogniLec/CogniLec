@@ -78,7 +78,6 @@ class SyllabusUploadPipeline:
             status="complete",
             items_extracted=len(created),
             message=(
-                f"Extracted {len(created)} syllabus items. "
-                "Coverage mapping will begin shortly."
+                f"Extracted {len(created)} syllabus items. Coverage mapping will begin shortly."
             ),
         )

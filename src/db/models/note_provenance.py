@@ -1,4 +1,5 @@
 """Note provenance model - links notes to source utterances."""
+
 from __future__ import annotations
 
 import uuid

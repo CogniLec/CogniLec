@@ -42,9 +42,7 @@ def upgrade() -> None:
             server_default=sa.text("now()"),
         ),
         sa.Column("reverted_at", sa.DateTime(timezone=True), nullable=True),
-        sa.CheckConstraint(
-            "operation_type IN ('merge', 'split')", name="ck_partition_op_type"
-        ),
+        sa.CheckConstraint("operation_type IN ('merge', 'split')", name="ck_partition_op_type"),
         sa.ForeignKeyConstraint(["subject_id"], ["subjects.id"], ondelete="CASCADE"),
         sa.ForeignKeyConstraint(["performed_by"], ["users.id"]),
     )

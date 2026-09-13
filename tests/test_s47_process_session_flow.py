@@ -103,12 +103,16 @@ def _synthesis_transport_factory():
 
 
 def _build_filter_agent() -> RelevanceFilterAgent:
-    config = LLMRouterConfig(tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")])
+    config = LLMRouterConfig(
+        tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
+    )
     return RelevanceFilterAgent(LLMRouter(config, transport=_relevance_transport_factory()))
 
 
 def _build_synthesis_agent() -> NoteSynthesisAgent:
-    config = LLMRouterConfig(tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")])
+    config = LLMRouterConfig(
+        tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
+    )
     return NoteSynthesisAgent(LLMRouter(config, transport=_synthesis_transport_factory()))
 
 
@@ -276,9 +280,7 @@ class TestT477EventsEmitted:
         assert result.success is True
         assert any(event == "session.complete" for _, event, _ in published)
 
-    async def test_session_failed_event_emitted_on_error(
-        self, db_session: AsyncSession
-    ) -> None:
+    async def test_session_failed_event_emitted_on_error(self, db_session: AsyncSession) -> None:
         subject_id, session_id = await _content_session_with_utterances(db_session)
         published: list[tuple[str, str, dict]] = []
 

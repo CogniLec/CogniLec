@@ -1,4 +1,4 @@
-"""T07.4 – Pydantic schema validation tests."""
+"""T07.4 - Pydantic schema validation tests."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from src.api.schemas.subject import SubjectCreate, SubjectUpdate
 
 
 class TestSubjectValidation:
-    """T07.4 – Pydantic schema rejects malformed subject payloads."""
+    """T07.4 - Pydantic schema rejects malformed subject payloads."""
 
     def test_valid_subject_create(self) -> None:
         s = SubjectCreate(name="Machine Learning", description="CS-229")

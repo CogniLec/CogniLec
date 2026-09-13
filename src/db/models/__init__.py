@@ -1,4 +1,4 @@
-"""SQLAlchemy models – import all models here so Alembic can discover them."""
+"""SQLAlchemy models - import all models here so Alembic can discover them."""
 
 from __future__ import annotations
 

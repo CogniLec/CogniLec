@@ -1,4 +1,4 @@
-"""FastAPI router – Sessions."""
+"""FastAPI router - Sessions."""
 
 from __future__ import annotations
 

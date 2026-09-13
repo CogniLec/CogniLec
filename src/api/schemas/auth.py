@@ -1,4 +1,4 @@
-"""Pydantic schemas – Auth."""
+"""Pydantic schemas - Auth."""
 
 from __future__ import annotations
 

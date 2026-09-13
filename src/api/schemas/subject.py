@@ -1,4 +1,4 @@
-"""Pydantic schemas – Subject."""
+"""Pydantic schemas - Subject."""
 
 from __future__ import annotations
 

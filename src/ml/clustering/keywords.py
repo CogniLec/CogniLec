@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from sklearn.feature_extraction.text import CountVectorizer  # type: ignore[import-untyped]
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 @dataclass

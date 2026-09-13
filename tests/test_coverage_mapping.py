@@ -129,7 +129,5 @@ async def test_user_correction_persists(syllabus_session, db_session) -> None:
 
 async def test_fdw_coverage_query(syllabus_session, db_session) -> None:
     """T52.5: coverage query joins local topics with foreign syllabus_items via FDW."""
-    result = (
-        await db_session.execute(text("SELECT count(*) FROM syllabus_items"))
-    ).scalar_one()
+    result = (await db_session.execute(text("SELECT count(*) FROM syllabus_items"))).scalar_one()
     assert result >= 0

@@ -20,11 +20,15 @@ from sqlalchemy.ext.asyncio import AsyncSession
 async def export_user_data(db_session: AsyncSession, user_id: uuid.UUID) -> dict[str, Any]:
     """Return every row this user owns, scoped by the subjects->sessions ownership chain."""
     user_row = (
-        await db_session.execute(
-            text("SELECT id, email, created_at FROM users WHERE id = :uid"),
-            {"uid": str(user_id)},
+        (
+            await db_session.execute(
+                text("SELECT id, email, created_at FROM users WHERE id = :uid"),
+                {"uid": str(user_id)},
+            )
         )
-    ).mappings().first()
+        .mappings()
+        .first()
+    )
     if user_row is None:
         msg = f"no such user: {user_id}"
         raise ValueError(msg)

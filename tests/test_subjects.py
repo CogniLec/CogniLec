@@ -1,4 +1,4 @@
-"""T07.1 – Subject creation and uniqueness constraint tests."""
+"""T07.1 - Subject creation and uniqueness constraint tests."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ async def _create_user(session: AsyncSession, email: str | None = None) -> User:
 
 @pytest.mark.integration
 class TestSubjectUniquePerUser:
-    """T07.1 – Subject creation; duplicate name for same user rejected; same name for different user allowed."""
+    """T07.1 - Subject creation; duplicate name for same user rejected; same name for different user allowed."""
 
     async def test_create_subject(self, db_session: AsyncSession) -> None:
         user = await _create_user(db_session)
