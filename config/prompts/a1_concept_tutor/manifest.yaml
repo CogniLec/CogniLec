@@ -1,0 +1,8 @@
+agent_id: A1
+current_version: 1.0.0
+versions:
+  - version: 1.0.0
+    status: deployed
+    model: phi-3-mini-3.8b-4bit
+    temperature: 0.7
+    changelog: "Initial concept tutor prompt"

@@ -1,0 +1,15 @@
+{
+  "agent_id": "A4",
+  "schema_name": "study_planner_output",
+  "version": "1.0.0",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "plan_summary": {"type": "string", "minLength": 10, "maxLength": 1000},
+      "tasks": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 20},
+      "estimated_minutes": {"type": "integer", "minimum": 1, "maximum": 600}
+    },
+    "required": ["plan_summary", "tasks", "estimated_minutes"],
+    "additionalProperties": false
+  }
+}

@@ -12,6 +12,7 @@ repos:
       - id: mypy
         args: [--strict, --show-error-codes, --pretty]
         additional_dependencies: [pydantic, sqlalchemy, fastapi, types-requests, types-pyyaml]
+        exclude: ^(tests/|scripts/|migrations/)
 
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.18.0

@@ -1,0 +1,16 @@
+{
+  "agent_id": "A3",
+  "schema_name": "socratic_guide_output",
+  "version": "1.0.0",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "response_type": {"type": "string", "enum": ["hint", "question", "feedback", "corrective"]},
+      "content": {"type": "string", "minLength": 5, "maxLength": 1500},
+      "student_reasoning_assessment": {"type": "string", "enum": ["correct", "partial", "misconception", "empty"]},
+      "next_prompt_strategy": {"type": "string", "enum": ["scaffold", "probe", "redirect", "confirm"]}
+    },
+    "required": ["response_type", "content", "student_reasoning_assessment", "next_prompt_strategy"],
+    "additionalProperties": false
+  }
+}

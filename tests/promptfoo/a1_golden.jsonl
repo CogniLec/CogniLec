@@ -1,0 +1,3 @@
+{"vars": {"topic": "photosynthesis", "level": "beginner"}, "assert": [{"type": "contains", "value": "photosynthesis"}, {"type": "field_min_length", "field": "key_concepts", "value": 1}]}
+{"vars": {"topic": "quantum entanglement", "level": "advanced"}, "assert": [{"type": "contains", "value": "quantum"}, {"type": "field_equals", "field": "difficulty", "value": "hard"}]}
+{"vars": {"topic": "Newton's laws", "level": "intermediate"}, "assert": [{"type": "contains", "value": "newton"}, {"type": "field_min_length", "field": "key_concepts", "value": 2}]}

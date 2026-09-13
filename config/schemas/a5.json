@@ -1,0 +1,19 @@
+{
+  "agent_id": "A5",
+  "schema_name": "exam_sim_output",
+  "version": "1.0.0",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "question": {"type": "string", "minLength": 10, "maxLength": 2000},
+      "question_type": {"type": "string", "enum": ["mcq", "short_answer", "essay", "true_false"]},
+      "options": {"type": ["array", "null"], "items": {"type": "string"}, "minItems": 2, "maxItems": 6},
+      "correct_answer": {"type": "string", "minLength": 1},
+      "explanation": {"type": "string", "minLength": 10, "maxLength": 1000},
+      "difficulty": {"type": "string", "enum": ["easy", "medium", "hard"]},
+      "topic_tags": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 5}
+    },
+    "required": ["question", "question_type", "correct_answer", "explanation", "difficulty", "topic_tags"],
+    "additionalProperties": false
+  }
+}

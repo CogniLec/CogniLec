@@ -440,6 +440,117 @@ services:
         limits:
           memory: 1G
 
+  # ---------------------------------------------------------------------------
+  # vLLM — S36 Tier 1 local GPU LLM serving (OpenAI-compatible endpoint)
+  # Start order is enforced by depends_on: ASR/TEI must be healthy first to
+  # avoid VRAM fragmentation on the 4GB Quadro T1000 budget.
+  # ---------------------------------------------------------------------------
+  vllm:
+    image: vllm/vllm-openai:v0.5.5
+    container_name: lis-vllm
+    hostname: vllm
+    command: >
+      --model ${VLLM_MODEL:-microsoft/Phi-3-mini-3.8B-4bit}
+      --quantization ${VLLM_QUANTIZATION:-awq}
+      --gpu-memory-utilization ${VLLM_GPU_MEMORY_UTIL:-0.85}
+      --max-model-len ${VLLM_MAX_MODEL_LEN:-4096}
+      --host 0.0.0.0
+      --port ${VLLM_PORT:-8000}
+    ports:
+      - "${VLLM_PORT:-8000}:8000"
+    volumes:
+      - models:/models
+    environment:
+      HF_HOME: /models/huggingface
+      NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    networks:
+      - internal
+    profiles:
+      - llm
+
+  # ---------------------------------------------------------------------------
+  # LiteLLM proxy — S37 five-tier failover ladder router
+  # ---------------------------------------------------------------------------
+  litellm:
+    image: ghcr.io/berriai/litellm:main-stable
+    container_name: lis-litellm
+    hostname: litellm
+    volumes:
+      - ./config/litellm.yaml:/app/config.yaml:ro
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    ports:
+      - "4000:4000"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      TOGETHER_API_KEY: ${TOGETHER_API_KEY:-}
+    depends_on:
+      - vllm
+    networks:
+      - internal
+    profiles:
+      - llm
+
+  # ---------------------------------------------------------------------------
+  # LangFuse — S39 LLM observability / tracing platform
+  # ---------------------------------------------------------------------------
+  langfuse-db:
+    image: postgres:16
+    container_name: lis-langfuse-db
+    hostname: langfuse-db
+    environment:
+      POSTGRES_DB: langfuse
+      POSTGRES_USER: langfuse
+      POSTGRES_PASSWORD: ${LANGFUSE_DB_PASSWORD:-langfuse}
+    volumes:
+      - langfuse-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U langfuse"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - internal
+    profiles:
+      - observability
+
+  langfuse:
+    image: langfuse/langfuse:2
+    container_name: lis-langfuse
+    hostname: langfuse
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://langfuse:${LANGFUSE_DB_PASSWORD:-langfuse}@langfuse-db:5432/langfuse
+      NEXTAUTH_SECRET: ${LANGFUSE_NEXTAUTH_SECRET:-changeme}
+      SALT: ${LANGFUSE_SALT:-changeme}
+    depends_on:
+      langfuse-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - internal
+      - edge
+    profiles:
+      - observability
+
 # =============================================================================
 # Networks
 # =============================================================================
@@ -476,6 +587,8 @@ volumes:
     name: lis-traefik-letsencrypt
   portainer-data:
     name: lis-portainer-data
+  langfuse-data:
+    name: lis-langfuse-data
 
 # =============================================================================
 # Secrets (managed via SOPS+age)
