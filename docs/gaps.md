@@ -1073,6 +1073,62 @@ altered runtime behavior.
 - Full suite re-run after the clean rebuild: **695 passed, 81 skipped, 0
   failed** — confirmed working again, no lasting damage.
 
+## 21. Copyleft dependencies resolved per product decision (2026-09-14)
+
+- Gap #13's license audit flagged 6 dependencies with copyleft-family
+  licenses (`asyncssh`, `dulwich`, `frozendict`, `grandalf`, `pygit2`,
+  `text-unidecode`), unadjudicated. Product decision: replace with
+  permissively-licensed alternatives rather than keep or seek legal sign-off.
+- **`asyncssh`/`dulwich`/`grandalf`/`pygit2`**: all four are transitive
+  dependencies of `dvc` (via its `scmrepo` git backend), which itself was
+  only ever shelled out to as an external CLI for offline training-dataset
+  versioning (`src/services/finetuning/export.py`'s `dvc_add`) — never
+  imported by API/worker runtime code. Moved `dvc` out of the default `dev`
+  extra into a new `finetuning-ops` extra (`pyproject.toml`), so a normal
+  install no longer pulls any of the four in at all. Verified via `uv tree`
+  and a clean `rm -rf .venv && uv sync --extra dev` rebuild that none of the
+  four are present in the default install.
+- **`frozendict`**: `genanki` (a genuine runtime dependency, S58's Anki
+  export) declares it but its actual 0.13.1 source never imports it
+  (verified: no reference anywhere in the installed package). Rather than
+  install the real LGPLv3 package to satisfy an unused requirement, added a
+  local MIT-licensed shim (`vendor/frozendict-shim/`) that re-exports
+  `immutabledict` (a separately-licensed MIT package) under the
+  `frozendict` name, wired via `[tool.uv.sources]`. `genanki` imports and
+  runs correctly against the shim.
+- **`text-unidecode`**: a transitive dependency of `python-slugify`, which
+  is itself a transitive dependency of `prefect` (a genuine, load-bearing
+  runtime dependency — S27's orchestration). `python-slugify`'s own code
+  tries `import unidecode` first and only falls back to `text-unidecode`
+  (GPL/Artistic dual-licensed) if that's absent — both of `python-slugify`'s
+  supported transliteration backends are copyleft. Same shim technique as
+  `frozendict`: added `vendor/text-unidecode-shim/`, re-exporting
+  `anyascii` (ISC-licensed) under the `text_unidecode` module/distribution
+  name, wired via `[tool.uv.sources]`. `slugify()` calls still produce
+  correct output against the shim (verified: `slugify("Héllo Wörld!")` →
+  `"hello-world"`).
+- **Before/after license audit** (`uvx pip-licenses --python .venv/bin/python`
+  after a clean `rm -rf .venv && uv sync --extra dev` rebuild): zero
+  GPL/LGPL/Artistic-licensed packages remain in the default install (the
+  audit's `grep -iE "LGPL|GPL|Artistic"` returns nothing). No new
+  copyleft-licensed package was introduced by either shim's own dependency
+  (`immutabledict` is MIT, `anyascii` is ISC).
+- **Process note, disclosed plainly**: the agent that did the bulk of this
+  work correctly implemented the `frozendict` shim and the `dvc` extra
+  split, but left a duplicate `"dvc>=3.0,<4.0"` entry inside the `dev`
+  extra (alongside the new `finetuning-ops` extra it correctly created),
+  which silently undid the fix for a default `--extra dev` install — the
+  four transitive packages were still being pulled in. Found via a clean
+  venv rebuild that unexpectedly still showed them installed; fixed by
+  removing the stray duplicate line. The `text-unidecode` shim was added
+  after the agent's own pass ended, following the exact same technique it
+  had already established for `frozendict`.
+- Full suite re-verification is affected by unrelated cross-worktree
+  database contention (see below) rather than any regression from this
+  change; `pyproject.toml`/`vendor/` changes alone were confirmed correct
+  via direct import checks (`genanki`, `slugify`) and the license audit
+  above, independent of the full pytest run's shared-DB flakiness.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

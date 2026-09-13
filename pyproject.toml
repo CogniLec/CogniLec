@@ -37,6 +37,16 @@ dependencies = [
     "passlib[bcrypt]>=1.7,<2.0",
     # S58: Anki export (.apkg) and FSRS spaced-repetition scheduling.
     "genanki>=0.13,<1.0",
+    # Gap #21: pin genanki's declared-but-unused `frozendict` (LGPLv3) dep to
+    # the local MIT shim below instead of the real package (see
+    # [tool.uv.sources]); listing it here makes uv treat "frozendict" as a
+    # single project-wide requirement so the source override actually wins.
+    "frozendict",
+    # Gap #21: prefect -> python-slugify falls back to `text-unidecode`
+    # (GPL/Artistic) when `unidecode` isn't installed; pin it to the local
+    # MIT/ISC shim below (see [tool.uv.sources]) for the same reason as
+    # `frozendict` above.
+    "text-unidecode",
     "fsrs>=5.0,<6.0",
     "argon2-cffi>=23.1,<25.0",
     # HTTP
@@ -83,8 +93,6 @@ dependencies = [
     "accelerate>=0.33,<1.0",
     # Experiment tracking
     "mlflow>=2.16,<3.0",
-    # Data versioning
-    "dvc>=3.0,<4.0",
     # Audio processing
     "pydub>=0.25,<1.0",
     "aiofiles>=24.1,<25.0",
@@ -123,6 +131,25 @@ ml = [
     "seaborn>=0.13,<1.0",
     "plotly>=5.23,<6.0",
 ]
+# Gap #21: `dvc` is only ever shelled out to as an external CLI (see
+# src/services/finetuning/export.py's `dvc_add`) for offline training-dataset
+# versioning; it is never imported by the API/worker runtime. Scoping it to
+# an extra keeps its transitive copyleft-flagged deps (asyncssh, dulwich,
+# pygit2 via scmrepo; grandalf directly) out of the default runtime install.
+finetuning-ops = [
+    "dvc>=3.0,<4.0",
+]
+
+[tool.uv.sources]
+# Gap #21: genanki declares `frozendict` (LGPLv3) but its 0.13.1 source never
+# imports it (verified empty grep). Satisfy the unused requirement with a
+# local MIT shim (vendor/frozendict-shim) instead of installing the real
+# LGPLv3 package.
+frozendict = { path = "vendor/frozendict-shim" }
+# Gap #21: prefect's python-slugify dependency falls back to text-unidecode
+# (GPL/Artistic) when `unidecode` isn't installed; satisfied with a local
+# ISC-backed shim (vendor/text-unidecode-shim, using anyascii) instead.
+text-unidecode = { path = "vendor/text-unidecode-shim" }
 
 [build-system]
 requires = ["hatchling"]
@@ -188,6 +215,10 @@ ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = ["piexif.*", "imagehash.*", "cv2.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["immutabledict.*", "anyascii.*"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
