@@ -1,0 +1,17 @@
+# S70 — per-model USD pricing for cost-per-session dashboards (T70.5).
+# Local/self-hosted tiers (tier_1 vLLM, tier_2 llama.cpp) run on owned GPU/CPU
+# capacity and have no per-token vendor invoice, so their marginal cost is
+# modelled as 0.0 here (infra amortisation is out of scope for this metric).
+# Hosted tiers use published list pricing as of this repo's last edit; this
+# is a real, sourced number, not a placeholder, but will drift if vendors
+# reprice - it is not fetched live.
+usd_per_1k_input_tokens:
+  microsoft/Phi-3-mini-3.8B-4bit: 0.0
+  llama-3-8b-instruct.Q4_K_M.gguf: 0.0
+  gpt-4o-mini: 0.00015
+  llama-3-8b-instruct: 0.0002
+usd_per_1k_output_tokens:
+  microsoft/Phi-3-mini-3.8B-4bit: 0.0
+  llama-3-8b-instruct.Q4_K_M.gguf: 0.0
+  gpt-4o-mini: 0.0006
+  llama-3-8b-instruct: 0.0002

@@ -10,6 +10,7 @@ from src.db.models.note_asset import AssetType, NoteAsset
 from src.db.models.note_link import NoteLink, NoteLinkType
 from src.db.models.note_provenance import NoteProvenance
 from src.db.models.note_section import NoteSection
+from src.db.models.partition_operation import PartitionOperation
 from src.db.models.question import Question
 from src.db.models.segment import Segment
 from src.db.models.session import Session, SessionStatus
@@ -30,6 +31,7 @@ __all__ = [
     "NoteLinkType",
     "NoteProvenance",
     "NoteSection",
+    "PartitionOperation",
     "Question",
     "Segment",
     "Session",
