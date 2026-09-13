@@ -5,7 +5,16 @@ import uuid
 from datetime import datetime
 from enum import StrEnum
 
-from sqlalchemy import Boolean, CheckConstraint, DateTime, Float, ForeignKey, String, text
+from sqlalchemy import (
+    Boolean,
+    CheckConstraint,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    text,
+)
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -44,9 +53,15 @@ class Session(Base):
         index=True,
     )
     session_type: Mapped[str] = mapped_column(String(50), nullable=False, default="content")
-    status: Mapped[SessionStatus] = mapped_column(String(20), nullable=False, default=SessionStatus.CREATED)
+    status: Mapped[SessionStatus] = mapped_column(
+        String(20), nullable=False, default=SessionStatus.CREATED
+    )
     audio_quality: Mapped[float | None] = mapped_column(Float, nullable=True)
     notes_ready: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    failure_reason: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    failure_stage: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    retry_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    last_retry_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=text("now()")
     )

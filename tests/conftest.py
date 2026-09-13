@@ -47,7 +47,7 @@ async def db_session():
         [".venv/bin/alembic", "upgrade", "head"],
         capture_output=True,
         text=True,
-        cwd="/home/ashok/Documents/personal_project/fraud/ss",
+        cwd=str(Path(__file__).resolve().parents[1]),
         env=env,
     )
     if proc.returncode != 0:

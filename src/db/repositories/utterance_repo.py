@@ -102,7 +102,121 @@ class UtteranceRepository:
             rows,
         )
         await self._session.flush()
-        return result.rowcount or 0
+        return int(result.rowcount or 0)
+
+    async def apply_relevance_flags(
+        self,
+        subject_id: uuid.UUID,
+        session_id: uuid.UUID,
+        flags: dict[int, tuple[bool, str | None, float | None]],
+    ) -> int:
+        """Persist (is_relevant, filter_reason, outlier_score) per `seq` (S22).
+
+        Soft-delete only: rows are never removed, only flagged. A no-op when
+        `flags` is empty.
+        """
+        if not flags:
+            return 0
+
+        rows = [
+            {
+                "subject_id": subject_id,
+                "session_id": session_id,
+                "seq": seq,
+                "is_relevant": is_relevant,
+                "filter_reason": filter_reason,
+                "outlier_score": outlier_score,
+            }
+            for seq, (is_relevant, filter_reason, outlier_score) in flags.items()
+        ]
+        result = await self._session.execute(
+            text("""
+                UPDATE utterances
+                SET is_relevant = :is_relevant,
+                    filter_reason = :filter_reason,
+                    outlier_score = :outlier_score
+                WHERE subject_id = :subject_id AND session_id = :session_id AND seq = :seq
+            """),
+            rows,
+        )
+        await self._session.flush()
+        return int(result.rowcount or 0)
+
+    async def apply_agreement_scores(
+        self,
+        subject_id: uuid.UUID,
+        session_id: uuid.UUID,
+        scores: dict[int, float | None],
+    ) -> int:
+        """Persist `asr_agreement` per `seq` (S21). A no-op when `scores` is empty."""
+        if not scores:
+            return 0
+
+        rows = [
+            {
+                "subject_id": subject_id,
+                "session_id": session_id,
+                "seq": seq,
+                "asr_agreement": agreement,
+            }
+            for seq, agreement in scores.items()
+        ]
+        result = await self._session.execute(
+            text("""
+                UPDATE utterances
+                SET asr_agreement = :asr_agreement
+                WHERE subject_id = :subject_id AND session_id = :session_id AND seq = :seq
+            """),
+            rows,
+        )
+        await self._session.flush()
+        return int(result.rowcount or 0)
+
+    async def get_transcript_page(
+        self,
+        subject_id: uuid.UUID,
+        session_id: uuid.UUID,
+        offset: int = 0,
+        limit: int = 50,
+        include_filtered: bool = False,
+        speaker_tag: str | None = None,
+        search: str | None = None,
+    ) -> tuple[list[Utterance], int]:
+        """Paginated transcript page with optional filters (S24)."""
+        filters = [Utterance.subject_id == subject_id, Utterance.session_id == session_id]
+        if not include_filtered:
+            filters.append(Utterance.is_relevant.is_distinct_from(False))
+        if speaker_tag is not None:
+            filters.append(Utterance.speaker_tag == speaker_tag)
+        if search:
+            filters.append(Utterance.text.ilike(f"%{search}%"))
+
+        stmt = select(Utterance).where(*filters).order_by(Utterance.seq).offset(offset).limit(limit)
+        result = await self._session.execute(stmt)
+        items = list(result.scalars().all())
+
+        from sqlalchemy import func
+
+        count_stmt = select(func.count()).select_from(Utterance).where(*filters)
+        count_result = await self._session.execute(count_stmt)
+        total = count_result.scalar_one()
+        return items, total
+
+    async def count_filtered(self, subject_id: uuid.UUID, session_id: uuid.UUID) -> int:
+        """Count utterances where is_relevant = false for a session (S24)."""
+        from sqlalchemy import func
+
+        stmt = (
+            select(func.count())
+            .select_from(Utterance)
+            .where(
+                Utterance.subject_id == subject_id,
+                Utterance.session_id == session_id,
+                Utterance.is_relevant.is_(False),
+            )
+        )
+        result = await self._session.execute(stmt)
+        return result.scalar_one()
 
     async def existing_sequences(self, subject_id: uuid.UUID, session_id: uuid.UUID) -> set[int]:
         """Return the set of `seq` values already persisted for a session.

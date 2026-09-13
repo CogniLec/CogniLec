@@ -96,9 +96,15 @@ async def get_db_session_with_rls(
     session: AsyncSession = Depends(get_db_session),
     current_user: dict[str, Any] = Depends(get_current_user),
 ) -> AsyncGenerator[AsyncSession, None]:
-    """Get database session with RLS user context set."""
+    """Get database session with RLS user context set.
+
+    Uses `set_config()` rather than `SET LOCAL ... = :param` because
+    PostgreSQL's `SET`/`SET LOCAL` statements do not accept bind parameters
+    (asyncpg's prepared-statement placeholders make that a syntax error);
+    `set_config()` is a regular function call and takes them normally.
+    """
     await session.execute(
-        text("SET LOCAL app.user_id = :user_id"),
+        text("SELECT set_config('app.user_id', :user_id, true)"),
         {"user_id": str(current_user["id"])},
     )
     yield session

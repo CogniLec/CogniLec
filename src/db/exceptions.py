@@ -17,3 +17,11 @@ class SessionNotFoundError(Exception):
 
 class DuplicateKeyError(Exception):
     """Raised on unique constraint violation."""
+
+
+class InvalidTransitionError(Exception):
+    """Raised when an illegal session status transition is attempted (S23)."""
+
+
+class SessionFailedError(Exception):
+    """Raised when an operation cannot proceed because a session has failed (S23)."""

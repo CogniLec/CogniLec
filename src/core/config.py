@@ -137,6 +137,28 @@ class Settings(BaseSettings):
     DIARISATION_MAX_SPEAKERS: int = 5
     NFR_S4_AUDIT_ENABLED: bool = True
 
+    # Dual-ASR ensemble (S21)
+    SECONDARY_ASR_MODEL: str = "nvidia/canary-25b-12b-pt"
+    SECONDARY_ASR_ENGINE: str = "faster_whisper"
+    SECONDARY_ASR_COMPUTE_TYPE: str = "int8_float16"
+    SECONDARY_ASR_DEVICE: str = "cuda"
+    SECONDARY_ASR_BEAM_SIZE: int = 5
+    DUAL_ASR_ENABLED: bool = True
+    AGREEMENT_THRESHOLD: float = 0.5
+
+    # Hallucination detection (S22)
+    HALLUCINATION_DETECTION_ENABLED: bool = True
+    HALLUCINATION_AGREEMENT_THRESHOLD: float = 0.5
+    HALLUCINATION_MAX_REPEAT_NGRAM: int = 3
+    HALLUCINATION_MAX_REPEAT_COUNT: int = 3
+    HALLUCINATION_VAD_MARGIN_MS: int = 200
+    HALLUCINATION_MIN_UTTERANCE_LENGTH_MS: int = 500
+
+    # Retry queue (S23)
+    RETRY_MAX_ATTEMPTS: int = 3
+    RETRY_DELAY_SECONDS: int = 60
+    RETRY_BACKOFF_MULTIPLIER: float = 2.0
+
     # Observability
     OTEL_EXPORTER_OTLP_ENDPOINT: str = "http://localhost:4318/v1/traces"
     OTEL_SERVICE_NAME: str = "lis"
