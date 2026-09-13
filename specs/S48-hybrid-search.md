@@ -88,12 +88,14 @@ def reciprocal_rank_fusion(
 # src/services/search/models.py
 from pydantic import BaseModel, Field
 
+
 class SearchQuery(BaseModel):
     query: str = Field(..., min_length=1, max_length=500)
     subject_id: str
     top_k: int = Field(default=10, ge=1, le=100)
     search_type: str = Field(default="hybrid")  # "hybrid" | "lexical" | "vector"
     source_filter: str | None = None  # "transcript" | "notes" | None (both)
+
 
 class SearchResult(BaseModel):
     id: str
@@ -106,6 +108,7 @@ class SearchResult(BaseModel):
     vector_score: float | None = None
     timestamp_start: float | None = None
     timestamp_end: float | None = None
+
 
 class SearchResponse(BaseModel):
     query: str

@@ -35,18 +35,22 @@ candidates_in → cross_encoder_score → scored_candidates_out
 # src/services/reranker/models.py
 from pydantic import BaseModel, Field
 
+
 class RerankerRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=2000)
     documents: list[str] = Field(..., min_length=1, max_length=100)
+
 
 class RerankerResult(BaseModel):
     index: int = Field(..., ge=0)
     score: float = Field(..., ge=-1.0, le=1.0)
     document: str
 
+
 class RerankerResponse(BaseModel):
     results: list[RerankerResult]
     latency_ms: int = Field(..., ge=0)
+
 
 # src/services/reranker/config.py
 class RerankerConfig(BaseModel):
@@ -127,15 +131,14 @@ class RerankerConfig(BaseModel):
 ```python
 # src/services/reranker/client.py
 class RerankerClient:
-    async def score(
-        self, query: str, documents: list[str]
-    ) -> RerankerResponse:
+    async def score(self, query: str, documents: list[str]) -> RerankerResponse:
         """Score documents against query. Returns sorted by relevance."""
         ...
 
     async def health_check(self) -> bool:
         """Check if reranker service is reachable."""
         ...
+
 
 # src/services/retrieval/reranker.py
 async def two_stage_retrieve(

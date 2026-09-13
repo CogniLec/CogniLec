@@ -36,8 +36,10 @@ IDLE → DOWNLOADING → LOADED → SERVING → STOPPED
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class ModelTier(str, Enum):
     TIER_1 = "tier_1"
+
 
 class VLLMConfig(BaseModel):
     model_name: str = "microsoft/Phi-3-mini-3.8B-4bit"
@@ -50,6 +52,7 @@ class VLLMConfig(BaseModel):
     port: int = 8000
     health_check_interval: int = 30
     max_concurrent: int = 4
+
 
 class ModelInfo(BaseModel):
     name: str

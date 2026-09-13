@@ -46,15 +46,18 @@ cosine < 0.60 → not aligned (too dissimilar)
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class CoverageStatus(str, Enum):
     NOT_STARTED = "not_started"
     PARTIAL = "partial"
     COVERED = "covered"
 
+
 class AlignmentConfidence(str, Enum):
-    AUTO = "auto"         # cosine ≥ 0.80
+    AUTO = "auto"  # cosine ≥ 0.80
     SUGGESTED = "suggested"  # 0.60 ≤ cosine < 0.80
-    NONE = "none"         # cosine < 0.60
+    NONE = "none"  # cosine < 0.60
+
 
 class TopicSyllabusAlignment(BaseModel):
     topic_id: UUID
@@ -62,6 +65,7 @@ class TopicSyllabusAlignment(BaseModel):
     cosine_similarity: float = Field(..., ge=0.0, le=1.0)
     confidence: AlignmentConfidence
     auto_aligned: bool  # True if auto-aligned, False if user-confirmed
+
 
 class SyllabusCoverageSummary(BaseModel):
     subject_id: UUID
@@ -71,6 +75,7 @@ class SyllabusCoverageSummary(BaseModel):
     not_started_items: int
     coverage_pct: float = Field(..., ge=0.0, le=100.0)
     items: list[SyllabusItemCoverageDetail]
+
 
 class SyllabusItemCoverageDetail(BaseModel):
     item_id: UUID
@@ -82,12 +87,15 @@ class SyllabusItemCoverageDetail(BaseModel):
     covered_by_topics: list[UUID]
     alignment_confidence: AlignmentConfidence | None = None
 
+
 class AlignmentCorrection(BaseModel):
     """User correction to a topic-syllabus alignment."""
+
     topic_id: UUID
     syllabus_item_id: UUID
     action: str = Field(..., pattern="^(link|unlink|replace)$")
     replace_with_item_id: UUID | None = None  # only for action="replace"
+
 
 class CoverageUpdateEvent(BaseModel):
     subject_id: UUID
@@ -265,15 +273,16 @@ class CoverageRepository:
         ...
 
     async def update_item_coverage(
-        self, item_id: UUID, status: CoverageStatus,
-        covered_by: list[UUID], confidence: AlignmentConfidence
+        self,
+        item_id: UUID,
+        status: CoverageStatus,
+        covered_by: list[UUID],
+        confidence: AlignmentConfidence,
     ) -> None:
         """Write coverage update to PG-SYLLABUS (direct connection, not FDW)."""
         ...
 
-    async def get_suggested_alignments(
-        self, subject_id: UUID
-    ) -> list[TopicSyllabusAlignment]:
+    async def get_suggested_alignments(self, subject_id: UUID) -> list[TopicSyllabusAlignment]:
         """Get alignments with confidence=SUGGESTED awaiting user review."""
         ...
 
@@ -290,7 +299,7 @@ class CoverageRepository:
 class CoverageService:
     async def recompute_coverage(self, subject_id: UUID) -> SyllabusCoverageSummary:
         """Recompute all topic-syllabus alignments for a subject.
-        
+
         1. Get all syllabus items (via FDW)
         2. Get all topics for subject (from DB-2)
         3. Compute cosine similarity matrix
@@ -305,7 +314,7 @@ class CoverageService:
         self, subject_id: UUID, session_id: UUID
     ) -> SyllabusCoverageSummary:
         """Triggered after session.complete event.
-        
+
         Recompute coverage with newly discovered topics from the session.
         Tighter re-clustering cadence for sessions 2–5 (S53 integration).
         """
@@ -317,7 +326,7 @@ class CoverageService:
 # src/graph/session_hooks.py (addition)
 async def on_session_complete(session_id: UUID, subject_id: UUID) -> None:
     """Hook called after session processing completes.
-    
+
     Triggers coverage recomputation for the subject.
     Event: session.complete → coverage.recompute
     """

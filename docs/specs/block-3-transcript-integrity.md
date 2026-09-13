@@ -146,6 +146,7 @@ class DualASRWorker:
 ```python
 # src/workers/dual_asr_worker.py
 
+
 @dataclass
 class SecondaryUtterance:
     text: str
@@ -153,12 +154,14 @@ class SecondaryUtterance:
     end_ms: int
     confidence: float
 
+
 @dataclass
 class AlignmentPair:
     primary_id: UUID
     secondary_text: str | None  # None if no match found
-    iou: float                  # intersection-over-union of time windows
-    agreement: float            # text agreement score [0.0, 1.0]
+    iou: float  # intersection-over-union of time windows
+    agreement: float  # text agreement score [0.0, 1.0]
+
 
 @dataclass
 class DualASRResult:
@@ -167,7 +170,7 @@ class DualASRResult:
     utterances_aligned: int
     mean_agreement: float
     min_agreement: float
-    duration_ms: int            # wall-clock time for dual ASR
+    duration_ms: int  # wall-clock time for dual ASR
 ```
 
 #### 5.4 Agreement Score Algorithm
@@ -348,12 +351,14 @@ class HallucinationDetector:
 ```python
 # src/ml/hallucination.py
 
+
 @dataclass
 class HallucinationResult:
     is_hallucination: bool
-    detectors_fired: list[str]    # ["cross_model", "repetition", "vad_contradiction"]
-    confidence: float             # combined confidence [0.0, 1.0]
-    details: dict[str, Any]       # detector-specific details for audit
+    detectors_fired: list[str]  # ["cross_model", "repetition", "vad_contradiction"]
+    confidence: float  # combined confidence [0.0, 1.0]
+    details: dict[str, Any]  # detector-specific details for audit
+
 
 @dataclass
 class VADRegion:
@@ -361,13 +366,14 @@ class VADRegion:
     end_ms: int
     is_speech: bool
 
+
 @dataclass
 class HallucinationConfig:
-    agreement_threshold: float = 0.5     # below this → cross-model fires
-    max_repeat_ngram: int = 3            # n-gram size for repetition detection
-    max_repeat_count: int = 3            # max allowed repetitions
-    vad_margin_ms: int = 200             # tolerance around VAD boundaries
-    min_utterance_length_ms: int = 500   # ignore very short utterances
+    agreement_threshold: float = 0.5  # below this → cross-model fires
+    max_repeat_ngram: int = 3  # n-gram size for repetition detection
+    max_repeat_count: int = 3  # max allowed repetitions
+    vad_margin_ms: int = 200  # tolerance around VAD boundaries
+    min_utterance_length_ms: int = 500  # ignore very short utterances
 ```
 
 #### 5.2 Detector Algorithms
@@ -555,15 +561,15 @@ class SessionStateMachine:
 
     # Valid transitions: (from_status, to_status) → guard function
     TRANSITIONS: dict[tuple[SessionStatus, SessionStatus], Callable | None] = {
-        (SessionStatus.CREATED, SessionStatus.RECORDING):    None,  # first chunk uploaded
-        (SessionStatus.RECORDING, SessionStatus.TRANSCRIBED): None, # ASR complete
-        (SessionStatus.TRANSCRIBED, SessionStatus.PROCESSING): None, # downstream processing starts
-        (SessionStatus.PROCESSING, SessionStatus.COMPLETE):   None,  # all stages done
-        (SessionStatus.PROCESSING, SessionStatus.FAILED):     None,  # stage failure
-        (SessionStatus.FAILED, SessionStatus.PROCESSING):     None,  # retry
-        (SessionStatus.FAILED, SessionStatus.TRANSCRIBED):    None,  # re-ASR from chunks
-        (SessionStatus.CREATED, SessionStatus.FAILED):        None,  # setup failure
-        (SessionStatus.RECORDING, SessionStatus.FAILED):      None,  # recording failure
+        (SessionStatus.CREATED, SessionStatus.RECORDING): None,  # first chunk uploaded
+        (SessionStatus.RECORDING, SessionStatus.TRANSCRIBED): None,  # ASR complete
+        (SessionStatus.TRANSCRIBED, SessionStatus.PROCESSING): None,  # downstream processing starts
+        (SessionStatus.PROCESSING, SessionStatus.COMPLETE): None,  # all stages done
+        (SessionStatus.PROCESSING, SessionStatus.FAILED): None,  # stage failure
+        (SessionStatus.FAILED, SessionStatus.PROCESSING): None,  # retry
+        (SessionStatus.FAILED, SessionStatus.TRANSCRIBED): None,  # re-ASR from chunks
+        (SessionStatus.CREATED, SessionStatus.FAILED): None,  # setup failure
+        (SessionStatus.RECORDING, SessionStatus.FAILED): None,  # recording failure
     }
 
     def validate_transition(self, from_status: SessionStatus, to_status: SessionStatus) -> bool:
@@ -612,6 +618,7 @@ class Session(Base):
 ```python
 # src/workers/retry_queue.py
 
+
 class RetryQueue:
     """Valkey/Redis-based retry queue for failed sessions."""
 
@@ -647,8 +654,10 @@ class RetryJob:
 ```python
 # src/db/exceptions.py — additions
 
+
 class InvalidTransitionError(Exception):
     """Raised when an illegal state transition is attempted."""
+
 
 class SessionFailedError(Exception):
     """Raised when a session enters the failed state."""
@@ -838,10 +847,12 @@ GET /api/v1/sessions/{session_id}/transcript
 ```python
 # src/api/schemas/transcript.py
 
+
 class WordTimestamp(BaseModel):
     word: str
     start_ms: int = Field(..., ge=0)
     end_ms: int = Field(..., ge=0)
+
 
 class TranscriptUtterance(BaseModel):
     id: UUID
@@ -857,6 +868,7 @@ class TranscriptUtterance(BaseModel):
     word_timestamps: list[WordTimestamp] = []
 
     model_config = ConfigDict(from_attributes=True)
+
 
 class TranscriptResponse(BaseModel):
     session_id: UUID
@@ -875,6 +887,7 @@ class TranscriptResponse(BaseModel):
 
 ```python
 # src/db/repositories/utterance_repo.py — additions
+
 
 class UtteranceRepository:
     # ... existing methods ...

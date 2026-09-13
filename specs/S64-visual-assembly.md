@@ -40,12 +40,13 @@ note_sections + visual_assets → match_assets_to_sections
 # src/services/visual_assembly/models.py
 from enum import Enum
 
+
 class AssetType(str, Enum):
-    TEXT_DIAGRAM = "text_diagram"       # Mermaid, KaTeX, etc.
-    LICENSED_IMAGE = "licensed_image"   # From S62
-    AI_GENERATED = "ai_generated"       # From S63
-    OCR_UPLOAD = "ocr_upload"           # From S59/S60
-    BOARD_PHOTO = "board_photo"         # Upload with timestamp match
+    TEXT_DIAGRAM = "text_diagram"  # Mermaid, KaTeX, etc.
+    LICENSED_IMAGE = "licensed_image"  # From S62
+    AI_GENERATED = "ai_generated"  # From S63
+    OCR_UPLOAD = "ocr_upload"  # From S59/S60
+    BOARD_PHOTO = "board_photo"  # Upload with timestamp match
 ```
 
 **Pydantic Schemas:**
@@ -54,6 +55,7 @@ class AssetType(str, Enum):
 from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
+
 
 class AssetAttachment(BaseModel):
     id: UUID
@@ -69,13 +71,15 @@ class AssetAttachment(BaseModel):
 
     model_config = {"from_attributes": True}
 
+
 class BoardPhotoMatch(BaseModel):
     upload_id: UUID
     note_section_id: UUID
     match_method: str  # "timestamp" or "semantic"
     match_confidence: float = Field(..., ge=0.0, le=1.0)
     timestamp_delta_seconds: int | None = None  # For timestamp matches
-    semantic_similarity: float | None = None     # For semantic matches
+    semantic_similarity: float | None = None  # For semantic matches
+
 
 class AssembledSection(BaseModel):
     note_section_id: UUID
@@ -87,12 +91,14 @@ class AssembledSection(BaseModel):
     images: list[AssetAttachment] = Field(default_factory=list)
     ocr_text: list[AssetAttachment] = Field(default_factory=list)
 
+
 class AssembledNoteView(BaseModel):
     session_id: UUID
     subject_id: UUID
     sections: list[AssembledSection]
     total_assets: int
     asset_type_breakdown: dict[str, int]  # asset_type → count
+
 
 class AssetMatchingConfig(BaseModel):
     timestamp_threshold_seconds: int = 300  # 5 minutes

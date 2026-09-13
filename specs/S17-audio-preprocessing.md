@@ -37,10 +37,12 @@ RECEIVED → RESAMPLED → DENOISED → VAD_PROCESSED → EMITTED
 from pydantic import BaseModel, Field
 from uuid import UUID
 
+
 class VADRegion(BaseModel):
     start_ms: int = Field(..., ge=0)
     end_ms: int = Field(..., ge=0)
     confidence: float = Field(..., ge=0.0, le=1.0)
+
 
 class ProcessedChunk(BaseModel):
     session_id: UUID
@@ -54,6 +56,7 @@ class ProcessedChunk(BaseModel):
     speech_ratio: float = Field(..., ge=0.0, le=1.0)
     has_speech: bool
     processing_latency_ms: int
+
 
 class PreprocessingResult(BaseModel):
     chunk: ProcessedChunk

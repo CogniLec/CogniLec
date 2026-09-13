@@ -45,6 +45,7 @@ PENDING → EXTRACTING → VALIDATED → WRITTEN
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class ItemType(str, Enum):
     MODULE = "module"
     TOPIC = "topic"
@@ -52,6 +53,7 @@ class ItemType(str, Enum):
     ASSESSMENT = "assessment"
     REFERENCE = "reference"
     SCHEDULE = "schedule"
+
 
 class ExtractedSyllabusItem(BaseModel):
     title: str = Field(..., min_length=1, max_length=500)
@@ -62,6 +64,7 @@ class ExtractedSyllabusItem(BaseModel):
     weight_pct: float | None = Field(None, ge=0.0, le=100.0)  # for assessments
     week_number: int | None = Field(None, ge=1)  # for schedule items
     references: list[str] = Field(default_factory=list, max_length=20)
+
 
 class A6SyllabusOutput(BaseModel):
     items: list[ExtractedSyllabusItem] = Field(..., min_length=1, max_length=200)
@@ -180,11 +183,9 @@ class SyllabusItemResponse(BaseModel):
 ```python
 # src/agents/a6/agent.py
 class A6Agent:
-    async def extract(
-        self, transcript: TranscriptChunk, subject_id: UUID
-    ) -> A6SyllabusOutput:
+    async def extract(self, transcript: TranscriptChunk, subject_id: UUID) -> A6SyllabusOutput:
         """Extract structured syllabus items from a transcript chunk.
-        
+
         Returns validated output with grade_of_authority ≤ 2.
         Raises ExtractionRejected if confidence too low.
         """
@@ -202,11 +203,14 @@ class A6Agent:
 # src/db/repositories/syllabus_repo.py
 class SyllabusRepository:
     async def bulk_create_items(
-        self, subject_id: UUID, items: list[ExtractedSyllabusItem],
-        source_session_id: UUID | None = None, source: str = "lecture"
+        self,
+        subject_id: UUID,
+        items: list[ExtractedSyllabusItem],
+        source_session_id: UUID | None = None,
+        source: str = "lecture",
     ) -> list[SyllabusItem]:
         """Bulk insert syllabus items into PG-SYLLABUS.
-        
+
         Only callable by A6 agent (write-authority enforced at DB role level).
         """
         ...
@@ -216,8 +220,7 @@ class SyllabusRepository:
         ...
 
     async def upsert_item(
-        self, subject_id: UUID, item: ExtractedSyllabusItem,
-        source_session_id: UUID | None = None
+        self, subject_id: UUID, item: ExtractedSyllabusItem, source_session_id: UUID | None = None
     ) -> SyllabusItem:
         """Upsert a single item (update if title + parent match)."""
         ...
@@ -239,13 +242,13 @@ GRANT SELECT ON FOREIGN TABLE syllabus_items TO lis;
 # src/db/write_guard.py
 class DB3WriteGuard:
     """Enforce that only A6 agent can write to DB-3.
-    
+
     Application-level guard that wraps SyllabusRepository write operations.
     Logs and rejects any write attempt not originating from A6 context.
     """
-    
-    _a6_context: ContextVar[bool] = ContextVar('a6_write_context', default=False)
-    
+
+    _a6_context: ContextVar[bool] = ContextVar("a6_write_context", default=False)
+
     @classmethod
     @contextmanager
     def a6_write_context(cls):
@@ -254,7 +257,7 @@ class DB3WriteGuard:
             yield
         finally:
             cls._a6_context.reset(token)
-    
+
     @classmethod
     def check_write_authority(cls) -> None:
         if not cls._a6_context.get():
@@ -268,7 +271,7 @@ class DB3WriteGuard:
 # src/graph/t4_subgraph.py (addition)
 def route_syllabus_lecture(session_type: str, transcript: Transcript) -> str:
     """Route syllabus lectures to A6 extraction pipeline.
-    
+
     If session is classified as 'syllabus' → A6 extraction.
     If session is 'mixed' and contains syllabus segment → isolate and route to A6.
     Otherwise → normal topic extraction (no A6 involvement).

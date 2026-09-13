@@ -38,18 +38,20 @@ windowing:
 # src/services/embedding/windowing.py
 from pydantic import BaseModel, Field
 
+
 class WindowConfig(BaseModel):
     W: int = Field(default=5, ge=0, description="Number of preceding utterances in context window")
     min_window_size: int = Field(default=1, ge=1)
     overlap: bool = True
     pool_strategy: str = "mean"
 
+
 class WindowedUtterance(BaseModel):
     utterance_id: UUID
     seq: int
     text: str
     window_texts: list[str]  # [utt_{i-W}, ..., utt_{i-1}, utt_i]
-    window_size: int         # Actual size (may be < W at transcript start)
+    window_size: int  # Actual size (may be < W at transcript start)
     embedding: list[float] | None = None
 ```
 
@@ -134,9 +136,7 @@ class WindowBuilder:
     def __init__(self, config: WindowConfig):
         self.config = config
 
-    def build_windows(
-        self, utterances: list[UtteranceCreate]
-    ) -> list[WindowedUtterance]:
+    def build_windows(self, utterances: list[UtteranceCreate]) -> list[WindowedUtterance]:
         """
         Build context windows for each utterance.
         utterances must be ordered by seq.
@@ -145,23 +145,24 @@ class WindowBuilder:
         windows = []
         for i, utt in enumerate(utterances):
             start = max(0, i - self.config.W)
-            window_texts = [u.text for u in utterances[start:i + 1]]
-            windows.append(WindowedUtterance(
-                utterance_id=utt.id,
-                seq=utt.seq,
-                text=utt.text,
-                window_texts=window_texts,
-                window_size=len(window_texts),
-            ))
+            window_texts = [u.text for u in utterances[start : i + 1]]
+            windows.append(
+                WindowedUtterance(
+                    utterance_id=utt.id,
+                    seq=utt.seq,
+                    text=utt.text,
+                    window_texts=window_texts,
+                    window_size=len(window_texts),
+                )
+            )
         return windows
 
-    def pool_embeddings(
-        self, window_embeddings: list[list[float]]
-    ) -> list[float]:
+    def pool_embeddings(self, window_embeddings: list[list[float]]) -> list[float]:
         """
         Mean-pool a list of per-window embeddings into a single vector.
         """
         import numpy as np
+
         arr = np.array(window_embeddings)
         return np.mean(arr, axis=0).tolist()
 ```

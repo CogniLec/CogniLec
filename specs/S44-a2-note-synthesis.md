@@ -44,14 +44,16 @@ full_session_transcript + segments + prior_notes + syllabus
 # src/services/agents/a2/models.py
 from pydantic import BaseModel, Field
 
+
 class NoteSection(BaseModel):
     heading: str = Field(..., min_length=1, max_length=200)
     body_md: str = Field(..., min_length=1)
     depth: int = Field(..., ge=0, le=5)  # heading hierarchy depth
-    ordinal: int = Field(..., ge=0)      # ordering within depth level
+    ordinal: int = Field(..., ge=0)  # ordering within depth level
     source_utt_ids: list[str] = Field(..., min_length=1)  # FR-7.8: every section needs provenance
-    has_mermaid: bool = False            # whether body contains Mermaid blocks
-    has_katex: bool = False              # whether body contains KaTeX math
+    has_mermaid: bool = False  # whether body contains Mermaid blocks
+    has_katex: bool = False  # whether body contains KaTeX math
+
 
 class A2SynthesisResult(BaseModel):
     session_id: str
@@ -144,8 +146,7 @@ class A2SynthesisResult(BaseModel):
 ```python
 # src/services/agents/a2/synthesis.py
 class A2SynthesisAgent:
-    def __init__(self, llm_client, prompt_registry, utterance_repo, note_repo):
-        ...
+    def __init__(self, llm_client, prompt_registry, utterance_repo, note_repo): ...
 
     async def synthesize(
         self,

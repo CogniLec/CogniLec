@@ -89,7 +89,9 @@ class NoteSection(Base):
     __tablename__ = "note_sections"
 
     subject_id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     topic_id: Mapped[UUID | None] = mapped_column(Uuid, nullable=True)
     session_id: Mapped[UUID | None] = mapped_column(Uuid, nullable=True)  # NULL = consolidated
     heading: Mapped[str] = mapped_column(Text, nullable=False)
@@ -98,18 +100,28 @@ class NoteSection(Base):
     ordinal: Mapped[int] = mapped_column(Integer, nullable=False)
     embedding = mapped_column(Vector(1024), nullable=True)
     model_version: Mapped[str | None] = mapped_column(String(50), nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
+
 
 # src/db/models/note_provenance.py
 class NoteProvenance(Base):
     __tablename__ = "note_provenance"
 
     subject_id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     note_section_id: Mapped[UUID] = mapped_column(Uuid, nullable=False)
     utterance_id: Mapped[UUID] = mapped_column(Uuid, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
+
 
 # src/db/models/note_asset.py
 class AssetType(str, Enum):
@@ -119,10 +131,13 @@ class AssetType(str, Enum):
     OCR_TEXT = "ocr_text"
     DIAGRAM = "diagram"
 
+
 class NoteAsset(Base):
     __tablename__ = "note_assets"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     note_section_id: Mapped[UUID] = mapped_column(Uuid, nullable=False)
     asset_type: Mapped[AssetType] = mapped_column(String(50), nullable=False)
     object_key: Mapped[str | None] = mapped_column(String(500), nullable=True)
@@ -132,7 +147,9 @@ class NoteAsset(Base):
     is_ai_generated: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     ocr_text: Mapped[str | None] = mapped_column(Text, nullable=True)
     ocr_confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
 ```
 
 **Pydantic Schemas:**
@@ -145,6 +162,7 @@ class NoteSectionCreate(BaseModel):
     body_md: str = Field(..., min_length=1)
     depth: int = Field(0, ge=0, le=10)
     ordinal: int = Field(..., ge=0)
+
 
 class NoteSectionResponse(BaseModel):
     id: UUID
@@ -159,6 +177,7 @@ class NoteSectionResponse(BaseModel):
     updated_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
 
 class NoteAssetResponse(BaseModel):
     id: UUID
@@ -228,9 +247,7 @@ class NoteRepository:
     ) -> int:
         """Create provenance links. Returns count created."""
 
-    async def create_asset(
-        self, subject_id: UUID, data: NoteAssetCreate
-    ) -> NoteAsset:
+    async def create_asset(self, subject_id: UUID, data: NoteAssetCreate) -> NoteAsset:
         """Create a note asset (image, OCR, diagram)."""
 
     async def get_sections_by_session(
@@ -238,19 +255,13 @@ class NoteRepository:
     ) -> list[NoteSection]:
         """Get note sections for a session, ordered by ordinal."""
 
-    async def get_sections_by_topic(
-        self, subject_id: UUID, topic_id: UUID
-    ) -> list[NoteSection]:
+    async def get_sections_by_topic(self, subject_id: UUID, topic_id: UUID) -> list[NoteSection]:
         """Get consolidated note sections for a topic across all sessions."""
 
-    async def get_assets(
-        self, subject_id: UUID, note_section_id: UUID
-    ) -> list[NoteAsset]:
+    async def get_assets(self, subject_id: UUID, note_section_id: UUID) -> list[NoteAsset]:
         """Get assets for a note section."""
 
-    async def get_provenance(
-        self, subject_id: UUID, note_section_id: UUID
-    ) -> list[NoteProvenance]:
+    async def get_provenance(self, subject_id: UUID, note_section_id: UUID) -> list[NoteProvenance]:
         """Get utterance provenance for a note section."""
 
     async def delete_section(self, subject_id: UUID, section_id: UUID) -> bool:

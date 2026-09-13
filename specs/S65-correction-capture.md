@@ -44,35 +44,49 @@ class CorrectionType(str, Enum):
     IMAGE_REJECTION = "image_rejection"
     NOTE_EDIT = "note_edit"
 
+
 class Correction(Base):
     __tablename__ = "corrections"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
-    session_id: Mapped[UUID | None] = mapped_column(ForeignKey("sessions.id", ondelete="SET NULL"), nullable=True, index=True)
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
+    user_id: Mapped[UUID] = mapped_column(
+        ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    session_id: Mapped[UUID | None] = mapped_column(
+        ForeignKey("sessions.id", ondelete="SET NULL"), nullable=True, index=True
+    )
     correction_type: Mapped[CorrectionType] = mapped_column(String(50), nullable=False)
     original_prediction: Mapped[dict] = mapped_column(JSONB, nullable=False)
     corrected_value: Mapped[dict] = mapped_column(JSONB, nullable=False)
     context: Mapped[dict] = mapped_column(JSONB, nullable=False)  # utterance_id, topic_id, etc.
     consent_for_training: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
 
     __table_args__ = (
         CheckConstraint(
             "correction_type IN ('a1_relevance_override', 'topic_label_edit', 'split_merge_correction', 'syllabus_alignment', 'image_rejection', 'note_edit')",
-            name="ck_correction_type"
+            name="ck_correction_type",
         ),
     )
+
 
 class TrainingDataset(Base):
     __tablename__ = "training_datasets"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     version: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     correction_types: Mapped[list] = mapped_column(JSONB, nullable=False)
     row_count: Mapped[int] = mapped_column(Integer, nullable=False)
     dvc_hash: Mapped[str | None] = mapped_column(String(255), nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
 ```
 
 **Pydantic Schemas:**
@@ -87,6 +101,7 @@ class CorrectionCreate(BaseModel):
     context: dict[str, Any]  # must contain utterance_id or relevant identifiers
     consent_for_training: bool = True
 
+
 class CorrectionResponse(BaseModel):
     id: UUID
     user_id: UUID
@@ -100,11 +115,13 @@ class CorrectionResponse(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+
 class DatasetExportRequest(BaseModel):
     correction_types: list[CorrectionType] | None = None  # None = all types
     min_date: datetime | None = None
     max_date: datetime | None = None
     include_user_ids: list[UUID] | None = None  # explicit consent only
+
 
 class DatasetExportResponse(BaseModel):
     dataset_id: UUID

@@ -58,6 +58,7 @@ Predicted DISCARD   ✗ silent loss  ✓ correct (HIGH value)
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class EvaluationCategory(str, Enum):
     STUDENT_QUESTION = "student_question"
     ADMIN = "admin"
@@ -65,12 +66,14 @@ class EvaluationCategory(str, Enum):
     TANGENT = "tangent"
     CORE_CONTENT = "core_content"
 
+
 class EvaluationResult(BaseModel):
     category: EvaluationCategory
     utterance_id: str
     ground_truth: bool  # true = relevant, false = off-topic
     predicted: bool
     confidence: float
+
 
 class EvaluationReport(BaseModel):
     total_utterances: int
@@ -163,8 +166,7 @@ class A1EvaluationRunner:
         self,
         a1_agent: A1FilterAgent,
         labelled_data_path: Path,
-    ):
-        ...
+    ): ...
 
     async def run_evaluation(self) -> EvaluationReport:
         """Run full evaluation against hand-labelled set.
@@ -184,15 +186,11 @@ class A1EvaluationRunner:
         """
         ...
 
-    def _compute_per_category(
-        self, results: list[EvaluationResult]
-    ) -> dict[str, dict[str, float]]:
+    def _compute_per_category(self, results: list[EvaluationResult]) -> dict[str, dict[str, float]]:
         """Compute precision, recall, f1 per category."""
         ...
 
-    def _calibrate_threshold(
-        self, results: list[EvaluationResult]
-    ) -> float:
+    def _calibrate_threshold(self, results: list[EvaluationResult]) -> float:
         """Find threshold that maximizes precision while maintaining recall > 0.80."""
         ...
 ```
@@ -235,6 +233,7 @@ uuid-003,uuid-s001,"The derivative of sin is cos",lecturer,0.05,TRUE,core_conten
 DISCARD_PRECISION_THRESHOLD = 0.90
 OFFTOPIC_RECALL_THRESHOLD = 0.80
 
+
 class EvaluationGateFailure(Exception):
     def __init__(self, report: EvaluationReport, failures: list[str]):
         self.report = report
@@ -242,15 +241,22 @@ class EvaluationGateFailure(Exception):
         msg = f"A1 evaluation gate FAILED: {'; '.join(failures)}"
         super().__init__(msg)
 
+
 def assert_gate_passes(report: EvaluationReport) -> None:
     """Assert all gate criteria. Raises EvaluationGateFailure on failure."""
     failures = []
     if report.precision_on_discard < DISCARD_PRECISION_THRESHOLD:
-        failures.append(f"precision on discard {report.precision_on_discard:.3f} < {DISCARD_PRECISION_THRESHOLD}")
+        failures.append(
+            f"precision on discard {report.precision_on_discard:.3f} < {DISCARD_PRECISION_THRESHOLD}"
+        )
     if report.recall_on_offtopic < OFFTOPIC_RECALL_THRESHOLD:
-        failures.append(f"recall on off-topic {report.recall_on_offtopic:.3f} < {OFFTOPIC_RECALL_THRESHOLD}")
+        failures.append(
+            f"recall on off-topic {report.recall_on_offtopic:.3f} < {OFFTOPIC_RECALL_THRESHOLD}"
+        )
     if report.core_content_discarded > 0:
-        failures.append(f"{report.core_content_discarded} core-content utterances discarded (must be 0)")
+        failures.append(
+            f"{report.core_content_discarded} core-content utterances discarded (must be 0)"
+        )
     if failures:
         raise EvaluationGateFailure(report, failures)
 ```

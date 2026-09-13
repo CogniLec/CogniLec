@@ -55,16 +55,19 @@ CLEAR KEEP                                            CLEAR DISCARD
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class VoteDecision(str, Enum):
     KEEP = "keep"
     DISCARD = "discard"
     SPLIT_KEEP = "split_keep"  # split vote → retained with flag
+
 
 class ModelVote(BaseModel):
     model_name: str
     decision: str  # "keep" or "discard"
     confidence: float = Field(..., ge=0.0, le=1.0)
     filter_reason: str
+
 
 class EnsembleResult(BaseModel):
     utterance_id: str
@@ -73,6 +76,7 @@ class EnsembleResult(BaseModel):
     flagged_for_review: bool = False
     confidence: float = Field(..., ge=0.0, le=1.0)
     model: str  # primary model or "ensemble"
+
 
 class EnsembleBatchResult(BaseModel):
     session_id: str
@@ -161,8 +165,7 @@ class EnsembleVoter:
         models: list[str],  # ["tier_1", "tier_2", "tier_3"]
         ambiguity_band: tuple[float, float],  # (low, high) thresholds
         llm_router,  # from S37
-    ):
-        ...
+    ): ...
 
     async def vote_batch(
         self,

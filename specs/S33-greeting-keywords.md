@@ -58,6 +58,7 @@ from pydantic import BaseModel, Field
 from enum import Enum
 from datetime import datetime
 
+
 class GreetingLanguage(str, Enum):
     EN = "en"
     ES = "es"
@@ -70,18 +71,23 @@ class GreetingLanguage(str, Enum):
     PT = "pt"
     KO = "ko"
 
+
 class GreetingKeyword(BaseModel):
     text: str
     language: GreetingLanguage
     variants: list[str] = Field(default_factory=list, description="Alternate phrasings")
     priority: int = Field(default=0, description="Higher = preferred match")
 
+
 class GreetingConfig(BaseModel):
     languages: list[GreetingLanguage] = Field(default=[GreetingLanguage.EN])
     keywords_file: str = "config/greeting_keywords.yaml"
-    scan_window_utterances: int = Field(default=5, ge=1, le=20, description="How many opening utterances to scan")
+    scan_window_utterances: int = Field(
+        default=5, ge=1, le=20, description="How many opening utterances to scan"
+    )
     confidence_threshold: float = Field(default=0.7, ge=0.0, le=1.0)
     provisional_window_minutes: float = Field(default=10.0, ge=1.0, le=30.0)
+
 
 class GreetingResult(BaseModel):
     detected: bool
@@ -91,11 +97,13 @@ class GreetingResult(BaseModel):
     utterance_index: int | None = None  # Position of greeting utterance
     timestamp: datetime | None = None
 
+
 class ProvisionalTopic(BaseModel):
     label: str | None = None
     keywords: list[str] = Field(default_factory=list)
     member_count: int
     is_provisional: bool = True
+
 
 class ProvisionalTopicResult(BaseModel):
     session_id: str
@@ -210,13 +218,13 @@ class GreetingDetector:
     ) -> GreetingResult:
         """
         Scan first N utterances for greeting keywords.
-        
+
         IMPORTANT: This method NEVER sets speaker_tag or relevance.
         It only returns a GreetingResult signal.
         """
         # Scan window (first N utterances)
         scan_limit = min(len(utterances), self.config.scan_window_utterances)
-        
+
         for i in range(scan_limit):
             for lang, patterns in self._patterns.items():
                 for pattern in patterns:
@@ -233,12 +241,10 @@ class GreetingDetector:
                             utterance_index=i,
                             timestamp=timestamps[i] if timestamps else None,
                         )
-        
+
         return GreetingResult(detected=False, confidence=0.0)
-    
-    def _compute_confidence(
-        self, position: int, text: str, match: re.Match
-    ) -> float:
+
+    def _compute_confidence(self, position: int, text: str, match: re.Match) -> float:
         """Higher confidence for earlier positions and exact matches."""
         position_factor = 1.0 - (position / self.config.scan_window_utterances) * 0.3
         exact_factor = 1.0 if match.group() == text.strip().lower() else 0.8
@@ -267,24 +273,22 @@ class ProvisionalTopicService:
             self._window_start[session_id] = timestamp
 
         self._accumulated_utterances[session_id].append(utterance)
-        
+
         elapsed = (timestamp - self._window_start[session_id]).total_seconds() / 60.0
         if elapsed >= self.config.provisional_window_minutes:
             return await self._compute_provisional_topics(session_id)
-        
+
         return None
 
-    async def _compute_provisional_topics(
-        self, session_id: str
-    ) -> ProvisionalTopicResult:
+    async def _compute_provisional_topics(self, session_id: str) -> ProvisionalTopicResult:
         """Lightweight clustering of accumulated utterances."""
         utterances = self._accumulated_utterances.pop(session_id, [])
         window_start = self._window_start.pop(session_id, None)
-        
+
         # Use existing embedding + mini-clustering pipeline
         # (subset of S30, not full BERTopic)
         topics = await self._lightweight_cluster(utterances)
-        
+
         return ProvisionalTopicResult(
             session_id=session_id,
             topics=topics,

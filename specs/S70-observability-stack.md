@@ -44,8 +44,14 @@ DASHBOARD_REGISTRY = {
     "sessions_funnel": {
         "uid": "lis-sessions-funnel",
         "title": "Sessions Funnel",
-        "panels": ["sessions_created", "sessions_recording", "sessions_transcribed",
-                    "sessions_processing", "sessions_complete", "sessions_failed"],
+        "panels": [
+            "sessions_created",
+            "sessions_recording",
+            "sessions_transcribed",
+            "sessions_processing",
+            "sessions_complete",
+            "sessions_failed",
+        ],
         "refresh": "30s",
     },
     "wer_proxy": {

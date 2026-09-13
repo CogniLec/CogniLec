@@ -48,6 +48,7 @@ class SecurityScanResult(BaseModel):
     scan_time_s: float
     passed: bool  # True if no critical/high findings
 
+
 class SecurityFinding(BaseModel):
     severity: str  # critical, high, medium, low, info
     rule_id: str
@@ -58,6 +59,7 @@ class SecurityFinding(BaseModel):
     cve_id: str | None = None
     cvss_score: float | None = None
 
+
 class LicenceAuditResult(BaseModel):
     component: str
     version: str
@@ -67,6 +69,7 @@ class LicenceAuditResult(BaseModel):
     reviewed_by: str | None = None
     reviewed_at: datetime | None = None
 
+
 class AcceptanceTestResult(BaseModel):
     ac_id: str  # AC-1 through AC-20
     test_id: str  # T76.x
@@ -74,6 +77,7 @@ class AcceptanceTestResult(BaseModel):
     description: str
     evidence: str | None = None
     regression_of: str | None = None  # if this is a regression test
+
 
 class LegalSignoff(BaseModel):
     signoff_type: str  # recording_consent, data_privacy, licence_compliance
@@ -229,6 +233,7 @@ syft lis-api:latest -o spdx-json=sbom/lis-api-sbom.json | jq '.packages[].licens
 ```python
 # tests/acceptance/test_ac_suite.py
 import pytest
+
 
 class TestACSuite:
     """Full acceptance criteria test suite — ALL must pass for G7."""

@@ -46,6 +46,7 @@ class DistillationConfig(BaseModel):
     warmup_ratio: float = 0.1
     weight_decay: float = 0.01
 
+
 class DistillationResult(BaseModel):
     model_version: str
     precision: float
@@ -56,6 +57,7 @@ class DistillationResult(BaseModel):
     training_samples: int
     validation_samples: int
     created_at: datetime
+
 
 class ABTestConfig(BaseModel):
     model_version: str
@@ -71,7 +73,9 @@ class ABTestConfig(BaseModel):
 class A1ClassifierVersion(Base):
     __tablename__ = "a1_classifier_versions"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     version: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     base_model: Mapped[str] = mapped_column(String(255), nullable=False)
     training_data_version: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -81,7 +85,9 @@ class A1ClassifierVersion(Base):
     throughput_ratio: Mapped[float] = mapped_column(Float, nullable=False)
     zero_discard_assertion: Mapped[bool] = mapped_column(Boolean, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
     activated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 ```
 
@@ -196,9 +202,12 @@ class A1Classifier:
         """Predict relevance of utterance for note inclusion."""
         pass
 
-    async def predict_batch(self, utterances: list[str], contexts: list[dict]) -> list[A1Prediction]:
+    async def predict_batch(
+        self, utterances: list[str], contexts: list[dict]
+    ) -> list[A1Prediction]:
         """Batch prediction for efficiency."""
         pass
+
 
 class A1Prediction(BaseModel):
     relevant: bool

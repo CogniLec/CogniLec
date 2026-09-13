@@ -39,6 +39,7 @@ from pydantic import BaseModel, Field
 from enum import Enum
 from datetime import datetime
 
+
 class LLMTier(str, Enum):
     TIER_1 = "tier_1"  # Local GPU (vLLM)
     TIER_2 = "tier_2"  # Local CPU (llama.cpp)
@@ -46,11 +47,13 @@ class LLMTier(str, Enum):
     TIER_4 = "tier_4"  # Hosted cheap (Together/Fireworks/Groq)
     TIER_5 = "tier_5"  # FAIL
 
+
 class FailoverTrigger(str, Enum):
     HTTP_ERROR = "http_error"
     TIMEOUT = "timeout"
     RATE_LIMIT = "rate_limit"
     SCHEMA_INVALID = "schema_invalid"
+
 
 class TierConfig(BaseModel):
     tier: LLMTier
@@ -60,14 +63,18 @@ class TierConfig(BaseModel):
     timeout_s: int = 60
     max_retries: int = 0  # no retry within tier; failover is the retry
 
+
 class LLMRouterConfig(BaseModel):
     tiers: list[TierConfig]
-    timeout_by_tier: dict[LLMTier, int] = Field(default_factory=lambda: {
-        LLMTier.TIER_1: 60,
-        LLMTier.TIER_2: 120,
-        LLMTier.TIER_3: 30,
-        LLMTier.TIER_4: 30,
-    })
+    timeout_by_tier: dict[LLMTier, int] = Field(
+        default_factory=lambda: {
+            LLMTier.TIER_1: 60,
+            LLMTier.TIER_2: 120,
+            LLMTier.TIER_3: 30,
+            LLMTier.TIER_4: 30,
+        }
+    )
+
 
 class RoutingDecision(BaseModel):
     tier: LLMTier
@@ -75,6 +82,7 @@ class RoutingDecision(BaseModel):
     attempt: int
     trigger: FailoverTrigger | None = None
     timestamp: datetime
+
 
 class LLMResponse(BaseModel):
     content: str

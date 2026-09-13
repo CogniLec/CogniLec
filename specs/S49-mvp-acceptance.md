@@ -63,6 +63,7 @@ AC_CRITERIA = {
 # docs/pilot_feedback.py
 from pydantic import BaseModel, Field
 
+
 class PilotUserFeedback(BaseModel):
     user_id: str
     session_id: str
@@ -74,6 +75,7 @@ class PilotUserFeedback(BaseModel):
     comments: str = Field(default="")
     completion_time_seconds: int
     processing_latency_seconds: int
+
 
 class PilotReport(BaseModel):
     total_sessions: int

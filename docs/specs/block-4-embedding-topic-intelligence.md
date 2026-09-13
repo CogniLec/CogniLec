@@ -125,11 +125,13 @@ class EmbeddingRequest(BaseModel):
     task_mode: Literal["retrieval", "clustering"] = "retrieval"
     model_version: str | None = None  # None = use active version
 
+
 class EmbeddingResponse(BaseModel):
     embeddings: list[list[float]]
     model_version: str
     dim: int
     count: int
+
 
 class ModelVersionInfo(BaseModel):
     key: str
@@ -192,6 +194,7 @@ Every text passed to the embedder must be prepended with the appropriate prefix 
 def get_active_version() -> ModelVersionInfo:
     """Read from config/models.yaml → embedding_versions.active"""
     ...
+
 
 def stamp_version(embedding_row: dict, version: str) -> dict:
     """Set embed_model_ver on a row dict before insert."""
@@ -329,11 +332,13 @@ embedding:
 @dataclass
 class WindowedUtterance:
     """An utterance with its context window assembled."""
+
     utterance_id: uuid.UUID
     seq: int
-    window_text: str          # Concatenated text of W predecessors + current
-    window_size_actual: int   # Actual number of utterances in window (may be < W at start)
-    individual_text: str      # Original single-utterance text
+    window_text: str  # Concatenated text of W predecessors + current
+    window_size_actual: int  # Actual number of utterances in window (may be < W at start)
+    individual_text: str  # Original single-utterance text
+
 
 def build_windows(
     utterances: list[Utterance],
@@ -508,9 +513,12 @@ class SessionTranscribedEvent(BaseModel):
 # src/ml/embedding/flows.py
 from prefect import flow, task, get_run_logger
 
+
 @task(
     name="T1_embed_utterances",
-    cache_key_fn=lambda ctx, *args: f"T1-{ctx.parameters['session_id']}-{ctx.parameters['embed_model_ver']}",
+    cache_key_fn=lambda ctx, *args: (
+        f"T1-{ctx.parameters['session_id']}-{ctx.parameters['embed_model_ver']}"
+    ),
     cache_expiration=timedelta(hours=24),
     retries=2,
     retry_delay_seconds=30,
@@ -526,6 +534,7 @@ async def embed_utterances(
     Idempotent: re-running with same params returns cached result.
     """
     ...
+
 
 @flow(
     name="process_session",
@@ -569,11 +578,14 @@ async def process_session(
     except Exception as e:
         logger.error("Flow failed: %s", e)
         await update_session_status(session_id, SessionStatus.FAILED)
-        emit_event("session.failed", {
-            "session_id": session_id,
-            "subject_id": subject_id,
-            "error": str(e),
-        })
+        emit_event(
+            "session.failed",
+            {
+                "session_id": session_id,
+                "subject_id": subject_id,
+                "error": str(e),
+            },
+        )
         raise
 ```
 
@@ -763,20 +775,24 @@ No new DDL needed.
 @dataclass
 class SegmentResult:
     """A detected segment within a session."""
+
     start_utt_id: uuid.UUID
     end_utt_id: uuid.UUID
-    start_idx: int          # 0-based index in utterance list
-    end_idx: int            # 0-based index (inclusive)
-    boundary_score: float   # Cosine similarity at boundary (lower = sharper boundary)
-    confidence: float       # Derived from score distribution
+    start_idx: int  # 0-based index in utterance list
+    end_idx: int  # 0-based index (inclusive)
+    boundary_score: float  # Cosine similarity at boundary (lower = sharper boundary)
+    confidence: float  # Derived from score distribution
+
 
 @dataclass
 class SegmentationResult:
     """Complete segmentation of a session."""
+
     session_id: uuid.UUID
     segments: list[SegmentResult]
     num_segments: int
     similarity_scores: list[float]  # Adjacent-window cosine similarities
+
 
 def segment_session(
     utterances: list[Utterance],
@@ -952,13 +968,14 @@ async def evaluate_segmentation(
 class SegmentationEvalReport(BaseModel):
     pk_score: float
     window_diff: float
-    gate_passed: bool                    # pk < 0.30
+    gate_passed: bool  # pk < 0.30
     baseline_random_pk: float
     baseline_fixed_window_pk: float
-    beats_baselines: bool                # pk < min(random_pk, fixed_window_pk) - margin
+    beats_baselines: bool  # pk < min(random_pk, fixed_window_pk) - margin
     per_condition: dict[str, ConditionMetrics]  # "discussion_heavy" vs "monologue"
     threshold_used: float
     num_lectures_evaluated: int
+
 
 class ConditionMetrics(BaseModel):
     pk: float
@@ -971,7 +988,7 @@ class ConditionMetrics(BaseModel):
 ```python
 # Baselines to compare against:
 baselines = {
-    "random": RandomSegmentation(seed=42),           # Random boundary placement
+    "random": RandomSegmentation(seed=42),  # Random boundary placement
     "fixed_window": FixedWindowSegmentation(window=20),  # Every 20 utterances
 }
 ```
@@ -1131,6 +1148,7 @@ class TopicCreate(BaseModel):
     segment_count: int = 0
     utterance_count: int = 0
 
+
 class TopicResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: uuid.UUID
@@ -1144,12 +1162,14 @@ class TopicResponse(BaseModel):
     utterance_count: int
     created_at: datetime
 
+
 class ClusteringResult(BaseModel):
     session_id: uuid.UUID
     topics_created: int
     segments_assigned: int
     outliers: int  # Segments marked as noise by HDBSCAN
     topic_assignments: list[SegmentTopicAssignment]
+
 
 class SegmentTopicAssignment(BaseModel):
     segment_id: uuid.UUID
@@ -1211,6 +1231,7 @@ HDBSCAN_CONFIG = {
 
 ```python
 import numpy as np
+
 
 def mean_pool_segment(embeddings: list[list[float]]) -> list[float]:
     """Mean-pool utterance embeddings within a segment."""
@@ -1344,6 +1365,7 @@ def extract_keywords(
     """
     ...
 
+
 @dataclass
 class KeywordResult:
     keyword: str
@@ -1365,6 +1387,7 @@ Generate a short, descriptive label (max 10 words) for this topic.
 The label should be specific enough to distinguish it from other topics in the same subject.
 
 Label:"""
+
 
 async def generate_topic_label(
     utterances: list[str],
@@ -1391,6 +1414,7 @@ async def update_topic_label(
 ) -> TopicResponse:
     """Update topic label (user edit). Preserved across re-clustering."""
     ...
+
 
 class TopicLabelUpdate(BaseModel):
     label: str = Field(min_length=1, max_length=200)
@@ -1557,12 +1581,13 @@ async def match_segment_to_topic(
     """
     ...
 
+
 @dataclass
 class MatchResult:
     matched: bool
-    topic_id: uuid.UUID | None    # None if new topic
+    topic_id: uuid.UUID | None  # None if new topic
     distance: float
-    cosine_similarity: float      # 1 - distance
+    cosine_similarity: float  # 1 - distance
     is_new: bool
 ```
 
@@ -1621,6 +1646,7 @@ async def recluster_subject(
     Preserves user-edited labels (S31).
     """
     ...
+
 
 # Re-cluster trigger logic:
 def should_recluster(session_number: int, recluster_interval: int = 10) -> bool:

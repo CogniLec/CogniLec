@@ -71,7 +71,9 @@ class Utterance(Base):
     __tablename__ = "utterances"
 
     subject_id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     session_id: Mapped[UUID] = mapped_column(ForeignKey("sessions.id"), nullable=False)
     seq: Mapped[int] = mapped_column(Integer, nullable=False)
     start_ms: Mapped[int] = mapped_column(Integer, nullable=False)
@@ -86,25 +88,32 @@ class Utterance(Base):
     filter_reason: Mapped[str | None] = mapped_column(String(100), nullable=True)
     outlier_score: Mapped[float | None] = mapped_column(Float, nullable=True)
     asr_agreement: Mapped[float | None] = mapped_column(Float, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
 
     __table_args__ = (
         UniqueConstraint("subject_id", "session_id", "seq", name="uq_utterance_session_seq"),
     )
+
 
 # src/db/models/segment.py
 class Segment(Base):
     __tablename__ = "segments"
 
     subject_id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     session_id: Mapped[UUID] = mapped_column(ForeignKey("sessions.id"), nullable=False)
     start_utt: Mapped[UUID] = mapped_column(Uuid, nullable=False)
     end_utt: Mapped[UUID] = mapped_column(Uuid, nullable=False)
     topic_id: Mapped[UUID | None] = mapped_column(Uuid, nullable=True)
     boundary_score: Mapped[float | None] = mapped_column(Float, nullable=True)
     confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
 ```
 
 **Pydantic Schemas:**
@@ -119,6 +128,7 @@ class UtteranceCreate(BaseModel):
     asr_confidence: float | None = Field(None, ge=0.0, le=1.0)
     speaker_tag: str | None = Field(None, max_length=10)
     embed_model_ver: str = Field(..., min_length=1, max_length=50)
+
 
 class UtteranceResponse(BaseModel):
     id: UUID
@@ -136,6 +146,7 @@ class UtteranceResponse(BaseModel):
     asr_agreement: float | None
 
     model_config = ConfigDict(from_attributes=True)
+
 
 class SegmentResponse(BaseModel):
     id: UUID
@@ -198,8 +209,7 @@ class UtteranceRepository:
         """Insert utterances in bulk. Returns count inserted."""
 
     async def vector_query(
-        self, subject_id: UUID, embedding: list[float], k: int = 10,
-        session_id: UUID | None = None
+        self, subject_id: UUID, embedding: list[float], k: int = 10, session_id: UUID | None = None
     ) -> list[tuple[Utterance, float]]:
         """Find k nearest neighbours by cosine similarity. Returns (utterance, distance) pairs."""
 
@@ -210,10 +220,10 @@ class UtteranceRepository:
         """Assign a topic to an utterance."""
 
     async def update_relevance(
-        self, subject_id: UUID, utterance_id: UUID,
-        is_relevant: bool, filter_reason: str | None
+        self, subject_id: UUID, utterance_id: UUID, is_relevant: bool, filter_reason: str | None
     ) -> None:
         """Update relevance decision from A1."""
+
 
 # src/db/repositories/segment_repo.py
 class SegmentRepository:

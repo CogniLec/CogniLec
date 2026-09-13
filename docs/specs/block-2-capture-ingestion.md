@@ -101,6 +101,7 @@ File: src/ml/storage.py (CREATE)
 
 ```python
 """MinIO storage client with presigned URL generation."""
+
 from __future__ import annotations
 
 import uuid
@@ -222,6 +223,7 @@ File: src/api/routes/sessions.py (MODIFY — add presigned URL endpoint)
 
 ```python
 # Addition to existing router:
+
 
 @router.post("/{session_id}/presigned-url")
 async def get_presigned_upload_url(
@@ -689,6 +691,7 @@ class ChunkUploadResponse(BaseModel):
     seq: int
     session_status: SessionStatus
 
+
 class SessionEvent(BaseModel):
     event: str  # "status", "quality_warning", "complete"
     data: dict[str, Any]
@@ -723,6 +726,7 @@ File: src/core/streams.py (CREATE)
 
 ```python
 """Valkey Stream producer for audio chunk events."""
+
 from __future__ import annotations
 
 import json
@@ -787,6 +791,7 @@ File: src/core/sse.py (CREATE)
 
 ```python
 """Server-Sent Events manager for session status streaming."""
+
 from __future__ import annotations
 
 import asyncio
@@ -842,6 +847,7 @@ File: src/core/idempotency.py (CREATE)
 
 ```python
 """Idempotency check for chunk uploads using Valkey SET NX."""
+
 from __future__ import annotations
 
 import uuid
@@ -991,6 +997,7 @@ File: src/workers/preprocessing_worker.py (CREATE)
 
 ```python
 """Audio preprocessing worker — consumes audio.chunk, produces processed audio + VAD map."""
+
 from __future__ import annotations
 
 import asyncio
@@ -1052,6 +1059,7 @@ File: src/ml/preprocessing/chain.py (CREATE)
 
 ```python
 """Fixed preprocessing chain: ffmpeg → DeepFilterNet → Silero VAD."""
+
 from __future__ import annotations
 
 import subprocess
@@ -1076,17 +1084,17 @@ class VADRegion:
 class PreprocessingResult:
     processed_audio_path: Path
     vad_regions: list[VADRegion]
-    speech_ratio: float        # fraction of audio containing speech
+    speech_ratio: float  # fraction of audio containing speech
     duration_ms: int
-    sample_rate: int           # always 16000
+    sample_rate: int  # always 16000
 
 
 class PreprocessingChain:
     """Fixed chain: ffmpeg loudnorm → DeepFilterNet denoise → Silero VAD."""
 
     TARGET_SAMPLE_RATE = 16000
-    TARGET_CHANNELS = 1        # mono
-    TARGET_LUFS = -23.0        # EBU R128 target
+    TARGET_CHANNELS = 1  # mono
+    TARGET_LUFS = -23.0  # EBU R128 target
 
     def process(self, input_path: Path) -> PreprocessingResult:
         """
@@ -1118,10 +1126,16 @@ class PreprocessingChain:
         output = Path(tempfile.mktemp(suffix=".wav"))
         subprocess.run(
             [
-                "ffmpeg", "-y", "-i", str(input_path),
-                "-ar", str(self.TARGET_SAMPLE_RATE),
-                "-ac", str(self.TARGET_CHANNELS),
-                "-af", f"loudnorm=I={self.TARGET_LUFS}:TP=-1:LRA=11",
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(input_path),
+                "-ar",
+                str(self.TARGET_SAMPLE_RATE),
+                "-ac",
+                str(self.TARGET_CHANNELS),
+                "-af",
+                f"loudnorm=I={self.TARGET_LUFS}:TP=-1:LRA=11",
                 str(output),
             ],
             capture_output=True,
@@ -1151,8 +1165,7 @@ class PreprocessingChain:
         speech_ms = sum(r.end_ms - r.start_ms for r in regions)
         return speech_ms / total_ms
 
-    def _get_duration_ms(self, audio_path: Path) -> int:
-        ...
+    def _get_duration_ms(self, audio_path: Path) -> int: ...
 ```
 
 #### 5.3 Config Keys
@@ -1161,9 +1174,9 @@ class PreprocessingChain:
 # src/core/config.py — additions to Settings class
 PREPROCESSING_SAMPLE_RATE: int = 16000
 PREPROCESSING_TARGET_LUFS: float = -23.0
-VAD_THRESHOLD: float = 0.5           # Silero VAD confidence threshold
-VAD_MIN_SPEECH_MS: int = 250         # minimum speech segment duration
-VAD_SPEECH_PADDING_MS: int = 300     # padding around speech regions
+VAD_THRESHOLD: float = 0.5  # Silero VAD confidence threshold
+VAD_MIN_SPEECH_MS: int = 250  # minimum speech segment duration
+VAD_SPEECH_PADDING_MS: int = 300  # padding around speech regions
 DEEPFILTERNET_ENABLED: bool = True
 PREPROCESSING_WORKER_CONCURRENCY: int = 1  # sequential on 4GB VRAM
 ```
@@ -1217,7 +1230,7 @@ PREPROCESSING_WORKER_CONCURRENCY: int = 1  # sequential on 4GB VRAM
 ```python
 PREPROCESSING_ENABLED: bool = True  # set False to skip entire chain
 DEEPFILTERNET_ENABLED: bool = True  # set False to skip denoising only
-VAD_ENABLED: bool = True            # set False to skip VAD (NOT RECOMMENDED — hallucination risk)
+VAD_ENABLED: bool = True  # set False to skip VAD (NOT RECOMMENDED — hallucination risk)
 ```
 
 ### 10. Exit Checklist
@@ -1277,6 +1290,7 @@ File: src/ml/preprocessing/quality.py (CREATE)
 
 ```python
 """Audio quality metrics computation."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -1286,10 +1300,10 @@ import numpy as np
 
 @dataclass
 class ChunkQualityMetrics:
-    snr_db: float              # signal-to-noise ratio in dB
-    speech_ratio: float        # fraction of audio containing speech (from VAD)
-    clipping_rate: float       # fraction of samples at max amplitude
-    rms_level_db: float        # RMS level in dBFS
+    snr_db: float  # signal-to-noise ratio in dB
+    speech_ratio: float  # fraction of audio containing speech (from VAD)
+    clipping_rate: float  # fraction of samples at max amplitude
+    rms_level_db: float  # RMS level in dBFS
 
 
 @dataclass
@@ -1297,9 +1311,9 @@ class SessionQualityScore:
     mean_snr_db: float
     min_snr_db: float
     mean_speech_ratio: float
-    clipping_rate: float       # overall clipping
-    score: float               # composite score [0.0, 1.0]
-    is_warning: bool           # True if below threshold
+    clipping_rate: float  # overall clipping
+    score: float  # composite score [0.0, 1.0]
+    is_warning: bool  # True if below threshold
 
 
 def compute_chunk_metrics(
@@ -1467,6 +1481,7 @@ File: src/workers/asr_worker.py (CREATE)
 
 ```python
 """ASR worker — transcribes preprocessed audio to word-level utterances."""
+
 from __future__ import annotations
 
 import tempfile
@@ -1567,7 +1582,7 @@ asr_batch_size: 16
 # src/core/config.py — additions to Settings class
 ASR_DEVICE: str = "cuda"
 ASR_WORD_TIMESTAMPS: bool = True
-ASR_VAD_FILTER: bool = True          # use Silero VAD regions from S17
+ASR_VAD_FILTER: bool = True  # use Silero VAD regions from S17
 ASR_CONDITION_ON_PREVIOUS_TEXT: bool = False  # reduce hallucination
 ASR_NO_SPEECH_THRESHOLD: float = 0.6  # Whisper no-speech detection
 ASR_LOG_PROB_THRESHOLD: float = -1.0  # minimum log-prob for word retention
@@ -1715,6 +1730,7 @@ File: src/ml/diarisation/pyannote.py (CREATE)
 
 ```python
 """Anonymous speaker diarisation using pyannote.audio 3.x."""
+
 from __future__ import annotations
 
 import uuid
@@ -1730,7 +1746,7 @@ logger = structlog.get_logger()
 
 @dataclass
 class SpeakerSegment:
-    speaker_tag: str   # "SPK_A", "SPK_B", etc.
+    speaker_tag: str  # "SPK_A", "SPK_B", etc.
     start_ms: int
     end_ms: int
 
@@ -1777,11 +1793,13 @@ class PyannoteDiariser:
             if speaker not in speaker_map:
                 speaker_map[speaker] = f"SPK_{chr(65 + tag_counter)}"  # SPK_A, SPK_B, ...
                 tag_counter += 1
-            segments.append(SpeakerSegment(
-                speaker_tag=speaker_map[speaker],
-                start_ms=int(turn.start * 1000),
-                end_ms=int(turn.end * 1000),
-            ))
+            segments.append(
+                SpeakerSegment(
+                    speaker_tag=speaker_map[speaker],
+                    start_ms=int(turn.start * 1000),
+                    end_ms=int(turn.end * 1000),
+                )
+            )
 
         return DiarisationResult(
             segments=segments,
@@ -1802,6 +1820,7 @@ Updates `utterances.speaker_tag` (existing column from S09 migration):
 
 ```python
 # src/workers/diarisation_worker.py (CREATE)
+
 
 async def assign_speaker_tags(
     session_id: uuid.UUID,

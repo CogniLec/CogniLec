@@ -70,14 +70,17 @@ from pydantic import BaseModel, Field
 from enum import Enum
 from datetime import datetime
 
+
 class SessionType(str, Enum):
     CONTENT = "content"
     SYLLABUS = "syllabus"
     MIXED = "mixed"
 
+
 class SegmentType(str, Enum):
     CONTENT = "content"
     SYLLABUS = "syllabus"
+
 
 class ClassifierMethod(str, Enum):
     RULE_BASED = "rule_based"
@@ -85,6 +88,7 @@ class ClassifierMethod(str, Enum):
     LLM_BASED = "llm_based"
     ENSEMBLE = "ensemble"
     OPERATOR_OVERRIDE = "operator_override"
+
 
 class ClassifierConfig(BaseModel):
     ensemble_weights: dict[ClassifierMethod, float] = Field(
@@ -95,10 +99,15 @@ class ClassifierConfig(BaseModel):
         }
     )
     confidence_threshold: float = Field(default=0.6, ge=0.0, le=1.0)
-    review_threshold: float = Field(default=0.4, ge=0.0, le=1.0, description="Below this → flag for review")
+    review_threshold: float = Field(
+        default=0.4, ge=0.0, le=1.0, description="Below this → flag for review"
+    )
     llm_model: str = "phi-3-mini-3.8b-4bit"
     ml_model_path: str = "models/session_classifier.joblib"
-    min_segments_for_mixed: int = Field(default=3, ge=2, description="Minimum segments to consider mixed")
+    min_segments_for_mixed: int = Field(
+        default=3, ge=2, description="Minimum segments to consider mixed"
+    )
+
 
 class ClassificationResult(BaseModel):
     session_id: str
@@ -110,12 +119,14 @@ class ClassificationResult(BaseModel):
     classified_at: datetime = Field(default_factory=datetime.utcnow)
     operator_override: bool = False
 
+
 class SegmentClassification(BaseModel):
     segment_id: str
     segment_type: SegmentType
     confidence: float
     method: ClassifierMethod
     target_db: str  # "db-2" or "db-3"
+
 
 class SegmentRoutingResult(BaseModel):
     session_id: str
@@ -124,6 +135,7 @@ class SegmentRoutingResult(BaseModel):
     db2_segments: int
     db3_segments: int
     total_segments: int
+
 
 class OperatorOverride(BaseModel):
     session_id: str
@@ -343,18 +355,40 @@ class SessionClassifier:
 # src/ml/session_classifier/rule_classifier.py
 class RuleBasedClassifier:
     SYLLABUS_KEYWORDS = [
-        "syllabus", "outline", "objectives", "learning outcomes",
-        "assessment", "grading", "schedule", "prerequisites",
-        "course structure", "module", "unit", "week",
-        "assignment", "exam", "quiz", "project",
-        "required reading", "textbook", "references",
+        "syllabus",
+        "outline",
+        "objectives",
+        "learning outcomes",
+        "assessment",
+        "grading",
+        "schedule",
+        "prerequisites",
+        "course structure",
+        "module",
+        "unit",
+        "week",
+        "assignment",
+        "exam",
+        "quiz",
+        "project",
+        "required reading",
+        "textbook",
+        "references",
     ]
 
     CONTENT_KEYWORDS = [
-        "let's dive into", "the theory is", "proof of",
-        "example", "demonstration", "derivation",
-        "first, we'll", "now consider", "recall that",
-        "in practice", "the key insight", "algorithm",
+        "let's dive into",
+        "the theory is",
+        "proof of",
+        "example",
+        "demonstration",
+        "derivation",
+        "first, we'll",
+        "now consider",
+        "recall that",
+        "in practice",
+        "the key insight",
+        "algorithm",
     ]
 
     def classify(self, utterances: list[str]) -> tuple[SessionType, float]:
@@ -415,7 +449,7 @@ REASON: <brief explanation>"""
         sampled = []
         sampled.extend(utterances[:15])  # First 15
         mid = len(utterances) // 2
-        sampled.extend(utterances[mid-10:mid+10])  # Middle 20
+        sampled.extend(utterances[mid - 10 : mid + 10])  # Middle 20
         sampled.extend(utterances[-15:])  # Last 15
         return "\n".join(sampled)
 ```
@@ -446,23 +480,21 @@ class SegmentRouter:
             # MIXED — route each segment individually
             return await self._route_mixed(session_id, segments)
 
-    async def _route_mixed(
-        self, session_id: str, segments: list[dict]
-    ) -> SegmentRoutingResult:
+    async def _route_mixed(self, session_id: str, segments: list[dict]) -> SegmentRoutingResult:
         """Route each segment in a mixed session individually."""
         routed = []
         for seg in segments:
-            seg_type = await self.segment_classifier.classify_segment(
-                seg["utterances"]
-            )
+            seg_type = await self.segment_classifier.classify_segment(seg["utterances"])
             target = "db-3" if seg_type == SegmentType.SYLLABUS else "db-2"
-            routed.append(SegmentClassification(
-                segment_id=seg["id"],
-                segment_type=seg_type,
-                confidence=seg_type.confidence,
-                method=seg_type.method,
-                target_db=target,
-            ))
+            routed.append(
+                SegmentClassification(
+                    segment_id=seg["id"],
+                    segment_type=seg_type,
+                    confidence=seg_type.confidence,
+                    method=seg_type.method,
+                    target_db=target,
+                )
+            )
 
             # Write to appropriate DB
             if target == "db-3":
@@ -514,16 +546,12 @@ class SegmentClassifier:
         r"\b(week \d+|chapter \d+|unit \d+)\b",
     ]
 
-    async def classify_segment(
-        self, utterances: list[str]
-    ) -> SegmentClassification:
+    async def classify_segment(self, utterances: list[str]) -> SegmentClassification:
         """Classify a single segment as content or syllabus."""
         text = " ".join(utterances).lower()
 
         # Rule-based check
-        syllabus_matches = sum(
-            1 for p in self.SYLLABUS_PATTERNS if re.search(p, text)
-        )
+        syllabus_matches = sum(1 for p in self.SYLLABUS_PATTERNS if re.search(p, text))
         if syllabus_matches >= 2:
             return SegmentClassification(
                 segment_id="",

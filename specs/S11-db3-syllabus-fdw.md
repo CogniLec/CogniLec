@@ -78,9 +78,13 @@ GRANT SELECT ON FOREIGN TABLE syllabus_items TO lis;
 class SyllabusItem(Base):
     __tablename__ = "syllabus_items"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     subject_id: Mapped[UUID] = mapped_column(Uuid, nullable=False, index=True)
-    parent_id: Mapped[UUID | None] = mapped_column(Uuid, ForeignKey("syllabus_items.id", ondelete="SET NULL"), nullable=True)
+    parent_id: Mapped[UUID | None] = mapped_column(
+        Uuid, ForeignKey("syllabus_items.id", ondelete="SET NULL"), nullable=True
+    )
     ordinal: Mapped[int] = mapped_column(Integer, nullable=False)
     title: Mapped[str] = mapped_column(Text, nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
@@ -89,8 +93,12 @@ class SyllabusItem(Base):
     source_session_id: Mapped[UUID | None] = mapped_column(Uuid, nullable=True)
     coverage_status: Mapped[str] = mapped_column(String(20), nullable=False, default="not_started")
     covered_by: Mapped[list[UUID]] = mapped_column(ARRAY(Uuid), nullable=False, default=list)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
 ```
 
 **Pydantic Schemas:**
@@ -103,6 +111,7 @@ class SyllabusItemCreate(BaseModel):
     description: str | None = Field(None, max_length=5000)
     source: Literal["lecture", "upload", "manual"] = "lecture"
     source_session_id: UUID | None = None
+
 
 class SyllabusItemResponse(BaseModel):
     id: UUID
@@ -117,6 +126,7 @@ class SyllabusItemResponse(BaseModel):
     covered_by: list[UUID]
 
     model_config = ConfigDict(from_attributes=True)
+
 
 class SyllabusTree(BaseModel):
     items: list[SyllabusItemResponse]
@@ -167,9 +177,7 @@ class SyllabusTree(BaseModel):
 ```python
 # src/db/repositories/syllabus_repo.py
 class SyllabusRepository:
-    async def create_item(
-        self, subject_id: UUID, data: SyllabusItemCreate
-    ) -> SyllabusItem:
+    async def create_item(self, subject_id: UUID, data: SyllabusItemCreate) -> SyllabusItem:
         """Create a syllabus item on PG-SYLLABUS."""
 
     async def get_tree(self, subject_id: UUID) -> SyllabusTree:

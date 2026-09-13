@@ -61,6 +61,7 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
 
+
 class TranscriptUtterance(BaseModel):
     id: UUID
     session_id: UUID
@@ -77,6 +78,7 @@ class TranscriptUtterance(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+
 class TranscriptPage(BaseModel):
     utterances: list[TranscriptUtterance]
     total: int
@@ -85,6 +87,7 @@ class TranscriptPage(BaseModel):
     has_next: bool
     has_prev: bool
 
+
 class TranscriptSessionSummary(BaseModel):
     session_id: UUID
     subject_id: UUID
@@ -92,6 +95,7 @@ class TranscriptSessionSummary(BaseModel):
     total_duration_ms: int
     filtered_count: int  # hallucination-flagged utterances
     timestamp_range: tuple[int, int]  # (first_start_ms, last_end_ms)
+
 
 class TranscriptFilter(BaseModel):
     include_flagged: bool = False

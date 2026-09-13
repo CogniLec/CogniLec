@@ -46,6 +46,7 @@ class ContrastiveConfig(BaseModel):
     temperature: float = 0.07
     warmup_ratio: float = 0.1
 
+
 class ContrastiveResult(BaseModel):
     model_version: str
     clustering_purity: float
@@ -54,6 +55,7 @@ class ContrastiveResult(BaseModel):
     hard_negatives_mined: int
     training_samples: int
     created_at: datetime
+
 
 class BackfillConfig(BaseModel):
     model_version: str
@@ -69,7 +71,9 @@ class BackfillConfig(BaseModel):
 class EmbeddingVersion(Base):
     __tablename__ = "embedding_versions"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     version: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     base_model: Mapped[str] = mapped_column(String(255), nullable=False)
     training_data_version: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -77,19 +81,30 @@ class EmbeddingVersion(Base):
     cross_session_accuracy: Mapped[float] = mapped_column(Float, nullable=False)
     retrieval_precision_at_5: Mapped[float] = mapped_column(Float, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
     activated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
 
 class EmbeddingBackfill(Base):
     __tablename__ = "embedding_backfills"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     model_version: Mapped[str] = mapped_column(String(50), nullable=False)
-    subject_id: Mapped[UUID] = mapped_column(ForeignKey("subjects.id", ondelete="CASCADE"), nullable=False, index=True)
-    status: Mapped[str] = mapped_column(String(20), nullable=False, default="pending")  # pending/running/complete/failed
+    subject_id: Mapped[UUID] = mapped_column(
+        ForeignKey("subjects.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    status: Mapped[str] = mapped_column(
+        String(20), nullable=False, default="pending"
+    )  # pending/running/complete/failed
     processed_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     total_count: Mapped[int] = mapped_column(Integer, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 ```
 

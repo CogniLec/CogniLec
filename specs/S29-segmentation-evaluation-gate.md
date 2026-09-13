@@ -42,11 +42,13 @@ Gate fail → Revise segmentation approach, loop back to S28
 # src/eval/segmentation_eval.py
 from pydantic import BaseModel, Field
 
+
 class SegmentationEvalConfig(BaseModel):
     ground_truth_path: str = "lis-eval/labels/v1/boundaries/"
     pk_threshold: float = Field(default=0.30, description="HARD GATE threshold for P_k")
     num_conditions: int = 2  # discussion-heavy vs monologue
     mlflow_experiment: str = "S29_Segmentation_Eval"
+
 
 class EvalResult(BaseModel):
     session_id: str
@@ -56,11 +58,13 @@ class EvalResult(BaseModel):
     num_segments_ground_truth: int
     condition: str  # "discussion_heavy" or "monologue"
 
+
 class BaselineResult(BaseModel):
     baseline_name: str
     pk: float
     window_diff: float
     description: str
+
 
 class GateResult(BaseModel):
     gate_passed: bool
@@ -214,10 +218,9 @@ class RandomBaseline:
     def __init__(self, seed: int = 42):
         self.rng = np.random.RandomState(seed)
 
-    def predict_boundaries(
-        self, num_utterances: int, num_segments: int
-    ) -> list[int]:
+    def predict_boundaries(self, num_utterances: int, num_segments: int) -> list[int]:
         """Place boundaries at random positions."""
+
 
 class FixedWindowBaseline:
     def __init__(self, window_size: int = 20):
@@ -225,6 +228,7 @@ class FixedWindowBaseline:
 
     def predict_boundaries(self, num_utterances: int) -> list[int]:
         """Place boundaries every window_size utterances."""
+
 
 class TextTilingBaseline:
     def __init__(self):
@@ -241,8 +245,10 @@ class TextTilingBaseline:
 # scripts/eval_s29.py
 #!/usr/bin/env python3
 """S29 HARD GATE evaluation script."""
+
 import sys
 from src.eval.segmentation_eval import SegmentationEvaluator, SegmentationEvalConfig
+
 
 def main():
     config = SegmentationEvalConfig()
@@ -259,7 +265,9 @@ def main():
 
     # Print report
     print(f"Mean P_k: {gate_result.pk_mean:.4f} ± {gate_result.pk_std:.4f}")
-    print(f"Mean WindowDiff: {gate_result.window_diff_mean:.4f} ± {gate_result.window_diff_std:.4f}")
+    print(
+        f"Mean WindowDiff: {gate_result.window_diff_mean:.4f} ± {gate_result.window_diff_std:.4f}"
+    )
     print(f"Beats baselines: {gate_result.beats_baselines}")
     print(f"Gate passed: {gate_result.gate_passed}")
     print(f"Recommendation: {gate_result.recommendation}")
@@ -272,6 +280,7 @@ def main():
     print("HARD GATE PASSED: P_k < 0.30")
     sys.exit(0)
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -279,18 +288,22 @@ if __name__ == "__main__":
 **MLflow Experiment:**
 ```python
 with mlflow.start_run(run_name=f"s29_eval_{date}"):
-    mlflow.log_params({
-        "threshold_factor": config.threshold_factor,
-        "num_lectures": 30,
-        "gate_threshold": config.pk_threshold,
-    })
-    mlflow.log_metrics({
-        "pk_mean": gate_result.pk_mean,
-        "pk_std": gate_result.pk_std,
-        "window_diff_mean": gate_result.window_diff_mean,
-        "window_diff_std": gate_result.window_diff_std,
-        "gate_passed": float(gate_result.gate_passed),
-    })
+    mlflow.log_params(
+        {
+            "threshold_factor": config.threshold_factor,
+            "num_lectures": 30,
+            "gate_threshold": config.pk_threshold,
+        }
+    )
+    mlflow.log_metrics(
+        {
+            "pk_mean": gate_result.pk_mean,
+            "pk_std": gate_result.pk_std,
+            "window_diff_mean": gate_result.window_diff_mean,
+            "window_diff_std": gate_result.window_diff_std,
+            "gate_passed": float(gate_result.gate_passed),
+        }
+    )
     mlflow.log_artifact("s29_eval_report.json")
 ```
 

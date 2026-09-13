@@ -61,6 +61,7 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
 
+
 class NoteSectionResponse(BaseModel):
     id: UUID
     heading: str
@@ -72,6 +73,7 @@ class NoteSectionResponse(BaseModel):
     model_version: str | None = None
     created_at: datetime
 
+
 class ProvenanceLink(BaseModel):
     utterance_id: UUID
     text: str
@@ -80,9 +82,11 @@ class ProvenanceLink(BaseModel):
     speaker_tag: str | None = None
     audio_offset_seconds: float  # start_ms / 1000
 
+
 class NoteSectionWithProvenance(BaseModel):
     section: NoteSectionResponse
     provenance: list[ProvenanceLink] = Field(..., min_length=1)
+
 
 class SessionNotesResponse(BaseModel):
     session_id: UUID
@@ -91,6 +95,7 @@ class SessionNotesResponse(BaseModel):
     sections: list[NoteSectionWithProvenance]
     total_sections: int
 
+
 class ConsolidatedTopicNotesResponse(BaseModel):
     topic_id: UUID
     topic_name: str
@@ -98,11 +103,13 @@ class ConsolidatedTopicNotesResponse(BaseModel):
     source_sessions: list[UUID]  # sessions contributing to these notes
     total_sections: int
 
+
 class TopicNavItem(BaseModel):
     topic_id: UUID
     topic_name: str
     section_count: int
     session_count: int
+
 
 class SubjectNavigationResponse(BaseModel):
     subject_id: UUID

@@ -40,15 +40,17 @@ raw_image → preprocess → preprocessed → ocr_inference → text_extracted �
 # src/services/ocr/models.py
 from enum import Enum
 
+
 class OCRServiceType(str, Enum):
-    PADDLE_OCR = "paddle_ocr"       # Printed/PDF text
-    VLM_OCR = "vlm_ocr"             # Handwriting/boards
-    DOTS_OCR = "dots_ocr"           # Fallback
+    PADDLE_OCR = "paddle_ocr"  # Printed/PDF text
+    VLM_OCR = "vlm_ocr"  # Handwriting/boards
+    DOTS_OCR = "dots_ocr"  # Fallback
+
 
 class OCRConfidenceLevel(str, Enum):
-    HIGH = "high"         # ≥ 0.85
-    MEDIUM = "medium"     # 0.60 – 0.84
-    LOW = "low"           # < 0.60
+    HIGH = "high"  # ≥ 0.85
+    MEDIUM = "medium"  # 0.60 – 0.84
+    LOW = "low"  # < 0.60
     DISAGREEMENT = "disagreement"  # Models disagree significantly
 ```
 
@@ -58,6 +60,7 @@ class OCRConfidenceLevel(str, Enum):
 from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
+
 
 class OCRResult(BaseModel):
     id: UUID
@@ -77,12 +80,15 @@ class OCRResult(BaseModel):
 
     model_config = {"from_attributes": True}
 
+
 class OCRRequest(BaseModel):
     upload_id: UUID
     service: OCRServiceType | None = None  # Auto-detect if None
 
+
 class OCRBatchRequest(BaseModel):
     upload_ids: list[UUID] = Field(..., min_length=1, max_length=50)
+
 
 class PreprocessingConfig(BaseModel):
     enable_deskew: bool = True
@@ -91,6 +97,7 @@ class PreprocessingConfig(BaseModel):
     enable_binarize: bool = False
     deskew_angle_threshold: float = 0.5  # degrees
     perspective_margin: float = 0.02
+
 
 class OCRConfig(BaseModel):
     paddle_lang: str = "en"
@@ -271,6 +278,7 @@ GET    /api/v1/ocr/{upload_id}/text      → 200 { text: str, confidence: float 
 ```python
 # src/services/ocr/provider.py
 from abc import ABC, abstractmethod
+
 
 class OCRProvider(ABC):
     @abstractmethod

@@ -39,11 +39,13 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 from enum import Enum
 
+
 class AgentRunStatus(str, Enum):
     STARTED = "started"
     RUNNING = "running"
     COMPLETE = "complete"
     FAILED = "failed"
+
 
 class AgentRun(BaseModel):
     id: str
@@ -62,6 +64,7 @@ class AgentRun(BaseModel):
     started_at: datetime
     completed_at: datetime | None = None
     error: str | None = None
+
 
 class TraceContext(BaseModel):
     trace_id: str
@@ -173,6 +176,7 @@ from contextvars import ContextVar
 
 trace_id_var: ContextVar[str] = ContextVar("trace_id")
 session_id_var: ContextVar[str] = ContextVar("session_id")
+
 
 class TraceManager:
     def start_trace(self, session_id: str) -> str:
