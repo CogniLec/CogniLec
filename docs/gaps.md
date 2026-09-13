@@ -137,6 +137,76 @@ by code changes alone.
   full suite could run; harmless, but flag in case `test_s01_skeleton.py`
   should instead be tracking real content there.
 
+## 8. Block 8 (S47-S49) complete — MVP acceptance gate NOT genuinely closed
+
+- Block 8 (S47 full T1-T7 flow wiring, S48 hybrid search, S49 ⛔ MVP
+  acceptance hard gate) implemented. Full suite: **552 passed, 34 skipped,
+  0 failed**.
+- **S47**: `src/services/orchestration/session_pipeline.py` wires T1
+  (embed, S27) through T7 (persist, S45) into one `process_session` flow,
+  with per-task Prefect cache keys on `(session_id, embed_model_ver,
+  prompt_version)` as scoped, and the `uploads.ready` partial re-run path
+  (`skip_embedding=True` reuses T1-T3, re-runs T4-T7). `session.complete`/
+  `session.failed` are emitted via `ValkeyStreamProducer`. The stage record
+  calls T4 a "LangGraph subgraph", but no LangGraph runtime exists anywhere
+  else in this codebase (S37-40's agent dispatch is a plain `LLMRouter`
+  failover ladder, not a LangGraph graph) - introducing a new
+  graph-execution dependency for one two-way dispatch would be pure
+  ceremony, so T4 is a plain async dispatcher with the same external
+  contract. This is a design decision, not a fabricated pass - documented
+  in the module docstring. `src.ml.embedding.flows.process_session` (S27,
+  T1-only) is left untouched; this is a new, additional flow.
+  - T47.4 (kill worker mid-task, verify resume) needs a deployed Prefect
+    server/worker with a persistent result store; tasks here run as plain
+    async functions under Prefect's local task runner, same limitation
+    `tests/test_s27_flows.py` already documents for T27.1/T27.5. Skipped
+    with that reasoning in `tests/test_s47_process_session_flow.py`.
+  - T47.6 (60-min lecture < 15 min P90) needs a real 60-minute recording
+    and production infra timing - reuses gap #1 (S04/S05 corpus). Skipped.
+- **S48**: `src/services/search/hybrid_search.py` fuses lexical (`ts_rank`
+  over generated `tsvector` columns + GIN indexes, migration
+  `b7e2c4f9a1d5`) and dense (pgvector cosine) candidates per source type via
+  Reciprocal Rank Fusion, across both `utterances` and `note_sections`.
+  `src/api/routes/search.py` exposes `GET /subjects/{id}/search`, RLS-scoped
+  like `notes.py`/`transcript.py`; every candidate query also hard-codes
+  `WHERE subject_id = :subject_id` so cross-subject leakage can't happen
+  even under gap #4 (RLS bypass).
+  - T48.3 (hybrid outperforms vector-only/lexical-only on a 50-query
+    labelled set) reuses gap #1/#6/#7 - no real hand-labelled query set
+    exists here. Skipped in `tests/test_s48_hybrid_search.py`.
+  - T48.5 (P95 < 300ms) is measured against this test's small synthetic
+    dataset only, not claimed as the production-scale NFR figure - noted
+    inline rather than treated as a real benchmark.
+- **S49 ⛔ MVP Acceptance (HARD GATE)**: `tests/test_s49_mvp_acceptance.py`
+  encodes AC-1 through AC-11 as executable tests against the real
+  mechanism each AC describes (real Postgres, real state machine, real
+  router failover, real filter/synth/persist pipeline), with synthetic
+  transcripts and scripted LLM transports standing in for a recorded
+  lecture and live model endpoints - the same substitution
+  `tests/test_s47_process_session_flow.py` and `tests/test_llm_router.py`
+  already use. AC-1, AC-3 through AC-10 pass as genuine mechanism-level
+  proof.
+  - **AC-2** (WER within the S06 gate on a 60-min lecture) and **AC-11**
+    (< 15 min P90 processing) reuse gap #1 - no real recorded lecture
+    corpus or production infra timing exists here. Skipped, not faked.
+  - **T49.12** (3-5 user, two-week pilot with structured feedback) needs a
+    real pilot deployment and real users - neither exists in this
+    environment. Skipped.
+  - **Per the S49 exit criterion** ("all eleven AC tests pass and pilot
+    feedback is positive"), the MVP gate is explicitly **NOT** fully closed
+    by this environment alone: AC-2, AC-11, and the pilot survey remain
+    open, all for reasons already tracked as gap #1 and its absence-of-pilot
+    corollary. Downstream Blocks 9-13 should treat this as "mechanism
+    proven, real-world validation still outstanding," not as a green light
+    on the strength of this test file alone.
+- `POST /subjects` (`src/api/routes/subjects.py`) stamps a fresh random
+  `user_id` per request (a pre-existing `# TODO: extract user_id from auth
+  token`, predating Block 8 and outside S47-S49's scope) which 409s against
+  the FK constraint for any real caller. `tests/test_s49_mvp_acceptance.py`
+  verifies AC-1 at the repository layer instead of through that route.
+  Flagged here rather than worked around silently, since it will also block
+  a real subject-creation flow whenever it's picked up.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
