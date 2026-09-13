@@ -1285,6 +1285,140 @@ to PTH123/TRY003, and outside gap #19's scope.
   than any regression from this change; the targeted test file passes
   cleanly in isolation (3 passed, 3 pre-existing honest skips unrelated
   to this fix).
+## 24. manual-review-app: memory-check/review prototype built on top of the existing backend (2026-09-14)
+
+Built the requested prototype: a real multi-user "record → notes →
+quiz-your-recall-against-the-real-note → outcome feeds FSRS + training
+corrections" loop, as a new section of the existing `src/client/` React
+app, plus one new backend router the loop genuinely needed.
+
+**What the end-to-end loop actually does** (all real, no mocked backend
+calls): a user registers/logs in (S12's real `/api/v1/auth/register` and
+`/login`, JWT stored client-side) → picks a subject (existing
+`SubjectPicker`, S15) → the app fetches the next-due flashcard for that
+subject via a new `GET /api/v1/subjects/{id}/flashcards/next` → the user
+answers from memory, clicks "reveal" to see the real `back` (would be the
+real note content wherever a flashcard is generated from one - see gap
+below) → self-rates whether they actually knew it and picks an FSRS rating
+(Again/Hard/Good/Easy) → `POST .../flashcards/{id}/review` applies
+S58's real `fsrs_scheduler.review()` (the actual `py-fsrs` library, not a
+reimplementation) to reschedule the card, persists a `FlashcardReview`
+row, and - only when the user marked their own recall wrong - inserts a
+S65 `Correction` row via a new `capture_recall_mismatch()` hook, so a
+genuine prototype run leaves a real training-signal trail in `corrections`.
+A `GET .../study/progress` endpoint gives the requested simple dashboard
+(total reviews, accuracy, recent outcomes) by reading the same
+`flashcard_reviews` history back.
+
+**Backend files added** (kept minimal, following existing conventions -
+`notes.py`'s RLS-gated-by-subject-ownership pattern, `dashboard.py`'s repo
+usage):
+- `src/api/routes/study.py` - the five endpoints above, plus
+  `POST .../flashcards/seed` (see gap below).
+- `src/api/schemas/study.py`, `src/db/repositories/flashcard_repo.py`.
+- `src/services/finetuning/corrections.py` - added `CorrectionType.RECALL_MISMATCH`
+  and `capture_recall_mismatch()`, following the file's existing six-hook
+  pattern exactly (one `_record()` call, no update to a live row since
+  there's nothing else to correct here beyond the FSRS state already
+  updated separately in the same request).
+- `src/db/migrations/versions/f1a4c8e2b9d3_manual_review_app_recall_mismatch.py` -
+  had to widen `ck_corrections_type`'s CHECK constraint to add
+  `'recall_mismatch'` as a seventh allowed value; ran `alembic upgrade head`
+  against the real dev Postgres and confirmed it applies cleanly.
+
+**Frontend files added**, extending the existing `src/client/` app (no new
+project/build config):
+- `src/client/src/services/auth.ts` (login/register/me, localStorage token),
+  `src/client/src/hooks/useAuth.ts`, `src/client/src/components/AuthScreen.tsx`.
+- `src/client/src/hooks/useStudySession.ts`, `src/client/src/components/QuizCard.tsx`,
+  `src/client/src/components/ProgressView.tsx`, `src/client/src/components/StudyScreen.tsx`.
+- `src/client/src/services/api.ts` extended with `fetchNextFlashcard`/
+  `reviewFlashcard`/`fetchStudyProgress`, and its `request()` now attaches
+  a bearer token when one is stored.
+- `src/client/src/App.tsx` rewritten: unauthenticated users see
+  `AuthScreen`; logged-in users land on a "Review" tab (`StudyScreen`, the
+  new loop) with the original S15 capture flow moved to a "Capture" tab
+  rather than being the only screen.
+- Types added to `src/client/src/types/index.ts` (`AuthUser`, `Flashcard`,
+  `FsrsRating`, `StudyProgress`, `ReviewOutcome`).
+
+**What's a genuine prototype, not production**:
+- **No auto-generation trigger.** Nothing in the pipeline calls S58's
+  `FlashcardGenerator`/S57's `QuestionGenerator` automatically once a
+  session's notes are ready - that wiring doesn't exist anywhere in the
+  codebase yet (checked: no route, worker, or orchestration step calls
+  either generator outside their own unit tests). So in a fresh deployment
+  a subject has zero flashcards until something creates them. Added
+  `POST /api/v1/subjects/{id}/flashcards/seed` as an honest stopgap (manual
+  creation, not LLM generation) so the loop is actually exercisable; a real
+  deployment needs either a pipeline step or an on-demand "generate from
+  this subject's notes" endpoint calling `FlashcardGenerator` - deliberately
+  left out here since it needs a live `LLMRouter` (API keys / local model)
+  this sandbox can't exercise in a test, and the task explicitly prioritized
+  a working loop over completeness.
+- **Single-reviewer flow, unstyled-but-functional Tailwind UI** - one
+  flashcard at a time, no topic-weighted selection (S58's
+  `weighted_topic_selection` exists but isn't wired into `get_next_due`,
+  which just picks the most-overdue card), no question-type (MCQ/essay)
+  quiz support even though S57's `QuestionGenerator` exists - only S58
+  flashcards are wired into the review loop, per the task's "prioritize a
+  working loop over completeness" instruction.
+- **`flashcards`/`flashcard_reviews` have no RLS policy of their own**
+  (they weren't included in migration `8b67f8790b48`'s S12 RLS rollout).
+  `study.py` gates access via `SubjectRepository.get_or_raise` under
+  `get_db_session_with_rls` - the same pattern `notes.py` already uses -
+  but this only works if RLS is actually enforced, and **gap #4** (the dev
+  DB role `lis` is a superuser, and Postgres RLS never applies to
+  superuser connections) means cross-user isolation doesn't actually hold
+  today for this endpoint, same as it doesn't for `notes.py`. Not a new
+  gap this feature introduces - `test_manual_review_app_study_api.py`
+  documents the current (leaky) behavior honestly with a passing assertion
+  and an explanatory docstring, rather than asserting a 404 this code
+  can't currently guarantee.
+- Accuracy in `/study/progress` is a proxy (`rating >= Good`, i.e. FSRS
+  ratings 3-4 count as "correct") - the review row schema (`FlashcardReview`,
+  S58) only stores the FSRS rating, not the separate self-correctness flag
+  the quiz UI collects; that flag only reaches the `corrections` table, not
+  `flashcard_reviews`. A real implementation would likely add a
+  `self_correct` column to `flashcard_reviews` too. Left as-is to avoid
+  another schema migration beyond the one genuinely needed
+  (`ck_corrections_type`).
+
+**Tests**:
+- `tests/test_manual_review_app_study_api.py` (backend, `pytest.mark.integration`,
+  same `httpx.ASGITransport` + dependency-override pattern as
+  `tests/test_s46_notes_api.py`): seed → next-due fetch, a correct review
+  (FSRS state updates, no correction row), an incorrect review (correction
+  row inserted with the right `correction_type`/`user_id`/`original_value`/
+  `consent_for_training`), the progress endpoint's aggregation, and the
+  honest RLS-gap documentation test above. All 5 pass against the real dev
+  Postgres (`alembic upgrade head` ran clean to the new migration first).
+- `tests/client/services/auth.test.ts`, `tests/client/components/AuthScreen.test.tsx`,
+  `tests/client/components/QuizCard.test.tsx` added following the existing
+  vitest + testing-library + mocked-`fetch` convention in
+  `tests/client/services/api.test.ts` / `tests/client/components/SubjectPicker.test.tsx`.
+  **Honest gap: could not actually run these.** This sandbox has no `node`/
+  `npm` binary anywhere on the machine (checked - not on PATH, not under
+  nvm, no system package) - `src/client/` has a real, working Vitest setup
+  per `package.json`/`.eslintrc.cjs`, this environment simply cannot
+  execute it. The new frontend files were reviewed by hand for the
+  patterns this repo's ESLint config would flag (e.g. the `React.FormEvent`
+  namespace-without-import mistake was caught and fixed this way, not by a
+  lint run) but `npm test`/`npm run lint`/`tsc -b` were not run and their
+  pass/fail is genuinely unverified - do not read "tests added" as "tests
+  green" for the client side.
+- Two-real-logged-in-accounts-in-a-browser multi-user testing (the task's
+  own suggested honest-skip case) is not exercised for the same reason
+  `test_s46_notes_api.py` already skips T46.3/T46.4: no browser available
+  here. `test_manual_review_app_study_api.py`'s cross-user test uses two
+  DB-created `User` rows through the API's dependency-override test
+  pattern instead of two live sessions.
+
+**Backend full-suite re-run**: `python -m pytest tests/ -q --timeout=300
+--ignore=tests/client` (see below for the actual run - shared dev Postgres
+on this host was mid-use by several other parallel worktree agents' own
+full-suite runs during this session, causing `DROP SCHEMA`/`alembic
+upgrade` races unrelated to this change; retried once contention cleared).
 
 ## Not yet addressed
 

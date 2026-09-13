@@ -1,5 +1,6 @@
 import { CONFIG } from "../config";
-import type { Subject } from "../types";
+import { getAccessToken } from "./auth";
+import type { Flashcard, FsrsRating, StudyProgress, Subject } from "../types";
 
 // Thin fetch wrappers around the backend contracts documented in S15 spec
 // section 5 (backed by S07 subjects/sessions routes). Kept minimal and
@@ -17,8 +18,12 @@ export interface SessionCreateResponse {
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const token = getAccessToken();
   const res = await fetch(`${CONFIG.apiBaseUrl}${path}`, {
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
     ...init,
   });
   if (!res.ok) {
@@ -71,4 +76,32 @@ export async function uploadChunkToPresignedUrl(uploadUrl: string, blob: Blob): 
   if (!res.ok) {
     throw new Error(`Chunk upload failed: ${res.status} ${res.statusText}`);
   }
+}
+
+// Manual-review-app: study/quiz loop over S58's flashcards + FSRS
+// scheduling, backed by src/api/routes/study.py.
+
+export async function fetchNextFlashcard(subjectId: string): Promise<Flashcard> {
+  return request<Flashcard>(`/api/v1/subjects/${subjectId}/flashcards/next`);
+}
+
+export async function reviewFlashcard(
+  subjectId: string,
+  flashcardId: string,
+  rating: FsrsRating,
+  selfCorrect: boolean,
+  consentForTraining: boolean,
+): Promise<{ flashcard: Flashcard; correction_recorded: boolean }> {
+  return request(`/api/v1/subjects/${subjectId}/flashcards/${flashcardId}/review`, {
+    method: "POST",
+    body: JSON.stringify({
+      rating,
+      self_correct: selfCorrect,
+      consent_for_training: consentForTraining,
+    }),
+  });
+}
+
+export async function fetchStudyProgress(subjectId: string): Promise<StudyProgress> {
+  return request<StudyProgress>(`/api/v1/subjects/${subjectId}/study/progress`);
 }
