@@ -91,6 +91,11 @@ dependencies = [
     "imageio-ffmpeg>=0.6.0",
     "silero-vad>=5.0",
     "soundfile>=0.14.0",
+    # S59: EXIF/GPS stripping and perceptual-hash near-duplicate detection.
+    "piexif>=1.1.3,<2.0",
+    "imagehash>=4.3,<5.0",
+    # S60: OpenCV-based OCR preprocessing (deskew, perspective, de-glare).
+    "opencv-python-headless>=4.10,<5.0",
 ]
 
 [project.optional-dependencies]
@@ -179,6 +184,10 @@ ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = ["imageio_ffmpeg.*", "silero_vad.*", "soundfile.*", "df.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["piexif.*", "imagehash.*", "cv2.*"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

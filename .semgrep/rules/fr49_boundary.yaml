@@ -1,0 +1,60 @@
+rules:
+  - id: fr49-no-image-kwarg-to-generate
+    patterns:
+      - pattern-either:
+          - pattern: $X.generate(..., image=$IMG, ...)
+          - pattern: $X.generate(..., image_bytes=$IMG, ...)
+          - pattern: $X.generate(..., image_url=$IMG, ...)
+          - pattern: $X.generate(..., reference_image=$IMG, ...)
+    message: >
+      FR-4.9 VIOLATION: an image-shaped keyword argument was passed to a
+      `.generate(...)` call. The image generation service accepts only a
+      text concept description. See ADR-008 and specs/S63-image-generation-boundary.md.
+    languages: [python]
+    severity: ERROR
+    metadata:
+      category: security
+      references:
+        - docs/adrs/008-copyright-safe-visual-enrichment.md
+
+  - id: fr49-no-image-param-in-generation-service
+    patterns:
+      - pattern-inside: |
+          class $CLS:
+              ...
+      - pattern: |
+          def generate(self, ..., $PARAM, ...):
+              ...
+      - metavariable-regex:
+          metavariable: $PARAM
+          regex: (?i).*image.*
+    message: >
+      FR-4.9 VIOLATION: the image generation service's `generate` method has
+      an image-shaped parameter. The generator API accepts only text.
+    languages: [python]
+    severity: ERROR
+    paths:
+      include:
+        - src/services/image_generation/
+    metadata:
+      category: security
+      references:
+        - docs/adrs/008-copyright-safe-visual-enrichment.md
+
+  - id: fr49-no-retrieval-bytes-to-generator
+    mode: taint
+    pattern-sources:
+      - pattern: $RETRIEVAL.retrieve_for_concept(...)
+      - pattern: $SOURCE.search(...)
+    pattern-sinks:
+      - pattern: $GENERATOR.generate(...)
+    message: >
+      FR-4.9 VIOLATION: image retrieval output flows into a generator's
+      `.generate(...)` call. Retrieval output must never reach the
+      generation service. See ADR-008.
+    languages: [python]
+    severity: ERROR
+    metadata:
+      category: security
+      references:
+        - docs/adrs/008-copyright-safe-visual-enrichment.md
