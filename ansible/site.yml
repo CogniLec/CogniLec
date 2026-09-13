@@ -83,11 +83,10 @@
 
     - name: Verify NVIDIA driver is loaded
       ansible.builtin.shell: nvidia-smi --query-gpu=driver_version --format=csv,noheader
-      register: driver_version
+      register: driver_check
       changed_when: false
       retries: 3
       delay: 10
-      register: driver_check
       until: driver_check.rc == 0
       tags: [nvidia, gpu]
 
