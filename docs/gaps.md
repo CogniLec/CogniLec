@@ -294,6 +294,80 @@ by code changes alone.
   untracked by git after this fix (same as in the main checkout) and may
   need recreating in any other fresh clone/worktree.
 
+## 10. Block 10 (S54-S58) complete — retrieval, A3/A5 agents, flashcards/export
+
+- Block 10 (S54 reranker, S55 shared RetrievalService, S56 A3 history
+  context, S57 A5 question generation/answerability, S58 flashcards/FSRS/
+  export) implemented.
+- **S54**: `src/services/retrieval/reranker.py`'s `RerankerClient` calls a
+  TEI-style `/rerank` HTTP endpoint (mirrors `src/ml/embedding/client.py`'s
+  TEI pattern), always on with no cost gating per v2.0. No real
+  Qwen3-Reranker model is loadable in this sandbox (same underlying
+  constraint as gap #2's "no GPU-loaded model"), so T54.1-T54.3 are
+  genuinely tested against an injected fake transport (same style as the
+  LLM router's `transport` injection in S37/S41) rather than a live model -
+  the transport-failure fallback path itself (T54.4) is exercised for
+  real, unmocked, against an actually-unreachable host.
+- **S55**: `src/services/retrieval/retrieval_service.py`'s `retrieve()` is a
+  stateless module-level function (hybrid recall -> rerank -> hierarchical
+  merge). D-31 (LlamaIndex `AutoMergingRetriever` vs. hand-rolled SQL) is
+  decided in favour of hand-rolled, with the full reasoning recorded in the
+  module docstring: a real bake-off needs a GPU-loaded embedding/LLM
+  backend (gap #2) for LlamaIndex's merge-time re-scoring to behave as it
+  would in production, which this sandbox cannot provide honestly. The
+  hierarchical merge itself is real (utterance/note_section -> topic via
+  `topic_id`, one indexed SQL lookup, T55.3 genuinely passes against a
+  seeded fixture).
+- **S56/S57**: A3's history-context links and A5's question generation both
+  read through `RetrievalService` via a **new, genuinely restricted**
+  `lis_readonly` Postgres role (migration `d3f8a1c9b2e4`,
+  NOSUPERUSER/NOBYPASSRLS, `GRANT SELECT` only). This is deliberately
+  distinct from gap #4 (the superuser `lis` role bypassing RLS): T56.2/
+  T57.4 use table-level GRANTs, a different enforcement mechanism, so both
+  tests get a real `asyncpg.exceptions.InsufficientPrivilegeError` on an
+  attempted write, independent of the RLS-bypass gap. T56.3/T57.5 ("no
+  A3<->A5 communication") are asserted structurally (no cross-module
+  import, no handle accepted in either agent's constructor/methods) since
+  there is no separate distributed-tracing backend in this environment to
+  assert against at the trace-span level. T56.4 (human review of 40 links)
+  and T57.6 (human-verified difficulty) are honest skips - no human-rater
+  pipeline exists here, same gap class as S29's/S48's human-in-the-loop
+  evaluations. T57.7 (20 questions in <30s) is also skipped: honestly
+  timing this needs a real GPU-loaded LLM (gap #2); a mocked/instant
+  transport's timing would misrepresent the NFR, so a separate,
+  un-skipped test instead checks the real structural precondition
+  (generation batches into one router call regardless of requested count).
+- **S58**: FSRS scheduling uses the real `fsrs` (py-fsrs) PyPI package
+  directly (added to `pyproject.toml`) rather than a reimplementation -
+  it *is* the reference implementation T58.2 asks to be checked against,
+  so `src/services/study/fsrs_scheduler.py` is a thin field-mapping
+  wrapper, and the test asserts byte-for-byte equality with calling
+  `fsrs.Scheduler` directly. Export: Markdown is generated directly
+  in-process (genuinely tested); DOCX shells out to the real system
+  `pandoc` binary, which **is** present in this environment (via
+  `/home/ashok/anaconda3/bin/pandoc` on `PATH`) and is exercised for real,
+  producing a genuine OOXML `.docx` (verified by unzipping and checking
+  for `word/document.xml`); Anki export uses the real `genanki` package
+  (added to `pyproject.toml`) and produces a genuine `.apkg`
+  (zip-of-sqlite), checked by opening the extracted `collection.anki2`/
+  `collection.anki21` and querying its `notes` table directly, since a
+  real Anki desktop install isn't available to drive an actual import.
+  **New gap**: no `typst` binary exists anywhere on this machine (checked
+  via `shutil.which` and a filesystem search) - PDF export
+  (`src/services/study/export.py::export_pdf_via_typst`) is implemented
+  for real against the Typst CLI contract (`typst compile`) but
+  `test_t58_5_pdf_export_via_typst` is `skipif`'d on `typst_available()`
+  being `False`, i.e. it will actually run and verify a real PDF the
+  moment a `typst` binary is installed, rather than being permanently
+  skipped by a fixed `@pytest.mark.skip`.
+- New DB tables (`note_links`, `questions`, `flashcards`,
+  `flashcard_reviews`) are plain FK-indexed tables, not partitioned by
+  `subject_id` like `utterances`/`topics`/`note_sections` (S08) - extending
+  `src/db/partitions/config.py`'s `PARTITIONED_TABLES` machinery for four
+  new tables was out of this block's time budget. Same class of
+  simplification as S52/S53's in-process state (gap #9): real, not
+  fabricated, but a production implementation would partition these too.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

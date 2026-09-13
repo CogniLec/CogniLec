@@ -35,6 +35,9 @@ dependencies = [
     # Auth
     "python-jose[cryptography]>=3.3,<4.0",
     "passlib[bcrypt]>=1.7,<2.0",
+    # S58: Anki export (.apkg) and FSRS spaced-repetition scheduling.
+    "genanki>=0.13,<1.0",
+    "fsrs>=5.0,<6.0",
     "argon2-cffi>=23.1,<25.0",
     # HTTP
     "httpx>=0.27,<1.0",
@@ -162,7 +165,16 @@ strict = false
 disallow_untyped_defs = false
 
 [[tool.mypy.overrides]]
-module = ["pgvector.*", "alembic.*", "structlog.*", "boto3.*", "botocore.*", "sklearn.*"]
+module = [
+    "pgvector.*",
+    "alembic.*",
+    "structlog.*",
+    "boto3.*",
+    "botocore.*",
+    "sklearn.*",
+    "genanki.*",
+    "fsrs.*",
+]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

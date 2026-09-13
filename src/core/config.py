@@ -47,6 +47,15 @@ class Settings(BaseSettings):
     SYLLABUS_FDW_USER: str = "lis_fdw_reader"
     SYLLABUS_FDW_PASSWORD: str = "lis_fdw_reader_dev"
 
+    # S56/S57 (Block 10): a genuinely restricted, NOSUPERUSER/NOBYPASSRLS,
+    # SELECT-only role on PG-MAIN for A3 (history context) and A5 (question
+    # generation) retrieval. Distinct from the RLS-bypass gap tracked in
+    # docs/gaps.md #4 (which is about the superuser "lis" role skipping
+    # row-level security) - this role's read-only guarantee is enforced by
+    # plain table-level GRANTs, so it holds regardless of that gap.
+    READONLY_DB_USER: str = "lis_readonly"
+    READONLY_DB_PASSWORD: str = "lis_readonly_dev"
+
     # Valkey/Redis
     VALKEY_URL: str = "redis://localhost:6379/0"
 
