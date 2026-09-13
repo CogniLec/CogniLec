@@ -13,6 +13,11 @@ env/
 .uv/
 uv.lock
 
+# User-supplied raw video files (large binaries; third-party content, unclear
+# redistribution rights) -- see docs/gaps.md gap #16/#17 for the derived,
+# committed evidence (transcripts/stats/diarisation results, no raw media)
+/videos/
+
 # IDE
 .vscode/
 .idea/

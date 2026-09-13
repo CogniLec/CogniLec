@@ -1,0 +1,56 @@
+[
+  {
+    "video": "videoplayback.mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.6,
+    "distinct_speakers_detected": 1
+  },
+  {
+    "video": "videoplayback (1).mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.2,
+    "distinct_speakers_detected": 1
+  },
+  {
+    "video": "videoplayback (2).mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.3,
+    "distinct_speakers_detected": 2
+  },
+  {
+    "video": "videoplayback (3).mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.6,
+    "distinct_speakers_detected": 4
+  },
+  {
+    "video": "vidssave.com Group Discussion _ Corporate Communication, Group B I Prof. Arun 240P.mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.6,
+    "distinct_speakers_detected": 2
+  },
+  {
+    "video": "vidssave.com Group Discussion in SSB Interview _ SSB Interview Group Discussion Live Demo & Feedback _ SSB 2023 360P.mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.7,
+    "distinct_speakers_detected": 2
+  },
+  {
+    "video": "vidssave.com Group Discussion on Online Learning - For and Against, FY BBA-B I Prof.Arun 240P.mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.7,
+    "distinct_speakers_detected": 2
+  },
+  {
+    "video": "vidssave.com Mock Group Discussion (GD) 02 _ IIM Interview Questions and Answers 240P.mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.7,
+    "distinct_speakers_detected": 3
+  },
+  {
+    "video": "Zoom Online Training & Demo Meeting - Kuwait Challengers (360p, h264).mp4",
+    "clip_duration_s": 180,
+    "diarisation_time_s": 13.8,
+    "distinct_speakers_detected": 3
+  }
+]

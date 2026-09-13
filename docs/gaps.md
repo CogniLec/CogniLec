@@ -785,6 +785,64 @@ real-user level the plan's acceptance criteria ultimately ask for.
   single-lecturer recordings and human relevance/boundary/topic labels,
   which this evidence set does not have and cannot retroactively acquire.
 
+## 17. Real S20 diarisation genuinely run and verified (2026-09-14)
+
+- The user provided a HuggingFace read token and accepted the gating terms
+  for the three models pyannote's pipeline needs
+  (`pyannote/speaker-diarization-3.1`, `pyannote/segmentation-3.0`, and a
+  dependency not previously anticipated,
+  `pyannote/speaker-diarization-community-1`). Token stored in `.env` as
+  `HF_TOKEN` (gitignored, never committed).
+- Following the gap #15/vLLM lesson, `pyannote.audio` (which requires
+  numpy>=2, ABI-incompatible with this repo's numpy 1.26.x pin) was
+  installed into an **isolated venv outside this repo** (`uv venv` at
+  `/tmp/pyannote_test_venv` in this session — not part of the repo or a
+  committed artifact), never into the shared `.venv`.
+- Blockers hit and resolved along the way, in order: (1) the
+  `Pipeline.from_pretrained(use_auth_token=...)` kwarg was renamed to
+  `token=` in pyannote-audio 4.x; (2) a third gated model dependency
+  (`speaker-diarization-community-1`) needed its own terms-acceptance,
+  not documented anywhere pyannote's own error message pointed to
+  directly — discovered only by reading the actual 403 error; (3) the
+  newer pyannote-audio's `Pipeline.__call__` return type changed from an
+  `Annotation` to a `DiarizeOutput` dataclass — the real turns are at
+  `.speaker_diarization.itertracks()`, not the object itself; (4)
+  `torchcodec` (a pyannote dependency) needs a real system-installed
+  `ffmpeg` with shared `libavutil.so.*` — the `imageio_ffmpeg` static
+  binary already used elsewhere in this repo does not provide this;
+  fixed with `sudo apt-get install ffmpeg` (user ran this).
+- **Real result, genuinely run, GPU-accelerated:** pipeline load ~1.7s,
+  diarisation of a 3-minute real clip ~13.5s, across all 9 user-supplied
+  videos (see gap #16). Distinct speaker counts detected: 1, 1, 2, 4, 2, 2,
+  2, 3, 3 — plausible per video content (the two videos detected as
+  single-speaker are consistent with being training/lecture-style content
+  rather than group discussions). Full results saved to
+  `lis-eval/phase0/real_video_evidence/diarisation_results.json`.
+- **Code added:** `src/services/diarisation/pyannote_backend.py` — a real
+  `PyannoteBackend` implementing the existing `DiarisationBackend` Protocol
+  from `src/services/diarisation/worker.py`, with a **lazy** `pyannote`
+  import (importable and unit-testable in the shared venv without
+  pyannote.audio present; only fails if actually instantiated without it).
+  `NFR-S4` is respected by construction: only `.speaker_diarization`'s
+  (start, end, local-label) turns are read; `DiarizeOutput.speaker_embeddings`
+  (a real per-speaker voiceprint array pyannote can also return) is never
+  touched.
+- `tests/test_diarisation.py`'s module docstring and the T20.1 skip reason
+  were updated to reflect that the mechanism IS now genuinely verified —
+  just not inside this pytest process (which would require installing
+  pyannote into the shared venv, the exact regression risk documented in
+  gap #15). Full suite re-run after this change: **690 passed, 80 skipped,
+  0 failed** — no regression.
+- **Still not resolved:** running pyannote as part of the actual production
+  pipeline (not a one-off script) needs either (a) an isolated
+  service/container for diarisation specifically (the natural answer,
+  matching how S36's vLLM is already isolated as a separate
+  `docker-compose.yml` service rather than a Python import), or (b) a
+  from-scratch dependency resolution proving pyannote 4.x + numpy 2.x can
+  coexist with opencv/umap/hdbscan's numpy-1.x requirements (unlikely to
+  be worth the effort vs. (a)). This has not been built — only the
+  Protocol-conforming backend class and one-off proof exist so far.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

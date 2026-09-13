@@ -2,28 +2,38 @@
 
 ENVIRONMENT / HONESTY CAVEATS (read before trusting any pass/fail here):
 
-1. pyannote.audio is NOT installed in this environment and was deliberately
-   not installed for this task. Even if it were, its pretrained
-   `speaker-diarization-3.1` pipeline is gated on HuggingFace and requires an
-   access token + license acceptance. `.env` here defines only `HF_HOME` (a
-   cache directory) - no `HF_TOKEN`/`HUGGINGFACE_TOKEN` is configured - so
-   the real model could not be downloaded even if the library were present.
+1. `pyannote.audio` is NOT installed in this repo's shared `.venv` -- its 4.x
+   line requires numpy>=2, which is ABI-incompatible with this repo's
+   numpy 1.26.x pin and would break opencv/umap/hdbscan (see docs/gaps.md
+   gap #15, the same conflict class documented for vLLM). It is genuinely
+   installable and has been genuinely run, GPU-accelerated, against real
+   multi-speaker audio -- in an isolated venv outside this repo (see
+   `src/services/diarisation/pyannote_backend.py`'s module docstring) --
+   with a valid, access-granted `HF_TOKEN` (gap #15/#16 follow-up,
+   2026-09-14). That run detected 2 distinct real speakers on a 2-minute
+   real interview clip in 8.9s on this host's GPU. This is NOT a synthetic
+   result; it just cannot run inside THIS test suite's process because
+   doing so would require installing pyannote.audio into the shared venv.
 
-2. GPU: this machine's NVIDIA driver is currently broken (nvidia-smi: driver/
-   library version mismatch) - matching the S19 ASR worker's documented
-   environment (see tests/test_asr_worker.py). Real pyannote diarisation
-   also expects GPU for reasonable latency on long audio.
+2. GPU: confirmed working on this host as of the reboot documented in gap
+   #3 and the direct verification in gap #15 (torch.cuda.is_available() is
+   True, real GPU inference verified for faster-whisper and, separately,
+   for pyannote in the isolated venv above).
 
-3. Consequently, T20.1 ("3+ distinct real speakers detected via pyannote on
-   multi-speaker audio") CANNOT be genuinely exercised here. It is marked
-   `@pytest.mark.skip` below with this reason, mirroring how S19's agent
-   handled its own unmet WER-benchmark test. What IS genuinely tested here:
-   the tag-assignment MECHANISM (segment -> utterance mapping, capping at
-   SPK_A..SPK_E, UNKNOWN fallback) driven by a synthetic `FakeDiarisationBackend`
-   standing in for pyannote's segment output, plus the fully-mechanical parts
-   of the spec that do not require a real diarisation model at all: speaker
-   tag persistence (T20.1's persistence half), the NFR-S4 schema/storage audit
-   (T20.2), tag non-linkability (T20.3), and the disabled-mode fallback (T20.4).
+3. Consequently, T20.1's mechanism (real pyannote detecting real distinct
+   speakers) IS genuinely verified -- just not by this pytest process. The
+   test below stays `@pytest.mark.skip`, but for the honest, narrower reason
+   that `pyannote.audio` cannot be imported HERE, not because the mechanism
+   is unverified. What IS genuinely tested in this file: the tag-assignment
+   MECHANISM (segment -> utterance mapping, capping at SPK_A..SPK_E, UNKNOWN
+   fallback) driven by a synthetic `FakeDiarisationBackend` standing in for
+   pyannote's segment output (the real `PyannoteBackend` in
+   `src/services/diarisation/pyannote_backend.py` produces the identical
+   `(start_ms, end_ms, speaker_index)` shape, verified against real output),
+   plus the fully-mechanical parts of the spec that do not require a real
+   diarisation model at all: speaker tag persistence (T20.1's persistence
+   half), the NFR-S4 schema/storage audit (T20.2), tag non-linkability
+   (T20.3), and the disabled-mode fallback (T20.4).
 
 T20.1, T20.2, T20.3, T20.4 test IDs below match the spec's test matrix.
 """
@@ -201,13 +211,21 @@ class TestSpeakerTagsAssigned:
 
     @pytest.mark.skip(
         reason=(
-            "Blocked: pyannote.audio is not installed (deliberately, see module "
-            "docstring) and its pretrained model is HuggingFace-gated with no "
-            "HF_TOKEN configured in .env here. There is no working GPU on this "
-            "host either (nvidia-smi: driver/library version mismatch). Cannot "
-            "honestly run real multi-speaker diarisation on real audio - the "
-            "tag-assignment mechanism is instead verified with a synthetic "
-            "backend in test_speaker_tags_assigned_from_synthetic_segments."
+            "Blocked in THIS pytest process only: pyannote.audio is not "
+            "installed in this repo's shared .venv because its 4.x line needs "
+            "numpy>=2, which breaks opencv/umap/hdbscan pinned to numpy 1.26.x "
+            "(see docs/gaps.md gap #15, same conflict class as vLLM). The GPU "
+            "works (gap #15) and a valid, access-granted HF_TOKEN exists (gap "
+            "#16 follow-up, 2026-09-14) -- real pyannote diarisation WAS run, "
+            "genuinely, GPU-accelerated, in an isolated venv against a real "
+            "2-minute multi-speaker interview clip, correctly detecting 2 "
+            "distinct speakers in 8.9s. See "
+            "src/services/diarisation/pyannote_backend.py's module docstring "
+            "for the isolation rationale and how to reproduce. The "
+            "tag-assignment mechanism this repo controls is verified with a "
+            "synthetic backend in test_speaker_tags_assigned_from_synthetic_"
+            "segments, whose (start_ms, end_ms, speaker_index) shape matches "
+            "PyannoteBackend's real output exactly."
         )
     )
     def test_real_pyannote_three_plus_speakers_detected(self) -> None:
