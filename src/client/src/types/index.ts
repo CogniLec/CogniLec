@@ -60,3 +60,39 @@ export interface ConsentRecord {
   consentVersion: string; // "v1.0"
   userId: string;
 }
+
+// Manual-review-app: auth + study/quiz loop types (S12 auth, S46 notes,
+// S58 flashcards/FSRS, S65 corrections).
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  is_active: boolean;
+}
+
+export interface Flashcard {
+  id: string;
+  subject_id: string;
+  topic_label: string;
+  front: string;
+  back: string;
+  due_at: string;
+  last_review_at: string | null;
+}
+
+// fsrs.Rating: 1=Again, 2=Hard, 3=Good, 4=Easy.
+export type FsrsRating = 1 | 2 | 3 | 4;
+
+export interface ReviewOutcome {
+  flashcard_id: string;
+  rating: number;
+  reviewed_at: string;
+}
+
+export interface StudyProgress {
+  subject_id: string;
+  total_reviews: number;
+  correct_reviews: number;
+  accuracy: number;
+  recent_outcomes: ReviewOutcome[];
+}

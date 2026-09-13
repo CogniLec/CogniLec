@@ -30,6 +30,7 @@ class CorrectionType(StrEnum):
     SYLLABUS_ALIGNMENT = "syllabus_alignment"
     IMAGE_REJECTION = "image_rejection"
     NOTE_EDIT = "note_edit"
+    RECALL_MISMATCH = "recall_mismatch"
 
 
 async def _record(
@@ -230,5 +231,37 @@ async def capture_note_edit(
         original_value={"body_md": original_body_md},
         corrected_value={"body_md": corrected_body_md},
         context={"heading": heading},
+        consent_for_training=consent_for_training,
+    )
+
+
+async def capture_recall_mismatch(
+    session: AsyncSession,
+    *,
+    subject_id: uuid.UUID,
+    user_id: uuid.UUID,
+    flashcard_id: uuid.UUID,
+    front: str,
+    actual_back: str,
+    user_self_rating: str,
+    fsrs_rating: int,
+    consent_for_training: bool = False,
+) -> Correction:
+    """User reviews a flashcard against the real note and marks their own recall wrong.
+
+    This is the manual-review-app's quiz/recall loop feeding S65: no row is
+    updated (unlike the other capture hooks) - the flashcard's own state is
+    already updated separately by S58's FSRS scheduler in the same request,
+    this only records the training signal.
+    """
+    return await _record(
+        session,
+        CorrectionType.RECALL_MISMATCH,
+        subject_id=subject_id,
+        user_id=user_id,
+        source_id=flashcard_id,
+        original_value={"expected_back": actual_back},
+        corrected_value={"user_self_rating": user_self_rating},
+        context={"front": front, "fsrs_rating": fsrs_rating},
         consent_for_training=consent_for_training,
     )
