@@ -705,6 +705,54 @@ real-user level the plan's acceptance criteria ultimately ask for.
   with `alembic downgrade base && alembic upgrade head` rather than
   debugging the failing test itself.
 
+## 15. GPU is actually usable now — the "no GPU" gap is partially resolved (2026-09-13)
+
+- Gap #2/#3 previously said this host has no working GPU for real inference.
+  That was true when written (driver/library mismatch pre-reboot). After the
+  reboot documented in gap #3, direct testing in the project's own `.venv`
+  confirms **real, working GPU inference is available**:
+  - `torch.cuda.is_available()` is `True` (`torch==2.14.0+cu130`, driver
+    580.178.04, `NVIDIA T1000` 4GB VRAM).
+  - `ctranslate2.get_cuda_device_count()` returns 1 — faster-whisper's real
+    backend sees the GPU.
+  - `faster-whisper` (`tiny.en`, `base.en`) loads on `device="cuda"` and
+    **actually transcribes audio on the GPU** — verified with a real forward
+    pass, not just a model-load check.
+  - `bitsandbytes==0.50.2`'s `Linear8bitLt` runs a real 8-bit quantized
+    forward pass on this GPU — this is T02.6's exact gate assertion,
+    genuinely passing on real hardware (not yet wired into the actual
+    pytest suite, which still skips T02.x per gap #3 — that skip should be
+    revisited).
+- **flash-attn still does not work here.** `pip install flash-attn
+  --no-build-isolation` fails to compile: the system's CUDA 13.0 toolkit
+  headers (`/usr/local/cuda`) have deprecated symbols (`vector_types.h`'s
+  `double4`) that flash-attn 2.8.3's source expects from CUDA 12.6. No
+  prebuilt wheel exists for this torch/CUDA combination. Needs either an
+  older CUDA toolkit installed side-by-side and pointed at explicitly, or a
+  newer flash-attn release with CUDA 13 support.
+- **vLLM cannot be installed into this repo's shared `.venv` without
+  breaking it.** `uv pip install vllm` resolves but drags in
+  `transformers==5.17.0`, `torch==2.13.0` (a *downgrade* from the pinned
+  2.14.0+cu130), and `opencv-python-headless==5.0.0.93` — the last of which
+  changed a skew-angle sign convention and broke
+  `tests/test_s60_ocr.py::test_t60_4_...` (16.0° vs the expected <8.0°,
+  a real, reproduced regression, not flaky). Reverted immediately via
+  `uv sync --extra dev` (restores the lockfile exactly); do **not** leave
+  vLLM installed in the shared venv again without first solving this
+  dependency conflict (an isolated venv, uv dependency groups, or a
+  separate container for the S36 vLLM service, matching how
+  `docker-compose.yml`'s `vllm` service profile already isolates it at
+  the container level — that's almost certainly the right long-term
+  answer, since S36 was always meant to be a separate container, not code
+  imported into this venv).
+- **Net effect on the gap inventory:** gap #1 (no real S04 corpus) is
+  unchanged and remains the harder blocker. Gap #2's "no GPU" framing is
+  now only true for the two specific pieces above (flash-attn build,
+  vLLM-in-this-venv) — real GPU ASR/quantized-inference work is
+  achievable here and should be exploited for a real S06 bake-off or S19
+  production-model run once corpus/time allow, rather than assumed
+  impossible.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
