@@ -843,6 +843,122 @@ real-user level the plan's acceptance criteria ultimately ask for.
   be worth the effort vs. (a)). This has not been built — only the
   Protocol-conforming backend class and one-off proof exist so far.
 
+## 18. Pre-commit lint/type debt cleanup (2026-09-14)
+
+Gap #5 flagged that pre-commit hooks fail across the pre-existing codebase and
+every commit up to now used `--no-verify`. This pass worked through that debt
+on branch `manual-lint-cleanup`, in the order the task specified.
+
+**Now fully passing**: `ruff-format`, `mypy` (strict, as run by the actual
+pre-commit hook), `sqlfluff-lint`, `check-yaml`, `check-toml`, `check-json`,
+`check-merge-conflict`, `end-of-file-fixer`, `trailing-whitespace`,
+`mixed-line-ending`, `detect-private-key`, gitleaks.
+
+What was done:
+- `ruff format .` reformatted 101 files; `ruff check --fix .` auto-fixed the
+  bulk of style/import-order violations.
+- Fixed the remaining ruff findings that were mechanical and safe: an
+  implicit re-export (`F401` in `src/db/repositories/__init__.py`), an
+  ambiguous variable name `l` (`E741` in `src/ml/clustering/evaluate.py`),
+  8 unused-unpacked-variable findings in `tests/test_cascade.py` and
+  `tests/test_s06_gates.py` (`RUF059`, prefixed with `_`), and 17 en-dash
+  docstring characters (`RUF002`) normalized to hyphens.
+- `end-of-file-fixer`/`trailing-whitespace` auto-fixed a large number of
+  files across `specs/` and `lis-eval/phase0/real_video_evidence/`.
+- **mypy**: added `config/__init__.py` and `config/schemas/__init__.py` —
+  `config.schemas.a6_syllabus` is imported as a package from `src/` but had
+  no `__init__.py`, which made mypy see it as two different modules and
+  abort type-checking of the entire tree with "Source file found twice".
+  This was blocking mypy from checking almost everything; fixing it is what
+  made the rest of the pass possible.
+  Added scoped `[[tool.mypy.overrides]]` entries (`ignore_missing_imports`)
+  for third-party packages genuinely missing stubs: `pandas`, `nemo`,
+  `pyannote`, `segeval`, `jiwer`, `scipy`, `torch`, `sentence_transformers`,
+  `prefect`, `umap`, `hdbscan`, `redis`, following the existing convention
+  in `pyproject.toml` rather than scattering `# type: ignore`. Also added a
+  `disallow_untyped_decorators = false` override for the three modules using
+  Prefect's untyped `@task`/`@flow` decorators
+  (`src/ml/clustering/tasks.py`, `src/ml/embedding/flows.py`,
+  `src/services/orchestration/session_pipeline.py`) since Prefect ships no
+  usable stubs. Fixed genuine missing/wrong annotations in `src/ml/gates.py`
+  (`dict` → `dict[str, object]`), `src/ml/clustering/evaluate.py`
+  (`np.ndarray` generic args), `src/ml/clustering/segmentation.py` (an
+  actually-invalid `np.ndarray[object, ...]` alias, corrected to
+  `np.ndarray[Any, ...]`), `src/db/repositories/utterance_repo.py`
+  (`Result[Any].rowcount` doesn't exist on the base `Result` type; cast to
+  `CursorResult[Any]`, which is what `execute()` on a `text()` DML statement
+  actually returns), and `src/ml/asr/wer.py`/`transcribe.py` (`no-any-return`
+  from untyped third-party calls).
+  Note: `.pre-commit-config.yaml`'s mypy hook runs in its own isolated venv
+  with a short `additional_dependencies` list (by design — it can't
+  reasonably install torch/prefect/etc.), so a `mypy src/` run in the
+  project's own `.venv` sees a different, sometimes stricter, picture (e.g.
+  real `jiwer`/`redis` stubs) than the pre-commit hook does. All mypy fixes
+  in this pass target the pre-commit hook's environment, since that's the
+  actual gate; a couple of `cast()`s that look redundant against the full
+  dev `.venv` are there because the pre-commit hook's minimal env needs them.
+  Added `pydantic-settings`, `httpx`, `pillow`, `pyjwt`, `pypdf`, `faker`,
+  `sse-starlette` to the mypy hook's `additional_dependencies` since these
+  are lightweight and real type errors were only being masked by their
+  absence (e.g. `src/core/config.py`'s `Settings(BaseSettings)` was
+  literally uncheckable — `BaseSettings` resolved to `Any` — until
+  `pydantic-settings` was added). Deliberately did **not** add `redis` as a
+  hook dependency: its real stubs are strict enough (`xadd`/`zrem` key/value
+  types) that satisfying them properly in `src/services/valkey_stream.py`
+  and `src/workers/retry_queue.py` would mean non-trivial rework of how
+  stream fields are typed, which felt too risky for a lint-only pass: left
+  as `ignore_missing_imports` for now, i.e. real debt.
+- **sqlfluff**: fixed a real inconsistency — `docker/postgres/init-main.sql`
+  and `init-syllabus.sql` use `ALTER DATABASE ... SET search_path`, which
+  sqlfluff's postgres dialect cannot parse; added `-- noqa` comments (the
+  SQL itself is correct and unchanged). Reformatted
+  `docker/postgres/migrations/syllabus/001_syllabus_items.sql` and
+  `002_syllabus_items_extend.sql` to single-space/standard-indent style —
+  formatting only, no column, type, or constraint changes.
+
+**Real bug found and fixed** (not just lint): `ansible/site.yml`'s "Verify
+NVIDIA driver is loaded" task had two `register:` keys on the same task
+(`register: driver_version` immediately followed by `register: driver_check`).
+YAML mappings can't have duplicate keys, so `check-yaml` was failing outright,
+and at runtime Ansible would have silently kept only the second `register`,
+meaning `driver_version` was dead — nothing in the playbook ever reads it
+(confirmed via search), while `driver_check` (used by the `until:` retry
+condition and the following debug message) was the one actually intended to
+survive. Removed the redundant `register: driver_version` line; behavior is
+unchanged since nothing consumed that fact, but the file is now valid YAML
+and the duplicate-key footgun is gone.
+
+Also fixed a real `logging.error` → `logging.exception` bug in
+`src/ml/asr/transcribe.py` (`TRY400`): the `except Exception` handler was
+using `log.error` with an exception object formatted as `%s`, discarding the
+traceback that `log.exception` would have preserved — meaningful when
+diagnosing a failed NeMo transcription in production logs.
+
+**Remaining debt** (left deliberately, `ruff` hook still fails on this):
+- **29 `PTH123`** findings (`open()` should be `Path.open()`) — almost all in
+  test files (`tests/test_s01_skeleton.py`, `tests/test_s06_config.py`,
+  `tests/test_s06_gates.py`) plus one in `src/ml/gates.py`. Purely stylistic,
+  mechanical but 29 individual call sites; left for a follow-up pass rather
+  than rushed edits across test files this session didn't otherwise touch.
+- **8 `TRY003`** findings (exception raised with an inline long message
+  outside the exception class) in `src/api/schemas/subject.py`,
+  `src/db/repositories/base.py`, `src/db/repositories/session_repo.py`,
+  `src/db/repositories/subject_repo.py`, `src/ml/asr/transcribe.py`. Ruff's
+  suggested fix (move messages onto custom exception `__init__`s) is a real
+  refactor of the exception classes, not a mechanical fix, so left as-is.
+- `src/services/valkey_stream.py` and `src/workers/retry_queue.py`'s use of
+  `redis.asyncio` is still under a blanket `ignore_missing_imports` override
+  rather than fully typed — see mypy note above.
+- Did not touch `src/services/diarisation/` beyond what `ruff format`/
+  `ruff check --fix` did automatically (whitespace/import-order only, no
+  manual edits), per instruction to avoid conflicting with parallel
+  diarisation work.
+
+Full test suite after all changes: **690 passed, 80 skipped, 0 failed**
+(`python -m pytest tests/ -q --timeout=300 --ignore=tests/client`) — identical
+to the pre-cleanup baseline, confirming none of the formatting/typing changes
+altered runtime behavior.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
