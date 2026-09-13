@@ -38,15 +38,19 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
 
+
 class ChunkQualityMetrics(BaseModel):
     session_id: UUID
     sequence: int
     snr_db: float = Field(..., description="Signal-to-noise ratio in dB")
     speech_ratio: float = Field(..., ge=0.0, le=1.0, description="Fraction of chunk with speech")
-    clipping_rate: float = Field(..., ge=0.0, le=1.0, description="Fraction of samples at max amplitude")
+    clipping_rate: float = Field(
+        ..., ge=0.0, le=1.0, description="Fraction of samples at max amplitude"
+    )
     lufs: float | None = Field(None, description="Integrated loudness")
     rms_db: float | None = None
     computed_at: datetime
+
 
 class SessionQualityScore(BaseModel):
     session_id: UUID
@@ -58,6 +62,7 @@ class SessionQualityScore(BaseModel):
     window_snr_db: float = Field(..., description="Rolling window SNR")
     status: str = "normal"  # normal, degraded, warning, critical
     last_updated: datetime
+
 
 class QualityWarning(BaseModel):
     session_id: UUID

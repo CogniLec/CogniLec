@@ -37,6 +37,7 @@ query → hybrid_recall (pgvector + tsvector) → candidate_pool
 from pydantic import BaseModel, Field
 from uuid import UUID
 
+
 class RetrievalResult(BaseModel):
     id: UUID
     content: str
@@ -49,6 +50,7 @@ class RetrievalResult(BaseModel):
     parent_topic_name: str | None = None
     sibling_segments: list[str] = Field(default_factory=list)
 
+
 class RetrievalResponse(BaseModel):
     results: list[RetrievalResult]
     total_candidates: int
@@ -57,15 +59,15 @@ class RetrievalResponse(BaseModel):
     latency_ms: int
     query: str
 
+
 class RetrievalRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=2000)
     subject_id: UUID
-    source_types: list[str] = Field(
-        default=["utterance", "segment", "note_section"]
-    )
+    source_types: list[str] = Field(default=["utterance", "segment", "note_section"])
     top_k: int = Field(default=10, ge=1, le=50)
     rerank: bool = Field(default=True)
     hierarchical_merge: bool = Field(default=True)
+
 
 # src/services/retrieval/config.py
 class RetrievalConfig(BaseModel):
@@ -84,19 +86,17 @@ class RetrievalConfig(BaseModel):
 # src/services/retrieval/service.py
 class RetrievalService:
     """Stateless retrieval service. No agent identity, no shared state."""
-    
-    async def retrieve(
-        self, request: RetrievalRequest
-    ) -> RetrievalResponse:
+
+    async def retrieve(self, request: RetrievalRequest) -> RetrievalResponse:
         """Full retrieval pipeline: hybrid recall → rerank → merge."""
         ...
-    
+
     async def hybrid_recall(
         self, query: str, subject_id: UUID, source_types: list[str], limit: int
     ) -> list[RetrievalResult]:
         """First-stage: pgvector cosine + tsvector ts_rank via RRF."""
         ...
-    
+
     async def hierarchical_merge(
         self, results: list[RetrievalResult], subject_id: UUID
     ) -> list[RetrievalResult]:
@@ -187,8 +187,7 @@ class RetrievalService:
         db_syllabus: AsyncSession,
         reranker: RerankerClient | None = None,
         config: RetrievalConfig | None = None,
-    ):
-        ...
+    ): ...
 
     async def retrieve(self, request: RetrievalRequest) -> RetrievalResponse:
         """Full retrieval pipeline. Stateless — no shared state between callers."""
@@ -255,6 +254,7 @@ class TopicGroup(BaseModel):
     topic_id: UUID
     topic_name: str
     segments: list[SegmentGroup]
+
 
 class SegmentGroup(BaseModel):
     segment_id: UUID

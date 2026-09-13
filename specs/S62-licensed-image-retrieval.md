@@ -39,23 +39,25 @@ concept_description → query_build → source_queries (parallel)
 # src/services/image_retrieval/licence.py
 from enum import Enum
 
+
 class LicenceCategory(str, Enum):
-    CC0 = "cc0"                   # Public domain
-    CC_BY = "cc-by"               # Attribution only
-    CC_BY_SA = "cc-by-sa"         # Attribution + ShareAlike
-    CC_BY_ND = "cc-by-nd"         # Attribution + NoDerivatives
-    CC_BY_NC = "cc-by-nc"         # Attribution + NonCommercial
-    CC_BY_NC_SA = "cc-by-nc-sa"   # Attribution + NC + SA
-    CC_BY_NC_ND = "cc-by-nc-nd"   # Attribution + NC + ND
-    PDM = "pdm"                   # Public Domain Mark
-    ODC_ODbL = "odc-odbl"         # Open Database License
-    USGOV = "usgov"               # US Government work
-    UNKNOWN = "unknown"           # Cannot verify — reject
+    CC0 = "cc0"  # Public domain
+    CC_BY = "cc-by"  # Attribution only
+    CC_BY_SA = "cc-by-sa"  # Attribution + ShareAlike
+    CC_BY_ND = "cc-by-nd"  # Attribution + NoDerivatives
+    CC_BY_NC = "cc-by-nc"  # Attribution + NonCommercial
+    CC_BY_NC_SA = "cc-by-nc-sa"  # Attribution + NC + SA
+    CC_BY_NC_ND = "cc-by-nc-nd"  # Attribution + NC + ND
+    PDM = "pdm"  # Public Domain Mark
+    ODC_ODbL = "odc-odbl"  # Open Database License
+    USGOV = "usgov"  # US Government work
+    UNKNOWN = "unknown"  # Cannot verify — reject
+
 
 class LicenceAcceptance(str, Enum):
-    ACCEPTED = "accepted"         # Licence verified and acceptable
-    REJECTED = "rejected"         # Licence not acceptable
-    UNVERIFIABLE = "unverifiable" # Cannot determine licence — reject
+    ACCEPTED = "accepted"  # Licence verified and acceptable
+    REJECTED = "rejected"  # Licence not acceptable
+    UNVERIFIABLE = "unverifiable"  # Cannot determine licence — reject
 ```
 
 **Pydantic Schemas:**
@@ -65,17 +67,19 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
 
+
 class ImageSource(BaseModel):
     name: str  # "openverse", "wikimedia", "nasa", etc.
     base_url: str
     api_type: str  # "rest", "sparql"
     rate_limit_rpm: int = 60
 
+
 class RetrievedImage(BaseModel):
     id: str  # Source-specific ID
     source: ImageSource
     source_url: str  # URL to the image on its source
-    image_url: str   # Direct URL to the image file
+    image_url: str  # Direct URL to the image file
     title: str
     licence: LicenceCategory
     licence_url: str | None = None
@@ -84,12 +88,14 @@ class RetrievedImage(BaseModel):
     height: int | None = None
     thumbnail_url: str | None = None
 
+
 class ScoredImage(BaseModel):
     retrieved: RetrievedImage
     text_similarity: float = Field(..., ge=0.0, le=1.0)
     clip_alignment: float = Field(..., ge=0.0, le=1.0)
     composite_score: float = Field(..., ge=0.0, le=1.0)
     accepted: bool = False  # composite_score >= threshold
+
 
 class ImageRetrievalResult(BaseModel):
     concept_description: str
@@ -100,11 +106,12 @@ class ImageRetrievalResult(BaseModel):
     source_breakdown: dict[str, int]  # source_name → count
     best_match: ScoredImage | None = None
 
+
 class ImageAsset(BaseModel):
     id: UUID
     note_section_id: UUID
-    source_url: str          # MANDATORY — enforced by DB constraint
-    licence: LicenceCategory # MANDATORY — enforced by DB constraint
+    source_url: str  # MANDATORY — enforced by DB constraint
+    licence: LicenceCategory  # MANDATORY — enforced by DB constraint
     licence_url: str | None = None
     author: str | None = None
     image_url: str
@@ -114,6 +121,7 @@ class ImageAsset(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
 
 class AttributionDisplay(BaseModel):
     image_id: UUID
@@ -234,11 +242,10 @@ class ImageRetrievalService:
 # src/services/image_retrieval/sources/base.py
 from abc import ABC, abstractmethod
 
+
 class ImageSourceClient(ABC):
     @abstractmethod
-    async def search(
-        self, query: str, limit: int = 10
-    ) -> list[RetrievedImage]:
+    async def search(self, query: str, limit: int = 10) -> list[RetrievedImage]:
         """Search source for images matching query."""
         ...
 

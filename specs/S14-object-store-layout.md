@@ -55,12 +55,14 @@ from enum import Enum
 from uuid import UUID
 from datetime import datetime
 
+
 class BucketName(str, Enum):
     AUDIO = "lis-audio"
     UPLOADS = "lis-uploads"
     GENERATED = "lis-generated"
     EXPORTS = "lis-exports"
     EVAL = "lis-eval"
+
 
 class PresignedURLRequest(BaseModel):
     session_id: UUID
@@ -69,11 +71,13 @@ class PresignedURLRequest(BaseModel):
     expires_in: int = Field(default=3600, ge=60, le=86400, description="URL TTL in seconds")
     content_type: str | None = None
 
+
 class PresignedURLResponse(BaseModel):
     upload_url: str
     key: str
     bucket: str
     expires_at: datetime
+
 
 class ObjectMetadata(BaseModel):
     bucket: str

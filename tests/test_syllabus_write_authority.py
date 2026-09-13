@@ -58,11 +58,15 @@ async def test_a6_writer_role_exists_with_grants(syllabus_session) -> None:
     assert role_exists == 1
 
     grants = (
-        await syllabus_session.execute(
-            text(
-                "SELECT privilege_type FROM information_schema.role_table_grants "
-                "WHERE table_name = 'syllabus_items' AND grantee = 'a6_writer'"
+        (
+            await syllabus_session.execute(
+                text(
+                    "SELECT privilege_type FROM information_schema.role_table_grants "
+                    "WHERE table_name = 'syllabus_items' AND grantee = 'a6_writer'"
+                )
             )
         )
-    ).scalars().all()
+        .scalars()
+        .all()
+    )
     assert {"INSERT", "UPDATE", "DELETE"}.issubset(set(grants))

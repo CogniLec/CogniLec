@@ -55,7 +55,5 @@ async def get_dashboard(
         total_sessions=len(sessions),
         total_topics=len(topics),
         coverage=coverage,
-        recent_sessions=[
-            SessionSummary(session_id=s.id, status=s.status) for s in sessions[-5:]
-        ],
+        recent_sessions=[SessionSummary(session_id=s.id, status=s.status) for s in sessions[-5:]],
     )

@@ -35,9 +35,7 @@ class ReprocessResult:
     sections_preserved: int
 
 
-async def _user_edited_section_ids(
-    db: AsyncSession, session_id: uuid.UUID
-) -> set[uuid.UUID]:
+async def _user_edited_section_ids(db: AsyncSession, session_id: uuid.UUID) -> set[uuid.UUID]:
     """note_edit corrections whose source_id (a note_section id) belongs to this session."""
     rows = (
         await db.execute(
@@ -73,8 +71,7 @@ async def reprocess_session(
         rows = (
             await db.execute(
                 text(
-                    "SELECT ordinal FROM note_sections "
-                    "WHERE session_id = :sid AND id = ANY(:ids)"
+                    "SELECT ordinal FROM note_sections WHERE session_id = :sid AND id = ANY(:ids)"
                 ),
                 {"sid": str(session_id), "ids": list(protected_section_ids)},
             )

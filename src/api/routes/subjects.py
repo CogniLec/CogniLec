@@ -1,4 +1,4 @@
-"""FastAPI router – Subjects."""
+"""FastAPI router - Subjects."""
 
 from __future__ import annotations
 

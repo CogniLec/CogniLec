@@ -47,6 +47,7 @@ class ASRFineTuneConfig(BaseModel):
     weight_decay: float = 0.01
     max_grad_norm: float = 1.0
 
+
 class ASRFineTuneResult(BaseModel):
     model_version: str
     wer_improvement: float
@@ -56,6 +57,7 @@ class ASRFineTuneResult(BaseModel):
     hallucination_rate: float
     training_hours: float
     created_at: datetime
+
 
 class ConditionEvaluation(BaseModel):
     condition: str  # room, lecturer, subject, accent
@@ -72,7 +74,9 @@ class ConditionEvaluation(BaseModel):
 class ASRVersion(Base):
     __tablename__ = "asr_versions"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     version: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     base_model: Mapped[str] = mapped_column(String(255), nullable=False)
     training_data_version: Mapped[str] = mapped_column(String(50), nullable=False)
@@ -82,7 +86,9 @@ class ASRVersion(Base):
     technical_vocab_wer: Mapped[float] = mapped_column(Float, nullable=False)
     hallucination_rate: Mapped[float] = mapped_column(Float, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
     activated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 ```
 

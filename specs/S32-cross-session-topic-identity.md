@@ -49,29 +49,31 @@ Full re-cluster: UMAP + HDBSCAN on all segment centroids
 # src/services/topic_identity.py
 from pydantic import BaseModel, Field
 
+
 class TopicIdentityConfig(BaseModel):
     match_threshold: float = Field(
-        default=0.3, ge=0.0, le=1.0,
-        description="Cosine distance threshold; below = match, above = new topic"
+        default=0.3,
+        ge=0.0,
+        le=1.0,
+        description="Cosine distance threshold; below = match, above = new topic",
     )
     recluster_interval: int = Field(
-        default=10, ge=1,
-        description="Full re-cluster every N sessions"
+        default=10, ge=1, description="Full re-cluster every N sessions"
     )
     cold_start_sessions: int = Field(
-        default=5, ge=1,
-        description="Re-cluster every session for first N sessions"
+        default=5, ge=1, description="Re-cluster every session for first N sessions"
     )
     centroid_decay: float = Field(
-        default=0.9, ge=0.5, le=1.0,
-        description="Decay factor for incremental centroid update"
+        default=0.9, ge=0.5, le=1.0, description="Decay factor for incremental centroid update"
     )
+
 
 class TopicMatch(BaseModel):
     topic_id: UUID
     distance: float
     is_match: bool  # True if distance < threshold
     centroid_version: int  # Incremented on each update
+
 
 class IdentityResult(BaseModel):
     session_id: UUID
@@ -80,6 +82,7 @@ class IdentityResult(BaseModel):
     new_topics_created: int
     existing_topics_linked: int
     recluster_triggered: bool
+
 
 class SegmentMatch(BaseModel):
     segment_id: UUID
@@ -102,6 +105,7 @@ def update_centroid(
     This allows the centroid to shift gradually as new sessions arrive.
     """
     import numpy as np
+
     old = np.array(old_centroid)
     new = np.array(new_member_embedding)
     updated = decay * old + (1 - decay) * new
@@ -200,33 +204,29 @@ class TopicIdentityService:
 
             if nearest and nearest.distance < self.config.match_threshold:
                 # 2a. Link to existing topic
-                await self._link_segment_to_topic(
-                    subject_id, seg_id, nearest.topic_id
+                await self._link_segment_to_topic(subject_id, seg_id, nearest.topic_id)
+                await self._update_centroid_incremental(subject_id, nearest.topic_id, centroid)
+                matches.append(
+                    SegmentMatch(
+                        segment_id=seg_id,
+                        topic_id=nearest.topic_id,
+                        distance=nearest.distance,
+                        is_new_topic=False,
+                    )
                 )
-                await self._update_centroid_incremental(
-                    subject_id, nearest.topic_id, centroid
-                )
-                matches.append(SegmentMatch(
-                    segment_id=seg_id,
-                    topic_id=nearest.topic_id,
-                    distance=nearest.distance,
-                    is_new_topic=False,
-                ))
                 linked_count += 1
             else:
                 # 2b. Create new topic
-                new_topic_id = await self._create_topic(
-                    subject_id, centroid
+                new_topic_id = await self._create_topic(subject_id, centroid)
+                await self._link_segment_to_topic(subject_id, seg_id, new_topic_id)
+                matches.append(
+                    SegmentMatch(
+                        segment_id=seg_id,
+                        topic_id=new_topic_id,
+                        distance=nearest.distance if nearest else 1.0,
+                        is_new_topic=True,
+                    )
                 )
-                await self._link_segment_to_topic(
-                    subject_id, seg_id, new_topic_id
-                )
-                matches.append(SegmentMatch(
-                    segment_id=seg_id,
-                    topic_id=new_topic_id,
-                    distance=nearest.distance if nearest else 1.0,
-                    is_new_topic=True,
-                ))
                 new_count += 1
 
         # 3. Check if re-cluster is needed
@@ -249,9 +249,7 @@ class TopicIdentityService:
         self, subject_id: UUID, centroid: list[float]
     ) -> TopicMatch | None:
         """Find nearest topic centroid via pgvector."""
-        result = await topic_repo.nearest_centroid(
-            subject_id, centroid, k=1
-        )
+        result = await topic_repo.nearest_centroid(subject_id, centroid, k=1)
         if not result:
             return None
         topic, distance = result[0]
@@ -271,12 +269,9 @@ class TopicIdentityService:
         """Update topic centroid incrementally with decay."""
         topic = await topic_repo.get(subject_id, topic_id)
         updated = update_centroid(
-            topic.centroid, new_centroid,
-            topic.member_count, self.config.centroid_decay
+            topic.centroid, new_centroid, topic.member_count, self.config.centroid_decay
         )
-        await topic_repo.update_centroid(
-            subject_id, topic_id, updated
-        )
+        await topic_repo.update_centroid(subject_id, topic_id, updated)
 
     def _should_recluster(self, session_count: int) -> bool:
         """Determine if full re-cluster is needed."""
@@ -289,18 +284,14 @@ class TopicIdentityService:
 ```python
 # src/ml/clustering/recluster.py
 class ReclusterService:
-    async def recluster_subject(
-        self, subject_id: UUID
-    ) -> ClusteringResult:
+    async def recluster_subject(self, subject_id: UUID) -> ClusteringResult:
         """
         Full re-cluster of all segment centroids within a subject.
         Preserves user-edited labels.
         """
         # 1. Get all existing topics with user edits
         existing_topics = await topic_repo.get_all(subject_id)
-        user_edited = {
-            t.id: t for t in existing_topics if t.is_user_edited
-        }
+        user_edited = {t.id: t for t in existing_topics if t.is_user_edited}
 
         # 2. Get all segment centroids
         segments = await segment_repo.get_all_with_embeddings(subject_id)
@@ -338,14 +329,10 @@ class ReclusterService:
             new_topics.append(topic)
 
         # 5. Update all segment-topic links
-        await self._update_segment_links(
-            subject_id, segment_ids, topic_labels, new_topics
-        )
+        await self._update_segment_links(subject_id, segment_ids, topic_labels, new_topics)
 
         # 6. Update outlier scores
-        await self._update_outlier_scores(
-            subject_id, segment_ids, outlier_scores
-        )
+        await self._update_outlier_scores(subject_id, segment_ids, outlier_scores)
 
         return ClusteringResult(
             subject_id=subject_id,

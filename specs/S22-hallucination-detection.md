@@ -54,16 +54,19 @@ from pydantic import BaseModel, Field
 from enum import Enum
 from uuid import UUID
 
+
 class HallucinationType(str, Enum):
     CROSS_MODEL_DISAGREEMENT = "cross_model_disagreement"
     REPETITION_DEGENERATION = "repetition_degeneration"
     VAD_CONTRADICTION = "vad_contradiction"
+
 
 class HallucinationFlag(BaseModel):
     utterance_id: UUID
     hallucination_type: HallucinationType
     confidence: float = Field(..., ge=0.0, le=1.0)
     detail: str  # human-readable explanation
+
 
 class DetectionResult(BaseModel):
     utterance_id: UUID
@@ -173,10 +176,10 @@ def detect_repetition(text: str, min_ngram: int = 3, min_repeat: int = 3) -> boo
     words = text.lower().split()
     for n in range(min_ngram, min(len(words) // min_repeat + 1, 8)):
         for i in range(len(words) - n * min_repeat + 1):
-            ngram = tuple(words[i:i+n])
+            ngram = tuple(words[i : i + n])
             count = 0
             for j in range(i, len(words) - n + 1, n):
-                if tuple(words[j:j+n]) == ngram:
+                if tuple(words[j : j + n]) == ngram:
                     count += 1
                 else:
                     break

@@ -45,6 +45,7 @@ Output: topics table rows, utterance outlier scores
 # src/ml/clustering/config.py
 from pydantic import BaseModel, Field
 
+
 class ClusteringConfig(BaseModel):
     umap_n_neighbors: int = Field(default=15, ge=2)
     umap_n_components: int = Field(default=5, ge=2, le=10)
@@ -56,6 +57,7 @@ class ClusteringConfig(BaseModel):
     hdbscan_cluster_selection_method: str = "eom"
     outlier_score_percentile: float = Field(default=0.1, ge=0.0, le=0.5)
 
+
 class TopicOutput(BaseModel):
     topic_id: UUID
     label: str | None = None
@@ -63,6 +65,7 @@ class TopicOutput(BaseModel):
     member_count: int
     keywords: list[str] | None = None
     is_outlier: bool = False
+
 
 class ClusteringResult(BaseModel):
     subject_id: UUID
@@ -173,14 +176,10 @@ class ClusteringService:
         topic_labels, outlier_scores = self._run_bertopic(centroids)
 
         # 4. Persist topics
-        topics = await self._persist_topics(
-            subject_id, centroids, topic_labels, topic_ids
-        )
+        topics = await self._persist_topics(subject_id, centroids, topic_labels, topic_ids)
 
         # 5. Persist outlier scores on utterances
-        await self._persist_outlier_scores(
-            subject_id, segment_ids, outlier_scores
-        )
+        await self._persist_outlier_scores(subject_id, segment_ids, outlier_scores)
 
         return ClusteringResult(
             subject_id=subject_id,
@@ -189,9 +188,7 @@ class ClusteringService:
             total_segments=len(centroids),
         )
 
-    def _compute_centroids(
-        self, segments: list[Segment]
-    ) -> tuple[list[list[float]], list[UUID]]:
+    def _compute_centroids(self, segments: list[Segment]) -> tuple[list[list[float]], list[UUID]]:
         """Mean-pool each segment's member embeddings into a centroid."""
         centroids = []
         segment_ids = []
@@ -205,9 +202,7 @@ class ClusteringService:
             segment_ids.append(seg.id)
         return centroids, segment_ids
 
-    def _run_bertopic(
-        self, centroids: list[list[float]]
-    ) -> tuple[np.ndarray, np.ndarray]:
+    def _run_bertopic(self, centroids: list[list[float]]) -> tuple[np.ndarray, np.ndarray]:
         """Run BERTopic on segment centroids."""
         from bertopic import BERTopic
         from umap import UMAP
@@ -283,9 +278,7 @@ async def _persist_outlier_scores(
     for seg_id, score in zip(segment_ids, outlier_scores):
         utts = await utterance_repo.get_by_segment(subject_id, seg_id)
         for utt in utts:
-            await utterance_repo.update_outlier_score(
-                subject_id, utt.id, float(score)
-            )
+            await utterance_repo.update_outlier_score(subject_id, utt.id, float(score))
 ```
 
 ---

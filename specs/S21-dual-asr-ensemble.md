@@ -54,11 +54,13 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from enum import Enum
 
+
 class ASRModel(BaseModel):
     name: str
     model_id: str
     compute_type: str
     device: str = "cuda"
+
 
 class EnsembleConfig(BaseModel):
     primary: ASRModel
@@ -66,6 +68,7 @@ class EnsembleConfig(BaseModel):
     alignment_method: str = "iower"  # iower | hungarian
     agreement_threshold: float = Field(default=0.5, ge=0.0, le=1.0)
     secondary_timeout_s: int = 120
+
 
 class UtteranceAlignment(BaseModel):
     primary_utt_id: UUID
@@ -75,6 +78,7 @@ class UtteranceAlignment(BaseModel):
     agreement: float | None
     start_ms: int
     end_ms: int
+
 
 class EnsembleResult(BaseModel):
     primary_utterances: list[dict]

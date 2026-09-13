@@ -54,8 +54,11 @@ async def test_seeds_replaced_by_data(syllabus_session) -> None:
         emb = emb / np.linalg.norm(emb)
         syllabus_session.add(
             SyllabusItem(
-                subject_id=subject_id, ordinal=i, title=f"Item {i}",
-                item_type="topic", embedding=emb.tolist(),
+                subject_id=subject_id,
+                ordinal=i,
+                title=f"Item {i}",
+                item_type="topic",
+                embedding=emb.tolist(),
             )
         )
     await syllabus_session.commit()
@@ -68,8 +71,7 @@ async def test_seeds_replaced_by_data(syllabus_session) -> None:
     recluster_service = ReclusterService(seed_service)
     # Real observed data nearly identical to 5 of the seeds -> those replaced.
     close_topics = [
-        (np.asarray(s.embedding) + 0.01 * rng.normal(size=dim)).tolist()
-        for s in result.seeds[:5]
+        (np.asarray(s.embedding) + 0.01 * rng.normal(size=dim)).tolist() for s in result.seeds[:5]
     ]
     other_topics = [rng.normal(size=dim).tolist() for _ in range(10)]
     replaced = await recluster_service.replace_seeds_from_clusters(

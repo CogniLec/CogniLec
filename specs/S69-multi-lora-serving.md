@@ -45,6 +45,7 @@ class AdapterConfig(BaseModel):
     version: str
     description: str | None = None
 
+
 class AdapterResponse(BaseModel):
     adapter_id: str
     agent_id: str
@@ -56,15 +57,18 @@ class AdapterResponse(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+
 class AdapterSwapRequest(BaseModel):
     agent_id: str
     adapter_id: str
+
 
 class AdapterSwapResponse(BaseModel):
     agent_id: str
     previous_adapter: str | None
     new_adapter: str
     swap_latency_ms: float
+
 
 class AgentRoutingConfig(BaseModel):
     agent_id: str
@@ -79,7 +83,9 @@ class AgentRoutingConfig(BaseModel):
 class LoRAAdapter(Base):
     __tablename__ = "lora_adapters"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     adapter_id: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     agent_id: Mapped[str] = mapped_column(String(50), nullable=False)
     base_model: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -90,7 +96,9 @@ class LoRAAdapter(Base):
     version: Mapped[str] = mapped_column(String(50), nullable=False)
     status: Mapped[str] = mapped_column(String(20), nullable=False, default="registered")
     is_active: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
     activated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     failed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
@@ -98,7 +106,7 @@ class LoRAAdapter(Base):
     __table_args__ = (
         CheckConstraint(
             "status IN ('registered', 'loaded', 'active', 'failed', 'deactivated')",
-            name="ck_adapter_status"
+            name="ck_adapter_status",
         ),
         UniqueConstraint("agent_id", "is_active", name="uq_agent_active_adapter"),
     )

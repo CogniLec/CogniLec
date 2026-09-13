@@ -76,8 +76,10 @@ ALTER TABLE topics ADD COLUMN provisional BOOLEAN NOT NULL DEFAULT TRUE;
 ```python
 # src/ml/greeting.py — new file
 
+
 class GreetingMatch(BaseModel):
     """A single greeting keyword match within a transcript."""
+
     utterance_id: uuid.UUID
     seq: int
     matched_keyword: str
@@ -85,19 +87,25 @@ class GreetingMatch(BaseModel):
     start_ms: int
     end_ms: int
 
+
 class GreetingDetectionResult(BaseModel):
     """Result of greeting detection across a session."""
+
     session_id: uuid.UUID
     matches: list[GreetingMatch]
     has_greeting: bool  # True if at least one greeting detected
-    session_start_boundary: int | None  # seq of utterance where session starts (None if no greeting)
+    session_start_boundary: (
+        int | None
+    )  # seq of utterance where session starts (None if no greeting)
 ```
 
 ```python
 # src/ml/provisional_window.py — new file
 
+
 class ProvisionalTopic(BaseModel):
     """A topic candidate from the first-10-minute provisional pass."""
+
     label: str | None  # None until S31 labelling runs
     keywords: list[str]
     centroid: list[float]  # embedding dimension matches EMBEDDING_DIM
@@ -105,8 +113,10 @@ class ProvisionalTopic(BaseModel):
     start_seq: int
     end_seq: int
 
+
 class ProvisionalWindowResult(BaseModel):
     """Result of the provisional topic window pass."""
+
     session_id: uuid.UUID
     window_minutes: int  # default 10
     topics: list[ProvisionalTopic]
@@ -129,7 +139,7 @@ payload = {
     "subject_id": str(uuid),
     "topic_count": int,
     "utterances_in_window": int,
-    "generated_at": "ISO-8601"
+    "generated_at": "ISO-8601",
 }
 ```
 
@@ -328,16 +338,20 @@ ALTER TABLE segments ADD COLUMN cue_metadata JSONB DEFAULT NULL;
 ```python
 # src/ml/transition_cues.py — new file
 
+
 class CuePattern(BaseModel):
     """A single transition cue pattern."""
+
     id: str  # e.g. "moving_on"
     pattern: str  # regex pattern
     language: str
     category: str  # "forward_reference" | "completion" | "temporal"
     weight: float  # 0.0-1.0, confidence weight for score boosting
 
+
 class CueMatch(BaseModel):
     """A detected cue in transcript text."""
+
     utterance_id: uuid.UUID
     seq: int
     pattern_id: str
@@ -345,15 +359,19 @@ class CueMatch(BaseModel):
     position_start: int  # character offset in utterance text
     position_end: int
 
+
 class TransitionCueResult(BaseModel):
     """Result of transition cue detection for a session."""
+
     session_id: uuid.UUID
     matches: list[CueMatch]
     total_matches: int
     detected_at: datetime
 
+
 class BoundaryBoost(BaseModel):
     """A boost applied to a segment boundary score."""
+
     segment_id: uuid.UUID
     original_score: float
     boosted_score: float
@@ -374,7 +392,7 @@ payload = {
     "session_id": str(uuid),
     "cue_count": int,
     "boosted_boundary_count": int,
-    "detected_at": "ISO-8601"
+    "detected_at": "ISO-8601",
 }
 ```
 
@@ -616,14 +634,18 @@ ALTER TABLE segments ADD COLUMN route_target VARCHAR(20) DEFAULT NULL;
 ```python
 # src/ml/session_classifier.py — new file
 
+
 class ClassificationVote(BaseModel):
     """A single vote from one classifier component."""
+
     component: str  # "llm", "rule_keyword", "rule_structure"
     prediction: str  # "content" | "syllabus" | "mixed"
     confidence: float  # 0.0-1.0
 
+
 class SessionClassification(BaseModel):
     """Full classification result for a session."""
+
     session_id: uuid.UUID
     votes: list[ClassificationVote]
     final_type: str  # "content" | "syllabus" | "mixed"
@@ -632,15 +654,19 @@ class SessionClassification(BaseModel):
     details: dict[str, Any]  # raw vote data for audit
     classified_at: datetime
 
+
 class SegmentRoute(BaseModel):
     """Routing decision for a single segment."""
+
     segment_id: uuid.UUID
     route_target: str  # "db_2" | "db_3"
     classification: str  # "content" | "syllabus"
     confidence: float
 
+
 class SessionRoutePlan(BaseModel):
     """Complete routing plan for a session's segments."""
+
     session_id: uuid.UUID
     session_type: str  # "content" | "syllabus" | "mixed"
     segment_routes: list[SegmentRoute]
@@ -660,11 +686,14 @@ class SessionCreate(BaseModel):
 
 ```python
 # New endpoint — post-classification override
-PATCH /sessions/{session_id}/classification
+PATCH / sessions / {session_id} / classification
+
+
 # Request body:
 class ClassificationOverride(BaseModel):
     session_type: str  # "content" | "syllabus" | "mixed"
     reason: str  # Required audit trail
+
 
 # Response: SessionResponse with updated session_type
 ```
@@ -679,7 +708,7 @@ payload = {
     "session_type": str,  # "content" | "syllabus" | "mixed"
     "confidence": float,
     "method": str,
-    "classified_at": "ISO-8601"
+    "classified_at": "ISO-8601",
 }
 
 # Published when re-routing occurs after misclassification correction
@@ -689,7 +718,7 @@ payload = {
     "previous_type": str,
     "new_type": str,
     "segments_moved": int,
-    "rerouted_at": "ISO-8601"
+    "rerouted_at": "ISO-8601",
 }
 ```
 
@@ -775,13 +804,17 @@ async def route_segments(
         seg_text = " ".join(u.text for u in seg_utterances)
         classification = classify_segment(seg_text)  # reuse ensemble
         route_target = "db_2" if classification == "content" else "db_3"
-        routes.append(SegmentRoute(
-            segment_id=segment.id,
-            route_target=route_target,
-            classification=classification,
-            confidence=classification.confidence,
-        ))
-    return SessionRoutePlan(session_id=session.id, session_type=session.session_type, segment_routes=routes)
+        routes.append(
+            SegmentRoute(
+                segment_id=segment.id,
+                route_target=route_target,
+                classification=classification,
+                confidence=classification.confidence,
+            )
+        )
+    return SessionRoutePlan(
+        session_id=session.id, session_type=session.session_type, segment_routes=routes
+    )
 ```
 
 **Routing persistence:** Write `segments.route_target` to each segment. Downstream consumers (S40+ note generation) read `route_target` to determine which database to query.

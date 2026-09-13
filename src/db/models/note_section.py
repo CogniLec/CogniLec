@@ -1,13 +1,14 @@
 """Note section model - partitioned by subject_id."""
+
 from __future__ import annotations
 
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, Integer, Text, Float, String, ForeignKey, text
+from pgvector.sqlalchemy import Vector
+from sqlalchemy import DateTime, Integer, String, Text, text
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
-from pgvector.sqlalchemy import Vector
 
 from src.db.models.base import Base
 

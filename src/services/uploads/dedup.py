@@ -15,7 +15,7 @@ def compute_phash(image_bytes: bytes) -> str:
 
 
 def hamming_distance(hash_a: str, hash_b: str) -> int:
-    return imagehash.hex_to_hash(hash_a) - imagehash.hex_to_hash(hash_b)
+    return int(imagehash.hex_to_hash(hash_a) - imagehash.hex_to_hash(hash_b))
 
 
 def find_duplicate(

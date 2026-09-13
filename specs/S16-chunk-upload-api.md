@@ -35,11 +35,13 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
 
+
 class ChunkUploadRequest(BaseModel):
     session_id: UUID
     sequence: int = Field(..., ge=0, description="Chunk sequence number (0-indexed)")
     timestamp_ms: int = Field(..., ge=0, description="Timestamp in ms since session start")
     duration_ms: int = Field(..., gt=0, description="Chunk duration in ms")
+
 
 class ChunkUploadResponse(BaseModel):
     session_id: UUID
@@ -47,6 +49,7 @@ class ChunkUploadResponse(BaseModel):
     stored_key: str
     stream_message_id: str
     status: str  # "stored" | "duplicate"
+
 
 class StreamMessage(BaseModel):
     event: str = "audio.chunk"

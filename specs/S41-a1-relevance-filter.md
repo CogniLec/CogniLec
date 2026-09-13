@@ -44,9 +44,11 @@ Filtering is topic-based, not speaker-based. A student question on-topic is reta
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class RelevanceDecision(str, Enum):
     KEEP = "keep"
     DISCARD = "discard"
+
 
 class A1UtteranceResult(BaseModel):
     utterance_id: str
@@ -55,6 +57,7 @@ class A1UtteranceResult(BaseModel):
     filter_reason: str = Field(..., min_length=1, max_length=200)
     confidence: float = Field(..., ge=0.0, le=1.0)
     topic_alignment: str = Field(..., description="How utterance relates to identified topic")
+
 
 class A1BatchResult(BaseModel):
     session_id: str
@@ -141,8 +144,7 @@ class A1BatchResult(BaseModel):
 ```python
 # src/services/agents/a1/filter.py
 class A1FilterAgent:
-    def __init__(self, llm_client, prompt_registry, utterance_repo):
-        ...
+    def __init__(self, llm_client, prompt_registry, utterance_repo): ...
 
     async def classify_batch(
         self,

@@ -117,8 +117,8 @@ def _transcribe_nemo(model: Any, audio_path: Path) -> str:
         with torch.no_grad():
             hyp = model.transcribe([waveform.cuda()])[0]
         if hasattr(hyp, "text"):
-            return hyp.text
+            return str(hyp.text)
         return str(hyp)
-    except Exception as e:
-        log.error("NeMo transcription failed: %s", e)
+    except Exception:
+        log.exception("NeMo transcription failed")
         raise

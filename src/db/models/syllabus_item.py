@@ -13,6 +13,7 @@ alembic autogenerate on PG-MAIN (src/db/migrations/env.py, which sets
 foreign table of the same name. Keeping it on a separate base excludes it
 from PG-MAIN's autogenerate scope entirely.
 """
+
 from __future__ import annotations
 
 import uuid
@@ -50,23 +51,15 @@ class SyllabusItem(SyllabusBase):
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), primary_key=True, server_default=text("gen_random_uuid()")
     )
-    subject_id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), nullable=False, index=True
-    )
-    parent_id: Mapped[uuid.UUID | None] = mapped_column(
-        UUID(as_uuid=True), nullable=True
-    )
+    subject_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), nullable=False, index=True)
+    parent_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True)
     ordinal: Mapped[int] = mapped_column(Integer, nullable=False)
     title: Mapped[str] = mapped_column(Text, nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     embedding = mapped_column(Vector(1024), nullable=True)
     source: Mapped[str] = mapped_column(String(50), nullable=False, default="lecture")
-    source_session_id: Mapped[uuid.UUID | None] = mapped_column(
-        UUID(as_uuid=True), nullable=True
-    )
-    coverage_status: Mapped[str] = mapped_column(
-        String(20), nullable=False, default="not_started"
-    )
+    source_session_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), nullable=True)
+    coverage_status: Mapped[str] = mapped_column(String(20), nullable=False, default="not_started")
     covered_by: Mapped[list[uuid.UUID]] = mapped_column(
         ARRAY(UUID(as_uuid=True)), nullable=False, default=list
     )

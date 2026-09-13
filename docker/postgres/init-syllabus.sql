@@ -9,4 +9,4 @@ GRANT USAGE ON SCHEMA public TO lis;
 GRANT CREATE ON SCHEMA public TO lis;
 GRANT ALL PRIVILEGES ON DATABASE lis_syllabus TO lis;
 
-ALTER DATABASE lis_syllabus SET search_path TO public, pg_catalog;
+ALTER DATABASE lis_syllabus SET search_path TO public, pg_catalog; -- noqa: PRS

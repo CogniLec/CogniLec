@@ -11,9 +11,9 @@ from typing import Any
 
 import jiwer
 import numpy as np
-import segeval  # type: ignore[import-untyped]
+import segeval
 from pydantic import BaseModel, Field
-from sklearn.metrics import cohen_kappa_score, v_measure_score  # type: ignore[import-untyped]
+from sklearn.metrics import cohen_kappa_score, v_measure_score
 
 
 def purity_score(reference: list[int], predictions: list[int]) -> float:
@@ -80,7 +80,7 @@ def _eval_wer(reference: list[str], predictions: list[str]) -> EvalOutput:
     transform = jiwer.Compose(
         [
             jiwer.ToLowerCase(),
-            jiwer.RemovePunctuation(),  # type: ignore[no-untyped-call]
+            jiwer.RemovePunctuation(),
             jiwer.RemoveWhiteSpace(replace_by_space=True),
             jiwer.Strip(),
             jiwer.RemoveMultipleSpaces(),

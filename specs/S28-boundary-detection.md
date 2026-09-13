@@ -44,16 +44,23 @@ Output: ordered, contiguous, non-overlapping segments
 # src/ml/segmentation/models.py
 from pydantic import BaseModel, Field
 
+
 class SegmentationConfig(BaseModel):
-    block_size: int = Field(default=1, ge=1, description="Number of utterances per block for similarity")
-    threshold_factor: float = Field(default=1.0, ge=0.1, le=5.0, description="k in mean - k*std adaptive threshold")
+    block_size: int = Field(
+        default=1, ge=1, description="Number of utterances per block for similarity"
+    )
+    threshold_factor: float = Field(
+        default=1.0, ge=0.1, le=5.0, description="k in mean - k*std adaptive threshold"
+    )
     min_segment_size: int = Field(default=3, ge=1, description="Minimum utterances per segment")
     similarity_metric: str = "cosine"
+
 
 class BoundaryCandidate(BaseModel):
     position: int  # Index between utterances (0 = before first utterance)
     depth_score: float  # Magnature of similarity drop
     is_boundary: bool  # True if depth > threshold
+
 
 class SegmentationResult(BaseModel):
     session_id: UUID
@@ -61,6 +68,7 @@ class SegmentationResult(BaseModel):
     boundary_scores: list[BoundaryCandidate]
     threshold_used: float
     num_segments: int
+
 
 class SegmentOutput(BaseModel):
     start_utt_idx: int  # 0-indexed position in session
@@ -177,9 +185,7 @@ class TextTilingSegmenter:
         boundaries = self._detect_boundaries(depths, threshold)
 
         # 5. Construct segments
-        segments = self._construct_segments(
-            utterance_ids, boundaries, embeddings
-        )
+        segments = self._construct_segments(utterance_ids, boundaries, embeddings)
 
         return SegmentationResult(
             session_id=session_id,
@@ -189,29 +195,23 @@ class TextTilingSegmenter:
             num_segments=len(segments),
         )
 
-    def _compute_similarities(
-        self, embeddings: list[list[float]]
-    ) -> list[float]:
+    def _compute_similarities(self, embeddings: list[list[float]]) -> list[float]:
         """Compute cosine similarity between adjacent blocks."""
         sims = []
         for i in range(len(embeddings) - 1):
-            sim = cosine_similarity(
-                [embeddings[i]], [embeddings[i + 1]]
-            )[0][0]
+            sim = cosine_similarity([embeddings[i]], [embeddings[i + 1]])[0][0]
             sims.append(float(sim))
         return sims
 
-    def _compute_depth_scores(
-        self, similarities: list[float]
-    ) -> list[float]:
+    def _compute_depth_scores(self, similarities: list[float]) -> list[float]:
         """
         TextTiling depth score: the drop from the local similarity peak.
         depth[i] = peak_left - similarity[i] if similarity[i] is a local valley
         """
         depths = [0.0] * len(similarities)
         for i in range(1, len(similarities) - 1):
-            left_peak = max(similarities[max(0, i - 2):i])
-            right_peak = max(similarities[i + 1:min(len(similarities), i + 3)])
+            left_peak = max(similarities[max(0, i - 2) : i])
+            right_peak = max(similarities[i + 1 : min(len(similarities), i + 3)])
             peak = max(left_peak, right_peak)
             depth = peak - similarities[i]
             depths[i] = max(0.0, depth)
@@ -220,21 +220,22 @@ class TextTilingSegmenter:
     def _compute_threshold(self, depths: list[float]) -> float:
         """Adaptive threshold: mean - k * std of depth scores."""
         import numpy as np
+
         arr = np.array(depths)
         threshold = float(arr.mean() - self.config.threshold_factor * arr.std())
         return max(0.0, threshold)
 
-    def _detect_boundaries(
-        self, depths: list[float], threshold: float
-    ) -> list[BoundaryCandidate]:
+    def _detect_boundaries(self, depths: list[float], threshold: float) -> list[BoundaryCandidate]:
         """Identify positions where depth > threshold."""
         candidates = []
         for i, depth in enumerate(depths):
-            candidates.append(BoundaryCandidate(
-                position=i + 1,  # Boundary after utterance i
-                depth_score=depth,
-                is_boundary=depth > threshold,
-            ))
+            candidates.append(
+                BoundaryCandidate(
+                    position=i + 1,  # Boundary after utterance i
+                    depth_score=depth,
+                    is_boundary=depth > threshold,
+                )
+            )
         return candidates
 
     def _construct_segments(
@@ -244,9 +245,7 @@ class TextTilingSegmenter:
         embeddings: list[list[float]],
     ) -> list[SegmentOutput]:
         """Build contiguous, non-overlapping segments from boundaries."""
-        boundary_positions = [
-            b.position for b in boundaries if b.is_boundary
-        ]
+        boundary_positions = [b.position for b in boundaries if b.is_boundary]
         # Add implicit boundaries at start and end
         all_boundaries = [0] + boundary_positions + [len(utterance_ids)]
 
@@ -264,14 +263,16 @@ class TextTilingSegmenter:
                     bscore = b.depth_score
                     break
 
-            segments.append(SegmentOutput(
-                start_utt_idx=start,
-                end_utt_idx=end - 1,
-                start_utt_id=utterance_ids[start],
-                end_utt_id=utterance_ids[end - 1],
-                utterance_count=end - start,
-                boundary_score=bscore,
-            ))
+            segments.append(
+                SegmentOutput(
+                    start_utt_idx=start,
+                    end_utt_idx=end - 1,
+                    start_utt_id=utterance_ids[start],
+                    end_utt_id=utterance_ids[end - 1],
+                    utterance_count=end - start,
+                    boundary_score=bscore,
+                )
+            )
 
         return segments
 ```

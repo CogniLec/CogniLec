@@ -39,16 +39,19 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from enum import Enum
 
+
 class QuestionType(str, Enum):
-    MCQ = "mcq"           # Multiple choice
+    MCQ = "mcq"  # Multiple choice
     SHORT_ANSWER = "short_answer"
     TRUE_FALSE = "true_false"
     FILL_BLANK = "fill_blank"
+
 
 class DifficultyLevel(str, Enum):
     EASY = "easy"
     MEDIUM = "medium"
     HARD = "hard"
+
 
 class QuestionConfig(BaseModel):
     subject_id: UUID
@@ -57,6 +60,7 @@ class QuestionConfig(BaseModel):
     count: int = Field(default=10, ge=1, le=100)
     difficulty: DifficultyLevel = DifficultyLevel.MEDIUM
     topic_coverage: float = Field(default=0.8, ge=0.0, le=1.0)
+
 
 class A5Input(BaseModel):
     config: QuestionConfig
@@ -71,6 +75,7 @@ class AnswerOption(BaseModel):
     text: str = Field(..., max_length=500)
     is_correct: bool
 
+
 class Question(BaseModel):
     id: UUID
     question_type: QuestionType
@@ -83,6 +88,7 @@ class Question(BaseModel):
     topic_id: UUID | None = None
     confidence: float = Field(..., ge=0.0, le=1.0)
 
+
 class A5Output(BaseModel):
     questions: list[Question]
     total_generated: int = Field(..., ge=0)
@@ -91,10 +97,12 @@ class A5Output(BaseModel):
     config_used: QuestionConfig
     latency_ms: int = Field(..., ge=0)
 
+
 # Answerability Check Schemas
 class AnswerabilityRequest(BaseModel):
     question: Question
     context: str  # stored notes for the topic
+
 
 class AnswerabilityResult(BaseModel):
     question_id: UUID
@@ -107,7 +115,7 @@ class AnswerabilityResult(BaseModel):
 
 **Answerability Check Flow:**
 ```
-raw_question → send to DIFFERENT model (not the generator) → 
+raw_question → send to DIFFERENT model (not the generator) →
   model attempts answer using ONLY stored notes →
   if model cannot answer → discard question
   if model answers with low confidence → flag for review
@@ -198,16 +206,13 @@ class A5Agent:
         llm_router: LiteLLMRouter,  # for multi-model consensus
         db_session: AsyncSession,  # read-only
         prompt_version: str = "1.0.0",
-    ):
-        ...
+    ): ...
 
     async def run(self, input: A5Input) -> A5Output:
         """Generate questions with answerability check. Read-only DB access."""
         ...
 
-    async def _generate_questions(
-        self, config: QuestionConfig, context: str
-    ) -> list[Question]:
+    async def _generate_questions(self, config: QuestionConfig, context: str) -> list[Question]:
         """Generate questions from context using LLM."""
         ...
 
@@ -239,6 +244,7 @@ async def generate_assessment(
 ) -> A5Output:
     """Generate assessment questions for a subject."""
     ...
+
 
 @router.get("/api/v1/assessment/{session_id}", response_model=A5Output)
 async def get_assessment(

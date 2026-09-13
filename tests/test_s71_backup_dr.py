@@ -69,9 +69,7 @@ async def test_t71_3_restore_drill_reproduces_data(
     )
     await db_session.commit()
 
-    before_count = (
-        await db_session.execute(text("SELECT count(*) FROM subjects"))
-    ).scalar_one()
+    before_count = (await db_session.execute(text("SELECT count(*) FROM subjects"))).scalar_one()
 
     backup_path = tmp_path / "drill.dump"
     run_full_backup(CONTAINER_DSN, backup_path)

@@ -9,25 +9,25 @@
 CREATE EXTENSION IF NOT EXISTS vector;
 
 CREATE TABLE IF NOT EXISTS syllabus_items (
-    id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    subject_id          UUID NOT NULL,          -- references local subjects via FDW
-    parent_id           UUID REFERENCES syllabus_items(id) ON DELETE SET NULL,
-    ordinal             INTEGER NOT NULL,
-    title               TEXT NOT NULL,
-    description         TEXT,
-    embedding           vector(1024),
-    source              VARCHAR(50) NOT NULL DEFAULT 'lecture'
-        CHECK (source IN ('lecture', 'upload', 'manual')),
-    source_session_id   UUID,                   -- NULL if from upload/manual
-    coverage_status     VARCHAR(20) NOT NULL DEFAULT 'not_started'
-        CHECK (coverage_status IN ('not_started', 'partial', 'covered')),
-    covered_by          UUID[] DEFAULT '{}',     -- array of topic_ids
-    created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    subject_id UUID NOT NULL, -- references local subjects via FDW
+    parent_id UUID REFERENCES syllabus_items (id) ON DELETE SET NULL,
+    ordinal INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT,
+    embedding vector(1024),
+    source VARCHAR(50) NOT NULL DEFAULT 'lecture'
+    CHECK (source IN ('lecture', 'upload', 'manual')),
+    source_session_id UUID, -- NULL if from upload/manual
+    coverage_status VARCHAR(20) NOT NULL DEFAULT 'not_started'
+    CHECK (coverage_status IN ('not_started', 'partial', 'covered')),
+    covered_by UUID [] DEFAULT '{}', -- array of topic_ids
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE INDEX IF NOT EXISTS idx_syllabus_subject ON syllabus_items(subject_id);
-CREATE INDEX IF NOT EXISTS idx_syllabus_parent ON syllabus_items(parent_id);
+CREATE INDEX IF NOT EXISTS idx_syllabus_subject ON syllabus_items (subject_id);
+CREATE INDEX IF NOT EXISTS idx_syllabus_parent ON syllabus_items (parent_id);
 
 -- S11 T11.5: dedicated read-only role for the PG-MAIN FDW user mapping.
 -- REVOKE/GRANT on the local foreign table has no effect on its owner

@@ -248,9 +248,7 @@ async def embed_utterances(
             " ".join(window.window_texts),
             task_mode=EmbeddingTaskMode.RETRIEVAL,
         )
-        await utterance_repo.update_embedding(
-            subject_id, window.utterance_id, emb, embed_model_ver
-        )
+        await utterance_repo.update_embedding(subject_id, window.utterance_id, emb, embed_model_ver)
 
     logger.info(f"Embedded {len(windows)} utterances for session {session_id}")
     return len(windows)

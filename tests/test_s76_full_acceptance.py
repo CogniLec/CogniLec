@@ -176,7 +176,15 @@ def test_t76_4_licence_audit_pip_licenses_runs_clean() -> None:
     if shutil.which("uvx") is None:
         pytest.skip("uvx not available in this environment to run pip-licenses sandboxed")
     proc = subprocess.run(
-        ["uvx", "--from", "pip-licenses", "pip-licenses", "--format=json", "--python", ".venv/bin/python"],
+        [
+            "uvx",
+            "--from",
+            "pip-licenses",
+            "pip-licenses",
+            "--format=json",
+            "--python",
+            ".venv/bin/python",
+        ],
         capture_output=True,
         text=True,
         cwd=str(REPO_ROOT),
@@ -212,7 +220,9 @@ async def test_t76_7_no_voiceprint_or_biometric_data_regression(db_session) -> N
 
 
 def test_t76_2_cve_scan_not_available() -> None:
-    pytest.skip("Trivy/Grype not installed and no container images built by this repo's tooling here")
+    pytest.skip(
+        "Trivy/Grype not installed and no container images built by this repo's tooling here"
+    )
 
 
 def test_t76_5_sbom_not_available() -> None:

@@ -47,26 +47,34 @@ requested -> validated -> executing -> completed -> audit_logged
 class ClusterAuditLog(Base):
     __tablename__ = "cluster_audit_log"
 
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
-    operation: Mapped[str] = mapped_column(String(50), nullable=False)  # recluster, merge, split, backfill
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
+    operation: Mapped[str] = mapped_column(
+        String(50), nullable=False
+    )  # recluster, merge, split, backfill
     subject_id: Mapped[UUID] = mapped_column(Uuid, nullable=False)
     initiated_by: Mapped[str] = mapped_column(String(255), nullable=False)
-    before_state: Mapped[dict] = mapped_column(JSONB, nullable=False)  # partition count, topic count, etc.
+    before_state: Mapped[dict] = mapped_column(
+        JSONB, nullable=False
+    )  # partition count, topic count, etc.
     after_state: Mapped[dict] = mapped_column(JSONB, nullable=False)
-    status: Mapped[str] = mapped_column(String(20), nullable=False)  # running, completed, failed, rolled_back
+    status: Mapped[str] = mapped_column(
+        String(20), nullable=False
+    )  # running, completed, failed, rolled_back
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
     duration_s: Mapped[float | None] = mapped_column(Float, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
     completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     __table_args__ = (
         CheckConstraint(
-            "operation IN ('recluster', 'merge', 'split', 'backfill')",
-            name="ck_audit_operation"
+            "operation IN ('recluster', 'merge', 'split', 'backfill')", name="ck_audit_operation"
         ),
         CheckConstraint(
-            "status IN ('running', 'completed', 'failed', 'rolled_back')",
-            name="ck_audit_status"
+            "status IN ('running', 'completed', 'failed', 'rolled_back')", name="ck_audit_status"
         ),
     )
 ```

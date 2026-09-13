@@ -39,6 +39,7 @@ uploaded → stripping → stripped → dedup_check → unique → ready_for_ocr
 # src/services/uploads/models.py
 from enum import Enum
 
+
 class UploadStatus(str, Enum):
     UPLOADED = "uploaded"
     STRIPPING = "stripping"
@@ -58,15 +59,18 @@ from uuid import UUID
 from datetime import datetime
 from enum import Enum
 
+
 class FileType(str, Enum):
     IMAGE = "image"
     PDF = "pdf"
     MULTI_PAGE_PDF = "multi_page_pdf"
 
+
 class UploadCreate(BaseModel):
     session_id: UUID
     subject_id: UUID
     description: str | None = Field(None, max_length=500)
+
 
 class UploadResponse(BaseModel):
     id: UUID
@@ -84,9 +88,11 @@ class UploadResponse(BaseModel):
 
     model_config = {"from_attributes": True}
 
+
 class UploadListResponse(BaseModel):
     items: list[UploadResponse]
     total: int
+
 
 class UploadConfig(BaseModel):
     max_file_size_bytes: int = 20 * 1024 * 1024  # 20MB

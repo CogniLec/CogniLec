@@ -1,4 +1,4 @@
-"""T07.2 – Session status constraint tests."""
+"""T07.2 - Session status constraint tests."""
 
 from __future__ import annotations
 
@@ -32,7 +32,7 @@ async def _create_user_and_subject(session: AsyncSession) -> Subject:
 
 @pytest.mark.integration
 class TestSessionStatusConstraint:
-    """T07.2 – Session status transitions constrained to declared enum."""
+    """T07.2 - Session status transitions constrained to declared enum."""
 
     async def test_create_session_default_status(self, db_session: AsyncSession) -> None:
         subject = await _create_user_and_subject(db_session)

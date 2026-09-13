@@ -38,6 +38,7 @@ PENDING → T1(ASR) → T2(TRANSCRIPT_CLEAN) → T3(SEGMENT) → T4(NOTES) → T
 # src/services/cache/keys.py
 from pydantic import BaseModel
 
+
 class TaskCacheKey(BaseModel):
     session_id: str
     task_name: str  # T1–T7
@@ -45,7 +46,10 @@ class TaskCacheKey(BaseModel):
     prompt_version: str
 
     def to_redis_key(self) -> str:
-        return f"cache:{self.session_id}:{self.task_name}:{self.embed_model_ver}:{self.prompt_version}"
+        return (
+            f"cache:{self.session_id}:{self.task_name}:{self.embed_model_ver}:{self.prompt_version}"
+        )
+
 
 class TaskCacheEntry(BaseModel):
     task_name: str
@@ -62,12 +66,14 @@ class TaskCacheEntry(BaseModel):
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class SessionStatus(str, Enum):
     PENDING = "pending"
     RUNNING = "running"
     COMPLETED = "completed"
     FAILED = "failed"
     PARTIAL = "partial"
+
 
 class TaskStatus(str, Enum):
     PENDING = "pending"
@@ -76,6 +82,7 @@ class TaskStatus(str, Enum):
     FAILED = "failed"
     SKIPPED = "skipped"
 
+
 class TaskCheckpoint(BaseModel):
     task_name: str
     status: TaskStatus
@@ -83,6 +90,7 @@ class TaskCheckpoint(BaseModel):
     error: str | None = None
     started_at: str | None = None
     completed_at: str | None = None
+
 
 class SessionPipeline(BaseModel):
     session_id: str
@@ -178,13 +186,16 @@ async def process_session(session_id: str) -> SessionPipeline:
     """Run the full T1–T7 pipeline for a session."""
     ...
 
+
 async def resume_session(session_id: str) -> SessionPipeline:
     """Resume a failed session from last checkpoint."""
     ...
 
+
 async def partial_rerun(session_id: str) -> SessionPipeline:
     """Re-run only T4–T7, reusing T1–T3 cache (uploads path)."""
     ...
+
 
 # src/graph/t4_subgraph.py
 async def t4_subgraph(

@@ -72,6 +72,7 @@ from uuid import UUID
 from datetime import datetime
 from enum import Enum
 
+
 class SessionStatus(str, Enum):
     CREATED = "created"
     RECORDING = "recording"
@@ -80,11 +81,13 @@ class SessionStatus(str, Enum):
     COMPLETE = "complete"
     FAILED = "failed"
 
+
 class TransitionRequest(BaseModel):
     session_id: UUID
     from_status: SessionStatus
     to_status: SessionStatus
     reason: str | None = None
+
 
 class TransitionResult(BaseModel):
     success: bool
@@ -92,6 +95,7 @@ class TransitionResult(BaseModel):
     previous_status: SessionStatus | None
     new_status: SessionStatus | None
     error: str | None = None
+
 
 class RetryJob(BaseModel):
     session_id: UUID

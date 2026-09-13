@@ -39,11 +39,13 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from enum import Enum
 
+
 class LinkType(str, Enum):
     BUILDS_ON = "builds_on"
     REVISITS = "revisits"
     CONTRADICTS = "contradicts"
     PREREQUISITE_FOR = "prerequisite_for"
+
 
 class CrossSessionLink(BaseModel):
     link_type: LinkType
@@ -54,11 +56,13 @@ class CrossSessionLink(BaseModel):
     confidence: float = Field(..., ge=0.0, le=1.0)
     evidence: str = Field(..., max_length=500)
 
+
 class A3Output(BaseModel):
     links: list[CrossSessionLink] = Field(default_factory=list)
     summary: str = Field(..., max_length=2000)
     relationships_found: int = Field(..., ge=0)
     confidence_threshold: float = Field(default=0.6, ge=0.0, le=1.0)
+
 
 class A3Input(BaseModel):
     session_id: UUID
@@ -76,7 +80,7 @@ system: |
   You are A3, a cross-session relationship analyst. Your task is to identify
   meaningful connections between the current lecture session and prior sessions
   in the same subject.
-  
+
   You MUST:
   1. Use only the provided retrieval results — do not hallucinate connections
   2. Assign exactly one LinkType to each relationship:
@@ -87,7 +91,7 @@ system: |
   3. Provide evidence from the retrieval results
   4. Set confidence based on strength of evidence (0.0-1.0)
   5. Skip relationships with confidence < 0.6
-  
+
   You MUST NOT:
   - Access any database directly
   - Call any other agent
@@ -174,8 +178,7 @@ class A3Agent:
         retrieval_service: RetrievalService,
         db_session: AsyncSession,  # read-only
         prompt_version: str = "1.0.0",
-    ):
-        ...
+    ): ...
 
     async def run(self, input: A3Input) -> A3Output:
         """Identify cross-session relationships. Read-only, no A5 calls."""
@@ -199,14 +202,17 @@ class A3Agent:
 # src/agents/a3/cross_reference.py
 class NoteCrossReference(BaseModel):
     """Cross-reference to include in generated notes."""
+
     link_type: LinkType
     related_topic_name: str
     related_session_id: UUID
     evidence_snippet: str = Field(..., max_length=200)
     confidence: float
 
+
 class NoteCrossReferences(BaseModel):
     """Collection of cross-references for a note."""
+
     references: list[NoteCrossReference] = Field(default_factory=list)
     summary: str = Field(..., max_length=500)
 ```

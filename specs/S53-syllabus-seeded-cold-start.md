@@ -56,10 +56,12 @@ Session 6+: re-cluster every N sessions (normal cadence, configurable)
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class SeedingStatus(str, Enum):
     NOT_SEEDED = "not_seeded"
     SEEDED = "seeded"
     STABILIZED = "stabilized"  # real data replaced initial seeds
+
 
 class CentroidSeed(BaseModel):
     syllabus_item_id: UUID
@@ -67,6 +69,7 @@ class CentroidSeed(BaseModel):
     embedding: list[float]  # 1024-dim vector
     initial_topic_id: UUID | None = None  # assigned after first clustering
     replaced_by_data: bool = False  # True when real session data replaces seed
+
 
 class SeedingResult(BaseModel):
     subject_id: UUID
@@ -76,8 +79,10 @@ class SeedingResult(BaseModel):
     session_count: int  # number of sessions so far
     recluster_cadence: str  # "tight" | "normal"
 
+
 class ReclusterConfig(BaseModel):
     """Configuration for re-clustering cadence."""
+
     tight_cadence_sessions: int = 5  # sessions 2–5 use tight cadence
     tight_cadence_recluster_after: bool = True  # re-cluster after every session
     normal_cadence_interval: int = 5  # re-cluster every N sessions after session 5
@@ -168,14 +173,14 @@ class ReclusterConfig(BaseModel):
 class CentroidSeedService:
     async def get_seeds(self, subject_id: UUID) -> list[CentroidSeed]:
         """Get initial centroid seeds from syllabus item embeddings.
-        
+
         Returns empty list if no syllabus exists.
         """
         ...
 
     async def create_seeds(self, subject_id: UUID) -> SeedingResult:
         """Create initial centroid seeds from syllabus items.
-        
+
         1. Read syllabus items from DB-3 (via FDW)
         2. Extract embeddings for each item
         3. Return as CentroidSeed list with syllabus_item_id mapping
@@ -197,22 +202,18 @@ class CentroidSeedService:
 ```python
 # src/services/clustering/recluster.py
 class ReclusterService:
-    async def should_recluster(
-        self, subject_id: UUID, session_number: int
-    ) -> bool:
+    async def should_recluster(self, subject_id: UUID, session_number: int) -> bool:
         """Determine if re-clustering should run for this session.
-        
+
         Session 1: no re-cluster (initial seeded clustering)
         Sessions 2–5: always re-cluster (tight cadence)
         Session 6+: re-cluster every N sessions (normal cadence)
         """
         ...
 
-    async def recluster(
-        self, subject_id: UUID, new_topics: list[UUID]
-    ) -> list[ClusterResult]:
+    async def recluster(self, subject_id: UUID, new_topics: list[UUID]) -> list[ClusterResult]:
         """Re-cluster topics for a subject.
-        
+
         1. Get all topics (including new ones from this session)
         2. Get seed centroids (if still active)
         3. Run clustering with combined seeds + observed data
@@ -225,7 +226,7 @@ class ReclusterService:
         self, subject_id: UUID, clusters: list[ClusterResult]
     ) -> int:
         """Replace seed centroids that are now covered by real cluster centers.
-        
+
         Returns number of seeds replaced.
         """
         ...
@@ -237,10 +238,10 @@ class ReclusterService:
 async def on_session_complete(session_id: UUID, subject_id: UUID) -> None:
     """Post-session hook: triggers coverage update (S52) and re-clustering (S53)."""
     session_number = await get_session_number(subject_id)
-    
+
     # Coverage update (S52)
     await coverage_service.post_session_update(subject_id, session_id)
-    
+
     # Re-clustering (S53) — only if seeding is active
     if await recluster_service.should_recluster(subject_id, session_number):
         new_topics = await get_new_topics(session_id)

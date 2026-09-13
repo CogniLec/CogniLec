@@ -46,16 +46,19 @@ UPLOADED → PARSING → EXTRACTING → VALIDATING → WRITING → COMPLETE
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class UploadFormat(str, Enum):
     PDF = "pdf"
     IMAGE = "image"  # PNG, JPG, JPEG, TIFF
-    TEXT = "text"    # plain text, markdown
+    TEXT = "text"  # plain text, markdown
     UNKNOWN = "unknown"
+
 
 class SyllabusUploadRequest(BaseModel):
     subject_id: UUID
     file: UploadFile  # FastAPI UploadFile
     format_override: UploadFormat | None = None  # auto-detect if None
+
 
 class SyllabusUploadResponse(BaseModel):
     upload_id: UUID
@@ -63,6 +66,7 @@ class SyllabusUploadResponse(BaseModel):
     items_extracted: int | None = None
     message: str
     error_details: str | None = None
+
 
 class ParsedSyllabusItem(BaseModel):
     title: str = Field(..., min_length=1, max_length=500)
@@ -74,11 +78,13 @@ class ParsedSyllabusItem(BaseModel):
     week_number: int | None = Field(None, ge=1)
     references: list[str] = Field(default_factory=list, max_length=20)
 
+
 class ParsedSyllabus(BaseModel):
     items: list[ParsedSyllabusItem] = Field(..., min_length=1)
     subject_title: str = Field(..., min_length=1, max_length=500)
     total_pages: int | None = None
     parsing_confidence: float = Field(..., ge=0.0, le=1.0)
+
 
 class DoclingConfig(BaseModel):
     ocr_enabled: bool = True
@@ -234,7 +240,7 @@ class DoclingParser:
 class OCRPreprocessor:
     async def preprocess_image(self, image_path: Path) -> Path:
         """Preprocess image for OCR: deskew, enhance contrast, binarize.
-        
+
         Returns path to preprocessed image suitable for Tesseract.
         """
         ...
@@ -248,11 +254,9 @@ class OCRPreprocessor:
 ```python
 # src/services/syllabus/upload_pipeline.py
 class SyllabusUploadPipeline:
-    async def process(
-        self, subject_id: UUID, file: UploadFile
-    ) -> SyllabusUploadResponse:
+    async def process(self, subject_id: UUID, file: UploadFile) -> SyllabusUploadResponse:
         """Full pipeline: detect format → parse → validate → write to DB-3.
-        
+
         Uses A6 write-authority context (DB3WriteGuard) for DB-3 writes.
         """
         ...

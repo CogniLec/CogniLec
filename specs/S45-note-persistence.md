@@ -57,6 +57,7 @@ BEFORE any DB-2 write:
 from pydantic import BaseModel, Field
 from uuid import UUID
 
+
 class NoteSectionUpsert(BaseModel):
     subject_id: UUID
     session_id: UUID
@@ -68,10 +69,12 @@ class NoteSectionUpsert(BaseModel):
     source_utt_ids: list[UUID] = Field(..., min_length=1)
     model_version: str
 
+
 class NoteProvenanceInsert(BaseModel):
     subject_id: UUID
     note_section_id: UUID
     utterance_id: UUID
+
 
 class PersistenceResult(BaseModel):
     sections_upserted: int
@@ -198,8 +201,7 @@ class NoteRepository:
 ```python
 # src/services/agents/a2/persistence/orchestrator.py
 class NotePersistenceOrchestrator:
-    def __init__(self, note_repo, utterance_repo, session_repo, embedding_service):
-        ...
+    def __init__(self, note_repo, utterance_repo, session_repo, embedding_service): ...
 
     async def persist_synthesis(
         self,

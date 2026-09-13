@@ -37,9 +37,11 @@ REGISTERED → ACTIVE → DEPRECATED → RETIRED
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class EmbeddingTaskMode(str, Enum):
     RETRIEVAL = "retrieval"
     CLUSTERING = "clustering"
+
 
 class EmbeddingConfig(BaseModel):
     model_name: str = "Qwen/Qwen3-Embedding-0.6B"
@@ -51,6 +53,7 @@ class EmbeddingConfig(BaseModel):
         "retrieval": "Represent this sentence for searching relevant passages",
         "clustering": "Cluster this text with similar educational content",
     }
+
 
 class ModelVersion(BaseModel):
     version_id: str  # e.g., "qwen3-0.6b-v1"
@@ -219,9 +222,7 @@ class EmbeddingVersionRegistry:
     async def activate_version(self, version_id: str) -> None:
         """Activate a new version, deprecating the current active."""
 
-    async def start_backfill(
-        self, from_version: str, to_version: str, subject_id: UUID
-    ) -> UUID:
+    async def start_backfill(self, from_version: str, to_version: str, subject_id: UUID) -> UUID:
         """Start a backfill job. Returns job_id."""
 
     async def get_backfill_status(self, job_id: UUID) -> dict:

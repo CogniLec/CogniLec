@@ -65,10 +65,12 @@
 from pydantic import BaseModel
 from typing import Literal
 
+
 class EvalInput(BaseModel):
     dataset: Literal["wer", "segmentation", "relevance", "clustering"]
     reference: list  # Ground truth
     predictions: list  # Model output
+
 
 class EvalOutput(BaseModel):
     wer: float | None = None
@@ -77,6 +79,7 @@ class EvalOutput(BaseModel):
     purity: float | None = None
     v_measure: float | None = None
     kappa: float | None = None
+
 
 def run_eval(dataset: str, reference: list, predictions: list) -> EvalOutput:
     """Single entry point for all evaluations."""

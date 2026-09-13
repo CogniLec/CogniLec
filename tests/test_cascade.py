@@ -1,4 +1,4 @@
-"""T07.3 – ON DELETE CASCADE tests."""
+"""T07.3 - ON DELETE CASCADE tests."""
 
 from __future__ import annotations
 
@@ -58,10 +58,10 @@ async def _exists(session: AsyncSession, model: type, id_: uuid.UUID) -> bool:
 
 @pytest.mark.integration
 class TestSubjectDeleteCascades:
-    """T07.3 – ON DELETE CASCADE from subject removes sessions."""
+    """T07.3 - ON DELETE CASCADE from subject removes sessions."""
 
     async def test_delete_subject_removes_sessions(self, db_session: AsyncSession) -> None:
-        user, subject, session_obj, agent_run = await _create_full_cascade(db_session)
+        _user, subject, session_obj, agent_run = await _create_full_cascade(db_session)
 
         # Delete the subject
         await db_session.delete(subject)
@@ -86,7 +86,7 @@ class TestSubjectDeleteCascades:
         assert not await _exists(db_session, AgentRun, agent_run.id)
 
     async def test_delete_session_removes_agent_runs(self, db_session: AsyncSession) -> None:
-        user, subject, session_obj, agent_run = await _create_full_cascade(db_session)
+        _user, subject, session_obj, agent_run = await _create_full_cascade(db_session)
 
         # Delete the session
         await db_session.delete(session_obj)
@@ -99,7 +99,7 @@ class TestSubjectDeleteCascades:
         assert await _exists(db_session, Subject, subject.id)
 
     async def test_multiple_sessions_cascade(self, db_session: AsyncSession) -> None:
-        user, subject, _, _ = await _create_full_cascade(db_session)
+        _user, subject, _, _ = await _create_full_cascade(db_session)
         repo = SessionRepository(db_session)
 
         # Create additional sessions

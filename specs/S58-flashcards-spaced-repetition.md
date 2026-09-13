@@ -32,10 +32,12 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from enum import Enum
 
+
 class FlashcardType(str, Enum):
-    BASIC = "basic"           # Front/back
-    CLOZE = "cloze"           # Fill-in-the-blank
-    IMAGE_OCCLUSION = "image" # Image-based (future)
+    BASIC = "basic"  # Front/back
+    CLOZE = "cloze"  # Fill-in-the-blank
+    IMAGE_OCCLUSION = "image"  # Image-based (future)
+
 
 class Flashcard(BaseModel):
     id: UUID
@@ -47,11 +49,13 @@ class Flashcard(BaseModel):
     difficulty: float = Field(default=0.5, ge=0.0, le=1.0)
     tags: list[str] = Field(default_factory=list)
 
+
 class FlashcardDeck(BaseModel):
     topic_id: UUID
     topic_name: str
     cards: list[Flashcard]
     total_cards: int = Field(..., ge=0)
+
 
 class FlashcardGenerationRequest(BaseModel):
     subject_id: UUID
@@ -59,19 +63,23 @@ class FlashcardGenerationRequest(BaseModel):
     cards_per_topic: int = Field(default=10, ge=1, le=50)
     include_cloze: bool = Field(default=True)
 
+
 # FSRS Scheduling Schema
 class ReviewRating(int, Enum):
     """User rating of flashcard review (1-4 scale)."""
-    AGAIN = 1   # Complete blackout
-    HARD = 2    # Incorrect, but remembered after seeing answer
-    GOOD = 3    # Correct with some hesitation
-    EASY = 4    # Correct with no hesitation
+
+    AGAIN = 1  # Complete blackout
+    HARD = 2  # Incorrect, but remembered after seeing answer
+    GOOD = 3  # Correct with some hesitation
+    EASY = 4  # Correct with no hesitation
+
 
 class ReviewResult(BaseModel):
     flashcard_id: UUID
     rating: ReviewRating
     review_time_ms: int = Field(..., ge=0)
     reviewed_at: datetime
+
 
 class FSRSState(BaseModel):
     flashcard_id: UUID
@@ -85,13 +93,33 @@ class FSRSState(BaseModel):
     last_review: datetime | None = None
     next_review: datetime | None = None
 
+
 class FSRSParameters(BaseModel):
     """FSRS algorithm parameters (default from FSRS-4.5)."""
+
     request_retention: float = Field(default=0.9, ge=0.0, le=1.0)
     maximum_interval: int = Field(default=365, ge=1)
-    w: list[float] = Field(default_factory=lambda: [
-        0.4, 0.6, 2.4, 5.8, 4.93, 0.94, 0.86, 0.01, 1.49, 0.14, 0.94, 2.18, 0.05, 0.34, 1.26, 0.29, 2.61
-    ])
+    w: list[float] = Field(
+        default_factory=lambda: [
+            0.4,
+            0.6,
+            2.4,
+            5.8,
+            4.93,
+            0.94,
+            0.86,
+            0.01,
+            1.49,
+            0.14,
+            0.94,
+            2.18,
+            0.05,
+            0.34,
+            1.26,
+            0.29,
+            2.61,
+        ]
+    )
 ```
 
 **FSRS Scheduling Flow:**
@@ -109,12 +137,14 @@ class ExportFormat(str, Enum):
     DOCX = "docx"
     ANKI = "anki"
 
+
 class ExportRequest(BaseModel):
     subject_id: UUID
     topic_ids: list[UUID] = Field(default_factory=list)
     format: ExportFormat
     include_evidence: bool = Field(default=True)
     include_schedule: bool = Field(default=False)  # include review schedule
+
 
 class ExportResponse(BaseModel):
     file_path: str
@@ -214,6 +244,7 @@ async def generate_flashcards(
     """Generate flashcards for topics in a subject."""
     ...
 
+
 @router.get("/api/v1/flashcards/{topic_id}", response_model=FlashcardDeck)
 async def get_flashcards(
     topic_id: UUID,
@@ -221,6 +252,7 @@ async def get_flashcards(
 ) -> FlashcardDeck:
     """Get flashcards for a topic."""
     ...
+
 
 @router.post("/api/v1/flashcards/{flashcard_id}/review", response_model=FSRSState)
 async def review_flashcard(
@@ -231,6 +263,7 @@ async def review_flashcard(
 ) -> FSRSState:
     """Record review result and update schedule."""
     ...
+
 
 @router.get("/api/v1/flashcards/review/due", response_model=list[Flashcard])
 async def get_due_flashcards(
@@ -252,6 +285,7 @@ async def export_flashcards(
 ) -> ExportResponse:
     """Export flashcards in specified format."""
     ...
+
 
 @router.get("/api/v1/export/{export_id}/download")
 async def download_export(

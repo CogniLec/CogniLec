@@ -181,14 +181,10 @@ class PartitionProvisioner:
     ) -> Subject:
         """Create subject + all partitions + HNSW indexes in one transaction."""
 
-    async def deprovision_subject(
-        self, session: AsyncSession, subject_id: UUID
-    ) -> None:
+    async def deprovision_subject(self, session: AsyncSession, subject_id: UUID) -> None:
         """Drop all partitions + subject in one transaction."""
 
-    async def subject_partitions_exist(
-        self, session: AsyncSession, subject_id: UUID
-    ) -> bool:
+    async def subject_partitions_exist(self, session: AsyncSession, subject_id: UUID) -> bool:
         """Check if partitions exist for a subject."""
 ```
 

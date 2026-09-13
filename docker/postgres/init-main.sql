@@ -22,4 +22,4 @@ GRANT ALL PRIVILEGES ON DATABASE lis_main TO lis;
 CREATE SCHEMA IF NOT EXISTS partitions AUTHORIZATION lis;
 
 -- Set search path
-ALTER DATABASE lis_main SET search_path TO public, partitions, pg_catalog;
+ALTER DATABASE lis_main SET search_path TO public, partitions, pg_catalog; -- noqa: PRS,LT05

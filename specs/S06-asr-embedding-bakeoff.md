@@ -111,8 +111,15 @@ MODELS = [
     ("parakeet-tdt-1.1b", "nvidia/parakeet-tdt-1.1b", "fp16"),
 ]
 
-CONDITIONS = ["front_quiet", "back_quiet", "front_busy", "back_busy",
-              "lecturer_moving", "heavy_discussion"]
+CONDITIONS = [
+    "front_quiet",
+    "back_quiet",
+    "front_busy",
+    "back_busy",
+    "lecturer_moving",
+    "heavy_discussion",
+]
+
 
 def load_model(name, model_id, quant):
     if "whisper" in name:
@@ -121,9 +128,11 @@ def load_model(name, model_id, quant):
         return EncDecRNNTBPEModel.from_pretrained(model_id).cuda().eval()
     # Canary similar...
 
+
 def transcribe(model, audio_path):
     segments, info = model.transcribe(audio_path, beam_size=5, word_timestamps=True)
     return " ".join([s.text for s in segments])
+
 
 def main():
     mlflow.set_experiment("S06_ASR_Bakeoff")
@@ -137,7 +146,9 @@ def main():
 
             for audio_file in audio_files:
                 with mlflow.start_run(run_name=f"{model_name}_{condition}_{audio_file.stem}"):
-                    mlflow.log_params({"model": model_name, "condition": condition, "quantization": quant})
+                    mlflow.log_params(
+                        {"model": model_name, "condition": condition, "quantization": quant}
+                    )
 
                     # Transcribe
                     hypothesis = transcribe(model, audio_file)
@@ -161,6 +172,7 @@ def main():
                     # Clear cache for next model
                     torch.cuda.empty_cache()
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -175,6 +187,7 @@ import mlflow
 
 MODEL = "Qwen/Qwen3-Embedding-0.6B"
 DIM = 1024
+
 
 def main():
     mlflow.set_experiment("S06_Embedding_Bakeoff")
@@ -193,7 +206,9 @@ def main():
         topic_model = BERTopic(
             embedding_model=model,
             umap_model=UMAP(n_neighbors=15, n_components=5, metric="cosine"),
-            hdbscan_model=HDBSCAN(min_cluster_size=5, metric="euclidean", cluster_selection_method="eom"),
+            hdbscan_model=HDBSCAN(
+                min_cluster_size=5, metric="euclidean", cluster_selection_method="eom"
+            ),
         )
         topics, probs = topic_model.fit_transform(texts, embeddings)
 
@@ -205,6 +220,7 @@ def main():
         mlflow.log_artifact(topic_model.get_topic_info(), "topic_info.csv")
 
         print(f"Purity: {purity:.3f}, V-measure: {v_measure:.3f}")
+
 
 if __name__ == "__main__":
     main()

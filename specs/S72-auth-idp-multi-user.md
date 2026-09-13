@@ -41,19 +41,28 @@ Browser -> API (access_token) -> API validates via Authentik JWKS
 ```python
 class User(Base):
     __tablename__ = "users"
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     email: Mapped[str] = mapped_column(Citext, unique=True, nullable=False)
     external_id: Mapped[str | None] = mapped_column(String(255), unique=True, nullable=True)
     hashed_password: Mapped[str | None] = mapped_column(String(255), nullable=True)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     auth_provider: Mapped[str] = mapped_column(String(50), nullable=False, default="local")
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
 
 class DeletionAudit(Base):
     __tablename__ = "deletion_audit"
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, server_default=text("gen_random_uuid()"))
+    id: Mapped[UUID] = mapped_column(
+        Uuid, primary_key=True, server_default=text("gen_random_uuid()")
+    )
     user_id: Mapped[UUID] = mapped_column(Uuid, nullable=False)
     user_email: Mapped[str] = mapped_column(String(255), nullable=False)
     initiated_by: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -62,7 +71,9 @@ class DeletionAudit(Base):
     db3_records_deleted: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     object_store_files_deleted: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     completed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=text("now()"))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=text("now()")
+    )
 ```
 
 **Pydantic Schemas:**
@@ -72,6 +83,7 @@ class OIDCLoginRequest(BaseModel):
     redirect_uri: str
     state: str | None = None
 
+
 class TokenResponse(BaseModel):
     access_token: str
     refresh_token: str
@@ -79,14 +91,17 @@ class TokenResponse(BaseModel):
     expires_in: int
     user: "UserResponse"
 
+
 class DataExportResponse(BaseModel):
     export_id: UUID
     status: str  # pending, processing, ready
     download_url: str | None = None
     expires_at: datetime | None = None
 
+
 class AccountDeletionRequest(BaseModel):
     confirm_email: str = Field(..., description="User must type email to confirm")
+
 
 class DeletionAuditResponse(BaseModel):
     id: UUID

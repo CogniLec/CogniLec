@@ -69,15 +69,17 @@ from uuid import UUID
 from datetime import datetime
 from enum import Enum
 
+
 class GenerationStyle(str, Enum):
     DIAGRAM = "diagram"
     ILLUSTRATION = "illustration"
     SCHEMATIC = "schematic"
     NATURAL = "natural"
 
+
 class GenerateRequest(BaseModel):
     """Request to generate an image from text description ONLY.
-    
+
     ⛔ FR-4.9: This schema intentionally has NO image parameter.
     A copyrighted image CANNOT be passed to the generation service.
     This is enforced by:
@@ -85,6 +87,7 @@ class GenerateRequest(BaseModel):
     2. Semgrep rule (T63.3 — CI gate)
     3. API schema validation (OpenAPI spec has no image parameter)
     """
+
     concept_description: str = Field(..., min_length=10, max_length=2000)
     subject_id: UUID
     style_preset: GenerationStyle = GenerationStyle.ILLUSTRATION
@@ -92,13 +95,14 @@ class GenerateRequest(BaseModel):
     height: int = Field(default=512, ge=256, le=1024)
     seed: int | None = None  # For reproducibility
 
-    @model_validator(mode='after')
+    @model_validator(mode="after")
     def no_image_parameter(self):
         """Structural guard: ensure no image-related fields exist."""
-        image_fields = [f for f in self.model_fields if 'image' in f.lower()]
+        image_fields = [f for f in self.model_fields if "image" in f.lower()]
         if image_fields:
             raise ValueError(f"FR-4.9 violation: image fields not allowed: {image_fields}")
         return self
+
 
 class GeneratedImage(BaseModel):
     id: UUID
@@ -116,12 +120,14 @@ class GeneratedImage(BaseModel):
 
     model_config = {"from_attributes": True}
 
+
 class GenerationResult(BaseModel):
     generated: GeneratedImage | None = None
     cached: bool = False
     cache_hit_id: UUID | None = None
     generation_time_ms: int | None = None
     concept_description: str
+
 
 class ConceptCache(BaseModel):
     id: UUID
@@ -153,7 +159,7 @@ CREATE INDEX idx_image_gen_cache_hash ON image_generation_cache(concept_hash);
 # src/services/image_generation/labeller.py
 class AIGeneratedLabeller:
     """Ensure every generated image is labelled as AI-generated."""
-    
+
     def apply_label(self, image: GeneratedImage) -> GeneratedImage:
         """Apply AI-generated label to image metadata and embed in EXIF."""
         image.is_ai_generated = True

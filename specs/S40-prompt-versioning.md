@@ -38,12 +38,14 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 from enum import Enum
 
+
 class PromptStatus(str, Enum):
     DRAFT = "draft"
     VERSIONED = "versioned"
     TESTED = "tested"
     DEPLOYED = "deployed"
     ARCHIVED = "archived"
+
 
 class PromptEntry(BaseModel):
     id: str
@@ -58,12 +60,14 @@ class PromptEntry(BaseModel):
     updated_at: datetime
     changelog: str | None = None
 
+
 class AgentConfig(BaseModel):
     agent_id: str
     model: str = "phi-3-mini-3.8b-4bit"
     temperature: float = 0.7
     prompt_id: str  # references PromptEntry.id
     max_tokens: int = 2048
+
 
 class RegressionResult(BaseModel):
     agent_id: str
@@ -258,16 +262,21 @@ jobs:
 ```python
 #!/usr/bin/env python3
 """Check that prompt file changes include a version bump."""
+
 import sys
 import subprocess
 import re
 import yaml
 
+
 def main():
-    changed_files = subprocess.check_output(
-        ["git", "diff", "--name-only", "HEAD~1", "config/prompts/"],
-        text=True
-    ).strip().split("\n")
+    changed_files = (
+        subprocess.check_output(
+            ["git", "diff", "--name-only", "HEAD~1", "config/prompts/"], text=True
+        )
+        .strip()
+        .split("\n")
+    )
 
     for f in changed_files:
         if not f.endswith(".md"):
@@ -284,11 +293,14 @@ def main():
             with open(manifest_path) as fh:
                 manifest = yaml.safe_load(fh)
             if manifest.get("current_version") != match.group(1):
-                print(f"WARNING: {f} version {match.group(1)} differs from manifest current_version {manifest.get('current_version')}")
+                print(
+                    f"WARNING: {f} version {match.group(1)} differs from manifest current_version {manifest.get('current_version')}"
+                )
         except FileNotFoundError:
             print(f"WARNING: No manifest found at {manifest_path}")
 
     print("Version bump check passed")
+
 
 if __name__ == "__main__":
     main()

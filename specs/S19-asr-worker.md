@@ -39,11 +39,13 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 from datetime import datetime
 
+
 class WordTimestamp(BaseModel):
     word: str
     start_ms: int = Field(..., ge=0)
     end_ms: int = Field(..., ge=0)
     confidence: float = Field(..., ge=0.0, le=1.0)
+
 
 class Utterance(BaseModel):
     session_id: UUID
@@ -57,6 +59,7 @@ class Utterance(BaseModel):
     embed_model_ver: str  # from config
     speaker_tag: str | None = None  # set by S20 diarisation
     created_at: datetime
+
 
 class ASRResult(BaseModel):
     session_id: UUID

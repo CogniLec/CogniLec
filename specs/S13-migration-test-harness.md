@@ -32,6 +32,7 @@
 import pytest
 from testcontainers.postgres import PostgresContainer
 
+
 @pytest.fixture(scope="session")
 def pg_container():
     """Spin up PG17+pgvector for the entire test session."""
@@ -44,9 +45,10 @@ def pg_container():
     ) as pg:
         # Wait for extensions
         pg.exec("CREATE EXTENSION IF NOT EXISTS vector;")
-        pg.exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";")
+        pg.exec('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
         pg.exec("CREATE EXTENSION IF NOT EXISTS citext;")
         yield pg
+
 
 @pytest.fixture(scope="function")
 def db_session(pg_container):
@@ -89,12 +91,14 @@ class SyntheticTranscriptGenerator:
             - expected_segments: list[dict] with start_idx, end_idx, topic
         """
 
+
 # SyntheticTranscript model
 class SyntheticTranscript(BaseModel):
     utterances: list[SyntheticUtterance]
     topic_boundaries: list[int]
     topic_labels: list[str]
     expected_segments: list[ExpectedSegment]
+
 
 class SyntheticUtterance(BaseModel):
     text: str
@@ -188,17 +192,21 @@ ROLLBACK;
 async def db_session(pg_container) -> AsyncGenerator[AsyncSession, None]:
     """Clean DB session per test."""
 
+
 @pytest.fixture
 def user_factory(db_session):
     """Factory for creating test users."""
+
 
 @pytest.fixture
 def subject_factory(db_session, user_factory):
     """Factory for creating test subjects."""
 
+
 @pytest.fixture
 def session_factory(db_session, subject_factory):
     """Factory for creating test sessions."""
+
 
 @pytest.fixture
 def synthetic_generator():

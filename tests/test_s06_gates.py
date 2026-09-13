@@ -78,7 +78,7 @@ class TestCheckAsrGate:
         ]
         _write_csv(csv_path, rows)
 
-        passed, details = check_asr_gate(csv_path)
+        passed, _details = check_asr_gate(csv_path)
         assert passed is False
 
     def test_missing_file(self, tmp_docs: Path):
@@ -103,7 +103,7 @@ class TestCheckEmbeddingGate:
         ]
         _write_csv(csv_path, rows)
 
-        passed, details = check_embedding_gate(csv_path)
+        passed, _details = check_embedding_gate(csv_path)
         assert passed is True
 
     def test_fails_when_purity_low(self, tmp_docs: Path):
@@ -121,7 +121,7 @@ class TestCheckEmbeddingGate:
         ]
         _write_csv(csv_path, rows)
 
-        passed, details = check_embedding_gate(csv_path)
+        passed, _details = check_embedding_gate(csv_path)
         assert passed is False
 
 
@@ -166,13 +166,13 @@ class TestCheckConfigFrozen:
 
     def test_missing_file(self, tmp_path: Path, monkeypatch):
         monkeypatch.setattr("src.ml.gates.CONFIG_PATH", tmp_path / "nope.yaml")
-        passed, details = check_config_frozen()
+        passed, _details = check_config_frozen()
         assert passed is False
 
 
 class TestCheckAllGates:
     def test_returns_list(self):
-        passed, results = check_all_gates()
+        _passed, results = check_all_gates()
         assert isinstance(results, list)
         assert len(results) >= 3  # at least ASR, embedding, config
         for r in results:

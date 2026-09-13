@@ -61,25 +61,35 @@ TRANSITION_MARKER:
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class CueCategory(str, Enum):
     FORWARD_REFERENCE = "forward_reference"
     COMPLETION_SIGNAL = "completion_signal"
     TRANSITION_MARKER = "transition_marker"
 
+
 class TransitionPattern(BaseModel):
     pattern: str  # Regex pattern
     category: CueCategory
-    boost_value: float = Field(default=0.15, ge=0.0, le=0.5, description="Additive boost to boundary score")
-    confidence_base: float = Field(default=0.7, ge=0.0, le=1.0, description="Base confidence before LLM confirmation")
+    boost_value: float = Field(
+        default=0.15, ge=0.0, le=0.5, description="Additive boost to boundary score"
+    )
+    confidence_base: float = Field(
+        default=0.7, ge=0.0, le=1.0, description="Base confidence before LLM confirmation"
+    )
     language: str = "en"
+
 
 class TransitionCueConfig(BaseModel):
     patterns_file: str = "config/transition_patterns.yaml"
     llm_confirmation_model: str = "phi-3-mini-3.8b-4bit"
     llm_confirmation_threshold: float = Field(default=0.6, ge=0.0, le=1.0)
     max_boost_per_cue: float = Field(default=0.3, ge=0.0, le=1.0)
-    context_window_utterances: int = Field(default=5, ge=1, le=10, description="Context around cue for LLM confirmation")
+    context_window_utterances: int = Field(
+        default=5, ge=1, le=10, description="Context around cue for LLM confirmation"
+    )
     enabled: bool = True
+
 
 class TransitionCue(BaseModel):
     position: int  # Utterance index where cue was detected
@@ -91,6 +101,7 @@ class TransitionCue(BaseModel):
     llm_confidence: float | None = None
     context_before: str | None = None
     context_after: str | None = None
+
 
 class TransitionCueResult(BaseModel):
     session_id: str
@@ -202,14 +213,16 @@ class TransitionCueDetector:
             for pattern in self._patterns:
                 match = pattern.pattern.search(utterance.lower())
                 if match and self._is_valid_position(i, len(utterances)):
-                    candidates.append(TransitionCue(
-                        position=i,
-                        pattern_matched=match.group(),
-                        category=pattern.category,
-                        confidence=pattern.confidence_base,
-                        boost_value=pattern.boost_value,
-                        llm_confirmed=False,  # Pending LLM confirmation
-                    ))
+                    candidates.append(
+                        TransitionCue(
+                            position=i,
+                            pattern_matched=match.group(),
+                            category=pattern.category,
+                            confidence=pattern.confidence_base,
+                            boost_value=pattern.boost_value,
+                            llm_confirmed=False,  # Pending LLM confirmation
+                        )
+                    )
         return candidates
 
     def _is_valid_position(self, pos: int, total: int) -> bool:
@@ -244,17 +257,13 @@ class LLMTransitionConfirmer:
                 confirmed.append(cue)
         return confirmed
 
-    def _extract_context(
-        self, utterances: list[str], position: int
-    ) -> str:
+    def _extract_context(self, utterances: list[str], position: int) -> str:
         """Extract context window around cue position."""
         start = max(0, position - self.config.context_window_utterances)
         end = min(len(utterances), position + self.config.context_window_utterances + 1)
         return "\n".join(utterances[start:end])
 
-    async def _llm_confirm(
-        self, context: str, cue: TransitionCue
-    ) -> bool:
+    async def _llm_confirm(self, context: str, cue: TransitionCue) -> bool:
         """Use LLM to confirm if cue represents a real topic transition."""
         prompt = f"""Does the following text contain a clear topic transition or forward reference?
 Focus on explicit transition markers, not casual mentions.
@@ -291,7 +300,7 @@ class BoundaryScoreBooster:
         """
         Additively boost boundary scores at cue positions.
         Does NOT create new boundaries — only boosts existing scores.
-        
+
         IMPORTANT: This is additive, not overriding.
         Cues boost, they do not replace the segmentation algorithm.
         """

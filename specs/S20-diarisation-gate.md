@@ -42,18 +42,21 @@ from uuid import UUID
 from datetime import datetime
 from enum import Enum
 
+
 class SpeakerTag(str, Enum):
     """Session-scoped anonymous speaker tags.
     NEVER linked across sessions.
     NEVER used as biometric identifiers.
     DROPPED at note synthesis (A2 input has no speaker info).
     """
+
     SPK_A = "SPK_A"
     SPK_B = "SPK_B"
     SPK_C = "SPK_C"
     SPK_D = "SPK_D"
     SPK_E = "SPK_E"
     UNKNOWN = "UNKNOWN"
+
 
 class DiarisationResult(BaseModel):
     session_id: UUID
@@ -62,8 +65,10 @@ class DiarisationResult(BaseModel):
     processing_time_ms: int
     model_name: str = "pyannote/speaker-diarization-3.1"
 
+
 class NFRS4AuditResult(BaseModel):
     """NFR-S4 compliance audit result."""
+
     session_id: UUID
     voiceprints_found: int = Field(0, description="Must be 0")
     embeddings_persisted: int = Field(0, description="Must be 0")
@@ -73,8 +78,10 @@ class NFRS4AuditResult(BaseModel):
     compliant: bool
     audit_timestamp: datetime
 
+
 class NonLinkabilityAssertion(BaseModel):
     """NFR-S4: Biometric non-linkability assertion."""
+
     session_a_id: UUID
     session_b_id: UUID
     tags_session_a: list[str]
@@ -309,6 +316,7 @@ WHERE table_name = 'utterances'
 ```python
 # tests/test_diarisation.py — NFR-S4 verification
 
+
 async def test_no_biometric_data():
     """NFR-S4: No voiceprint, embedding or biometric template persisted anywhere."""
 
@@ -328,7 +336,8 @@ async def test_no_biometric_data():
     for bucket in ["lis-audio", "lis-uploads", "lis-generated", "lis-exports"]:
         objects = await storage.list_objects(bucket, prefix="")
         biometric_objects = [
-            o for o in objects
+            o
+            for o in objects
             if "voiceprint" in o.key.lower()
             or "embedding" in o.key.lower()
             or "biometric" in o.key.lower()

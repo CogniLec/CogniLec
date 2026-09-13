@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 import numpy as np
 from sklearn.metrics import (
     adjusted_rand_score,
@@ -41,9 +43,9 @@ def compute_purity(true_labels: list[int], predicted_labels: list[int]) -> float
     confusion = np.zeros((n_clusters, n_true), dtype=int)
 
     unique_clusters = sorted(set(filtered_pred))
-    for t, l in zip(filtered_pred, filtered_true):
+    for t, label in zip(filtered_pred, filtered_true):
         cluster_idx = unique_clusters.index(t)
-        confusion[cluster_idx, l] += 1
+        confusion[cluster_idx, label] += 1
 
     row_ind, col_ind = linear_sum_assignment(-confusion)
     purity = confusion[row_ind, col_ind].sum() / len(filtered_pred)
@@ -64,7 +66,7 @@ def compute_v_measure(true_labels: list[int], predicted_labels: list[int]) -> fl
 
 
 def compute_silhouette(
-    embeddings: np.ndarray,
+    embeddings: np.ndarray[Any, np.dtype[np.floating[Any]]],
     predicted_labels: list[int],
     metric: str = "cosine",
 ) -> float:

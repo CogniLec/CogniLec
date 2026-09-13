@@ -1,4 +1,5 @@
 """Note asset model - images, OCR, diagrams (NOT partitioned)."""
+
 from __future__ import annotations
 
 import uuid

@@ -45,7 +45,9 @@ class _FakeStorageClient:
         self.deleted.append(key)
 
 
-async def _seed_subject_and_session(db: AsyncSession, user_id: uuid.UUID) -> tuple[uuid.UUID, uuid.UUID]:
+async def _seed_subject_and_session(
+    db: AsyncSession, user_id: uuid.UUID
+) -> tuple[uuid.UUID, uuid.UUID]:
     subject = await PartitionProvisioner().provision_subject(db, user_id, name="S72 Subject")
     session_id = uuid.uuid4()
     await db.execute(

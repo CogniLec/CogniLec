@@ -44,12 +44,16 @@ User can edit labels via API (not overwritten by re-clustering)
 # src/ml/labelling/models.py
 from pydantic import BaseModel, Field
 
+
 class LabellingConfig(BaseModel):
-    top_n_utterances: int = Field(default=10, ge=3, le=50, description="Representative utterances for LLM")
+    top_n_utterances: int = Field(
+        default=10, ge=3, le=50, description="Representative utterances for LLM"
+    )
     top_n_keywords: int = Field(default=10, ge=3, le=20, description="Keywords per topic")
     llm_model: str = "phi-3-mini-3.8b-4bit"
     llm_temperature: float = Field(default=0.3, ge=0.0, le=1.0)
     max_label_length: int = Field(default=100, ge=10, le=200)
+
 
 class TopicLabel(BaseModel):
     topic_id: UUID
@@ -58,6 +62,7 @@ class TopicLabel(BaseModel):
     representative_utterances: list[str]
     is_user_edited: bool = False
     labelled_at: datetime | None = None
+
 
 class LabellingResult(BaseModel):
     subject_id: UUID
@@ -134,9 +139,7 @@ class TopicLabeller:
     def __init__(self, config: LabellingConfig):
         self.config = config
 
-    async def label_subject(
-        self, subject_id: UUID
-    ) -> LabellingResult:
+    async def label_subject(self, subject_id: UUID) -> LabellingResult:
         """Label all topics in a subject."""
         topics = await topic_repo.get_all(subject_id)
         results = []
@@ -144,9 +147,7 @@ class TopicLabeller:
         for topic in topics:
             try:
                 label = await self._label_topic(subject_id, topic)
-                await topic_repo.update_label(
-                    subject_id, topic.id, label.label, label.keywords
-                )
+                await topic_repo.update_label(subject_id, topic.id, label.label, label.keywords)
                 results.append(label)
             except Exception as e:
                 logger.error(f"Labelling failed for topic {topic.id}: {e}")
@@ -156,9 +157,7 @@ class TopicLabeller:
                     keywords=[],
                     representative_utterances=[],
                 )
-                await topic_repo.update_label(
-                    subject_id, topic.id, placeholder.label, []
-                )
+                await topic_repo.update_label(subject_id, topic.id, placeholder.label, [])
                 results.append(placeholder)
 
         return LabellingResult(
@@ -168,17 +167,13 @@ class TopicLabeller:
             labels=results,
         )
 
-    async def _label_topic(
-        self, subject_id: UUID, topic: TopicOutput
-    ) -> TopicLabel:
+    async def _label_topic(self, subject_id: UUID, topic: TopicOutput) -> TopicLabel:
         """Label a single topic."""
         # 1. Extract keywords
         keywords = await self._extract_keywords(subject_id, topic.id)
 
         # 2. Select representative utterances
-        utterances = await self._select_representative_utterances(
-            subject_id, topic.id
-        )
+        utterances = await self._select_representative_utterances(subject_id, topic.id)
 
         # 3. LLM label
         label = await self._llm_label(keywords, utterances)
@@ -191,9 +186,7 @@ class TopicLabeller:
             labelled_at=datetime.now(timezone.utc),
         )
 
-    async def _extract_keywords(
-        self, subject_id: UUID, topic_id: UUID
-    ) -> list[str]:
+    async def _extract_keywords(self, subject_id: UUID, topic_id: UUID) -> list[str]:
         """Extract keywords via c-TF-IDF + KeyBERT."""
         utterances = await utterance_repo.get_by_topic(subject_id, topic_id)
         texts = [u.text for u in utterances]
@@ -203,6 +196,7 @@ class TopicLabeller:
 
         # KeyBERT for side keywords
         from keybert import KeyBERT
+
         kw_model = KeyBERT()
         keywords = kw_model.extract_keywords(
             " ".join(texts),
@@ -228,18 +222,16 @@ class TopicLabeller:
 
         # Sort by distance (closest first)
         distances.sort(key=lambda x: x[0])
-        return [text for _, text in distances[:self.config.top_n_utterances]]
+        return [text for _, text in distances[: self.config.top_n_utterances]]
 
-    async def _llm_label(
-        self, keywords: list[str], utterances: list[str]
-    ) -> str:
+    async def _llm_label(self, keywords: list[str], utterances: list[str]) -> str:
         """Use LLM to generate a topic label."""
         prompt = f"""Based on these keywords and utterances, generate a concise topic label (max {self.config.max_label_length} characters).
 
-Keywords: {', '.join(keywords)}
+Keywords: {", ".join(keywords)}
 
 Representative utterances:
-{chr(10).join(f'- {u}' for u in utterances)}
+{chr(10).join(f"- {u}" for u in utterances)}
 
 Topic label:"""
 
@@ -267,7 +259,8 @@ async def update_topic_label(
     to prevent re-clustering from overwriting.
     """
     await topic_repo.update_label(
-        subject_id, topic_id,
+        subject_id,
+        topic_id,
         label_update.label,
         label_update.keywords,
         is_user_edited=True,

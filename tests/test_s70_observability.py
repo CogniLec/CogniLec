@@ -35,9 +35,24 @@ def test_t70_5_cost_per_session_matches_agent_runs_sums() -> None:
     session_a = uuid.uuid4()
     session_b = uuid.uuid4()
     runs = [
-        {"session_id": session_a, "model": "gpt-4o-mini", "input_tokens": 1000, "output_tokens": 500},
-        {"session_id": session_a, "model": "gpt-4o-mini", "input_tokens": 2000, "output_tokens": 100},
-        {"session_id": session_b, "model": "microsoft/Phi-3-mini-3.8B-4bit", "input_tokens": 5000, "output_tokens": 5000},
+        {
+            "session_id": session_a,
+            "model": "gpt-4o-mini",
+            "input_tokens": 1000,
+            "output_tokens": 500,
+        },
+        {
+            "session_id": session_a,
+            "model": "gpt-4o-mini",
+            "input_tokens": 2000,
+            "output_tokens": 100,
+        },
+        {
+            "session_id": session_b,
+            "model": "microsoft/Phi-3-mini-3.8B-4bit",
+            "input_tokens": 5000,
+            "output_tokens": 5000,
+        },
     ]
     totals = cost_per_session(runs)
 

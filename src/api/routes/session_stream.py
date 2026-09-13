@@ -50,7 +50,7 @@ async def _event_generator(
             yield {"event": payload["event"], "data": json.dumps(payload["data"])}
     finally:
         await pubsub.unsubscribe()
-        await pubsub.aclose()  # type: ignore[no-untyped-call]
+        await pubsub.aclose()
 
 
 @router.get("/{session_id}/stream")

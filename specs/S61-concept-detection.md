@@ -39,18 +39,20 @@ note_section → concept_detection → concept_list
 # src/services/visual_enrichment/models.py
 from enum import Enum
 
+
 class ConceptType(str, Enum):
-    FLOWCHART = "flowchart"           # Mermaid
-    TREE_HIERARCHY = "tree"           # Mermaid
-    STATE_MACHINE = "state_machine"   # Mermaid
-    SEQUENCE_DIAGRAM = "sequence"     # Mermaid
-    GRAPH_NETWORK = "graph"           # Graphviz/D2
-    MATH_FORMULA = "formula"          # KaTeX
-    TABLE = "table"                   # Markdown table
-    TIMELINE = "timeline"             # Mermaid
-    CLASS_DIAGRAM = "class_diagram"   # Mermaid
-    GENUINELY_PICTORIAL = "pictorial" # S62/S63 (anatomy, geography, apparatus)
-    UNKNOWN = "unknown"               # Skip visual
+    FLOWCHART = "flowchart"  # Mermaid
+    TREE_HIERARCHY = "tree"  # Mermaid
+    STATE_MACHINE = "state_machine"  # Mermaid
+    SEQUENCE_DIAGRAM = "sequence"  # Mermaid
+    GRAPH_NETWORK = "graph"  # Graphviz/D2
+    MATH_FORMULA = "formula"  # KaTeX
+    TABLE = "table"  # Markdown table
+    TIMELINE = "timeline"  # Mermaid
+    CLASS_DIAGRAM = "class_diagram"  # Mermaid
+    GENUINELY_PICTORIAL = "pictorial"  # S62/S63 (anatomy, geography, apparatus)
+    UNKNOWN = "unknown"  # Skip visual
+
 
 class DiagramFormat(str, Enum):
     MERMAID = "mermaid"
@@ -60,11 +62,12 @@ class DiagramFormat(str, Enum):
     MARKDOWN_TABLE = "markdown_table"
     EXCALIDRAW = "excalidraw"
 
+
 class VisualRoute(str, Enum):
-    TEXT_DIAGRAM = "text_diagram"     # Resolved by Mermaid/KaTeX/etc.
-    LICENSED_IMAGE = "licensed_image" # Route to S62
-    AI_GENERATED = "ai_generated"     # Route to S63
-    SKIPPED = "skipped"               # No visual needed
+    TEXT_DIAGRAM = "text_diagram"  # Resolved by Mermaid/KaTeX/etc.
+    LICENSED_IMAGE = "licensed_image"  # Route to S62
+    AI_GENERATED = "ai_generated"  # Route to S63
+    SKIPPED = "skipped"  # No visual needed
 ```
 
 **Pydantic Schemas:**
@@ -72,6 +75,7 @@ class VisualRoute(str, Enum):
 # src/services/visual_enrichment/models.py
 from pydantic import BaseModel, Field
 from uuid import UUID
+
 
 class DetectedConcept(BaseModel):
     id: UUID
@@ -83,6 +87,7 @@ class DetectedConcept(BaseModel):
     route: VisualRoute
     diagram_format: DiagramFormat | None = None
 
+
 class TextDiagram(BaseModel):
     id: UUID
     concept_id: UUID
@@ -91,6 +96,7 @@ class TextDiagram(BaseModel):
     is_valid: bool = False
     validation_errors: list[str] = Field(default_factory=list)
     render_path: str | None = None  # path to rendered SVG/PNG
+
 
 class ConceptDetectionResult(BaseModel):
     note_section_id: UUID
@@ -101,6 +107,7 @@ class ConceptDetectionResult(BaseModel):
     text_resolved_count: int
     image_routed_count: int
     text_resolution_ratio: float  # text_resolved / total (validates D-25)
+
 
 class DiagramValidationResult(BaseModel):
     format: DiagramFormat
@@ -208,15 +215,11 @@ class VisualEnrichmentService:
         """Detect visual concepts in a note section and resolve where possible."""
         ...
 
-    async def generate_text_diagram(
-        self, concept: DetectedConcept
-    ) -> TextDiagram:
+    async def generate_text_diagram(self, concept: DetectedConcept) -> TextDiagram:
         """Generate a text diagram for a detected concept."""
         ...
 
-    async def validate_diagram(
-        self, diagram: TextDiagram
-    ) -> DiagramValidationResult:
+    async def validate_diagram(self, diagram: TextDiagram) -> DiagramValidationResult:
         """Validate diagram syntax."""
         ...
 ```
@@ -225,6 +228,7 @@ class VisualEnrichmentService:
 ```python
 # src/services/visual_enrichment/text_diagrams/base.py
 from abc import ABC, abstractmethod
+
 
 class DiagramGenerator(ABC):
     @abstractmethod

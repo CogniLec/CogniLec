@@ -113,6 +113,7 @@ class SubjectCreate(BaseModel):
     name: str = Field(..., min_length=1, max_length=255)
     description: str | None = Field(None, max_length=2000)
 
+
 class SubjectResponse(BaseModel):
     id: UUID
     name: str
@@ -121,14 +122,17 @@ class SubjectResponse(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+
 class SubjectList(BaseModel):
     items: list[SubjectResponse]
     total: int
+
 
 # src/api/schemas/session.py
 class SessionCreate(BaseModel):
     subject_id: UUID
     session_type: Literal["content", "syllabus", "mixed"] = "content"
+
 
 class SessionResponse(BaseModel):
     id: UUID

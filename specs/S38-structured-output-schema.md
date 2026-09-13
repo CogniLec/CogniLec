@@ -35,6 +35,7 @@ hosted_model → instructor_validate → pass OR retry_once → pass OR failover
 from pydantic import BaseModel, Field
 from enum import Enum
 
+
 class AgentID(str, Enum):
     A1 = "A1"  # Concept Tutor
     A2 = "A2"  # Problem Coach
@@ -42,6 +43,7 @@ class AgentID(str, Enum):
     A4 = "A4"  # Study Planner
     A5 = "A5"  # Exam Sim
     A6 = "A6"  # Progress Analyst
+
 
 class SchemaEntry(BaseModel):
     agent_id: AgentID
@@ -51,9 +53,11 @@ class SchemaEntry(BaseModel):
     grammar_path: str | None = None  # compiled grammar for local models
     last_updated: str
 
+
 class SchemaRegistry(BaseModel):
     schemas: dict[AgentID, SchemaEntry]
     version: str
+
 
 class ValidationFailure(BaseModel):
     agent_id: AgentID
@@ -69,6 +73,7 @@ class ValidationFailure(BaseModel):
 # src/services/llm/schemas/a1_concept_tutor.py
 from pydantic import BaseModel, Field
 
+
 class A1Output(BaseModel):
     explanation: str = Field(..., min_length=10, max_length=2000)
     key_concepts: list[str] = Field(..., min_length=1, max_length=10)
@@ -76,12 +81,16 @@ class A1Output(BaseModel):
     follow_up_question: str | None = Field(None, max_length=500)
     confidence: float = Field(..., ge=0.0, le=1.0)
 
+
 # src/services/llm/schemas/a3_socratic_guide.py
 class A3Output(BaseModel):
     response_type: str = Field(..., pattern="^(hint|question|feedback|corrective)$")
     content: str = Field(..., min_length=5, max_length=1500)
-    student_reasoning_assessment: str = Field(..., pattern="^(correct|partial|misconception|empty)$")
+    student_reasoning_assessment: str = Field(
+        ..., pattern="^(correct|partial|misconception|empty)$"
+    )
     next_prompt_strategy: str = Field(..., pattern="^(scaffold|probe|redirect|confirm)$")
+
 
 # src/services/llm/schemas/a5_exam_sim.py
 class A5Output(BaseModel):

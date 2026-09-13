@@ -43,6 +43,7 @@ NFR-P7: >= 20 concurrent live sessions sustained on one node
 # tests/performance/test_nfr_targets.py
 class NFRPerformanceSuite:
     """Locust-based performance test suite for NFR-P targets."""
+
     targets = {
         "NFR_P1": {"metric": "asr_real_time_factor", "threshold": 1.0, "percentile": "mean"},
         "NFR_P2": {"metric": "topic_window_latency_s", "threshold": 60, "percentile": "p100"},
@@ -145,8 +146,10 @@ hnsw_param_search:
 # tests/performance/locustfile.py
 from locust import HttpUser, task, between
 
+
 class LISStudentUser(HttpUser):
     """Simulates a student using the LIS system."""
+
     wait_time = between(1, 5)
 
     @task(10)
