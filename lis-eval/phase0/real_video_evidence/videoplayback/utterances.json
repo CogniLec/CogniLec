@@ -1,0 +1,2178 @@
+[
+  {
+    "chunk_idx": 0,
+    "seq": 0,
+    "start_ms": 700,
+    "end_ms": 5240,
+    "confidence": 0.10919210396646134,
+    "text": "We're here to write a letter of words from the French girl."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 1,
+    "start_ms": 6200,
+    "end_ms": 14200,
+    "confidence": 0.10919210396646134,
+    "text": "We also wrote it on the letter of the letter of this letter."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 2,
+    "start_ms": 14200,
+    "end_ms": 16340,
+    "confidence": 0.10919210396646134,
+    "text": "We are talking about the letters of the letter of the letter."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 3,
+    "start_ms": 17140,
+    "end_ms": 20180,
+    "confidence": 0.10919210396646134,
+    "text": "We also talked about the letters of the letter around the letter of the letter."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 4,
+    "start_ms": 20180,
+    "end_ms": 21960,
+    "confidence": 0.10919210396646134,
+    "text": "We talked about the letter."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 5,
+    "start_ms": 0,
+    "end_ms": 10520,
+    "confidence": 0.3508862485704725,
+    "text": "matrix owns the mere dimensionality"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 6,
+    "start_ms": 10520,
+    "end_ms": 22020,
+    "confidence": 0.3375647072621673,
+    "text": "patterned rigor, like the s-maltzua yacobi matrix,"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 7,
+    "start_ms": 24740,
+    "end_ms": 26120,
+    "confidence": 0.3375647072621673,
+    "text": "what's my disk like no-mile?"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 8,
+    "start_ms": 28339,
+    "end_ms": 29980,
+    "confidence": 0.39002927390773984,
+    "text": "As a name be a madan, we have nothing to see."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 9,
+    "start_ms": 0,
+    "end_ms": 14060,
+    "confidence": 0.4293769094463332,
+    "text": "Bone F, the buried English one here, nR here, mR, then"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 10,
+    "start_ms": 14060,
+    "end_ms": 15580,
+    "confidence": 0.4293769094463332,
+    "text": "is the Akubi matrix."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 11,
+    "start_ms": 17120,
+    "end_ms": 22400,
+    "confidence": 0.4293769094463332,
+    "text": "We put sign a mediot F, also gave added under Stell X."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 12,
+    "start_ms": 24280,
+    "end_ms": 25800,
+    "confidence": 0.4293769094463332,
+    "text": "That was following the matrix."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 13,
+    "start_ms": 25800,
+    "end_ms": 29980,
+    "confidence": 0.4232041101223116,
+    "text": "That is the ions F."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 14,
+    "start_ms": 0,
+    "end_ms": 2420,
+    "confidence": 0.5411180186674401,
+    "text": "f, also give it an understand the x."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 15,
+    "start_ms": 2680,
+    "end_ms": 4180,
+    "confidence": 0.5411180186674401,
+    "text": "Yeah, so they're going to say vector."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 16,
+    "start_ms": 6500,
+    "end_ms": 9700,
+    "confidence": 0.5411180186674401,
+    "text": "They try f, also give it an understand the x,"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 17,
+    "start_ms": 9840,
+    "end_ms": 10500,
+    "confidence": 0.5411180186674401,
+    "text": "or find vector."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 18,
+    "start_ms": 11660,
+    "end_ms": 13620,
+    "confidence": 0.5411180186674401,
+    "text": "On the right, they're on the fourth piece."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 19,
+    "start_ms": 14400,
+    "end_ms": 18200,
+    "confidence": 0.5411180186674401,
+    "text": "They end f, also give it an understand the x."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 20,
+    "start_ms": 20660,
+    "end_ms": 22380,
+    "confidence": 0.5411180186674401,
+    "text": "That's the acubimatrix."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 21,
+    "start_ms": 22800,
+    "end_ms": 25620,
+    "confidence": 0.5411180186674401,
+    "text": "So come as 60 matrix on best, map, minor, minor, minor."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 22,
+    "start_ms": 25620,
+    "end_ms": 27760,
+    "confidence": 0.5595606651018115,
+    "text": "As of our state here."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 23,
+    "start_ms": 27860,
+    "end_ms": 29240,
+    "confidence": 0.5595606651018115,
+    "text": "As of here's f on x."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 24,
+    "start_ms": 660,
+    "end_ms": 8980,
+    "confidence": 0.382010850665513,
+    "text": "F from X here in the lived air M. On the sides we name the apply-tong,"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 25,
+    "start_ms": 9700,
+    "end_ms": 12300,
+    "confidence": 0.382010850665513,
+    "text": "knock the S in Varyoblin and Yirah Einsling component."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 26,
+    "start_ms": 12620,
+    "end_ms": 16860,
+    "confidence": 0.382010850665513,
+    "text": "So here's the vector there, M-ine-trager huts."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 27,
+    "start_ms": 18400,
+    "end_ms": 23560,
+    "confidence": 0.382010850665513,
+    "text": "Let's come and listen to our Australian also."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 28,
+    "start_ms": 26300,
+    "end_ms": 29980,
+    "confidence": 0.4049595917969924,
+    "text": "In all the S-ine-trager, the Eins F from X here in Varyoblin and Yirah Einsling component."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 29,
+    "start_ms": 0,
+    "end_ms": 5820,
+    "confidence": 0.6029464630228558,
+    "text": "If ions, phon x, it's written, the ions, f,"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 30,
+    "start_ms": 5840,
+    "end_ms": 7280,
+    "confidence": 0.6029464630228558,
+    "text": "slide, phon x."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 31,
+    "start_ms": 7780,
+    "end_ms": 12600,
+    "confidence": 0.6029464630228558,
+    "text": "On the y-tab is the ions, f, m, phon x."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 32,
+    "start_ms": 13080,
+    "end_ms": 14140,
+    "confidence": 0.6029464630228558,
+    "text": "Here, straight down."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 33,
+    "start_ms": 15400,
+    "end_ms": 18180,
+    "confidence": 0.6029464630228558,
+    "text": "The x, y, f, ions, phon x."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 34,
+    "start_ms": 18520,
+    "end_ms": 24640,
+    "confidence": 0.6029464630228558,
+    "text": "On the y-tab, on the y-tab, is the y, f, n, phon x."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 35,
+    "start_ms": 25520,
+    "end_ms": 27640,
+    "confidence": 0.5153662302682744,
+    "text": "And thus, get my y-tab is..."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 36,
+    "start_ms": 0,
+    "end_ms": 12640,
+    "confidence": 0.48359834655144196,
+    "text": "the n f ein's phonics, this the n f n phonics."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 37,
+    "start_ms": 16079,
+    "end_ms": 29720,
+    "confidence": 0.43650051738240037,
+    "text": "The size of an answer from the n f ein's phonics, n f ein's phonics, n f ein's phonics."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 38,
+    "start_ms": 29720,
+    "end_ms": 29800,
+    "confidence": 0.5835694403926464,
+    "text": "The n f ein's phonics, n f ein's phonics."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 39,
+    "start_ms": 29800,
+    "end_ms": 29980,
+    "confidence": 0.6049906610756928,
+    "text": "The n f ein's phonics."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 40,
+    "start_ms": 639,
+    "end_ms": 9140,
+    "confidence": 0.44938833249652554,
+    "text": "Yeah, we feel, we feel a side-heart test, side-end, side-end, end spout."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 41,
+    "start_ms": 12620,
+    "end_ms": 16260,
+    "confidence": 0.44938833249652554,
+    "text": "Yeah, as a foreign, compounds are n for them, m."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 42,
+    "start_ms": 16420,
+    "end_ms": 20700,
+    "confidence": 0.44938833249652554,
+    "text": "And by the matrix count, so s is m on thunder's n."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 43,
+    "start_ms": 21540,
+    "end_ms": 23760,
+    "confidence": 0.44938833249652554,
+    "text": "As a woman, a Jacobi matrix, all selection it,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 44,
+    "start_ms": 23800,
+    "end_ms": 26060,
+    "confidence": 0.44938833249652554,
+    "text": "with the demons you only were proof done,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 45,
+    "start_ms": 26060,
+    "end_ms": 28540,
+    "confidence": 0.46110828565205836,
+    "text": "up mentioned in s, the n, vice, end of us,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 46,
+    "start_ms": 28560,
+    "end_ms": 29280,
+    "confidence": 0.46110828565205836,
+    "text": "the core mashes are all scanned."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 47,
+    "start_ms": 2200,
+    "end_ms": 3140,
+    "confidence": 0.5818110455709222,
+    "text": "You know,"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 48,
+    "start_ms": 3700,
+    "end_ms": 5460,
+    "confidence": 0.5818110455709222,
+    "text": "I'm going to talk to you about the"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 49,
+    "start_ms": 6240,
+    "end_ms": 8560,
+    "confidence": 0.5818110455709222,
+    "text": "art and vice-acity of COVID-19."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 50,
+    "start_ms": 9360,
+    "end_ms": 10160,
+    "confidence": 0.5818110455709222,
+    "text": "It's a good thing."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 51,
+    "start_ms": 12620,
+    "end_ms": 14480,
+    "confidence": 0.5818110455709222,
+    "text": "What do you think is that"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 52,
+    "start_ms": 16500,
+    "end_ms": 18240,
+    "confidence": 0.5818110455709222,
+    "text": "the police are going to be"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 53,
+    "start_ms": 18240,
+    "end_ms": 20060,
+    "confidence": 0.5818110455709222,
+    "text": "following this when we are on"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 54,
+    "start_ms": 20060,
+    "end_ms": 22360,
+    "confidence": 0.5818110455709222,
+    "text": "an air-end-mid there are"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 55,
+    "start_ms": 22480,
+    "end_ms": 26700,
+    "confidence": 0.3894674178207625,
+    "text": "going to be in passes, also starting as a matter of standard passes."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 56,
+    "start_ms": 27520,
+    "end_ms": 29980,
+    "confidence": 0.3894674178207625,
+    "text": "Then it's these are matrix, these dash delums."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 57,
+    "start_ms": 0,
+    "end_ms": 4400,
+    "confidence": 0.45207004348950713,
+    "text": "Smartrix, one of those total differentials."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 58,
+    "start_ms": 4640,
+    "end_ms": 6400,
+    "confidence": 0.45207004348950713,
+    "text": "As we've grown there, meow the vinegar,"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 59,
+    "start_ms": 6700,
+    "end_ms": 9900,
+    "confidence": 0.45207004348950713,
+    "text": "this does one of those total differentials."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 60,
+    "start_ms": 10700,
+    "end_ms": 10880,
+    "confidence": 0.45207004348950713,
+    "text": "Good."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 61,
+    "start_ms": 12660,
+    "end_ms": 17500,
+    "confidence": 0.45207004348950713,
+    "text": "That's one where the flexible concrete and your kubimatics"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 62,
+    "start_ms": 17500,
+    "end_ms": 18560,
+    "confidence": 0.45207004348950713,
+    "text": "are also rational."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 63,
+    "start_ms": 19580,
+    "end_ms": 22220,
+    "confidence": 0.45207004348950713,
+    "text": "Abba, flat off direct into some hummus,"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 64,
+    "start_ms": 23659,
+    "end_ms": 25280,
+    "confidence": 0.45207004348950713,
+    "text": "with the cat and reader."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 65,
+    "start_ms": 28720,
+    "end_ms": 29980,
+    "confidence": 0.3621013274256942,
+    "text": "As we shrive in my..."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 66,
+    "start_ms": 819,
+    "end_ms": 20700,
+    "confidence": 0.48530550236291026,
+    "text": "try from T1 here. It really adds to my f concrete. I'll do psi f on x epsilon on set. So it"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 67,
+    "start_ms": 20700,
+    "end_ms": 26620,
+    "confidence": 0.39317650052953734,
+    "text": "plus x mile set plus c nose. Oops, I'll go on."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 68,
+    "start_ms": 0,
+    "end_ms": 12000,
+    "confidence": 0.5773817405241188,
+    "text": "on k from x epsilon psi x quadrata plus epsilon x"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 69,
+    "start_ms": 12000,
+    "end_ms": 19040,
+    "confidence": 0.3094352468614624,
+    "text": "to x epsilon x epsilon x epsilon."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 70,
+    "start_ms": 19080,
+    "end_ms": 23200,
+    "confidence": 0.3094352468614624,
+    "text": "One d3 is the hnanda Oschiron,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 71,
+    "start_ms": 24080,
+    "end_ms": 27840,
+    "confidence": 0.3094352468614624,
+    "text": "as Oha is clige."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 72,
+    "start_ms": 0,
+    "end_ms": 6980,
+    "confidence": 0.4275899409977362,
+    "text": "S shown here, K also done F as a recised F ring a K."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 73,
+    "start_ms": 10200,
+    "end_ms": 14000,
+    "confidence": 0.4275899409977362,
+    "text": "On one, I hope it had a up-phonation drum in-bation drum."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 74,
+    "start_ms": 20800,
+    "end_ms": 23920,
+    "confidence": 0.4275899409977362,
+    "text": "You know, for an S-y in-air ions,"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 75,
+    "start_ms": 24040,
+    "end_ms": 27560,
+    "confidence": 0.4275899409977362,
+    "text": "as if we have a F-m8 K and a S-6 epsilon,"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 76,
+    "start_ms": 27560,
+    "end_ms": 29980,
+    "confidence": 0.4374193399166308,
+    "text": "tumbling when an air try up is..."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 77,
+    "start_ms": 0,
+    "end_ms": 1880,
+    "confidence": 0.42251483279132457,
+    "text": "I'm going to show you an F-Rine,"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 78,
+    "start_ms": 2120,
+    "end_ms": 5160,
+    "confidence": 0.42251483279132457,
+    "text": "on the F-Lifat Eina-Reel, it's also fun."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 79,
+    "start_ms": 5520,
+    "end_ms": 7420,
+    "confidence": 0.42251483279132457,
+    "text": "It's fine, it's fine, it's fine, it's fine."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 80,
+    "start_ms": 10440,
+    "end_ms": 13720,
+    "confidence": 0.42251483279132457,
+    "text": "Okay, next one, the Yakuby matrix,"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 81,
+    "start_ms": 14920,
+    "end_ms": 17360,
+    "confidence": 0.42251483279132457,
+    "text": "phone, these M-HAR oscillation,"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 82,
+    "start_ms": 19720,
+    "end_ms": 21440,
+    "confidence": 0.42251483279132457,
+    "text": "V-F-F-E-N-E-T-T-T-T-T-T-T-T,"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 83,
+    "start_ms": 7700,
+    "end_ms": 19300,
+    "confidence": 0.3420324267193551,
+    "text": "We see it, the ACOBY matrix, from half under stellar x epsilon os."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 84,
+    "start_ms": 24700,
+    "end_ms": 26100,
+    "confidence": 0.3381574528257607,
+    "text": "Yep."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 85,
+    "start_ms": 26100,
+    "end_ms": 29980,
+    "confidence": 0.4369721121792998,
+    "text": "So, if we don't miss it, we're going to see what's going to happen."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 86,
+    "start_ms": 5720,
+    "end_ms": 12320,
+    "confidence": 0.42426073006423176,
+    "text": "You know, also on the heart makes that build it from air to fly, knock air up on the"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 87,
+    "start_ms": 12320,
+    "end_ms": 17220,
+    "confidence": 0.42426073006423176,
+    "text": "size n is fly, m is iron, so it's rosecomb, most is iron squared, it's fly."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 88,
+    "start_ms": 17540,
+    "end_ms": 21180,
+    "confidence": 0.42426073006423176,
+    "text": "You know, just most rosecomb."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 89,
+    "start_ms": 21500,
+    "end_ms": 26860,
+    "confidence": 0.42426073006423176,
+    "text": "Um, I would really add the Yakuby matrix from the heart, met in Yakuby matrix and from"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 90,
+    "start_ms": 26860,
+    "end_ms": 29940,
+    "confidence": 0.32144941010104117,
+    "text": "F won't get us working, alright?"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 91,
+    "start_ms": 0,
+    "end_ms": 3120,
+    "confidence": 0.3343502991085035,
+    "text": "Now, we can see the skin now, we need to be seen on fire."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 92,
+    "start_ms": 3740,
+    "end_ms": 5600,
+    "confidence": 0.3343502991085035,
+    "text": "The name of my aunt, this is your kobie matrix,"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 93,
+    "start_ms": 5800,
+    "end_ms": 6200,
+    "confidence": 0.3343502991085035,
+    "text": "is an employee."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 94,
+    "start_ms": 6460,
+    "end_ms": 7040,
+    "confidence": 0.3343502991085035,
+    "text": "Apply it to him."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 95,
+    "start_ms": 7180,
+    "end_ms": 7520,
+    "confidence": 0.3343502991085035,
+    "text": "What's the return?"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 96,
+    "start_ms": 7860,
+    "end_ms": 8720,
+    "confidence": 0.3343502991085035,
+    "text": "We're finally here staying."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 97,
+    "start_ms": 23000,
+    "end_ms": 27140,
+    "confidence": 0.3343502991085035,
+    "text": "So when that's an employee applied to him"
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 98,
+    "start_ms": 27140,
+    "end_ms": 28600,
+    "confidence": 0.36315725832595347,
+    "text": "is as a hash tree."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 99,
+    "start_ms": 0,
+    "end_ms": 2620,
+    "confidence": 0.3504839767391117,
+    "text": "And here, it's a game of F,"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 100,
+    "start_ms": 2660,
+    "end_ms": 4560,
+    "confidence": 0.3504839767391117,
+    "text": "Kringle gave us a stunning elements in the island."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 101,
+    "start_ms": 8400,
+    "end_ms": 8480,
+    "confidence": 0.3504839767391117,
+    "text": "Yeah?"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 102,
+    "start_ms": 11820,
+    "end_ms": 18120,
+    "confidence": 0.3504839767391117,
+    "text": "If you want, let's know if it's in the island."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 103,
+    "start_ms": 19140,
+    "end_ms": 19580,
+    "confidence": 0.3504839767391117,
+    "text": "That's it."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 104,
+    "start_ms": 19760,
+    "end_ms": 22840,
+    "confidence": 0.3504839767391117,
+    "text": "We loaded the cat-ringle and image in the island."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 105,
+    "start_ms": 23440,
+    "end_ms": 23600,
+    "confidence": 0.3504839767391117,
+    "text": "Yeah?"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 106,
+    "start_ms": 24040,
+    "end_ms": 27020,
+    "confidence": 0.3504839767391117,
+    "text": "Other, straight, straight, close, give away."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 107,
+    "start_ms": 27020,
+    "end_ms": 29980,
+    "confidence": 0.4070681434660993,
+    "text": "A string also give it an key on them."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 108,
+    "start_ms": 0,
+    "end_ms": 860,
+    "confidence": 0.4476139370184785,
+    "text": "In argument?"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 109,
+    "start_ms": 860,
+    "end_ms": 2220,
+    "confidence": 0.4476139370184785,
+    "text": "You don't know."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 110,
+    "start_ms": 2260,
+    "end_ms": 3040,
+    "confidence": 0.4476139370184785,
+    "text": "That's the mark."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 111,
+    "start_ms": 3300,
+    "end_ms": 3880,
+    "confidence": 0.4476139370184785,
+    "text": "It may be straight."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 112,
+    "start_ms": 4080,
+    "end_ms": 4920,
+    "confidence": 0.4476139370184785,
+    "text": "Mark is straight."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 113,
+    "start_ms": 6360,
+    "end_ms": 8240,
+    "confidence": 0.4476139370184785,
+    "text": "So yes, particularly now, it's like a male-dimensional"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 114,
+    "start_ms": 8240,
+    "end_ms": 8580,
+    "confidence": 0.4476139370184785,
+    "text": "line."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 115,
+    "start_ms": 8740,
+    "end_ms": 9640,
+    "confidence": 0.4476139370184785,
+    "text": "When we're talking about the acobe matrix,"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 116,
+    "start_ms": 9720,
+    "end_ms": 11140,
+    "confidence": 0.4476139370184785,
+    "text": "it's not only the applied term."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 117,
+    "start_ms": 11500,
+    "end_ms": 14900,
+    "confidence": 0.4476139370184785,
+    "text": "As a name, we're the acobe matrix for an F."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 118,
+    "start_ms": 16379,
+    "end_ms": 17840,
+    "confidence": 0.4476139370184785,
+    "text": "We're not under stellar."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 119,
+    "start_ms": 18500,
+    "end_ms": 20480,
+    "confidence": 0.4476139370184785,
+    "text": "K for an X epsilon-OS."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 120,
+    "start_ms": 22140,
+    "end_ms": 23920,
+    "confidence": 0.4476139370184785,
+    "text": "One multiplied C or no."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 121,
+    "start_ms": 24100,
+    "end_ms": 25520,
+    "confidence": 0.4476139370184785,
+    "text": "Here, we're talking about the applied term for a gate."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 122,
+    "start_ms": 25600,
+    "end_ms": 26720,
+    "confidence": 0.4476139370184785,
+    "text": "This is a male-dimensional line."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 123,
+    "start_ms": 26900,
+    "end_ms": 28600,
+    "confidence": 0.4476139370184785,
+    "text": "The acobe matrix for a gate."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 124,
+    "start_ms": 28600,
+    "end_ms": 29980,
+    "confidence": 0.2736382650678972,
+    "text": "K, also give it a shot."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 125,
+    "start_ms": 0,
+    "end_ms": 1360,
+    "confidence": 0.47949950286471377,
+    "text": "better understand the x."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 126,
+    "start_ms": 4699,
+    "end_ms": 7140,
+    "confidence": 0.47949950286471377,
+    "text": "This is a problem twice, sir."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 127,
+    "start_ms": 7300,
+    "end_ms": 9560,
+    "confidence": 0.47949950286471377,
+    "text": "We have a problem here, kubimatrix one."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 128,
+    "start_ms": 9580,
+    "end_ms": 11640,
+    "confidence": 0.47949950286471377,
+    "text": "F, un diacubimatrix one, gay."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 129,
+    "start_ms": 23420,
+    "end_ms": 27320,
+    "confidence": 0.47949950286471377,
+    "text": "OK, as a s-meli, yacubimatrix one, F."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 130,
+    "start_ms": 28580,
+    "end_ms": 29980,
+    "confidence": 0.39605731311982395,
+    "text": "Yourth, F, also give it an un diacubimatrix one."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 131,
+    "start_ms": 0,
+    "end_ms": 8400,
+    "confidence": 0.4802653511380721,
+    "text": "eks epsilon set, yeah, f hat tri-agumentre."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 132,
+    "start_ms": 8620,
+    "end_ms": 18820,
+    "confidence": 0.4802653511380721,
+    "text": "So the Jacobi matrix of tri-agumentre, thus is, you know,"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 133,
+    "start_ms": 18820,
+    "end_ms": 29980,
+    "confidence": 0.4047575753816107,
+    "text": "d ions f, the English bar is here, so in vector, their so close is v"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 134,
+    "start_ms": 2080,
+    "end_ms": 6800,
+    "confidence": 0.44385139617654656,
+    "text": "with the D-demon's own hat, be the vertebrae."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 135,
+    "start_ms": 7020,
+    "end_ms": 9200,
+    "confidence": 0.44385139617654656,
+    "text": "I mean, on some file is f, real,"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 136,
+    "start_ms": 9480,
+    "end_ms": 11360,
+    "confidence": 0.44385139617654656,
+    "text": "we're attached to size and from one, I need"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 137,
+    "start_ms": 11360,
+    "end_ms": 12500,
+    "confidence": 0.44385139617654656,
+    "text": "a dimension on the size system."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 138,
+    "start_ms": 12660,
+    "end_ms": 15480,
+    "confidence": 0.44385139617654656,
+    "text": "Back to I need a dimension or I'm going to real it's all."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 139,
+    "start_ms": 16960,
+    "end_ms": 25860,
+    "confidence": 0.44385139617654656,
+    "text": "x epsilon set, d its y, f, x, epsilon, set,"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 140,
+    "start_ms": 26540,
+    "end_ms": 29980,
+    "confidence": 0.5315043676736563,
+    "text": "d, d, d, d, f, x, epsilon."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 141,
+    "start_ms": 0,
+    "end_ms": 1660,
+    "confidence": 0.47510578924481195,
+    "text": "So long, set."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 142,
+    "start_ms": 5900,
+    "end_ms": 6140,
+    "confidence": 0.47510578924481195,
+    "text": "OK."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 143,
+    "start_ms": 6820,
+    "end_ms": 9880,
+    "confidence": 0.47510578924481195,
+    "text": "Schmachmal di, then S and I track 4."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 144,
+    "start_ms": 11000,
+    "end_ms": 12720,
+    "confidence": 0.47510578924481195,
+    "text": "As the S, I track as only the F. I've"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 145,
+    "start_ms": 12720,
+    "end_ms": 14760,
+    "confidence": 0.47510578924481195,
+    "text": "have known after S and Vary-Aublin applied."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 146,
+    "start_ms": 14920,
+    "end_ms": 18060,
+    "confidence": 0.47510578924481195,
+    "text": "Now, so we're tuned, so as they are an epsilon on set,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 147,
+    "start_ms": 18160,
+    "end_ms": 21460,
+    "confidence": 0.47510578924481195,
+    "text": "I'm for constant, on a different zone,"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 148,
+    "start_ms": 21460,
+    "end_ms": 22680,
+    "confidence": 0.47510578924481195,
+    "text": "hanging off on X up."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 149,
+    "start_ms": 22920,
+    "end_ms": 25560,
+    "confidence": 0.47510578924481195,
+    "text": "As we're in the over-refined zone, Rx applied."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 150,
+    "start_ms": 26480,
+    "end_ms": 29640,
+    "confidence": 0.3906339498495516,
+    "text": "Then, how is X much set as much applied?"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 151,
+    "start_ms": 0,
+    "end_ms": 2500,
+    "confidence": 0.45418185852741566,
+    "text": "This is an example of a set."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 152,
+    "start_ms": 3040,
+    "end_ms": 4480,
+    "confidence": 0.45418185852741566,
+    "text": "It's an example of a closed scene of an epsilon"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 153,
+    "start_ms": 4480,
+    "end_ms": 6540,
+    "confidence": 0.45418185852741566,
+    "text": "that comes back in x4."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 154,
+    "start_ms": 6720,
+    "end_ms": 8440,
+    "confidence": 0.45418185852741566,
+    "text": "This is a mononic constant between x,"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 155,
+    "start_ms": 8580,
+    "end_ms": 9400,
+    "confidence": 0.45418185852741566,
+    "text": "the size of the entire epsilon."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 156,
+    "start_ms": 10320,
+    "end_ms": 11200,
+    "confidence": 0.45418185852741566,
+    "text": "So that's an HD."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 157,
+    "start_ms": 14260,
+    "end_ms": 16079,
+    "confidence": 0.45418185852741566,
+    "text": "From its own f, it's applied to state"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 158,
+    "start_ms": 16079,
+    "end_ms": 16920,
+    "confidence": 0.45418185852741566,
+    "text": "a mononone set here."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 159,
+    "start_ms": 19940,
+    "end_ms": 21220,
+    "confidence": 0.45418185852741566,
+    "text": "So on, let's do it here."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 160,
+    "start_ms": 21600,
+    "end_ms": 22920,
+    "confidence": 0.45418185852741566,
+    "text": "So it's my different zone."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 161,
+    "start_ms": 23640,
+    "end_ms": 24360,
+    "confidence": 0.45418185852741566,
+    "text": "Now, that's right."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 162,
+    "start_ms": 24360,
+    "end_ms": 26240,
+    "confidence": 0.4221149374078095,
+    "text": "I'm already able to apply it to an unonic there."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 163,
+    "start_ms": 26440,
+    "end_ms": 26680,
+    "confidence": 0.4221149374078095,
+    "text": "Triton."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 164,
+    "start_ms": 14040,
+    "end_ms": 19440,
+    "confidence": 0.37867954097353734,
+    "text": "Okay, now."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 165,
+    "start_ms": 21900,
+    "end_ms": 24020,
+    "confidence": 0.40918336167762814,
+    "text": "I'm not going to detight there as well."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 166,
+    "start_ms": 0,
+    "end_ms": 2680,
+    "confidence": 0.48209174874624344,
+    "text": "Yeah, of course, you know, as of the S's amount"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 167,
+    "start_ms": 2680,
+    "end_ms": 4900,
+    "confidence": 0.48209174874624344,
+    "text": "and how kind of epsilon, as of this does have a lower."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 168,
+    "start_ms": 5320,
+    "end_ms": 10980,
+    "confidence": 0.48209174874624344,
+    "text": "And that's why it is done causing those epsilon on the lead"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 169,
+    "start_ms": 10980,
+    "end_ms": 19560,
+    "confidence": 0.48209174874624344,
+    "text": "to the enthalp, you know."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 170,
+    "start_ms": 0,
+    "end_ms": 11800,
+    "confidence": 0.4202475432828843,
+    "text": "here, on x epsilon, we are light in k."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 171,
+    "start_ms": 11960,
+    "end_ms": 12700,
+    "confidence": 0.4202475432828843,
+    "text": "I am an after s."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 172,
+    "start_ms": 12860,
+    "end_ms": 16440,
+    "confidence": 0.4202475432828843,
+    "text": "Now, I am going to open up one of that slide."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 173,
+    "start_ms": 18300,
+    "end_ms": 19700,
+    "confidence": 0.4202475432828843,
+    "text": "This is my sense of work with vector 1."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 174,
+    "start_ms": 19860,
+    "end_ms": 22940,
+    "confidence": 0.4202475432828843,
+    "text": "As you must engage here, a component, a range spring."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 175,
+    "start_ms": 23560,
+    "end_ms": 29980,
+    "confidence": 0.37308443585046097,
+    "text": "One of the air stability of four, as an Obersn ion track springish."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 176,
+    "start_ms": 900,
+    "end_ms": 3060,
+    "confidence": 0.3409576838050936,
+    "text": "Line on light and move on after the air summary"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 177,
+    "start_ms": 3060,
+    "end_ms": 6140,
+    "confidence": 0.3409576838050936,
+    "text": "oblin up, as x was r r plus epsilon,"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 178,
+    "start_ms": 6760,
+    "end_ms": 8480,
+    "confidence": 0.3409576838050936,
+    "text": "nark x-appulated as I have a word,"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 179,
+    "start_ms": 8920,
+    "end_ms": 13200,
+    "confidence": 0.3409576838050936,
+    "text": "y-x icon, by epsilon concant x-swell."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 180,
+    "start_ms": 18100,
+    "end_ms": 21840,
+    "confidence": 0.3409576838050936,
+    "text": "Put down, I'm a bit d-acubi matrix here."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 181,
+    "start_ms": 21940,
+    "end_ms": 22600,
+    "confidence": 0.3409576838050936,
+    "text": "All's regression in."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 182,
+    "start_ms": 15100,
+    "end_ms": 16500,
+    "confidence": 0.37356012471303457,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 183,
+    "start_ms": 18000,
+    "end_ms": 18080,
+    "confidence": 0.37356012471303457,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 184,
+    "start_ms": 18080,
+    "end_ms": 19120,
+    "confidence": 0.22982984021179056,
+    "text": "Yes."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 185,
+    "start_ms": 0,
+    "end_ms": 10400,
+    "confidence": 0.18205456728740108,
+    "text": "then we can do that."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 186,
+    "start_ms": 11380,
+    "end_ms": 12920,
+    "confidence": 0.18205456728740108,
+    "text": "And then we can do that."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 187,
+    "start_ms": 16980,
+    "end_ms": 21720,
+    "confidence": 0.18205456728740108,
+    "text": "And we can have that."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 188,
+    "start_ms": 21720,
+    "end_ms": 25720,
+    "confidence": 0.3206317965741182,
+    "text": "It's obviously buying your kubimatreats."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 189,
+    "start_ms": 27460,
+    "end_ms": 29440,
+    "confidence": 0.3206317965741182,
+    "text": "It's going to be a little bit better."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 190,
+    "start_ms": 4019,
+    "end_ms": 4680,
+    "confidence": 0.22416789755788968,
+    "text": "emmm"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 191,
+    "start_ms": 4680,
+    "end_ms": 6500,
+    "confidence": 0.22416789755788968,
+    "text": "try my here lighter"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 192,
+    "start_ms": 9540,
+    "end_ms": 12140,
+    "confidence": 0.22416789755788968,
+    "text": "so that's the answer in name rational"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 193,
+    "start_ms": 18100,
+    "end_ms": 22020,
+    "confidence": 0.22416789755788968,
+    "text": "iso yot ajibh yipz ajibh yapz ajibh yapz"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 194,
+    "start_ms": 22020,
+    "end_ms": 28200,
+    "confidence": 0.22416789755788968,
+    "text": "yapz ajibh yapz yapz yapz"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 195,
+    "start_ms": 28200,
+    "end_ms": 28920,
+    "confidence": 0.46312394819628455,
+    "text": "Oops, alone."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 196,
+    "start_ms": 29420,
+    "end_ms": 29740,
+    "confidence": 0.46312394819628455,
+    "text": "No way."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 197,
+    "start_ms": 2599,
+    "end_ms": 29980,
+    "confidence": 0.37833083594874917,
+    "text": "A-hope, epsilon, net problem, mu naught, yaught, f, always"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 198,
+    "start_ms": 22700,
+    "end_ms": 24100,
+    "confidence": 0.294728259088236,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 199,
+    "start_ms": 2039,
+    "end_ms": 16219,
+    "confidence": 0.39046903639464003,
+    "text": "A hook, good salon, moment, you call it a bus, A hook, good salon, yep."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 200,
+    "start_ms": 0,
+    "end_ms": 800,
+    "confidence": 0.4668377211363032,
+    "text": "plastic."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 201,
+    "start_ms": 3040,
+    "end_ms": 6120,
+    "confidence": 0.4668377211363032,
+    "text": "So when the atmosphere was not made in a multi-plate"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 202,
+    "start_ms": 6120,
+    "end_ms": 9820,
+    "confidence": 0.4668377211363032,
+    "text": "seal, as we here state, and matrix product,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 203,
+    "start_ms": 10600,
+    "end_ms": 14780,
+    "confidence": 0.4668377211363032,
+    "text": "as I said, multi-plate sealer, these are spider-medicine."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 204,
+    "start_ms": 14800,
+    "end_ms": 17020,
+    "confidence": 0.4668377211363032,
+    "text": "Metis at silo here."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 205,
+    "start_ms": 17520,
+    "end_ms": 26860,
+    "confidence": 0.4668377211363032,
+    "text": "On the uncond ingos rows, this is my x, a of epsilon"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 206,
+    "start_ms": 26860,
+    "end_ms": 29300,
+    "confidence": 0.49307481035044964,
+    "text": "plus epsilon."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 207,
+    "start_ms": 0,
+    "end_ms": 19440,
+    "confidence": 0.4998517811322052,
+    "text": "cosinose x, epsilon, on that zy the ion track, is aho of epsilon plus x cosinose x epsilon,"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 208,
+    "start_ms": 19440,
+    "end_ms": 27260,
+    "confidence": 0.49860195587898365,
+    "text": "plus aho of epsilon, x cosinose."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 209,
+    "start_ms": 0,
+    "end_ms": 1700,
+    "confidence": 0.4108690150279169,
+    "text": "As a task here, it's there."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 210,
+    "start_ms": 2020,
+    "end_ms": 2980,
+    "confidence": 0.4108690150279169,
+    "text": "Here's the ion truck."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 211,
+    "start_ms": 3460,
+    "end_ms": 5800,
+    "confidence": 0.4108690150279169,
+    "text": "One task, considering here is the flight ion."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 212,
+    "start_ms": 13700,
+    "end_ms": 14740,
+    "confidence": 0.4108690150279169,
+    "text": "Last controls."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 213,
+    "start_ms": 17160,
+    "end_ms": 19200,
+    "confidence": 0.4108690150279169,
+    "text": "Vector, ions, croits, it's why."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 214,
+    "start_ms": 19780,
+    "end_ms": 22180,
+    "confidence": 0.4108690150279169,
+    "text": "I need silence, so I spot it."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 215,
+    "start_ms": 23520,
+    "end_ms": 24400,
+    "confidence": 0.4108690150279169,
+    "text": "This is going to wash your hard mode."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 216,
+    "start_ms": 0,
+    "end_ms": 1880,
+    "confidence": 0.3787532324517922,
+    "text": "And if you're deloated to the"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 217,
+    "start_ms": 2620,
+    "end_ms": 6820,
+    "confidence": 0.3787532324517922,
+    "text": "Does it should know again as well as I'm here? I'm fucking marked that is"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 218,
+    "start_ms": 6820,
+    "end_ms": 9220,
+    "confidence": 0.3787532324517922,
+    "text": "Yeah, as oh, you know my search and shred"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 219,
+    "start_ms": 10980,
+    "end_ms": 11860,
+    "confidence": 0.3787532324517922,
+    "text": "yacht f"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 220,
+    "start_ms": 12720,
+    "end_ms": 14640,
+    "confidence": 0.3787532324517922,
+    "text": "Also get an understand a kx epsilon"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 221,
+    "start_ms": 16880,
+    "end_ms": 20440,
+    "confidence": 0.3787532324517922,
+    "text": "It sets yet here. I'm for kx epsilon. I'm this is"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 222,
+    "start_ms": 22440,
+    "end_ms": 24440,
+    "confidence": 0.3787532324517922,
+    "text": "X squared r plus epsilon"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 223,
+    "start_ms": 25620,
+    "end_ms": 27960,
+    "confidence": 0.3787532324517922,
+    "text": "X mile epsilon on the a hook epsilon"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 224,
+    "start_ms": 859,
+    "end_ms": 2000,
+    "confidence": 0.4635273944960034,
+    "text": "That's my argument."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 225,
+    "start_ms": 4740,
+    "end_ms": 6160,
+    "confidence": 0.4635273944960034,
+    "text": "That's it here, it's umberin."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 226,
+    "start_ms": 6800,
+    "end_ms": 7780,
+    "confidence": 0.4635273944960034,
+    "text": "You're the f-ion."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 227,
+    "start_ms": 8580,
+    "end_ms": 12100,
+    "confidence": 0.4635273944960034,
+    "text": "The straight-the argument is e whoops along."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 228,
+    "start_ms": 13580,
+    "end_ms": 16340,
+    "confidence": 0.4635273944960034,
+    "text": "The straight-the argument, it's not epsilon."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 229,
+    "start_ms": 17140,
+    "end_ms": 19140,
+    "confidence": 0.4635273944960034,
+    "text": "On the straight-the x-code drop assumption."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 230,
+    "start_ms": 24080,
+    "end_ms": 25920,
+    "confidence": 0.4635273944960034,
+    "text": "Okay, you're too north."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 231,
+    "start_ms": 25920,
+    "end_ms": 27120,
+    "confidence": 0.621006322267837,
+    "text": "Strong? Yep."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 232,
+    "start_ms": 0,
+    "end_ms": 2100,
+    "confidence": 0.46484157991947994,
+    "text": "It says that it's the same thing for a site,"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 233,
+    "start_ms": 2420,
+    "end_ms": 4280,
+    "confidence": 0.46484157991947994,
+    "text": "as well how much others are able to buy"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 234,
+    "start_ms": 4280,
+    "end_ms": 6160,
+    "confidence": 0.46484157991947994,
+    "text": "into a piece of the commercial business"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 235,
+    "start_ms": 6160,
+    "end_ms": 6880,
+    "confidence": 0.46484157991947994,
+    "text": "and it's the same thing."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 236,
+    "start_ms": 6880,
+    "end_ms": 8100,
+    "confidence": 0.46484157991947994,
+    "text": "I was not invited to buy it."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 237,
+    "start_ms": 8320,
+    "end_ms": 11060,
+    "confidence": 0.46484157991947994,
+    "text": "Just a little bit."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 238,
+    "start_ms": 15960,
+    "end_ms": 17380,
+    "confidence": 0.46484157991947994,
+    "text": "As a war with him and he and I"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 239,
+    "start_ms": 17380,
+    "end_ms": 18560,
+    "confidence": 0.46484157991947994,
+    "text": "have come around all of you."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 240,
+    "start_ms": 18700,
+    "end_ms": 19020,
+    "confidence": 0.46484157991947994,
+    "text": "No."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 241,
+    "start_ms": 20560,
+    "end_ms": 20960,
+    "confidence": 0.46484157991947994,
+    "text": "It might be."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 242,
+    "start_ms": 21340,
+    "end_ms": 21480,
+    "confidence": 0.46484157991947994,
+    "text": "No."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 243,
+    "start_ms": 24240,
+    "end_ms": 26140,
+    "confidence": 0.46484157991947994,
+    "text": "You know."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 244,
+    "start_ms": 26700,
+    "end_ms": 26900,
+    "confidence": 0.46484157991947994,
+    "text": "You know."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 245,
+    "start_ms": 26940,
+    "end_ms": 27520,
+    "confidence": 0.46484157991947994,
+    "text": "You know."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 246,
+    "start_ms": 27940,
+    "end_ms": 29940,
+    "confidence": 0.5677812496887901,
+    "text": "You need to off the off the same thing."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 247,
+    "start_ms": 0,
+    "end_ms": 4220,
+    "confidence": 0.42141779477226043,
+    "text": "We're actually going to try to find the six five key"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 248,
+    "start_ms": 4220,
+    "end_ms": 7460,
+    "confidence": 0.42141779477226043,
+    "text": "quite as soon as the question is signed into our management."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 249,
+    "start_ms": 7880,
+    "end_ms": 11820,
+    "confidence": 0.42141779477226043,
+    "text": "As we managed to show, Schuybe is a fine file sign vector."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 250,
+    "start_ms": 13160,
+    "end_ms": 14600,
+    "confidence": 0.42141779477226043,
+    "text": "Only Schuybe and Como is on September 1,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 251,
+    "start_ms": 14660,
+    "end_ms": 16820,
+    "confidence": 0.42141779477226043,
+    "text": "mine here states set my cozino's epsilon matrix."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 252,
+    "start_ms": 17280,
+    "end_ms": 19100,
+    "confidence": 0.42141779477226043,
+    "text": "Many people can spy in vector, Schuybe,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 253,
+    "start_ms": 19360,
+    "end_ms": 22300,
+    "confidence": 0.42141779477226043,
+    "text": "and luckily in these are notat's own."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 254,
+    "start_ms": 23580,
+    "end_ms": 25460,
+    "confidence": 0.42141779477226043,
+    "text": "And it's kind of, that's a sign vector,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 255,
+    "start_ms": 25740,
+    "end_ms": 26960,
+    "confidence": 0.42141779477226043,
+    "text": "Schuybe, and then here in the transpuneer,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 256,
+    "start_ms": 26960,
+    "end_ms": 29340,
+    "confidence": 0.48333970801668485,
+    "text": "Schuybe and Martin, and then it's in Schuybe and vector."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 257,
+    "start_ms": 0,
+    "end_ms": 920,
+    "confidence": 0.1264881876089783,
+    "text": "the"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 258,
+    "start_ms": 920,
+    "end_ms": 5920,
+    "confidence": 0.3889499536102548,
+    "text": "So, if it's an A and Fotch chitrin, Foylesum, then with the Muslim-run awesome context,"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 259,
+    "start_ms": 6100,
+    "end_ms": 8480,
+    "confidence": 0.3889499536102548,
+    "text": "a kind of dozen sign vector order of Foytmectos."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 260,
+    "start_ms": 11020,
+    "end_ms": 11100,
+    "confidence": 0.3889499536102548,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 261,
+    "start_ms": 15020,
+    "end_ms": 18960,
+    "confidence": 0.44590531007469214,
+    "text": "That's what goes up here."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 262,
+    "start_ms": 20020,
+    "end_ms": 23020,
+    "confidence": 0.44590531007469214,
+    "text": "Ah, okay."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 263,
+    "start_ms": 26740,
+    "end_ms": 27060,
+    "confidence": 0.5018039725192522,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 264,
+    "start_ms": 27240,
+    "end_ms": 29380,
+    "confidence": 0.5018039725192522,
+    "text": "Tons of need, enter the client take groceries off."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 265,
+    "start_ms": 29540,
+    "end_ms": 29560,
+    "confidence": 0.5018039725192522,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 266,
+    "start_ms": 6879,
+    "end_ms": 20960,
+    "confidence": 0.3598203708005563,
+    "text": "Yeah, you have to be pretzier, mon, notier, it's like here it's Alice, it's up Alice pretzier."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 267,
+    "start_ms": 22360,
+    "end_ms": 26100,
+    "confidence": 0.3598203708005563,
+    "text": "Ah, okay."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 268,
+    "start_ms": 28240,
+    "end_ms": 29640,
+    "confidence": 0.3646666225569098,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 269,
+    "start_ms": 0,
+    "end_ms": 4000,
+    "confidence": 0.4048554193680417,
+    "text": "Tashtiya. Yeah, good no. Yeah, yeah, yeah."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 270,
+    "start_ms": 7720,
+    "end_ms": 9820,
+    "confidence": 0.4048554193680417,
+    "text": "Okay, son snuff."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 271,
+    "start_ms": 10340,
+    "end_ms": 10580,
+    "confidence": 0.4048554193680417,
+    "text": "Frog."
+  }
+]

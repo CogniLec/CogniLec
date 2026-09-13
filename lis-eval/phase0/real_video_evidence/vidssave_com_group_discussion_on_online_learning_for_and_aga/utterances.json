@@ -1,0 +1,6826 @@
+[
+  {
+    "chunk_idx": 0,
+    "seq": 0,
+    "start_ms": 1099,
+    "end_ms": 16460,
+    "confidence": 0.8138510166905442,
+    "text": "So I'm recording to this session and you can use this recorded session for your reference purpose in future. So now it's nine o'clock and I'm starting. So just brief introduction about today as to what we are doing it."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 1,
+    "start_ms": 16580,
+    "end_ms": 23000,
+    "confidence": 0.8138510166905442,
+    "text": "So I'm sharing my screen for timing only for few seconds so that I can explain you."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 2,
+    "start_ms": 26740,
+    "end_ms": 28140,
+    "confidence": 0.6624786818649184,
+    "text": "Yes."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 3,
+    "start_ms": 2680,
+    "end_ms": 11720,
+    "confidence": 0.7175690598968031,
+    "text": "There is one recording which is going on it will take some time, okay guys can you see"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 4,
+    "start_ms": 11720,
+    "end_ms": 21860,
+    "confidence": 0.7175690598968031,
+    "text": "my screen can you see my screen anyone hello yes sir okay so today's topic has has been"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 5,
+    "start_ms": 21860,
+    "end_ms": 26460,
+    "confidence": 0.7175690598968031,
+    "text": "informed to you yesterday it is good discussion we are going to have a discussion in this"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 6,
+    "start_ms": 26460,
+    "end_ms": 29600,
+    "confidence": 0.6653187554806118,
+    "text": "class where each and every one of you have to participate."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 7,
+    "start_ms": 0,
+    "end_ms": 13420,
+    "confidence": 0.7571424151204108,
+    "text": "And the topic is online learning for and against whether you are in favor of online learning or you are against online learning you have to take a stand normally on a very lighter note I say whenever you take a stand you cannot have a mixed hand."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 8,
+    "start_ms": 13540,
+    "end_ms": 21960,
+    "confidence": 0.7571424151204108,
+    "text": "You cannot say a cow also gives a milk or a bull also gives a milk you have to take a stand if you're saying cow gives a milk just stick with and if you're giving a bull gives a milk stick with."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 9,
+    "start_ms": 21960,
+    "end_ms": 29800,
+    "confidence": 0.8090242122762955,
+    "text": "So, we have to take a stand and these are some of the responses that I got from your earlier class you had the similar discussion for."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 10,
+    "start_ms": 0,
+    "end_ms": 6980,
+    "confidence": 0.7229823037760825,
+    "text": "somebody started machine with my screen so okay so this is the topic now there"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 11,
+    "start_ms": 6980,
+    "end_ms": 12840,
+    "confidence": 0.7229823037760825,
+    "text": "are certain rules or thumb rule that we need to follow now whenever you are"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 12,
+    "start_ms": 12840,
+    "end_ms": 17060,
+    "confidence": 0.7229823037760825,
+    "text": "keeping your point of view first you have to introduce yourself let's say"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 13,
+    "start_ms": 17060,
+    "end_ms": 21100,
+    "confidence": 0.7229823037760825,
+    "text": "somebody's name is Bhakti the book people start this way hello everyone my name"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 14,
+    "start_ms": 21100,
+    "end_ms": 26020,
+    "confidence": 0.7229823037760825,
+    "text": "is Bhakti and I'm for online learning if somebody's name is one shikka or for"
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 15,
+    "start_ms": 26960,
+    "end_ms": 29980,
+    "confidence": 0.4801102557873415,
+    "text": "Adarshan to person we say hello everyone my name is Darshan"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 16,
+    "start_ms": 0,
+    "end_ms": 6520,
+    "confidence": 0.80655097029502,
+    "text": "and I'm against online level. So first you have to tell your name because nobody knows your name."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 17,
+    "start_ms": 6720,
+    "end_ms": 12580,
+    "confidence": 0.80655097029502,
+    "text": "So introduce yourself and then keep your point and then keep your argument. So you have to start"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 18,
+    "start_ms": 12580,
+    "end_ms": 17380,
+    "confidence": 0.80655097029502,
+    "text": "with your name and then you have to be very specific when you're speaking you are far or against."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 19,
+    "start_ms": 18240,
+    "end_ms": 24280,
+    "confidence": 0.80655097029502,
+    "text": "Just at the outset you just begin by saying that hi this is Aaron and I'm far online learning."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 20,
+    "start_ms": 24280,
+    "end_ms": 29980,
+    "confidence": 0.6322452945132498,
+    "text": "Start with this one. Second, let's say if someone keeps his point."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 21,
+    "start_ms": 0,
+    "end_ms": 5060,
+    "confidence": 0.862055050469754,
+    "text": "you which you don't like and which you feel that he's wrong then won't be so abrupt in telling"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 22,
+    "start_ms": 5060,
+    "end_ms": 9440,
+    "confidence": 0.862055050469754,
+    "text": "that person sir the person is wrong no you should in a group discussion you should never say"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 23,
+    "start_ms": 9440,
+    "end_ms": 15620,
+    "confidence": 0.862055050469754,
+    "text": "that the other person is wrong in fact you can use some better words or better sentences like"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 24,
+    "start_ms": 15620,
+    "end_ms": 21780,
+    "confidence": 0.862055050469754,
+    "text": "I'm back to differ to my fellow friend I'm back to differ or I slightly have a different opinion"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 25,
+    "start_ms": 21780,
+    "end_ms": 27380,
+    "confidence": 0.862055050469754,
+    "text": "on the topic and I personally feel that the other speaker who just mentioned we missed out on some"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 26,
+    "start_ms": 27380,
+    "end_ms": 29300,
+    "confidence": 0.5429183004774821,
+    "text": "important facts which are very many important."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 27,
+    "start_ms": 0,
+    "end_ms": 2180,
+    "confidence": 0.8084405043518983,
+    "text": "So rather than proving somebody wrong,"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 28,
+    "start_ms": 2320,
+    "end_ms": 5000,
+    "confidence": 0.8084405043518983,
+    "text": "you can start it this way that I'm back to differ"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 29,
+    "start_ms": 5000,
+    "end_ms": 8580,
+    "confidence": 0.8084405043518983,
+    "text": "or I slightly have a different opinion on this."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 30,
+    "start_ms": 8760,
+    "end_ms": 11360,
+    "confidence": 0.8084405043518983,
+    "text": "Okay, I don't agree to some of the aspects"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 31,
+    "start_ms": 11360,
+    "end_ms": 13000,
+    "confidence": 0.8084405043518983,
+    "text": "which my friend said."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 32,
+    "start_ms": 13260,
+    "end_ms": 15980,
+    "confidence": 0.8084405043518983,
+    "text": "So as far as possible, try to be humble,"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 33,
+    "start_ms": 16700,
+    "end_ms": 18780,
+    "confidence": 0.8084405043518983,
+    "text": "don't be so aggressive in covering your friends"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 34,
+    "start_ms": 18780,
+    "end_ms": 20780,
+    "confidence": 0.8084405043518983,
+    "text": "because everybody has a point of view"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 35,
+    "start_ms": 20780,
+    "end_ms": 22320,
+    "confidence": 0.8084405043518983,
+    "text": "and in soft skills development,"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 36,
+    "start_ms": 22580,
+    "end_ms": 26200,
+    "confidence": 0.8084405043518983,
+    "text": "we also do attention and do predict"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 37,
+    "start_ms": 26200,
+    "end_ms": 28380,
+    "confidence": 0.8084405043518983,
+    "text": "to other persons view also."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 38,
+    "start_ms": 28380,
+    "end_ms": 29440,
+    "confidence": 0.5571904078103112,
+    "text": "Is that clear?"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 39,
+    "start_ms": 29880,
+    "end_ms": 29980,
+    "confidence": 0.5571904078103112,
+    "text": "See."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 40,
+    "start_ms": 0,
+    "end_ms": 4380,
+    "confidence": 0.8363103730930654,
+    "text": "Uh, normally it is very essential that whenever you are entering into a group discussion,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 41,
+    "start_ms": 4560,
+    "end_ms": 9280,
+    "confidence": 0.8363103730930654,
+    "text": "you need to have a 360 degree view. See, today's topic is good discussion online learning."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 42,
+    "start_ms": 10100,
+    "end_ms": 14920,
+    "confidence": 0.8363103730930654,
+    "text": "And whenever you go for a good discussion for your jobs or maybe for your MBA admission,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 43,
+    "start_ms": 15120,
+    "end_ms": 19240,
+    "confidence": 0.8363103730930654,
+    "text": "there are also good discussion happens. It is necessary that you prepare thoroughly,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 44,
+    "start_ms": 19800,
+    "end_ms": 23720,
+    "confidence": 0.8363103730930654,
+    "text": "you take a stand, you are reading should be very nice. In fact, all those people who are going"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 45,
+    "start_ms": 23720,
+    "end_ms": 28260,
+    "confidence": 0.8363103730930654,
+    "text": "to prepare for MBA working to write for CAD and while looking after their graduation,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 46,
+    "start_ms": 28260,
+    "end_ms": 29980,
+    "confidence": 0.4633632337891711,
+    "text": "they want to pursue post graduation in English."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 47,
+    "start_ms": 0,
+    "end_ms": 6820,
+    "confidence": 0.788385868615342,
+    "text": "they want to wear a lot. You should have a very high what you call as reading. You should read a lot"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 48,
+    "start_ms": 6820,
+    "end_ms": 10900,
+    "confidence": 0.788385868615342,
+    "text": "because if you are reading a lot then only you will have the richness of your perspective."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 49,
+    "start_ms": 11960,
+    "end_ms": 19020,
+    "confidence": 0.788385868615342,
+    "text": "Now this is the second lecture. It could be natural that many of you are unprepared and like it"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 50,
+    "start_ms": 19020,
+    "end_ms": 23500,
+    "confidence": 0.788385868615342,
+    "text": "be. I want you to be unprepared at least what today but you have used your point of understanding"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 51,
+    "start_ms": 23500,
+    "end_ms": 28820,
+    "confidence": 0.788385868615342,
+    "text": "your experiences all this matter. So in group discussion there is no wrong answer. Take it"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 52,
+    "start_ms": 28820,
+    "end_ms": 29860,
+    "confidence": 0.5316115128871322,
+    "text": "there is no wrong answer."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 53,
+    "start_ms": 0,
+    "end_ms": 1880,
+    "confidence": 0.7708083094463622,
+    "text": "But why did you give a strong logic?"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 54,
+    "start_ms": 2260,
+    "end_ms": 5100,
+    "confidence": 0.7708083094463622,
+    "text": "Let's say you are against online learning."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 55,
+    "start_ms": 5460,
+    "end_ms": 7780,
+    "confidence": 0.7708083094463622,
+    "text": "Nothing much, no problem, you being against."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 56,
+    "start_ms": 8180,
+    "end_ms": 9940,
+    "confidence": 0.7708083094463622,
+    "text": "But if you are against online learning,"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 57,
+    "start_ms": 10240,
+    "end_ms": 11640,
+    "confidence": 0.7708083094463622,
+    "text": "you are a strong logic."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 58,
+    "start_ms": 12000,
+    "end_ms": 14200,
+    "confidence": 0.7708083094463622,
+    "text": "Don't give a common sense logic where,"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 59,
+    "start_ms": 14800,
+    "end_ms": 15820,
+    "confidence": 0.7708083094463622,
+    "text": "immediately, a return could follow."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 60,
+    "start_ms": 16420,
+    "end_ms": 18880,
+    "confidence": 0.7708083094463622,
+    "text": "So if you had a similar discussion in the other class"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 61,
+    "start_ms": 18880,
+    "end_ms": 20420,
+    "confidence": 0.7708083094463622,
+    "text": "and it was a big interaction,"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 62,
+    "start_ms": 21360,
+    "end_ms": 22640,
+    "confidence": 0.7708083094463622,
+    "text": "a lot of people participated."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 63,
+    "start_ms": 22920,
+    "end_ms": 24900,
+    "confidence": 0.7708083094463622,
+    "text": "So I'm anticipating a similar participation"
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 64,
+    "start_ms": 24900,
+    "end_ms": 25860,
+    "confidence": 0.7708083094463622,
+    "text": "with this class."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 65,
+    "start_ms": 26140,
+    "end_ms": 28840,
+    "confidence": 0.7708083094463622,
+    "text": "So topic is online learning for and against."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 66,
+    "start_ms": 29160,
+    "end_ms": 29980,
+    "confidence": 0.47399918068742247,
+    "text": "First of all, you have to enter."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 67,
+    "start_ms": 0,
+    "end_ms": 4920,
+    "confidence": 0.7789600650664553,
+    "text": "you yourself and you have to mention whether you're for or against now over to you now"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 68,
+    "start_ms": 4920,
+    "end_ms": 13320,
+    "confidence": 0.7789600650664553,
+    "text": "let me enter into the class and okay so what I will do is that just give me a second so"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 69,
+    "start_ms": 13320,
+    "end_ms": 23560,
+    "confidence": 0.7789600650664553,
+    "text": "that I can connect to everyone so just give me a second I just have to zoom it up so that"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 70,
+    "start_ms": 23560,
+    "end_ms": 29520,
+    "confidence": 0.7789600650664553,
+    "text": "okay so now I'll stop sharing my screen so that I can okay good guys the time starts now"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 71,
+    "start_ms": 29520,
+    "end_ms": 29980,
+    "confidence": 0.4516450774548105,
+    "text": "let me see"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 72,
+    "start_ms": 0,
+    "end_ms": 4180,
+    "confidence": 0.7062005371247383,
+    "text": "who starts the discussion. Come on. One more thing, guys. One more thing. Whenever you are"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 73,
+    "start_ms": 4180,
+    "end_ms": 8500,
+    "confidence": 0.7062005371247383,
+    "text": "speaking, you will switch on your video so that others can look at you as well. Come"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 74,
+    "start_ms": 8500,
+    "end_ms": 10100,
+    "confidence": 0.7062005371247383,
+    "text": "on, start. Who will start the first thing?"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 75,
+    "start_ms": 10500,
+    "end_ms": 11020,
+    "confidence": 0.7062005371247383,
+    "text": "Let me tell you this."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 76,
+    "start_ms": 11140,
+    "end_ms": 11700,
+    "confidence": 0.7062005371247383,
+    "text": "Hello, sir."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 77,
+    "start_ms": 12560,
+    "end_ms": 15260,
+    "confidence": 0.7062005371247383,
+    "text": "Okay, let us go to Abhishek. Abhishek, over to you. Abhishek."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 78,
+    "start_ms": 16460,
+    "end_ms": 22440,
+    "confidence": 0.7062005371247383,
+    "text": "Good morning, sir. I'm Abhishek and I'm speaking for the online learning. So, I would"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 79,
+    "start_ms": 22440,
+    "end_ms": 27080,
+    "confidence": 0.7062005371247383,
+    "text": "like to give a context or set the context of online learning. Online learning isn't"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 80,
+    "start_ms": 27080,
+    "end_ms": 29600,
+    "confidence": 0.6432429699891747,
+    "text": "something new. It was there from a very long time."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 81,
+    "start_ms": 0,
+    "end_ms": 5680,
+    "confidence": 0.6817160073362649,
+    "text": "I didn't have to rely on it. And now, due to the pandemic, we are relying on it majorly."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 82,
+    "start_ms": 6800,
+    "end_ms": 11700,
+    "confidence": 0.6817160073362649,
+    "text": "The few advantages of the owner in which I think are, owner learning health is in social"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 83,
+    "start_ms": 11700,
+    "end_ms": 16280,
+    "confidence": 0.6817160073362649,
+    "text": "distancing. As social distancing, it was the main thing which we have to apply right"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 84,
+    "start_ms": 16880,
+    "end_ms": 23740,
+    "confidence": 0.6817160073362649,
+    "text": "now. Other thing is, like, owner learning, that provides a backup. From backup, I mean"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 85,
+    "start_ms": 23740,
+    "end_ms": 29980,
+    "confidence": 0.6163968955092447,
+    "text": "is, if a student doesn't understand a lecture, he can record the lecture."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 86,
+    "start_ms": 0,
+    "end_ms": 6120,
+    "confidence": 0.6955102368080005,
+    "text": "and you can watch it again or if it's a video then you can watch it again it doesn't"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 87,
+    "start_ms": 6120,
+    "end_ms": 12720,
+    "confidence": 0.6955102368080005,
+    "text": "have to record it. So it provides the backup. Okay so Abhishek is for online learning."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 88,
+    "start_ms": 12980,
+    "end_ms": 17140,
+    "confidence": 0.6955102368080005,
+    "text": "Abhishek just be very brief I give you 15 more seconds other people want to mount them."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 89,
+    "start_ms": 17420,
+    "end_ms": 24800,
+    "confidence": 0.6955102368080005,
+    "text": "Abhishek, what do you? Okay so with the help of artificial reality and videos and many"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 90,
+    "start_ms": 24920,
+    "end_ms": 29980,
+    "confidence": 0.5970115764731927,
+    "text": "we can see slides and all. We can make the online learning more."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 91,
+    "start_ms": 700,
+    "end_ms": 7500,
+    "confidence": 0.6436596732762038,
+    "text": "attractive and we can make sure that students understand the better and easier way so that they can grasp them easily."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 92,
+    "start_ms": 7760,
+    "end_ms": 12180,
+    "confidence": 0.6436596732762038,
+    "text": "So I think our learning is a better option than going to schools."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 93,
+    "start_ms": 13140,
+    "end_ms": 15460,
+    "confidence": 0.6436596732762038,
+    "text": "Okay. Anybody else want to come? Come on. Go ahead."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 94,
+    "start_ms": 15960,
+    "end_ms": 20300,
+    "confidence": 0.6436596732762038,
+    "text": "Yes sir. Yes sir. Okay. Okay. Okay. Who will go? Who will go first?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 95,
+    "start_ms": 20380,
+    "end_ms": 29160,
+    "confidence": 0.6436596732762038,
+    "text": "Yes sir. Okay. Okay. Let us go to Krita then we'll come to Simran then we'll come to Josh. We'll come to Josh. Come on."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 96,
+    "start_ms": 29160,
+    "end_ms": 29700,
+    "confidence": 0.645560780045639,
+    "text": "Krita away."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 97,
+    "start_ms": 0,
+    "end_ms": 6160,
+    "confidence": 0.7911267229131559,
+    "text": "Yeah, so so I think that according to him, he told that it would be like"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 98,
+    "start_ms": 7319,
+    "end_ms": 14020,
+    "confidence": 0.7911267229131559,
+    "text": "students can see means we can maintain social distancing right, but that interaction which"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 99,
+    "start_ms": 14020,
+    "end_ms": 20320,
+    "confidence": 0.7911267229131559,
+    "text": "a live section can have we can't have you as you can see our faces. So we can't interact that"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 100,
+    "start_ms": 21280,
+    "end_ms": 26440,
+    "confidence": 0.7911267229131559,
+    "text": "if we are in class, you can see our faces and from our faces, you can read it that did this"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 101,
+    "start_ms": 26440,
+    "end_ms": 29500,
+    "confidence": 0.5603383877201692,
+    "text": "first and didn't understand that thing, but it exists."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 102,
+    "start_ms": 0,
+    "end_ms": 6980,
+    "confidence": 0.6758793663003222,
+    "text": "I can see your face now, other voices on your face now, don't give us a comment since logic where you could be counter immediately."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 103,
+    "start_ms": 7340,
+    "end_ms": 11940,
+    "confidence": 0.6758793663003222,
+    "text": "We are seeing your face, we are reading you that you are so happy and you are so motivated early morning."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 104,
+    "start_ms": 12040,
+    "end_ms": 14520,
+    "confidence": 0.6758793663003222,
+    "text": "You are in front of your laptop with your earphones."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 105,
+    "start_ms": 14880,
+    "end_ms": 17720,
+    "confidence": 0.6758793663003222,
+    "text": "She don't give us a logic where immediately you get a repital."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 106,
+    "start_ms": 18100,
+    "end_ms": 20120,
+    "confidence": 0.6758793663003222,
+    "text": "Let us go to Simran is laughing, let us go to Simran."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 107,
+    "start_ms": 20160,
+    "end_ms": 21640,
+    "confidence": 0.6758793663003222,
+    "text": "Then we are coming to Oxford and Kapoor."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 108,
+    "start_ms": 21800,
+    "end_ms": 23140,
+    "confidence": 0.6758793663003222,
+    "text": "Come on, Simran, over to you."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 109,
+    "start_ms": 25520,
+    "end_ms": 28040,
+    "confidence": 0.6758793663003222,
+    "text": "You turn no problem, relax, tilt that chill, tilt that chill."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 110,
+    "start_ms": 28040,
+    "end_ms": 29720,
+    "confidence": 0.578382941558576,
+    "text": "Hit that, what happened?"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 111,
+    "start_ms": 0,
+    "end_ms": 9780,
+    "confidence": 0.632474033309155,
+    "text": "Hello, let's, I think, Dita, if they can hear us, Dita, hello, I think the Dita, there"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 112,
+    "start_ms": 9780,
+    "end_ms": 13440,
+    "confidence": 0.632474033309155,
+    "text": "is a problem with video, okay, sit and go ahead, come on, sit and go ahead, okay."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 113,
+    "start_ms": 14600,
+    "end_ms": 20420,
+    "confidence": 0.632474033309155,
+    "text": "According to what Dita said, I believe that you can read a face still and it is more convenient"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 114,
+    "start_ms": 20420,
+    "end_ms": 26880,
+    "confidence": 0.632474033309155,
+    "text": "to us that we are not able to come or they are far like, we are starting from abroad,"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 115,
+    "start_ms": 26880,
+    "end_ms": 29980,
+    "confidence": 0.5935125996497623,
+    "text": "it is very convenient right now, online learning is..."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 116,
+    "start_ms": 0,
+    "end_ms": 9380,
+    "confidence": 0.629975270430743,
+    "text": "really easy and something like you know it helps its people less so basically it also"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 117,
+    "start_ms": 9380,
+    "end_ms": 19280,
+    "confidence": 0.629975270430743,
+    "text": "helps us to share nature and so I want somebody else to enter the discussion come on"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 118,
+    "start_ms": 19280,
+    "end_ms": 19900,
+    "confidence": 0.629975270430743,
+    "text": "good."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 119,
+    "start_ms": 25040,
+    "end_ms": 29500,
+    "confidence": 0.3679759571344783,
+    "text": "Okay, let's take a look after we are coming to the next one."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 120,
+    "start_ms": 0,
+    "end_ms": 4180,
+    "confidence": 0.7211758321433346,
+    "text": "I'm for online learning because it is very convenient and flexible."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 121,
+    "start_ms": 4600,
+    "end_ms": 7240,
+    "confidence": 0.7211758321433346,
+    "text": "We can watch the videos and lectures repeatedly."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 122,
+    "start_ms": 7500,
+    "end_ms": 10300,
+    "confidence": 0.7211758321433346,
+    "text": "If we don't understand for the first time or second time,"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 123,
+    "start_ms": 10340,
+    "end_ms": 11440,
+    "confidence": 0.7211758321433346,
+    "text": "we can watch it repeatedly."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 124,
+    "start_ms": 12800,
+    "end_ms": 15320,
+    "confidence": 0.7211758321433346,
+    "text": "And it is paper free."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 125,
+    "start_ms": 15860,
+    "end_ms": 18500,
+    "confidence": 0.7211758321433346,
+    "text": "So it is more convenient for us."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 126,
+    "start_ms": 19000,
+    "end_ms": 20260,
+    "confidence": 0.7211758321433346,
+    "text": "OK, so it's a paper free."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 127,
+    "start_ms": 20440,
+    "end_ms": 22680,
+    "confidence": 0.7211758321433346,
+    "text": "More convenient or simple and data having a similar point."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 128,
+    "start_ms": 22780,
+    "end_ms": 25400,
+    "confidence": 0.7211758321433346,
+    "text": "Let us go to just just over to you."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 129,
+    "start_ms": 25400,
+    "end_ms": 29840,
+    "confidence": 0.5692894510569022,
+    "text": "Sir, I'm, I'm some got somewhat against it because."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 130,
+    "start_ms": 0,
+    "end_ms": 7620,
+    "confidence": 0.6794716032342724,
+    "text": "From my point of view, we need to get socialized means we need to get interactive."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 131,
+    "start_ms": 9059,
+    "end_ms": 15460,
+    "confidence": 0.6794716032342724,
+    "text": "Even like their in college events have happened, so we can get somewhat interactive."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 132,
+    "start_ms": 16660,
+    "end_ms": 24000,
+    "confidence": 0.6794716032342724,
+    "text": "And like my friend told, we can upload lecture and you can see, but from my point of view,"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 133,
+    "start_ms": 24000,
+    "end_ms": 29800,
+    "confidence": 0.6958154422875964,
+    "text": "some in online learning more will be about theory for practical."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 134,
+    "start_ms": 0,
+    "end_ms": 6540,
+    "confidence": 0.7022368404334134,
+    "text": "learning we have to uh uh not online learning is not from my part. So what just trying to say that"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 135,
+    "start_ms": 6540,
+    "end_ms": 9980,
+    "confidence": 0.7022368404334134,
+    "text": "there are practical issues and we want social interactions so all these things"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 136,
+    "start_ms": 9980,
+    "end_ms": 14280,
+    "confidence": 0.7022368404334134,
+    "text": "some will be missing in an online mode. Okay now let me go to Shuti and then after this we"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 137,
+    "start_ms": 14280,
+    "end_ms": 21000,
+    "confidence": 0.7022368404334134,
+    "text": "are coming to Ananya. Come on Shuti over to you Shuti. Hiya. Hello. Hello. So right uh Simran"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 138,
+    "start_ms": 21000,
+    "end_ms": 26960,
+    "confidence": 0.7022368404334134,
+    "text": "tour right about online learning is too flexible and uh but uh think about the people now who"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 139,
+    "start_ms": 26960,
+    "end_ms": 29980,
+    "confidence": 0.4591043958389611,
+    "text": "are in rural areas also. Like there is no input."
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 140,
+    "start_ms": 0,
+    "end_ms": 5580,
+    "confidence": 0.7699342570329614,
+    "text": "connection and like they are facing a lot of problem you know online learning is"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 141,
+    "start_ms": 5580,
+    "end_ms": 11440,
+    "confidence": 0.7699342570329614,
+    "text": "okay but it is difficult to connect everyone now it if you see on zoom it is"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 142,
+    "start_ms": 11440,
+    "end_ms": 16680,
+    "confidence": 0.7699342570329614,
+    "text": "not you know like it is not applicable over here only like there is a capacity"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 143,
+    "start_ms": 16680,
+    "end_ms": 23240,
+    "confidence": 0.7699342570329614,
+    "text": "of 100 people only 50 people so it in a class if you see like virtually if"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 144,
+    "start_ms": 23240,
+    "end_ms": 27800,
+    "confidence": 0.7699342570329614,
+    "text": "you in in the class if you see there are 200 and lot of people so what about"
+  },
+  {
+    "chunk_idx": 22,
+    "seq": 145,
+    "start_ms": 27800,
+    "end_ms": 29980,
+    "confidence": 0.6162961402971621,
+    "text": "them and leave about them like if"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 146,
+    "start_ms": 0,
+    "end_ms": 5180,
+    "confidence": 0.7129075282352567,
+    "text": "you see about the internet connection. So like if you are saying about the face-to-face"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 147,
+    "start_ms": 5180,
+    "end_ms": 9200,
+    "confidence": 0.7129075282352567,
+    "text": "con world, there should be an internet connection so that you can are telling the"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 148,
+    "start_ms": 9200,
+    "end_ms": 14340,
+    "confidence": 0.7129075282352567,
+    "text": "lecture that you use to write. So basically some of the people don't have internet"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 149,
+    "start_ms": 14340,
+    "end_ms": 20080,
+    "confidence": 0.7129075282352567,
+    "text": "connection and they are unable to join the classes online also. So there cannot be any"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 150,
+    "start_ms": 20080,
+    "end_ms": 25140,
+    "confidence": 0.7129075282352567,
+    "text": "guarantee about it but in the virtual lecture you can have a con world with the teachers"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 151,
+    "start_ms": 25140,
+    "end_ms": 29980,
+    "confidence": 0.4535204637301842,
+    "text": "and you can solve the approach immediately. Okay shoot them without you let us go to, let us go to let."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 152,
+    "start_ms": 0,
+    "end_ms": 2060,
+    "confidence": 0.663649707293455,
+    "text": "Let me vote. Let me vote over to you."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 153,
+    "start_ms": 2200,
+    "end_ms": 4000,
+    "confidence": 0.663649707293455,
+    "text": "Let me vote. Let me vote unmute yourself."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 154,
+    "start_ms": 9780,
+    "end_ms": 11160,
+    "confidence": 0.663649707293455,
+    "text": "Let me vote. We can't hear you."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 155,
+    "start_ms": 11280,
+    "end_ms": 13160,
+    "confidence": 0.663649707293455,
+    "text": "Let me vote. We can't hear you."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 156,
+    "start_ms": 16000,
+    "end_ms": 18860,
+    "confidence": 0.663649707293455,
+    "text": "I think there is a problem in your year for let me vote."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 157,
+    "start_ms": 18860,
+    "end_ms": 19740,
+    "confidence": 0.663649707293455,
+    "text": "Let me vote. We'll get that."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 158,
+    "start_ms": 19940,
+    "end_ms": 21120,
+    "confidence": 0.663649707293455,
+    "text": "We'll get back to you."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 159,
+    "start_ms": 21380,
+    "end_ms": 22640,
+    "confidence": 0.663649707293455,
+    "text": "Let us go to Parviamal."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 160,
+    "start_ms": 22920,
+    "end_ms": 23000,
+    "confidence": 0.663649707293455,
+    "text": "Parviamal."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 161,
+    "start_ms": 24300,
+    "end_ms": 25640,
+    "confidence": 0.663649707293455,
+    "text": "Good morning, sir."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 162,
+    "start_ms": 26640,
+    "end_ms": 27200,
+    "confidence": 0.5867945862505746,
+    "text": "Thank you, sir."
+  },
+  {
+    "chunk_idx": 24,
+    "seq": 163,
+    "start_ms": 27600,
+    "end_ms": 29540,
+    "confidence": 0.5867945862505746,
+    "text": "Parviamal, where I am for the motion."
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 164,
+    "start_ms": 1579,
+    "end_ms": 7800,
+    "confidence": 0.7791570601612622,
+    "text": "Sir, I want to say that the biggest benefit of the online learning is we are getting now"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 165,
+    "start_ms": 7800,
+    "end_ms": 15960,
+    "confidence": 0.7791570601612622,
+    "text": "in the COVID-19 pandemic and Sir, it is as effective as we are learning in the class and"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 166,
+    "start_ms": 15960,
+    "end_ms": 22580,
+    "confidence": 0.7791570601612622,
+    "text": "Sir, we are getting more comfort zone here also that we are sitting here and getting"
+  },
+  {
+    "chunk_idx": 25,
+    "seq": 167,
+    "start_ms": 22580,
+    "end_ms": 29980,
+    "confidence": 0.7251783733765255,
+    "text": "the online lectures and Sir, it is more over it is a cost effective also we do not have"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 168,
+    "start_ms": 0,
+    "end_ms": 1700,
+    "confidence": 0.666425148454868,
+    "text": "to work on the paper."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 169,
+    "start_ms": 3060,
+    "end_ms": 6740,
+    "confidence": 0.666425148454868,
+    "text": "So in this class, there are many people who are for online learning."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 170,
+    "start_ms": 6900,
+    "end_ms": 8700,
+    "confidence": 0.666425148454868,
+    "text": "In the other region, everybody was against people."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 171,
+    "start_ms": 8840,
+    "end_ms": 9680,
+    "confidence": 0.666425148454868,
+    "text": "I'm missing their college days."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 172,
+    "start_ms": 9820,
+    "end_ms": 10680,
+    "confidence": 0.666425148454868,
+    "text": "They want to come to college."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 173,
+    "start_ms": 10780,
+    "end_ms": 11720,
+    "confidence": 0.666425148454868,
+    "text": "They want to talk to professors."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 174,
+    "start_ms": 12080,
+    "end_ms": 12880,
+    "confidence": 0.666425148454868,
+    "text": "OK, thank you so much."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 175,
+    "start_ms": 12920,
+    "end_ms": 15380,
+    "confidence": 0.666425148454868,
+    "text": "I can see a lot of voices for online learning."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 176,
+    "start_ms": 15380,
+    "end_ms": 19340,
+    "confidence": 0.666425148454868,
+    "text": "And you strong rebuttal to all this far guys who are saying,"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 177,
+    "start_ms": 19540,
+    "end_ms": 21600,
+    "confidence": 0.666425148454868,
+    "text": "they are there for online learning."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 178,
+    "start_ms": 21760,
+    "end_ms": 22400,
+    "confidence": 0.666425148454868,
+    "text": "Just a rebuttal."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 179,
+    "start_ms": 22400,
+    "end_ms": 23880,
+    "confidence": 0.666425148454868,
+    "text": "I can't even agree, but come on, go ahead."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 180,
+    "start_ms": 23980,
+    "end_ms": 24880,
+    "confidence": 0.666425148454868,
+    "text": "Let us go to Kushi Madal."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 181,
+    "start_ms": 25700,
+    "end_ms": 27140,
+    "confidence": 0.666425148454868,
+    "text": "Let's go to Kushi Madal."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 182,
+    "start_ms": 27280,
+    "end_ms": 27600,
+    "confidence": 0.666425148454868,
+    "text": "Yeah, hello."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 183,
+    "start_ms": 28040,
+    "end_ms": 29080,
+    "confidence": 0.666425148454868,
+    "text": "I'm Kushi Madal."
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 184,
+    "start_ms": 0,
+    "end_ms": 10060,
+    "confidence": 0.706065740027561,
+    "text": "against online learning because some people are required traditional methods over the computer"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 185,
+    "start_ms": 10060,
+    "end_ms": 17080,
+    "confidence": 0.706065740027561,
+    "text": "learning. I agree with the people who are against it because we can't meet up then we don't"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 186,
+    "start_ms": 17080,
+    "end_ms": 23480,
+    "confidence": 0.706065740027561,
+    "text": "have any case studies, we don't have interactive lessons. Session some people just upload the"
+  },
+  {
+    "chunk_idx": 27,
+    "seq": 187,
+    "start_ms": 24400,
+    "end_ms": 29700,
+    "confidence": 0.5904470629895816,
+    "text": "video on their laptop and just people have to see that with that's not."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 188,
+    "start_ms": 0,
+    "end_ms": 3960,
+    "confidence": 0.6384028771239889,
+    "text": "funding the most to do in our class or anything."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 189,
+    "start_ms": 4840,
+    "end_ms": 6120,
+    "confidence": 0.6384028771239889,
+    "text": "Thank you. Thank you. Thank you."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 190,
+    "start_ms": 6120,
+    "end_ms": 7360,
+    "confidence": 0.6384028771239889,
+    "text": "Thank you for your point."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 191,
+    "start_ms": 9020,
+    "end_ms": 10600,
+    "confidence": 0.6384028771239889,
+    "text": "Let's see if we can finish."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 192,
+    "start_ms": 10760,
+    "end_ms": 12960,
+    "confidence": 0.6384028771239889,
+    "text": "We don't think the discussion will allow everyone to speak."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 193,
+    "start_ms": 13440,
+    "end_ms": 14740,
+    "confidence": 0.6384028771239889,
+    "text": "Just I give you 15 seconds."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 194,
+    "start_ms": 15400,
+    "end_ms": 19080,
+    "confidence": 0.6384028771239889,
+    "text": "Yeah, I give you one more point for against that."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 195,
+    "start_ms": 19080,
+    "end_ms": 23980,
+    "confidence": 0.6384028771239889,
+    "text": "There are some people also here who don't have access to computers."
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 196,
+    "start_ms": 24220,
+    "end_ms": 26860,
+    "confidence": 0.6384028771239889,
+    "text": "They don't know how to, you know,"
+  },
+  {
+    "chunk_idx": 28,
+    "seq": 197,
+    "start_ms": 26860,
+    "end_ms": 29980,
+    "confidence": 0.7536303812114835,
+    "text": "with the computer system and or how do you do this?"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 198,
+    "start_ms": 0,
+    "end_ms": 6700,
+    "confidence": 0.5824668870485189,
+    "text": "you know some people I guess unemployed also from an unemployed background so they don't have that"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 199,
+    "start_ms": 6700,
+    "end_ms": 11320,
+    "confidence": 0.5824668870485189,
+    "text": "exposure. Okay okay shooty I think I think shooty your media points sorry I'm cutting your shot"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 200,
+    "start_ms": 11320,
+    "end_ms": 17160,
+    "confidence": 0.5824668870485189,
+    "text": "please forgive me because I want I want karish karish karish let karish enter into the discussion"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 201,
+    "start_ms": 17160,
+    "end_ms": 21320,
+    "confidence": 0.5824668870485189,
+    "text": "karish show what to you will come to your shooty between enough time just think on your point"
+  },
+  {
+    "chunk_idx": 29,
+    "seq": 202,
+    "start_ms": 21320,
+    "end_ms": 29620,
+    "confidence": 0.6241319022465786,
+    "text": "come on yes come away so I am against online learning classes my point is that due to"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 203,
+    "start_ms": 0,
+    "end_ms": 7580,
+    "confidence": 0.637948371409863,
+    "text": "is a connectivity issue. And as my friend said, there are no, we can have our notes online,"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 204,
+    "start_ms": 7720,
+    "end_ms": 12660,
+    "confidence": 0.637948371409863,
+    "text": "no need of people, but with some connective issue or some problem, all the notes can be gone"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 205,
+    "start_ms": 12660,
+    "end_ms": 29720,
+    "confidence": 0.637948371409863,
+    "text": "in a second. That is what I'm saying. Okay. Okay. Now let us go to Prayna,"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 206,
+    "start_ms": 29720,
+    "end_ms": 29980,
+    "confidence": 0.3693160446759712,
+    "text": "we'll see you, Prayna."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 207,
+    "start_ms": 0,
+    "end_ms": 1240,
+    "confidence": 0.67000345253267,
+    "text": "And now we can't hear you."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 208,
+    "start_ms": 1260,
+    "end_ms": 3340,
+    "confidence": 0.67000345253267,
+    "text": "I think there's a problem with your mic."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 209,
+    "start_ms": 4740,
+    "end_ms": 5720,
+    "confidence": 0.67000345253267,
+    "text": "When are we get back to you?"
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 210,
+    "start_ms": 5880,
+    "end_ms": 6820,
+    "confidence": 0.67000345253267,
+    "text": "Let us set up our full spot."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 211,
+    "start_ms": 7020,
+    "end_ms": 8700,
+    "confidence": 0.67000345253267,
+    "text": "I'll shut that up over to you."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 212,
+    "start_ms": 8880,
+    "end_ms": 10420,
+    "confidence": 0.67000345253267,
+    "text": "So myself, I'll shut that up over."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 213,
+    "start_ms": 10480,
+    "end_ms": 12920,
+    "confidence": 0.67000345253267,
+    "text": "And I am for online learning."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 214,
+    "start_ms": 13880,
+    "end_ms": 15780,
+    "confidence": 0.67000345253267,
+    "text": "There is lots of diversity that is."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 215,
+    "start_ms": 15960,
+    "end_ms": 18620,
+    "confidence": 0.67000345253267,
+    "text": "We can watch many videos of many professionals."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 216,
+    "start_ms": 19900,
+    "end_ms": 24300,
+    "confidence": 0.67000345253267,
+    "text": "And there is no like, we have to stop only at one video."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 217,
+    "start_ms": 24560,
+    "end_ms": 25840,
+    "confidence": 0.67000345253267,
+    "text": "So don't understand anything."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 218,
+    "start_ms": 26040,
+    "end_ms": 27380,
+    "confidence": 0.67000345253267,
+    "text": "We can watch same topics."
+  },
+  {
+    "chunk_idx": 31,
+    "seq": 219,
+    "start_ms": 27380,
+    "end_ms": 29900,
+    "confidence": 0.49852660163859863,
+    "text": "But even by different people."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 220,
+    "start_ms": 0,
+    "end_ms": 5240,
+    "confidence": 0.654076362007223,
+    "text": "different professionals. So it is kind of helpful for us to understand more easily."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 221,
+    "start_ms": 6300,
+    "end_ms": 13060,
+    "confidence": 0.654076362007223,
+    "text": "Okay, thank you. Thank you. Now I want to get in province, get in, get in, get in."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 222,
+    "start_ms": 13060,
+    "end_ms": 17380,
+    "confidence": 0.654076362007223,
+    "text": "I can see you. Get in, go ahead. So like, I'm again, like my name is"
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 223,
+    "start_ms": 17380,
+    "end_ms": 22220,
+    "confidence": 0.654076362007223,
+    "text": "Tada Robbins. So like, I'm again online learning. So like, in online class,"
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 224,
+    "start_ms": 22320,
+    "end_ms": 26540,
+    "confidence": 0.654076362007223,
+    "text": "when it's live going on, the teacher doesn't have a control over the student."
+  },
+  {
+    "chunk_idx": 32,
+    "seq": 225,
+    "start_ms": 26540,
+    "end_ms": 29940,
+    "confidence": 0.7229372585219921,
+    "text": "Like, if you see a small children and all, the small children gets"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 226,
+    "start_ms": 0,
+    "end_ms": 5040,
+    "confidence": 0.6667864599399543,
+    "text": "and they go even in like if you see recent news and all the students are like"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 227,
+    "start_ms": 5040,
+    "end_ms": 8860,
+    "confidence": 0.6667864599399543,
+    "text": "I'm harassing the teachers and not like that's not a proper control over the"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 228,
+    "start_ms": 8860,
+    "end_ms": 13240,
+    "confidence": 0.6667864599399543,
+    "text": "students so yeah that's my point okay so Karen has a view Karen is against"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 229,
+    "start_ms": 13240,
+    "end_ms": 18380,
+    "confidence": 0.6667864599399543,
+    "text": "online learning now let me go to Pratab let me go to Pratab let me go to Pratab"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 230,
+    "start_ms": 18380,
+    "end_ms": 29980,
+    "confidence": 0.6667864599399543,
+    "text": "let me go to Pratab let me go to Pratab let me go to Pratab"
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 231,
+    "start_ms": 0,
+    "end_ms": 6700,
+    "confidence": 0.6455703418560699,
+    "text": "some of my friends said online you know and learning many people cannot use this but I can"
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 232,
+    "start_ms": 6700,
+    "end_ms": 13100,
+    "confidence": 0.6455703418560699,
+    "text": "as I can see we are using zoom application it is very easy to use we are we just have to"
+  },
+  {
+    "chunk_idx": 34,
+    "seq": 233,
+    "start_ms": 13100,
+    "end_ms": 29980,
+    "confidence": 0.6455703418560699,
+    "text": "click the link and we join the online lecture so I think you can put that on a"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 234,
+    "start_ms": 0,
+    "end_ms": 1420,
+    "confidence": 0.6229335531920847,
+    "text": "Then we are opening up the discussion."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 235,
+    "start_ms": 1780,
+    "end_ms": 2840,
+    "confidence": 0.6229335531920847,
+    "text": "Jim, what do you want to do?"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 236,
+    "start_ms": 3480,
+    "end_ms": 6820,
+    "confidence": 0.6229335531920847,
+    "text": "Yes, my name is Jim Patel, and I am against e-learning"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 237,
+    "start_ms": 6820,
+    "end_ms": 12880,
+    "confidence": 0.6229335531920847,
+    "text": "because certain courses like engineering, also"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 238,
+    "start_ms": 12880,
+    "end_ms": 16640,
+    "confidence": 0.6229335531920847,
+    "text": "doctor, it requires practical knowledge also."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 239,
+    "start_ms": 17800,
+    "end_ms": 21980,
+    "confidence": 0.6229335531920847,
+    "text": "E-learning does not give access to practical knowledge."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 240,
+    "start_ms": 22760,
+    "end_ms": 29120,
+    "confidence": 0.6229335531920847,
+    "text": "So this is impossible to attend all practical workshops"
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 241,
+    "start_ms": 0,
+    "end_ms": 7540,
+    "confidence": 0.5446134973096218,
+    "text": "Okay, okay. Okay. Now let me go to upgrade. Okay, not upgrade it online. Okay. So similar is raising the hand, but we get back to see."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 242,
+    "start_ms": 7700,
+    "end_ms": 15240,
+    "confidence": 0.5446134973096218,
+    "text": "But after some time, I want Ananya so much agent to go ahead and then we are coming to Asia and then we are going after any issue will respond and then yeah."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 243,
+    "start_ms": 15360,
+    "end_ms": 22180,
+    "confidence": 0.5446134973096218,
+    "text": "And then we are so much and others just mute yourself to turn your videos so that I can see you. And then we are over to you."
+  },
+  {
+    "chunk_idx": 36,
+    "seq": 244,
+    "start_ms": 22180,
+    "end_ms": 29180,
+    "confidence": 0.59337581922098,
+    "text": "Yes, so in my name is Ananya so much and I am against e-learning."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 245,
+    "start_ms": 0,
+    "end_ms": 5900,
+    "confidence": 0.7285943592651802,
+    "text": "any learning, actually students will not be able to gain the knowledge from the real world"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 246,
+    "start_ms": 5900,
+    "end_ms": 11460,
+    "confidence": 0.7285943592651802,
+    "text": "that we can gain from the industrial visits and visits and so on, plus also learning"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 247,
+    "start_ms": 11460,
+    "end_ms": 16800,
+    "confidence": 0.7285943592651802,
+    "text": "is not only about the book is knowledge, it is also about the extracurricular activities"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 248,
+    "start_ms": 16800,
+    "end_ms": 22880,
+    "confidence": 0.7285943592651802,
+    "text": "that is held in the college like sports etcetera, drama etcetera and plus it is not"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 249,
+    "start_ms": 23620,
+    "end_ms": 29480,
+    "confidence": 0.7285943592651802,
+    "text": "also some get some people get problem through e-learning that is headaches and due"
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 250,
+    "start_ms": 29480,
+    "end_ms": 29980,
+    "confidence": 0.4053279025378903,
+    "text": "also I was."
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 251,
+    "start_ms": 0,
+    "end_ms": 7140,
+    "confidence": 0.6535550718140113,
+    "text": "the concentration on the phone and laptops, which is not the problem in. Okay, okay,"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 252,
+    "start_ms": 7140,
+    "end_ms": 12060,
+    "confidence": 0.6535550718140113,
+    "text": "let us go to let us go to isha after isha we are coming to one chika foundation. Come"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 253,
+    "start_ms": 12060,
+    "end_ms": 18840,
+    "confidence": 0.6535550718140113,
+    "text": "on isha or to you isha. So nice to see you all guys, such a nice environment. Come"
+  },
+  {
+    "chunk_idx": 38,
+    "seq": 254,
+    "start_ms": 18840,
+    "end_ms": 29980,
+    "confidence": 0.6535550718140113,
+    "text": "on. Isha, over to you. Isha, can you hear us? Isha go in. Isha, we can hear you. I"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 255,
+    "start_ms": 0,
+    "end_ms": 2000,
+    "confidence": 0.6785086365649764,
+    "text": "Yisha, we can't hear you."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 256,
+    "start_ms": 4260,
+    "end_ms": 5760,
+    "confidence": 0.6785086365649764,
+    "text": "Okay, shall we get back to you?"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 257,
+    "start_ms": 5820,
+    "end_ms": 8380,
+    "confidence": 0.6785086365649764,
+    "text": "So this is the problem in online learning which many of you would say."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 258,
+    "start_ms": 8700,
+    "end_ms": 10520,
+    "confidence": 0.6785086365649764,
+    "text": "So let us go to once you come for this year."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 259,
+    "start_ms": 10580,
+    "end_ms": 12400,
+    "confidence": 0.6785086365649764,
+    "text": "Once you come for this year, over to you. Come on."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 260,
+    "start_ms": 13660,
+    "end_ms": 14860,
+    "confidence": 0.6785086365649764,
+    "text": "Hello, sir. Good morning."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 261,
+    "start_ms": 16180,
+    "end_ms": 22700,
+    "confidence": 0.6785086365649764,
+    "text": "I'm against online learning as Karen said about small children getting distracted and all."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 262,
+    "start_ms": 23460,
+    "end_ms": 28360,
+    "confidence": 0.6785086365649764,
+    "text": "Like us, we are grown ups and we know that we have to pay attention."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 263,
+    "start_ms": 28360,
+    "end_ms": 29780,
+    "confidence": 0.7202961376408974,
+    "text": "And then we do pay attention."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 264,
+    "start_ms": 0,
+    "end_ms": 4960,
+    "confidence": 0.6800566944940992,
+    "text": "But from my personal experience, I have a small brother"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 265,
+    "start_ms": 4960,
+    "end_ms": 7700,
+    "confidence": 0.6800566944940992,
+    "text": "at home who attends the lectures daily."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 266,
+    "start_ms": 10060,
+    "end_ms": 14380,
+    "confidence": 0.6800566944940992,
+    "text": "And he just attended for the formality,"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 267,
+    "start_ms": 14600,
+    "end_ms": 19400,
+    "confidence": 0.6800566944940992,
+    "text": "for the sake of attendance, and about interaction."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 268,
+    "start_ms": 20040,
+    "end_ms": 22760,
+    "confidence": 0.6800566944940992,
+    "text": "We people interact, but their small children,"
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 269,
+    "start_ms": 25100,
+    "end_ms": 29400,
+    "confidence": 0.6800566944940992,
+    "text": "they doesn't even pay attention to their people."
+  },
+  {
+    "chunk_idx": 40,
+    "seq": 270,
+    "start_ms": 29700,
+    "end_ms": 29980,
+    "confidence": 0.38485507346582815,
+    "text": "Let's see that."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 271,
+    "start_ms": 759,
+    "end_ms": 6000,
+    "confidence": 0.6857680442160897,
+    "text": "Thank you. Thank you for sharing your personal example. It's so nice when I teach my MBA students guys"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 272,
+    "start_ms": 6000,
+    "end_ms": 12740,
+    "confidence": 0.6857680442160897,
+    "text": "They are from Amazon and so many great places and and I plan something else end up teaching something else and discussion happens something else"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 273,
+    "start_ms": 12740,
+    "end_ms": 17160,
+    "confidence": 0.6857680442160897,
+    "text": "So that's always a decoder. Thank you. Thank you when she got but when she could don't you think"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 274,
+    "start_ms": 17160,
+    "end_ms": 22560,
+    "confidence": 0.6857680442160897,
+    "text": "By comping Karen's view in fact when you are Karen is saying children are finding it difficult to concentrate"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 275,
+    "start_ms": 22560,
+    "end_ms": 29980,
+    "confidence": 0.6857680442160897,
+    "text": "So I mean, why you the second to Karen so you said we have grown up so grownups don't get distracted only children"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 276,
+    "start_ms": 0,
+    "end_ms": 4900,
+    "confidence": 0.6131294122795072,
+    "text": "get distracted and maybe children are not interested into it. Even my nephew takes online classes"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 277,
+    "start_ms": 4900,
+    "end_ms": 10860,
+    "confidence": 0.6131294122795072,
+    "text": "and my brother sits with him and they take care of him. Okay, so who disagrees with"
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 278,
+    "start_ms": 10860,
+    "end_ms": 16219,
+    "confidence": 0.6131294122795072,
+    "text": "once you can hand care and go at the home. So this is me, it's okay, me, go at the home."
+  },
+  {
+    "chunk_idx": 42,
+    "seq": 279,
+    "start_ms": 17919,
+    "end_ms": 29980,
+    "confidence": 0.6131294122795072,
+    "text": "Sarah, I also did this, I did like to attend online lectures. I'm more kind of like"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 280,
+    "start_ms": 1140,
+    "end_ms": 7900,
+    "confidence": 0.6228433330783678,
+    "text": "There is this causes to isolation. First of all, yeah, isolation is a fact."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 281,
+    "start_ms": 8980,
+    "end_ms": 12180,
+    "confidence": 0.6228433330783678,
+    "text": "Yeah, the students cheat during the assignments."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 282,
+    "start_ms": 13440,
+    "end_ms": 19160,
+    "confidence": 0.6228433330783678,
+    "text": "There's no practical lessons to be honest and it is inaccessible to the poor families."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 283,
+    "start_ms": 19860,
+    "end_ms": 25340,
+    "confidence": 0.6228433330783678,
+    "text": "I agree. Okay, now let's go to issue. I think here the gentleman has given us very interesting point."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 284,
+    "start_ms": 25340,
+    "end_ms": 26840,
+    "confidence": 0.6228433330783678,
+    "text": "I think of that point later on. Thank you."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 285,
+    "start_ms": 26840,
+    "end_ms": 29980,
+    "confidence": 0.5730733596704118,
+    "text": "First of all, let's go to issue and issue over to you issue. Then we are coming."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 286,
+    "start_ms": 0,
+    "end_ms": 1840,
+    "confidence": 0.6718852580374062,
+    "text": "to Adi Adi hasn't spoken yet."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 287,
+    "start_ms": 2020,
+    "end_ms": 3560,
+    "confidence": 0.6718852580374062,
+    "text": "Ishwa, what do you do?"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 288,
+    "start_ms": 6280,
+    "end_ms": 8540,
+    "confidence": 0.6718852580374062,
+    "text": "Ishwa, I think there is a problem with your mic."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 289,
+    "start_ms": 8640,
+    "end_ms": 10380,
+    "confidence": 0.6718852580374062,
+    "text": "Ishwa, check your mic, welcome to you."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 290,
+    "start_ms": 10520,
+    "end_ms": 11380,
+    "confidence": 0.6718852580374062,
+    "text": "Adi, Adi, go ahead."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 291,
+    "start_ms": 11560,
+    "end_ms": 13100,
+    "confidence": 0.6718852580374062,
+    "text": "Adi, unmute yourself and sir."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 292,
+    "start_ms": 13600,
+    "end_ms": 15140,
+    "confidence": 0.6718852580374062,
+    "text": "Sir, my name is Sadhitan Aran"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 293,
+    "start_ms": 15140,
+    "end_ms": 16820,
+    "confidence": 0.6718852580374062,
+    "text": "and I'm against the motion."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 294,
+    "start_ms": 17600,
+    "end_ms": 20820,
+    "confidence": 0.6718852580374062,
+    "text": "I feel that the online learning has various problems"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 295,
+    "start_ms": 20820,
+    "end_ms": 22680,
+    "confidence": 0.6718852580374062,
+    "text": "like technical problems."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 296,
+    "start_ms": 22860,
+    "end_ms": 27140,
+    "confidence": 0.6718852580374062,
+    "text": "We all can face it like slow internet connectivity and all."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 297,
+    "start_ms": 27140,
+    "end_ms": 29980,
+    "confidence": 0.6228507877751797,
+    "text": "And we have to have great knowledge about it."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 298,
+    "start_ms": 0,
+    "end_ms": 4120,
+    "confidence": 0.7067319755757999,
+    "text": "technology to go into online learning and we cannot"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 299,
+    "start_ms": 4120,
+    "end_ms": 7960,
+    "confidence": 0.7067319755757999,
+    "text": "assume that everyone is well-washed with technology and some"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 300,
+    "start_ms": 7960,
+    "end_ms": 12340,
+    "confidence": 0.7067319755757999,
+    "text": "people can also cheat in the exam because the environment is"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 301,
+    "start_ms": 12340,
+    "end_ms": 15580,
+    "confidence": 0.7067319755757999,
+    "text": "friendly to them because they are sitting at their own home so"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 302,
+    "start_ms": 15580,
+    "end_ms": 16940,
+    "confidence": 0.7067319755757999,
+    "text": "we don't know what they are doing."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 303,
+    "start_ms": 18020,
+    "end_ms": 20960,
+    "confidence": 0.7067319755757999,
+    "text": "So just a new chance to each one of you please forgive me and"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 304,
+    "start_ms": 20960,
+    "end_ms": 24300,
+    "confidence": 0.7067319755757999,
+    "text": "please bear with me if I don't bother you, it's a challenge."
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 305,
+    "start_ms": 24300,
+    "end_ms": 29060,
+    "confidence": 0.5467665285850671,
+    "text": "Just I just compare you an example, you know, 1991 when you get"
+  },
+  {
+    "chunk_idx": 45,
+    "seq": 306,
+    "start_ms": 29060,
+    "end_ms": 29620,
+    "confidence": 0.5467665285850671,
+    "text": "opened up."
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 307,
+    "start_ms": 0,
+    "end_ms": 7780,
+    "confidence": 0.7312395293791204,
+    "text": "event for liberalization, privatization and globalization, understanding. And his IT sector did"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 308,
+    "start_ms": 7780,
+    "end_ms": 14540,
+    "confidence": 0.7312395293791204,
+    "text": "really well. IT sector in fact India's IT sector, they captured what he called as the global market."
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 309,
+    "start_ms": 15080,
+    "end_ms": 22760,
+    "confidence": 0.7312395293791204,
+    "text": "And today India is market leader in the world market as far as IT services and IT enabled services"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 310,
+    "start_ms": 22760,
+    "end_ms": 27900,
+    "confidence": 0.7312395293791204,
+    "text": "are concerned. You know, so silently they were working that government did not work because"
+  },
+  {
+    "chunk_idx": 46,
+    "seq": 311,
+    "start_ms": 27900,
+    "end_ms": 29240,
+    "confidence": 0.5888359442188856,
+    "text": "everything was happening to India."
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 312,
+    "start_ms": 0,
+    "end_ms": 6400,
+    "confidence": 0.7578140979792745,
+    "text": "to get technology as advanced so tremendously that even your exams can be conducted,"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 313,
+    "start_ms": 6600,
+    "end_ms": 10720,
+    "confidence": 0.7578140979792745,
+    "text": "a proctor exam can be conducted. And if you're cheating, if you're looking here and there,"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 314,
+    "start_ms": 10880,
+    "end_ms": 16360,
+    "confidence": 0.7578140979792745,
+    "text": "and if you're doing moon up, high kind of arrangement, that will not work. Because technology"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 315,
+    "start_ms": 16360,
+    "end_ms": 22960,
+    "confidence": 0.7578140979792745,
+    "text": "is advanced like anything. Is that clear? So I'm for you to engage in an online"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 316,
+    "start_ms": 23659,
+    "end_ms": 27560,
+    "confidence": 0.7578140979792745,
+    "text": "sessions. I do agree that there are technical issues involved like network connectivity,"
+  },
+  {
+    "chunk_idx": 47,
+    "seq": 317,
+    "start_ms": 27560,
+    "end_ms": 29980,
+    "confidence": 0.4533930831579186,
+    "text": "Mike doesn't come to me or maybe there are certain."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 318,
+    "start_ms": 0,
+    "end_ms": 4100,
+    "confidence": 0.6957069800690757,
+    "text": "issues, but online learning has its own merits. Okay. What"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 319,
+    "start_ms": 4100,
+    "end_ms": 7740,
+    "confidence": 0.6957069800690757,
+    "text": "withstanding that it has the merits as well. Okay. Now let me go"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 320,
+    "start_ms": 8280,
+    "end_ms": 11180,
+    "confidence": 0.6957069800690757,
+    "text": "to Shashal, Sagar, then we are coming up to other guy who just"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 321,
+    "start_ms": 11180,
+    "end_ms": 15260,
+    "confidence": 0.6957069800690757,
+    "text": "spoke Shashal over to you Shashal. Thank you sir. Good"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 322,
+    "start_ms": 15260,
+    "end_ms": 19080,
+    "confidence": 0.6957069800690757,
+    "text": "morning everyone. I would like to add that it encourages the"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 323,
+    "start_ms": 19080,
+    "end_ms": 24600,
+    "confidence": 0.6957069800690757,
+    "text": "introvert students who don't interact in the normal classes."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 324,
+    "start_ms": 24860,
+    "end_ms": 29680,
+    "confidence": 0.6957069800690757,
+    "text": "They get they get a chance to express themselves. Okay. So"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 325,
+    "start_ms": 16839,
+    "end_ms": 27600,
+    "confidence": 0.572610409674797,
+    "text": "I would like to acknowledge that you need to come out, you need to come out of the comfort zone to learn something."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 326,
+    "start_ms": 27600,
+    "end_ms": 29980,
+    "confidence": 0.5933484627384762,
+    "text": "You need to challenge yourself, and..."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 327,
+    "start_ms": 0,
+    "end_ms": 6680,
+    "confidence": 0.7982887427673753,
+    "text": "this is very comfortable and it is very relaxing for students so it is helpful for now but"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 328,
+    "start_ms": 6680,
+    "end_ms": 13580,
+    "confidence": 0.7982887427673753,
+    "text": "in the future prospect it is not very helpful and I would also like to add up for against"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 329,
+    "start_ms": 13580,
+    "end_ms": 19800,
+    "confidence": 0.7982887427673753,
+    "text": "the emotion that the very main thing missing in the online lecture is the human task."
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 330,
+    "start_ms": 20200,
+    "end_ms": 25740,
+    "confidence": 0.7982887427673753,
+    "text": "Not only of the professor but also the students, the colleagues when we sit in a classroom full"
+  },
+  {
+    "chunk_idx": 50,
+    "seq": 331,
+    "start_ms": 25740,
+    "end_ms": 29980,
+    "confidence": 0.507483118987756,
+    "text": "of students so we enjoy, we enjoy the company of each other and when we have..."
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 332,
+    "start_ms": 0,
+    "end_ms": 6360,
+    "confidence": 0.5676305515196014,
+    "text": "doubt teacher and just solving our doubts personally rather than online okay so she"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 333,
+    "start_ms": 6360,
+    "end_ms": 11560,
+    "confidence": 0.5676305515196014,
+    "text": "whom has given us very interesting insight now let us go to"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 334,
+    "start_ms": 11560,
+    "end_ms": 16079,
+    "confidence": 0.5676305515196014,
+    "text": "and as we tell you because can I speak there are a lot of images in front of me who"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 335,
+    "start_ms": 16079,
+    "end_ms": 19600,
+    "confidence": 0.5676305515196014,
+    "text": "can I speak I'll tell you did that in the let's go to"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 336,
+    "start_ms": 19600,
+    "end_ms": 21140,
+    "confidence": 0.5676305515196014,
+    "text": "filter because she was cut short in between"
+  },
+  {
+    "chunk_idx": 51,
+    "seq": 337,
+    "start_ms": 21140,
+    "end_ms": 26680,
+    "confidence": 0.3866666301005098,
+    "text": "filter what do you think that way yeah so I"
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 338,
+    "start_ms": 2300,
+    "end_ms": 4040,
+    "confidence": 0.5564067385369008,
+    "text": "I'm not going to tell you why this is breaking."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 339,
+    "start_ms": 4840,
+    "end_ms": 5940,
+    "confidence": 0.5564067385369008,
+    "text": "I'm not going to tell you why this is breaking."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 340,
+    "start_ms": 6860,
+    "end_ms": 8420,
+    "confidence": 0.5564067385369008,
+    "text": "I'm not going to tell you why this is breaking."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 341,
+    "start_ms": 8420,
+    "end_ms": 9540,
+    "confidence": 0.5564067385369008,
+    "text": "But that is a teacher."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 342,
+    "start_ms": 11220,
+    "end_ms": 11700,
+    "confidence": 0.5564067385369008,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 343,
+    "start_ms": 11940,
+    "end_ms": 13400,
+    "confidence": 0.5564067385369008,
+    "text": "And my city only."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 344,
+    "start_ms": 16280,
+    "end_ms": 17260,
+    "confidence": 0.5564067385369008,
+    "text": "It is clear."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 345,
+    "start_ms": 18260,
+    "end_ms": 19640,
+    "confidence": 0.5564067385369008,
+    "text": "No, the entire voice is breaking."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 346,
+    "start_ms": 19960,
+    "end_ms": 21460,
+    "confidence": 0.5564067385369008,
+    "text": "Maybe there is a brand of a tissue."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 347,
+    "start_ms": 21620,
+    "end_ms": 23000,
+    "confidence": 0.5564067385369008,
+    "text": "But next, he will show you."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 348,
+    "start_ms": 23620,
+    "end_ms": 23960,
+    "confidence": 0.5564067385369008,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 349,
+    "start_ms": 24100,
+    "end_ms": 24820,
+    "confidence": 0.5564067385369008,
+    "text": "So that's something."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 350,
+    "start_ms": 24820,
+    "end_ms": 26280,
+    "confidence": 0.5564067385369008,
+    "text": "So this is working right now."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 351,
+    "start_ms": 26840,
+    "end_ms": 28020,
+    "confidence": 0.677818136166733,
+    "text": "Now, I can hear you."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 352,
+    "start_ms": 28080,
+    "end_ms": 28480,
+    "confidence": 0.677818136166733,
+    "text": "You can go ahead."
+  },
+  {
+    "chunk_idx": 52,
+    "seq": 353,
+    "start_ms": 28640,
+    "end_ms": 29800,
+    "confidence": 0.677818136166733,
+    "text": "I'll give you 15 seconds."
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 354,
+    "start_ms": 1680,
+    "end_ms": 14440,
+    "confidence": 0.7543803960911741,
+    "text": "Okay, so I share experience from live experience. I'm sharing with you. The live sessions are going. My mother is a teacher. She's teaching live on that zoom application only."
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 355,
+    "start_ms": 14800,
+    "end_ms": 22080,
+    "confidence": 0.7543803960911741,
+    "text": "But parents when she's teaching parents are disrespecting or continuously erupting while that teaching source."
+  },
+  {
+    "chunk_idx": 53,
+    "seq": 356,
+    "start_ms": 22080,
+    "end_ms": 29980,
+    "confidence": 0.785858168657314,
+    "text": "My parents are disrespecting like. Yeah, so it is happening because she is a primary teacher. So parents are like."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 357,
+    "start_ms": 0,
+    "end_ms": 1840,
+    "confidence": 0.7373235285656652,
+    "text": "each of we don't understand that."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 358,
+    "start_ms": 2080,
+    "end_ms": 4160,
+    "confidence": 0.7373235285656652,
+    "text": "And like that all interruption is happening."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 359,
+    "start_ms": 4660,
+    "end_ms": 7780,
+    "confidence": 0.7373235285656652,
+    "text": "The teaching flow is not going as it was going"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 360,
+    "start_ms": 7780,
+    "end_ms": 9480,
+    "confidence": 0.7373235285656652,
+    "text": "in the physical school."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 361,
+    "start_ms": 9780,
+    "end_ms": 10380,
+    "confidence": 0.7373235285656652,
+    "text": "Okay, okay."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 362,
+    "start_ms": 10560,
+    "end_ms": 11260,
+    "confidence": 0.7373235285656652,
+    "text": "Okay, I got it."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 363,
+    "start_ms": 11260,
+    "end_ms": 12120,
+    "confidence": 0.7373235285656652,
+    "text": "Thank you so much."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 364,
+    "start_ms": 12240,
+    "end_ms": 12760,
+    "confidence": 0.7373235285656652,
+    "text": "Thank you so much."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 365,
+    "start_ms": 12800,
+    "end_ms": 14100,
+    "confidence": 0.7373235285656652,
+    "text": "You're from a teacher's family."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 366,
+    "start_ms": 14620,
+    "end_ms": 16900,
+    "confidence": 0.7373235285656652,
+    "text": "So in fact, you can understand my life as well."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 367,
+    "start_ms": 17040,
+    "end_ms": 17960,
+    "confidence": 0.7373235285656652,
+    "text": "But let me tell you honestly,"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 368,
+    "start_ms": 18280,
+    "end_ms": 21720,
+    "confidence": 0.7373235285656652,
+    "text": "I started teaching from the month of June,"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 369,
+    "start_ms": 21780,
+    "end_ms": 23820,
+    "confidence": 0.7373235285656652,
+    "text": "even when there was no formal guidelines given"
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 370,
+    "start_ms": 23820,
+    "end_ms": 25040,
+    "confidence": 0.7373235285656652,
+    "text": "by college or by university."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 371,
+    "start_ms": 25200,
+    "end_ms": 27040,
+    "confidence": 0.7373235285656652,
+    "text": "And I really enjoy my online sessions."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 372,
+    "start_ms": 27060,
+    "end_ms": 28620,
+    "confidence": 0.7373235285656652,
+    "text": "And I can feel each one of you."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 373,
+    "start_ms": 28620,
+    "end_ms": 29900,
+    "confidence": 0.6068164859450375,
+    "text": "I can see in all of you."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 374,
+    "start_ms": 0,
+    "end_ms": 2640,
+    "confidence": 0.5824614013090363,
+    "text": "And I'm so glad to see you."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 375,
+    "start_ms": 2820,
+    "end_ms": 4140,
+    "confidence": 0.5824614013090363,
+    "text": "Okay, thank you, Tilta, for mixing that."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 376,
+    "start_ms": 4200,
+    "end_ms": 5480,
+    "confidence": 0.5824614013090363,
+    "text": "Let us go to breakfast, yes."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 377,
+    "start_ms": 5660,
+    "end_ms": 6740,
+    "confidence": 0.5824614013090363,
+    "text": "He hasn't spoken yet."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 378,
+    "start_ms": 6880,
+    "end_ms": 7960,
+    "confidence": 0.5824614013090363,
+    "text": "If we are coming, we are coming, we are coming."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 379,
+    "start_ms": 8060,
+    "end_ms": 8820,
+    "confidence": 0.5824614013090363,
+    "text": "We are going to breakfast,"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 380,
+    "start_ms": 9060,
+    "end_ms": 10260,
+    "confidence": 0.5824614013090363,
+    "text": "then we are coming to Simee,"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 381,
+    "start_ms": 10420,
+    "end_ms": 11980,
+    "confidence": 0.5824614013090363,
+    "text": "then we are coming to Kapoor, Kapil, Rankar,"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 382,
+    "start_ms": 12000,
+    "end_ms": 13760,
+    "confidence": 0.5824614013090363,
+    "text": "we are coming to Sanja, we are coming to Reina,"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 383,
+    "start_ms": 13840,
+    "end_ms": 14960,
+    "confidence": 0.5824614013090363,
+    "text": "we are coming to Latifu."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 384,
+    "start_ms": 15380,
+    "end_ms": 16940,
+    "confidence": 0.5824614013090363,
+    "text": "But, Nesh, we are coming to Simee."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 385,
+    "start_ms": 19040,
+    "end_ms": 20440,
+    "confidence": 0.5824614013090363,
+    "text": "But, Nesh, unmute yourself."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 386,
+    "start_ms": 21420,
+    "end_ms": 22620,
+    "confidence": 0.5824614013090363,
+    "text": "Dear, Pratmesh unmute yourself."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 387,
+    "start_ms": 22980,
+    "end_ms": 24080,
+    "confidence": 0.5824614013090363,
+    "text": "So, sorry, sorry, sorry, sorry."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 388,
+    "start_ms": 24080,
+    "end_ms": 25100,
+    "confidence": 0.5824614013090363,
+    "text": "So, I'm already well now."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 389,
+    "start_ms": 25220,
+    "end_ms": 25960,
+    "confidence": 0.5824614013090363,
+    "text": "Yes, you are already well."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 390,
+    "start_ms": 26040,
+    "end_ms": 26860,
+    "confidence": 0.5824614013090363,
+    "text": "But, Nesh, go ahead."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 391,
+    "start_ms": 26860,
+    "end_ms": 29660,
+    "confidence": 0.5674214498177927,
+    "text": "Good morning, sir. My name is Pratmesh, yes."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 392,
+    "start_ms": 0,
+    "end_ms": 4580,
+    "confidence": 0.7119947114475855,
+    "text": "So I am against of e-learning because of the shortage of gadgets."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 393,
+    "start_ms": 5340,
+    "end_ms": 10820,
+    "confidence": 0.7119947114475855,
+    "text": "Many, I say in rural areas, the students who cannot even afford gadgets like computers,"
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 394,
+    "start_ms": 11480,
+    "end_ms": 15700,
+    "confidence": 0.7119947114475855,
+    "text": "laptops, they need to share and buy that they are learning."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 395,
+    "start_ms": 16100,
+    "end_ms": 19980,
+    "confidence": 0.7119947114475855,
+    "text": "So I think this is a disadvantage of e-learning."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 396,
+    "start_ms": 20900,
+    "end_ms": 24060,
+    "confidence": 0.7119947114475855,
+    "text": "Okay, let us go to Sydney. Sydney, how to you? Sydney, unmute yourself."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 397,
+    "start_ms": 25400,
+    "end_ms": 29980,
+    "confidence": 0.4338111582417042,
+    "text": "Hi, I disagree to Jeet Patel's point."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 398,
+    "start_ms": 0,
+    "end_ms": 6980,
+    "confidence": 0.7481358154106914,
+    "text": "that engineering students and facing difficulties. My sister is a third year engineering student"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 399,
+    "start_ms": 6980,
+    "end_ms": 12180,
+    "confidence": 0.7481358154106914,
+    "text": "and she has no difficulties in solving a practical problems because she is from Somaia"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 400,
+    "start_ms": 12180,
+    "end_ms": 18120,
+    "confidence": 0.7481358154106914,
+    "text": "and all the teachers are all cooperative and they solve their problems immediately in the lecture"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 401,
+    "start_ms": 18120,
+    "end_ms": 24880,
+    "confidence": 0.7481358154106914,
+    "text": "only. And I know from my personal point because my sister does it in front of me. I know that."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 402,
+    "start_ms": 25820,
+    "end_ms": 29320,
+    "confidence": 0.6417309480332812,
+    "text": "Thank you Somaia. Thank you Somaia. I was telling Somaia to the spot. Somaia is Somaia."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 403,
+    "start_ms": 0,
+    "end_ms": 1920,
+    "confidence": 0.5659372265649476,
+    "text": "give me as I double your mind. Thank you."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 404,
+    "start_ms": 2120,
+    "end_ms": 3340,
+    "confidence": 0.5659372265649476,
+    "text": "See, but I appreciate you."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 405,
+    "start_ms": 3680,
+    "end_ms": 4320,
+    "confidence": 0.5659372265649476,
+    "text": "Yeah. No, no problem."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 406,
+    "start_ms": 4400,
+    "end_ms": 5700,
+    "confidence": 0.5659372265649476,
+    "text": "I appreciate your view."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 407,
+    "start_ms": 5720,
+    "end_ms": 7680,
+    "confidence": 0.5659372265649476,
+    "text": "See, we go and see me."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 408,
+    "start_ms": 7680,
+    "end_ms": 10560,
+    "confidence": 0.5659372265649476,
+    "text": "So I'm in favor of online studies"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 409,
+    "start_ms": 10560,
+    "end_ms": 13720,
+    "confidence": 0.5659372265649476,
+    "text": "because online studies compared to traditional mode"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 410,
+    "start_ms": 13720,
+    "end_ms": 15200,
+    "confidence": 0.5659372265649476,
+    "text": "is more task oriented."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 411,
+    "start_ms": 15600,
+    "end_ms": 17280,
+    "confidence": 0.5659372265649476,
+    "text": "Well, there are chances of document"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 412,
+    "start_ms": 17280,
+    "end_ms": 20500,
+    "confidence": 0.5659372265649476,
+    "text": "while uploading get lost or being repeated."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 413,
+    "start_ms": 20580,
+    "end_ms": 24980,
+    "confidence": 0.5659372265649476,
+    "text": "But we at least have was safe while because sometimes"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 414,
+    "start_ms": 24980,
+    "end_ms": 29080,
+    "confidence": 0.5659372265649476,
+    "text": "when in written we can to lose our documents"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 415,
+    "start_ms": 29080,
+    "end_ms": 29840,
+    "confidence": 0.49004085739252995,
+    "text": "for the notes."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 416,
+    "start_ms": 0,
+    "end_ms": 8260,
+    "confidence": 0.6618301017302929,
+    "text": "And I didn't classes by my mystically the placing up with some other friends or like water spilling over it."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 417,
+    "start_ms": 8540,
+    "end_ms": 10660,
+    "confidence": 0.6618301017302929,
+    "text": "And even though there are chances."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 418,
+    "start_ms": 11040,
+    "end_ms": 14060,
+    "confidence": 0.6618301017302929,
+    "text": "Sydney, Sydney, Sydney, Sydney one second. I can talk to you."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 419,
+    "start_ms": 14160,
+    "end_ms": 18880,
+    "confidence": 0.6618301017302929,
+    "text": "If you have a problem of water skipping or losing your notes and alternative arrangement can be made from your friends."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 420,
+    "start_ms": 19300,
+    "end_ms": 21060,
+    "confidence": 0.6618301017302929,
+    "text": "So maybe he was a logic between kids."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 421,
+    "start_ms": 21420,
+    "end_ms": 22660,
+    "confidence": 0.6618301017302929,
+    "text": "Nothing is. No, no, no."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 422,
+    "start_ms": 22700,
+    "end_ms": 28680,
+    "confidence": 0.6618301017302929,
+    "text": "According to Lucas each and every student has that own ability like making notes."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 423,
+    "start_ms": 28680,
+    "end_ms": 29720,
+    "confidence": 0.4368438389569097,
+    "text": "The element can."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 424,
+    "start_ms": 579,
+    "end_ms": 5180,
+    "confidence": 0.6563935168445231,
+    "text": "So you can take care by preventing your notes by being"
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 425,
+    "start_ms": 5180,
+    "end_ms": 7180,
+    "confidence": 0.6563935168445231,
+    "text": "smarter spilling on it and keep it safely."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 426,
+    "start_ms": 7640,
+    "end_ms": 9000,
+    "confidence": 0.6563935168445231,
+    "text": "And there is a solution for it."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 427,
+    "start_ms": 9700,
+    "end_ms": 12320,
+    "confidence": 0.6563935168445231,
+    "text": "You can keep a Xerox off it."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 428,
+    "start_ms": 12600,
+    "end_ms": 13880,
+    "confidence": 0.6563935168445231,
+    "text": "Today mobile devices are available."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 429,
+    "start_ms": 14000,
+    "end_ms": 15520,
+    "confidence": 0.6563935168445231,
+    "text": "You can take a snapshot of that."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 430,
+    "start_ms": 15880,
+    "end_ms": 17420,
+    "confidence": 0.6563935168445231,
+    "text": "So I just like you back to different to you."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 431,
+    "start_ms": 17480,
+    "end_ms": 18340,
+    "confidence": 0.6563935168445231,
+    "text": "See me, but present."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 432,
+    "start_ms": 18720,
+    "end_ms": 19000,
+    "confidence": 0.6563935168445231,
+    "text": "I said you."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 433,
+    "start_ms": 20380,
+    "end_ms": 20700,
+    "confidence": 0.6563935168445231,
+    "text": "That's it."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 434,
+    "start_ms": 21020,
+    "end_ms": 21680,
+    "confidence": 0.6563935168445231,
+    "text": "I was asking you."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 435,
+    "start_ms": 21680,
+    "end_ms": 22320,
+    "confidence": 0.6563935168445231,
+    "text": "I was asking you."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 436,
+    "start_ms": 22640,
+    "end_ms": 26000,
+    "confidence": 0.6563935168445231,
+    "text": "Because like as we have told that we have to complete this."
+  },
+  {
+    "chunk_idx": 60,
+    "seq": 437,
+    "start_ms": 26400,
+    "end_ms": 29080,
+    "confidence": 0.6563935168445231,
+    "text": "So task at this point, otherwise your document won't be"
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 438,
+    "start_ms": 539,
+    "end_ms": 940,
+    "confidence": 0.5930431896896785,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 439,
+    "start_ms": 2479,
+    "end_ms": 7340,
+    "confidence": 0.5930431896896785,
+    "text": "Let us go to Rajika, my surely then we are coming to Shivankova and then we are coming to Shri"
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 440,
+    "start_ms": 7340,
+    "end_ms": 9720,
+    "confidence": 0.5930431896896785,
+    "text": "Shri, come on."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 441,
+    "start_ms": 9800,
+    "end_ms": 9940,
+    "confidence": 0.5930431896896785,
+    "text": "Hello."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 442,
+    "start_ms": 11200,
+    "end_ms": 12440,
+    "confidence": 0.5930431896896785,
+    "text": "Rajika, I think I am out of this spot."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 443,
+    "start_ms": 12660,
+    "end_ms": 14400,
+    "confidence": 0.5930431896896785,
+    "text": "Rajika, my shri, I think I'm out of this spot."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 444,
+    "start_ms": 14400,
+    "end_ms": 15460,
+    "confidence": 0.5930431896896785,
+    "text": "Rajika, my shri, what do you?"
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 445,
+    "start_ms": 15560,
+    "end_ms": 21120,
+    "confidence": 0.5930431896896785,
+    "text": "Yes, so means one of the guys said that in towards they need to open up."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 446,
+    "start_ms": 21120,
+    "end_ms": 23000,
+    "confidence": 0.5930431896896785,
+    "text": "That's what they are doing in online session."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 447,
+    "start_ms": 23120,
+    "end_ms": 24520,
+    "confidence": 0.5930431896896785,
+    "text": "They are trying to open up."
+  },
+  {
+    "chunk_idx": 61,
+    "seq": 448,
+    "start_ms": 24520,
+    "end_ms": 29980,
+    "confidence": 0.7237254501514019,
+    "text": "And if we face any difficulty, so we can message on WhatsApp group."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 449,
+    "start_ms": 0,
+    "end_ms": 2920,
+    "confidence": 0.6773014736872044,
+    "text": "when it immediately gets solved."
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 450,
+    "start_ms": 3460,
+    "end_ms": 6420,
+    "confidence": 0.6773014736872044,
+    "text": "So there's no any that sort of issue that we"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 451,
+    "start_ms": 6420,
+    "end_ms": 10240,
+    "confidence": 0.6773014736872044,
+    "text": "somebody something that we got you somebody called my name sir who was that person"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 452,
+    "start_ms": 10240,
+    "end_ms": 13480,
+    "confidence": 0.6773014736872044,
+    "text": "I want to give that person a chance somebody who said sir loudly who said"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 453,
+    "start_ms": 13480,
+    "end_ms": 18800,
+    "confidence": 0.6773014736872044,
+    "text": "that's what it did you say who said who said sir I want to I want to talk for"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 454,
+    "start_ms": 18800,
+    "end_ms": 24420,
+    "confidence": 0.6773014736872044,
+    "text": "e-learning e-learning has a very good advantage point as shy people like me I don't"
+  },
+  {
+    "chunk_idx": 62,
+    "seq": 455,
+    "start_ms": 24420,
+    "end_ms": 29340,
+    "confidence": 0.6773014736872044,
+    "text": "like to speak up in the front of whole class so e-learning helps me to ignore it"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 456,
+    "start_ms": 0,
+    "end_ms": 7140,
+    "confidence": 0.6794844510041975,
+    "text": "me to encourage myself and to speak up again in front of us and to convey my"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 457,
+    "start_ms": 7680,
+    "end_ms": 8080,
+    "confidence": 0.6794844510041975,
+    "text": "point."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 458,
+    "start_ms": 8580,
+    "end_ms": 12280,
+    "confidence": 0.6794844510041975,
+    "text": "Darsh Patel, tell me one thing. Sorry, I'm like today I'm giving you some sort"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 459,
+    "start_ms": 12280,
+    "end_ms": 16280,
+    "confidence": 0.6794844510041975,
+    "text": "of rebuttal. Darsh Patel, my friend, my student. First of all, you're not shy."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 460,
+    "start_ms": 16480,
+    "end_ms": 19420,
+    "confidence": 0.6794844510041975,
+    "text": "You spoke soon. I sleep in front of everyone. And tomorrow when you come to"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 461,
+    "start_ms": 19420,
+    "end_ms": 22580,
+    "confidence": 0.6794844510041975,
+    "text": "class, you will be speaking lot in the class. So I don't see that you are shy. So"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 462,
+    "start_ms": 22580,
+    "end_ms": 25760,
+    "confidence": 0.6794844510041975,
+    "text": "just on a lighter, don't take you so seriously. Okay, so that now I want"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 463,
+    "start_ms": 25840,
+    "end_ms": 27720,
+    "confidence": 0.5729776800700208,
+    "text": "to see other people haven't spoken yet."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 464,
+    "start_ms": 27770,
+    "end_ms": 28910,
+    "confidence": 0.42338273441666363,
+    "text": "you should have been spoken."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 465,
+    "start_ms": 28950,
+    "end_ms": 29970,
+    "confidence": 0.42338273441666363,
+    "text": "The Phil Ranta hasn't spoken."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 466,
+    "start_ms": 0,
+    "end_ms": 1540,
+    "confidence": 0.6142309096757606,
+    "text": "and Latifur hasn't spoken."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 467,
+    "start_ms": 1760,
+    "end_ms": 2480,
+    "confidence": 0.6142309096757606,
+    "text": "Let us go to Isha."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 468,
+    "start_ms": 2580,
+    "end_ms": 3320,
+    "confidence": 0.6142309096757606,
+    "text": "Isha, what do you?"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 469,
+    "start_ms": 4400,
+    "end_ms": 4620,
+    "confidence": 0.6142309096757606,
+    "text": "Isha."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 470,
+    "start_ms": 5940,
+    "end_ms": 7780,
+    "confidence": 0.6142309096757606,
+    "text": "Isha, there is a problem with Isha's mic."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 471,
+    "start_ms": 8280,
+    "end_ms": 9980,
+    "confidence": 0.6142309096757606,
+    "text": "Hope she's not using Chinese mic,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 472,
+    "start_ms": 10100,
+    "end_ms": 11660,
+    "confidence": 0.6142309096757606,
+    "text": "because Chinese might be,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 473,
+    "start_ms": 11660,
+    "end_ms": 12780,
+    "confidence": 0.6142309096757606,
+    "text": "they trouble you a lot."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 474,
+    "start_ms": 12900,
+    "end_ms": 14140,
+    "confidence": 0.6142309096757606,
+    "text": "Or we're using Chinese mic."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 475,
+    "start_ms": 15120,
+    "end_ms": 16700,
+    "confidence": 0.6142309096757606,
+    "text": "On a light of note, don't take me so seriously."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 476,
+    "start_ms": 17100,
+    "end_ms": 17820,
+    "confidence": 0.6142309096757606,
+    "text": "Okay, shall we take it?"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 477,
+    "start_ms": 17940,
+    "end_ms": 20660,
+    "confidence": 0.6142309096757606,
+    "text": "Let us go to what you call as Kapil Ranga."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 478,
+    "start_ms": 20860,
+    "end_ms": 21760,
+    "confidence": 0.6142309096757606,
+    "text": "Kapil Ranga, what do you?"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 479,
+    "start_ms": 21880,
+    "end_ms": 22320,
+    "confidence": 0.6142309096757606,
+    "text": "Kapil Ranga."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 480,
+    "start_ms": 22800,
+    "end_ms": 23540,
+    "confidence": 0.6142309096757606,
+    "text": "Only Kapil Ranga."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 481,
+    "start_ms": 25160,
+    "end_ms": 27080,
+    "confidence": 0.6142309096757606,
+    "text": "Sorry, you are always checking your time."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 482,
+    "start_ms": 27520,
+    "end_ms": 29060,
+    "confidence": 0.6142309096757606,
+    "text": "You're like, if you told us,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 483,
+    "start_ms": 29060,
+    "end_ms": 29980,
+    "confidence": 0.36358198661425567,
+    "text": "your student is a..."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 484,
+    "start_ms": 0,
+    "end_ms": 14360,
+    "confidence": 0.694084190938315,
+    "text": "living in Amazon, right? Doesn't live in Amazon, he works in Amazon. Okay. So if there is an online"
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 485,
+    "start_ms": 14360,
+    "end_ms": 29980,
+    "confidence": 0.694084190938315,
+    "text": "lecture which is based in Australia or something US, take it in US and I live in India. So"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 486,
+    "start_ms": 0,
+    "end_ms": 2440,
+    "confidence": 0.7222066390710248,
+    "text": "And your study time and posted and always clash."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 487,
+    "start_ms": 2960,
+    "end_ms": 3360,
+    "confidence": 0.7222066390710248,
+    "text": "Sir, okay."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 488,
+    "start_ms": 3480,
+    "end_ms": 5580,
+    "confidence": 0.7222066390710248,
+    "text": "See, Kapil has given us an interesting point."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 489,
+    "start_ms": 5700,
+    "end_ms": 9240,
+    "confidence": 0.7222066390710248,
+    "text": "You know, one of my professor is an Australian national university."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 490,
+    "start_ms": 9959,
+    "end_ms": 12780,
+    "confidence": 0.7222066390710248,
+    "text": "And he's a very great professor, great researcher."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 491,
+    "start_ms": 12900,
+    "end_ms": 16520,
+    "confidence": 0.7222066390710248,
+    "text": "And he keeps us updated as to whatever activities he's doing."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 492,
+    "start_ms": 16540,
+    "end_ms": 17960,
+    "confidence": 0.7222066390710248,
+    "text": "And he's very active during lockdown."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 493,
+    "start_ms": 18300,
+    "end_ms": 19620,
+    "confidence": 0.7222066390710248,
+    "text": "He's based in Australia."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 494,
+    "start_ms": 20140,
+    "end_ms": 22980,
+    "confidence": 0.7222066390710248,
+    "text": "And he sends us emails about Zoom sessions"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 495,
+    "start_ms": 22980,
+    "end_ms": 25660,
+    "confidence": 0.7222066390710248,
+    "text": "and has been asked about all international kind"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 496,
+    "start_ms": 25660,
+    "end_ms": 28360,
+    "confidence": 0.7222066390710248,
+    "text": "of faculties by Agri to Kapil."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 497,
+    "start_ms": 28620,
+    "end_ms": 29920,
+    "confidence": 0.7222066390710248,
+    "text": "Kapil has given us an interesting point"
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 498,
+    "start_ms": 0,
+    "end_ms": 8380,
+    "confidence": 0.5756731966443107,
+    "text": "You are dealing with certain different countries than in that game time zone matters for agree to couple. Okay. Who said sir, I want to do that person. A chance to serve."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 499,
+    "start_ms": 8440,
+    "end_ms": 11000,
+    "confidence": 0.5756731966443107,
+    "text": "Sir, shashank, shashank, I shall go ahead."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 500,
+    "start_ms": 12160,
+    "end_ms": 18760,
+    "confidence": 0.5756731966443107,
+    "text": "Sir, countering couple's point, at least we get to attend the sessions in Australia without any higher costs."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 501,
+    "start_ms": 20400,
+    "end_ms": 26900,
+    "confidence": 0.5756731966443107,
+    "text": "Sir, let's say, let's say, let's say, okay. Okay. So now who will respond come on. See, there are so many screens in front of me."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 502,
+    "start_ms": 26900,
+    "end_ms": 29500,
+    "confidence": 0.6915273841906662,
+    "text": "Who said sir, who said sir, who said sir, who said sir."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 503,
+    "start_ms": 959,
+    "end_ms": 2300,
+    "confidence": 0.39026155388848427,
+    "text": "who is excellia?"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 504,
+    "start_ms": 2780,
+    "end_ms": 3520,
+    "confidence": 0.39026155388848427,
+    "text": "No, you are going."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 505,
+    "start_ms": 4840,
+    "end_ms": 5300,
+    "confidence": 0.39026155388848427,
+    "text": "Yes, you are going to go."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 506,
+    "start_ms": 5500,
+    "end_ms": 6920,
+    "confidence": 0.39026155388848427,
+    "text": "Let this one is going."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 507,
+    "start_ms": 7300,
+    "end_ms": 15160,
+    "confidence": 0.39026155388848427,
+    "text": "We are using the Chinese mic and we are not able to hear you."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 508,
+    "start_ms": 17340,
+    "end_ms": 20200,
+    "confidence": 0.39026155388848427,
+    "text": "So, just check your mic students, your mic."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 509,
+    "start_ms": 20940,
+    "end_ms": 23220,
+    "confidence": 0.39026155388848427,
+    "text": "Just sort of like to note that there is no simple Chinese."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 510,
+    "start_ms": 23220,
+    "end_ms": 29280,
+    "confidence": 0.618373654915264,
+    "text": "Chinese are like just like us got to degrade or put anybody down on the like"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 511,
+    "start_ms": 0,
+    "end_ms": 560,
+    "confidence": 0.6074302323285296,
+    "text": "Thank you, Mike."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 512,
+    "start_ms": 760,
+    "end_ms": 2400,
+    "confidence": 0.6074302323285296,
+    "text": "Some people today they can't respond."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 513,
+    "start_ms": 2520,
+    "end_ms": 4220,
+    "confidence": 0.6074302323285296,
+    "text": "Even they're speaking, I'm not able to hear."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 514,
+    "start_ms": 4460,
+    "end_ms": 6000,
+    "confidence": 0.6074302323285296,
+    "text": "So maybe there is a problem with your microphone."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 515,
+    "start_ms": 6220,
+    "end_ms": 7020,
+    "confidence": 0.6074302323285296,
+    "text": "Who is calling sir?"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 516,
+    "start_ms": 7180,
+    "end_ms": 8220,
+    "confidence": 0.6074302323285296,
+    "text": "I want to do it again."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 517,
+    "start_ms": 8540,
+    "end_ms": 10860,
+    "confidence": 0.6074302323285296,
+    "text": "I just want to just, just, just, just let me do it here."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 518,
+    "start_ms": 11360,
+    "end_ms": 12880,
+    "confidence": 0.6074302323285296,
+    "text": "After just coming to see me, let's just"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 519,
+    "start_ms": 12880,
+    "end_ms": 13760,
+    "confidence": 0.6074302323285296,
+    "text": "ask for just over to you."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 520,
+    "start_ms": 13860,
+    "end_ms": 14440,
+    "confidence": 0.6074302323285296,
+    "text": "Come on."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 521,
+    "start_ms": 14700,
+    "end_ms": 17320,
+    "confidence": 0.6074302323285296,
+    "text": "Sir, Sir, I'm against e-learning"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 522,
+    "start_ms": 18780,
+    "end_ms": 23280,
+    "confidence": 0.6074302323285296,
+    "text": "because for my side, I think that e-learning"
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 523,
+    "start_ms": 23280,
+    "end_ms": 26080,
+    "confidence": 0.6074302323285296,
+    "text": "is for short interval, not for long interval."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 524,
+    "start_ms": 26080,
+    "end_ms": 29560,
+    "confidence": 0.5714641179469302,
+    "text": "You can't study, like, engineering for four years."
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 525,
+    "start_ms": 1419,
+    "end_ms": 6480,
+    "confidence": 0.5462048890616127,
+    "text": "or you can do be a three year old course directly in learning."
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 526,
+    "start_ms": 7240,
+    "end_ms": 14280,
+    "confidence": 0.5462048890616127,
+    "text": "Okay, okay, just we got that much work, okay, okay, just, okay, just now I want, I want"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 527,
+    "start_ms": 14280,
+    "end_ms": 19920,
+    "confidence": 0.5462048890616127,
+    "text": "to give chance to Loraia and then I will come to Dia, sorry, in the, in the, in the"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 528,
+    "start_ms": 19920,
+    "end_ms": 29980,
+    "confidence": 0.5462048890616127,
+    "text": "over to you, sir, sir, in the over to you, in the over again, there, okay, again,"
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 529,
+    "start_ms": 0,
+    "end_ms": 2880,
+    "confidence": 0.6156586187288058,
+    "text": "I think India is using a very special kind of mic."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 530,
+    "start_ms": 3440,
+    "end_ms": 5020,
+    "confidence": 0.6156586187288058,
+    "text": "So let's go to the idea."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 531,
+    "start_ms": 5340,
+    "end_ms": 7040,
+    "confidence": 0.6156586187288058,
+    "text": "Let's go to the idea, then we are coming to Prayna."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 532,
+    "start_ms": 7440,
+    "end_ms": 9140,
+    "confidence": 0.6156586187288058,
+    "text": "The idea over to you."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 533,
+    "start_ms": 9280,
+    "end_ms": 10020,
+    "confidence": 0.6156586187288058,
+    "text": "Hi, sir."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 534,
+    "start_ms": 11280,
+    "end_ms": 13160,
+    "confidence": 0.6156586187288058,
+    "text": "And I'm against the e-learning,"
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 535,
+    "start_ms": 13500,
+    "end_ms": 16180,
+    "confidence": 0.6156586187288058,
+    "text": "because classroom influences personality development,"
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 536,
+    "start_ms": 17680,
+    "end_ms": 23200,
+    "confidence": 0.6156586187288058,
+    "text": "but e-learning students will be deprived of the opportunity."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 537,
+    "start_ms": 24580,
+    "end_ms": 24900,
+    "confidence": 0.6156586187288058,
+    "text": "OK."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 538,
+    "start_ms": 25260,
+    "end_ms": 27280,
+    "confidence": 0.6156586187288058,
+    "text": "So OK, the idea, let's go to Prayna."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 539,
+    "start_ms": 27420,
+    "end_ms": 28480,
+    "confidence": 0.6156586187288058,
+    "text": "Then I'm coming to Sanyashiki."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 540,
+    "start_ms": 28500,
+    "end_ms": 29300,
+    "confidence": 0.6156586187288058,
+    "text": "Prayna over to you."
+  },
+  {
+    "chunk_idx": 71,
+    "seq": 541,
+    "start_ms": 29300,
+    "end_ms": 29980,
+    "confidence": 0.4590479088834417,
+    "text": "Prayna is in spooking."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 542,
+    "start_ms": 640,
+    "end_ms": 1960,
+    "confidence": 0.7267409883764899,
+    "text": "Can you have me?"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 543,
+    "start_ms": 2200,
+    "end_ms": 3680,
+    "confidence": 0.7267409883764899,
+    "text": "Yes, Prayana, we can hear you."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 544,
+    "start_ms": 3880,
+    "end_ms": 6340,
+    "confidence": 0.7267409883764899,
+    "text": "Yes, Prayana and I am against e-learning."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 545,
+    "start_ms": 6800,
+    "end_ms": 11240,
+    "confidence": 0.7267409883764899,
+    "text": "See, many of my fellow classmates put at the point that, you know, we could record lectures"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 546,
+    "start_ms": 11240,
+    "end_ms": 13220,
+    "confidence": 0.7267409883764899,
+    "text": "and then later on you see it regularly."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 547,
+    "start_ms": 13900,
+    "end_ms": 19080,
+    "confidence": 0.7267409883764899,
+    "text": "But my point is that many of the students would, like, shut their, you know, stop their video"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 548,
+    "start_ms": 19080,
+    "end_ms": 21460,
+    "confidence": 0.7267409883764899,
+    "text": "and then they could just record and not pay attention."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 549,
+    "start_ms": 21580,
+    "end_ms": 23400,
+    "confidence": 0.7267409883764899,
+    "text": "What is actually happening in the classroom?"
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 550,
+    "start_ms": 23700,
+    "end_ms": 26840,
+    "confidence": 0.7267409883764899,
+    "text": "They would just, you know, see the recordings, which is no things."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 551,
+    "start_ms": 26840,
+    "end_ms": 29240,
+    "confidence": 0.7559108185048331,
+    "text": "Okay, so let me support Prayana."
+  },
+  {
+    "chunk_idx": 72,
+    "seq": 552,
+    "start_ms": 29460,
+    "end_ms": 29800,
+    "confidence": 0.7559108185048331,
+    "text": "Like the..."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 553,
+    "start_ms": 0,
+    "end_ms": 4340,
+    "confidence": 0.5856676969757008,
+    "text": "two weeks ago I was taking lecture for financial markets to get some dividend"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 554,
+    "start_ms": 4340,
+    "end_ms": 8500,
+    "confidence": 0.5856676969757008,
+    "text": "as well and somebody like early morning 8 o'clock lecture and I agreed to"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 555,
+    "start_ms": 8500,
+    "end_ms": 12940,
+    "confidence": 0.5856676969757008,
+    "text": "print out and perhaps the gentleman he switched on my session and he was"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 556,
+    "start_ms": 12940,
+    "end_ms": 16620,
+    "confidence": 0.5856676969757008,
+    "text": "under the blanket. At 10 times I called his name Mr. Mr. Mr. Mr. Mr. Mr."
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 557,
+    "start_ms": 16680,
+    "end_ms": 19720,
+    "confidence": 0.5856676969757008,
+    "text": "Mr. was but he didn't get up so somebody told me that he was sleeping perhaps"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 558,
+    "start_ms": 19720,
+    "end_ms": 24600,
+    "confidence": 0.5856676969757008,
+    "text": "or to start. So we are coming to Shruti and we are coming to Karen we are coming to"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 559,
+    "start_ms": 24800,
+    "end_ms": 27540,
+    "confidence": 0.5259631327224605,
+    "text": "actually that now we are coming to similar and we are coming to you but"
+  },
+  {
+    "chunk_idx": 73,
+    "seq": 560,
+    "start_ms": 27540,
+    "end_ms": 29980,
+    "confidence": 0.5259631327224605,
+    "text": "they will let me do a chance to do one person."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 561,
+    "start_ms": 0,
+    "end_ms": 3540,
+    "confidence": 0.6385533254787976,
+    "text": "who hasn't spoken yet, and she is a sannya Shakti."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 562,
+    "start_ms": 3820,
+    "end_ms": 5500,
+    "confidence": 0.6385533254787976,
+    "text": "Sannya Shakti, she hasn't spoken yet."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 563,
+    "start_ms": 5580,
+    "end_ms": 7160,
+    "confidence": 0.6385533254787976,
+    "text": "So let's go to sannya Shakti, then we are coming"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 564,
+    "start_ms": 7160,
+    "end_ms": 8720,
+    "confidence": 0.6385533254787976,
+    "text": "to Devanchi Mehta."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 565,
+    "start_ms": 9220,
+    "end_ms": 9660,
+    "confidence": 0.6385533254787976,
+    "text": "Sannya Shakti."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 566,
+    "start_ms": 9940,
+    "end_ms": 10620,
+    "confidence": 0.6385533254787976,
+    "text": "So what about this?"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 567,
+    "start_ms": 10860,
+    "end_ms": 11660,
+    "confidence": 0.6385533254787976,
+    "text": "Can we talk about this?"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 568,
+    "start_ms": 11880,
+    "end_ms": 14860,
+    "confidence": 0.6385533254787976,
+    "text": "I am Sannya, and I am for online learning."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 569,
+    "start_ms": 15480,
+    "end_ms": 17880,
+    "confidence": 0.6385533254787976,
+    "text": "It's because online learning is more efficient."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 570,
+    "start_ms": 18420,
+    "end_ms": 21860,
+    "confidence": 0.6385533254787976,
+    "text": "And it lets us call, let's, at the time,"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 571,
+    "start_ms": 22120,
+    "end_ms": 24240,
+    "confidence": 0.6385533254787976,
+    "text": "we still, most people travel two to three"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 572,
+    "start_ms": 24240,
+    "end_ms": 25700,
+    "confidence": 0.6385533254787976,
+    "text": "as soon as their college is far."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 573,
+    "start_ms": 25880,
+    "end_ms": 29000,
+    "confidence": 0.6385533254787976,
+    "text": "So they are drained by the time they come and reach the college."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 574,
+    "start_ms": 29000,
+    "end_ms": 29980,
+    "confidence": 0.37777998634194115,
+    "text": "This is like it."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 575,
+    "start_ms": 0,
+    "end_ms": 5720,
+    "confidence": 0.7912795690459047,
+    "text": "the someone said that when you are in offline learning you are less social you are not able"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 576,
+    "start_ms": 5720,
+    "end_ms": 11600,
+    "confidence": 0.7912795690459047,
+    "text": "to connect with people as much as you can but my thing is if you want to be social your social"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 577,
+    "start_ms": 11600,
+    "end_ms": 16239,
+    "confidence": 0.7912795690459047,
+    "text": "ability shouldn't just be restricted to your educational things like if you want to be social"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 578,
+    "start_ms": 16239,
+    "end_ms": 22180,
+    "confidence": 0.7912795690459047,
+    "text": "go follow people on social media and other thing is someone said that you know you can't pay attention"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 579,
+    "start_ms": 22180,
+    "end_ms": 28300,
+    "confidence": 0.7912795690459047,
+    "text": "or you know and online class like people cheat and they you know on and just now you said"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 580,
+    "start_ms": 28300,
+    "end_ms": 29980,
+    "confidence": 0.5509025290549879,
+    "text": "guys left but even"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 581,
+    "start_ms": 0,
+    "end_ms": 3560,
+    "confidence": 0.6099997221254686,
+    "text": "But that is not exactly a merit for offline learning."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 582,
+    "start_ms": 4000,
+    "end_ms": 6640,
+    "confidence": 0.6099997221254686,
+    "text": "We cannot guarantee that if all of us are in the classroom,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 583,
+    "start_ms": 7000,
+    "end_ms": 10820,
+    "confidence": 0.6099997221254686,
+    "text": "all 100% or 100% we are all going to concentrate and listen"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 584,
+    "start_ms": 10820,
+    "end_ms": 12740,
+    "confidence": 0.6099997221254686,
+    "text": "to every single word that is true."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 585,
+    "start_ms": 13040,
+    "end_ms": 15240,
+    "confidence": 0.6099997221254686,
+    "text": "Okay, we can demonstrate that any counter to San Yeshiti,"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 586,
+    "start_ms": 15440,
+    "end_ms": 17040,
+    "confidence": 0.6099997221254686,
+    "text": "they want you better over to you."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 587,
+    "start_ms": 17200,
+    "end_ms": 18580,
+    "confidence": 0.6099997221254686,
+    "text": "And we will do yourself."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 588,
+    "start_ms": 19760,
+    "end_ms": 20280,
+    "confidence": 0.6099997221254686,
+    "text": "Devanching."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 589,
+    "start_ms": 20500,
+    "end_ms": 22440,
+    "confidence": 0.6099997221254686,
+    "text": "No, I am with the preference of email."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 590,
+    "start_ms": 23560,
+    "end_ms": 27560,
+    "confidence": 0.6099997221254686,
+    "text": "Someone said about that the calls for emailing is no"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 591,
+    "start_ms": 27560,
+    "end_ms": 29680,
+    "confidence": 0.6667678094806992,
+    "text": "and for even further rural areas."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 592,
+    "start_ms": 0,
+    "end_ms": 5520,
+    "confidence": 0.5716870035371938,
+    "text": "So if someone has a difficulty in buying a computer on that in rural areas,"
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 593,
+    "start_ms": 5840,
+    "end_ms": 9560,
+    "confidence": 0.5716870035371938,
+    "text": "we can go to cyber cases and that we even have that option."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 594,
+    "start_ms": 10540,
+    "end_ms": 14040,
+    "confidence": 0.5716870035371938,
+    "text": "But how much time will you go to cyber cafe every day?"
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 595,
+    "start_ms": 14240,
+    "end_ms": 15600,
+    "confidence": 0.5716870035371938,
+    "text": "Will you travel to cyber cafe?"
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 596,
+    "start_ms": 15780,
+    "end_ms": 16680,
+    "confidence": 0.5716870035371938,
+    "text": "You have to pay this."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 597,
+    "start_ms": 17440,
+    "end_ms": 22340,
+    "confidence": 0.5716870035371938,
+    "text": "So that's not many cyber cases that are open and long."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 598,
+    "start_ms": 23480,
+    "end_ms": 25980,
+    "confidence": 0.5716870035371938,
+    "text": "And in rural areas where there are cyber cafes,"
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 599,
+    "start_ms": 26160,
+    "end_ms": 27500,
+    "confidence": 0.5716870035371938,
+    "text": "then you tell me they can see."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 600,
+    "start_ms": 27500,
+    "end_ms": 28740,
+    "confidence": 0.4074762008395379,
+    "text": "I'm going to pay it down a lot."
+  },
+  {
+    "chunk_idx": 77,
+    "seq": 601,
+    "start_ms": 29040,
+    "end_ms": 29980,
+    "confidence": 0.4074762008395379,
+    "text": "I'm going to pay it down a lot."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 602,
+    "start_ms": 0,
+    "end_ms": 2260,
+    "confidence": 0.6400243162257413,
+    "text": "a lot. Okay, I will get started. Yeah,"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 603,
+    "start_ms": 2980,
+    "end_ms": 6120,
+    "confidence": 0.6400243162257413,
+    "text": "but then lockdown is going on."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 604,
+    "start_ms": 6580,
+    "end_ms": 9320,
+    "confidence": 0.6400243162257413,
+    "text": "Yes, they can see the government there."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 605,
+    "start_ms": 9620,
+    "end_ms": 11460,
+    "confidence": 0.6400243162257413,
+    "text": "Okay, okay. So, okay."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 606,
+    "start_ms": 11640,
+    "end_ms": 13720,
+    "confidence": 0.6400243162257413,
+    "text": "Now I'll give you some interesting examples."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 607,
+    "start_ms": 14260,
+    "end_ms": 16360,
+    "confidence": 0.6400243162257413,
+    "text": "See, if you ask my view,"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 608,
+    "start_ms": 16379,
+    "end_ms": 20260,
+    "confidence": 0.6400243162257413,
+    "text": "I am personally for online learning at least for today."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 609,
+    "start_ms": 21120,
+    "end_ms": 23180,
+    "confidence": 0.6400243162257413,
+    "text": "And see, at least I will not try to"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 610,
+    "start_ms": 23180,
+    "end_ms": 24680,
+    "confidence": 0.6400243162257413,
+    "text": "a different offline learning as of now,"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 611,
+    "start_ms": 24780,
+    "end_ms": 25920,
+    "confidence": 0.6400243162257413,
+    "text": "because when you're taking a stand,"
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 612,
+    "start_ms": 25980,
+    "end_ms": 27800,
+    "confidence": 0.6400243162257413,
+    "text": "you should take a stand for one particular thing."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 613,
+    "start_ms": 27820,
+    "end_ms": 29800,
+    "confidence": 0.6400243162257413,
+    "text": "At the outset, I said either a cow gives a milk"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 614,
+    "start_ms": 0,
+    "end_ms": 4059,
+    "confidence": 0.7256624078232359,
+    "text": "will use a will pick a stand. So now I'm taking a stand, I will use a micra. And I'm"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 615,
+    "start_ms": 4059,
+    "end_ms": 8600,
+    "confidence": 0.7256624078232359,
+    "text": "defending a wire, wire will use a mill. Though it doesn't happen that way. See, first"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 616,
+    "start_ms": 8600,
+    "end_ms": 14520,
+    "confidence": 0.7256624078232359,
+    "text": "of all, how many of you know that IIT Madras, one of the prestigious engineering institutes"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 617,
+    "start_ms": 14520,
+    "end_ms": 21780,
+    "confidence": 0.7256624078232359,
+    "text": "of India, very high in NRI of ranking, has started with the first online degree program"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 618,
+    "start_ms": 21780,
+    "end_ms": 27120,
+    "confidence": 0.7256624078232359,
+    "text": "in India. First online degree program in India is started by IIT Madras. And the name"
+  },
+  {
+    "chunk_idx": 79,
+    "seq": 619,
+    "start_ms": 27120,
+    "end_ms": 29980,
+    "confidence": 0.6307080713002793,
+    "text": "of the program is VSC in data science and program."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 620,
+    "start_ms": 600,
+    "end_ms": 7040,
+    "confidence": 0.7795802735124461,
+    "text": "It's a very friendly program, but this course is open to anybody who has cleared 12 standard"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 621,
+    "start_ms": 7040,
+    "end_ms": 9060,
+    "confidence": 0.7795802735124461,
+    "text": "and you can take it as a dual degree."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 622,
+    "start_ms": 9500,
+    "end_ms": 13200,
+    "confidence": 0.7795802735124461,
+    "text": "You can pursue this VSC in data and programming along with your VBA degree"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 623,
+    "start_ms": 13200,
+    "end_ms": 17280,
+    "confidence": 0.7795802735124461,
+    "text": "and it is so cheap, the course is open, anybody can enter it"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 624,
+    "start_ms": 17280,
+    "end_ms": 20900,
+    "confidence": 0.7795802735124461,
+    "text": "and you will be taught none other than by professors of IIG."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 625,
+    "start_ms": 21820,
+    "end_ms": 25560,
+    "confidence": 0.7795802735124461,
+    "text": "Now tell me, does offline education give you this chance?"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 626,
+    "start_ms": 25560,
+    "end_ms": 29980,
+    "confidence": 0.6676887696456312,
+    "text": "Now, new people are in summer because of the merit, because of your percentage and..."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 627,
+    "start_ms": 0,
+    "end_ms": 1500,
+    "confidence": 0.7250009367825753,
+    "text": "because you got the admission process."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 628,
+    "start_ms": 1900,
+    "end_ms": 2980,
+    "confidence": 0.7250009367825753,
+    "text": "There are so many people."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 629,
+    "start_ms": 3180,
+    "end_ms": 5100,
+    "confidence": 0.7250009367825753,
+    "text": "I get calls from so many of my alums,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 630,
+    "start_ms": 5480,
+    "end_ms": 6660,
+    "confidence": 0.7250009367825753,
+    "text": "so many of people who know me,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 631,
+    "start_ms": 6740,
+    "end_ms": 7900,
+    "confidence": 0.7250009367825753,
+    "text": "they do me call this answer."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 632,
+    "start_ms": 8240,
+    "end_ms": 9180,
+    "confidence": 0.7250009367825753,
+    "text": "I'm also my my mission name,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 633,
+    "start_ms": 9380,
+    "end_ms": 10460,
+    "confidence": 0.7250009367825753,
+    "text": "I'm an up-inch car sector here,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 634,
+    "start_ms": 10700,
+    "end_ms": 11560,
+    "confidence": 0.7250009367825753,
+    "text": "because they know I'm a factor team."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 635,
+    "start_ms": 11700,
+    "end_ms": 12160,
+    "confidence": 0.7250009367825753,
+    "text": "So I said,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 636,
+    "start_ms": 12420,
+    "end_ms": 14260,
+    "confidence": 0.7250009367825753,
+    "text": "I can't help you with the admission process here"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 637,
+    "start_ms": 14260,
+    "end_ms": 15760,
+    "confidence": 0.7250009367825753,
+    "text": "or the systematic admission process."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 638,
+    "start_ms": 16120,
+    "end_ms": 17160,
+    "confidence": 0.7250009367825753,
+    "text": "I can do the information."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 639,
+    "start_ms": 17520,
+    "end_ms": 18360,
+    "confidence": 0.7250009367825753,
+    "text": "When first list will come,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 640,
+    "start_ms": 18460,
+    "end_ms": 19300,
+    "confidence": 0.7250009367825753,
+    "text": "then second list will come."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 641,
+    "start_ms": 19300,
+    "end_ms": 20640,
+    "confidence": 0.7250009367825753,
+    "text": "I can tell you about that."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 642,
+    "start_ms": 20640,
+    "end_ms": 22200,
+    "confidence": 0.7250009367825753,
+    "text": "And I can connect you to some authorities"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 643,
+    "start_ms": 22200,
+    "end_ms": 24180,
+    "confidence": 0.7250009367825753,
+    "text": "and they can help you about certain process,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 644,
+    "start_ms": 24580,
+    "end_ms": 26640,
+    "confidence": 0.7250009367825753,
+    "text": "not in getting admission by other means."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 645,
+    "start_ms": 26900,
+    "end_ms": 27440,
+    "confidence": 0.7250009367825753,
+    "text": "Is that clear?"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 646,
+    "start_ms": 27700,
+    "end_ms": 29320,
+    "confidence": 0.7250009367825753,
+    "text": "So now just think,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 647,
+    "start_ms": 29320,
+    "end_ms": 29980,
+    "confidence": 0.28024636067795294,
+    "text": "online deal."
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 648,
+    "start_ms": 2620,
+    "end_ms": 5620,
+    "confidence": 0.7044641653631702,
+    "text": "can open a lot of opportunities for you."
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 649,
+    "start_ms": 5820,
+    "end_ms": 9420,
+    "confidence": 0.7044641653631702,
+    "text": "Let me tell you one more simple, what you call as explanation."
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 650,
+    "start_ms": 10520,
+    "end_ms": 12780,
+    "confidence": 0.7044641653631702,
+    "text": "Before pandemic, I've noted my NGO."
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 651,
+    "start_ms": 13600,
+    "end_ms": 16360,
+    "confidence": 0.7044641653631702,
+    "text": "So my NGO is more into research and we coordinate with IITs"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 652,
+    "start_ms": 16360,
+    "end_ms": 19380,
+    "confidence": 0.7044641653631702,
+    "text": "and I am professors and we conduct a lot of workshops"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 653,
+    "start_ms": 19380,
+    "end_ms": 21080,
+    "confidence": 0.7044641653631702,
+    "text": "of faculty than for industry professionals."
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 654,
+    "start_ms": 21600,
+    "end_ms": 22780,
+    "confidence": 0.7044641653631702,
+    "text": "So it's a purely NGO."
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 655,
+    "start_ms": 23120,
+    "end_ms": 24360,
+    "confidence": 0.7044641653631702,
+    "text": "It works on low profit for donors."
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 656,
+    "start_ms": 24860,
+    "end_ms": 26680,
+    "confidence": 0.7044641653631702,
+    "text": "So when I started this NGO, I was discussing"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 657,
+    "start_ms": 26680,
+    "end_ms": 28920,
+    "confidence": 0.7044641653631702,
+    "text": "with my I am a professor, professor of Asia-Muddha"
+  },
+  {
+    "chunk_idx": 82,
+    "seq": 658,
+    "start_ms": 28920,
+    "end_ms": 29980,
+    "confidence": 0.7177677744718971,
+    "text": "and we were discussing this."
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 659,
+    "start_ms": 0,
+    "end_ms": 2820,
+    "confidence": 0.7685988745024024,
+    "text": "that's how to take this NGO forward and what we can do."
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 660,
+    "start_ms": 3180,
+    "end_ms": 4940,
+    "confidence": 0.7685988745024024,
+    "text": "So, sir said, okay, I don't do one thing"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 661,
+    "start_ms": 4940,
+    "end_ms": 7160,
+    "confidence": 0.7685988745024024,
+    "text": "that we can have some sessions in Mumbai."
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 662,
+    "start_ms": 7400,
+    "end_ms": 8600,
+    "confidence": 0.7685988745024024,
+    "text": "We can have some sessions in Delhi"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 663,
+    "start_ms": 8600,
+    "end_ms": 10220,
+    "confidence": 0.7685988745024024,
+    "text": "and Madras and other places and all."
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 664,
+    "start_ms": 10360,
+    "end_ms": 12900,
+    "confidence": 0.7685988745024024,
+    "text": "So, we were thinking about offline sessions"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 665,
+    "start_ms": 12900,
+    "end_ms": 15300,
+    "confidence": 0.7685988745024024,
+    "text": "and marketing are marketing are NGO"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 666,
+    "start_ms": 15300,
+    "end_ms": 16960,
+    "confidence": 0.7685988745024024,
+    "text": "and calling people and bringing them."
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 667,
+    "start_ms": 17240,
+    "end_ms": 18340,
+    "confidence": 0.7685988745024024,
+    "text": "But suddenly in this pandemic,"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 668,
+    "start_ms": 18580,
+    "end_ms": 19740,
+    "confidence": 0.7685988745024024,
+    "text": "guys suddenly we got an opportunity,"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 669,
+    "start_ms": 19740,
+    "end_ms": 22400,
+    "confidence": 0.7685988745024024,
+    "text": "we got an idea that why not push it online?"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 670,
+    "start_ms": 22500,
+    "end_ms": 24520,
+    "confidence": 0.7685988745024024,
+    "text": "So, we conducted a lot of workshops for teachers,"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 671,
+    "start_ms": 24660,
+    "end_ms": 26100,
+    "confidence": 0.7685988745024024,
+    "text": "for opportunities for industry professionals."
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 672,
+    "start_ms": 26240,
+    "end_ms": 28300,
+    "confidence": 0.7685988745024024,
+    "text": "And we did it online and we reached"
+  },
+  {
+    "chunk_idx": 83,
+    "seq": 673,
+    "start_ms": 28300,
+    "end_ms": 29980,
+    "confidence": 0.5851669731236199,
+    "text": "about 500 people in just..."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 674,
+    "start_ms": 0,
+    "end_ms": 3300,
+    "confidence": 0.7559066859904384,
+    "text": "in this just for the call as four months of lockdown."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 675,
+    "start_ms": 4680,
+    "end_ms": 7400,
+    "confidence": 0.7559066859904384,
+    "text": "Now, online learning itself is a big opportunity, guys."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 676,
+    "start_ms": 7700,
+    "end_ms": 9920,
+    "confidence": 0.7559066859904384,
+    "text": "Just think how many of you can make to make"
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 677,
+    "start_ms": 9920,
+    "end_ms": 11620,
+    "confidence": 0.7559066859904384,
+    "text": "make it to prestigious institutes of India."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 678,
+    "start_ms": 12080,
+    "end_ms": 15460,
+    "confidence": 0.7559066859904384,
+    "text": "Now, if you want to go to IMs, you require a very high percentile in cash."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 679,
+    "start_ms": 15900,
+    "end_ms": 18440,
+    "confidence": 0.7559066859904384,
+    "text": "Is that if you want to go to any of the engineering institution,"
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 680,
+    "start_ms": 18900,
+    "end_ms": 22080,
+    "confidence": 0.7559066859904384,
+    "text": "you require either a gate score or IIT JET."
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 681,
+    "start_ms": 22620,
+    "end_ms": 25640,
+    "confidence": 0.7559066859904384,
+    "text": "Now, many of us who don't have that aptitude to clear that exams,"
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 682,
+    "start_ms": 25920,
+    "end_ms": 28520,
+    "confidence": 0.7559066859904384,
+    "text": "but if these institutions often online will have education,"
+  },
+  {
+    "chunk_idx": 84,
+    "seq": 683,
+    "start_ms": 28520,
+    "end_ms": 29980,
+    "confidence": 0.5114303178243709,
+    "text": "and they can reach to all of them."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 684,
+    "start_ms": 0,
+    "end_ms": 5840,
+    "confidence": 0.7074708245218508,
+    "text": "masses just imagine what to do with the quality of education is that here only is that we can have"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 685,
+    "start_ms": 7120,
+    "end_ms": 12140,
+    "confidence": 0.7074708245218508,
+    "text": "state-of-the-art amenities. Now somebody said that Sir a network issue a connectivity"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 686,
+    "start_ms": 12140,
+    "end_ms": 17040,
+    "confidence": 0.7074708245218508,
+    "text": "connectivity can show that I was they are we are using some special kind of Mike all these people"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 687,
+    "start_ms": 17040,
+    "end_ms": 23600,
+    "confidence": 0.7074708245218508,
+    "text": "people said now you know there are institutions they are established establishing state-of-the-art"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 688,
+    "start_ms": 23600,
+    "end_ms": 28820,
+    "confidence": 0.7074708245218508,
+    "text": "facilities they are using all modern equipments and they are trying to reach to so many people so"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 689,
+    "start_ms": 28820,
+    "end_ms": 29980,
+    "confidence": 0.4091109425295528,
+    "text": "and then education has its way."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 690,
+    "start_ms": 0,
+    "end_ms": 5660,
+    "confidence": 0.8060782170595585,
+    "text": "merit. Let me tell you, I am into academics for more than a decade. And when I teach in my class,"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 691,
+    "start_ms": 6020,
+    "end_ms": 10160,
+    "confidence": 0.8060782170595585,
+    "text": "yes, I can see that there is total involvement of the class. But at a certain point in time,"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 692,
+    "start_ms": 10840,
+    "end_ms": 17460,
+    "confidence": 0.8060782170595585,
+    "text": "after 20 years, you see students start receiving less and in the regular lectures,"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 693,
+    "start_ms": 17940,
+    "end_ms": 23020,
+    "confidence": 0.8060782170595585,
+    "text": "if I go with the full tempo and if I go with my what you call as a detailed presentation,"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 694,
+    "start_ms": 23360,
+    "end_ms": 27800,
+    "confidence": 0.8060782170595585,
+    "text": "that people get bored also. But in online, you see, I can see none of you are at least bored"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 695,
+    "start_ms": 27800,
+    "end_ms": 29920,
+    "confidence": 0.5060664588262935,
+    "text": "in this session, because everybody is speaking, everybody."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 696,
+    "start_ms": 0,
+    "end_ms": 1960,
+    "confidence": 0.5524711487338064,
+    "text": "is raising the hands everybody wants to enter."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 697,
+    "start_ms": 2380,
+    "end_ms": 3200,
+    "confidence": 0.5524711487338064,
+    "text": "So these are my views."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 698,
+    "start_ms": 3460,
+    "end_ms": 4920,
+    "confidence": 0.5524711487338064,
+    "text": "I am in favor of fuck, come on."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 699,
+    "start_ms": 5160,
+    "end_ms": 6800,
+    "confidence": 0.5524711487338064,
+    "text": "Anybody would like to counter me open?"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 700,
+    "start_ms": 6940,
+    "end_ms": 8880,
+    "confidence": 0.5524711487338064,
+    "text": "You are most welcome if you want to come on."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 701,
+    "start_ms": 9100,
+    "end_ms": 9220,
+    "confidence": 0.5524711487338064,
+    "text": "Yes."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 702,
+    "start_ms": 9600,
+    "end_ms": 9740,
+    "confidence": 0.5524711487338064,
+    "text": "Hello sir."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 703,
+    "start_ms": 10540,
+    "end_ms": 10800,
+    "confidence": 0.5524711487338064,
+    "text": "Hello first."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 704,
+    "start_ms": 11380,
+    "end_ms": 13040,
+    "confidence": 0.5524711487338064,
+    "text": "Now first, first the ladies said hello,"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 705,
+    "start_ms": 13040,
+    "end_ms": 14360,
+    "confidence": 0.5524711487338064,
+    "text": "who's that ladies who said he had a help?"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 706,
+    "start_ms": 14600,
+    "end_ms": 15300,
+    "confidence": 0.5524711487338064,
+    "text": "First, come on."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 707,
+    "start_ms": 15600,
+    "end_ms": 16660,
+    "confidence": 0.5524711487338064,
+    "text": "Who present the person?"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 708,
+    "start_ms": 17060,
+    "end_ms": 17400,
+    "confidence": 0.5524711487338064,
+    "text": "I'll tell you that."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 709,
+    "start_ms": 17560,
+    "end_ms": 17940,
+    "confidence": 0.5524711487338064,
+    "text": "Hello sir."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 710,
+    "start_ms": 18180,
+    "end_ms": 19200,
+    "confidence": 0.5524711487338064,
+    "text": "Tell the ones to counter me."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 711,
+    "start_ms": 19340,
+    "end_ms": 21480,
+    "confidence": 0.5524711487338064,
+    "text": "Let us do chance to build that in the competition team."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 712,
+    "start_ms": 21580,
+    "end_ms": 22540,
+    "confidence": 0.5524711487338064,
+    "text": "Come on, tell the one to you."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 713,
+    "start_ms": 23140,
+    "end_ms": 25140,
+    "confidence": 0.5524711487338064,
+    "text": "Sir, but somewhere as you told,"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 714,
+    "start_ms": 25300,
+    "end_ms": 27620,
+    "confidence": 0.5524711487338064,
+    "text": "but somewhere, machines have limitations."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 715,
+    "start_ms": 28860,
+    "end_ms": 29940,
+    "confidence": 0.3642212486971498,
+    "text": "See, all of the patients get."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 716,
+    "start_ms": 499,
+    "end_ms": 5380,
+    "confidence": 0.6020546355119003,
+    "text": "I can remove all the limitations there are institutions who are working they will remove all the limitations"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 717,
+    "start_ms": 5380,
+    "end_ms": 9020,
+    "confidence": 0.6020546355119003,
+    "text": "They will provide you state of the art facility and they will give you an experiential"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 718,
+    "start_ms": 9020,
+    "end_ms": 15640,
+    "confidence": 0.6020546355119003,
+    "text": "Even in online see online learning depends upon the quality of teacher if teacher is is what you call as dynamic and transformational"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 719,
+    "start_ms": 15640,
+    "end_ms": 21980,
+    "confidence": 0.6020546355119003,
+    "text": "He will have the necessary outcome even in online learning. Okay. Okay. Somebody said some voice at some voice at some voice at some who said sir"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 720,
+    "start_ms": 22600,
+    "end_ms": 24520,
+    "confidence": 0.6020546355119003,
+    "text": "Are you number there are so many people"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 721,
+    "start_ms": 25419,
+    "end_ms": 29980,
+    "confidence": 0.43573652433533416,
+    "text": "Who said Josh Josh Josh Josh. That's good. Just good. Just good. Just good"
+  },
+  {
+    "chunk_idx": 89,
+    "seq": 722,
+    "start_ms": 0,
+    "end_ms": 25380,
+    "confidence": 0.6718444220401799,
+    "text": "Sir, I am a guest minister. You said that we can access to high institutes, but if not, you take example some student who has done his all learning online and someone who had gone to colleges and done learning without e-learning when we have given him tasks like going, going stage and perform something and tell something."
+  },
+  {
+    "chunk_idx": 89,
+    "seq": 723,
+    "start_ms": 25380,
+    "end_ms": 29880,
+    "confidence": 0.5570229955585155,
+    "text": "The e-learning shouldn't be so much shy because the degree."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 724,
+    "start_ms": 0,
+    "end_ms": 4059,
+    "confidence": 0.6010673837555771,
+    "text": "is different between live and what learning."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 725,
+    "start_ms": 4440,
+    "end_ms": 7840,
+    "confidence": 0.6010673837555771,
+    "text": "OK, let us go to author of a bug will author of a bug will"
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 726,
+    "start_ms": 7840,
+    "end_ms": 8660,
+    "confidence": 0.6010673837555771,
+    "text": "hasn't spoken yet."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 727,
+    "start_ms": 8780,
+    "end_ms": 9520,
+    "confidence": 0.6010673837555771,
+    "text": "I'll throw over to you."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 728,
+    "start_ms": 9620,
+    "end_ms": 10540,
+    "confidence": 0.6010673837555771,
+    "text": "I'll throw over to you."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 729,
+    "start_ms": 10540,
+    "end_ms": 10820,
+    "confidence": 0.6010673837555771,
+    "text": "Yes, sir."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 730,
+    "start_ms": 12220,
+    "end_ms": 13240,
+    "confidence": 0.6010673837555771,
+    "text": "Hello, everyone."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 731,
+    "start_ms": 13760,
+    "end_ms": 18940,
+    "confidence": 0.6010673837555771,
+    "text": "My name is author of a bug will and I'm for the motion."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 732,
+    "start_ms": 19920,
+    "end_ms": 24460,
+    "confidence": 0.6010673837555771,
+    "text": "So I will comment by saying that it's a group decision."
+  },
+  {
+    "chunk_idx": 90,
+    "seq": 733,
+    "start_ms": 24460,
+    "end_ms": 29360,
+    "confidence": 0.6010673837555771,
+    "text": "So we'll now have done every points that everyone has said."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 734,
+    "start_ms": 0,
+    "end_ms": 4400,
+    "confidence": 0.7644333894141473,
+    "text": "I believe that it's all about perspective or our mentality."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 735,
+    "start_ms": 5280,
+    "end_ms": 7540,
+    "confidence": 0.7644333894141473,
+    "text": "It's like, you look at things,"
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 736,
+    "start_ms": 7540,
+    "end_ms": 9140,
+    "confidence": 0.7644333894141473,
+    "text": "how you look at things, right?"
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 737,
+    "start_ms": 9140,
+    "end_ms": 12040,
+    "confidence": 0.7644333894141473,
+    "text": "For an example, a very basic one."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 738,
+    "start_ms": 12880,
+    "end_ms": 14660,
+    "confidence": 0.7644333894141473,
+    "text": "Let's take a glass filled with water."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 739,
+    "start_ms": 16000,
+    "end_ms": 20020,
+    "confidence": 0.7644333894141473,
+    "text": "It's like the glass is whether half filled or half empty."
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 740,
+    "start_ms": 20540,
+    "end_ms": 24660,
+    "confidence": 0.7644333894141473,
+    "text": "So my point here is the point here is,"
+  },
+  {
+    "chunk_idx": 91,
+    "seq": 741,
+    "start_ms": 24660,
+    "end_ms": 29980,
+    "confidence": 0.7644333894141473,
+    "text": "it's not about the pandemic, it's us,"
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 742,
+    "start_ms": 0,
+    "end_ms": 1220,
+    "confidence": 0.639806621321937,
+    "text": "from last year."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 743,
+    "start_ms": 1760,
+    "end_ms": 2760,
+    "confidence": 0.639806621321937,
+    "text": "A terrible glasses."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 744,
+    "start_ms": 3020,
+    "end_ms": 3720,
+    "confidence": 0.639806621321937,
+    "text": "Have you had any degree?"
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 745,
+    "start_ms": 4920,
+    "end_ms": 5920,
+    "confidence": 0.639806621321937,
+    "text": "We got you."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 746,
+    "start_ms": 6000,
+    "end_ms": 6520,
+    "confidence": 0.639806621321937,
+    "text": "We got you."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 747,
+    "start_ms": 6640,
+    "end_ms": 6820,
+    "confidence": 0.639806621321937,
+    "text": "Okay."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 748,
+    "start_ms": 6820,
+    "end_ms": 9500,
+    "confidence": 0.639806621321937,
+    "text": "Now I want somebody who hasn't spoken yet in the class."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 749,
+    "start_ms": 9660,
+    "end_ms": 10240,
+    "confidence": 0.639806621321937,
+    "text": "Who said hello?"
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 750,
+    "start_ms": 10380,
+    "end_ms": 11140,
+    "confidence": 0.639806621321937,
+    "text": "I want to hear that person."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 751,
+    "start_ms": 11320,
+    "end_ms": 11520,
+    "confidence": 0.639806621321937,
+    "text": "A chance."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 752,
+    "start_ms": 11680,
+    "end_ms": 11760,
+    "confidence": 0.639806621321937,
+    "text": "Come on."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 753,
+    "start_ms": 11880,
+    "end_ms": 12360,
+    "confidence": 0.639806621321937,
+    "text": "Who said hello?"
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 754,
+    "start_ms": 13680,
+    "end_ms": 14140,
+    "confidence": 0.639806621321937,
+    "text": "She."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 755,
+    "start_ms": 15640,
+    "end_ms": 16160,
+    "confidence": 0.639806621321937,
+    "text": "Yes."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 756,
+    "start_ms": 18120,
+    "end_ms": 23440,
+    "confidence": 0.639806621321937,
+    "text": "The third advantage of e-learning is we can interact with everyone."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 757,
+    "start_ms": 23920,
+    "end_ms": 27420,
+    "confidence": 0.639806621321937,
+    "text": "And we can clear his or her doubts."
+  },
+  {
+    "chunk_idx": 92,
+    "seq": 758,
+    "start_ms": 28979,
+    "end_ms": 29980,
+    "confidence": 0.45070687481009475,
+    "text": "On side by."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 759,
+    "start_ms": 2039,
+    "end_ms": 7240,
+    "confidence": 0.5859606504497695,
+    "text": "You said that we can learn from anywhere from the world, but what about the children"
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 760,
+    "start_ms": 7240,
+    "end_ms": 12700,
+    "confidence": 0.5859606504497695,
+    "text": "who are less privileged, like IT, Milan and Europe, where I had to call students, they"
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 761,
+    "start_ms": 12700,
+    "end_ms": 15880,
+    "confidence": 0.5859606504497695,
+    "text": "did not have even a smart phone with them."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 762,
+    "start_ms": 16280,
+    "end_ms": 20840,
+    "confidence": 0.5859606504497695,
+    "text": "So what about those people, we are thinking that's about us who are privileged, what"
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 763,
+    "start_ms": 20840,
+    "end_ms": 23160,
+    "confidence": 0.5859606504497695,
+    "text": "about the underprivileged people."
+  },
+  {
+    "chunk_idx": 94,
+    "seq": 764,
+    "start_ms": 23640,
+    "end_ms": 29800,
+    "confidence": 0.5859606504497695,
+    "text": "And even I don't and so my, I imagine I was not able to take my exams to do"
+  },
+  {
+    "chunk_idx": 95,
+    "seq": 765,
+    "start_ms": 9899,
+    "end_ms": 28960,
+    "confidence": 0.5013702591989903,
+    "text": "Okay, so now I want somebody raise your hand, I will see, sorry, issue or pointi, issue or pointi, issue or pointi, sir, sir, as there are some students, those who are making some subjects or they don't like,"
+  },
+  {
+    "chunk_idx": 95,
+    "seq": 766,
+    "start_ms": 28960,
+    "end_ms": 29980,
+    "confidence": 0.5110389487024298,
+    "text": "I'll just mute yourself."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 767,
+    "start_ms": 0,
+    "end_ms": 8200,
+    "confidence": 0.571719076264259,
+    "text": "others mute yourself, others mute yourself, only sure will respond, each way. There are some"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 768,
+    "start_ms": 8200,
+    "end_ms": 13400,
+    "confidence": 0.571719076264259,
+    "text": "students, those who don't like these subjects like match or they don't want to attend the subjects"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 769,
+    "start_ms": 14240,
+    "end_ms": 20040,
+    "confidence": 0.571719076264259,
+    "text": "like so sometimes they start to open their another tab to play games, some others,"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 770,
+    "start_ms": 20040,
+    "end_ms": 26300,
+    "confidence": 0.48216566055825644,
+    "text": "other as they usually try this and at the end they still don't want to do it,"
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 771,
+    "start_ms": 26300,
+    "end_ms": 29660,
+    "confidence": 0.48216566055825644,
+    "text": "they still don't want to do it, they still don't want to do it, they still don't want to do it,"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 772,
+    "start_ms": 0,
+    "end_ms": 2860,
+    "confidence": 0.5886798642279524,
+    "text": "give me a running shot of time that you put in hasn't spoken yet."
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 773,
+    "start_ms": 2940,
+    "end_ms": 4500,
+    "confidence": 0.5886798642279524,
+    "text": "Can you put it, tell us your view."
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 774,
+    "start_ms": 4580,
+    "end_ms": 6260,
+    "confidence": 0.5886798642279524,
+    "text": "Can you put it lower to you?"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 775,
+    "start_ms": 6720,
+    "end_ms": 7880,
+    "confidence": 0.5886798642279524,
+    "text": "Thank you for the question."
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 776,
+    "start_ms": 8360,
+    "end_ms": 12640,
+    "confidence": 0.5886798642279524,
+    "text": "On the, for e-learning, I would like to say that's fine."
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 777,
+    "start_ms": 12860,
+    "end_ms": 15920,
+    "confidence": 0.5886798642279524,
+    "text": "I know many people do not have access to the technological"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 778,
+    "start_ms": 15920,
+    "end_ms": 18520,
+    "confidence": 0.5886798642279524,
+    "text": "sales and all, but we can always go back"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 779,
+    "start_ms": 18520,
+    "end_ms": 20600,
+    "confidence": 0.5886798642279524,
+    "text": "to the traditional learning method."
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 780,
+    "start_ms": 20820,
+    "end_ms": 23960,
+    "confidence": 0.5886798642279524,
+    "text": "But one thing which is very important is that we get"
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 781,
+    "start_ms": 23960,
+    "end_ms": 26700,
+    "confidence": 0.5886798642279524,
+    "text": "to improve our technological sales."
+  },
+  {
+    "chunk_idx": 97,
+    "seq": 782,
+    "start_ms": 26700,
+    "end_ms": 28260,
+    "confidence": 0.4309050792468507,
+    "text": "The people who are not."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 783,
+    "start_ms": 0,
+    "end_ms": 7000,
+    "confidence": 0.6025860861835494,
+    "text": "they can really learn and grow up and there's no better time."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 784,
+    "start_ms": 7540,
+    "end_ms": 8660,
+    "confidence": 0.6025860861835494,
+    "text": "How does your company come?"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 785,
+    "start_ms": 9760,
+    "end_ms": 13280,
+    "confidence": 0.6025860861835494,
+    "text": "The people will work with some talent you have got."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 786,
+    "start_ms": 13880,
+    "end_ms": 16020,
+    "confidence": 0.6025860861835494,
+    "text": "You know how to access the technology."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 787,
+    "start_ms": 16239,
+    "end_ms": 17920,
+    "confidence": 0.6025860861835494,
+    "text": "Okay. Thank you, Garji. Thank you."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 788,
+    "start_ms": 18060,
+    "end_ms": 19120,
+    "confidence": 0.6025860861835494,
+    "text": "Now, I want to give one more."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 789,
+    "start_ms": 19460,
+    "end_ms": 23680,
+    "confidence": 0.6025860861835494,
+    "text": "Let me say, let me put, I want to give one last chance to turn my route"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 790,
+    "start_ms": 23680,
+    "end_ms": 27020,
+    "confidence": 0.6025860861835494,
+    "text": "and then I will look to 34, then I will close up."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 791,
+    "start_ms": 27020,
+    "end_ms": 29380,
+    "confidence": 0.5404170346343393,
+    "text": "Turn my route and then we are coming to 35."
+  },
+  {
+    "chunk_idx": 99,
+    "seq": 792,
+    "start_ms": 0,
+    "end_ms": 19040,
+    "confidence": 0.6022110097620205,
+    "text": "Yes, yes, then we can. Yes, then we can. Yes, then we can. Yes, then we. Yeah, as as my friend said now that many people can gain many technological skills here, but some people gain technological skills in hacking mobile phones and everything. And as someone said before you're."
+  },
+  {
+    "chunk_idx": 100,
+    "seq": 793,
+    "start_ms": 0,
+    "end_ms": 19100,
+    "confidence": 0.547724587189682,
+    "text": "But as soon as when they get out of the field, they can be easily hacked, the information"
+  },
+  {
+    "chunk_idx": 100,
+    "seq": 794,
+    "start_ms": 19100,
+    "end_ms": 24640,
+    "confidence": 0.547724587189682,
+    "text": "can be dropped from them as you know they will put this lock down and all, everybody"
+  },
+  {
+    "chunk_idx": 100,
+    "seq": 795,
+    "start_ms": 24640,
+    "end_ms": 29980,
+    "confidence": 0.5094271930501508,
+    "text": "start now starting to hack and rate of cyber crime is steadily growing and off."
+  },
+  {
+    "chunk_idx": 101,
+    "seq": 796,
+    "start_ms": 0,
+    "end_ms": 6500,
+    "confidence": 0.6109522753429091,
+    "text": "Okay, then my turn man cutting me shortly. So give me a running shot of time. I have almost let us go to lucky for them. Lucky for his last"
+  },
+  {
+    "chunk_idx": 101,
+    "seq": 797,
+    "start_ms": 6940,
+    "end_ms": 11860,
+    "confidence": 0.6109522753429091,
+    "text": "So can you hear me? We can hear you, but we can't see you switch on your video"
+  },
+  {
+    "chunk_idx": 101,
+    "seq": 798,
+    "start_ms": 12760,
+    "end_ms": 13340,
+    "confidence": 0.6109522753429091,
+    "text": "Okay, so"
+  },
+  {
+    "chunk_idx": 101,
+    "seq": 799,
+    "start_ms": 14300,
+    "end_ms": 20440,
+    "confidence": 0.6109522753429091,
+    "text": "Yes, so like my point is this e-learning had just stay in those specially in this amids of"
+  },
+  {
+    "chunk_idx": 101,
+    "seq": 800,
+    "start_ms": 21500,
+    "end_ms": 27500,
+    "confidence": 0.6109522753429091,
+    "text": "Andemic and we know that help come first so like we have to stay in those no matter what and we have to learn to get adopted"
+  },
+  {
+    "chunk_idx": 101,
+    "seq": 801,
+    "start_ms": 27500,
+    "end_ms": 29980,
+    "confidence": 0.7136793320724034,
+    "text": "This way of learning secondly people were telling about"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 802,
+    "start_ms": 880,
+    "end_ms": 3040,
+    "confidence": 0.666822986705021,
+    "text": "People don't have access to mobile,"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 803,
+    "start_ms": 3120,
+    "end_ms": 4000,
+    "confidence": 0.666822986705021,
+    "text": "after being all that."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 804,
+    "start_ms": 4100,
+    "end_ms": 5380,
+    "confidence": 0.666822986705021,
+    "text": "We know that recently Rahul Gandhi"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 805,
+    "start_ms": 5380,
+    "end_ms": 7860,
+    "confidence": 0.666822986705021,
+    "text": "had distributed smartphones for two or nearby village."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 806,
+    "start_ms": 8320,
+    "end_ms": 11060,
+    "confidence": 0.666822986705021,
+    "text": "So the government is coming up with solutions like this."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 807,
+    "start_ms": 11300,
+    "end_ms": 15340,
+    "confidence": 0.666822986705021,
+    "text": "And thirdly, before this, there were whole to many activities."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 808,
+    "start_ms": 16000,
+    "end_ms": 17920,
+    "confidence": 0.666822986705021,
+    "text": "So if we didn't have electronic learning,"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 809,
+    "start_ms": 18360,
+    "end_ms": 19380,
+    "confidence": 0.666822986705021,
+    "text": "then we had to wait."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 810,
+    "start_ms": 19440,
+    "end_ms": 21500,
+    "confidence": 0.666822986705021,
+    "text": "What if this pandemic wouldn't go for more than a year?"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 811,
+    "start_ms": 21940,
+    "end_ms": 23620,
+    "confidence": 0.666822986705021,
+    "text": "Then our viewers would be lost in this."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 812,
+    "start_ms": 23900,
+    "end_ms": 24120,
+    "confidence": 0.666822986705021,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 813,
+    "start_ms": 24580,
+    "end_ms": 26120,
+    "confidence": 0.666822986705021,
+    "text": "So where is Rahul Gandhi putting it in?"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 814,
+    "start_ms": 26580,
+    "end_ms": 28480,
+    "confidence": 0.666822986705021,
+    "text": "So the people who you see, he has it on here"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 815,
+    "start_ms": 28480,
+    "end_ms": 29480,
+    "confidence": 0.4428144166292295,
+    "text": "about Rahul Gandhi."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 816,
+    "start_ms": 29740,
+    "end_ms": 29980,
+    "confidence": 0.4428144166292295,
+    "text": "Rahul Gandhi."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 817,
+    "start_ms": 0,
+    "end_ms": 2020,
+    "confidence": 0.5160632650508641,
+    "text": "And you are seriously talking about Rahul Gandhi's series."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 818,
+    "start_ms": 4560,
+    "end_ms": 8400,
+    "confidence": 0.5160632650508641,
+    "text": "No, no, no, no, no, no."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 819,
+    "start_ms": 8400,
+    "end_ms": 8700,
+    "confidence": 0.5160632650508641,
+    "text": "No, no, no, no."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 820,
+    "start_ms": 8880,
+    "end_ms": 9660,
+    "confidence": 0.5160632650508641,
+    "text": "Well, listen, listen."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 821,
+    "start_ms": 10360,
+    "end_ms": 11000,
+    "confidence": 0.5160632650508641,
+    "text": "This is a..."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 822,
+    "start_ms": 11000,
+    "end_ms": 11720,
+    "confidence": 0.5160632650508641,
+    "text": "First of all, 8 minutes."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 823,
+    "start_ms": 12000,
+    "end_ms": 13780,
+    "confidence": 0.5160632650508641,
+    "text": "Nobody will count the Latino note."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 824,
+    "start_ms": 13940,
+    "end_ms": 16140,
+    "confidence": 0.5160632650508641,
+    "text": "He has just given a view, and a Latifu"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 825,
+    "start_ms": 16140,
+    "end_ms": 19000,
+    "confidence": 0.5160632650508641,
+    "text": "I agree to you that there are politicians who can do a good job."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 826,
+    "start_ms": 19140,
+    "end_ms": 20240,
+    "confidence": 0.5160632650508641,
+    "text": "We might disagree with Rahul Gandhi."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 827,
+    "start_ms": 20420,
+    "end_ms": 21080,
+    "confidence": 0.5160632650508641,
+    "text": "No problem with that."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 828,
+    "start_ms": 21260,
+    "end_ms": 22860,
+    "confidence": 0.5160632650508641,
+    "text": "But what is trying to say, Latifu, Latifu,"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 829,
+    "start_ms": 22980,
+    "end_ms": 23780,
+    "confidence": 0.5160632650508641,
+    "text": "we will give a little a charake."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 830,
+    "start_ms": 24260,
+    "end_ms": 26900,
+    "confidence": 0.5160632650508641,
+    "text": "It's a smartphone, a round-legged, here, here, here, here."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 831,
+    "start_ms": 27900,
+    "end_ms": 28420,
+    "confidence": 0.5160632650508641,
+    "text": "No problem."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 832,
+    "start_ms": 28420,
+    "end_ms": 28720,
+    "confidence": 0.4813037130982026,
+    "text": "No problem."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 833,
+    "start_ms": 29120,
+    "end_ms": 29700,
+    "confidence": 0.4813037130982026,
+    "text": "I'm excited."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 834,
+    "start_ms": 9399,
+    "end_ms": 18540,
+    "confidence": 0.5916985368370636,
+    "text": "No, no passing. No passing personal comments on anyone. There they are politicians."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 835,
+    "start_ms": 18740,
+    "end_ms": 22700,
+    "confidence": 0.5916985368370636,
+    "text": "Let us not enter into political debate. Otherwise, a big war will happen here. Okay?"
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 836,
+    "start_ms": 22760,
+    "end_ms": 27360,
+    "confidence": 0.5916985368370636,
+    "text": "So now it was a very kind of an engaging and involving session. Now you would have understood"
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 837,
+    "start_ms": 27360,
+    "end_ms": 29760,
+    "confidence": 0.39256119283299784,
+    "text": "how, what sort of merit on the education."
+  },
+  {
+    "chunk_idx": 105,
+    "seq": 838,
+    "start_ms": 0,
+    "end_ms": 3640,
+    "confidence": 0.72407026289931,
+    "text": "give you though there are a lot of demerics and I have any short of time otherwise I would"
+  },
+  {
+    "chunk_idx": 105,
+    "seq": 839,
+    "start_ms": 3640,
+    "end_ms": 7020,
+    "confidence": 0.72407026289931,
+    "text": "have explained to you what are the demerits of online learning. So this session I have recorded"
+  },
+  {
+    "chunk_idx": 105,
+    "seq": 840,
+    "start_ms": 7020,
+    "end_ms": 10920,
+    "confidence": 0.72407026289931,
+    "text": "it I'm going to download it and I'm going to upload it on the on my youtube channel you can"
+  },
+  {
+    "chunk_idx": 105,
+    "seq": 841,
+    "start_ms": 10920,
+    "end_ms": 22740,
+    "confidence": 0.72407026289931,
+    "text": "access it. So thank you so much guys from next time I have one like I have session till one"
+  },
+  {
+    "chunk_idx": 105,
+    "seq": 842,
+    "start_ms": 22740,
+    "end_ms": 27040,
+    "confidence": 0.4730554260597257,
+    "text": "you have sent the wrong email link. So you have sent the wrong email link today."
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 843,
+    "start_ms": 0,
+    "end_ms": 4980,
+    "confidence": 0.6677795556688618,
+    "text": "be wrong emails are sent, I will definitely look into it. So just bear with me,"
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 844,
+    "start_ms": 5080,
+    "end_ms": 6300,
+    "confidence": 0.6677795556688618,
+    "text": "let us say about that."
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 845,
+    "start_ms": 6440,
+    "end_ms": 9520,
+    "confidence": 0.6677795556688618,
+    "text": "Yeah, yeah. I just have one question to everyone."
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 846,
+    "start_ms": 9760,
+    "end_ms": 13760,
+    "confidence": 0.6677795556688618,
+    "text": "So I'll be shaking. And many, many students were saying that the online, like you know,"
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 847,
+    "start_ms": 13840,
+    "end_ms": 17780,
+    "confidence": 0.6677795556688618,
+    "text": "interactive. So what do you think about today's lecture? Was it interactive or not?"
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 848,
+    "start_ms": 18000,
+    "end_ms": 21880,
+    "confidence": 0.6677795556688618,
+    "text": "See, first of all, if you're asking my experience, I really enjoy seeing each other"
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 849,
+    "start_ms": 21880,
+    "end_ms": 25980,
+    "confidence": 0.6677795556688618,
+    "text": "few. And I was so happy that you have so the status of perspective and everybody contributed."
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 850,
+    "start_ms": 25980,
+    "end_ms": 29980,
+    "confidence": 0.6167575160813643,
+    "text": "See, no view is any inferior view. Every view is a good view. So thank you."
+  },
+  {
+    "chunk_idx": 107,
+    "seq": 851,
+    "start_ms": 0,
+    "end_ms": 4080,
+    "confidence": 0.650718737494389,
+    "text": "Thank you so much, I am ending the session. I have three more sessions to go. Thank you so much. God bless you."
+  },
+  {
+    "chunk_idx": 107,
+    "seq": 852,
+    "start_ms": 4580,
+    "end_ms": 4740,
+    "confidence": 0.650718737494389,
+    "text": "Thank you."
+  }
+]

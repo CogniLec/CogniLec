@@ -1,0 +1,906 @@
+[
+  {
+    "chunk_idx": 0,
+    "seq": 0,
+    "start_ms": 0,
+    "end_ms": 11740,
+    "confidence": 0.7508379737537335,
+    "text": "So good afternoon everyone. So we had gone through the process of GTO briefing now, we will start practicing it now, clear?"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 1,
+    "start_ms": 13120,
+    "end_ms": 18220,
+    "confidence": 0.7508379737537335,
+    "text": "So your first test is group discussion where I will be giving you two topics."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 2,
+    "start_ms": 19420,
+    "end_ms": 26700,
+    "confidence": 0.7508379737537335,
+    "text": "After giving you these topics I will be giving you two minutes of time to discuss among your group members"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 3,
+    "start_ms": 26700,
+    "end_ms": 29980,
+    "confidence": 0.9095533458566328,
+    "text": "and decide which topic you would like to discuss on."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 4,
+    "start_ms": 2639,
+    "end_ms": 10520,
+    "confidence": 0.672342929407105,
+    "text": "My first topic is, as you all know, there is some ethical violence in Manipur, a non-instant"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 5,
+    "start_ms": 10520,
+    "end_ms": 23540,
+    "confidence": 0.672342929407105,
+    "text": "state of India, quite burning issue, so my first topic is, what is the biggest reason"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 6,
+    "start_ms": 23540,
+    "end_ms": 29160,
+    "confidence": 0.6280180814451024,
+    "text": "you believe, is for Manipur ethnic violence?"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 7,
+    "start_ms": 0,
+    "end_ms": 4660,
+    "confidence": 0.7497094870947618,
+    "text": "Is it geographical distribution in the state?"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 8,
+    "start_ms": 5740,
+    "end_ms": 13520,
+    "confidence": 0.7497094870947618,
+    "text": "Is it communities language in the state or is it political vendetta over there?"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 9,
+    "start_ms": 16059,
+    "end_ms": 25960,
+    "confidence": 0.7497094870947618,
+    "text": "My second topic is what is the biggest concern for Indian society at present?"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 10,
+    "start_ms": 28740,
+    "end_ms": 29980,
+    "confidence": 0.4894789204837847,
+    "text": "It should be busy."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 11,
+    "start_ms": 0,
+    "end_ms": 17480,
+    "confidence": 0.7638589969138443,
+    "text": "education, it should be safety for women or it should be high unemployment and giving you"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 12,
+    "start_ms": 4040,
+    "end_ms": 9620,
+    "confidence": 0.7173366464994506,
+    "text": "So, all of you have decided, you would like to go on to the second topic for discussion."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 13,
+    "start_ms": 10440,
+    "end_ms": 12800,
+    "confidence": 0.7173366464994506,
+    "text": "I will repeat that topic once again."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 14,
+    "start_ms": 14080,
+    "end_ms": 19120,
+    "confidence": 0.7173366464994506,
+    "text": "What should be the biggest concern to Indian society at present?"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 15,
+    "start_ms": 21600,
+    "end_ms": 28940,
+    "confidence": 0.7173366464994506,
+    "text": "Is it basic education or it should be safety for women or it should be high unemployment?"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 16,
+    "start_ms": 0,
+    "end_ms": 6520,
+    "confidence": 0.6402304721933761,
+    "text": "When I will be giving you 10 minutes of time to go for a group discussion and reach"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 17,
+    "start_ms": 6520,
+    "end_ms": 9840,
+    "confidence": 0.6402304721933761,
+    "text": "a conclusion, your time starts now."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 18,
+    "start_ms": 13100,
+    "end_ms": 24280,
+    "confidence": 0.40646795955480197,
+    "text": "I think you are quite, but in my opinion, basic education is the most necessary thing for your society like we all are dead."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 19,
+    "start_ms": 27139,
+    "end_ms": 29560,
+    "confidence": 0.4744361630334364,
+    "text": "But they did not feel dead education."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 20,
+    "start_ms": 0,
+    "end_ms": 1920,
+    "confidence": 0.13146186584746059,
+    "text": "That's what I'm saying."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 21,
+    "start_ms": 1920,
+    "end_ms": 4340,
+    "confidence": 0.13146186584746059,
+    "text": "It's been very good for this business,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 22,
+    "start_ms": 5800,
+    "end_ms": 7200,
+    "confidence": 0.13146186584746059,
+    "text": "it's been hard."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 23,
+    "start_ms": 7200,
+    "end_ms": 7840,
+    "confidence": 0.13146186584746059,
+    "text": "So that's what I'm saying."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 24,
+    "start_ms": 7840,
+    "end_ms": 8180,
+    "confidence": 0.13146186584746059,
+    "text": "It's been very good for me."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 25,
+    "start_ms": 8180,
+    "end_ms": 8580,
+    "confidence": 0.13146186584746059,
+    "text": "You know what I mean?"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 26,
+    "start_ms": 8580,
+    "end_ms": 9620,
+    "confidence": 0.13146186584746059,
+    "text": "It's been very good for me."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 27,
+    "start_ms": 9620,
+    "end_ms": 9820,
+    "confidence": 0.13146186584746059,
+    "text": "It's been a very tough time."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 28,
+    "start_ms": 12700,
+    "end_ms": 14400,
+    "confidence": 0.13146186584746059,
+    "text": "It's been a good time."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 29,
+    "start_ms": 20140,
+    "end_ms": 23500,
+    "confidence": 0.13146186584746059,
+    "text": "I didn't think that it was done in 2013."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 30,
+    "start_ms": 23500,
+    "end_ms": 29340,
+    "confidence": 0.40189609444396024,
+    "text": "We're going to see a lot of videos, and we're going to see it, and what they have not been there."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 31,
+    "start_ms": 29340,
+    "end_ms": 29980,
+    "confidence": 0.40189609444396024,
+    "text": "They have not been there."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 32,
+    "start_ms": 8499,
+    "end_ms": 18600,
+    "confidence": 0.6502356583430454,
+    "text": "Okay, so now I will be giving you another topic, but here I will not be giving you any choice."
+  },
+  {
+    "chunk_idx": 9,
+    "seq": 33,
+    "start_ms": 20720,
+    "end_ms": 28340,
+    "confidence": 0.6502356583430454,
+    "text": "Second topic for group discussion is, what should be the biggest concern of a youngster"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 34,
+    "start_ms": 0,
+    "end_ms": 14020,
+    "confidence": 0.7729354447433937,
+    "text": "selecting any career right it should be job security it should be financial"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 35,
+    "start_ms": 14020,
+    "end_ms": 23540,
+    "confidence": 0.7729354447433937,
+    "text": "stability or it should be social status clear again I will be giving you a"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 36,
+    "start_ms": 23540,
+    "end_ms": 29520,
+    "confidence": 0.6897916904116218,
+    "text": "time of 10 minutes to go for a discussion and reach on a conclusion your time"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 37,
+    "start_ms": 29520,
+    "end_ms": 29980,
+    "confidence": 0.6897916904116218,
+    "text": "starts now"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 38,
+    "start_ms": 0,
+    "end_ms": 4000,
+    "confidence": 0.11330763984094644,
+    "text": "Anywhere that I had the most slow volume practices in this particular system"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 39,
+    "start_ms": 4000,
+    "end_ms": 5160,
+    "confidence": 0.11330763984094644,
+    "text": "are from the first time here,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 40,
+    "start_ms": 6180,
+    "end_ms": 8260,
+    "confidence": 0.11330763984094644,
+    "text": "you will know that my files have done a lot of changes."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 41,
+    "start_ms": 9060,
+    "end_ms": 11940,
+    "confidence": 0.11330763984094644,
+    "text": "Let's go to the point for one,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 42,
+    "start_ms": 12240,
+    "end_ms": 13060,
+    "confidence": 0.11330763984094644,
+    "text": "take that on fire,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 43,
+    "start_ms": 13360,
+    "end_ms": 13840,
+    "confidence": 0.11330763984094644,
+    "text": "just to go there,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 44,
+    "start_ms": 14040,
+    "end_ms": 14800,
+    "confidence": 0.11330763984094644,
+    "text": "we'll now have a lot of money."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 45,
+    "start_ms": 15160,
+    "end_ms": 15780,
+    "confidence": 0.11330763984094644,
+    "text": "We came up with one,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 46,
+    "start_ms": 15860,
+    "end_ms": 16880,
+    "confidence": 0.11330763984094644,
+    "text": "they didn't get a few slides."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 47,
+    "start_ms": 17640,
+    "end_ms": 19180,
+    "confidence": 0.11330763984094644,
+    "text": "So, we have to go from one day,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 48,
+    "start_ms": 19500,
+    "end_ms": 20880,
+    "confidence": 0.11330763984094644,
+    "text": "even since the other floor was last."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 49,
+    "start_ms": 21160,
+    "end_ms": 23140,
+    "confidence": 0.11330763984094644,
+    "text": "And we'll be off the ground here."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 50,
+    "start_ms": 23280,
+    "end_ms": 24280,
+    "confidence": 0.11330763984094644,
+    "text": "We needed to go to the cost,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 51,
+    "start_ms": 24700,
+    "end_ms": 26220,
+    "confidence": 0.11330763984094644,
+    "text": "but because like I said,"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 52,
+    "start_ms": 26220,
+    "end_ms": 26560,
+    "confidence": 0.11330763984094644,
+    "text": "we must put that in both."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 53,
+    "start_ms": 27000,
+    "end_ms": 29000,
+    "confidence": 0.11330763984094644,
+    "text": "And we can see the most important"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 54,
+    "start_ms": 29000,
+    "end_ms": 29500,
+    "confidence": 0.5212841502584178,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 55,
+    "start_ms": 0,
+    "end_ms": 2940,
+    "confidence": 0.08872117442383504,
+    "text": "We will all want to go to the tank."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 56,
+    "start_ms": 4220,
+    "end_ms": 8060,
+    "confidence": 0.08872117442383504,
+    "text": "We will not know what to do to go."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 57,
+    "start_ms": 8420,
+    "end_ms": 12600,
+    "confidence": 0.08872117442383504,
+    "text": "And we will have to have a public, public, public sector development."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 58,
+    "start_ms": 13180,
+    "end_ms": 16800,
+    "confidence": 0.08872117442383504,
+    "text": "We want to have a public sector who can invest in such a community."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 59,
+    "start_ms": 17300,
+    "end_ms": 20420,
+    "confidence": 0.08872117442383504,
+    "text": "We want to have the education and community and we need to have a community."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 60,
+    "start_ms": 21700,
+    "end_ms": 25860,
+    "confidence": 0.08872117442383504,
+    "text": "It's not good, it's not good."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 61,
+    "start_ms": 25860,
+    "end_ms": 27080,
+    "confidence": 0.08872117442383504,
+    "text": "It's good in a special country."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 62,
+    "start_ms": 27600,
+    "end_ms": 29980,
+    "confidence": 0.41367996257002126,
+    "text": "Now, sub-zip and a gd mem would just sub-zip."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 63,
+    "start_ms": 0,
+    "end_ms": 5220,
+    "confidence": 0.4072374834703324,
+    "text": "Pile number pair Chalagadha, Jessica participation, Jessica contribution, Muji Samadmi"
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 64,
+    "start_ms": 5220,
+    "end_ms": 7980,
+    "confidence": 0.4072374834703324,
+    "text": "Aradha, that was just number 12."
+  },
+  {
+    "chunk_idx": 13,
+    "seq": 65,
+    "start_ms": 10920,
+    "end_ms": 16460,
+    "confidence": 0.4072374834703324,
+    "text": "Lakean Dusre group discussion may occur, Kake, Enkaju miracle contribution as the"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 66,
+    "start_ms": 0,
+    "end_ms": 8700,
+    "confidence": 0.5661452161259493,
+    "text": "Jupylla group discussion, the Wapar, the contribution provided by him to group was standing"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 67,
+    "start_ms": 8700,
+    "end_ms": 11580,
+    "confidence": 0.5661452161259493,
+    "text": "on number two."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 68,
+    "start_ms": 12220,
+    "end_ms": 19060,
+    "confidence": 0.5661452161259493,
+    "text": "Group discussion, two may I, Thonka contribution, vodhanicega, it was falling down to number"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 69,
+    "start_ms": 19060,
+    "end_ms": 20000,
+    "confidence": 0.5661452161259493,
+    "text": "three."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 70,
+    "start_ms": 20780,
+    "end_ms": 24840,
+    "confidence": 0.5661452161259493,
+    "text": "First group discussion, number three was 198."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 71,
+    "start_ms": 26820,
+    "end_ms": 29980,
+    "confidence": 0.4800111324251224,
+    "text": "Second group discussion is contribution, vodhanice."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 72,
+    "start_ms": 0,
+    "end_ms": 6880,
+    "confidence": 0.6443641041886103,
+    "text": "was rated as number one. And third group discussion, his contribution was rated number"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 73,
+    "start_ms": 8920,
+    "end_ms": 19660,
+    "confidence": 0.6443641041886103,
+    "text": "two of Iskeba, dicta 4th, that was of chest number 18. In second group discussion, his"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 74,
+    "start_ms": 19660,
+    "end_ms": 27020,
+    "confidence": 0.6443641041886103,
+    "text": "contribution was rated number two. And in third group discussion, his contribution to"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 75,
+    "start_ms": 27020,
+    "end_ms": 28540,
+    "confidence": 0.5594245995828685,
+    "text": "his graph was rated number four."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 76,
+    "start_ms": 2640,
+    "end_ms": 5740,
+    "confidence": 0.7469644460972993,
+    "text": "Fifth was chest number 110."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 77,
+    "start_ms": 9500,
+    "end_ms": 12560,
+    "confidence": 0.7469644460972993,
+    "text": "In first group discussion, he was rated number 5."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 78,
+    "start_ms": 12860,
+    "end_ms": 16239,
+    "confidence": 0.7469644460972993,
+    "text": "In second group discussion, he was again rated number 5."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 79,
+    "start_ms": 16260,
+    "end_ms": 18820,
+    "confidence": 0.7469644460972993,
+    "text": "And third group discussion again, he was rated 5."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 80,
+    "start_ms": 19060,
+    "end_ms": 19960,
+    "confidence": 0.7469644460972993,
+    "text": "So no improvement."
+  },
+  {
+    "chunk_idx": 16,
+    "seq": 81,
+    "start_ms": 23660,
+    "end_ms": 27100,
+    "confidence": 0.489547953915225,
+    "text": "Number 6 was chest number 177."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 82,
+    "start_ms": 0,
+    "end_ms": 7100,
+    "confidence": 0.7391465569242837,
+    "text": "So, he was rated number 6, his contribution was rated number 6 again in group discussion"
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 83,
+    "start_ms": 7100,
+    "end_ms": 12440,
+    "confidence": 0.7391465569242837,
+    "text": "2 and his contribution in group discussion number 3 was rated number 7."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 84,
+    "start_ms": 12900,
+    "end_ms": 18260,
+    "confidence": 0.7391465569242837,
+    "text": "So, no improvement rather there was a decline to push."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 85,
+    "start_ms": 19100,
+    "end_ms": 29980,
+    "confidence": 0.7391465569242837,
+    "text": "Number 7 was 142, number 7 in first group discussion fall in down to number 8 in group"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 86,
+    "start_ms": 0,
+    "end_ms": 6780,
+    "confidence": 0.7455131149840366,
+    "text": "question number two and further in group discussion number three he is ranking was number"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 87,
+    "start_ms": 9560,
+    "end_ms": 20120,
+    "confidence": 0.7455131149840366,
+    "text": "six number eight was chest number 33 so in first group discussion she was rated number"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 88,
+    "start_ms": 20120,
+    "end_ms": 26060,
+    "confidence": 0.7455131149840366,
+    "text": "eight second group discussion she was rated number seven and in third group discussion"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 89,
+    "start_ms": 26060,
+    "end_ms": 27660,
+    "confidence": 0.6406400729653124,
+    "text": "she was rated number ten"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 90,
+    "start_ms": 2360,
+    "end_ms": 11360,
+    "confidence": 0.7669145574637122,
+    "text": "9th was just number 175, he was rated number 9 in first group discussion, number 9 again"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 91,
+    "start_ms": 11360,
+    "end_ms": 17880,
+    "confidence": 0.7669145574637122,
+    "text": "in second group discussion and number 11 in third group discussion."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 92,
+    "start_ms": 20080,
+    "end_ms": 29840,
+    "confidence": 0.5422684080259538,
+    "text": "Number 10 was just number 46, in first group discussion rated 10."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 93,
+    "start_ms": 0,
+    "end_ms": 4080,
+    "confidence": 0.7805838737625389,
+    "text": "Second, number 10, third group discussion, number 9."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 94,
+    "start_ms": 7860,
+    "end_ms": 13360,
+    "confidence": 0.7805838737625389,
+    "text": "Just number 79, in first group discussion, he was rated number 11."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 95,
+    "start_ms": 13760,
+    "end_ms": 18760,
+    "confidence": 0.7805838737625389,
+    "text": "In second group discussion, again, he was rated number 11, and in third group discussion,"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 96,
+    "start_ms": 18920,
+    "end_ms": 19920,
+    "confidence": 0.7805838737625389,
+    "text": "he was rated number 8."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 97,
+    "start_ms": 22720,
+    "end_ms": 29980,
+    "confidence": 0.423981242287805,
+    "text": "Second, take up, it may say of the quote, K, you can indeed engage a range."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 98,
+    "start_ms": 0,
+    "end_ms": 460,
+    "confidence": 0.12743710455196683,
+    "text": "There we go."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 99,
+    "start_ms": 800,
+    "end_ms": 2120,
+    "confidence": 0.12743710455196683,
+    "text": "1, 2, 3, 4, 4."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 100,
+    "start_ms": 3260,
+    "end_ms": 4000,
+    "confidence": 0.12743710455196683,
+    "text": "57, 6, 6."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 101,
+    "start_ms": 4280,
+    "end_ms": 4840,
+    "confidence": 0.12743710455196683,
+    "text": "8 wow."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 102,
+    "start_ms": 9400,
+    "end_ms": 18260,
+    "confidence": 0.12743710455196683,
+    "text": "5, 5, 4, 6, 6, 9."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 103,
+    "start_ms": 18260,
+    "end_ms": 18760,
+    "confidence": 0.12743710455196683,
+    "text": "5, 5, 7!"
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 104,
+    "start_ms": 18860,
+    "end_ms": 29860,
+    "confidence": 0.12743710455196683,
+    "text": "3, 8, 4, have 1."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 105,
+    "start_ms": 0,
+    "end_ms": 4280,
+    "confidence": 0.3182177541733029,
+    "text": "And then, we will have to do this."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 106,
+    "start_ms": 6480,
+    "end_ms": 7760,
+    "confidence": 0.3182177541733029,
+    "text": "We will have to do this."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 107,
+    "start_ms": 8680,
+    "end_ms": 11180,
+    "confidence": 0.3182177541733029,
+    "text": "We will have to do this."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 108,
+    "start_ms": 12700,
+    "end_ms": 14300,
+    "confidence": 0.3182177541733029,
+    "text": "We will have to do this."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 109,
+    "start_ms": 14300,
+    "end_ms": 16079,
+    "confidence": 0.3182177541733029,
+    "text": "Is it clear?"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 110,
+    "start_ms": 16100,
+    "end_ms": 16620,
+    "confidence": 0.3182177541733029,
+    "text": "Yes, sir."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 111,
+    "start_ms": 16880,
+    "end_ms": 17020,
+    "confidence": 0.3182177541733029,
+    "text": "Yes, sir."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 112,
+    "start_ms": 17140,
+    "end_ms": 19380,
+    "confidence": 0.3182177541733029,
+    "text": "Stay healthy."
+  }
+]

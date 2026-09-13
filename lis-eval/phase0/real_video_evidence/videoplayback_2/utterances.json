@@ -1,0 +1,7866 @@
+[
+  {
+    "chunk_idx": 0,
+    "seq": 0,
+    "start_ms": 0,
+    "end_ms": 2740,
+    "confidence": 0.09716166976576254,
+    "text": "I changed the possibilities of my family."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 1,
+    "start_ms": 2740,
+    "end_ms": 8740,
+    "confidence": 0.09716166976576254,
+    "text": "And I have no idea how I'm going to get along with them."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 2,
+    "start_ms": 9040,
+    "end_ms": 9580,
+    "confidence": 0.09716166976576254,
+    "text": "And I have no idea how I can be."
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 3,
+    "start_ms": 10340,
+    "end_ms": 14860,
+    "confidence": 0.09716166976576254,
+    "text": "I have no idea how my family wants to get inside the bathroom,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 4,
+    "start_ms": 16600,
+    "end_ms": 18140,
+    "confidence": 0.09716166976576254,
+    "text": "for instance, when I'll go to the bathroom,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 5,
+    "start_ms": 18140,
+    "end_ms": 23040,
+    "confidence": 0.09716166976576254,
+    "text": "I'll come to the room, and you'll go to a bed,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 6,
+    "start_ms": 23500,
+    "end_ms": 25980,
+    "confidence": 0.09716166976576254,
+    "text": "to the kitchen with the broken skin,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 7,
+    "start_ms": 25980,
+    "end_ms": 27540,
+    "confidence": 0.09716166976576254,
+    "text": "the broken skin,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 8,
+    "start_ms": 27540,
+    "end_ms": 28680,
+    "confidence": 0.09716166976576254,
+    "text": "the broken skin,"
+  },
+  {
+    "chunk_idx": 0,
+    "seq": 9,
+    "start_ms": 28680,
+    "end_ms": 29980,
+    "confidence": 0.3608270946841286,
+    "text": "Yeah, it's funny, it's weird."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 10,
+    "start_ms": 0,
+    "end_ms": 2000,
+    "confidence": 0.07233567893968325,
+    "text": "Of course he is rude to him and I keep quiet."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 11,
+    "start_ms": 5500,
+    "end_ms": 6080,
+    "confidence": 0.07233567893968325,
+    "text": "Nothing is going to happen."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 12,
+    "start_ms": 6080,
+    "end_ms": 8460,
+    "confidence": 0.07233567893968325,
+    "text": "Whatever you have, we are not trying to solve the world."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 13,
+    "start_ms": 9520,
+    "end_ms": 12220,
+    "confidence": 0.07233567893968325,
+    "text": "I am very happy to see you here today."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 14,
+    "start_ms": 15260,
+    "end_ms": 16420,
+    "confidence": 0.07233567893968325,
+    "text": "See you soon!"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 15,
+    "start_ms": 16620,
+    "end_ms": 17280,
+    "confidence": 0.07233567893968325,
+    "text": "See you again!"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 16,
+    "start_ms": 18300,
+    "end_ms": 19200,
+    "confidence": 0.07233567893968325,
+    "text": "Bye!"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 17,
+    "start_ms": 19200,
+    "end_ms": 21020,
+    "confidence": 0.07233567893968325,
+    "text": "You know this, you know?"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 18,
+    "start_ms": 22020,
+    "end_ms": 25140,
+    "confidence": 0.07233567893968325,
+    "text": "When I have to sit before I sit before you."
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 19,
+    "start_ms": 25140,
+    "end_ms": 26440,
+    "confidence": 0.07233567893968325,
+    "text": "You think sometimes when I sit together we have to travel together,"
+  },
+  {
+    "chunk_idx": 1,
+    "seq": 20,
+    "start_ms": 26440,
+    "end_ms": 29480,
+    "confidence": 0.07233567893968325,
+    "text": "our world is not going home,"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 21,
+    "start_ms": 0,
+    "end_ms": 3380,
+    "confidence": 0.079602743689244,
+    "text": "The past present future of Ajax sath-oonridges mathematically."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 22,
+    "start_ms": 4340,
+    "end_ms": 6000,
+    "confidence": 0.079602743689244,
+    "text": "What you're doing is a big bank of time,"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 23,
+    "start_ms": 6080,
+    "end_ms": 7060,
+    "confidence": 0.079602743689244,
+    "text": "but it's a nice trade."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 24,
+    "start_ms": 8220,
+    "end_ms": 12120,
+    "confidence": 0.079602743689244,
+    "text": "And a huge amount of time is pretty much the biggest change in the world."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 25,
+    "start_ms": 12120,
+    "end_ms": 12700,
+    "confidence": 0.079602743689244,
+    "text": "Because there were 200 times security,"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 26,
+    "start_ms": 13100,
+    "end_ms": 15160,
+    "confidence": 0.079602743689244,
+    "text": "and some of these are the biggest reasons"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 27,
+    "start_ms": 15160,
+    "end_ms": 15300,
+    "confidence": 0.079602743689244,
+    "text": "they've seen."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 28,
+    "start_ms": 16300,
+    "end_ms": 17260,
+    "confidence": 0.079602743689244,
+    "text": "But it was the first day that our server was slow,"
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 29,
+    "start_ms": 17280,
+    "end_ms": 24380,
+    "confidence": 0.079602743689244,
+    "text": "and the first day of our server was not the first spot."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 30,
+    "start_ms": 24920,
+    "end_ms": 26680,
+    "confidence": 0.079602743689244,
+    "text": "And we were making a big prediction for the next time."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 31,
+    "start_ms": 28180,
+    "end_ms": 29120,
+    "confidence": 0.079602743689244,
+    "text": "But we were making sure that we were very happy to go back."
+  },
+  {
+    "chunk_idx": 2,
+    "seq": 32,
+    "start_ms": 29120,
+    "end_ms": 29380,
+    "confidence": 0.079602743689244,
+    "text": "And this was a different technique."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 33,
+    "start_ms": 0,
+    "end_ms": 5440,
+    "confidence": 0.1535841711829145,
+    "text": "I am a young woman, I have a first time in the summer and I'm a young woman and I have a last year's year."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 34,
+    "start_ms": 5640,
+    "end_ms": 6640,
+    "confidence": 0.1535841711829145,
+    "text": "I have a last year."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 35,
+    "start_ms": 6640,
+    "end_ms": 9380,
+    "confidence": 0.1535841711829145,
+    "text": "My life is amazing."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 36,
+    "start_ms": 9580,
+    "end_ms": 11000,
+    "confidence": 0.1535841711829145,
+    "text": "My life is a very beautiful and beautiful."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 37,
+    "start_ms": 11000,
+    "end_ms": 12900,
+    "confidence": 0.1535841711829145,
+    "text": "Really, I am a rich man."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 38,
+    "start_ms": 13580,
+    "end_ms": 14980,
+    "confidence": 0.1535841711829145,
+    "text": "I have a happy life."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 39,
+    "start_ms": 18460,
+    "end_ms": 19060,
+    "confidence": 0.1535841711829145,
+    "text": "I have a happy life."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 40,
+    "start_ms": 19620,
+    "end_ms": 22400,
+    "confidence": 0.1535841711829145,
+    "text": "I have a happy life."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 41,
+    "start_ms": 22880,
+    "end_ms": 23620,
+    "confidence": 0.1535841711829145,
+    "text": "A healthy life."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 42,
+    "start_ms": 25420,
+    "end_ms": 27360,
+    "confidence": 0.1535841711829145,
+    "text": "I have to get the food."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 43,
+    "start_ms": 28020,
+    "end_ms": 29880,
+    "confidence": 0.1535841711829145,
+    "text": "I have to get the food."
+  },
+  {
+    "chunk_idx": 3,
+    "seq": 44,
+    "start_ms": 29880,
+    "end_ms": 29980,
+    "confidence": 0.44153279737201995,
+    "text": "."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 45,
+    "start_ms": 0,
+    "end_ms": 5460,
+    "confidence": 0.1095494555918149,
+    "text": "I think that there are a lot of happening in Canada without a chance."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 46,
+    "start_ms": 5960,
+    "end_ms": 8000,
+    "confidence": 0.1095494555918149,
+    "text": "In other words it is the amount of capital,"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 47,
+    "start_ms": 9720,
+    "end_ms": 10540,
+    "confidence": 0.1095494555918149,
+    "text": "that the capital of Canada"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 48,
+    "start_ms": 11400,
+    "end_ms": 14080,
+    "confidence": 0.1095494555918149,
+    "text": "which is less than the price of capital."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 49,
+    "start_ms": 14360,
+    "end_ms": 15080,
+    "confidence": 0.1095494555918149,
+    "text": "I think that capital is less than the price of capital is less than the price of capital."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 50,
+    "start_ms": 15080,
+    "end_ms": 16160,
+    "confidence": 0.1095494555918149,
+    "text": "In the same amount of capital,"
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 51,
+    "start_ms": 16160,
+    "end_ms": 28420,
+    "confidence": 0.1095494555918149,
+    "text": "and the volume of capital will cost 75 percent less than000 percent less than so."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 52,
+    "start_ms": 28420,
+    "end_ms": 29280,
+    "confidence": 0.5009855215286181,
+    "text": "One more time."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 53,
+    "start_ms": 29280,
+    "end_ms": 29580,
+    "confidence": 0.5009855215286181,
+    "text": "One more time."
+  },
+  {
+    "chunk_idx": 4,
+    "seq": 54,
+    "start_ms": 29880,
+    "end_ms": 29980,
+    "confidence": 0.5060215359832164,
+    "text": "One more time."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 55,
+    "start_ms": 0,
+    "end_ms": 1360,
+    "confidence": 0.11220810626891457,
+    "text": "I want to leave now."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 56,
+    "start_ms": 2260,
+    "end_ms": 2900,
+    "confidence": 0.11220810626891457,
+    "text": "I want to leave."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 57,
+    "start_ms": 2900,
+    "end_ms": 7740,
+    "confidence": 0.11220810626891457,
+    "text": "Let me see the first Karate,"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 58,
+    "start_ms": 8160,
+    "end_ms": 9700,
+    "confidence": 0.11220810626891457,
+    "text": "and let me see if you can see the first Karate."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 59,
+    "start_ms": 11000,
+    "end_ms": 11800,
+    "confidence": 0.11220810626891457,
+    "text": "How does Karate do?"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 60,
+    "start_ms": 11800,
+    "end_ms": 13540,
+    "confidence": 0.11220810626891457,
+    "text": "If you can see the first Karate,"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 61,
+    "start_ms": 13540,
+    "end_ms": 13800,
+    "confidence": 0.11220810626891457,
+    "text": "well, the first Karate,"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 62,
+    "start_ms": 13800,
+    "end_ms": 15060,
+    "confidence": 0.11220810626891457,
+    "text": "what's the second Karate?"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 63,
+    "start_ms": 15060,
+    "end_ms": 15100,
+    "confidence": 0.11220810626891457,
+    "text": "I am going to show you all the same time."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 64,
+    "start_ms": 17840,
+    "end_ms": 21880,
+    "confidence": 0.11220810626891457,
+    "text": "I can see the one with the Eighth."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 65,
+    "start_ms": 21880,
+    "end_ms": 22620,
+    "confidence": 0.4224947660646133,
+    "text": "Vyabka?"
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 66,
+    "start_ms": 23460,
+    "end_ms": 23880,
+    "confidence": 0.4224947660646133,
+    "text": "Hahaha."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 67,
+    "start_ms": 23960,
+    "end_ms": 25880,
+    "confidence": 0.4224947660646133,
+    "text": "I need may I."
+  },
+  {
+    "chunk_idx": 5,
+    "seq": 68,
+    "start_ms": 26540,
+    "end_ms": 29820,
+    "confidence": 0.4224947660646133,
+    "text": "May the channel be the right or you put a set up?"
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 69,
+    "start_ms": 0,
+    "end_ms": 2200,
+    "confidence": 0.09624142880544263,
+    "text": "it's not a big problem to me, it's a team that will get outdated."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 70,
+    "start_ms": 8160,
+    "end_ms": 14560,
+    "confidence": 0.09624142880544263,
+    "text": "But today we will be able to install the new project."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 71,
+    "start_ms": 14560,
+    "end_ms": 14580,
+    "confidence": 0.09624142880544263,
+    "text": "The third project we're going to implement in the next two years."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 72,
+    "start_ms": 14580,
+    "end_ms": 15940,
+    "confidence": 0.09624142880544263,
+    "text": "The next project we're going to develop and that's why we actually need to help them."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 73,
+    "start_ms": 16200,
+    "end_ms": 19500,
+    "confidence": 0.09624142880544263,
+    "text": "We'll also want to send them a follow-up."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 74,
+    "start_ms": 20140,
+    "end_ms": 23800,
+    "confidence": 0.09624142880544263,
+    "text": "We are able to build a new project we're going to make."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 75,
+    "start_ms": 25820,
+    "end_ms": 29580,
+    "confidence": 0.09624142880544263,
+    "text": "So we're going to help them, and we're going to do this."
+  },
+  {
+    "chunk_idx": 6,
+    "seq": 76,
+    "start_ms": 29580,
+    "end_ms": 29980,
+    "confidence": 0.3066187696586306,
+    "text": "What do I mean?"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 77,
+    "start_ms": 0,
+    "end_ms": 3400,
+    "confidence": 0.06250203635007286,
+    "text": "You are speaking in the political spirit of the president of the US."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 78,
+    "start_ms": 4180,
+    "end_ms": 8580,
+    "confidence": 0.06250203635007286,
+    "text": "In this world, it was their first time for me to speak in Israel."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 79,
+    "start_ms": 10420,
+    "end_ms": 11320,
+    "confidence": 0.06250203635007286,
+    "text": "The president of the US, the president and the president of the US,"
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 80,
+    "start_ms": 13940,
+    "end_ms": 14760,
+    "confidence": 0.06250203635007286,
+    "text": "The president's policies were ready to support this country."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 81,
+    "start_ms": 15460,
+    "end_ms": 17000,
+    "confidence": 0.06250203635007286,
+    "text": "The president is responsible for that."
+  },
+  {
+    "chunk_idx": 7,
+    "seq": 82,
+    "start_ms": 17560,
+    "end_ms": 22180,
+    "confidence": 0.06250203635007286,
+    "text": "The producer and he will be opening their hands."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 83,
+    "start_ms": 3479,
+    "end_ms": 5580,
+    "confidence": 0.08354603582506438,
+    "text": "I think this was one mistake."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 84,
+    "start_ms": 5580,
+    "end_ms": 9160,
+    "confidence": 0.08354603582506438,
+    "text": "I was not gonna be afraid that I was afraid that I was afraid."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 85,
+    "start_ms": 11380,
+    "end_ms": 13820,
+    "confidence": 0.08354603582506438,
+    "text": "I was worried that I didn't have any tears."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 86,
+    "start_ms": 14100,
+    "end_ms": 18880,
+    "confidence": 0.08354603582506438,
+    "text": "Every day, I could go into.\""
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 87,
+    "start_ms": 18880,
+    "end_ms": 21060,
+    "confidence": 0.08354603582506438,
+    "text": "Because I'm not afraid that I'm afraid to happen,"
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 88,
+    "start_ms": 21060,
+    "end_ms": 22520,
+    "confidence": 0.08354603582506438,
+    "text": "I can't see how..."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 89,
+    "start_ms": 26240,
+    "end_ms": 28000,
+    "confidence": 0.08354603582506438,
+    "text": "That's right."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 90,
+    "start_ms": 28000,
+    "end_ms": 28720,
+    "confidence": 0.3854238739068309,
+    "text": "Oh, yeah."
+  },
+  {
+    "chunk_idx": 8,
+    "seq": 91,
+    "start_ms": 29740,
+    "end_ms": 29920,
+    "confidence": 0.3854238739068309,
+    "text": "What else?"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 92,
+    "start_ms": 0,
+    "end_ms": 1040,
+    "confidence": 0.03285194052155677,
+    "text": "I hate so many.\""
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 93,
+    "start_ms": 3240,
+    "end_ms": 7220,
+    "confidence": 0.03285194052155677,
+    "text": "You can see like me literally,"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 94,
+    "start_ms": 7220,
+    "end_ms": 9980,
+    "confidence": 0.03285194052155677,
+    "text": "you can hear\u2026"
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 95,
+    "start_ms": 12720,
+    "end_ms": 13680,
+    "confidence": 0.03285194052155677,
+    "text": "Yes, no."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 96,
+    "start_ms": 16860,
+    "end_ms": 17340,
+    "confidence": 0.03285194052155677,
+    "text": "Yes."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 97,
+    "start_ms": 18260,
+    "end_ms": 19580,
+    "confidence": 0.03285194052155677,
+    "text": "It's just because."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 98,
+    "start_ms": 26640,
+    "end_ms": 27300,
+    "confidence": 0.03285194052155677,
+    "text": "Your face is celestial."
+  },
+  {
+    "chunk_idx": 10,
+    "seq": 99,
+    "start_ms": 27300,
+    "end_ms": 27580,
+    "confidence": 0.03285194052155677,
+    "text": "What freaks?"
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 100,
+    "start_ms": 0,
+    "end_ms": 6860,
+    "confidence": 0.08428256778985722,
+    "text": "You could say that here we are going to go to leave there."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 101,
+    "start_ms": 9520,
+    "end_ms": 14040,
+    "confidence": 0.08428256778985722,
+    "text": "This village can be able to walk away because we are not going to walk away."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 102,
+    "start_ms": 15480,
+    "end_ms": 17720,
+    "confidence": 0.08428256778985722,
+    "text": "I would share his hope for him."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 103,
+    "start_ms": 17720,
+    "end_ms": 22160,
+    "confidence": 0.08428256778985722,
+    "text": "I am very happy to have your work."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 104,
+    "start_ms": 22160,
+    "end_ms": 22540,
+    "confidence": 0.08428256778985722,
+    "text": "I want to meet you."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 105,
+    "start_ms": 22540,
+    "end_ms": 23980,
+    "confidence": 0.3788758457565202,
+    "text": "I'm not sure if I'm going to eat it."
+  },
+  {
+    "chunk_idx": 11,
+    "seq": 106,
+    "start_ms": 24720,
+    "end_ms": 28220,
+    "confidence": 0.3788758457565202,
+    "text": "I'm not sure if I'm going to eat it."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 107,
+    "start_ms": 0,
+    "end_ms": 2720,
+    "confidence": 0.19618070192985362,
+    "text": "The first time, we had a lot of work."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 108,
+    "start_ms": 3780,
+    "end_ms": 6300,
+    "confidence": 0.19618070192985362,
+    "text": "The first time we had spent the last day,"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 109,
+    "start_ms": 8980,
+    "end_ms": 10380,
+    "confidence": 0.19618070192985362,
+    "text": "we had been trying to get a good plan."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 110,
+    "start_ms": 10380,
+    "end_ms": 12820,
+    "confidence": 0.19618070192985362,
+    "text": "We would not be able to do it,"
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 111,
+    "start_ms": 12820,
+    "end_ms": 18540,
+    "confidence": 0.19618070192985362,
+    "text": "but we had to do that."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 112,
+    "start_ms": 21300,
+    "end_ms": 24020,
+    "confidence": 0.19618070192985362,
+    "text": "but it was a long period."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 113,
+    "start_ms": 25360,
+    "end_ms": 29280,
+    "confidence": 0.19618070192985362,
+    "text": "We had to do it all."
+  },
+  {
+    "chunk_idx": 12,
+    "seq": 114,
+    "start_ms": 29280,
+    "end_ms": 29980,
+    "confidence": 0.19618070192985362,
+    "text": "First, we had to do it all,"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 115,
+    "start_ms": 0,
+    "end_ms": 2120,
+    "confidence": 0.09870711245226924,
+    "text": "What does a scientist say?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 116,
+    "start_ms": 3340,
+    "end_ms": 5900,
+    "confidence": 0.09870711245226924,
+    "text": "Whatever if any of you live in a special community?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 117,
+    "start_ms": 6740,
+    "end_ms": 7680,
+    "confidence": 0.09870711245226924,
+    "text": "And who what?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 118,
+    "start_ms": 9960,
+    "end_ms": 11500,
+    "confidence": 0.09870711245226924,
+    "text": "And what is his job?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 119,
+    "start_ms": 11500,
+    "end_ms": 11980,
+    "confidence": 0.09870711245226924,
+    "text": "Yes, he won't."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 120,
+    "start_ms": 11980,
+    "end_ms": 12780,
+    "confidence": 0.09870711245226924,
+    "text": "He won't be in the house."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 121,
+    "start_ms": 13620,
+    "end_ms": 13960,
+    "confidence": 0.09870711245226924,
+    "text": "He won't at all."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 122,
+    "start_ms": 14560,
+    "end_ms": 18360,
+    "confidence": 0.09870711245226924,
+    "text": "What is his job?"
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 123,
+    "start_ms": 18360,
+    "end_ms": 23100,
+    "confidence": 0.09870711245226924,
+    "text": "His favorite job is freedom."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 124,
+    "start_ms": 24160,
+    "end_ms": 28780,
+    "confidence": 0.09870711245226924,
+    "text": "I have a secret to the people."
+  },
+  {
+    "chunk_idx": 14,
+    "seq": 125,
+    "start_ms": 28780,
+    "end_ms": 29380,
+    "confidence": 0.3474369894631214,
+    "text": "Thank you so much."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 126,
+    "start_ms": 0,
+    "end_ms": 4140,
+    "confidence": 0.104746302325055,
+    "text": "To see how many people are ready and who was going to the last year,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 127,
+    "start_ms": 4140,
+    "end_ms": 4560,
+    "confidence": 0.104746302325055,
+    "text": "that they were lucky for a couple years."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 128,
+    "start_ms": 4960,
+    "end_ms": 9100,
+    "confidence": 0.104746302325055,
+    "text": "They were lucky for the first year."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 129,
+    "start_ms": 10140,
+    "end_ms": 12420,
+    "confidence": 0.104746302325055,
+    "text": "They were lucky for the last year."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 130,
+    "start_ms": 13380,
+    "end_ms": 15560,
+    "confidence": 0.104746302325055,
+    "text": "So they said that when they were ready,"
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 131,
+    "start_ms": 16700,
+    "end_ms": 21240,
+    "confidence": 0.104746302325055,
+    "text": "yes, they were willing for the last year."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 132,
+    "start_ms": 21240,
+    "end_ms": 22380,
+    "confidence": 0.104746302325055,
+    "text": "One day, they couldn't believe that they liked to be ready."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 133,
+    "start_ms": 23640,
+    "end_ms": 26940,
+    "confidence": 0.104746302325055,
+    "text": "But here they came to the next year."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 134,
+    "start_ms": 26940,
+    "end_ms": 29340,
+    "confidence": 0.104746302325055,
+    "text": "They came to a number of kids in the first class."
+  },
+  {
+    "chunk_idx": 15,
+    "seq": 135,
+    "start_ms": 29340,
+    "end_ms": 29980,
+    "confidence": 0.104746302325055,
+    "text": "So they said that they were ready to get ready and ready."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 136,
+    "start_ms": 0,
+    "end_ms": 440,
+    "confidence": 0.0729201058164829,
+    "text": "here."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 137,
+    "start_ms": 440,
+    "end_ms": 1340,
+    "confidence": 0.0729201058164829,
+    "text": "We will begin to visit next time."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 138,
+    "start_ms": 1960,
+    "end_ms": 5660,
+    "confidence": 0.0729201058164829,
+    "text": "That day he is really happy."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 139,
+    "start_ms": 6560,
+    "end_ms": 7380,
+    "confidence": 0.0729201058164829,
+    "text": "We'll find a way to speak to this."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 140,
+    "start_ms": 9140,
+    "end_ms": 10340,
+    "confidence": 0.0729201058164829,
+    "text": "We'll be here."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 141,
+    "start_ms": 10340,
+    "end_ms": 13560,
+    "confidence": 0.0729201058164829,
+    "text": "We will begin to speak for the rest of the year."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 142,
+    "start_ms": 15040,
+    "end_ms": 22120,
+    "confidence": 0.0729201058164829,
+    "text": "I also hope that he is a good afraid to go."
+  },
+  {
+    "chunk_idx": 17,
+    "seq": 143,
+    "start_ms": 22620,
+    "end_ms": 29380,
+    "confidence": 0.39126595497186195,
+    "text": "that's already here, what's up which is China say you okay? Everything is predestined, predestided."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 144,
+    "start_ms": 0,
+    "end_ms": 1740,
+    "confidence": 0.17226329909504132,
+    "text": "That's why I really am here today."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 145,
+    "start_ms": 1740,
+    "end_ms": 4620,
+    "confidence": 0.17226329909504132,
+    "text": "But I have not seen it because I am not there."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 146,
+    "start_ms": 6380,
+    "end_ms": 7840,
+    "confidence": 0.17226329909504132,
+    "text": "But I can't see anything."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 147,
+    "start_ms": 10760,
+    "end_ms": 11300,
+    "confidence": 0.17226329909504132,
+    "text": "I have seen it before."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 148,
+    "start_ms": 14500,
+    "end_ms": 16300,
+    "confidence": 0.17226329909504132,
+    "text": "I have never seen it before."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 149,
+    "start_ms": 16300,
+    "end_ms": 17840,
+    "confidence": 0.17226329909504132,
+    "text": "I think it's a little bit like this."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 150,
+    "start_ms": 17840,
+    "end_ms": 18260,
+    "confidence": 0.17226329909504132,
+    "text": "I think it's a little bit like this,"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 151,
+    "start_ms": 18260,
+    "end_ms": 23740,
+    "confidence": 0.17226329909504132,
+    "text": "but I think it's a little bit like this."
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 152,
+    "start_ms": 25880,
+    "end_ms": 28560,
+    "confidence": 0.17226329909504132,
+    "text": "The only thing I can do is,"
+  },
+  {
+    "chunk_idx": 18,
+    "seq": 153,
+    "start_ms": 28560,
+    "end_ms": 29060,
+    "confidence": 0.5014335418101152,
+    "text": "Let's get on that."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 154,
+    "start_ms": 0,
+    "end_ms": 4040,
+    "confidence": 0.09381825728867509,
+    "text": "and some of the other stuff that we need to go to,"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 155,
+    "start_ms": 4040,
+    "end_ms": 4460,
+    "confidence": 0.09381825728867509,
+    "text": "if we're able to go there,"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 156,
+    "start_ms": 4460,
+    "end_ms": 6660,
+    "confidence": 0.09381825728867509,
+    "text": "we're able to come to the next town."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 157,
+    "start_ms": 8700,
+    "end_ms": 12020,
+    "confidence": 0.09381825728867509,
+    "text": "And here I'll see if there's a lot of things"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 158,
+    "start_ms": 12020,
+    "end_ms": 13340,
+    "confidence": 0.09381825728867509,
+    "text": "that we can find out about it."
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 159,
+    "start_ms": 15980,
+    "end_ms": 22460,
+    "confidence": 0.09381825728867509,
+    "text": "This is the first time that we've been waiting for,"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 160,
+    "start_ms": 22460,
+    "end_ms": 23160,
+    "confidence": 0.09381825728867509,
+    "text": "And there's a way that you can find yourself"
+  },
+  {
+    "chunk_idx": 19,
+    "seq": 161,
+    "start_ms": 23160,
+    "end_ms": 27540,
+    "confidence": 0.09381825728867509,
+    "text": "is that we can only have a new god."
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 162,
+    "start_ms": 0,
+    "end_ms": 280,
+    "confidence": 0.24855002956939512,
+    "text": "the"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 163,
+    "start_ms": 4280,
+    "end_ms": 5200,
+    "confidence": 0.24855002956939512,
+    "text": "free will today"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 164,
+    "start_ms": 5760,
+    "end_ms": 7240,
+    "confidence": 0.24855002956939512,
+    "text": "both this past-lingi"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 165,
+    "start_ms": 7240,
+    "end_ms": 9280,
+    "confidence": 0.24855002956939512,
+    "text": "panipia free will today"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 166,
+    "start_ms": 9280,
+    "end_ms": 11740,
+    "confidence": 0.24855002956939512,
+    "text": "if this event or be here"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 167,
+    "start_ms": 11740,
+    "end_ms": 14280,
+    "confidence": 0.24855002956939512,
+    "text": "to nature or god and the other mouset bandsa"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 168,
+    "start_ms": 14280,
+    "end_ms": 15960,
+    "confidence": 0.24855002956939512,
+    "text": "is the main cook-skater of free women"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 169,
+    "start_ms": 16580,
+    "end_ms": 17580,
+    "confidence": 0.24855002956939512,
+    "text": "if this year somehow"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 170,
+    "start_ms": 18679,
+    "end_ms": 22180,
+    "confidence": 0.24855002956939512,
+    "text": "we have a very easy action"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 171,
+    "start_ms": 22180,
+    "end_ms": 23300,
+    "confidence": 0.24855002956939512,
+    "text": "the causation"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 172,
+    "start_ms": 23959,
+    "end_ms": 25620,
+    "confidence": 0.24855002956939512,
+    "text": "the amount of that guy"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 173,
+    "start_ms": 25620,
+    "end_ms": 28540,
+    "confidence": 0.24855002956939512,
+    "text": "or her this could cause a measure or cause much better"
+  },
+  {
+    "chunk_idx": 20,
+    "seq": 174,
+    "start_ms": 28540,
+    "end_ms": 29040,
+    "confidence": 0.4224275480671852,
+    "text": "in here."
+  },
+  {
+    "chunk_idx": 21,
+    "seq": 175,
+    "start_ms": 1459,
+    "end_ms": 29740,
+    "confidence": 0.6660320562244794,
+    "text": "So, if I can perform at least one action, which is dependent neither on God nor on nature nor on causation, then it is my free will causation"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 176,
+    "start_ms": 0,
+    "end_ms": 3940,
+    "confidence": 0.17872422798892512,
+    "text": "But if you are interested in a really important way,"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 177,
+    "start_ms": 3940,
+    "end_ms": 6580,
+    "confidence": 0.17872422798892512,
+    "text": "you can find a way to see what we can find."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 178,
+    "start_ms": 8520,
+    "end_ms": 10740,
+    "confidence": 0.17872422798892512,
+    "text": "If you are interested in your life,"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 179,
+    "start_ms": 10740,
+    "end_ms": 12440,
+    "confidence": 0.17872422798892512,
+    "text": "you are interested in yourself and what you do in your life."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 180,
+    "start_ms": 12440,
+    "end_ms": 12620,
+    "confidence": 0.17872422798892512,
+    "text": "But if you are interested in your life,"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 181,
+    "start_ms": 12620,
+    "end_ms": 13800,
+    "confidence": 0.17872422798892512,
+    "text": "you can get a little bit better at this."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 182,
+    "start_ms": 15240,
+    "end_ms": 18380,
+    "confidence": 0.17872422798892512,
+    "text": "But this is the question that I am interested in."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 183,
+    "start_ms": 18380,
+    "end_ms": 23360,
+    "confidence": 0.17872422798892512,
+    "text": "But if you are interested in your life,"
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 184,
+    "start_ms": 25119,
+    "end_ms": 28680,
+    "confidence": 0.17872422798892512,
+    "text": "you can find that you can find different ways."
+  },
+  {
+    "chunk_idx": 23,
+    "seq": 185,
+    "start_ms": 28680,
+    "end_ms": 29340,
+    "confidence": 0.4126819458618307,
+    "text": "It's raining."
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 186,
+    "start_ms": 21100,
+    "end_ms": 23300,
+    "confidence": 0.10050502580214234,
+    "text": "And when the"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 187,
+    "start_ms": 23300,
+    "end_ms": 27160,
+    "confidence": 0.3810538609522833,
+    "text": "What debate shall we see? Light, light, jute, calm, karais, dune, dune, amo, samat,"
+  },
+  {
+    "chunk_idx": 26,
+    "seq": 188,
+    "start_ms": 27280,
+    "end_ms": 29980,
+    "confidence": 0.3810538609522833,
+    "text": "samat, vat, confusion, calm, karais, he's Newton, my voltage, they wear a paht."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 189,
+    "start_ms": 0,
+    "end_ms": 2560,
+    "confidence": 0.09230948857768516,
+    "text": "It's a film like that."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 190,
+    "start_ms": 2640,
+    "end_ms": 6040,
+    "confidence": 0.09230948857768516,
+    "text": "It's also something of a movie that has some ideas to get to it."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 191,
+    "start_ms": 7800,
+    "end_ms": 9780,
+    "confidence": 0.09230948857768516,
+    "text": "Because it's a film like that."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 192,
+    "start_ms": 9900,
+    "end_ms": 17680,
+    "confidence": 0.09230948857768516,
+    "text": "So it's a film which has a film in a different, different song."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 193,
+    "start_ms": 21840,
+    "end_ms": 22560,
+    "confidence": 0.09230948857768516,
+    "text": "And it has the film like that."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 194,
+    "start_ms": 24160,
+    "end_ms": 25440,
+    "confidence": 0.09230948857768516,
+    "text": "And it has the channel of a film called The"
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 195,
+    "start_ms": 25440,
+    "end_ms": 27000,
+    "confidence": 0.27828413409851793,
+    "text": "But then he had a relative speed."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 196,
+    "start_ms": 27740,
+    "end_ms": 28860,
+    "confidence": 0.27828413409851793,
+    "text": "He had a lot of speed."
+  },
+  {
+    "chunk_idx": 30,
+    "seq": 197,
+    "start_ms": 29680,
+    "end_ms": 29880,
+    "confidence": 0.27828413409851793,
+    "text": "Those."
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 198,
+    "start_ms": 3939,
+    "end_ms": 9660,
+    "confidence": 0.019432573023143926,
+    "text": "We want to help ourselves in assistance, we need a Tax Plan for the work between us and our friends."
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 199,
+    "start_ms": 9660,
+    "end_ms": 17660,
+    "confidence": 0.019432573023143926,
+    "text": "When spending money out of their savings in 20- KPET starting to make money in history,"
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 200,
+    "start_ms": 17660,
+    "end_ms": 22180,
+    "confidence": 0.019432573023143926,
+    "text": "we have funds that will flow significantly."
+  },
+  {
+    "chunk_idx": 33,
+    "seq": 201,
+    "start_ms": 25860,
+    "end_ms": 29980,
+    "confidence": 0.019432573023143926,
+    "text": "If I make gains on cash control then, no matter what cost,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 202,
+    "start_ms": 0,
+    "end_ms": 680,
+    "confidence": 0.4260886015429605,
+    "text": "What is this?"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 203,
+    "start_ms": 680,
+    "end_ms": 1280,
+    "confidence": 0.4260886015429605,
+    "text": "A Mata-fixure."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 204,
+    "start_ms": 1620,
+    "end_ms": 2320,
+    "confidence": 0.4260886015429605,
+    "text": "Bulkul-bulkul."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 205,
+    "start_ms": 2380,
+    "end_ms": 3900,
+    "confidence": 0.4260886015429605,
+    "text": "Mukas-bukas-buk-buk-bukts."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 206,
+    "start_ms": 3900,
+    "end_ms": 4560,
+    "confidence": 0.4260886015429605,
+    "text": "Speculate-karti."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 207,
+    "start_ms": 4640,
+    "end_ms": 4940,
+    "confidence": 0.4260886015429605,
+    "text": "Geez."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 208,
+    "start_ms": 5300,
+    "end_ms": 7620,
+    "confidence": 0.4260886015429605,
+    "text": "It is the opportunity to be a bantan-wa."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 209,
+    "start_ms": 7800,
+    "end_ms": 10280,
+    "confidence": 0.4260886015429605,
+    "text": "A science-yasi-topic-pei, a research-yasi-bathi,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 210,
+    "start_ms": 10370,
+    "end_ms": 16290,
+    "confidence": 0.1608074203311512,
+    "text": "a research-yasi-jithin-bhoti-mote-giant-ham-yam-o-jhi-bo-joo-spie-bath-kram-u-bh-to-piloss-yibati-bata-yi-giet-seim-topic-pei-pih."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 211,
+    "start_ms": 16290,
+    "end_ms": 21090,
+    "confidence": 0.1608074203311512,
+    "text": "The science-nik-ak-ah-ah-ah-ah-ai-steam-in-kak-ak-ah-at-eg-kah-me-cam-karta-skuddha-t grade-ah-too-fry- Evil-fry-dha-qev-t-q kid-to-kam-korn-"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 212,
+    "start_ms": 21090,
+    "end_ms": 21870,
+    "confidence": 0.1608074203311512,
+    "text": "or pyr-dha-taw."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 213,
+    "start_ms": 22690,
+    "end_ms": 24190,
+    "confidence": 0.1608074203311512,
+    "text": "A bhuvah-passit-bantan-chan-jali-loo."
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 214,
+    "start_ms": 24190,
+    "end_ms": 29370,
+    "confidence": 0.33442007428336207,
+    "text": "This is the second point, any other H is from Dartipa, Chalani, Kalya, Mabas, Kriveli,"
+  },
+  {
+    "chunk_idx": 35,
+    "seq": 215,
+    "start_ms": 29370,
+    "end_ms": 29970,
+    "confidence": 0.33442007428336207,
+    "text": "I mean Chalani, but..."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 216,
+    "start_ms": 0,
+    "end_ms": 900,
+    "confidence": 0.21726191309287787,
+    "text": "I am not going to get that."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 217,
+    "start_ms": 2940,
+    "end_ms": 6020,
+    "confidence": 0.21726191309287787,
+    "text": "I think I have a lot of time to come back with a lot of time."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 218,
+    "start_ms": 6960,
+    "end_ms": 14460,
+    "confidence": 0.21726191309287787,
+    "text": "And I am going to come back with my first time."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 219,
+    "start_ms": 15000,
+    "end_ms": 18940,
+    "confidence": 0.21726191309287787,
+    "text": "And then I am going to go back to my first time."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 220,
+    "start_ms": 19560,
+    "end_ms": 22080,
+    "confidence": 0.21726191309287787,
+    "text": "First time, I am going to go back to my first time."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 221,
+    "start_ms": 24660,
+    "end_ms": 27500,
+    "confidence": 0.21726191309287787,
+    "text": "I have been a little bit into the next round."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 222,
+    "start_ms": 27560,
+    "end_ms": 29640,
+    "confidence": 0.21726191309287787,
+    "text": "I can't take this round, but I can't take this round."
+  },
+  {
+    "chunk_idx": 37,
+    "seq": 223,
+    "start_ms": 29640,
+    "end_ms": 29820,
+    "confidence": 0.4414053035665619,
+    "text": "Mm."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 224,
+    "start_ms": 0,
+    "end_ms": 1300,
+    "confidence": 0.10015245143621453,
+    "text": "in the video,"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 225,
+    "start_ms": 2980,
+    "end_ms": 3580,
+    "confidence": 0.10015245143621453,
+    "text": "I want to ask you,"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 226,
+    "start_ms": 3580,
+    "end_ms": 6140,
+    "confidence": 0.10015245143621453,
+    "text": "if you understand the information,"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 227,
+    "start_ms": 6140,
+    "end_ms": 6480,
+    "confidence": 0.10015245143621453,
+    "text": "if I ask you,"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 228,
+    "start_ms": 6480,
+    "end_ms": 10280,
+    "confidence": 0.10015245143621453,
+    "text": "any other things."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 229,
+    "start_ms": 13600,
+    "end_ms": 16900,
+    "confidence": 0.10015245143621453,
+    "text": "But I would like to ask you"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 230,
+    "start_ms": 17560,
+    "end_ms": 18560,
+    "confidence": 0.16481098324031104,
+    "text": "Are you going to use this?"
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 231,
+    "start_ms": 18760,
+    "end_ms": 19100,
+    "confidence": 0.16481098324031104,
+    "text": "I only want to see one."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 232,
+    "start_ms": 19100,
+    "end_ms": 20640,
+    "confidence": 0.16481098324031104,
+    "text": "But I want to see one or two."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 233,
+    "start_ms": 21400,
+    "end_ms": 22940,
+    "confidence": 0.16481098324031104,
+    "text": "I want to see one or two, be careful."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 234,
+    "start_ms": 23380,
+    "end_ms": 24880,
+    "confidence": 0.16481098324031104,
+    "text": "I can see one, you go here."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 235,
+    "start_ms": 24880,
+    "end_ms": 25720,
+    "confidence": 0.16481098324031104,
+    "text": "That is the same time."
+  },
+  {
+    "chunk_idx": 39,
+    "seq": 236,
+    "start_ms": 26300,
+    "end_ms": 28620,
+    "confidence": 0.16481098324031104,
+    "text": "That is the same time, it is the same time."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 237,
+    "start_ms": 959,
+    "end_ms": 2120,
+    "confidence": 0.08508065843253398,
+    "text": "But if you see her, except for all."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 238,
+    "start_ms": 3760,
+    "end_ms": 4560,
+    "confidence": 0.08508065843253398,
+    "text": "Hmm."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 239,
+    "start_ms": 4560,
+    "end_ms": 8020,
+    "confidence": 0.08508065843253398,
+    "text": "You can't really offer away any sense of peace in your life."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 240,
+    "start_ms": 8560,
+    "end_ms": 9400,
+    "confidence": 0.08508065843253398,
+    "text": "But if you see her in your life,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 241,
+    "start_ms": 9400,
+    "end_ms": 11300,
+    "confidence": 0.08508065843253398,
+    "text": "please let me know."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 242,
+    "start_ms": 15860,
+    "end_ms": 17300,
+    "confidence": 0.08508065843253398,
+    "text": "If you see her in your life,"
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 243,
+    "start_ms": 21080,
+    "end_ms": 21880,
+    "confidence": 0.08508065843253398,
+    "text": "That's how you hope."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 244,
+    "start_ms": 22580,
+    "end_ms": 24080,
+    "confidence": 0.08508065843253398,
+    "text": "And that's how you think we will already think of."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 245,
+    "start_ms": 24080,
+    "end_ms": 24940,
+    "confidence": 0.07963941490826645,
+    "text": "We must not see it."
+  },
+  {
+    "chunk_idx": 41,
+    "seq": 246,
+    "start_ms": 26740,
+    "end_ms": 29980,
+    "confidence": 0.07963941490826645,
+    "text": "We must not be sure to show up, and know I will tell you how to read."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 247,
+    "start_ms": 0,
+    "end_ms": 1000,
+    "confidence": 0.458000223206333,
+    "text": "or fix it."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 248,
+    "start_ms": 1960,
+    "end_ms": 4360,
+    "confidence": 0.458000223206333,
+    "text": "What it is to say is space and time care."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 249,
+    "start_ms": 5060,
+    "end_ms": 8500,
+    "confidence": 0.458000223206333,
+    "text": "So space or time, external reality is now, okay."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 250,
+    "start_ms": 10099,
+    "end_ms": 13760,
+    "confidence": 0.458000223206333,
+    "text": "Hummari, inbuilt capability, technology, structure, technology,"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 251,
+    "start_ms": 14459,
+    "end_ms": 16239,
+    "confidence": 0.458000223206333,
+    "text": "Jinket, Suhiyam, perceived capacity."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 252,
+    "start_ms": 17840,
+    "end_ms": 19300,
+    "confidence": 0.458000223206333,
+    "text": "So time care, like a buddy of such a time."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 253,
+    "start_ms": 19300,
+    "end_ms": 22280,
+    "confidence": 0.458000223206333,
+    "text": "Time, Hummari, under head, time, barret, time care, time care,"
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 254,
+    "start_ms": 22360,
+    "end_ms": 22860,
+    "confidence": 0.458000223206333,
+    "text": "time care, time care, like confusion."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 255,
+    "start_ms": 22860,
+    "end_ms": 28220,
+    "confidence": 0.31643242667386684,
+    "text": "I think it's not a bad thing, but it's not a great thing."
+  },
+  {
+    "chunk_idx": 43,
+    "seq": 256,
+    "start_ms": 28440,
+    "end_ms": 29780,
+    "confidence": 0.31643242667386684,
+    "text": "I think it's a good thing."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 257,
+    "start_ms": 3460,
+    "end_ms": 13380,
+    "confidence": 0.019549718810067142,
+    "text": "that was very complex and it was one thing to say,"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 258,
+    "start_ms": 13380,
+    "end_ms": 13560,
+    "confidence": 0.019549718810067142,
+    "text": "So, I think that his wife helped me."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 259,
+    "start_ms": 13560,
+    "end_ms": 15820,
+    "confidence": 0.019549718810067142,
+    "text": "He bred the boy a state family car,"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 260,
+    "start_ms": 15820,
+    "end_ms": 15860,
+    "confidence": 0.019549718810067142,
+    "text": "got his ex- Contact and he went to my mom's life."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 261,
+    "start_ms": 16280,
+    "end_ms": 20880,
+    "confidence": 0.019549718810067142,
+    "text": "I guess I've been living for 4 years now."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 262,
+    "start_ms": 21080,
+    "end_ms": 23800,
+    "confidence": 0.019549718810067142,
+    "text": "How much Empire did he grow?"
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 263,
+    "start_ms": 23800,
+    "end_ms": 26260,
+    "confidence": 0.019549718810067142,
+    "text": "He gave me aolphord."
+  },
+  {
+    "chunk_idx": 44,
+    "seq": 264,
+    "start_ms": 28300,
+    "end_ms": 29980,
+    "confidence": 0.019549718810067142,
+    "text": "Theborut seized on his language."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 265,
+    "start_ms": 0,
+    "end_ms": 1000,
+    "confidence": 0.08739371248130491,
+    "text": "Well, it's very exciting."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 266,
+    "start_ms": 1080,
+    "end_ms": 1660,
+    "confidence": 0.08739371248130491,
+    "text": "It's very important."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 267,
+    "start_ms": 1660,
+    "end_ms": 2100,
+    "confidence": 0.08739371248130491,
+    "text": "It's very important."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 268,
+    "start_ms": 2100,
+    "end_ms": 6240,
+    "confidence": 0.08739371248130491,
+    "text": "And the next event is continued to be a great opportunity"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 269,
+    "start_ms": 6240,
+    "end_ms": 8580,
+    "confidence": 0.08739371248130491,
+    "text": "I will show you a little bit of the moment."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 270,
+    "start_ms": 10580,
+    "end_ms": 11360,
+    "confidence": 0.08739371248130491,
+    "text": "But we are going to start in one"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 271,
+    "start_ms": 13780,
+    "end_ms": 15500,
+    "confidence": 0.08739371248130491,
+    "text": "basis for this event."
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 272,
+    "start_ms": 15880,
+    "end_ms": 26060,
+    "confidence": 0.08739371248130491,
+    "text": "And the next event is continued to be a great opportunity"
+  },
+  {
+    "chunk_idx": 48,
+    "seq": 273,
+    "start_ms": 26060,
+    "end_ms": 29980,
+    "confidence": 0.08739371248130491,
+    "text": "to enter those possible events in the country"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 274,
+    "start_ms": 0,
+    "end_ms": 1080,
+    "confidence": 0.07556330455548332,
+    "text": "There are no more signs of the"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 275,
+    "start_ms": 1080,
+    "end_ms": 3000,
+    "confidence": 0.07556330455548332,
+    "text": "we'll have to go!"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 276,
+    "start_ms": 3180,
+    "end_ms": 4180,
+    "confidence": 0.07556330455548332,
+    "text": "Now we have to find those"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 277,
+    "start_ms": 4180,
+    "end_ms": 4660,
+    "confidence": 0.07556330455548332,
+    "text": "signs..."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 278,
+    "start_ms": 4660,
+    "end_ms": 7520,
+    "confidence": 0.07556330455548332,
+    "text": "and they gave us..."
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 279,
+    "start_ms": 7520,
+    "end_ms": 8100,
+    "confidence": 0.07556330455548332,
+    "text": "They gave us a"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 280,
+    "start_ms": 8100,
+    "end_ms": 9380,
+    "confidence": 0.07556330455548332,
+    "text": "We've got to have a"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 281,
+    "start_ms": 9380,
+    "end_ms": 15400,
+    "confidence": 0.07556330455548332,
+    "text": "scene that makes us"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 282,
+    "start_ms": 15400,
+    "end_ms": 17300,
+    "confidence": 0.07556330455548332,
+    "text": "learn how to"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 283,
+    "start_ms": 17300,
+    "end_ms": 19540,
+    "confidence": 0.07556330455548332,
+    "text": "create a scene in that"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 284,
+    "start_ms": 19540,
+    "end_ms": 21280,
+    "confidence": 0.07556330455548332,
+    "text": "and the scene that makes"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 285,
+    "start_ms": 21280,
+    "end_ms": 21720,
+    "confidence": 0.07556330455548332,
+    "text": "now"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 286,
+    "start_ms": 21720,
+    "end_ms": 24320,
+    "confidence": 0.07556330455548332,
+    "text": "and then they"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 287,
+    "start_ms": 29060,
+    "end_ms": 29840,
+    "confidence": 0.07556330455548332,
+    "text": "ready on the scene"
+  },
+  {
+    "chunk_idx": 49,
+    "seq": 288,
+    "start_ms": 29840,
+    "end_ms": 29980,
+    "confidence": 0.3844957790715581,
+    "text": "Good boy."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 289,
+    "start_ms": 0,
+    "end_ms": 5700,
+    "confidence": 0.13250203217566855,
+    "text": "But, for example, if you want a high-level game, you can track the game."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 290,
+    "start_ms": 9460,
+    "end_ms": 11780,
+    "confidence": 0.13250203217566855,
+    "text": "For example, you can track the game, so you can track the game."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 291,
+    "start_ms": 14380,
+    "end_ms": 15240,
+    "confidence": 0.13250203217566855,
+    "text": "But, if you haven't, you can track the game for less time."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 292,
+    "start_ms": 15240,
+    "end_ms": 20240,
+    "confidence": 0.36840293958610293,
+    "text": "It's still a bit of the same, it's a time cost-local number."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 293,
+    "start_ms": 22060,
+    "end_ms": 23980,
+    "confidence": 0.36840293958610293,
+    "text": "It's a time-related format."
+  },
+  {
+    "chunk_idx": 54,
+    "seq": 294,
+    "start_ms": 24720,
+    "end_ms": 28840,
+    "confidence": 0.36840293958610293,
+    "text": "It's a time-related format, but it's a time-related format."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 295,
+    "start_ms": 0,
+    "end_ms": 1240,
+    "confidence": 0.4379513279260957,
+    "text": "Time can shift me."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 296,
+    "start_ms": 1520,
+    "end_ms": 2300,
+    "confidence": 0.4379513279260957,
+    "text": "No, man, I don't know."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 297,
+    "start_ms": 2300,
+    "end_ms": 3180,
+    "confidence": 0.4379513279260957,
+    "text": "Just say, man, I'll be bad."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 298,
+    "start_ms": 3860,
+    "end_ms": 4700,
+    "confidence": 0.4379513279260957,
+    "text": "No, I'll be bad."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 299,
+    "start_ms": 5120,
+    "end_ms": 5920,
+    "confidence": 0.4379513279260957,
+    "text": "Is it the boat?"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 300,
+    "start_ms": 6380,
+    "end_ms": 7740,
+    "confidence": 0.4379513279260957,
+    "text": "Did you, for example, swim or something?"
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 301,
+    "start_ms": 8100,
+    "end_ms": 9120,
+    "confidence": 0.4379513279260957,
+    "text": "It's a TV cup."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 302,
+    "start_ms": 9800,
+    "end_ms": 10560,
+    "confidence": 0.4379513279260957,
+    "text": "Mitchell, Raman, you can take it."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 303,
+    "start_ms": 10740,
+    "end_ms": 11600,
+    "confidence": 0.4379513279260957,
+    "text": "Oh, my God."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 304,
+    "start_ms": 12000,
+    "end_ms": 12800,
+    "confidence": 0.4379513279260957,
+    "text": "Oreki, you can take it."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 305,
+    "start_ms": 13040,
+    "end_ms": 14060,
+    "confidence": 0.4379513279260957,
+    "text": "Oh, look, look, it's just some food."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 306,
+    "start_ms": 14400,
+    "end_ms": 14760,
+    "confidence": 0.4379513279260957,
+    "text": "Haha."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 307,
+    "start_ms": 15160,
+    "end_ms": 16239,
+    "confidence": 0.4379513279260957,
+    "text": "A TV cup, you can turn it."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 308,
+    "start_ms": 16880,
+    "end_ms": 16960,
+    "confidence": 0.4379513279260957,
+    "text": "Mm-hmm."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 309,
+    "start_ms": 16960,
+    "end_ms": 18260,
+    "confidence": 0.4379513279260957,
+    "text": "Kaimara Sautak, you can turn it."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 310,
+    "start_ms": 18500,
+    "end_ms": 19260,
+    "confidence": 0.4379513279260957,
+    "text": "Ouchy, spell it."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 311,
+    "start_ms": 19460,
+    "end_ms": 19760,
+    "confidence": 0.4379513279260957,
+    "text": "It's a few years."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 312,
+    "start_ms": 19980,
+    "end_ms": 20720,
+    "confidence": 0.4379513279260957,
+    "text": "It does be a second."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 313,
+    "start_ms": 20840,
+    "end_ms": 21500,
+    "confidence": 0.4379513279260957,
+    "text": "Give it a TV cup."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 314,
+    "start_ms": 21620,
+    "end_ms": 22000,
+    "confidence": 0.4379513279260957,
+    "text": "Mm-hmm."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 315,
+    "start_ms": 22420,
+    "end_ms": 23380,
+    "confidence": 0.4379513279260957,
+    "text": "So time, good defensive."
+  },
+  {
+    "chunk_idx": 55,
+    "seq": 316,
+    "start_ms": 29120,
+    "end_ms": 29840,
+    "confidence": 0.4379513279260957,
+    "text": "Mm-hmm."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 317,
+    "start_ms": 2420,
+    "end_ms": 3140,
+    "confidence": 0.36488089389670064,
+    "text": "time..."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 318,
+    "start_ms": 3140,
+    "end_ms": 3160,
+    "confidence": 0.36488089389670064,
+    "text": "..."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 319,
+    "start_ms": 3160,
+    "end_ms": 3220,
+    "confidence": 0.36488089389670064,
+    "text": "..."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 320,
+    "start_ms": 3220,
+    "end_ms": 3580,
+    "confidence": 0.36488089389670064,
+    "text": "..."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 321,
+    "start_ms": 5260,
+    "end_ms": 5980,
+    "confidence": 0.36488089389670064,
+    "text": "..."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 322,
+    "start_ms": 5980,
+    "end_ms": 14900,
+    "confidence": 0.06710902656170324,
+    "text": "This is very important, which means our lives are all adopted with higher rights."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 323,
+    "start_ms": 14900,
+    "end_ms": 20600,
+    "confidence": 0.06710902656170324,
+    "text": "This solution is important and it is important to us."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 324,
+    "start_ms": 21820,
+    "end_ms": 23980,
+    "confidence": 0.06710902656170324,
+    "text": "Because the world's world is very much different."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 325,
+    "start_ms": 23980,
+    "end_ms": 27460,
+    "confidence": 0.06710902656170324,
+    "text": "And it is important to us, it is important to help us solve equality."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 326,
+    "start_ms": 28040,
+    "end_ms": 29620,
+    "confidence": 0.06710902656170324,
+    "text": "Let me see."
+  },
+  {
+    "chunk_idx": 56,
+    "seq": 327,
+    "start_ms": 29620,
+    "end_ms": 29820,
+    "confidence": 0.3919365156483881,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 328,
+    "start_ms": 0,
+    "end_ms": 4740,
+    "confidence": 0.45044469088390215,
+    "text": "Time, motion gets out, or distance gets out like a chica, chica, chica, chica, chica,"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 329,
+    "start_ms": 4740,
+    "end_ms": 9300,
+    "confidence": 0.45044469088390215,
+    "text": "chica, maggari, banda, mese, kithna, durha, or kithna, taste, celraha, who's in saps"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 330,
+    "start_ms": 9300,
+    "end_ms": 13800,
+    "confidence": 0.45044469088390215,
+    "text": "a mese, saps, oops, kigari, a la chile, slo chile, so distance will be dependent on that,"
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 331,
+    "start_ms": 14140,
+    "end_ms": 15460,
+    "confidence": 0.45044469088390215,
+    "text": "or guys will be dependent on that."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 332,
+    "start_ms": 16340,
+    "end_ms": 20380,
+    "confidence": 0.45044469088390215,
+    "text": "Abhis Kaman love, and rho made a galaxy, you can get the lightiest duram, arse."
+  },
+  {
+    "chunk_idx": 57,
+    "seq": 333,
+    "start_ms": 21360,
+    "end_ms": 26160,
+    "confidence": 0.45044469088390215,
+    "text": "Distance about durha, or maggara, hulkasamimum kara, mese, bit about kaman, in distance"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 334,
+    "start_ms": 0,
+    "end_ms": 1200,
+    "confidence": 0.09156349950154594,
+    "text": "and they will just have to do that."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 335,
+    "start_ms": 2060,
+    "end_ms": 6060,
+    "confidence": 0.09156349950154594,
+    "text": "That's how you can get that,"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 336,
+    "start_ms": 6680,
+    "end_ms": 6840,
+    "confidence": 0.09156349950154594,
+    "text": "that's how you can get that."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 337,
+    "start_ms": 7220,
+    "end_ms": 8560,
+    "confidence": 0.09156349950154594,
+    "text": "This is a struggle for this world."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 338,
+    "start_ms": 8680,
+    "end_ms": 13020,
+    "confidence": 0.09156349950154594,
+    "text": "Because of the struggle for the world."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 339,
+    "start_ms": 13520,
+    "end_ms": 17180,
+    "confidence": 0.09156349950154594,
+    "text": "And what we do with this is the future."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 340,
+    "start_ms": 17180,
+    "end_ms": 19660,
+    "confidence": 0.09156349950154594,
+    "text": "Because of the purpose that we can do."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 341,
+    "start_ms": 19860,
+    "end_ms": 21360,
+    "confidence": 0.09156349950154594,
+    "text": "And we have to be very young."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 342,
+    "start_ms": 21360,
+    "end_ms": 21600,
+    "confidence": 0.09156349950154594,
+    "text": "A wonderful person to be very young."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 343,
+    "start_ms": 23460,
+    "end_ms": 25700,
+    "confidence": 0.09156349950154594,
+    "text": "In the world, there are still ways to build it."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 344,
+    "start_ms": 25880,
+    "end_ms": 26160,
+    "confidence": 0.09156349950154594,
+    "text": "That's the way we make it."
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 345,
+    "start_ms": 26160,
+    "end_ms": 27740,
+    "confidence": 0.09156349950154594,
+    "text": "If we can build it together in our world,"
+  },
+  {
+    "chunk_idx": 58,
+    "seq": 346,
+    "start_ms": 27740,
+    "end_ms": 29980,
+    "confidence": 0.09156349950154594,
+    "text": "keep up the same way we may not be able to do that."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 347,
+    "start_ms": 0,
+    "end_ms": 7400,
+    "confidence": 0.09921610424004591,
+    "text": "So, it's like boggi galeximha, and I guess is galeximha."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 348,
+    "start_ms": 7760,
+    "end_ms": 9060,
+    "confidence": 0.09921610424004591,
+    "text": "Ispered fishermanhood?"
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 349,
+    "start_ms": 9620,
+    "end_ms": 13640,
+    "confidence": 0.09921610424004591,
+    "text": "It's not the most important thing about boggi galeximha."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 350,
+    "start_ms": 14040,
+    "end_ms": 16280,
+    "confidence": 0.09921610424004591,
+    "text": "Up next we have to say, it's a little more than that."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 351,
+    "start_ms": 17140,
+    "end_ms": 21280,
+    "confidence": 0.09921610424004591,
+    "text": "It's the number of strangers in this community."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 352,
+    "start_ms": 21980,
+    "end_ms": 27400,
+    "confidence": 0.09921610424004591,
+    "text": "Are there different worlds in the world?"
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 353,
+    "start_ms": 27400,
+    "end_ms": 28540,
+    "confidence": 0.4173403080741703,
+    "text": "I love you."
+  },
+  {
+    "chunk_idx": 59,
+    "seq": 354,
+    "start_ms": 28760,
+    "end_ms": 29980,
+    "confidence": 0.4173403080741703,
+    "text": "May, may I ask you..."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 355,
+    "start_ms": 0,
+    "end_ms": 5940,
+    "confidence": 0.06819803935115366,
+    "text": "and her name will be the same name but sometimes even though I say no, I had this"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 356,
+    "start_ms": 5940,
+    "end_ms": 10500,
+    "confidence": 0.06819803935115366,
+    "text": "okay, this is my first looks here, then this is my first looks at my old experience."
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 357,
+    "start_ms": 12640,
+    "end_ms": 16720,
+    "confidence": 0.06819803935115366,
+    "text": "So, in terms of this is my first, for example a young person, at its first time,"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 358,
+    "start_ms": 16720,
+    "end_ms": 18300,
+    "confidence": 0.06819803935115366,
+    "text": "so I just leave, I see friends, friends, my friend, and you know, you know, I can't"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 359,
+    "start_ms": 18300,
+    "end_ms": 28560,
+    "confidence": 0.06819803935115366,
+    "text": "find them, I don't know if you can find them, because my husband, I don't know"
+  },
+  {
+    "chunk_idx": 63,
+    "seq": 360,
+    "start_ms": 29020,
+    "end_ms": 29980,
+    "confidence": 0.3935499573615945,
+    "text": "Conceptually, f"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 361,
+    "start_ms": 0,
+    "end_ms": 1020,
+    "confidence": 0.09587174464132313,
+    "text": "I feel like you are here,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 362,
+    "start_ms": 2700,
+    "end_ms": 5460,
+    "confidence": 0.09587174464132313,
+    "text": "I feel like you have had a question for you,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 363,
+    "start_ms": 5880,
+    "end_ms": 6460,
+    "confidence": 0.09587174464132313,
+    "text": "it is generally"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 364,
+    "start_ms": 8080,
+    "end_ms": 9040,
+    "confidence": 0.09587174464132313,
+    "text": "I am not there,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 365,
+    "start_ms": 11219,
+    "end_ms": 12540,
+    "confidence": 0.09587174464132313,
+    "text": "I am not there, I am just so happy."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 366,
+    "start_ms": 12860,
+    "end_ms": 16360,
+    "confidence": 0.09587174464132313,
+    "text": "I am happy to be here."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 367,
+    "start_ms": 17500,
+    "end_ms": 18840,
+    "confidence": 0.09587174464132313,
+    "text": "You will see that I know."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 368,
+    "start_ms": 21820,
+    "end_ms": 22700,
+    "confidence": 0.09587174464132313,
+    "text": "And I can be here."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 369,
+    "start_ms": 22700,
+    "end_ms": 23540,
+    "confidence": 0.09587174464132313,
+    "text": "You are now in the individual."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 370,
+    "start_ms": 24100,
+    "end_ms": 24700,
+    "confidence": 0.09587174464132313,
+    "text": "For the most difficult,"
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 371,
+    "start_ms": 25260,
+    "end_ms": 27760,
+    "confidence": 0.09587174464132313,
+    "text": "I think it would be a bit different."
+  },
+  {
+    "chunk_idx": 64,
+    "seq": 372,
+    "start_ms": 28380,
+    "end_ms": 29980,
+    "confidence": 0.36115064273501046,
+    "text": "Binai is working for the Kibinai."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 373,
+    "start_ms": 0,
+    "end_ms": 3580,
+    "confidence": 0.12053952269047288,
+    "text": "there are a lot of people who don't care about it,"
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 374,
+    "start_ms": 3760,
+    "end_ms": 10220,
+    "confidence": 0.12053952269047288,
+    "text": "but they don't think it's perfect."
+  },
+  {
+    "chunk_idx": 65,
+    "seq": 375,
+    "start_ms": 14300,
+    "end_ms": 29980,
+    "confidence": 0.12053952269047288,
+    "text": "But his name is"
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 376,
+    "start_ms": 2640,
+    "end_ms": 8420,
+    "confidence": 0.08651353425285865,
+    "text": "So, we know that we're going to try to get our lives together."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 377,
+    "start_ms": 10580,
+    "end_ms": 11240,
+    "confidence": 0.08651353425285865,
+    "text": "We have to be a little bit bigger."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 378,
+    "start_ms": 14780,
+    "end_ms": 21400,
+    "confidence": 0.08651353425285865,
+    "text": "The world has not happened yet, but we cannot have anything else."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 379,
+    "start_ms": 21400,
+    "end_ms": 23900,
+    "confidence": 0.38866789552875586,
+    "text": "for the venials of the head."
+  },
+  {
+    "chunk_idx": 66,
+    "seq": 380,
+    "start_ms": 23940,
+    "end_ms": 29980,
+    "confidence": 0.38866789552875586,
+    "text": "So free will head is based from Dunia, which are Ryan normally, or free will head."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 381,
+    "start_ms": 0,
+    "end_ms": 1440,
+    "confidence": 0.0636366217064062,
+    "text": "He was very Chief."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 382,
+    "start_ms": 2320,
+    "end_ms": 2780,
+    "confidence": 0.0636366217064062,
+    "text": "The Executive Team was very powerful."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 383,
+    "start_ms": 4000,
+    "end_ms": 7280,
+    "confidence": 0.0636366217064062,
+    "text": "I think it's an important thing to see."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 384,
+    "start_ms": 9980,
+    "end_ms": 18060,
+    "confidence": 0.0636366217064062,
+    "text": "The Executive Team is very powerful and better than this."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 385,
+    "start_ms": 25940,
+    "end_ms": 28080,
+    "confidence": 0.0636366217064062,
+    "text": "The Executive Team is here."
+  },
+  {
+    "chunk_idx": 67,
+    "seq": 386,
+    "start_ms": 28080,
+    "end_ms": 29660,
+    "confidence": 0.0636366217064062,
+    "text": "It's happened to the beloved Team."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 387,
+    "start_ms": 0,
+    "end_ms": 2000,
+    "confidence": 0.08401637701874272,
+    "text": "I know that I am from here."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 388,
+    "start_ms": 2860,
+    "end_ms": 6680,
+    "confidence": 0.08401637701874272,
+    "text": "I am from here I think that I am from this level of philosophy."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 389,
+    "start_ms": 7360,
+    "end_ms": 9480,
+    "confidence": 0.08401637701874272,
+    "text": "But that I haven't had a lot of people there."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 390,
+    "start_ms": 10560,
+    "end_ms": 12340,
+    "confidence": 0.08401637701874272,
+    "text": "What is happening?"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 391,
+    "start_ms": 14800,
+    "end_ms": 16600,
+    "confidence": 0.08401637701874272,
+    "text": "When the people were on the ground,"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 392,
+    "start_ms": 18740,
+    "end_ms": 22940,
+    "confidence": 0.08401637701874272,
+    "text": "the people were on the ground,"
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 393,
+    "start_ms": 22940,
+    "end_ms": 23680,
+    "confidence": 0.08401637701874272,
+    "text": "and now I get free."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 394,
+    "start_ms": 24760,
+    "end_ms": 26440,
+    "confidence": 0.08401637701874272,
+    "text": "I keep talking about how I was here."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 395,
+    "start_ms": 27780,
+    "end_ms": 29060,
+    "confidence": 0.08401637701874272,
+    "text": "I think that I am in a way that I only want to do things."
+  },
+  {
+    "chunk_idx": 68,
+    "seq": 396,
+    "start_ms": 29060,
+    "end_ms": 29720,
+    "confidence": 0.39876753875495624,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 397,
+    "start_ms": 0,
+    "end_ms": 5520,
+    "confidence": 0.02266542729989922,
+    "text": "But for help, let's see if we can do more."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 398,
+    "start_ms": 6820,
+    "end_ms": 12040,
+    "confidence": 0.02266542729989922,
+    "text": "If we can do some wonder, let's take another."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 399,
+    "start_ms": 12040,
+    "end_ms": 14660,
+    "confidence": 0.02266542729989922,
+    "text": "If we can expand the world, we will love them with support in 2021."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 400,
+    "start_ms": 15820,
+    "end_ms": 16780,
+    "confidence": 0.02266542729989922,
+    "text": "Therefore, we will not have the way out the horizon of the world."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 401,
+    "start_ms": 16780,
+    "end_ms": 18900,
+    "confidence": 0.02266542729989922,
+    "text": "That will be the third megastome operating delay."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 402,
+    "start_ms": 24040,
+    "end_ms": 26300,
+    "confidence": 0.02266542729989922,
+    "text": "It sinks to us from where it gradually gets Mega Red."
+  },
+  {
+    "chunk_idx": 69,
+    "seq": 403,
+    "start_ms": 26300,
+    "end_ms": 29980,
+    "confidence": 0.02266542729989922,
+    "text": "It doesn't exist but the downside if you have the purpose ofak abandoned me"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 404,
+    "start_ms": 0,
+    "end_ms": 1320,
+    "confidence": 0.08355495470106866,
+    "text": "and I was going to say,"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 405,
+    "start_ms": 1320,
+    "end_ms": 2180,
+    "confidence": 0.08355495470106866,
+    "text": "we have to say,"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 406,
+    "start_ms": 2180,
+    "end_ms": 5000,
+    "confidence": 0.08355495470106866,
+    "text": "say these times."
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 407,
+    "start_ms": 5000,
+    "end_ms": 7240,
+    "confidence": 0.08355495470106866,
+    "text": "When I am in the"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 408,
+    "start_ms": 7240,
+    "end_ms": 7780,
+    "confidence": 0.08355495470106866,
+    "text": "future,"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 409,
+    "start_ms": 8080,
+    "end_ms": 9800,
+    "confidence": 0.08355495470106866,
+    "text": "we are now from our"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 410,
+    "start_ms": 9800,
+    "end_ms": 11160,
+    "confidence": 0.08355495470106866,
+    "text": "we are now in the future of"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 411,
+    "start_ms": 11160,
+    "end_ms": 11840,
+    "confidence": 0.08355495470106866,
+    "text": "the future of the"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 412,
+    "start_ms": 11920,
+    "end_ms": 13460,
+    "confidence": 0.08355495470106866,
+    "text": "our this is the"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 413,
+    "start_ms": 13460,
+    "end_ms": 13520,
+    "confidence": 0.08355495470106866,
+    "text": "government violence,"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 414,
+    "start_ms": 19540,
+    "end_ms": 20340,
+    "confidence": 0.08355495470106866,
+    "text": "people are saying,"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 415,
+    "start_ms": 20980,
+    "end_ms": 21260,
+    "confidence": 0.08355495470106866,
+    "text": "one in the world,"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 416,
+    "start_ms": 21260,
+    "end_ms": 24820,
+    "confidence": 0.08355495470106866,
+    "text": "other women were"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 417,
+    "start_ms": 24820,
+    "end_ms": 25600,
+    "confidence": 0.08355495470106866,
+    "text": "involved,"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 418,
+    "start_ms": 25600,
+    "end_ms": 28360,
+    "confidence": 0.08355495470106866,
+    "text": "every one is"
+  },
+  {
+    "chunk_idx": 70,
+    "seq": 419,
+    "start_ms": 28360,
+    "end_ms": 29980,
+    "confidence": 0.08355495470106866,
+    "text": "the war."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 420,
+    "start_ms": 2360,
+    "end_ms": 3920,
+    "confidence": 0.07192174247860303,
+    "text": "He would be a rich person, a stupid person."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 421,
+    "start_ms": 3920,
+    "end_ms": 6180,
+    "confidence": 0.07192174247860303,
+    "text": "And if we don't even want to understand the reality of society,"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 422,
+    "start_ms": 6180,
+    "end_ms": 13340,
+    "confidence": 0.07192174247860303,
+    "text": "we want to understand the resources for humanity."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 423,
+    "start_ms": 15680,
+    "end_ms": 17460,
+    "confidence": 0.07192174247860303,
+    "text": "That's why the human impact in world."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 424,
+    "start_ms": 17980,
+    "end_ms": 18520,
+    "confidence": 0.07192174247860303,
+    "text": "And really, the ability to do the traditional action"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 425,
+    "start_ms": 18520,
+    "end_ms": 22280,
+    "confidence": 0.07192174247860303,
+    "text": "If we go to university, we want to understand the world,"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 426,
+    "start_ms": 22360,
+    "end_ms": 23700,
+    "confidence": 0.07192174247860303,
+    "text": "and we want to know about that."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 427,
+    "start_ms": 25240,
+    "end_ms": 28120,
+    "confidence": 0.07192174247860303,
+    "text": "And if we can say that we want to understand that in the next week,"
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 428,
+    "start_ms": 28120,
+    "end_ms": 29380,
+    "confidence": 0.37114784250353045,
+    "text": "interactions are there."
+  },
+  {
+    "chunk_idx": 74,
+    "seq": 429,
+    "start_ms": 29400,
+    "end_ms": 29980,
+    "confidence": 0.37114784250353045,
+    "text": "So, over observation."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 430,
+    "start_ms": 1060,
+    "end_ms": 1940,
+    "confidence": 0.0703415808612557,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 431,
+    "start_ms": 1940,
+    "end_ms": 3480,
+    "confidence": 0.0703415808612557,
+    "text": "I could have made an observation from the company,"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 432,
+    "start_ms": 3940,
+    "end_ms": 7460,
+    "confidence": 0.0703415808612557,
+    "text": "but what if I was trying to say that"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 433,
+    "start_ms": 7460,
+    "end_ms": 8200,
+    "confidence": 0.0703415808612557,
+    "text": "that's all that I had with my own name?"
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 434,
+    "start_ms": 13700,
+    "end_ms": 15820,
+    "confidence": 0.0703415808612557,
+    "text": "And I didn't mind that."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 435,
+    "start_ms": 16680,
+    "end_ms": 19660,
+    "confidence": 0.0703415808612557,
+    "text": "100% of it is what I forget about that."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 436,
+    "start_ms": 21640,
+    "end_ms": 24140,
+    "confidence": 0.0703415808612557,
+    "text": "I was saying that the company was on the market."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 437,
+    "start_ms": 24140,
+    "end_ms": 26920,
+    "confidence": 0.3503134606036218,
+    "text": "I hope you enjoyed it."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 438,
+    "start_ms": 27840,
+    "end_ms": 29460,
+    "confidence": 0.3503134606036218,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 75,
+    "seq": 439,
+    "start_ms": 29460,
+    "end_ms": 29980,
+    "confidence": 0.3503134606036218,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 440,
+    "start_ms": 22200,
+    "end_ms": 26180,
+    "confidence": 0.5613417991877402,
+    "text": "Don't perceive her the head that perception is a reality"
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 441,
+    "start_ms": 26180,
+    "end_ms": 28460,
+    "confidence": 0.28397774800637793,
+    "text": "I'm going to see you next time."
+  },
+  {
+    "chunk_idx": 76,
+    "seq": 442,
+    "start_ms": 28800,
+    "end_ms": 29620,
+    "confidence": 0.28397774800637793,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 443,
+    "start_ms": 0,
+    "end_ms": 2120,
+    "confidence": 0.013539931307016589,
+    "text": "I am willing to oppose the King of Nazareth."
+  },
+  {
+    "chunk_idx": 78,
+    "seq": 444,
+    "start_ms": 7939,
+    "end_ms": 29980,
+    "confidence": 0.013539931307016589,
+    "text": "Additionally it is coming to maximize more about the 2008"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 445,
+    "start_ms": 0,
+    "end_ms": 3880,
+    "confidence": 0.08732030207560655,
+    "text": "It is not possible to share the key."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 446,
+    "start_ms": 4080,
+    "end_ms": 6340,
+    "confidence": 0.08732030207560655,
+    "text": "It is not possible to share the key."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 447,
+    "start_ms": 7080,
+    "end_ms": 8280,
+    "confidence": 0.08732030207560655,
+    "text": "We must not speak high."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 448,
+    "start_ms": 9820,
+    "end_ms": 12300,
+    "confidence": 0.08732030207560655,
+    "text": "And we must have a very strong..."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 449,
+    "start_ms": 12300,
+    "end_ms": 12680,
+    "confidence": 0.08732030207560655,
+    "text": "...with a very innovative economy."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 450,
+    "start_ms": 14080,
+    "end_ms": 15240,
+    "confidence": 0.08732030207560655,
+    "text": "And we must have two other things."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 451,
+    "start_ms": 15240,
+    "end_ms": 16360,
+    "confidence": 0.08732030207560655,
+    "text": "Let me ask you,"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 452,
+    "start_ms": 17840,
+    "end_ms": 18400,
+    "confidence": 0.08732030207560655,
+    "text": "to tell you,"
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 453,
+    "start_ms": 18400,
+    "end_ms": 24340,
+    "confidence": 0.08732030207560655,
+    "text": "We must have an obligation in this country."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 454,
+    "start_ms": 24340,
+    "end_ms": 25280,
+    "confidence": 0.29414325628931703,
+    "text": "Shai Do."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 455,
+    "start_ms": 25880,
+    "end_ms": 26420,
+    "confidence": 0.29414325628931703,
+    "text": "Shai Do, shai do."
+  },
+  {
+    "chunk_idx": 80,
+    "seq": 456,
+    "start_ms": 26860,
+    "end_ms": 29880,
+    "confidence": 0.29414325628931703,
+    "text": "This is a single interesting and a new reference."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 457,
+    "start_ms": 0,
+    "end_ms": 5140,
+    "confidence": 0.21467102212173123,
+    "text": "The experiment of Abu Bahamazai was my same Heris say Ajimeh,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 458,
+    "start_ms": 5140,
+    "end_ms": 6820,
+    "confidence": 0.21467102212173123,
+    "text": "neuro science Qiduniyagi, but she doesn't."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 459,
+    "start_ms": 8680,
+    "end_ms": 13700,
+    "confidence": 0.21467102212173123,
+    "text": "Frivl Khatma Gurdirani, egg frivl Qulagi, concepti, illusionism both,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 460,
+    "start_ms": 13760,
+    "end_ms": 14060,
+    "confidence": 0.21467102212173123,
+    "text": "dare not go."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 461,
+    "start_ms": 16139,
+    "end_ms": 19440,
+    "confidence": 0.21467102212173123,
+    "text": "Parhaligulob, kathikiliki frivl, naanu Tis, spinoza here,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 462,
+    "start_ms": 19520,
+    "end_ms": 21300,
+    "confidence": 0.21467102212173123,
+    "text": "determination fillers for it."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 463,
+    "start_ms": 21560,
+    "end_ms": 24920,
+    "confidence": 0.21467102212173123,
+    "text": "Determinism, kamat alaamatha, kapusta here, a pushnik ara bussimh."
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 464,
+    "start_ms": 25200,
+    "end_ms": 28200,
+    "confidence": 0.21467102212173123,
+    "text": "So spinoza, subseh hard core, determinisma near taihe,"
+  },
+  {
+    "chunk_idx": 81,
+    "seq": 465,
+    "start_ms": 28200,
+    "end_ms": 29980,
+    "confidence": 0.3379757706451823,
+    "text": "Laplace excite dissivomat."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 466,
+    "start_ms": 0,
+    "end_ms": 1040,
+    "confidence": 0.2111393001672498,
+    "text": "Heit is the best to be."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 467,
+    "start_ms": 3040,
+    "end_ms": 4720,
+    "confidence": 0.2111393001672498,
+    "text": "The most important thing is that"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 468,
+    "start_ms": 4720,
+    "end_ms": 7400,
+    "confidence": 0.2111393001672498,
+    "text": "he is the best to be."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 469,
+    "start_ms": 7400,
+    "end_ms": 10320,
+    "confidence": 0.2111393001672498,
+    "text": "This is the best idea."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 470,
+    "start_ms": 11000,
+    "end_ms": 15980,
+    "confidence": 0.2111393001672498,
+    "text": "A country that is the most difficult to do."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 471,
+    "start_ms": 18600,
+    "end_ms": 20080,
+    "confidence": 0.2111393001672498,
+    "text": "He is the best to be the best."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 472,
+    "start_ms": 22660,
+    "end_ms": 25720,
+    "confidence": 0.2111393001672498,
+    "text": "It is the most difficult to do."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 473,
+    "start_ms": 25740,
+    "end_ms": 28700,
+    "confidence": 0.2111393001672498,
+    "text": "Even when he is the best,"
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 474,
+    "start_ms": 28700,
+    "end_ms": 28920,
+    "confidence": 0.2111393001672498,
+    "text": "he is the best to be the best to do."
+  },
+  {
+    "chunk_idx": 85,
+    "seq": 475,
+    "start_ms": 29320,
+    "end_ms": 29980,
+    "confidence": 0.2111393001672498,
+    "text": "He is the best to do."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 476,
+    "start_ms": 0,
+    "end_ms": 2520,
+    "confidence": 0.09546883776226699,
+    "text": "let me look over here."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 477,
+    "start_ms": 2820,
+    "end_ms": 4220,
+    "confidence": 0.09546883776226699,
+    "text": "it is so much like consciousness level,"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 478,
+    "start_ms": 4440,
+    "end_ms": 4800,
+    "confidence": 0.09546883776226699,
+    "text": "or a dragon,"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 479,
+    "start_ms": 5820,
+    "end_ms": 7440,
+    "confidence": 0.09546883776226699,
+    "text": "oh it's now this is when it's"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 480,
+    "start_ms": 7440,
+    "end_ms": 7860,
+    "confidence": 0.09546883776226699,
+    "text": "hell of action."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 481,
+    "start_ms": 9040,
+    "end_ms": 10440,
+    "confidence": 0.09546883776226699,
+    "text": "to free will."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 482,
+    "start_ms": 10520,
+    "end_ms": 12420,
+    "confidence": 0.09546883776226699,
+    "text": "of the provident working for free"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 483,
+    "start_ms": 12420,
+    "end_ms": 13080,
+    "confidence": 0.09546883776226699,
+    "text": "won't be that."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 484,
+    "start_ms": 14220,
+    "end_ms": 16680,
+    "confidence": 0.09546883776226699,
+    "text": "free won't is against the Will."
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 485,
+    "start_ms": 17120,
+    "end_ms": 19240,
+    "confidence": 0.09546883776226699,
+    "text": "to free will for free won't or"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 486,
+    "start_ms": 19240,
+    "end_ms": 20540,
+    "confidence": 0.09546883776226699,
+    "text": "any am I consciousness"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 487,
+    "start_ms": 21580,
+    "end_ms": 23160,
+    "confidence": 0.09546883776226699,
+    "text": "nural activity to work"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 488,
+    "start_ms": 23160,
+    "end_ms": 25140,
+    "confidence": 0.09546883776226699,
+    "text": "a glee by x and this is a"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 489,
+    "start_ms": 25140,
+    "end_ms": 26540,
+    "confidence": 0.09546883776226699,
+    "text": "a keel of action desert,"
+  },
+  {
+    "chunk_idx": 86,
+    "seq": 490,
+    "start_ms": 26540,
+    "end_ms": 29980,
+    "confidence": 0.33277324922062035,
+    "text": "You've got rocks at there, or eggs and smelly for you."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 491,
+    "start_ms": 1719,
+    "end_ms": 2940,
+    "confidence": 0.089927069898591,
+    "text": "I thought we should don't hurt anybody."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 492,
+    "start_ms": 2940,
+    "end_ms": 9660,
+    "confidence": 0.089927069898591,
+    "text": "This is my personal family."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 493,
+    "start_ms": 10080,
+    "end_ms": 11280,
+    "confidence": 0.089927069898591,
+    "text": "So, my friend knows all the people that are alive from here."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 494,
+    "start_ms": 11280,
+    "end_ms": 12700,
+    "confidence": 0.089927069898591,
+    "text": "He said, make sure you don't know anything about me."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 495,
+    "start_ms": 14000,
+    "end_ms": 14760,
+    "confidence": 0.089927069898591,
+    "text": "What about my everyday Spanish?"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 496,
+    "start_ms": 14760,
+    "end_ms": 16379,
+    "confidence": 0.089927069898591,
+    "text": "It's not a bad way to pay."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 497,
+    "start_ms": 17340,
+    "end_ms": 19020,
+    "confidence": 0.089927069898591,
+    "text": "What kind of puppy?"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 498,
+    "start_ms": 19580,
+    "end_ms": 20080,
+    "confidence": 0.089927069898591,
+    "text": "And what do you care about?"
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 499,
+    "start_ms": 24000,
+    "end_ms": 24040,
+    "confidence": 0.089927069898591,
+    "text": "I know."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 500,
+    "start_ms": 24640,
+    "end_ms": 27280,
+    "confidence": 0.089927069898591,
+    "text": "And it's been a good opportunity to have a very good family."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 501,
+    "start_ms": 27280,
+    "end_ms": 27720,
+    "confidence": 0.3377638660165864,
+    "text": "Go."
+  },
+  {
+    "chunk_idx": 87,
+    "seq": 502,
+    "start_ms": 28120,
+    "end_ms": 29900,
+    "confidence": 0.3377638660165864,
+    "text": "Save it, don't go any free, we'll, we'll, we'll."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 503,
+    "start_ms": 0,
+    "end_ms": 5840,
+    "confidence": 0.07538527280240712,
+    "text": "Program is very easy, but it becomes a very practical way to be able to create the"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 504,
+    "start_ms": 5840,
+    "end_ms": 8600,
+    "confidence": 0.07538527280240712,
+    "text": "critical way to be able to create what is different."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 505,
+    "start_ms": 11800,
+    "end_ms": 29100,
+    "confidence": 0.07538527280240712,
+    "text": "One way we can easily create the"
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 506,
+    "start_ms": 29100,
+    "end_ms": 29660,
+    "confidence": 0.38273931532613775,
+    "text": "."
+  },
+  {
+    "chunk_idx": 88,
+    "seq": 507,
+    "start_ms": 29660,
+    "end_ms": 29900,
+    "confidence": 0.38273931532613775,
+    "text": "."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 508,
+    "start_ms": 0,
+    "end_ms": 1960,
+    "confidence": 0.39274880562725484,
+    "text": "I don't know, wait a second, no, never lie."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 509,
+    "start_ms": 2380,
+    "end_ms": 5880,
+    "confidence": 0.39274880562725484,
+    "text": "Or Yabe, K-Q-R-C-K-11, if he must look perfectly accurate."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 510,
+    "start_ms": 7199,
+    "end_ms": 11100,
+    "confidence": 0.39274880562725484,
+    "text": "So, quantum, joke randomness particular,"
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 511,
+    "start_ms": 12759,
+    "end_ms": 15520,
+    "confidence": 0.39274880562725484,
+    "text": "whose quantum, K-principle, say, banyhu, chib."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 512,
+    "start_ms": 16760,
+    "end_ms": 17980,
+    "confidence": 0.39274880562725484,
+    "text": "Other yetheny, accurate results."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 513,
+    "start_ms": 18360,
+    "end_ms": 18920,
+    "confidence": 0.39274880562725484,
+    "text": "Very yethe, okay?"
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 514,
+    "start_ms": 19060,
+    "end_ms": 19660,
+    "confidence": 0.39274880562725484,
+    "text": "So, this is the main question of the vene,"
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 515,
+    "start_ms": 19800,
+    "end_ms": 22040,
+    "confidence": 0.39274880562725484,
+    "text": "because randomness could be a level given study,"
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 516,
+    "start_ms": 22420,
+    "end_ms": 23420,
+    "confidence": 0.39274880562725484,
+    "text": "or objective, if I could say."
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 517,
+    "start_ms": 23640,
+    "end_ms": 26300,
+    "confidence": 0.39274880562725484,
+    "text": "I mean, he'd be objective-five, just like he random,"
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 518,
+    "start_ms": 26300,
+    "end_ms": 28280,
+    "confidence": 0.4945471846637732,
+    "text": "to look mostly, because I'm not thinking,"
+  },
+  {
+    "chunk_idx": 93,
+    "seq": 519,
+    "start_ms": 28360,
+    "end_ms": 29760,
+    "confidence": 0.4945471846637732,
+    "text": "I'm going to manage a random here."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 520,
+    "start_ms": 1319,
+    "end_ms": 3140,
+    "confidence": 0.44698459434959165,
+    "text": "You know, you know, you know, you know, you know, you know, you know, such a color array."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 521,
+    "start_ms": 3140,
+    "end_ms": 8420,
+    "confidence": 0.44698459434959165,
+    "text": "Uh, Lake in his point, where some other milling probability happened on behalf of a mill rain."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 522,
+    "start_ms": 8780,
+    "end_ms": 9900,
+    "confidence": 0.44698459434959165,
+    "text": "This is not the work, though, though."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 523,
+    "start_ms": 9940,
+    "end_ms": 12680,
+    "confidence": 0.44698459434959165,
+    "text": "The hums of an area of an area, actual form of an area."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 524,
+    "start_ms": 12680,
+    "end_ms": 13240,
+    "confidence": 0.44698459434959165,
+    "text": "You know, infinite."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 525,
+    "start_ms": 13740,
+    "end_ms": 14760,
+    "confidence": 0.44698459434959165,
+    "text": "You have a point."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 526,
+    "start_ms": 15040,
+    "end_ms": 16580,
+    "confidence": 0.44698459434959165,
+    "text": "You put a university point when they are."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 527,
+    "start_ms": 16660,
+    "end_ms": 20440,
+    "confidence": 0.44698459434959165,
+    "text": "So yeah, though, don't know, particle A or B in keeping me going communication is running."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 528,
+    "start_ms": 21460,
+    "end_ms": 21700,
+    "confidence": 0.44698459434959165,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 529,
+    "start_ms": 22580,
+    "end_ms": 22780,
+    "confidence": 0.44698459434959165,
+    "text": "Yeah."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 530,
+    "start_ms": 22780,
+    "end_ms": 29680,
+    "confidence": 0.14528455209869728,
+    "text": "Just a little bit of a bit of a feeling that everything is going to be going to be going."
+  },
+  {
+    "chunk_idx": 96,
+    "seq": 531,
+    "start_ms": 29840,
+    "end_ms": 29980,
+    "confidence": 0.14528455209869728,
+    "text": "It is going to be very loud."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 532,
+    "start_ms": 11240,
+    "end_ms": 12640,
+    "confidence": 0.10611786382079175,
+    "text": "the"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 533,
+    "start_ms": 12640,
+    "end_ms": 15500,
+    "confidence": 0.08136495430002713,
+    "text": "Let's try here, we are going to operate here."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 534,
+    "start_ms": 15880,
+    "end_ms": 16260,
+    "confidence": 0.08136495430002713,
+    "text": "Let's see, we will work with you."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 535,
+    "start_ms": 17100,
+    "end_ms": 17700,
+    "confidence": 0.08136495430002713,
+    "text": "Let's go."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 536,
+    "start_ms": 17700,
+    "end_ms": 19960,
+    "confidence": 0.08136495430002713,
+    "text": "How is it?"
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 537,
+    "start_ms": 21180,
+    "end_ms": 22580,
+    "confidence": 0.08136495430002713,
+    "text": "Let's go."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 538,
+    "start_ms": 26360,
+    "end_ms": 29160,
+    "confidence": 0.08136495430002713,
+    "text": "Now we will try something else."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 539,
+    "start_ms": 29160,
+    "end_ms": 29520,
+    "confidence": 0.3843114396849105,
+    "text": "."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 540,
+    "start_ms": 29520,
+    "end_ms": 29540,
+    "confidence": 0.3843114396849105,
+    "text": "."
+  },
+  {
+    "chunk_idx": 98,
+    "seq": 541,
+    "start_ms": 29540,
+    "end_ms": 29980,
+    "confidence": 0.3843114396849105,
+    "text": "."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 542,
+    "start_ms": 0,
+    "end_ms": 3320,
+    "confidence": 0.07988632717695682,
+    "text": "we are going to give him nothing."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 543,
+    "start_ms": 3320,
+    "end_ms": 6000,
+    "confidence": 0.07988632717695682,
+    "text": "When you come you will give him's freedom."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 544,
+    "start_ms": 7260,
+    "end_ms": 10400,
+    "confidence": 0.07988632717695682,
+    "text": "On a ship,"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 545,
+    "start_ms": 10400,
+    "end_ms": 12600,
+    "confidence": 0.07988632717695682,
+    "text": "if you get away from the ship and come down with a ship in a ship."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 546,
+    "start_ms": 13720,
+    "end_ms": 16020,
+    "confidence": 0.07988632717695682,
+    "text": "Then you'll have to take a ship and come back to the ship."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 547,
+    "start_ms": 16120,
+    "end_ms": 18640,
+    "confidence": 0.07988632717695682,
+    "text": "Do you know when we can leave it?"
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 548,
+    "start_ms": 20080,
+    "end_ms": 20960,
+    "confidence": 0.07988632717695682,
+    "text": "No, if you have to leave it."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 549,
+    "start_ms": 20960,
+    "end_ms": 22480,
+    "confidence": 0.07988632717695682,
+    "text": "Yes, that's all."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 550,
+    "start_ms": 28840,
+    "end_ms": 29720,
+    "confidence": 0.07988632717695682,
+    "text": "You'rerobotic..."
+  },
+  {
+    "chunk_idx": 102,
+    "seq": 551,
+    "start_ms": 29720,
+    "end_ms": 29980,
+    "confidence": 0.07988632717695682,
+    "text": "Do you see that?"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 552,
+    "start_ms": 0,
+    "end_ms": 4000,
+    "confidence": 0.43190906260078743,
+    "text": "Tharid Herm is the highest Hindu Herm"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 553,
+    "start_ms": 5200,
+    "end_ms": 8340,
+    "confidence": 0.43190906260078743,
+    "text": "or Sartre Elbert Camu can't eat some yogis command"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 554,
+    "start_ms": 8340,
+    "end_ms": 10180,
+    "confidence": 0.43190906260078743,
+    "text": "and he applied to a restotal, so great."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 555,
+    "start_ms": 10380,
+    "end_ms": 11260,
+    "confidence": 0.43190906260078743,
+    "text": "This sub is command, eh?"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 556,
+    "start_ms": 12100,
+    "end_ms": 13320,
+    "confidence": 0.43190906260078743,
+    "text": "Oh man, thank you for your ability."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 557,
+    "start_ms": 13720,
+    "end_ms": 14660,
+    "confidence": 0.43190906260078743,
+    "text": "When I spoke without me."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 558,
+    "start_ms": 15060,
+    "end_ms": 17920,
+    "confidence": 0.43190906260078743,
+    "text": "I mean, Narak, Swarid Narak, Swarid Narak, Swarid Narak, Swarid Narak,"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 559,
+    "start_ms": 17920,
+    "end_ms": 19060,
+    "confidence": 0.43190906260078743,
+    "text": "Swarid Narak, Swarid Narak, Swarid Narak, Swarid Narak,"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 560,
+    "start_ms": 19060,
+    "end_ms": 19980,
+    "confidence": 0.43190906260078743,
+    "text": "Hindu Herm, maybe."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 561,
+    "start_ms": 20320,
+    "end_ms": 22000,
+    "confidence": 0.43190906260078743,
+    "text": "Balki, Yatak, it's Arva, Jen, both,"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 562,
+    "start_ms": 22260,
+    "end_ms": 23660,
+    "confidence": 0.43190906260078743,
+    "text": "Johindu, Darshan, say, like, oh, oh, man."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 563,
+    "start_ms": 23980,
+    "end_ms": 25700,
+    "confidence": 0.43190906260078743,
+    "text": "Narak, in no philosophy, he's like,"
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 564,
+    "start_ms": 25800,
+    "end_ms": 27240,
+    "confidence": 0.43190906260078743,
+    "text": "no, you know, freedom of will command."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 565,
+    "start_ms": 27240,
+    "end_ms": 28460,
+    "confidence": 0.4119342707015439,
+    "text": "You can't wait for that."
+  },
+  {
+    "chunk_idx": 103,
+    "seq": 566,
+    "start_ms": 28520,
+    "end_ms": 29980,
+    "confidence": 0.4119342707015439,
+    "text": "Zara, garais, equals tora, come."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 567,
+    "start_ms": 0,
+    "end_ms": 1260,
+    "confidence": 0.11119323705681128,
+    "text": "It's good to work with you another country,"
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 568,
+    "start_ms": 1260,
+    "end_ms": 6080,
+    "confidence": 0.11119323705681128,
+    "text": "sometimes in a sense you and everyone else."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 569,
+    "start_ms": 7580,
+    "end_ms": 10000,
+    "confidence": 0.11119323705681128,
+    "text": "You have a chance to have a better relationship with you"
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 570,
+    "start_ms": 10000,
+    "end_ms": 13820,
+    "confidence": 0.11119323705681128,
+    "text": "and you are not even going to be a bad,"
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 571,
+    "start_ms": 15440,
+    "end_ms": 15800,
+    "confidence": 0.11119323705681128,
+    "text": "you are not going to be scared of that."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 572,
+    "start_ms": 15940,
+    "end_ms": 17180,
+    "confidence": 0.11119323705681128,
+    "text": "That is why we believe that you have a better relationship with you."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 573,
+    "start_ms": 17180,
+    "end_ms": 24500,
+    "confidence": 0.11119323705681128,
+    "text": "But we are even going to do that with the relationship to your future."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 574,
+    "start_ms": 24500,
+    "end_ms": 26820,
+    "confidence": 0.11119323705681128,
+    "text": "There is no relationship for it."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 575,
+    "start_ms": 26960,
+    "end_ms": 28220,
+    "confidence": 0.11119323705681128,
+    "text": "There is no relationship as it is you."
+  },
+  {
+    "chunk_idx": 104,
+    "seq": 576,
+    "start_ms": 28220,
+    "end_ms": 29760,
+    "confidence": 0.11119323705681128,
+    "text": "There is no relationship as it is a concept."
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 577,
+    "start_ms": 0,
+    "end_ms": 9740,
+    "confidence": 0.09204177403241565,
+    "text": "He had been exhausted, but I think he was the only person in this world."
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 578,
+    "start_ms": 9740,
+    "end_ms": 12340,
+    "confidence": 0.09204177403241565,
+    "text": "And his son said that he was the only one of these people in it."
+  },
+  {
+    "chunk_idx": 106,
+    "seq": 579,
+    "start_ms": 13780,
+    "end_ms": 16079,
+    "confidence": 0.09204177403241565,
+    "text": "So, he was not alone."
+  },
+  {
+    "chunk_idx": 107,
+    "seq": 580,
+    "start_ms": 860,
+    "end_ms": 5780,
+    "confidence": 0.42908457952252926,
+    "text": "or in a form of school like Anashuru, or Tami, Palybar, which are Banaki,"
+  },
+  {
+    "chunk_idx": 107,
+    "seq": 581,
+    "start_ms": 6900,
+    "end_ms": 10280,
+    "confidence": 0.42908457952252926,
+    "text": "Kui, Vetji, Vapraskar, Taya, Sani, Kui, Jan, Bhushir, Taya."
+  },
+  {
+    "chunk_idx": 107,
+    "seq": 582,
+    "start_ms": 11220,
+    "end_ms": 15000,
+    "confidence": 0.42908457952252926,
+    "text": "It will make scientist's way, she is there, lumbros, who will be there on a kahaki."
+  },
+  {
+    "chunk_idx": 107,
+    "seq": 583,
+    "start_ms": 16220,
+    "end_ms": 25700,
+    "confidence": 0.42908457952252926,
+    "text": "Physical structures may be in the heath, heh, heh, heh, heh, heh, heh, heh, heh, heh, heh, heh, heh."
+  },
+  {
+    "chunk_idx": 107,
+    "seq": 584,
+    "start_ms": 25700,
+    "end_ms": 29700,
+    "confidence": 0.4783171997368456,
+    "text": "Physical structure may he, what and Nancy is, heh, heh, heh, heh, I'm Karegani, Karegani."
+  },
+  {
+    "chunk_idx": 109,
+    "seq": 585,
+    "start_ms": 0,
+    "end_ms": 27880,
+    "confidence": 0.0534681600354509,
+    "text": "It's those things that we would like to say"
+  },
+  {
+    "chunk_idx": 109,
+    "seq": 586,
+    "start_ms": 27880,
+    "end_ms": 28720,
+    "confidence": 0.4464698056556704,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 587,
+    "start_ms": 0,
+    "end_ms": 2340,
+    "confidence": 0.08998395485981427,
+    "text": "Back in the last week, I was in the fourth grade."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 588,
+    "start_ms": 3120,
+    "end_ms": 4200,
+    "confidence": 0.08998395485981427,
+    "text": "I thought I was in the fourth grade."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 589,
+    "start_ms": 5040,
+    "end_ms": 9540,
+    "confidence": 0.08998395485981427,
+    "text": "I was about to buy a ticket to work,"
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 590,
+    "start_ms": 11840,
+    "end_ms": 13160,
+    "confidence": 0.08998395485981427,
+    "text": "and I could pay a ticket because I'll be told to be paid."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 591,
+    "start_ms": 13180,
+    "end_ms": 13620,
+    "confidence": 0.08998395485981427,
+    "text": "For example, you didn't even get a ticket."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 592,
+    "start_ms": 13620,
+    "end_ms": 17880,
+    "confidence": 0.08998395485981427,
+    "text": "I was on the phone and I were Pediatric in Austin with the Switch,"
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 593,
+    "start_ms": 18440,
+    "end_ms": 21780,
+    "confidence": 0.08998395485981427,
+    "text": "so I had to get the cash out there."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 594,
+    "start_ms": 22960,
+    "end_ms": 23720,
+    "confidence": 0.08998395485981427,
+    "text": "I didn't get the cash out."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 595,
+    "start_ms": 23720,
+    "end_ms": 26380,
+    "confidence": 0.08998395485981427,
+    "text": "I said, we can do it, we can get the cash out."
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 596,
+    "start_ms": 27100,
+    "end_ms": 27320,
+    "confidence": 0.08998395485981427,
+    "text": "we can get the credit,"
+  },
+  {
+    "chunk_idx": 110,
+    "seq": 597,
+    "start_ms": 28840,
+    "end_ms": 29980,
+    "confidence": 0.08998395485981427,
+    "text": "we'll get the credit,"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 598,
+    "start_ms": 0,
+    "end_ms": 1800,
+    "confidence": 0.07151341154531941,
+    "text": "in the case of the skia."
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 599,
+    "start_ms": 2400,
+    "end_ms": 2980,
+    "confidence": 0.07151341154531941,
+    "text": "Sleep walking up,"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 600,
+    "start_ms": 3240,
+    "end_ms": 4260,
+    "confidence": 0.07151341154531941,
+    "text": "concept from New Year's Getha,"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 601,
+    "start_ms": 4420,
+    "end_ms": 5180,
+    "confidence": 0.07151341154531941,
+    "text": "in the other,"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 602,
+    "start_ms": 5460,
+    "end_ms": 6140,
+    "confidence": 0.07151341154531941,
+    "text": "a father of the"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 603,
+    "start_ms": 6140,
+    "end_ms": 9380,
+    "confidence": 0.07151341154531941,
+    "text": "cognitive he picks up the"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 604,
+    "start_ms": 10780,
+    "end_ms": 13100,
+    "confidence": 0.07151341154531941,
+    "text": "in her name."
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 605,
+    "start_ms": 13700,
+    "end_ms": 14220,
+    "confidence": 0.07151341154531941,
+    "text": "He's the only human"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 606,
+    "start_ms": 14220,
+    "end_ms": 14280,
+    "confidence": 0.07151341154531941,
+    "text": "and of the"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 607,
+    "start_ms": 16180,
+    "end_ms": 16940,
+    "confidence": 0.07151341154531941,
+    "text": "situation"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 608,
+    "start_ms": 18500,
+    "end_ms": 22360,
+    "confidence": 0.07151341154531941,
+    "text": "in the day 879-87 situation"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 609,
+    "start_ms": 22360,
+    "end_ms": 23280,
+    "confidence": 0.07151341154531941,
+    "text": "Canada."
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 610,
+    "start_ms": 24640,
+    "end_ms": 25220,
+    "confidence": 0.07151341154531941,
+    "text": "The"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 611,
+    "start_ms": 25220,
+    "end_ms": 25800,
+    "confidence": 0.07151341154531941,
+    "text": "Ugh,"
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 612,
+    "start_ms": 25800,
+    "end_ms": 27100,
+    "confidence": 0.27824161433148104,
+    "text": "I am going to see you in the next video."
+  },
+  {
+    "chunk_idx": 111,
+    "seq": 613,
+    "start_ms": 28080,
+    "end_ms": 29760,
+    "confidence": 0.27824161433148104,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 614,
+    "start_ms": 0,
+    "end_ms": 2440,
+    "confidence": 0.07974028189597868,
+    "text": "We also will be throwing all things on the table,"
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 615,
+    "start_ms": 3200,
+    "end_ms": 5740,
+    "confidence": 0.07974028189597868,
+    "text": "and it will be thrown down on the table of trouble."
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 616,
+    "start_ms": 5740,
+    "end_ms": 8400,
+    "confidence": 0.07974028189597868,
+    "text": "We are trying to create a large market."
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 617,
+    "start_ms": 13860,
+    "end_ms": 14600,
+    "confidence": 0.07974028189597868,
+    "text": "We have to take one last year,"
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 618,
+    "start_ms": 14600,
+    "end_ms": 15100,
+    "confidence": 0.07974028189597868,
+    "text": "other places of love,"
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 619,
+    "start_ms": 17220,
+    "end_ms": 21680,
+    "confidence": 0.07974028189597868,
+    "text": "and other places of love."
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 620,
+    "start_ms": 22380,
+    "end_ms": 26500,
+    "confidence": 0.07974028189597868,
+    "text": "So I am convinced that most of us have lived here in Belgium."
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 621,
+    "start_ms": 28040,
+    "end_ms": 29600,
+    "confidence": 0.07974028189597868,
+    "text": "I am still born here,"
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 622,
+    "start_ms": 29600,
+    "end_ms": 29700,
+    "confidence": 0.07974028189597868,
+    "text": "and I am became more involved in it,"
+  },
+  {
+    "chunk_idx": 112,
+    "seq": 623,
+    "start_ms": 29700,
+    "end_ms": 29980,
+    "confidence": 0.07974028189597868,
+    "text": "and now I am living in Belgium."
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 624,
+    "start_ms": 0,
+    "end_ms": 4280,
+    "confidence": 0.08759835464945429,
+    "text": "Is this an aim for sleeping?"
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 625,
+    "start_ms": 4920,
+    "end_ms": 5560,
+    "confidence": 0.08759835464945429,
+    "text": "When we are sleeping?"
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 626,
+    "start_ms": 6740,
+    "end_ms": 7460,
+    "confidence": 0.08759835464945429,
+    "text": "But sometimes, the sleep.."
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 627,
+    "start_ms": 8420,
+    "end_ms": 8920,
+    "confidence": 0.08759835464945429,
+    "text": "We can see in the next four weeks,"
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 628,
+    "start_ms": 8920,
+    "end_ms": 12700,
+    "confidence": 0.08759835464945429,
+    "text": "it's almost going to happen."
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 629,
+    "start_ms": 12700,
+    "end_ms": 13620,
+    "confidence": 0.08759835464945429,
+    "text": "But when we sleep,"
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 630,
+    "start_ms": 13620,
+    "end_ms": 14160,
+    "confidence": 0.08759835464945429,
+    "text": "we are only sleeping with our husband."
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 631,
+    "start_ms": 14680,
+    "end_ms": 17120,
+    "confidence": 0.08759835464945429,
+    "text": "If we are sitting with our hands,"
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 632,
+    "start_ms": 17140,
+    "end_ms": 20660,
+    "confidence": 0.08759835464945429,
+    "text": "we can go and be sleeping with our hands."
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 633,
+    "start_ms": 22280,
+    "end_ms": 23620,
+    "confidence": 0.08759835464945429,
+    "text": "This alone is on the ground,"
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 634,
+    "start_ms": 23620,
+    "end_ms": 25120,
+    "confidence": 0.08759835464945429,
+    "text": "which is not we have to eat our hands."
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 635,
+    "start_ms": 25120,
+    "end_ms": 25540,
+    "confidence": 0.08759835464945429,
+    "text": "If we live in the next several weeks,"
+  },
+  {
+    "chunk_idx": 113,
+    "seq": 636,
+    "start_ms": 26740,
+    "end_ms": 29700,
+    "confidence": 0.32121254253748827,
+    "text": "or have the motor skill effective enough so much."
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 637,
+    "start_ms": 0,
+    "end_ms": 4100,
+    "confidence": 0.08509622998656781,
+    "text": "I'm secondary, I love the people who are working with us,"
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 638,
+    "start_ms": 4100,
+    "end_ms": 7560,
+    "confidence": 0.08509622998656781,
+    "text": "and I'm talking to you.\""
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 639,
+    "start_ms": 7560,
+    "end_ms": 8540,
+    "confidence": 0.08509622998656781,
+    "text": "But that happened in Africa."
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 640,
+    "start_ms": 8540,
+    "end_ms": 10740,
+    "confidence": 0.08509622998656781,
+    "text": "I'm coming to you, but that is not the point."
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 641,
+    "start_ms": 11080,
+    "end_ms": 12920,
+    "confidence": 0.08509622998656781,
+    "text": "But I'm not the only person without fear."
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 642,
+    "start_ms": 14040,
+    "end_ms": 15880,
+    "confidence": 0.08509622998656781,
+    "text": "How is it going to be in the crowd?"
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 643,
+    "start_ms": 16960,
+    "end_ms": 18320,
+    "confidence": 0.08509622998656781,
+    "text": "Do you have free will money in everyone?"
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 644,
+    "start_ms": 20400,
+    "end_ms": 27860,
+    "confidence": 0.08509622998656781,
+    "text": "Do you have the same trust?"
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 645,
+    "start_ms": 27920,
+    "end_ms": 28960,
+    "confidence": 0.08509622998656781,
+    "text": "Do you have the same trust?"
+  },
+  {
+    "chunk_idx": 114,
+    "seq": 646,
+    "start_ms": 28960,
+    "end_ms": 29200,
+    "confidence": 0.30186083103716344,
+    "text": "the"
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 647,
+    "start_ms": 0,
+    "end_ms": 1280,
+    "confidence": 0.06661213973331873,
+    "text": "I have seen my memory."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 648,
+    "start_ms": 1920,
+    "end_ms": 2800,
+    "confidence": 0.06661213973331873,
+    "text": "They've been began in Sweden."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 649,
+    "start_ms": 4380,
+    "end_ms": 6560,
+    "confidence": 0.06661213973331873,
+    "text": "Congratulations, and I love you!"
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 650,
+    "start_ms": 6560,
+    "end_ms": 6600,
+    "confidence": 0.06661213973331873,
+    "text": "Ugh, it's my first time."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 651,
+    "start_ms": 6600,
+    "end_ms": 8420,
+    "confidence": 0.06661213973331873,
+    "text": "I don't think you are here, I think."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 652,
+    "start_ms": 9940,
+    "end_ms": 12400,
+    "confidence": 0.06661213973331873,
+    "text": "I believe in the previous years of this,"
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 653,
+    "start_ms": 12540,
+    "end_ms": 15200,
+    "confidence": 0.06661213973331873,
+    "text": "even if I was a friend, and I was able to share it with my uncle."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 654,
+    "start_ms": 15320,
+    "end_ms": 16200,
+    "confidence": 0.06661213973331873,
+    "text": "What they said, with me."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 655,
+    "start_ms": 16200,
+    "end_ms": 20680,
+    "confidence": 0.06661213973331873,
+    "text": "And I don't want to have any production of your business."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 656,
+    "start_ms": 21300,
+    "end_ms": 22680,
+    "confidence": 0.06661213973331873,
+    "text": "They had the highest value of consumption."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 657,
+    "start_ms": 23080,
+    "end_ms": 23740,
+    "confidence": 0.06661213973331873,
+    "text": "They were kind of fine,"
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 658,
+    "start_ms": 24560,
+    "end_ms": 26720,
+    "confidence": 0.15612950923217567,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 116,
+    "seq": 659,
+    "start_ms": 27400,
+    "end_ms": 28380,
+    "confidence": 0.15612950923217567,
+    "text": "Thank you so much."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 660,
+    "start_ms": 1399,
+    "end_ms": 3040,
+    "confidence": 0.13285909254062184,
+    "text": "to market the cost of the economy."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 661,
+    "start_ms": 3380,
+    "end_ms": 4820,
+    "confidence": 0.13285909254062184,
+    "text": "The economy is a great source of production."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 662,
+    "start_ms": 5420,
+    "end_ms": 6220,
+    "confidence": 0.13285909254062184,
+    "text": "We have to make a good amount of money for a world."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 663,
+    "start_ms": 6220,
+    "end_ms": 16700,
+    "confidence": 0.13285909254062184,
+    "text": "Even if we have to make a good amount of money,"
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 664,
+    "start_ms": 16940,
+    "end_ms": 18440,
+    "confidence": 0.13285909254062184,
+    "text": "we will also achieve that for the global economy."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 665,
+    "start_ms": 18540,
+    "end_ms": 22280,
+    "confidence": 0.13285909254062184,
+    "text": "We have to make the economy more economic,"
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 666,
+    "start_ms": 23020,
+    "end_ms": 24240,
+    "confidence": 0.13285909254062184,
+    "text": "and we're going to make a good amount of money."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 667,
+    "start_ms": 26540,
+    "end_ms": 27340,
+    "confidence": 0.13285909254062184,
+    "text": "We will never make the economy."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 668,
+    "start_ms": 27340,
+    "end_ms": 28080,
+    "confidence": 0.13285909254062184,
+    "text": "We will make us make new people."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 669,
+    "start_ms": 28180,
+    "end_ms": 29700,
+    "confidence": 0.13285909254062184,
+    "text": "We want to make new people."
+  },
+  {
+    "chunk_idx": 118,
+    "seq": 670,
+    "start_ms": 29700,
+    "end_ms": 29900,
+    "confidence": 0.35777461481053807,
+    "text": "3."
+  },
+  {
+    "chunk_idx": 124,
+    "seq": 671,
+    "start_ms": 0,
+    "end_ms": 2140,
+    "confidence": 0.13926218677289262,
+    "text": "For example, I don't know about it."
+  },
+  {
+    "chunk_idx": 124,
+    "seq": 672,
+    "start_ms": 4080,
+    "end_ms": 4880,
+    "confidence": 0.13926218677289262,
+    "text": "But I don't know what happened as well."
+  },
+  {
+    "chunk_idx": 124,
+    "seq": 673,
+    "start_ms": 4880,
+    "end_ms": 7120,
+    "confidence": 0.13926218677289262,
+    "text": "But at this time, I don't know what happened to me."
+  },
+  {
+    "chunk_idx": 124,
+    "seq": 674,
+    "start_ms": 8000,
+    "end_ms": 12860,
+    "confidence": 0.13926218677289262,
+    "text": "But I don't know what happened to me, but I don't know."
+  },
+  {
+    "chunk_idx": 124,
+    "seq": 675,
+    "start_ms": 12860,
+    "end_ms": 14720,
+    "confidence": 0.13926218677289262,
+    "text": "And if I don't know just what happened?"
+  },
+  {
+    "chunk_idx": 124,
+    "seq": 676,
+    "start_ms": 14720,
+    "end_ms": 14960,
+    "confidence": 0.13926218677289262,
+    "text": "I haven't been on a trip before,"
+  },
+  {
+    "chunk_idx": 124,
+    "seq": 677,
+    "start_ms": 20700,
+    "end_ms": 24540,
+    "confidence": 0.13926218677289262,
+    "text": "since I've been to a trip."
+  },
+  {
+    "chunk_idx": 125,
+    "seq": 678,
+    "start_ms": 0,
+    "end_ms": 5860,
+    "confidence": 0.1628623265984764,
+    "text": "I could say, I think, I would say this, and I'm not afraid."
+  },
+  {
+    "chunk_idx": 125,
+    "seq": 679,
+    "start_ms": 7560,
+    "end_ms": 17820,
+    "confidence": 0.1628623265984764,
+    "text": "So I'm not afraid that I'm afraid that I'm afraid that I'm afraid I'm afraid I'm afraid of"
+  },
+  {
+    "chunk_idx": 125,
+    "seq": 680,
+    "start_ms": 17820,
+    "end_ms": 20960,
+    "confidence": 0.18680996162612906,
+    "text": "So now I'm going to show you how to do this for me."
+  },
+  {
+    "chunk_idx": 125,
+    "seq": 681,
+    "start_ms": 21040,
+    "end_ms": 25120,
+    "confidence": 0.18680996162612906,
+    "text": "Now I'm going to show you how to do it."
+  },
+  {
+    "chunk_idx": 126,
+    "seq": 682,
+    "start_ms": 19360,
+    "end_ms": 26620,
+    "confidence": 0.08266299024083695,
+    "text": "So, we are not going to be in our land to be in our land, but we will make good"
+  },
+  {
+    "chunk_idx": 126,
+    "seq": 683,
+    "start_ms": 26620,
+    "end_ms": 27440,
+    "confidence": 0.5007470451400255,
+    "text": "Let me just go."
+  },
+  {
+    "chunk_idx": 126,
+    "seq": 684,
+    "start_ms": 27440,
+    "end_ms": 29260,
+    "confidence": 0.4708558369571646,
+    "text": "Let me get this cycle to just go."
+  },
+  {
+    "chunk_idx": 126,
+    "seq": 685,
+    "start_ms": 29440,
+    "end_ms": 29980,
+    "confidence": 0.4708558369571646,
+    "text": "Both are chicken b-"
+  },
+  {
+    "chunk_idx": 127,
+    "seq": 686,
+    "start_ms": 0,
+    "end_ms": 2800,
+    "confidence": 0.06982641120049407,
+    "text": "On the here, I'm not having military jobs."
+  },
+  {
+    "chunk_idx": 127,
+    "seq": 687,
+    "start_ms": 4120,
+    "end_ms": 10080,
+    "confidence": 0.06982641120049407,
+    "text": "But, in this case, it's been a very clear image."
+  },
+  {
+    "chunk_idx": 127,
+    "seq": 688,
+    "start_ms": 12240,
+    "end_ms": 17300,
+    "confidence": 0.06982641120049407,
+    "text": "But I've got that 24,000 people were not paying it for the decision,"
+  },
+  {
+    "chunk_idx": 127,
+    "seq": 689,
+    "start_ms": 17400,
+    "end_ms": 21120,
+    "confidence": 0.06982641120049407,
+    "text": "Because I've got a lot of money going up to you."
+  },
+  {
+    "chunk_idx": 127,
+    "seq": 690,
+    "start_ms": 21120,
+    "end_ms": 22980,
+    "confidence": 0.06982641120049407,
+    "text": "I'm not paying the money 5 years."
+  },
+  {
+    "chunk_idx": 127,
+    "seq": 691,
+    "start_ms": 25900,
+    "end_ms": 28580,
+    "confidence": 0.06982641120049407,
+    "text": "This is just my point, and I think,"
+  },
+  {
+    "chunk_idx": 127,
+    "seq": 692,
+    "start_ms": 28580,
+    "end_ms": 29560,
+    "confidence": 0.26184435273907747,
+    "text": "So, I'm going to put this in a little bit."
+  },
+  {
+    "chunk_idx": 130,
+    "seq": 693,
+    "start_ms": 4659,
+    "end_ms": 12900,
+    "confidence": 0.5919776776076852,
+    "text": "And if we can predict the actions of somebody, it means the actions are predesighted."
+  },
+  {
+    "chunk_idx": 130,
+    "seq": 694,
+    "start_ms": 14200,
+    "end_ms": 16600,
+    "confidence": 0.5919776776076852,
+    "text": "And if they are predesighted, there is no free bill."
+  },
+  {
+    "chunk_idx": 130,
+    "seq": 695,
+    "start_ms": 16600,
+    "end_ms": 18500,
+    "confidence": 0.19804487020244463,
+    "text": "The same thing, we are not going to do anything."
+  },
+  {
+    "chunk_idx": 130,
+    "seq": 696,
+    "start_ms": 19340,
+    "end_ms": 24020,
+    "confidence": 0.19804487020244463,
+    "text": "But if we have to get to our side, it is not going to be hard."
+  },
+  {
+    "chunk_idx": 130,
+    "seq": 697,
+    "start_ms": 24660,
+    "end_ms": 29620,
+    "confidence": 0.19804487020244463,
+    "text": "And if we have to get to our side, we can take the same time and take the same time."
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 698,
+    "start_ms": 0,
+    "end_ms": 1180,
+    "confidence": 0.08975078012789175,
+    "text": "where is it?"
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 699,
+    "start_ms": 2060,
+    "end_ms": 3240,
+    "confidence": 0.08975078012789175,
+    "text": "What?"
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 700,
+    "start_ms": 3600,
+    "end_ms": 4180,
+    "confidence": 0.08975078012789175,
+    "text": "I mean, I don't want to know that, what he's supposed to do?"
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 701,
+    "start_ms": 5060,
+    "end_ms": 7520,
+    "confidence": 0.08975078012789175,
+    "text": "Why don't you have an opportunity to learn what he's supposed to do?"
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 702,
+    "start_ms": 7520,
+    "end_ms": 9000,
+    "confidence": 0.08975078012789175,
+    "text": "So there are many ways of taking this message."
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 703,
+    "start_ms": 10020,
+    "end_ms": 15280,
+    "confidence": 0.08975078012789175,
+    "text": "The first is the absolute sense of the ultimate function of life."
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 704,
+    "start_ms": 16180,
+    "end_ms": 21420,
+    "confidence": 0.08975078012789175,
+    "text": "The greatest sense of life is what he is."
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 705,
+    "start_ms": 21420,
+    "end_ms": 24580,
+    "confidence": 0.08975078012789175,
+    "text": "His best of life is what I would say is extremely unique."
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 706,
+    "start_ms": 27140,
+    "end_ms": 28460,
+    "confidence": 0.08975078012789175,
+    "text": "I mean, you know, you know, the ultimate process and most of the things I say are"
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 707,
+    "start_ms": 28460,
+    "end_ms": 28920,
+    "confidence": 0.08975078012789175,
+    "text": "different."
+  },
+  {
+    "chunk_idx": 131,
+    "seq": 708,
+    "start_ms": 29400,
+    "end_ms": 29980,
+    "confidence": 0.08975078012789175,
+    "text": "And I know that the character who owns the book has a different level of life."
+  },
+  {
+    "chunk_idx": 132,
+    "seq": 709,
+    "start_ms": 0,
+    "end_ms": 7940,
+    "confidence": 0.17953984521180436,
+    "text": "I think it's important to understand how it's possible that people are human in their eyes."
+  },
+  {
+    "chunk_idx": 132,
+    "seq": 710,
+    "start_ms": 8560,
+    "end_ms": 15460,
+    "confidence": 0.17953984521180436,
+    "text": "I think it's very difficult to understand how you are very human in their eyes."
+  },
+  {
+    "chunk_idx": 132,
+    "seq": 711,
+    "start_ms": 15460,
+    "end_ms": 18460,
+    "confidence": 0.17953984521180436,
+    "text": "So many people are very patient."
+  },
+  {
+    "chunk_idx": 132,
+    "seq": 712,
+    "start_ms": 18460,
+    "end_ms": 18940,
+    "confidence": 0.17953984521180436,
+    "text": "They don't want to be patient."
+  },
+  {
+    "chunk_idx": 132,
+    "seq": 713,
+    "start_ms": 20080,
+    "end_ms": 20480,
+    "confidence": 0.17953984521180436,
+    "text": "They don't want to be patient."
+  },
+  {
+    "chunk_idx": 132,
+    "seq": 714,
+    "start_ms": 21360,
+    "end_ms": 27520,
+    "confidence": 0.17953984521180436,
+    "text": "But I have a lot of work."
+  },
+  {
+    "chunk_idx": 132,
+    "seq": 715,
+    "start_ms": 27520,
+    "end_ms": 29980,
+    "confidence": 0.17953984521180436,
+    "text": "I think we're going to have to know about the people who are living here."
+  },
+  {
+    "chunk_idx": 133,
+    "seq": 716,
+    "start_ms": 18260,
+    "end_ms": 21900,
+    "confidence": 0.05068536946606364,
+    "text": "the scientific mind,"
+  },
+  {
+    "chunk_idx": 133,
+    "seq": 717,
+    "start_ms": 21900,
+    "end_ms": 22440,
+    "confidence": 0.05068536946606364,
+    "text": "they"
+  },
+  {
+    "chunk_idx": 133,
+    "seq": 718,
+    "start_ms": 22440,
+    "end_ms": 24260,
+    "confidence": 0.05068536946606364,
+    "text": "may getient"
+  },
+  {
+    "chunk_idx": 133,
+    "seq": 719,
+    "start_ms": 24260,
+    "end_ms": 29980,
+    "confidence": 0.48601449420395015,
+    "text": "strings may or very thoughts may or you see it by end of time when I say ache."
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 720,
+    "start_ms": 0,
+    "end_ms": 1520,
+    "confidence": 0.22800689134121752,
+    "text": "The minute karatahe"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 721,
+    "start_ms": 2320,
+    "end_ms": 6000,
+    "confidence": 0.22800689134121752,
+    "text": "the maitaranam potharam to my third process cognitive process"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 722,
+    "start_ms": 6000,
+    "end_ms": 8700,
+    "confidence": 0.22800689134121752,
+    "text": "do minute karamirian saint or mery emotions go"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 723,
+    "start_ms": 9440,
+    "end_ms": 11580,
+    "confidence": 0.22800689134121752,
+    "text": "but remember but yes you have to do so"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 724,
+    "start_ms": 11580,
+    "end_ms": 12700,
+    "confidence": 0.22800689134121752,
+    "text": "but those you have to remember emotion"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 725,
+    "start_ms": 12700,
+    "end_ms": 13940,
+    "confidence": 0.22800689134121752,
+    "text": "which will be the minute karain"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 726,
+    "start_ms": 13940,
+    "end_ms": 17100,
+    "confidence": 0.22800689134121752,
+    "text": "to end the point of an emotional turmoil"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 727,
+    "start_ms": 17100,
+    "end_ms": 20640,
+    "confidence": 0.22800689134121752,
+    "text": "my emotion is me, yeah I"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 728,
+    "start_ms": 21540,
+    "end_ms": 24540,
+    "confidence": 0.22800689134121752,
+    "text": "the maitaranam to my third process I"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 729,
+    "start_ms": 25340,
+    "end_ms": 27720,
+    "confidence": 0.22800689134121752,
+    "text": "or jama jara you can't get a chance"
+  },
+  {
+    "chunk_idx": 134,
+    "seq": 730,
+    "start_ms": 27720,
+    "end_ms": 29920,
+    "confidence": 0.38200981364914544,
+    "text": "So, I had to give as I go my turn."
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 731,
+    "start_ms": 0,
+    "end_ms": 860,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 732,
+    "start_ms": 860,
+    "end_ms": 1000,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 733,
+    "start_ms": 1680,
+    "end_ms": 2500,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 734,
+    "start_ms": 2500,
+    "end_ms": 2980,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 735,
+    "start_ms": 2980,
+    "end_ms": 4280,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 736,
+    "start_ms": 4280,
+    "end_ms": 4660,
+    "confidence": 0.13864666857186267,
+    "text": "I"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 737,
+    "start_ms": 4660,
+    "end_ms": 5040,
+    "confidence": 0.13864666857186267,
+    "text": "W"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 738,
+    "start_ms": 5040,
+    "end_ms": 5600,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 739,
+    "start_ms": 5600,
+    "end_ms": 5880,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 740,
+    "start_ms": 5880,
+    "end_ms": 8860,
+    "confidence": 0.13864666857186267,
+    "text": "Can be distributed as well."
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 741,
+    "start_ms": 9320,
+    "end_ms": 10960,
+    "confidence": 0.13864666857186267,
+    "text": "The distributed I"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 742,
+    "start_ms": 10960,
+    "end_ms": 11360,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 743,
+    "start_ms": 11360,
+    "end_ms": 11880,
+    "confidence": 0.13864666857186267,
+    "text": "Trust you."
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 744,
+    "start_ms": 14080,
+    "end_ms": 15020,
+    "confidence": 0.13864666857186267,
+    "text": "To I"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 745,
+    "start_ms": 18880,
+    "end_ms": 19820,
+    "confidence": 0.13864666857186267,
+    "text": "You"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 746,
+    "start_ms": 19820,
+    "end_ms": 20000,
+    "confidence": 0.13864666857186267,
+    "text": "the"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 747,
+    "start_ms": 21320,
+    "end_ms": 22260,
+    "confidence": 0.13864666857186267,
+    "text": "Miami"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 748,
+    "start_ms": 22260,
+    "end_ms": 22460,
+    "confidence": 0.13864666857186267,
+    "text": "?"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 749,
+    "start_ms": 22460,
+    "end_ms": 26420,
+    "confidence": 0.13864666857186267,
+    "text": "this is"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 750,
+    "start_ms": 26420,
+    "end_ms": 27120,
+    "confidence": 0.13864666857186267,
+    "text": "the"
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 751,
+    "start_ms": 27120,
+    "end_ms": 27840,
+    "confidence": 0.45897057124583746,
+    "text": "is a thought processor."
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 752,
+    "start_ms": 27980,
+    "end_ms": 28360,
+    "confidence": 0.45897057124583746,
+    "text": "A line, nothing."
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 753,
+    "start_ms": 28700,
+    "end_ms": 29780,
+    "confidence": 0.45897057124583746,
+    "text": "A case of a political user line."
+  },
+  {
+    "chunk_idx": 135,
+    "seq": 754,
+    "start_ms": 29780,
+    "end_ms": 29980,
+    "confidence": 0.42339668460808183,
+    "text": "A case of a political user."
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 755,
+    "start_ms": 0,
+    "end_ms": 2300,
+    "confidence": 0.11471756460676194,
+    "text": "I don't have any plans to talk, but I make a few hours."
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 756,
+    "start_ms": 4000,
+    "end_ms": 14260,
+    "confidence": 0.11471756460676194,
+    "text": "I don't have any plans to talk about it, but I am proud to be the first one."
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 757,
+    "start_ms": 14260,
+    "end_ms": 16420,
+    "confidence": 0.11471756460676194,
+    "text": "Do you think it's a whole thing?"
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 758,
+    "start_ms": 16420,
+    "end_ms": 16560,
+    "confidence": 0.11471756460676194,
+    "text": "Do you know it?"
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 759,
+    "start_ms": 18680,
+    "end_ms": 20580,
+    "confidence": 0.11471756460676194,
+    "text": "Have you seen it?"
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 760,
+    "start_ms": 22680,
+    "end_ms": 24360,
+    "confidence": 0.11471756460676194,
+    "text": "I think your question was,"
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 761,
+    "start_ms": 24360,
+    "end_ms": 25720,
+    "confidence": 0.11471756460676194,
+    "text": "I think that's the problem."
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 762,
+    "start_ms": 25720,
+    "end_ms": 26500,
+    "confidence": 0.3836992057091924,
+    "text": "8th level."
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 763,
+    "start_ms": 26940,
+    "end_ms": 27300,
+    "confidence": 0.3836992057091924,
+    "text": "Mm."
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 764,
+    "start_ms": 27440,
+    "end_ms": 28320,
+    "confidence": 0.3836992057091924,
+    "text": "Baki, have you published?"
+  },
+  {
+    "chunk_idx": 137,
+    "seq": 765,
+    "start_ms": 28720,
+    "end_ms": 29980,
+    "confidence": 0.3836992057091924,
+    "text": "Obviously, I'm going to write the..."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 766,
+    "start_ms": 0,
+    "end_ms": 3020,
+    "confidence": 0.08749467491247541,
+    "text": "If I ask you any questions or questions,"
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 767,
+    "start_ms": 3020,
+    "end_ms": 6900,
+    "confidence": 0.08749467491247541,
+    "text": "please ask me for questions."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 768,
+    "start_ms": 7920,
+    "end_ms": 10260,
+    "confidence": 0.08749467491247541,
+    "text": "See you guys later."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 769,
+    "start_ms": 11320,
+    "end_ms": 12680,
+    "confidence": 0.08749467491247541,
+    "text": "Thank you for being here."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 770,
+    "start_ms": 12680,
+    "end_ms": 14220,
+    "confidence": 0.08749467491247541,
+    "text": "It's also happening."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 771,
+    "start_ms": 14220,
+    "end_ms": 17900,
+    "confidence": 0.08749467491247541,
+    "text": "We will play a bit more in the game."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 772,
+    "start_ms": 18620,
+    "end_ms": 20000,
+    "confidence": 0.08749467491247541,
+    "text": "We will have more than a decade."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 773,
+    "start_ms": 21060,
+    "end_ms": 25580,
+    "confidence": 0.2869743525481652,
+    "text": "Bhasu Kagani is studying her language, Khan Khan law, politically be fixed in the way."
+  },
+  {
+    "chunk_idx": 138,
+    "seq": 774,
+    "start_ms": 26260,
+    "end_ms": 29980,
+    "confidence": 0.33417856562159726,
+    "text": "One K mobile phone be real as he and I should use any healthcare case."
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 775,
+    "start_ms": 0,
+    "end_ms": 1620,
+    "confidence": 0.06762009050397876,
+    "text": "We are dying."
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 776,
+    "start_ms": 2120,
+    "end_ms": 3460,
+    "confidence": 0.06762009050397876,
+    "text": "Our future does not matter,"
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 777,
+    "start_ms": 4300,
+    "end_ms": 4900,
+    "confidence": 0.06762009050397876,
+    "text": "we are going to have to spend"
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 778,
+    "start_ms": 4900,
+    "end_ms": 6920,
+    "confidence": 0.06762009050397876,
+    "text": "on the next day so we are going to have a"
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 779,
+    "start_ms": 6920,
+    "end_ms": 10020,
+    "confidence": 0.06762009050397876,
+    "text": "Our youth god knows about life."
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 780,
+    "start_ms": 16280,
+    "end_ms": 21780,
+    "confidence": 0.06762009050397876,
+    "text": "Our influence is always listening to us."
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 781,
+    "start_ms": 22860,
+    "end_ms": 24280,
+    "confidence": 0.06762009050397876,
+    "text": "The world is on Earth,"
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 782,
+    "start_ms": 24280,
+    "end_ms": 24880,
+    "confidence": 0.06762009050397876,
+    "text": "the world is on the running the world is on Earth."
+  },
+  {
+    "chunk_idx": 139,
+    "seq": 783,
+    "start_ms": 26300,
+    "end_ms": 29980,
+    "confidence": 0.06762009050397876,
+    "text": "The world is in the building and the world is on Earth,"
+  },
+  {
+    "chunk_idx": 140,
+    "seq": 784,
+    "start_ms": 28580,
+    "end_ms": 29980,
+    "confidence": 0.1100593392445139,
+    "text": "the"
+  },
+  {
+    "chunk_idx": 141,
+    "seq": 785,
+    "start_ms": 0,
+    "end_ms": 4780,
+    "confidence": 0.17338706329250916,
+    "text": "The next video is available in the video and in the video you can find out in the video."
+  },
+  {
+    "chunk_idx": 141,
+    "seq": 786,
+    "start_ms": 4780,
+    "end_ms": 9940,
+    "confidence": 0.17338706329250916,
+    "text": "In this video we will get more information about the video."
+  },
+  {
+    "chunk_idx": 141,
+    "seq": 787,
+    "start_ms": 9940,
+    "end_ms": 18340,
+    "confidence": 0.17338706329250916,
+    "text": "We are doing the video and I will have some questions about what we are doing today."
+  },
+  {
+    "chunk_idx": 141,
+    "seq": 788,
+    "start_ms": 18340,
+    "end_ms": 18560,
+    "confidence": 0.17338706329250916,
+    "text": "The video is available in the video."
+  },
+  {
+    "chunk_idx": 141,
+    "seq": 789,
+    "start_ms": 18560,
+    "end_ms": 24380,
+    "confidence": 0.17338706329250916,
+    "text": "The video is available in the video and I will also get more information about the video."
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 790,
+    "start_ms": 2240,
+    "end_ms": 3500,
+    "confidence": 0.23495063424120577,
+    "text": "If you are, if you don't have any money,"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 791,
+    "start_ms": 3500,
+    "end_ms": 6200,
+    "confidence": 0.23495063424120577,
+    "text": "if you don't have any money,"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 792,
+    "start_ms": 9140,
+    "end_ms": 14140,
+    "confidence": 0.23495063424120577,
+    "text": "do you think that it's not good?"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 793,
+    "start_ms": 14760,
+    "end_ms": 16260,
+    "confidence": 0.23495063424120577,
+    "text": "I think that you have to do it."
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 794,
+    "start_ms": 16620,
+    "end_ms": 17840,
+    "confidence": 0.23495063424120577,
+    "text": "If you don't have to do it,"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 795,
+    "start_ms": 17840,
+    "end_ms": 18120,
+    "confidence": 0.23495063424120577,
+    "text": "if you don't have any money,"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 796,
+    "start_ms": 19280,
+    "end_ms": 22040,
+    "confidence": 0.23495063424120577,
+    "text": "do you think that it's good to see you?"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 797,
+    "start_ms": 23320,
+    "end_ms": 24360,
+    "confidence": 0.23495063424120577,
+    "text": "If you don't have any money,"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 798,
+    "start_ms": 24360,
+    "end_ms": 27480,
+    "confidence": 0.23495063424120577,
+    "text": "you can make an interest value"
+  },
+  {
+    "chunk_idx": 143,
+    "seq": 799,
+    "start_ms": 28060,
+    "end_ms": 29980,
+    "confidence": 0.37857944842024177,
+    "text": "Cool part of the hand, switch the hand to a matter of my..."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 800,
+    "start_ms": 0,
+    "end_ms": 5100,
+    "confidence": 0.08602021272427424,
+    "text": "As we say, we all know that the moral is cut."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 801,
+    "start_ms": 5100,
+    "end_ms": 5960,
+    "confidence": 0.08602021272427424,
+    "text": "Everyone knows what they mean."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 802,
+    "start_ms": 12040,
+    "end_ms": 14160,
+    "confidence": 0.08602021272427424,
+    "text": "And what the moral is..."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 803,
+    "start_ms": 14160,
+    "end_ms": 17980,
+    "confidence": 0.08602021272427424,
+    "text": "But the moral is a..."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 804,
+    "start_ms": 17980,
+    "end_ms": 19400,
+    "confidence": 0.08602021272427424,
+    "text": "The moral of this..."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 805,
+    "start_ms": 19400,
+    "end_ms": 19440,
+    "confidence": 0.08602021272427424,
+    "text": "There are some people around this world."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 806,
+    "start_ms": 19440,
+    "end_ms": 20820,
+    "confidence": 0.08602021272427424,
+    "text": "This is the moral of the world."
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 807,
+    "start_ms": 20820,
+    "end_ms": 22820,
+    "confidence": 0.3274777628664244,
+    "text": "non-modal leg"
+  },
+  {
+    "chunk_idx": 145,
+    "seq": 808,
+    "start_ms": 23560,
+    "end_ms": 29280,
+    "confidence": 0.3274777628664244,
+    "text": "tikwashi, a bizamneki manli jikwashi, tikwashi, tikwashi, tikwashi."
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 809,
+    "start_ms": 1439,
+    "end_ms": 3020,
+    "confidence": 0.14271696206242424,
+    "text": "Nobody loved me and I was like,"
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 810,
+    "start_ms": 3020,
+    "end_ms": 7040,
+    "confidence": 0.14271696206242424,
+    "text": "I don't know what that is,"
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 811,
+    "start_ms": 7040,
+    "end_ms": 8580,
+    "confidence": 0.14271696206242424,
+    "text": "because nothing was going to be used."
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 812,
+    "start_ms": 9720,
+    "end_ms": 11300,
+    "confidence": 0.14271696206242424,
+    "text": "But why don't you ask me that I'm sorry?"
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 813,
+    "start_ms": 12340,
+    "end_ms": 12360,
+    "confidence": 0.14271696206242424,
+    "text": "You ask me that I'm sorry."
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 814,
+    "start_ms": 12360,
+    "end_ms": 14980,
+    "confidence": 0.14271696206242424,
+    "text": "I'm sorry, because I don't know of the fact,"
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 815,
+    "start_ms": 14980,
+    "end_ms": 15460,
+    "confidence": 0.14271696206242424,
+    "text": "I've never seen it yet,"
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 816,
+    "start_ms": 15460,
+    "end_ms": 20960,
+    "confidence": 0.14271696206242424,
+    "text": "sometimes I don't see it yet."
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 817,
+    "start_ms": 21720,
+    "end_ms": 22800,
+    "confidence": 0.14271696206242424,
+    "text": "I have to pay attention to my company,"
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 818,
+    "start_ms": 23740,
+    "end_ms": 24940,
+    "confidence": 0.14271696206242424,
+    "text": "my company."
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 819,
+    "start_ms": 27300,
+    "end_ms": 29380,
+    "confidence": 0.14271696206242424,
+    "text": "I had to pay attention in my bank."
+  },
+  {
+    "chunk_idx": 146,
+    "seq": 820,
+    "start_ms": 29740,
+    "end_ms": 29980,
+    "confidence": 0.14271696206242424,
+    "text": "Because I want to pay attention,"
+  },
+  {
+    "chunk_idx": 147,
+    "seq": 821,
+    "start_ms": 13980,
+    "end_ms": 19740,
+    "confidence": 0.47921859160135954,
+    "text": "It doesn't have any conception of morality."
+  },
+  {
+    "chunk_idx": 147,
+    "seq": 822,
+    "start_ms": 21460,
+    "end_ms": 23100,
+    "confidence": 0.40871327098292537,
+    "text": "It doesn't have any kind of morality."
+  },
+  {
+    "chunk_idx": 147,
+    "seq": 823,
+    "start_ms": 23100,
+    "end_ms": 24400,
+    "confidence": 0.40871327098292537,
+    "text": "It doesn't have any kind of morality."
+  },
+  {
+    "chunk_idx": 147,
+    "seq": 824,
+    "start_ms": 27000,
+    "end_ms": 29980,
+    "confidence": 0.40871327098292537,
+    "text": "It doesn't have any kind of morality."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 825,
+    "start_ms": 0,
+    "end_ms": 2880,
+    "confidence": 0.08107036721055377,
+    "text": "My wife, that's the only thing I could do."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 826,
+    "start_ms": 2880,
+    "end_ms": 7460,
+    "confidence": 0.08107036721055377,
+    "text": "My husband, my wife, I didn't even like me."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 827,
+    "start_ms": 10759,
+    "end_ms": 12640,
+    "confidence": 0.08107036721055377,
+    "text": "Believe, why don't you do anything?"
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 828,
+    "start_ms": 12640,
+    "end_ms": 13680,
+    "confidence": 0.08107036721055377,
+    "text": "You like that."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 829,
+    "start_ms": 15840,
+    "end_ms": 18860,
+    "confidence": 0.08107036721055377,
+    "text": "You like the guy who's been for the rest of the life."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 830,
+    "start_ms": 18860,
+    "end_ms": 19660,
+    "confidence": 0.08107036721055377,
+    "text": "Do you think he's going to be with you?"
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 831,
+    "start_ms": 19660,
+    "end_ms": 23460,
+    "confidence": 0.08107036721055377,
+    "text": "Yes, and I'm down here with you."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 832,
+    "start_ms": 23460,
+    "end_ms": 24280,
+    "confidence": 0.08107036721055377,
+    "text": "I couldn't even grow here without the money."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 833,
+    "start_ms": 24280,
+    "end_ms": 25200,
+    "confidence": 0.08107036721055377,
+    "text": "Nothing's going to happen."
+  },
+  {
+    "chunk_idx": 149,
+    "seq": 834,
+    "start_ms": 26180,
+    "end_ms": 29980,
+    "confidence": 0.30595434215272177,
+    "text": "much you make ever about getting this buddy must"
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 835,
+    "start_ms": 2120,
+    "end_ms": 4400,
+    "confidence": 0.08649157516584453,
+    "text": "I'm not saying that he is out of my life."
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 836,
+    "start_ms": 4400,
+    "end_ms": 5660,
+    "confidence": 0.08649157516584453,
+    "text": "But it's the fault about what he is living there."
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 837,
+    "start_ms": 7860,
+    "end_ms": 14500,
+    "confidence": 0.08649157516584453,
+    "text": "Only there's a fight for this fight!"
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 838,
+    "start_ms": 14560,
+    "end_ms": 15480,
+    "confidence": 0.08649157516584453,
+    "text": "It was the fight for a protest."
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 839,
+    "start_ms": 15480,
+    "end_ms": 18740,
+    "confidence": 0.08649157516584453,
+    "text": "So, there will be a fight for a protest."
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 840,
+    "start_ms": 18740,
+    "end_ms": 19020,
+    "confidence": 0.08649157516584453,
+    "text": "I think that he will be on the side of the building."
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 841,
+    "start_ms": 23040,
+    "end_ms": 25300,
+    "confidence": 0.08649157516584453,
+    "text": "He also will have a gun on the bottom,"
+  },
+  {
+    "chunk_idx": 150,
+    "seq": 842,
+    "start_ms": 26040,
+    "end_ms": 29700,
+    "confidence": 0.08649157516584453,
+    "text": "and he will have the gun on the other side."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 843,
+    "start_ms": 0,
+    "end_ms": 5880,
+    "confidence": 0.08412622834482074,
+    "text": "Kharmun's had no idea who was in the next four years in the villain."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 844,
+    "start_ms": 5880,
+    "end_ms": 9060,
+    "confidence": 0.08412622834482074,
+    "text": "His last son was a little bit of food."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 845,
+    "start_ms": 11600,
+    "end_ms": 12980,
+    "confidence": 0.08412622834482074,
+    "text": "He lived great in his life."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 846,
+    "start_ms": 13000,
+    "end_ms": 16260,
+    "confidence": 0.08412622834482074,
+    "text": "He said that he was a little bit rich."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 847,
+    "start_ms": 18000,
+    "end_ms": 18800,
+    "confidence": 0.08412622834482074,
+    "text": "He was a little rich."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 848,
+    "start_ms": 20100,
+    "end_ms": 22420,
+    "confidence": 0.08412622834482074,
+    "text": "But he was a little rich, a little rich in his life."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 849,
+    "start_ms": 22660,
+    "end_ms": 23500,
+    "confidence": 0.08412622834482074,
+    "text": "He was an American."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 850,
+    "start_ms": 25200,
+    "end_ms": 26120,
+    "confidence": 0.08412622834482074,
+    "text": "He's a little rich."
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 851,
+    "start_ms": 27120,
+    "end_ms": 29400,
+    "confidence": 0.5145143867056589,
+    "text": "I'm just jagged me, who's jagged me?"
+  },
+  {
+    "chunk_idx": 151,
+    "seq": 852,
+    "start_ms": 29400,
+    "end_ms": 29700,
+    "confidence": 0.5145143867056589,
+    "text": "I'm just jagged me, who's jagged me?"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 853,
+    "start_ms": 0,
+    "end_ms": 6160,
+    "confidence": 0.10370016657795628,
+    "text": "So, we're not saying that we can't give up any of these stories,"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 854,
+    "start_ms": 6880,
+    "end_ms": 9820,
+    "confidence": 0.10370016657795628,
+    "text": "but we have to get started with this attitude,"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 855,
+    "start_ms": 13260,
+    "end_ms": 13840,
+    "confidence": 0.10370016657795628,
+    "text": "and it's very important to speak,"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 856,
+    "start_ms": 13840,
+    "end_ms": 14900,
+    "confidence": 0.10370016657795628,
+    "text": "for the past five years,"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 857,
+    "start_ms": 16059,
+    "end_ms": 17940,
+    "confidence": 0.10370016657795628,
+    "text": "we've got a little bit of this,"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 858,
+    "start_ms": 18020,
+    "end_ms": 18920,
+    "confidence": 0.10370016657795628,
+    "text": "and we are obsessed with this,"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 859,
+    "start_ms": 18980,
+    "end_ms": 19980,
+    "confidence": 0.10370016657795628,
+    "text": "a little bit of a bit of a bit of a bit of anviolence,"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 860,
+    "start_ms": 22980,
+    "end_ms": 24480,
+    "confidence": 0.10370016657795628,
+    "text": "and a little bit of an patience."
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 861,
+    "start_ms": 25040,
+    "end_ms": 26520,
+    "confidence": 0.37063251985583834,
+    "text": "What have you done?"
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 862,
+    "start_ms": 26660,
+    "end_ms": 26680,
+    "confidence": 0.37063251985583834,
+    "text": "I was very happy to be here."
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 863,
+    "start_ms": 28560,
+    "end_ms": 29300,
+    "confidence": 0.37063251985583834,
+    "text": "I have been here for a long time."
+  },
+  {
+    "chunk_idx": 155,
+    "seq": 864,
+    "start_ms": 29300,
+    "end_ms": 29980,
+    "confidence": 0.37063251985583834,
+    "text": "I'm very happy to be here for a long time."
+  },
+  {
+    "chunk_idx": 158,
+    "seq": 865,
+    "start_ms": 0,
+    "end_ms": 5000,
+    "confidence": 0.39391981254705855,
+    "text": "future Lagara-I or past undonoko-antari-alagi-e-kara-agi-e-univers-may-and-prope-randomness."
+  },
+  {
+    "chunk_idx": 158,
+    "seq": 866,
+    "start_ms": 6100,
+    "end_ms": 7860,
+    "confidence": 0.39391981254705855,
+    "text": "Yes, we will jump to Bhanachuki here."
+  },
+  {
+    "chunk_idx": 158,
+    "seq": 867,
+    "start_ms": 8060,
+    "end_ms": 29680,
+    "confidence": 0.39391981254705855,
+    "text": "Or JSE-univers-to-ulgent-bathari-are-e-to-univers-so-much-staj-are-are-e-kibyo-abhi-hoshuk-ai-e-ab-bast-ho-y-ab-past-ho-y-a-haj-a-haj-a-haj-ay."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 868,
+    "start_ms": 0,
+    "end_ms": 1340,
+    "confidence": 0.6861824726565896,
+    "text": "First cycle."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 869,
+    "start_ms": 1500,
+    "end_ms": 5540,
+    "confidence": 0.6861824726565896,
+    "text": "A.G. in the A. Universe, Purani Universe says Zada, Big La Vai, Ula Vai."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 870,
+    "start_ms": 6080,
+    "end_ms": 7780,
+    "confidence": 0.6861824726565896,
+    "text": "Ula Vai, Ula Vai."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 871,
+    "start_ms": 7780,
+    "end_ms": 7800,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 872,
+    "start_ms": 7940,
+    "end_ms": 8580,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 873,
+    "start_ms": 8580,
+    "end_ms": 9560,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 874,
+    "start_ms": 13960,
+    "end_ms": 15080,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 875,
+    "start_ms": 15080,
+    "end_ms": 15200,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 876,
+    "start_ms": 15200,
+    "end_ms": 15440,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 877,
+    "start_ms": 15440,
+    "end_ms": 15520,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 878,
+    "start_ms": 15620,
+    "end_ms": 15760,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 879,
+    "start_ms": 15760,
+    "end_ms": 15960,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 880,
+    "start_ms": 15960,
+    "end_ms": 16079,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 881,
+    "start_ms": 16079,
+    "end_ms": 16120,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 882,
+    "start_ms": 16120,
+    "end_ms": 16700,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 883,
+    "start_ms": 16700,
+    "end_ms": 17180,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 884,
+    "start_ms": 17700,
+    "end_ms": 18280,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 885,
+    "start_ms": 20120,
+    "end_ms": 20680,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 886,
+    "start_ms": 22100,
+    "end_ms": 23220,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 887,
+    "start_ms": 27860,
+    "end_ms": 28700,
+    "confidence": 0.6861824726565896,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 888,
+    "start_ms": 28700,
+    "end_ms": 28960,
+    "confidence": 0.643234808995244,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 889,
+    "start_ms": 28960,
+    "end_ms": 29000,
+    "confidence": 0.5687731559372488,
+    "text": "A.G."
+  },
+  {
+    "chunk_idx": 159,
+    "seq": 890,
+    "start_ms": 29360,
+    "end_ms": 29760,
+    "confidence": 0.5687731559372488,
+    "text": "B."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 891,
+    "start_ms": 0,
+    "end_ms": 880,
+    "confidence": 0.07132421667054997,
+    "text": "Maybe..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 892,
+    "start_ms": 1420,
+    "end_ms": 2360,
+    "confidence": 0.07132421667054997,
+    "text": "I think he's a proppy,"
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 893,
+    "start_ms": 2660,
+    "end_ms": 4820,
+    "confidence": 0.07132421667054997,
+    "text": "Maximum-state maneOE Universe Kohl."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 894,
+    "start_ms": 5280,
+    "end_ms": 8020,
+    "confidence": 0.07132421667054997,
+    "text": "He's an English singer."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 895,
+    "start_ms": 8400,
+    "end_ms": 9760,
+    "confidence": 0.07132421667054997,
+    "text": "He's competing by..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 896,
+    "start_ms": 9760,
+    "end_ms": 13080,
+    "confidence": 0.07132421667054997,
+    "text": "He's a regular..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 897,
+    "start_ms": 13080,
+    "end_ms": 13120,
+    "confidence": 0.07132421667054997,
+    "text": "And..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 898,
+    "start_ms": 13120,
+    "end_ms": 13420,
+    "confidence": 0.07132421667054997,
+    "text": "He's a region of..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 899,
+    "start_ms": 13420,
+    "end_ms": 15460,
+    "confidence": 0.07132421667054997,
+    "text": "I don't know how much he's going to be."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 900,
+    "start_ms": 15700,
+    "end_ms": 19560,
+    "confidence": 0.07132421667054997,
+    "text": "I haven't had it for the most time."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 901,
+    "start_ms": 19580,
+    "end_ms": 19840,
+    "confidence": 0.07132421667054997,
+    "text": "We'll call him..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 902,
+    "start_ms": 19840,
+    "end_ms": 22160,
+    "confidence": 0.07132421667054997,
+    "text": "I'll pay the price..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 903,
+    "start_ms": 22160,
+    "end_ms": 23080,
+    "confidence": 0.07132421667054997,
+    "text": "and if we don't buy a price,"
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 904,
+    "start_ms": 23100,
+    "end_ms": 24240,
+    "confidence": 0.07132421667054997,
+    "text": "If we don't pay short..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 905,
+    "start_ms": 24240,
+    "end_ms": 24560,
+    "confidence": 0.07132421667054997,
+    "text": "No one can buy a price."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 906,
+    "start_ms": 26120,
+    "end_ms": 26860,
+    "confidence": 0.07132421667054997,
+    "text": "We'll buy a price..."
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 907,
+    "start_ms": 26860,
+    "end_ms": 27220,
+    "confidence": 0.07132421667054997,
+    "text": "But you know,"
+  },
+  {
+    "chunk_idx": 160,
+    "seq": 908,
+    "start_ms": 27220,
+    "end_ms": 29980,
+    "confidence": 0.07132421667054997,
+    "text": "when a company has already paid..."
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 909,
+    "start_ms": 0,
+    "end_ms": 7680,
+    "confidence": 0.060780977643300114,
+    "text": "We didn't say that we would have someone that had a huge name in our way."
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 910,
+    "start_ms": 7680,
+    "end_ms": 8000,
+    "confidence": 0.060780977643300114,
+    "text": "We found that we could have a big name."
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 911,
+    "start_ms": 8000,
+    "end_ms": 11780,
+    "confidence": 0.060780977643300114,
+    "text": "We had a huge name in Japan already."
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 912,
+    "start_ms": 12340,
+    "end_ms": 19760,
+    "confidence": 0.060780977643300114,
+    "text": "We contacted where we sent out computers in Japan,"
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 913,
+    "start_ms": 19760,
+    "end_ms": 24760,
+    "confidence": 0.060780977643300114,
+    "text": "so that our customers were connected and connected."
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 914,
+    "start_ms": 24760,
+    "end_ms": 24860,
+    "confidence": 0.060780977643300114,
+    "text": "It's our place to get a new planet."
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 915,
+    "start_ms": 24860,
+    "end_ms": 25400,
+    "confidence": 0.060780977643300114,
+    "text": "That we enjoy,"
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 916,
+    "start_ms": 25400,
+    "end_ms": 26540,
+    "confidence": 0.060780977643300114,
+    "text": "this is what we talk about."
+  },
+  {
+    "chunk_idx": 161,
+    "seq": 917,
+    "start_ms": 26540,
+    "end_ms": 29980,
+    "confidence": 0.31637282196722405,
+    "text": "hm to science to the herm or darshan, get."
+  },
+  {
+    "chunk_idx": 162,
+    "seq": 918,
+    "start_ms": 0,
+    "end_ms": 6500,
+    "confidence": 0.07225293078855849,
+    "text": "We believe that we have a world where we are not going touddio."
+  },
+  {
+    "chunk_idx": 162,
+    "seq": 919,
+    "start_ms": 8020,
+    "end_ms": 9020,
+    "confidence": 0.07225293078855849,
+    "text": "And that's the reason why we can live in such a good way."
+  },
+  {
+    "chunk_idx": 162,
+    "seq": 920,
+    "start_ms": 9100,
+    "end_ms": 19920,
+    "confidence": 0.07225293078855849,
+    "text": "And what do we have to do is for a large island we have to invest in the world as well."
+  },
+  {
+    "chunk_idx": 162,
+    "seq": 921,
+    "start_ms": 20460,
+    "end_ms": 25300,
+    "confidence": 0.07225293078855849,
+    "text": "And that is the real thing I am not sure, but we have to ease the city as well."
+  },
+  {
+    "chunk_idx": 162,
+    "seq": 922,
+    "start_ms": 25300,
+    "end_ms": 27240,
+    "confidence": 0.33597868784988816,
+    "text": "You just have to check out that."
+  },
+  {
+    "chunk_idx": 162,
+    "seq": 923,
+    "start_ms": 27840,
+    "end_ms": 29140,
+    "confidence": 0.33597868784988816,
+    "text": "You have to check out that."
+  },
+  {
+    "chunk_idx": 162,
+    "seq": 924,
+    "start_ms": 29140,
+    "end_ms": 29720,
+    "confidence": 0.33597868784988816,
+    "text": "How many?"
+  },
+  {
+    "chunk_idx": 163,
+    "seq": 925,
+    "start_ms": 4419,
+    "end_ms": 8760,
+    "confidence": 0.07616205194897503,
+    "text": "And that's the idea his brain has tried."
+  },
+  {
+    "chunk_idx": 163,
+    "seq": 926,
+    "start_ms": 8760,
+    "end_ms": 10640,
+    "confidence": 0.07616205194897503,
+    "text": "And he was basically a good one, and he was a superstar."
+  },
+  {
+    "chunk_idx": 163,
+    "seq": 927,
+    "start_ms": 11380,
+    "end_ms": 14820,
+    "confidence": 0.07616205194897503,
+    "text": "He was a big fan of the dance with him when he was a great one."
+  },
+  {
+    "chunk_idx": 163,
+    "seq": 928,
+    "start_ms": 14820,
+    "end_ms": 16860,
+    "confidence": 0.07616205194897503,
+    "text": "And he was a great guy, and he didn't want to miss that one."
+  },
+  {
+    "chunk_idx": 163,
+    "seq": 929,
+    "start_ms": 16860,
+    "end_ms": 24300,
+    "confidence": 0.07616205194897503,
+    "text": "His hands did not kill him, but I didn't want to even finish."
+  },
+  {
+    "chunk_idx": 163,
+    "seq": 930,
+    "start_ms": 26700,
+    "end_ms": 28880,
+    "confidence": 0.07616205194897503,
+    "text": "If I don't, I'm sure he's in the middle of the war like that,"
+  },
+  {
+    "chunk_idx": 163,
+    "seq": 931,
+    "start_ms": 29820,
+    "end_ms": 29980,
+    "confidence": 0.07616205194897503,
+    "text": "and even with his own destructive hand,"
+  },
+  {
+    "chunk_idx": 165,
+    "seq": 932,
+    "start_ms": 0,
+    "end_ms": 7720,
+    "confidence": 0.428901197583748,
+    "text": "or what kata mojaga, jivan kaja kata mojaga mama pata an chelra, like in japita kami jere, yaham jilajare,"
+  },
+  {
+    "chunk_idx": 165,
+    "seq": 933,
+    "start_ms": 8780,
+    "end_ms": 14180,
+    "confidence": 0.428901197583748,
+    "text": "hamari pata kuchi bhi chan sis hei, ju frequent, hulkasam bulte shatri bihu, yahna yu doi bhate,"
+  },
+  {
+    "chunk_idx": 165,
+    "seq": 934,
+    "start_ms": 14800,
+    "end_ms": 20640,
+    "confidence": 0.428901197583748,
+    "text": "ap ka kate hei, hei haam lu wokuk kase rehana ji, in terms of jubi aspa sis yu hoori yah,"
+  },
+  {
+    "chunk_idx": 165,
+    "seq": 935,
+    "start_ms": 21480,
+    "end_ms": 24860,
+    "confidence": 0.428901197583748,
+    "text": "kapun yahme hoori hoori hu, kai aakasat personally hoori hoori hoori hoori hoori hoori hoori hoori"
+  },
+  {
+    "chunk_idx": 165,
+    "seq": 936,
+    "start_ms": 24860,
+    "end_ms": 28720,
+    "confidence": 0.428901197583748,
+    "text": "yahse may sat personally hoorat jahse papa kat chelra habibi, yahfir dunyam"
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 937,
+    "start_ms": 0,
+    "end_ms": 1980,
+    "confidence": 0.10059405198471394,
+    "text": "I can't believe it."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 938,
+    "start_ms": 5700,
+    "end_ms": 9960,
+    "confidence": 0.10059405198471394,
+    "text": "I can't believe that all Americans have to make the right."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 939,
+    "start_ms": 9960,
+    "end_ms": 10120,
+    "confidence": 0.10059405198471394,
+    "text": "I can't believe it."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 940,
+    "start_ms": 10120,
+    "end_ms": 10680,
+    "confidence": 0.10059405198471394,
+    "text": "But I can't believe it."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 941,
+    "start_ms": 11220,
+    "end_ms": 13060,
+    "confidence": 0.10059405198471394,
+    "text": "Because it's terrible."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 942,
+    "start_ms": 13640,
+    "end_ms": 15300,
+    "confidence": 0.10059405198471394,
+    "text": "But even if there is a small one,"
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 943,
+    "start_ms": 15660,
+    "end_ms": 16300,
+    "confidence": 0.10059405198471394,
+    "text": "then we can't believe it."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 944,
+    "start_ms": 16480,
+    "end_ms": 19020,
+    "confidence": 0.10059405198471394,
+    "text": "But it is an abolitionist tradition."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 945,
+    "start_ms": 21820,
+    "end_ms": 27660,
+    "confidence": 0.10059405198471394,
+    "text": "It is just a pleasure to celebrate."
+  },
+  {
+    "chunk_idx": 167,
+    "seq": 946,
+    "start_ms": 27660,
+    "end_ms": 29980,
+    "confidence": 0.42409102744419586,
+    "text": "Hello family, come right here"
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 947,
+    "start_ms": 1679,
+    "end_ms": 2700,
+    "confidence": 0.09680279942696342,
+    "text": "because it's low, high and low, high."
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 948,
+    "start_ms": 2700,
+    "end_ms": 7380,
+    "confidence": 0.09680279942696342,
+    "text": "Of course, we're not allowed for those who are going to get."
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 949,
+    "start_ms": 9300,
+    "end_ms": 11760,
+    "confidence": 0.09680279942696342,
+    "text": "All the way we got to the same thing."
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 950,
+    "start_ms": 12220,
+    "end_ms": 13520,
+    "confidence": 0.09680279942696342,
+    "text": "There are very many people doing that."
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 951,
+    "start_ms": 13520,
+    "end_ms": 15640,
+    "confidence": 0.09680279942696342,
+    "text": "We're not really going to do that, but it's so informative."
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 952,
+    "start_ms": 16219,
+    "end_ms": 26020,
+    "confidence": 0.09680279942696342,
+    "text": "If you don't want to have a special video or a show,"
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 953,
+    "start_ms": 26540,
+    "end_ms": 28660,
+    "confidence": 0.09680279942696342,
+    "text": "you can have a video on the show."
+  },
+  {
+    "chunk_idx": 168,
+    "seq": 954,
+    "start_ms": 29120,
+    "end_ms": 29980,
+    "confidence": 0.09680279942696342,
+    "text": "It's very simple, but it's very simple,"
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 955,
+    "start_ms": 0,
+    "end_ms": 6040,
+    "confidence": 0.05661715759514244,
+    "text": "I think we are going to say that those who have worked on money,"
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 956,
+    "start_ms": 6220,
+    "end_ms": 8600,
+    "confidence": 0.05661715759514244,
+    "text": "but do you make a waste of money in the east of the region?"
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 957,
+    "start_ms": 10200,
+    "end_ms": 12640,
+    "confidence": 0.05661715759514244,
+    "text": "How old are all these?"
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 958,
+    "start_ms": 12640,
+    "end_ms": 13280,
+    "confidence": 0.05661715759514244,
+    "text": "More than 3 million dollars."
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 959,
+    "start_ms": 14180,
+    "end_ms": 21820,
+    "confidence": 0.05661715759514244,
+    "text": "People are often wanting to make money in person."
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 960,
+    "start_ms": 21820,
+    "end_ms": 23640,
+    "confidence": 0.05661715759514244,
+    "text": "I personally haven't met any people at any time."
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 961,
+    "start_ms": 26140,
+    "end_ms": 29480,
+    "confidence": 0.05661715759514244,
+    "text": "I've heard it because I'm not surprised."
+  },
+  {
+    "chunk_idx": 171,
+    "seq": 962,
+    "start_ms": 29780,
+    "end_ms": 29980,
+    "confidence": 0.4166187455511173,
+    "text": "I'll talk with you."
+  },
+  {
+    "chunk_idx": 172,
+    "seq": 963,
+    "start_ms": 0,
+    "end_ms": 5540,
+    "confidence": 0.14739820576845808,
+    "text": "I am going to be a professional and a great fan of the U.S."
+  },
+  {
+    "chunk_idx": 172,
+    "seq": 964,
+    "start_ms": 8520,
+    "end_ms": 10120,
+    "confidence": 0.14739820576845808,
+    "text": "I'm going to do a new thing that is amazing when I am doing a new thing."
+  },
+  {
+    "chunk_idx": 172,
+    "seq": 965,
+    "start_ms": 11340,
+    "end_ms": 14600,
+    "confidence": 0.14739820576845808,
+    "text": "I am not able to do this by the way, I think I will be happy with it."
+  },
+  {
+    "chunk_idx": 172,
+    "seq": 966,
+    "start_ms": 14600,
+    "end_ms": 18840,
+    "confidence": 0.14739820576845808,
+    "text": "I will be happy with this, for example, that I will be happy with it."
+  },
+  {
+    "chunk_idx": 172,
+    "seq": 967,
+    "start_ms": 26500,
+    "end_ms": 28280,
+    "confidence": 0.14739820576845808,
+    "text": "I will be happy with it, I'm going to be happy with it,"
+  },
+  {
+    "chunk_idx": 172,
+    "seq": 968,
+    "start_ms": 28280,
+    "end_ms": 29440,
+    "confidence": 0.3013277224723932,
+    "text": "a character portrait scenario."
+  },
+  {
+    "chunk_idx": 173,
+    "seq": 969,
+    "start_ms": 0,
+    "end_ms": 5900,
+    "confidence": 0.0625773199265213,
+    "text": "or because if you are in overseas, you have to say, saying,"
+  },
+  {
+    "chunk_idx": 173,
+    "seq": 970,
+    "start_ms": 8360,
+    "end_ms": 12700,
+    "confidence": 0.0625773199265213,
+    "text": "this is a good place that people are interested in."
+  },
+  {
+    "chunk_idx": 173,
+    "seq": 971,
+    "start_ms": 14020,
+    "end_ms": 17980,
+    "confidence": 0.0625773199265213,
+    "text": "But since Romania, they are trying to take an esteem of what you are,"
+  },
+  {
+    "chunk_idx": 173,
+    "seq": 972,
+    "start_ms": 17980,
+    "end_ms": 18980,
+    "confidence": 0.0625773199265213,
+    "text": "she can't look, she can't look at it, she doesn't know what you know."
+  },
+  {
+    "chunk_idx": 173,
+    "seq": 973,
+    "start_ms": 19880,
+    "end_ms": 29400,
+    "confidence": 0.0625773199265213,
+    "text": "I believe it, there's a lot of people in the world who figure out how to be"
+  },
+  {
+    "chunk_idx": 173,
+    "seq": 974,
+    "start_ms": 29400,
+    "end_ms": 29900,
+    "confidence": 0.3820849121901031,
+    "text": "Thank you very much."
+  },
+  {
+    "chunk_idx": 175,
+    "seq": 975,
+    "start_ms": 20620,
+    "end_ms": 22140,
+    "confidence": 0.0815961840033184,
+    "text": "because the"
+  },
+  {
+    "chunk_idx": 175,
+    "seq": 976,
+    "start_ms": 22140,
+    "end_ms": 25560,
+    "confidence": 0.28476395538764915,
+    "text": "The main skill is to create videos, but it shocks the action of the action of the attack"
+  },
+  {
+    "chunk_idx": 175,
+    "seq": 977,
+    "start_ms": 25560,
+    "end_ms": 29740,
+    "confidence": 0.28476395538764915,
+    "text": "of the attack of the attack of the attack of the attack of the attack of the attack"
+  },
+  {
+    "chunk_idx": 177,
+    "seq": 978,
+    "start_ms": 0,
+    "end_ms": 3480,
+    "confidence": 0.3213965964047119,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 177,
+    "seq": 979,
+    "start_ms": 3840,
+    "end_ms": 5580,
+    "confidence": 0.3213965964047119,
+    "text": "Thank you."
+  },
+  {
+    "chunk_idx": 177,
+    "seq": 980,
+    "start_ms": 6040,
+    "end_ms": 8080,
+    "confidence": 0.3213965964047119,
+    "text": "Thank you so much."
+  },
+  {
+    "chunk_idx": 177,
+    "seq": 981,
+    "start_ms": 8080,
+    "end_ms": 8600,
+    "confidence": 0.3213965964047119,
+    "text": "Thank you so much."
+  },
+  {
+    "chunk_idx": 177,
+    "seq": 982,
+    "start_ms": 9040,
+    "end_ms": 9080,
+    "confidence": 0.3213965964047119,
+    "text": "Thank you."
+  }
+]

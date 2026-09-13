@@ -1,0 +1,272 @@
+[
+  {
+    "chunk_idx": 0,
+    "has_speech": true,
+    "speech_ratio": 0.6416,
+    "preprocessing_latency_ms": 721
+  },
+  {
+    "chunk_idx": 1,
+    "has_speech": true,
+    "speech_ratio": 0.3418,
+    "preprocessing_latency_ms": 737
+  },
+  {
+    "chunk_idx": 2,
+    "has_speech": true,
+    "speech_ratio": 0.4696,
+    "preprocessing_latency_ms": 731
+  },
+  {
+    "chunk_idx": 3,
+    "has_speech": true,
+    "speech_ratio": 0.6728,
+    "preprocessing_latency_ms": 736
+  },
+  {
+    "chunk_idx": 4,
+    "has_speech": true,
+    "speech_ratio": 0.6090666666666666,
+    "preprocessing_latency_ms": 729
+  },
+  {
+    "chunk_idx": 5,
+    "has_speech": true,
+    "speech_ratio": 0.6414666666666666,
+    "preprocessing_latency_ms": 730
+  },
+  {
+    "chunk_idx": 6,
+    "has_speech": true,
+    "speech_ratio": 0.5102666666666666,
+    "preprocessing_latency_ms": 732
+  },
+  {
+    "chunk_idx": 7,
+    "has_speech": true,
+    "speech_ratio": 0.6332333333333333,
+    "preprocessing_latency_ms": 717
+  },
+  {
+    "chunk_idx": 8,
+    "has_speech": true,
+    "speech_ratio": 0.6059333333333333,
+    "preprocessing_latency_ms": 737
+  },
+  {
+    "chunk_idx": 9,
+    "has_speech": true,
+    "speech_ratio": 0.6122333333333333,
+    "preprocessing_latency_ms": 726
+  },
+  {
+    "chunk_idx": 10,
+    "has_speech": true,
+    "speech_ratio": 0.4140333333333333,
+    "preprocessing_latency_ms": 722
+  },
+  {
+    "chunk_idx": 11,
+    "has_speech": true,
+    "speech_ratio": 0.4557333333333333,
+    "preprocessing_latency_ms": 771
+  },
+  {
+    "chunk_idx": 12,
+    "has_speech": true,
+    "speech_ratio": 0.4958666666666667,
+    "preprocessing_latency_ms": 733
+  },
+  {
+    "chunk_idx": 13,
+    "has_speech": true,
+    "speech_ratio": 0.44913333333333333,
+    "preprocessing_latency_ms": 746
+  },
+  {
+    "chunk_idx": 14,
+    "has_speech": true,
+    "speech_ratio": 0.21066666666666667,
+    "preprocessing_latency_ms": 729
+  },
+  {
+    "chunk_idx": 15,
+    "has_speech": true,
+    "speech_ratio": 0.5833333333333334,
+    "preprocessing_latency_ms": 839
+  },
+  {
+    "chunk_idx": 16,
+    "has_speech": true,
+    "speech_ratio": 0.3872,
+    "preprocessing_latency_ms": 726
+  },
+  {
+    "chunk_idx": 17,
+    "has_speech": true,
+    "speech_ratio": 0.3706,
+    "preprocessing_latency_ms": 730
+  },
+  {
+    "chunk_idx": 18,
+    "has_speech": true,
+    "speech_ratio": 0.7212666666666666,
+    "preprocessing_latency_ms": 723
+  },
+  {
+    "chunk_idx": 19,
+    "has_speech": true,
+    "speech_ratio": 0.44226666666666664,
+    "preprocessing_latency_ms": 719
+  },
+  {
+    "chunk_idx": 20,
+    "has_speech": true,
+    "speech_ratio": 0.5191333333333333,
+    "preprocessing_latency_ms": 741
+  },
+  {
+    "chunk_idx": 21,
+    "has_speech": true,
+    "speech_ratio": 0.6190333333333333,
+    "preprocessing_latency_ms": 727
+  },
+  {
+    "chunk_idx": 22,
+    "has_speech": true,
+    "speech_ratio": 0.6686,
+    "preprocessing_latency_ms": 739
+  },
+  {
+    "chunk_idx": 23,
+    "has_speech": true,
+    "speech_ratio": 0.5811333333333333,
+    "preprocessing_latency_ms": 753
+  },
+  {
+    "chunk_idx": 24,
+    "has_speech": true,
+    "speech_ratio": 0.084,
+    "preprocessing_latency_ms": 920
+  },
+  {
+    "chunk_idx": 25,
+    "has_speech": true,
+    "speech_ratio": 0.37866666666666665,
+    "preprocessing_latency_ms": 736
+  },
+  {
+    "chunk_idx": 26,
+    "has_speech": true,
+    "speech_ratio": 0.4913,
+    "preprocessing_latency_ms": 728
+  },
+  {
+    "chunk_idx": 27,
+    "has_speech": true,
+    "speech_ratio": 0.4508,
+    "preprocessing_latency_ms": 739
+  },
+  {
+    "chunk_idx": 28,
+    "has_speech": false,
+    "speech_ratio": 0.0,
+    "preprocessing_latency_ms": 717
+  },
+  {
+    "chunk_idx": 29,
+    "has_speech": true,
+    "speech_ratio": 0.2524666666666667,
+    "preprocessing_latency_ms": 839
+  },
+  {
+    "chunk_idx": 30,
+    "has_speech": true,
+    "speech_ratio": 0.2494,
+    "preprocessing_latency_ms": 712
+  },
+  {
+    "chunk_idx": 31,
+    "has_speech": true,
+    "speech_ratio": 0.38253333333333334,
+    "preprocessing_latency_ms": 733
+  },
+  {
+    "chunk_idx": 32,
+    "has_speech": true,
+    "speech_ratio": 0.3584,
+    "preprocessing_latency_ms": 758
+  },
+  {
+    "chunk_idx": 33,
+    "has_speech": true,
+    "speech_ratio": 0.010533333333333334,
+    "preprocessing_latency_ms": 976
+  },
+  {
+    "chunk_idx": 34,
+    "has_speech": true,
+    "speech_ratio": 0.15076666666666666,
+    "preprocessing_latency_ms": 776
+  },
+  {
+    "chunk_idx": 35,
+    "has_speech": true,
+    "speech_ratio": 0.5582666666666667,
+    "preprocessing_latency_ms": 777
+  },
+  {
+    "chunk_idx": 36,
+    "has_speech": true,
+    "speech_ratio": 0.4431,
+    "preprocessing_latency_ms": 764
+  },
+  {
+    "chunk_idx": 37,
+    "has_speech": true,
+    "speech_ratio": 0.3838666666666667,
+    "preprocessing_latency_ms": 721
+  },
+  {
+    "chunk_idx": 38,
+    "has_speech": true,
+    "speech_ratio": 0.5446666666666666,
+    "preprocessing_latency_ms": 769
+  },
+  {
+    "chunk_idx": 39,
+    "has_speech": true,
+    "speech_ratio": 0.41946666666666665,
+    "preprocessing_latency_ms": 798
+  },
+  {
+    "chunk_idx": 40,
+    "has_speech": true,
+    "speech_ratio": 0.3504333333333333,
+    "preprocessing_latency_ms": 805
+  },
+  {
+    "chunk_idx": 41,
+    "has_speech": true,
+    "speech_ratio": 0.8453333333333334,
+    "preprocessing_latency_ms": 776
+  },
+  {
+    "chunk_idx": 42,
+    "has_speech": true,
+    "speech_ratio": 0.439,
+    "preprocessing_latency_ms": 792
+  },
+  {
+    "chunk_idx": 43,
+    "has_speech": true,
+    "speech_ratio": 0.31926666666666664,
+    "preprocessing_latency_ms": 803
+  },
+  {
+    "chunk_idx": 44,
+    "has_speech": true,
+    "speech_ratio": 0.19382612347753045,
+    "preprocessing_latency_ms": 539
+  }
+]

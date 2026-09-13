@@ -1,0 +1,13 @@
+{
+  "source_video": "videoplayback (2).mp4",
+  "slug": "videoplayback_2",
+  "duration_s": 5329.6,
+  "n_chunks": 178,
+  "n_speech_chunks": 178,
+  "speech_chunk_ratio": 1.0,
+  "n_utterances": 983,
+  "extract_time_s": 2.6,
+  "pipeline_time_s": 557.8,
+  "real_time_factor": 0.105,
+  "asr_model": "tiny.en (CPU, int8) -- NOT production large-v3/large-v3-turbo; see docs/gaps.md"
+}

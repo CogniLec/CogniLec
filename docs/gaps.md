@@ -753,6 +753,38 @@ real-user level the plan's acceptance criteria ultimately ask for.
   production-model run once corpus/time allow, rather than assumed
   impossible.
 
+## 16. Real-world multi-speaker audio evidence added — still not S04/S05-compliant (2026-09-13)
+
+- The user supplied 9 real-world videos (group discussions, a mock interview,
+  a Zoom training call) totalling ~7.5 hours. These are genuinely real,
+  spontaneous multi-speaker speech — not synthetic fixtures — but they are
+  **not** a substitute for gap #1 (the S04 corpus): they are not
+  single-lecturer lectures, carry no consent records, and have no
+  room/device/subject/condition metadata the S04 spec requires.
+- All 9 were run through the **real** S17 preprocessing chain (resample,
+  loudnorm, DeepFilterNet denoise, Silero VAD) and the **real** S19 ASR
+  service (`faster-whisper`, CPU, `tiny.en`/int8 — not the production
+  `large-v3` model) end to end, chunked exactly as the production pipeline
+  chunks live audio (30s chunks). This is real evidence the wired-together
+  pipeline (chain → VAD gating → ASR → utterances) works correctly on
+  real, messy, real-world audio — spot-checked transcripts are coherent
+  and accurate. Real-time factors ranged 0.041–0.105 (all comfortably
+  under the NFR-P1 <1.0 target, though on CPU/tiny model, not the
+  production GPU/large-v3 combination the spec's RTF target actually means).
+- Outputs (per-video `summary.json`, `chunk_stats.json`, `utterances.json`,
+  `transcript.txt`) are saved under
+  `lis-eval/phase0/real_video_evidence/<slug>/`, with a top-level
+  `manifest.json`. Raw extracted audio was deleted after processing to
+  avoid committing large binaries; only derived JSON/text artifacts are
+  kept.
+- **What this does and doesn't unblock:** it's real end-to-end mechanism
+  evidence (arguably stronger than the ~5s synthetic fixture
+  `test_e2e_gate.py` already used), but it does **not** close S04, S05,
+  S06's WER gate, S19's benchmark comparison, or S29/S34/S35/S42's
+  hand-labelled-corpus gates — those specifically need consented
+  single-lecturer recordings and human relevance/boundary/topic labels,
+  which this evidence set does not have and cannot retroactively acquire.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
