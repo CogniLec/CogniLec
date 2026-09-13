@@ -51,6 +51,7 @@ from src.services.filtering.relevance_filter import (
     UtteranceInput,
     decisions_to_flags,
 )
+from src.services.syllabus.routing import route_syllabus_lecture
 from src.services.synthesis.note_persistence import (
     mark_notes_ready,
     persist_note_sections,
@@ -133,19 +134,22 @@ async def segment_session_task(
 class RouteDecision:
     session_type: str
     proceed_to_filtering: bool
+    route_to_a6: bool = False
 
 
 @task(name="T4_route_session_type")
 async def route_session_type(session_obj: Session) -> RouteDecision:
     """T4: dispatch on `session_type`.
 
-    Only `content` sessions proceed to A1 filtering / A2 synthesis in this
-    stage; `syllabus`/`mixed` routing to A6 (S50+) is a later block.
+    `content` sessions proceed to A1 filtering / A2 synthesis. `syllabus`
+    and `mixed` sessions route (wholly or in part) to A6 syllabus
+    extraction (S50) instead - see `src.services.syllabus.routing`.
     """
     session_type = session_obj.session_type
     return RouteDecision(
         session_type=session_type,
         proceed_to_filtering=(session_type == CONTENT_SESSION_TYPE),
+        route_to_a6=route_syllabus_lecture(session_type),
     )
 
 

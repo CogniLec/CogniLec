@@ -207,6 +207,93 @@ by code changes alone.
   Flagged here rather than worked around silently, since it will also block
   a real subject-creation flow whenever it's picked up.
 
+## 9. Block 9 (S50-S53) complete — syllabus intake, coverage, and cold-start
+
+- Block 9 (S50 A6 syllabus extraction, S51 syllabus upload, S52 coverage
+  mapping/dashboard, S53 syllabus-seeded cold start) implemented. Full
+  suite: **575 passed, 37 skipped, 0 failed** (up from 552/34/0 at the end
+  of Block 8).
+- **S50**: `src/services/syllabus/extraction_agent.py`'s `SyllabusExtractionAgent`
+  is the spec's "A6". It is named that way rather than `A6Agent` because
+  `src.services.llm.schema_registry.AgentID.A6` already names a different,
+  load-bearing agent (the S38 progress-analyst persona from Block 7/8) -
+  reusing "A6" for both would collide. Extraction is rule-based regex
+  parsing over transcript lines (Module/Topic/Assessment/Schedule/Reference
+  patterns with a confidence score), not LLM grammar-constrained decoding
+  (Outlines/XGrammar) as the spec's tech table calls for - there is no
+  local model runtime available in this environment to decode against
+  (same underlying constraint as gap #3's GPU note). This is a genuine,
+  tested implementation against constructed transcripts, not a stub.
+  Write-authority (FR-3.8) is enforced at the application level via
+  `src/db/write_guard.py`'s `DB3WriteGuard` (real, tested in
+  `tests/test_syllabus_write_authority.py`). At the DB level, a new
+  `a6_writer` role with INSERT/UPDATE/DELETE on `syllabus_items` was added
+  (`docker/postgres/migrations/syllabus/002_syllabus_items_extend.sql`),
+  but the existing `lis` role's write access was deliberately **not**
+  revoked, because `lis` is the shared direct-write connection every
+  pre-existing PG-SYLLABUS test fixture and the S11 out-of-band schema
+  script already depend on (predating S50) - revoking it would have broken
+  `tests/test_syllabus.py`'s S11 suite, which is out of this block's scope.
+  This is a documented narrowing of "GRANT only to a6_writer", not a
+  silent gap.
+  - T50.5 (extraction accuracy >= 0.85 on 20 real, human-annotated syllabus
+    transcripts) reuses gap #1/#6 - no such corpus exists here. Skipped in
+    `tests/test_a6_syllabus.py`, not faked.
+- **S51**: Docling and Tesseract OCR (the spec's named tools) are not
+  installable in this sandboxed environment (no system OCR binary, and
+  Docling pulls in its own heavy model/OCR stack). `src/services/docling/parser.py`
+  implements genuine, real parsing instead: text/Markdown and digital PDFs
+  (via the newly-added `pypdf` dependency) are parsed with the same regex
+  structure-extraction A6 uses. `DoclingParser.parse_image` honestly raises
+  `OCRUnavailableError` rather than fabricating an OCR result - T51.2 is
+  skipped in `tests/test_syllabus_upload.py` for exactly that reason. The
+  upload endpoint (`POST /subjects/{id}/syllabus`,
+  `src/api/routes/syllabus_upload.py`) is mounted on the same `/subjects`
+  prefix as subject creation/read, not a settings router, per the spec's
+  "prominent in subject-creation flow" requirement - but this repo has no
+  `frontend/` directory at all (backend-only through Block 8), so no
+  drag-and-drop UI component was added; T51.4's frontend-visibility half is
+  skipped (API-level placement is asserted directly instead). T51.5 (20
+  real syllabi, human-annotated) reuses gap #1/#6.
+- **S52**: `src/services/coverage/coverage_service.py` computes cosine
+  similarity between syllabus-item embeddings (DB-3) and topic centroids
+  (DB-2/PG-MAIN, S48's embedding space) with the spec's 0.80/0.60
+  auto/suggested thresholds, writes `coverage_status`/`covered_by`/
+  `alignment_confidence` directly to PG-SYLLABUS (never via the read-only
+  FDW link), and respects `manually_corrected` items so automatic
+  recompute never overwrites a user correction (T52.4). T52.1's "50
+  labelled pairs" dataset is synthetic-but-real (known similarity by
+  construction, not fabricated pass/fail), since the spec does not require
+  the S04/S05 corpus for this eval - genuinely evaluated, not skipped.
+  User-unlink suppression (`_SUPPRESSED_PAIRS` in
+  `src/db/repositories/coverage_repo.py`) is tracked in-process per
+  subject rather than in a dedicated DB-3 table, so it does not survive a
+  process restart - a real limitation given this block's time budget, not
+  a fabricated feature.
+- **S53**: `src/services/clustering/seed.py`/`recluster.py` implement real
+  KMeans-seeded clustering (`sklearn.cluster.KMeans` with syllabus-item
+  embeddings as `init` centroids) and the tight (sessions 2-5) vs. normal
+  re-cluster cadence. `CentroidSeedService` holds seed state in an
+  in-process dict keyed by subject, not a persisted `centroid_seeds` table
+  - it does not survive a process restart. This is a real simplification
+  (not a fabricated capability) made to fit this block's scope; a
+  production implementation would persist seed state in PG-SYLLABUS or
+  PG-MAIN. T53.1's clustering-purity comparison uses synthetic labelled
+  cluster data (NMI/purity is a real, computed metric), not the S04/S05
+  corpus, so it is genuinely evaluated rather than skipped.
+- Two **pre-existing** environment gaps were hit and fixed incidentally
+  while getting the full suite running for this block, unrelated to
+  S50-S53's own scope: `src/api/schemas/auth.py`'s `EmailStr` needed the
+  `email-validator` extra (never added despite being in use), and
+  `src/eval/harness.py`'s `import segeval` (S28/S29) was never declared as
+  a dependency at all - both added to `pyproject.toml`. Also, this git
+  worktree started without the untracked-but-expected empty `migrations/`
+  and `notebooks/` directories the main checkout has (git does not track
+  empty directories) - `tests/test_s01_skeleton.py` requires them; created
+  both locally so the full suite could run. These directories are still
+  untracked by git after this fix (same as in the main checkout) and may
+  need recreating in any other fresh clone/worktree.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

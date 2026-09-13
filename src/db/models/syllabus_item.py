@@ -19,7 +19,7 @@ import uuid
 from datetime import datetime
 
 from pgvector.sqlalchemy import Vector
-from sqlalchemy import DateTime, Integer, MetaData, String, Text, text
+from sqlalchemy import Boolean, DateTime, Float, Integer, MetaData, String, Text, text
 from sqlalchemy.dialects.postgresql import ARRAY, UUID
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -70,6 +70,15 @@ class SyllabusItem(SyllabusBase):
     covered_by: Mapped[list[uuid.UUID]] = mapped_column(
         ARRAY(UUID(as_uuid=True)), nullable=False, default=list
     )
+    # S50/S52 additions (002_syllabus_items_extend.sql).
+    item_type: Mapped[str] = mapped_column(String(20), nullable=False, default="topic")
+    weight_pct: Mapped[float | None] = mapped_column(Float, nullable=True)
+    week_number: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    syllabus_references: Mapped[list[str]] = mapped_column(
+        ARRAY(Text), nullable=False, default=list
+    )
+    manually_corrected: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    alignment_confidence: Mapped[str | None] = mapped_column(String(20), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=text("now()")
     )

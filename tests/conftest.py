@@ -12,14 +12,16 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 # S11: syllabus_items DDL, applied out-of-band since alembic only targets PG-MAIN.
-SYLLABUS_SCHEMA_SQL = (
-    Path(__file__).resolve().parents[1]
-    / "docker"
-    / "postgres"
-    / "migrations"
-    / "syllabus"
-    / "001_syllabus_items.sql"
-).read_text()
+_SYLLABUS_MIGRATIONS_DIR = (
+    Path(__file__).resolve().parents[1] / "docker" / "postgres" / "migrations" / "syllabus"
+)
+# S50/S52 extended the S11 schema (item_type/weight_pct/.../a6_writer role) in
+# 002_syllabus_items_extend.sql - apply both, in order, like the real
+# out-of-band apply script (scripts/s11_apply_syllabus_schema.py) does.
+SYLLABUS_SCHEMA_SQL = "\n".join(
+    (_SYLLABUS_MIGRATIONS_DIR / name).read_text()
+    for name in ("001_syllabus_items.sql", "002_syllabus_items_extend.sql")
+)
 
 # Connect directly to PostgreSQL, bypassing PgBouncer
 DATABASE_URL = "postgresql+asyncpg://lis:lis_dev@localhost:5434/lis_main"

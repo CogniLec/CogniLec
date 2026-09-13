@@ -9,6 +9,15 @@ dependencies = [
     "fastapi>=0.115.0,<1.0",
     "uvicorn[standard]>=0.32.0",
     "python-multipart>=0.0.18",
+    # Syllabus upload (S51): real PDF text extraction. Docling/Tesseract from
+    # the spec are not installable in this environment (no system OCR
+    # binary) - see docs/gaps.md gap #9. pypdf gives genuine (non-OCR) PDF
+    # text extraction for digital PDFs.
+    "pypdf>=5.0,<6.0",
+    # Pre-existing gap hit while collecting this block's tests: EmailStr in
+    # src/api/schemas/auth.py needs this optional pydantic extra, which was
+    # never added despite EmailStr already being in use.
+    "email-validator>=2.0,<3.0",
     # Data validation
     "pydantic>=2.9,<3.0",
     "pydantic-settings>=2.5,<3.0",
@@ -57,6 +66,11 @@ dependencies = [
     "pandas>=2.2,<3.0",
     # ASR
     "jiwer>=3.0,<4.0",
+    # Pre-existing gap hit while running the full suite for this block:
+    # src/eval/harness.py imports segeval (S28/S29 segmentation eval) but it
+    # was never added as a dependency, so tests/test_eval_harness.py failed
+    # to collect. Unrelated to S50-S53 but blocked the whole run (addopts -x).
+    "segeval>=2.0,<3.0",
     "faster-whisper>=1.0,<2.0",
     "ctranslate2>=4.5,<5.0",
     # ML framework
@@ -130,6 +144,7 @@ skip-magic-trailing-comma = false
 line-ending = "lf"
 
 [tool.mypy]
+plugins = ["pydantic.mypy"]
 python_version = "3.12"
 strict = true
 warn_return_any = true
@@ -147,7 +162,7 @@ strict = false
 disallow_untyped_defs = false
 
 [[tool.mypy.overrides]]
-module = ["pgvector.*", "alembic.*", "structlog.*", "boto3.*", "botocore.*"]
+module = ["pgvector.*", "alembic.*", "structlog.*", "boto3.*", "botocore.*", "sklearn.*"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

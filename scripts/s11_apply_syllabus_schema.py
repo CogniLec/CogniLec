@@ -23,31 +23,29 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from sqlalchemy.ext.asyncio import create_async_engine
 from src.core.config import get_settings
 
-SQL_PATH = (
-    Path(__file__).resolve().parents[1]
-    / "docker"
-    / "postgres"
-    / "migrations"
-    / "syllabus"
-    / "001_syllabus_items.sql"
-)
+SQL_DIR = Path(__file__).resolve().parents[1] / "docker" / "postgres" / "migrations" / "syllabus"
+# S50/S52 added 002_syllabus_items_extend.sql on top of S11's 001 file -
+# apply every numbered file in this directory, in order, each idempotent.
+SQL_PATHS = sorted(SQL_DIR.glob("*.sql"))
 
 
 async def main() -> None:
     settings = get_settings()
-    sql = SQL_PATH.read_text()
 
     engine = create_async_engine(settings.SYLLABUS_DATABASE_URL, echo=False)
     try:
-        async with engine.connect() as conn:
-            # Run the whole file as one script via the raw asyncpg connection
-            # (it contains a DO $$ ... $$ block, which a naive split on ";"
-            # would mangle; asyncpg's .execute() runs a full multi-statement
-            # script as-is via the simple query protocol).
-            raw = await conn.get_raw_connection()
-            await raw.driver_connection.execute(sql)
-            await conn.commit()
-        print(f"Applied {SQL_PATH} to {settings.SYLLABUS_DATABASE_URL!r}")
+        for sql_path in SQL_PATHS:
+            sql = sql_path.read_text()
+            async with engine.connect() as conn:
+                # Run the whole file as one script via the raw asyncpg
+                # connection (each file may contain a DO $$ ... $$ block,
+                # which a naive split on ";" would mangle; asyncpg's
+                # .execute() runs a full multi-statement script as-is via
+                # the simple query protocol).
+                raw = await conn.get_raw_connection()
+                await raw.driver_connection.execute(sql)  # type: ignore[union-attr]
+                await conn.commit()
+            print(f"Applied {sql_path} to {settings.SYLLABUS_DATABASE_URL!r}")
     finally:
         await engine.dispose()
 
