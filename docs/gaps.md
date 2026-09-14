@@ -1488,6 +1488,53 @@ upgrade` races unrelated to this change; retried once contention cleared).
   router in isolation structurally cannot catch. Worth doing this kind of
   live smoke-test pass again after future route additions.
 
+## 26. Fixed "Start Recording" doing nothing — two disconnected consent flags (2026-09-14)
+
+- Reported by the user: clicking "Start Recording" in the Capture screen
+  did nothing at all — no error, no permission prompt, timer stayed at
+  00:00:00. Diagnosed live by inspecting React's fiber tree directly
+  (`document.querySelector('main')`'s `__reactFiber$*` property) rather
+  than guessing, since black-box clicking showed no visible symptom to
+  reason from.
+- **Root cause**: two entirely separate "consent acknowledged" booleans.
+  `CaptureScreen` had its own local `consentAcknowledged` state, used only
+  to decide whether to render `<ConsentGate>` at all. `useRecorder`'s
+  hook had its own internal `consentGiven` state, which is what
+  `startRecording` actually checks before proceeding
+  (`if (!consentGiven) { setAppState("CONSENT_REQUIRED"); return; }`).
+  `ConsentGate`'s `onAcknowledge` prop was wired to
+  `() => setConsentAcknowledged(true)` — `CaptureScreen`'s own local
+  setter — never to the hook's real `acknowledgeConsent()`. So clicking
+  "Acknowledge Consent" hid the banner but never set the flag
+  `startRecording` actually reads; every click on "Start Recording"
+  silently short-circuited at that check, before ever reaching
+  `Recorder.isSupported()` or `getUserMedia` — hence zero visible symptom
+  (no error state was ever set, no promise was ever created, so no
+  console error or unhandled rejection either).
+- **Fix**: `useRecorder` now also returns `consentGiven` and exposes
+  `acknowledgeConsent` as the one true setter; `App.tsx`'s `CaptureScreen`
+  no longer keeps its own duplicate `consentAcknowledged` state — it
+  renders `<ConsentGate>` based on `!consentGiven` and wires
+  `onAcknowledge={acknowledgeConsent}` directly. Single source of truth.
+- **Second, separate, genuine finding surfaced once the consent bug was
+  fixed and `startRecording` could finally reach `getUserMedia`**: this
+  dev host has no microphone device at all
+  (`navigator.mediaDevices.getUserMedia({audio:true})` throws
+  `NotFoundError: Requested device not found`). This is an environment
+  limitation, not a code bug — but it did catch that the existing error
+  path (`useRecorder`'s try/catch around `recorder.start()`, which does
+  correctly call `setError(err.message)`) had never actually been
+  exercised against a real browser rejection before now. Confirmed after
+  the consent fix: the red alert box now correctly displays "Requested
+  device not found" instead of nothing.
+- Verified live in a real browser both before (silent no-op, confirmed via
+  fiber inspection) and after (visible error message) the fix. 34/34
+  client tests pass, `tsc -b` and `eslint` both clean.
+- **Not yet addressed**: recording audio has still never been verified
+  end-to-end on this host, because there is no real or virtual microphone
+  device available to test with. That verification needs a machine (or a
+  virtual audio device) with an actual microphone.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

@@ -10,11 +10,11 @@ import type { Subject } from "./types";
 
 function CaptureScreen(): JSX.Element {
   const [subject, setSubject] = useState<Subject | null>(null);
-  const [consentAcknowledged, setConsentAcknowledged] = useState(false);
-  const { appState, elapsedMs, chunkCount, error, startRecording, stopRecording } = useRecorder();
+  const { appState, elapsedMs, chunkCount, error, consentGiven, acknowledgeConsent, startRecording, stopRecording } =
+    useRecorder();
 
   const isRecording = appState === "RECORDING";
-  const canStart = !!subject && consentAcknowledged && !isRecording;
+  const canStart = !!subject && consentGiven && !isRecording;
 
   const handleStart = (): void => {
     if (!subject) return;
@@ -31,7 +31,7 @@ function CaptureScreen(): JSX.Element {
 
       <SubjectPicker selectedSubjectId={subject?.id ?? null} onSelect={setSubject} />
 
-      {!consentAcknowledged && <ConsentGate onAcknowledge={() => setConsentAcknowledged(true)} />}
+      {!consentGiven && <ConsentGate onAcknowledge={acknowledgeConsent} />}
 
       <RecordingControls
         isRecording={isRecording}

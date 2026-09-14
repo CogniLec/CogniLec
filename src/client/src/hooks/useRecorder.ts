@@ -14,6 +14,7 @@ export interface UseRecorderResult {
   elapsedMs: number;
   chunkCount: number;
   error: string | null;
+  consentGiven: boolean;
   requireConsent: () => void;
   acknowledgeConsent: () => void;
   startRecording: (subjectId: string, subjectName: string) => Promise<void>;
@@ -152,6 +153,7 @@ export function useRecorder(): UseRecorderResult {
     elapsedMs,
     chunkCount,
     error,
+    consentGiven,
     requireConsent,
     acknowledgeConsent,
     startRecording,
