@@ -41,6 +41,13 @@ export async function fetchSubjects(): Promise<Subject[]> {
   }));
 }
 
+export async function createSubject(name: string): Promise<Subject> {
+  return request<Subject>("/api/v1/subjects/", {
+    method: "POST",
+    body: JSON.stringify({ name }),
+  });
+}
+
 export async function createSession(
   subjectId: string,
   sessionType: "content" | "syllabus" | "mixed" = "content",
@@ -83,6 +90,18 @@ export async function uploadChunkToPresignedUrl(uploadUrl: string, blob: Blob): 
 
 export async function fetchNextFlashcard(subjectId: string): Promise<Flashcard> {
   return request<Flashcard>(`/api/v1/subjects/${subjectId}/flashcards/next`);
+}
+
+export async function seedFlashcard(
+  subjectId: string,
+  topicLabel: string,
+  front: string,
+  back: string,
+): Promise<Flashcard> {
+  const params = new URLSearchParams({ topic_label: topicLabel, front, back });
+  return request<Flashcard>(`/api/v1/subjects/${subjectId}/flashcards/seed?${params}`, {
+    method: "POST",
+  });
 }
 
 export async function reviewFlashcard(

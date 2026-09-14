@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useStudySession } from "../hooks/useStudySession";
+import { seedFlashcard } from "../services/api";
 import type { FsrsRating } from "../types";
 
 export interface QuizCardProps {
@@ -13,8 +14,83 @@ const RATINGS: { value: FsrsRating; label: string }[] = [
   { value: 4, label: "Easy" },
 ];
 
+function AddFlashcardForm({
+  subjectId,
+  onAdded,
+}: {
+  subjectId: string;
+  onAdded: () => void;
+}): JSX.Element {
+  const [topicLabel, setTopicLabel] = useState("");
+  const [front, setFront] = useState("");
+  const [back, setBack] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const canSave = topicLabel.trim() && front.trim() && back.trim() && !saving;
+
+  const handleAdd = async (): Promise<void> => {
+    setSaving(true);
+    setError(null);
+    try {
+      await seedFlashcard(subjectId, topicLabel.trim(), front.trim(), back.trim());
+      setTopicLabel("");
+      setFront("");
+      setBack("");
+      onAdded();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to add flashcard");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-2 rounded border p-3">
+      <p className="font-medium">Add a flashcard</p>
+      {error && (
+        <p role="alert" className="text-red-600">
+          {error}
+        </p>
+      )}
+      <input
+        type="text"
+        aria-label="Topic"
+        placeholder="Topic (e.g. Cell Biology)"
+        value={topicLabel}
+        onChange={(event) => setTopicLabel(event.target.value)}
+        className="rounded border border-gray-300 p-2"
+      />
+      <input
+        type="text"
+        aria-label="Question"
+        placeholder="Question"
+        value={front}
+        onChange={(event) => setFront(event.target.value)}
+        className="rounded border border-gray-300 p-2"
+      />
+      <textarea
+        aria-label="Answer"
+        placeholder="Answer"
+        value={back}
+        onChange={(event) => setBack(event.target.value)}
+        className="rounded border border-gray-300 p-2"
+      />
+      <button
+        type="button"
+        disabled={!canSave}
+        onClick={() => void handleAdd()}
+        className="self-start rounded bg-gray-800 px-3 py-1 text-white disabled:opacity-40"
+      >
+        {saving ? "Adding…" : "Add flashcard"}
+      </button>
+    </div>
+  );
+}
+
 export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
-  const { card, loading, error, revealed, reveal, submitReview } = useStudySession(subjectId);
+  const { card, loading, error, revealed, reveal, submitReview, refetch } =
+    useStudySession(subjectId);
   const [selfCorrect, setSelfCorrect] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -24,9 +100,12 @@ export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
 
   if (error || !card) {
     return (
-      <p data-testid="quiz-empty" className="text-gray-600">
-        {error ?? "No flashcards available for this subject yet."}
-      </p>
+      <div className="flex flex-col gap-3">
+        <p data-testid="quiz-empty" className="text-gray-600">
+          {error ?? "No flashcards available for this subject yet."}
+        </p>
+        <AddFlashcardForm subjectId={subjectId} onAdded={refetch} />
+      </div>
     );
   }
 

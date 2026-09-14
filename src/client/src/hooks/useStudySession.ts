@@ -9,6 +9,7 @@ export interface UseStudySessionResult {
   revealed: boolean;
   reveal: () => void;
   submitReview: (rating: FsrsRating, selfCorrect: boolean) => Promise<void>;
+  refetch: () => void;
 }
 
 /**
@@ -51,5 +52,5 @@ export function useStudySession(subjectId: string | null): UseStudySessionResult
     [subjectId, card, loadNext],
   );
 
-  return { card, loading, error, revealed, reveal, submitReview };
+  return { card, loading, error, revealed, reveal, submitReview, refetch: loadNext };
 }
