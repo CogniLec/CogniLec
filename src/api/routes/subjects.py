@@ -7,6 +7,7 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
 from src.api.schemas.subject import SubjectCreate, SubjectList, SubjectResponse, SubjectUpdate
 from src.db.exceptions import DuplicateKeyError, SubjectNotFoundError
@@ -19,9 +20,9 @@ router = APIRouter(prefix="/subjects", tags=["subjects"])
 async def create_subject(
     payload: SubjectCreate,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SubjectResponse:
-    # TODO: extract user_id from auth token
-    user_id = uuid.uuid4()
+    user_id = uuid.UUID(str(current_user["id"]))
     repo = SubjectRepository(db)
     try:
         subject = await repo.create(user_id, payload.name, payload.description)
@@ -35,8 +36,9 @@ async def list_subjects(
     offset: int = 0,
     limit: int = 50,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SubjectList:
-    user_id = uuid.uuid4()
+    user_id = uuid.UUID(str(current_user["id"]))
     repo = SubjectRepository(db)
     items = await repo.list_for_user(user_id, offset=offset, limit=limit)
     total = await repo.count_for_user(user_id)

@@ -1420,6 +1420,74 @@ on this host was mid-use by several other parallel worktree agents' own
 full-suite runs during this session, causing `DROP SCHEMA`/`alembic
 upgrade` races unrelated to this change; retried once contention cleared).
 
+## 25. Actually ran the app for real — 3 genuine bugs found and fixed (2026-09-14)
+
+- Until now, every route in `src/api/routes/` was only ever mounted inside
+  test fixtures (each test builds its own throwaway `FastAPI()` and mounts
+  one router) — no `src/api/main.py` assembling all of them into one real,
+  runnable app existed anywhere in this repo (this was already
+  self-documented in `src/api/routes/uploads.py`'s own docstring). Built
+  one now: `src/api/main.py`, wiring all 16 route modules under `/api/v1`
+  plus `CORSMiddleware` and `/health`. Verified importable with zero
+  wiring errors and all 30 real routes present in the generated OpenAPI
+  spec.
+- **Actually started the server** (`uvicorn src.api.main:app`) against the
+  live dev Postgres/MinIO/Valkey stack and drove the real HTTP flow with
+  `curl` — not a test client, not mocked. This surfaced three genuine bugs
+  no test had caught, because no test exercised these routes as a real
+  client would:
+  1. **`POST /auth/register` crashed with `NotNullViolationError`** — the
+     raw-SQL INSERT never set `is_active`, and the column had only a
+     Python-side ORM default (`default=True`), never a `server_default`.
+     Fixed the INSERT statement directly, and added migration
+     `b2c5e8a1f4d7` giving the column a real `server_default` so this is
+     safe for any future raw-SQL caller too, not just this one call site.
+  2. **`GET /auth/me` crashed with a `ResponseValidationError`** —
+     `get_current_user`'s SQL query only selected
+     `id, email, is_active`, but `UserResponse` requires
+     `created_at`/`updated_at`. Fixed the SELECT to include them.
+  3. **`create_subject`/`list_subjects` never used the authenticated user
+     at all** — both had `user_id = uuid.uuid4()` (a fresh random UUID
+     every single call) with a leftover `# TODO: extract user_id from auth
+     token` comment. Every subject was created for, and every list scoped
+     to, a throwaway random identity completely disconnected from who was
+     actually logged in. `tests/test_subjects.py` never caught this
+     because it only ever exercises `SubjectRepository` directly, never
+     the route. Fixed both endpoints to use `Depends(get_current_user)`,
+     matching the pattern already correctly used in `study.py`.
+  4. Added `tests/test_subjects_api.py` — a real route-level regression
+     test (mounts the actual router with a real `get_current_user`
+     override, the way a live client hits it) proving: a created subject
+     is owned by the authenticated user, and two different users each see
+     only their own subjects. **Verified this test genuinely fails against
+     the pre-fix code** (409 Conflict from the random-UUID collision
+     path, confirmed by stashing the fix and re-running) — not a test that
+     happens to pass either way.
+- **Full manual-review-app loop (decision 5) verified live, end to end**:
+  register → login → create subject (now correctly owned) → seed a
+  flashcard → fetch next-due card → submit a review rated wrong
+  (`self_correct: false`) → response shows `correction_recorded: true` (a
+  real row landed in S65's corrections table) → `/study/progress` shows
+  the real review count and accuracy. This is genuine, live-verified
+  behavior, not inferred from passing tests.
+- Full suite after all four fixes: **711 passed, 82 skipped, 0 failed**
+  (up from 709 — the two new `test_subjects_api.py` tests).
+- **Not yet addressed**: the frontend (React client) still cannot be
+  started or verified — this host has no Node.js/npm installed at all
+  (confirmed: no `node`, `npm`, or `nvm` anywhere on the system). Only the
+  backend has been live-verified. Getting Node.js installed (needs `sudo
+  apt-get install nodejs npm`) and then actually running `npm run dev` /
+  driving it in a browser is the next real step to close this gap for the
+  frontend half of decision 5.
+- **Process note**: this "actually run it, not just test it" pass is
+  exactly what the codebase's own "no comments unless non-obvious"
+  convention and the many `docs/gaps.md` entries about honest verification
+  point toward — genuinely running the app surfaces classes of bug
+  (routes never wired together, a request field never selected, a stale
+  TODO from early scaffolding) that unit/integration tests mounting one
+  router in isolation structurally cannot catch. Worth doing this kind of
+  live smoke-test pass again after future route additions.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

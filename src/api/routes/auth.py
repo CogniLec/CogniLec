@@ -40,8 +40,8 @@ async def register(
     hashed_password = get_password_hash(user_in.password)
     result = await session.execute(
         text("""
-            INSERT INTO users (email, hashed_password)
-            VALUES (:email, :hashed_password)
+            INSERT INTO users (email, hashed_password, is_active)
+            VALUES (:email, :hashed_password, true)
             RETURNING id, email, is_active, created_at, updated_at
         """),
         {"email": user_in.email, "hashed_password": hashed_password},

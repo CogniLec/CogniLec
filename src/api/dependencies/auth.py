@@ -81,7 +81,7 @@ async def get_current_user(
         raise credentials_exception
 
     result = await session.execute(
-        text("SELECT id, email, is_active FROM users WHERE id = :user_id"),
+        text("SELECT id, email, is_active, created_at, updated_at FROM users WHERE id = :user_id"),
         {"user_id": user_id},
     )
     user = result.mappings().first()
