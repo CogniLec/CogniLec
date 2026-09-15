@@ -449,13 +449,21 @@ services:
     image: vllm/vllm-openai:v0.5.5
     container_name: lis-vllm
     hostname: vllm
+    # --port is hardcoded (not $VLLM_PORT) deliberately: this is the
+    # container-INTERNAL port the vllm process binds to, which the
+    # `ports:`/healthcheck below both hardcode as 8000 too. $VLLM_PORT only
+    # changes the HOST-side port (left of the ":" in `ports:`) so you can
+    # run this on a machine where 8000 is already taken by something else.
+    # Confirmed live (gap #30): using $VLLM_PORT here as well breaks the
+    # healthcheck and the ports: mapping the moment VLLM_PORT != 8000,
+    # since vllm then binds a different port than what's actually exposed.
     command: >
       --model ${VLLM_MODEL:-microsoft/Phi-3-mini-3.8B-4bit}
       --quantization ${VLLM_QUANTIZATION:-awq}
       --gpu-memory-utilization ${VLLM_GPU_MEMORY_UTIL:-0.85}
       --max-model-len ${VLLM_MAX_MODEL_LEN:-4096}
       --host 0.0.0.0
-      --port ${VLLM_PORT:-8000}
+      --port 8000
     ports:
       - "${VLLM_PORT:-8000}:8000"
     volumes:
@@ -477,7 +485,13 @@ services:
       retries: 5
       start_period: 120s
     networks:
+      # "internal" alone has no egress (internal: true -- see the litellm
+      # service's comment above and gap #29). vLLM needs to reach
+      # huggingface.co to download its model on first start, so it also
+      # needs "edge" -- confirmed live (gap #30): without it, vLLM cannot
+      # reach huggingface.co at all, not just a slow/retrying download.
       - internal
+      - edge
     profiles:
       - llm
 
@@ -519,7 +533,11 @@ services:
       retries: 5
       start_period: 60s
     networks:
+      # "internal" alone has no egress (internal: true, gap #29/#30) --
+      # diarisation needs to reach huggingface.co to download pyannote on
+      # first start.
       - internal
+      - edge
     profiles:
       - diarisation
 
@@ -547,7 +565,11 @@ services:
       timeout: 10s
       retries: 5
     networks:
+      # "internal" alone has no egress (internal: true, gap #29/#30) --
+      # TEI needs to reach huggingface.co to download the embedding model
+      # on first start.
       - internal
+      - edge
     profiles:
       - embedding
     deploy:

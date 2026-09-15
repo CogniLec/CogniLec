@@ -1679,6 +1679,52 @@ upgrade` races unrelated to this change; retried once contention cleared).
   `docker compose config`, passed the full test suite, and were invisible
   until a real request was fired at a real second machine.
 
+## 30. Machine B's own real run surfaced 2 more real bugs in docker-compose.yml (2026-09-16)
+
+- With gap #29's fixes pushed, Machine B's own session pulled `origin/main`
+  and actually tried to stand up `vllm` fresh (its own container, not the
+  one Machine A briefly ran locally). That surfaced 2 more real bugs in the
+  shared `docker-compose.yml`, both invisible to `docker compose config`,
+  and both would hit **any** machine trying to run `vllm` standalone, not
+  specific to Machine B's hardware:
+  1. **`vllm` was `internal`-only, same root cause as gap #29's litellm
+     fix** — no egress means it can never reach huggingface.co to download
+     its model on first start. This was missed when gap #29 fixed
+     `litellm`'s networking, because at the time nothing had actually
+     tried booting a fresh `vllm` container from scratch (Machine A's local
+     `vllm` failed for the same underlying reason but was mis-attributed
+     purely to "no cached model," not to the network being unreachable —
+     see gap #29's own honesty gap in retrospect). Also fixed the same way
+     on `diarisation` and `tei`, which have the identical HF-download-on-
+     first-start requirement and were never actually tested fresh either.
+  2. **`--port ${VLLM_PORT:-8000}` inside `command:` vs. a hardcoded `8000`
+     on the container side of the `ports:` mapping and the healthcheck.**
+     `VLLM_PORT` is meant to be a host-side-only override (for a machine
+     where 8000 is already taken by something else, as this one was for
+     Machine B — Label Studio uses it), but the container's own `--port`
+     flag was reading the same variable, so setting `VLLM_PORT=8001`
+     changed what port vLLM actually bound to *inside* the container while
+     `ports:`/the healthcheck still expected 8000 — breaks the moment
+     `VLLM_PORT != 8000`, a real and easy-to-hit case (this project's own
+     `docker-compose.yml` already reserves 8000 elsewhere for label-studio
+     in a couple configurations). Fixed by hardcoding the container-internal
+     `--port 8000` and leaving `VLLM_PORT` to affect only the host side of
+     `ports:`.
+- Machine B also applied a hardware-specific workaround (`--enforce-eager
+  --max-num-seqs 1`) for its 4GB T1000 GPU's OOM under default vLLM
+  profiling batch sizes — deliberately **not** merged into the shared
+  `docker-compose.yml`, since it's a real tuning tradeoff for constrained
+  VRAM, not a bug; document it in `docs/multi-gpu-setup.md` if a future
+  machine hits the same OOM, rather than making it a default that would
+  needlessly cap throughput on larger cards.
+- This is the second round of "actually running it surfaced bugs
+  inspection missed" in as many gap entries (#29, now #30) — worth noting
+  as a pattern: every fix so far that only exists because a *different*
+  physical machine actually tried the fresh-start path, not because
+  anyone re-inspected the file. The lesson generalizes: config validation
+  and a passing test suite are necessary, not sufficient, for "this works
+  on a machine that isn't the one that wrote the config."
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

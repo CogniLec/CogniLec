@@ -272,6 +272,19 @@ VLLM_GPU_DEVICE=0
 docker compose --profile llm up -d vllm
 ```
 
+If port 8000 is already taken by something else on Machine B (e.g. Label
+Studio, which also defaults to it), set `VLLM_PORT=<some other port>` in
+that machine's `.env` instead — this only changes the *host*-side port;
+the container internally still uses 8000 and the healthcheck/`ports:`
+mapping in `docker-compose.yml` already account for that correctly.
+
+If Machine B's GPU has limited VRAM (this was hit on a 4GB card) and
+`vllm` OOMs on startup even with `VLLM_GPU_MEMORY_UTIL` already high,
+add `--enforce-eager --max-num-seqs 1` to its `command:` in
+`docker-compose.yml` on that machine only — a real tradeoff (lower
+throughput) for fitting a small card, not something to set by default on
+a machine with more VRAM.
+
 Verify it's actually listening and reachable from Machine A:
 
 ```bash
