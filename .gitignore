@@ -56,7 +56,6 @@ secrets/
 *.crt
 
 # Models (large, cached in volume)
-models/
 /models/
 
 # DVC

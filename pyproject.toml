@@ -142,6 +142,7 @@ skip-magic-trailing-comma = false
 line-ending = "lf"
 
 [tool.mypy]
+plugins = ["pydantic.mypy"]
 python_version = "3.12"
 strict = true
 warn_return_any = true
@@ -154,7 +155,7 @@ show_error_codes = true
 pretty = true
 
 [[tool.mypy.overrides]]
-module = ["tests.*", "migrations.*"]
+module = ["tests.*", "src.db.migrations.*"]
 strict = false
 disallow_untyped_defs = false
 
