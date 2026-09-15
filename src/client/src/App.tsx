@@ -24,23 +24,28 @@ function CaptureScreen(): JSX.Element {
   return (
     <div className="flex flex-col gap-6">
       {error && (
-        <p role="alert" className="rounded bg-red-100 p-2 text-red-700">
+        <p role="alert" className="alert-error">
           {error}
         </p>
       )}
 
-      <SubjectPicker selectedSubjectId={subject?.id ?? null} onSelect={setSubject} />
+      <section className="panel">
+        <h2 className="mb-3 text-sm font-semibold text-slate-200">Subject</h2>
+        <SubjectPicker selectedSubjectId={subject?.id ?? null} onSelect={setSubject} />
+      </section>
 
       {!consentGiven && <ConsentGate onAcknowledge={acknowledgeConsent} />}
 
-      <RecordingControls
-        isRecording={isRecording}
-        canStart={canStart}
-        elapsedMs={elapsedMs}
-        chunkCount={chunkCount}
-        onStart={handleStart}
-        onStop={stopRecording}
-      />
+      <section className="panel flex flex-col items-center gap-4 text-center">
+        <RecordingControls
+          isRecording={isRecording}
+          canStart={canStart}
+          elapsedMs={elapsedMs}
+          chunkCount={chunkCount}
+          onStart={handleStart}
+          onStop={stopRecording}
+        />
+      </section>
     </div>
   );
 }
@@ -50,7 +55,11 @@ export function App(): JSX.Element {
   const [tab, setTab] = useState<"capture" | "review">("review");
 
   if (loading) {
-    return <p className="p-6">Loading…</p>;
+    return (
+      <div className="flex min-h-screen items-center justify-center text-slate-400">
+        <p className="animate-pulse text-sm">Loading…</p>
+      </div>
+    );
   }
 
   if (!user) {
@@ -58,33 +67,41 @@ export function App(): JSX.Element {
   }
 
   return (
-    <main className="mx-auto flex max-w-xl flex-col gap-6 p-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold">LIS</h1>
-        <div className="flex items-center gap-3 text-sm">
-          <span>{user.email}</span>
-          <button type="button" onClick={logout} className="underline">
+    <main className="mx-auto flex min-h-screen max-w-2xl flex-col gap-6 px-4 py-8 sm:px-6">
+      <header className="flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-sm font-bold text-white shadow-panel">
+            LIS
+          </span>
+          <div>
+            <h1 className="text-lg font-semibold leading-tight text-white">Lecture Intelligence</h1>
+            <p className="text-xs text-slate-500">Topic-first study companion</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="hidden text-sm text-slate-400 sm:inline">{user.email}</span>
+          <button type="button" onClick={logout} className="btn-ghost">
             Log out
           </button>
         </div>
-      </div>
+      </header>
 
-      <div className="flex gap-2">
+      <nav className="flex w-fit gap-1 rounded-full border border-white/10 bg-white/5 p-1">
         <button
           type="button"
           onClick={() => setTab("review")}
-          className={tab === "review" ? "font-semibold underline" : ""}
+          className={tab === "review" ? "pill-tab-active" : "pill-tab"}
         >
           Review
         </button>
         <button
           type="button"
           onClick={() => setTab("capture")}
-          className={tab === "capture" ? "font-semibold underline" : ""}
+          className={tab === "capture" ? "pill-tab-active" : "pill-tab"}
         >
           Capture
         </button>
-      </div>
+      </nav>
 
       {tab === "review" ? <StudyScreen /> : <CaptureScreen />}
     </main>

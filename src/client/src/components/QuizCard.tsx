@@ -46,10 +46,10 @@ function AddFlashcardForm({
   };
 
   return (
-    <div className="flex flex-col gap-2 rounded border p-3">
-      <p className="font-medium">Add a flashcard</p>
+    <div className="panel flex flex-col gap-3">
+      <p className="text-sm font-semibold text-slate-200">Add a flashcard</p>
       {error && (
-        <p role="alert" className="text-red-600">
+        <p role="alert" className="alert-error">
           {error}
         </p>
       )}
@@ -59,7 +59,7 @@ function AddFlashcardForm({
         placeholder="Topic (e.g. Cell Biology)"
         value={topicLabel}
         onChange={(event) => setTopicLabel(event.target.value)}
-        className="rounded border border-gray-300 p-2"
+        className="text-input"
       />
       <input
         type="text"
@@ -67,20 +67,20 @@ function AddFlashcardForm({
         placeholder="Question"
         value={front}
         onChange={(event) => setFront(event.target.value)}
-        className="rounded border border-gray-300 p-2"
+        className="text-input"
       />
       <textarea
         aria-label="Answer"
         placeholder="Answer"
         value={back}
         onChange={(event) => setBack(event.target.value)}
-        className="rounded border border-gray-300 p-2"
+        className="text-input min-h-[5rem] resize-y"
       />
       <button
         type="button"
         disabled={!canSave}
         onClick={() => void handleAdd()}
-        className="self-start rounded bg-gray-800 px-3 py-1 text-white disabled:opacity-40"
+        className="btn-secondary self-start"
       >
         {saving ? "Adding…" : "Add flashcard"}
       </button>
@@ -95,13 +95,17 @@ export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
   const [submitting, setSubmitting] = useState(false);
 
   if (loading) {
-    return <p data-testid="quiz-loading">Loading next card…</p>;
+    return (
+      <p data-testid="quiz-loading" className="text-sm text-slate-400">
+        Loading next card…
+      </p>
+    );
   }
 
   if (error || !card) {
     return (
       <div className="flex flex-col gap-3">
-        <p data-testid="quiz-empty" className="text-gray-600">
+        <p data-testid="quiz-empty" className="text-sm text-slate-400">
           {error ?? "No flashcards available for this subject yet."}
         </p>
         <AddFlashcardForm subjectId={subjectId} onAdded={refetch} />
@@ -121,56 +125,57 @@ export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
   };
 
   return (
-    <div data-testid="quiz-card" className="flex flex-col gap-4 rounded border p-4">
-      <p className="text-xs uppercase text-gray-500">{card.topic_label}</p>
-      <p className="text-lg font-medium">{card.front}</p>
+    <div data-testid="quiz-card" className="panel flex flex-col gap-4">
+      <span className="badge w-fit">{card.topic_label}</span>
+      <p className="text-lg font-medium leading-relaxed text-white">{card.front}</p>
 
       {!revealed && (
-        <button
-          type="button"
-          onClick={reveal}
-          className="self-start rounded bg-gray-800 px-3 py-1 text-white"
-        >
+        <button type="button" onClick={reveal} className="btn-primary self-start">
           Reveal the actual note
         </button>
       )}
 
       {revealed && (
-        <div className="flex flex-col gap-3">
-          <p data-testid="quiz-answer" className="rounded bg-gray-100 p-2">
+        <div className="flex flex-col gap-4">
+          <p
+            data-testid="quiz-answer"
+            className="rounded-lg border border-white/10 bg-slate-950/60 p-3 text-sm leading-relaxed text-slate-200"
+          >
             {card.back}
           </p>
 
-          <fieldset className="flex flex-col gap-1">
-            <legend>Did you actually know this?</legend>
-            <label>
+          <fieldset className="flex flex-col gap-2 border-t border-white/5 pt-3">
+            <legend className="field-label mb-1">Did you actually know this?</legend>
+            <label className="flex items-center gap-2 text-sm text-slate-200">
               <input
                 type="radio"
                 name="self-correct"
                 checked={selfCorrect === true}
                 onChange={() => setSelfCorrect(true)}
-              />{" "}
+                className="h-4 w-4 border-white/20 bg-transparent text-brand-500 focus:ring-brand-500/40"
+              />
               Yes, I knew it
             </label>
-            <label>
+            <label className="flex items-center gap-2 text-sm text-slate-200">
               <input
                 type="radio"
                 name="self-correct"
                 checked={selfCorrect === false}
                 onChange={() => setSelfCorrect(false)}
-              />{" "}
+                className="h-4 w-4 border-white/20 bg-transparent text-brand-500 focus:ring-brand-500/40"
+              />
               No, I got it wrong
             </label>
           </fieldset>
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {RATINGS.map((r) => (
               <button
                 key={r.value}
                 type="button"
                 disabled={selfCorrect === null || submitting}
                 onClick={() => void handleRate(r.value)}
-                className="rounded border px-2 py-1 disabled:opacity-40"
+                className="btn-secondary"
               >
                 {r.label}
               </button>

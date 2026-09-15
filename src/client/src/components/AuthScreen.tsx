@@ -29,55 +29,61 @@ export function AuthScreen({ onLogin }: AuthScreenProps): JSX.Element {
   };
 
   return (
-    <main className="mx-auto flex max-w-sm flex-col gap-4 p-6">
-      <h1 className="text-xl font-semibold">
-        {mode === "login" ? "Log in" : "Create account"}
-      </h1>
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <main className="panel w-full max-w-sm">
+        <div className="mb-5 flex flex-col items-center gap-2 text-center">
+          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-sm font-bold text-white shadow-panel">
+            LIS
+          </span>
+          <h1 className="text-lg font-semibold text-white">
+            {mode === "login" ? "Log in" : "Create account"}
+          </h1>
+          <p className="text-xs text-slate-500">Lecture Intelligence System</p>
+        </div>
 
-      {error && (
-        <p role="alert" className="rounded bg-red-100 p-2 text-red-700">
-          {error}
-        </p>
-      )}
+        {error && (
+          <p role="alert" className="alert-error mb-4">
+            {error}
+          </p>
+        )}
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3" data-testid="auth-form">
-        <label className="flex flex-col gap-1">
-          <span>Email</span>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            className="rounded border border-gray-300 p-2"
-          />
-        </label>
-        <label className="flex flex-col gap-1">
-          <span>Password</span>
-          <input
-            type="password"
-            required
-            minLength={8}
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            className="rounded border border-gray-300 p-2"
-          />
-        </label>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4" data-testid="auth-form">
+          <label className="flex flex-col gap-1.5">
+            <span className="field-label">Email</span>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              className="text-input"
+              placeholder="you@example.com"
+            />
+          </label>
+          <label className="flex flex-col gap-1.5">
+            <span className="field-label">Password</span>
+            <input
+              type="password"
+              required
+              minLength={8}
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              className="text-input"
+              placeholder="••••••••"
+            />
+          </label>
+          <button type="submit" disabled={submitting} className="btn-primary mt-1 w-full">
+            {submitting ? "Please wait…" : mode === "login" ? "Log in" : "Register"}
+          </button>
+        </form>
+
         <button
-          type="submit"
-          disabled={submitting}
-          className="rounded bg-blue-600 p-2 text-white disabled:opacity-50"
+          type="button"
+          onClick={() => setMode(mode === "login" ? "register" : "login")}
+          className="mt-4 w-full text-center text-sm text-brand-300 hover:text-brand-200"
         >
-          {mode === "login" ? "Log in" : "Register"}
+          {mode === "login" ? "Need an account? Register" : "Have an account? Log in"}
         </button>
-      </form>
-
-      <button
-        type="button"
-        onClick={() => setMode(mode === "login" ? "register" : "login")}
-        className="text-sm text-blue-600 underline"
-      >
-        {mode === "login" ? "Need an account? Register" : "Have an account? Log in"}
-      </button>
-    </main>
+      </main>
+    </div>
   );
 }

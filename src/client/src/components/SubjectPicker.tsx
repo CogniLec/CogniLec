@@ -41,22 +41,28 @@ export function SubjectPicker({ selectedSubjectId, onSelect }: SubjectPickerProp
   };
 
   if (loading) {
-    return <p data-testid="subject-picker-loading">Loading subjects…</p>;
+    return (
+      <p data-testid="subject-picker-loading" className="text-sm text-slate-400">
+        Loading subjects…
+      </p>
+    );
   }
 
   return (
-    <div data-testid="subject-picker" className="flex flex-col gap-2">
+    <div data-testid="subject-picker" className="flex flex-col gap-3">
       {error && (
-        <p role="alert" className="text-red-600">
+        <p role="alert" className="alert-error">
           {error}
         </p>
       )}
 
       {subjects.length === 0 ? (
-        <p data-testid="subject-picker-empty">No subjects available. Create one below.</p>
+        <p data-testid="subject-picker-empty" className="text-sm text-slate-400">
+          No subjects available. Create one below.
+        </p>
       ) : (
-        <>
-          <label htmlFor="subject-select" className="font-medium">
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="subject-select" className="field-label">
             Subject
           </label>
           <select
@@ -67,7 +73,7 @@ export function SubjectPicker({ selectedSubjectId, onSelect }: SubjectPickerProp
               const subject = subjects.find((item) => item.id === event.target.value);
               if (subject) onSelect(subject);
             }}
-            className="rounded border border-gray-300 p-2"
+            className="text-input"
           >
             <option value="" disabled>
               Select a subject…
@@ -78,23 +84,23 @@ export function SubjectPicker({ selectedSubjectId, onSelect }: SubjectPickerProp
               </option>
             ))}
           </select>
-        </>
+        </div>
       )}
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 border-t border-white/5 pt-3">
         <input
           type="text"
           aria-label="New name"
           placeholder="New subject name"
           value={newName}
           onChange={(event) => setNewName(event.target.value)}
-          className="flex-1 rounded border border-gray-300 p-2"
+          className="text-input flex-1"
         />
         <button
           type="button"
           disabled={!newName.trim() || creating}
           onClick={() => void handleCreate()}
-          className="rounded bg-gray-800 px-3 py-1 text-white disabled:opacity-40"
+          className="btn-secondary shrink-0"
         >
           {creating ? "Creating…" : "Create subject"}
         </button>
