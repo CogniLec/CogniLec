@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchNextFlashcard, reviewFlashcard } from "../services/api";
+import { ApiError, fetchNextFlashcard, reviewFlashcard } from "../services/api";
 import type { Flashcard, FsrsRating } from "../types";
 
 export interface UseStudySessionResult {
@@ -32,7 +32,16 @@ export function useStudySession(subjectId: string | null): UseStudySessionResult
       .then(setCard)
       .catch((err: unknown) => {
         setCard(null);
-        setError(err instanceof Error ? err.message : "No flashcards available");
+        // A 404 here means "no due flashcard right now" -- an expected,
+        // normal state for a new or fully-reviewed subject, not a failure.
+        // QuizCard already shows a friendly empty-state message when both
+        // card and error are null; only a genuine failure should surface
+        // the raw error text.
+        if (err instanceof ApiError && err.status === 404) {
+          setError(null);
+        } else {
+          setError(err instanceof Error ? err.message : "Failed to load the next flashcard");
+        }
       })
       .finally(() => setLoading(false));
   }, [subjectId]);

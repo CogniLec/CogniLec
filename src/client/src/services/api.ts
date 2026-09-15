@@ -17,6 +17,22 @@ export interface SessionCreateResponse {
   status: string;
 }
 
+/**
+ * Carries the HTTP status alongside the message so callers can tell an
+ * expected "not found yet" 404 (e.g. no flashcards for a brand-new subject)
+ * apart from a genuine failure, instead of showing the same raw
+ * "API request failed: 404 Not Found" text for both.
+ */
+export class ApiError extends Error {
+  constructor(
+    public readonly status: number,
+    statusText: string,
+  ) {
+    super(`API request failed: ${status} ${statusText}`);
+    this.name = "ApiError";
+  }
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const token = getAccessToken();
   const res = await fetch(`${CONFIG.apiBaseUrl}${path}`, {
@@ -27,7 +43,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     ...init,
   });
   if (!res.ok) {
-    throw new Error(`API request failed: ${res.status} ${res.statusText}`);
+    throw new ApiError(res.status, res.statusText);
   }
   return (await res.json()) as T;
 }

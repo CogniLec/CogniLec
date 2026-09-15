@@ -87,5 +87,23 @@ describe("QuizCard (manual-review-app quiz/recall loop)", () => {
 
     render(<QuizCard subjectId="subj-1" />);
     await waitFor(() => expect(screen.getByTestId("quiz-empty")).toBeInTheDocument());
+    // Regression: a 404 here means "nothing due yet," a normal state for a
+    // new subject -- it must show the friendly copy, not the raw
+    // "API request failed: 404 Not Found" fetch error text.
+    expect(screen.getByTestId("quiz-empty")).toHaveTextContent(
+      "No flashcards available for this subject yet.",
+    );
+  });
+
+  it("shows the real error message when the flashcard request genuinely fails", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+      statusText: "Internal Server Error",
+    }) as unknown as typeof fetch;
+
+    render(<QuizCard subjectId="subj-1" />);
+    await waitFor(() => expect(screen.getByTestId("quiz-empty")).toBeInTheDocument());
+    expect(screen.getByTestId("quiz-empty")).toHaveTextContent("API request failed: 500");
   });
 });
