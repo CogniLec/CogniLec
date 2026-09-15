@@ -1577,6 +1577,50 @@ upgrade` races unrelated to this change; retried once contention cleared).
   2,000-utterance relevance labelling are all still outstanding and still
   block the S06/S29/S42 gates for real evaluation numbers.
 
+## 28. Multi-machine GPU deployment corrected: 3 machines, not 3 cards in one host (2026-09-15)
+
+- The user corrected a fundamental misunderstanding in `docs/multi-gpu-setup.md`:
+  the real target is 3 separate physical machines, each with one GPU, not 3
+  GPU cards in a single host. The original doc (device-index pinning,
+  `CUDA_VISIBLE_DEVICES`) was the wrong shape entirely for that topology and
+  was fully rewritten around real network addresses (which machine's LAN IP
+  each service's URL points at) instead of device indices.
+- While rewriting it, found two real gaps in the underlying code (not just
+  the doc) that would have silently broken a genuine cross-machine deployment:
+  1. **TEI (S25 embedding service) had no `docker-compose.yml` entry and no
+     config setting at all** — `EmbeddingClient`'s `tei_base_url` default
+     (`http://tei:80`) resolved nowhere, so every embedding call silently used
+     the local fallback regardless of intent. Fixed: added `TEI_BASE_URL` to
+     `src/core/config.py`, a real `tei` service to `docker-compose.yml`
+     (matching `docs/specs/block-4-embedding-topic-intelligence.md` §6.1,
+     gated behind a new `embedding` compose profile), wired
+     `src/api/routes/search.py`'s `_get_query_embedding` to actually pass
+     `settings.TEI_BASE_URL` instead of leaving the class default in place,
+     and added `TEI_BASE_URL`/`TEI_IMAGE_TAG`/`TEI_PORT` to `.env.example`.
+  2. **`config/litellm.yaml` hardcoded `api_base: http://vllm:8000/v1` /
+     `http://llamacpp:8080/v1`** — docker-compose-internal hostnames,
+     meaningless once vLLM runs on a separate physical machine. The doc's
+     first draft instructed hand-editing this YAML file per deployment.
+     Fixed by switching both `api_base` fields to LiteLLM's own
+     `os.environ/VAR_NAME` substitution (the same mechanism already used for
+     `api_key: os.environ/OPENAI_API_KEY` two lines below it in the same
+     file), added `VLLM_API_BASE`/`LLAMACPP_API_BASE` to `.env.example`, and
+     passed both through to the `litellm` service's `environment:` block in
+     `docker-compose.yml` so the substitution actually has something to
+     resolve inside the container.
+  3. Confirmed `src/services/diarisation/http_backend.py` needed **no**
+     change — it already reads `settings.DIARISATION_SERVICE_URL` correctly
+     and was cross-machine-ready from S18/S20.
+- Full test suite re-run after all of the above: 711 passed, 82 skipped, no
+  regressions.
+- **Still unverified** (same honesty caveat as the rest of this doc): the
+  network wiring is correct by inspection and by `docker compose config`
+  validation, but genuine cross-machine execution — reaching a service across
+  a real LAN, not `localhost` on one box — has not been tested end to end,
+  because this session only has one physical machine available. Treat "works
+  across 3 real machines" as unconfirmed until actually tried on real
+  hardware.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

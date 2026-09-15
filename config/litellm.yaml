@@ -1,14 +1,21 @@
 # S37 — LiteLLM proxy: five-tier local-first failover ladder.
+#
+# api_base for tier_1/tier_2 use LiteLLM's os.environ/VAR_NAME substitution
+# (the same mechanism already used below for api_key) so a multi-machine
+# deployment (docs/multi-gpu-setup.md) points at Machine B/C's real LAN IP
+# via env vars, not by hand-editing this file. VLLM_API_BASE/LLAMACPP_API_BASE
+# default (.env.example) to the docker-compose-internal hostnames, which is
+# correct when everything runs on one host/compose network.
 model_list:
   - model_name: tier_1_local
     litellm_params:
       model: vllm/microsoft/Phi-3-mini-3.8B-4bit
-      api_base: http://vllm:8000/v1
+      api_base: os.environ/VLLM_API_BASE
       timeout: 60
   - model_name: tier_2_cpu
     litellm_params:
       model: llama.cpp/llama-3-8b-instruct
-      api_base: http://llamacpp:8080/v1
+      api_base: os.environ/LLAMACPP_API_BASE
       timeout: 120
   - model_name: tier_3_openai
     litellm_params:

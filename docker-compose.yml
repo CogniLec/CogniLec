@@ -524,6 +524,38 @@ services:
       - diarisation
 
   # ---------------------------------------------------------------------------
+  # TEI — S25 embedding service (Qwen3-Embedding-0.6B). Real network address
+  # (docs/multi-gpu-setup.md), not just an in-process device index: on a
+  # multi-machine deployment this runs on its own host. EmbeddingClient
+  # (src/ml/embedding/client.py) falls back to local sentence-transformers if
+  # unreachable, so a wrong TEI_BASE_URL degrades rather than breaks search.
+  # ---------------------------------------------------------------------------
+  tei:
+    image: ghcr.io/huggingface/text-embeddings-inference:${TEI_IMAGE_TAG:-cpu-1.5}
+    container_name: lis-tei
+    hostname: tei
+    command: --model-id Qwen/Qwen3-Embedding-0.6B --max-batch-tokens 16384
+    ports:
+      - "${TEI_PORT:-8090}:80"
+    volumes:
+      - models:/models
+    environment:
+      HF_HOME: /models/huggingface
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - internal
+    profiles:
+      - embedding
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # ---------------------------------------------------------------------------
   # LiteLLM proxy — S37 five-tier failover ladder router
   # ---------------------------------------------------------------------------
   litellm:
@@ -536,6 +568,11 @@ services:
     ports:
       - "4000:4000"
     environment:
+      # config/litellm.yaml resolves these via os.environ/VAR_NAME -- point
+      # at a remote machine's LAN IP here for the 3-machine topology
+      # (docs/multi-gpu-setup.md) instead of hand-editing that file.
+      VLLM_API_BASE: ${VLLM_API_BASE:-http://vllm:8000/v1}
+      LLAMACPP_API_BASE: ${LLAMACPP_API_BASE:-http://llamacpp:8080/v1}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       TOGETHER_API_KEY: ${TOGETHER_API_KEY:-}

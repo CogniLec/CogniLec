@@ -1,181 +1,256 @@
-# Multi-GPU Setup — Running S02/S36/S18/S25 Across Multiple Physical Cards
+# Multi-Machine GPU Setup — Running Across 3 Separate Hosts
 
 ## What this actually is (read this first)
 
-This project's GPU-heavy pieces — ASR (faster-whisper), embedding
-(sentence-transformers), vLLM (Tier-1 LLM serving), and diarisation
-(pyannote, an isolated container) — each load a **small model** that fits
-comfortably on one 4GB card. Splitting one of those models across multiple
-GPUs (tensor parallelism) isn't worth it here: the inter-GPU communication
-overhead would likely cost more than it saves at this model size.
+**This is not about multiple GPU cards in one machine.** You have 3
+separate physical machines, each with its own single GPU. That's a
+genuinely different setup from pinning devices on one host: instead of
+`CUDA_VISIBLE_DEVICES`/device indices, the real knob is **which machine's
+IP address each service's URL points at**.
 
-What this setup actually buys you: **running independent pipeline stages
-on separate physical GPUs simultaneously**, so ASR, diarisation, and
-embedding for different sessions can all be in flight at once instead of
-serialized on a single card. That's a real throughput win for a batch of
-lectures, which is this project's actual workload.
+The GPU-heavy pieces in this project are:
 
-**Honesty note** (see `docs/gaps.md` gap #21): the config below was built
-and verified correct on a single-GPU host — device index 0 (the default)
-is confirmed working end to end. Genuine multi-GPU concurrent execution
-and any resulting speedup has **not** been measured anywhere, because no
-machine with more than one GPU has been available to test on. Follow this
-guide, but treat the "it actually runs faster with 3 GPUs" claim as
-unverified until you've run it yourself and checked.
+| Service     | What it does                          | Deployment shape today                          |
+|-------------|----------------------------------------|--------------------------------------------------|
+| ASR         | faster-whisper transcription           | In-process worker (`src/workers/asr_worker.py`) |
+| Embedding   | sentence embeddings for search/clustering | Real HTTP service (TEI) with local CPU/GPU fallback |
+| vLLM        | Tier-1 local LLM serving               | Isolated Docker container                        |
+| Diarisation | speaker separation (pyannote)          | Isolated Docker container                        |
 
-## Step 1 — Confirm you actually have multiple GPUs
+The two containerized services (vLLM, diarisation) were already built to
+run as separate network services — they just needed a real second/third
+machine to actually prove that. The embedding service (TEI) previously had
+no `docker-compose.yml` entry and no config wiring at all — it's been
+added as part of this update (see the "What changed" section at the
+bottom) so it can genuinely be its own machine too, not just an unused
+class default.
+
+ASR is the one exception: it's an in-process Python worker, not a
+network service. To run it on a different machine, you run the worker
+process itself on that machine — it doesn't need a URL, but it does need
+network access to Postgres, MinIO, and Valkey (all on whichever machine
+hosts the core stack).
+
+**Honesty note**: this has only been verified on a single machine (one
+GPU, gap #15/#17/#20/#21). The container/service wiring is real and
+correct by inspection, but genuine cross-machine execution — reaching a
+service across your LAN, not `localhost` — has not been tested end to
+end. Follow this guide, verify each step's checks, and treat "it actually
+works across 3 machines" as unconfirmed until you've done that yourself.
+
+## Step 0 — Decide which machine runs what
+
+With 3 machines and 4 GPU-consumers, one machine will host two things.
+A reasonable split:
+
+- **Machine A** (core stack): Postgres, MinIO, Valkey, the API, the ASR
+  worker. This is "home base" — everything else needs to reach it.
+- **Machine B**: vLLM (Tier-1 LLM serving) — runs continuously.
+- **Machine C**: TEI (embedding) + diarisation — TEI runs continuously,
+  diarisation only when a session actually needs it, so sharing a machine
+  is fine.
+
+There's nothing special about this split; swap ASR onto Machine B or C if
+that fits your hardware better. The point is: figure out each machine's
+LAN IP address first (`ip addr show` or `hostname -I` on each).
+
+## Step 1 — Confirm each machine actually has its GPU working
+
+On **each** of the 3 machines:
 
 ```bash
 nvidia-smi -L
 ```
 
-You should see one line per physical card, e.g.:
+Each should show exactly one GPU. If any machine shows none, stop and fix
+that machine's driver/CUDA setup before continuing — none of the network
+wiring below will help if the GPU itself isn't visible on that host.
 
-```
-GPU 0: NVIDIA T1000 (UUID: GPU-xxxxxxxx-...)
-GPU 1: NVIDIA T1000 (UUID: GPU-yyyyyyyy-...)
-GPU 2: NVIDIA T1000 (UUID: GPU-zzzzzzzz-...)
-```
+## Step 2 — Machine A: core stack + ASR worker
 
-The number before the colon (`0`, `1`, `2`, ...) is the **device index**
-everything below refers to. If this only shows one GPU, none of the rest
-of this doc will do anything for you — the app will just run on device 0
-regardless of what you set.
-
-## Step 2 — Decide which stage goes on which card
-
-There are four independent settings, one per GPU-using stage:
-
-| Setting                 | Controls                                   | Where it's used                                    |
-|--------------------------|---------------------------------------------|-----------------------------------------------------|
-| `ASR_CUDA_DEVICE`         | faster-whisper transcription                | `src/workers/asr_worker.py` (in-process)             |
-| `EMBEDDING_CUDA_DEVICE`   | sentence-transformers embedding             | `src/api/routes/search.py`'s `EmbeddingClient` call (in-process) |
-| `VLLM_GPU_DEVICE`         | the isolated vLLM container (S36 Tier-1 LLM) | `docker-compose.yml`'s `vllm` service (own container) |
-| `DIARISATION_GPU_DEVICE`  | the isolated diarisation container (S20)     | `docker-compose.yml`'s `diarisation` service (own container) |
-
-With 3 physical GPUs, a reasonable split is:
-
-- **GPU 0**: ASR + embedding (both lightweight, in-process, can share a card)
-- **GPU 1**: vLLM (Tier-1 LLM serving — runs continuously as its own container)
-- **GPU 2**: diarisation (runs per-session, its own container)
-
-There's nothing special about this split — it's just one way to spread
-four consumers across three cards without doubling any of them up
-unnecessarily. Adjust to your actual hardware and workload.
-
-## Step 3 — Set the environment variables
-
-Edit your `.env` (copy from `.env.example` if you don't have one yet) and
-set the four device variables from Step 2:
+On Machine A, bring up the base stack as usual:
 
 ```bash
-# .env
-ASR_CUDA_DEVICE=0
-EMBEDDING_CUDA_DEVICE=0
-VLLM_GPU_DEVICE=1
-DIARISATION_GPU_DEVICE=2
+docker compose up -d
 ```
 
-These are all plain integers matching the device indices from
-`nvidia-smi -L` in Step 1. Leaving any of them unset defaults to `0`
-(safe on a single-GPU host — that's the config this repo has actually
-been tested against).
-
-## Step 4 — Start the containerized services (vLLM, diarisation)
-
-These pick up their GPU assignment from `docker-compose.yml`'s
-`device_ids: ["${VLLM_GPU_DEVICE:-0}"]` / `["${DIARISATION_GPU_DEVICE:-0}"]`
-— Docker Compose reads the env vars from your `.env` automatically.
-
-```bash
-docker compose --profile llm up -d vllm
-docker compose --profile diarisation up -d diarisation
-```
-
-Verify each container actually landed on the GPU you asked for:
-
-```bash
-docker exec lis-vllm nvidia-smi -L
-docker exec lis-diarisation nvidia-smi -L
-```
-
-Each should show **only** the one card you assigned it (Docker's
-`device_ids` reservation restricts what the container can see) — if you
-see all your GPUs listed inside the container, the reservation didn't
-take effect; double check `VLLM_GPU_DEVICE`/`DIARISATION_GPU_DEVICE` are
-actually set in the environment `docker compose` is reading from (run
-`docker compose config` and check the rendered `device_ids` values).
-
-## Step 5 — Start the in-process services (ASR, embedding)
-
-These read `ASR_CUDA_DEVICE`/`EMBEDDING_CUDA_DEVICE` from
-`src/core/config.py`'s `Settings` at process startup — no Docker
-involved, just make sure your shell/`.env` has the values set before
-launching:
+The ASR worker runs in-process on whichever machine you launch it from —
+launch it here:
 
 ```bash
 source .venv/bin/activate
 python -m src.workers.asr_worker
 ```
 
-To confirm the ASR worker actually picked the right device, check its
-startup log line — `src/services/asr/service.py` logs
-`device_index=<N>` when it loads the model:
+Its `.env` needs to point at wherever Postgres/MinIO/Valkey actually are
+— if they're all on Machine A too (the setup above), the defaults
+(`localhost`) are fine only if you're running the worker on Machine A
+itself. If you later move the ASR worker to a different machine, update
+`DATABASE_URL`, `MINIO_ENDPOINT`, and `VALKEY_URL` in that machine's
+`.env` to Machine A's real LAN IP instead of `localhost`.
 
-```
-loading faster-whisper model ... device_index=0
-```
+`ASR_CUDA_DEVICE` stays `0` here — it selects a device index on *this*
+machine, and each machine only has one GPU (device `0`).
 
-The embedding client (`src/ml/embedding/client.py`) is instantiated
-per-request inside `src/api/routes/search.py`, not at process startup —
-it'll use whatever `EMBEDDING_CUDA_DEVICE` is set to at request time.
+## Step 3 — Machine B: vLLM
 
-## Step 6 — Watch all cards while it runs
+On Machine B, you only need Docker and this repo checked out (the whole
+stack doesn't need to run here, just the one service):
 
 ```bash
-watch -n1 nvidia-smi
+# .env on Machine B
+VLLM_GPU_DEVICE=0
+
+docker compose --profile llm up -d vllm
 ```
 
-With the pipeline actually running (a real session being transcribed +
-diarised + embedded concurrently), you should see utilization on more
-than one GPU line at once. If everything's still landing on one card,
-recheck Step 3's env vars are actually being picked up by whichever
-process you're looking at (`echo $ASR_CUDA_DEVICE` in the shell that
-launched the worker, `docker compose config | grep device_ids` for the
-containers).
+Verify it's actually listening and reachable from Machine A:
+
+```bash
+# on Machine B itself
+curl http://localhost:8000/health
+
+# on Machine A, using Machine B's real LAN IP
+curl http://<machine-b-ip>:8000/health
+```
+
+If the second command fails but the first works, it's a firewall/network
+issue on Machine B (Docker's `ports:` mapping binds to `0.0.0.0` by
+default, so this is almost always a host firewall blocking the port, not
+a Docker config problem) — check `ufw status` / `iptables` on Machine B.
+
+**Point the rest of the system at Machine B.** `config/litellm.yaml`'s
+`api_base` fields resolve via LiteLLM's `os.environ/VAR_NAME`
+substitution (the same mechanism it already uses for `api_key:
+os.environ/OPENAI_API_KEY`), so this no longer means hand-editing that
+YAML file per deployment — just set the env var on whichever machine
+runs the `litellm` container:
+
+```bash
+# .env, on the machine running the litellm container (Machine A here)
+VLLM_API_BASE=http://<machine-b-ip>:8000/v1
+
+docker compose --profile llm up -d litellm   # or: docker compose restart litellm
+```
+
+`LLAMACPP_API_BASE` works the same way if you're also running the
+CPU-tier `llamacpp` service on a different machine.
+
+## Step 4 — Machine C: TEI (embedding) + diarisation
+
+```bash
+# .env on Machine C
+DIARISATION_GPU_DEVICE=0
+HF_TOKEN=<your real token, needed for pyannote — see gap #17>
+
+docker compose --profile embedding --profile diarisation up -d tei diarisation
+```
+
+Verify both:
+
+```bash
+# on Machine C
+curl http://localhost:8090/health   # TEI
+curl http://localhost:8100/health   # diarisation
+
+# on Machine A, using Machine C's real LAN IP
+curl http://<machine-c-ip>:8090/health
+curl http://<machine-c-ip>:8100/health
+```
+
+**Point Machine A at Machine C.** In Machine A's `.env`:
+
+```bash
+TEI_BASE_URL=http://<machine-c-ip>:8090
+DIARISATION_SERVICE_URL=http://<machine-c-ip>:8100
+```
+
+If TEI is unreachable for any reason, `EmbeddingClient` (`src/ml/embedding/client.py`)
+silently falls back to local sentence-transformers on whichever machine
+made the call — search keeps working, just without the dedicated GPU
+service. That fallback is real and already tested; the network path to a
+remote TEI is the part that's new and unverified here.
+
+## Step 5 — Restart Machine A's app with the new URLs
+
+```bash
+# on Machine A
+docker compose restart api   # or however you're running the API process
+```
+
+Then confirm the whole chain works: hit a search endpoint through the
+real API and check its response — if TEI is reachable, the query
+embedding step used it; if not, it silently used the local fallback (you
+can tell by checking Machine C's TEI container logs for an incoming
+request at the same time you fire the search).
 
 ## Troubleshooting
 
-- **"CUDA error: invalid device ordinal"** — you set a device index that
-  doesn't exist (e.g. `ASR_CUDA_DEVICE=2` on a 2-GPU host, where valid
-  indices are `0` and `1`). Recheck `nvidia-smi -L`'s output from Step 1.
-- **Container shows all GPUs, not just the one assigned** — the
-  `device_ids` reservation in `docker-compose.yml` isn't taking effect.
-  Run `docker compose --profile llm --profile diarisation config` (the
-  `--profile` flags are required — these two services are profile-gated
-  and `docker compose config` silently omits them without it) and confirm
-  the rendered value under `vllm`/`diarisation`'s
-  `deploy.resources.reservations.devices` actually shows your intended
-  device id, not `"0"` by default (meaning your env var wasn't picked up).
-- **Everything still serializes on one card despite different indices set**
-  — confirm you're not accidentally also setting the global
-  `CUDA_VISIBLE_DEVICES` env var to a single value that masks the
-  per-stage settings; that variable is separate from the four in this doc
-  and restricts what CUDA even considers "device 0" from a process's point
-  of view. Leave `CUDA_VISIBLE_DEVICES` unset (or set to all your GPUs,
-  e.g. `0,1,2`) and let the per-stage `_CUDA_DEVICE`/`_GPU_DEVICE`
-  variables do the actual pinning.
+- **"Connection refused" from Machine A to B or C** — almost always a
+  firewall on the target machine blocking the port, not a code issue.
+  Confirm with `curl` from the target machine itself first (Step 3/4
+  above), then from Machine A.
+- **vLLM/TEI/diarisation container won't see its GPU** — `nvidia-smi -L`
+  inside the container (`docker exec <container> nvidia-smi -L`) should
+  show exactly the one GPU on that machine. If it shows none, the
+  NVIDIA Container Toolkit likely isn't installed/configured on that
+  specific machine — this is a per-machine setup step, not something the
+  `docker-compose.yml` device reservation can fix by itself.
+- **Search results look identical whether TEI is up or down** — that's
+  the fallback working as designed, not a bug; check TEI's own logs to
+  confirm whether it's actually receiving requests.
+- **LiteLLM can't reach vLLM after changing `VLLM_API_BASE`** — the
+  LiteLLM proxy container needs restarting to pick up the new env var:
+  `docker compose restart litellm`.
 
 ## What to report back once you've tried this for real
 
-Since this has only been verified on a single-GPU host, if you run this
-on your actual 3-GPU machine, it'd be worth checking and noting:
+1. Did `curl` from Machine A actually reach Machine B's vLLM and Machine
+   C's TEI/diarisation over the real network (not just `localhost` on
+   each machine individually)?
+2. Did a real search request's query embedding actually route through
+   Machine C's TEI (checkable via TEI's container logs), or silently fall
+   back to local?
+3. Did the LiteLLM tier-1 route actually hit Machine B's vLLM for a real
+   completion?
 
-1. Did each service actually land on the GPU you assigned it (Step 4/6)?
-2. Did processing multiple sessions concurrently actually show
-   multi-GPU utilization (Step 6), not just one card doing all the work?
-3. Any wall-clock speedup on a batch of sessions vs. running them one at
-   a time on a single GPU?
+That's what would turn this from "wired correctly by inspection" into
+"verified working across 3 real machines."
 
-That closes the "unverified" note at the top of this doc and in
-`docs/gaps.md` gap #21.
+## What changed in this update
+
+Previously this doc assumed 3 GPU cards in one machine and described
+`CUDA_VISIBLE_DEVICES`/device-index pinning — the wrong setup for 3
+separate machines. Along the way, a real gap was found and fixed:
+**TEI (S25's embedding service) had no `docker-compose.yml` entry and no
+config setting at all** — `EmbeddingClient`'s `tei_base_url` default
+(`http://tei:80`) pointed at a hostname that resolved nowhere, so every
+embedding call was silently using the local fallback, always, regardless
+of intent. Added:
+
+- `TEI_BASE_URL` setting in `src/core/config.py`
+- A real `tei` service in `docker-compose.yml` (matching the exact image/
+  command from `docs/specs/block-4-embedding-topic-intelligence.md`
+  §6.1), gated behind a new `embedding` compose profile
+- `src/api/routes/search.py` now actually passes `settings.TEI_BASE_URL`
+  into `EmbeddingClient` instead of leaving the unreachable class default
+  in place
+- `TEI_BASE_URL`/`TEI_IMAGE_TAG`/`TEI_PORT` added to `.env.example`
+
+A second gap was also closed: **`config/litellm.yaml` hardcoded
+`api_base: http://vllm:8000/v1` / `http://llamacpp:8080/v1`**, requiring a
+manual per-deployment edit of that file to run vLLM on a separate
+machine (exactly what this doc used to instruct in Step 3). Fixed by
+switching both `api_base` fields to LiteLLM's own `os.environ/VAR_NAME`
+substitution (already used for `api_key` in the same file):
+
+- `config/litellm.yaml`: `api_base: os.environ/VLLM_API_BASE` and
+  `os.environ/LLAMACPP_API_BASE`
+- `VLLM_API_BASE`/`LLAMACPP_API_BASE` added to `.env.example`, and passed
+  through to the `litellm` container's `environment:` in
+  `docker-compose.yml`
+- Step 3 above now sets an env var and restarts the container instead of
+  hand-editing YAML
+
+Full test suite re-run after these changes: 711 passed, 82 skipped, no
+regressions (see `docs/gaps.md`).

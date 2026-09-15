@@ -30,7 +30,10 @@ async def _get_query_embedding(query: str) -> list[float] | None:
     """Best-effort query embedding; a degraded embedding service falls back to lexical-only."""
     try:
         settings = get_settings()
-        client = EmbeddingClient(local_device=f"cuda:{settings.EMBEDDING_CUDA_DEVICE}")
+        client = EmbeddingClient(
+            tei_base_url=settings.TEI_BASE_URL,
+            local_device=f"cuda:{settings.EMBEDDING_CUDA_DEVICE}",
+        )
         vectors = await client.embed([query], task_mode="retrieval")
         return vectors[0] if vectors else None
     except Exception:

@@ -103,6 +103,14 @@ class Settings(BaseSettings):
     VLLM_GPU_DEVICE: str = "0"
     DIARISATION_GPU_DEVICE: str = "0"
 
+    # S25: HF Text Embeddings Inference service (real network address, not
+    # just an in-process device index) -- on a multi-machine deployment this
+    # points at a different physical host than the one running the API.
+    # EmbeddingClient falls back to local sentence-transformers if
+    # unreachable (fallback_local=True), so this being wrong degrades
+    # rather than breaks embedding.
+    TEI_BASE_URL: str = "http://tei:80"
+
     # Model versions (locked by S06)
     ASR_MODEL: str = "whisper-large-v3-turbo"
     ASR_MODEL_REVISION: str = "main"
