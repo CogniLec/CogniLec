@@ -8,14 +8,16 @@ from datetime import UTC, datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
+from src.api.dependencies.ownership import require_owned_session, require_owned_subject
 from src.api.schemas.session import (
     ClassificationOverride,
     SessionCreate,
     SessionResponse,
     SessionUpdate,
 )
-from src.db.exceptions import SessionNotFoundError
+from src.db.exceptions import DuplicateKeyError
 from src.db.repositories.segment_repo import SegmentRepository
 from src.db.repositories.session_repo import SessionRepository
 from src.db.repositories.utterance_repo import UtteranceRepository
@@ -29,9 +31,14 @@ router = APIRouter(prefix="/sessions", tags=["sessions"])
 async def create_session(
     payload: SessionCreate,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
+    await require_owned_subject(payload.subject_id, db, current_user)
     repo = SessionRepository(db)
-    session_obj = await repo.create(payload.subject_id, payload.session_type)
+    try:
+        session_obj = await repo.create(payload.subject_id, payload.session_type)
+    except DuplicateKeyError as exc:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(exc)) from exc
     return SessionResponse.model_validate(session_obj)
 
 
@@ -39,12 +46,9 @@ async def create_session(
 async def get_session(
     session_id: uuid.UUID,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
-    repo = SessionRepository(db)
-    try:
-        session_obj = await repo.get_or_raise(session_id)
-    except SessionNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
+    session_obj = await require_owned_session(session_id, db, current_user)
     return SessionResponse.model_validate(session_obj)
 
 
@@ -53,12 +57,10 @@ async def update_session(
     session_id: uuid.UUID,
     payload: SessionUpdate,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
+    session_obj = await require_owned_session(session_id, db, current_user)
     repo = SessionRepository(db)
-    try:
-        session_obj = await repo.get_or_raise(session_id)
-    except SessionNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     session_obj = await repo.update_status(session_obj, payload.status)
     return SessionResponse.model_validate(session_obj)
 
@@ -68,17 +70,14 @@ async def override_classification(
     session_id: uuid.UUID,
     payload: ClassificationOverride,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
     """S35: operator post-hoc correction. Updates session_type, re-runs
     segment routing, and publishes `session.rerouted`."""
+    session_obj = await require_owned_session(session_id, db, current_user)
     session_repo = SessionRepository(db)
     segment_repo = SegmentRepository(db)
     utterance_repo = UtteranceRepository(db)
-
-    try:
-        session_obj = await session_repo.get_or_raise(session_id)
-    except SessionNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
 
     previous_type = session_obj.session_type
     segments = await segment_repo.get_by_session(session_obj.subject_id, session_id)
@@ -132,7 +131,9 @@ async def list_sessions_by_subject(
     offset: int = 0,
     limit: int = 50,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> list[SessionResponse]:
+    await require_owned_subject(subject_id, db, current_user)
     repo = SessionRepository(db)
     sessions = await repo.list_for_subject(subject_id, offset=offset, limit=limit)
     return [SessionResponse.model_validate(s) for s in sessions]

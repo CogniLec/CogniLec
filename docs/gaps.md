@@ -1535,6 +1535,48 @@ upgrade` races unrelated to this change; retried once contention cleared).
   device available to test with. That verification needs a machine (or a
   virtual audio device) with an actual microphone.
 
+## 27. First real S04 corpus entries added — 5 real lecture recordings (2026-09-15)
+
+- The user provided 5 real lecture video recordings (`new videos/`), confirmed
+  they have consent from everyone recorded (NFR-S5), and confirmed these are
+  intended as the actual S04 corpus (not general pipeline-test evidence like
+  the earlier 9 videos in gap #16/#20/#25).
+- Converted with the repo's own `scripts/s04_convert_to_opus.sh` (real
+  `ffmpeg`, 48kHz mono Opus ~24kbps, matching spec) and registered with
+  `scripts/s04_add_session_to_manifest.sh` as `sess_20260915_001` through
+  `sess_20260915_005` in `lis-eval/phase0/v1/manifest.json`. Sizes: 7.6-16.2MB
+  for 43min-116min recordings — comfortably within the spec's "~15MB/60min"
+  target. `scripts/s04_validate_manifest.py` passes.
+- **Metadata is genuinely incomplete, by the user's own choice**: room,
+  device, and subject fields are placeholder ("Unknown"/"Unknown Subject N")
+  and consent_id fields are placeholders ("consent_pending_00N") pending the
+  user filling in real values and a real consent record — they explicitly
+  chose placeholders now over providing details immediately. Position/
+  condition were assigned by this session to get some spread across the
+  spec's required condition categories (front/back, quiet/busy, discussion),
+  not from real knowledge of the recording setup — **verify/correct these
+  against what was actually recorded** before treating condition-based
+  analysis (e.g. per-condition WER breakdowns) as meaningful.
+- **The manifest is now a mix of real and synthetic entries**: the 6
+  pre-existing sessions (`sess_20260911_001` through `sess_20260913_002`,
+  subjects CS101/MATH201/PHYS101) have manifest entries but **no
+  corresponding audio files on disk** — they came from
+  `scripts/s04_populate_sample_data.py` as structural test fixtures, not
+  real recordings. They were left in place rather than deleted because
+  `tests/test_s04_audio_corpus.py::test_session_count_at_least_six` asserts
+  a minimum of 6 manifest entries and only checks manifest structure, never
+  that `audio_file` actually exists on disk — removing the synthetic entries
+  would (harmlessly, since nothing else depends on them existing) drop below
+  that test's threshold with only 5 real entries. **Only the 5
+  `sess_20260915_*` entries have real audio behind them right now.**
+- **Not yet done**: actually running the S06 ASR/embedding bake-off against
+  this real audio (still needs real hand-transcription for WER, which is
+  S05's job, not S04's) — this only closes the "real audio exists" half of
+  gap #1, not the "hand-labelled ground truth exists" half. S05's 5-hour
+  word-level transcription, 30-lecture topic-boundary marking, and
+  2,000-utterance relevance labelling are all still outstanding and still
+  block the S06/S29/S42 gates for real evaluation numbers.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

@@ -55,6 +55,7 @@ import pytest
 from fastapi import FastAPI
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
 from src.api.dependencies.settings import get_app_settings
 from src.api.dependencies.valkey import get_valkey_stream
@@ -85,7 +86,9 @@ def _settings() -> Settings:
     return Settings(MINIO_ENDPOINT="localhost:9000", VALKEY_URL=VALKEY_URL)
 
 
-def _build_app(db_session: AsyncSession, stream: ValkeyStreamProducer) -> FastAPI:
+def _build_app(
+    db_session: AsyncSession, stream: ValkeyStreamProducer, user_id: uuid.UUID
+) -> FastAPI:
     app = FastAPI()
     app.include_router(chunks_router, prefix="/api/v1")
 
@@ -106,9 +109,13 @@ def _build_app(db_session: AsyncSession, stream: ValkeyStreamProducer) -> FastAP
     def _override_settings() -> Settings:
         return _settings()
 
+    async def _override_user() -> dict[str, object]:
+        return {"id": str(user_id), "email": "gate-test@example.com"}
+
     app.dependency_overrides[get_db_session] = _override_db
     app.dependency_overrides[get_valkey_stream] = _override_stream
     app.dependency_overrides[get_app_settings] = _override_settings
+    app.dependency_overrides[get_current_user] = _override_user
     return app
 
 
@@ -196,7 +203,7 @@ class TestIngestionSpineE2E:
 
         # --- 2/3. Upload chunk via the real chunks API + real MinIO ---
         wav_bytes = FIXTURE_WAV.read_bytes()
-        app = _build_app(db_session, stream)
+        app = _build_app(db_session, stream, user.id)
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
             files = {"chunk": ("chunk.opus", wav_bytes, "audio/wav")}

@@ -7,11 +7,11 @@ and self-rate against the real note content, persist the FSRS-scheduled
 outcome, and - when the user's own recall didn't match - record that as a
 `recall_mismatch` correction so it feeds the training-data flywheel.
 
-RLS-scoped like `notes.py` (S46): `get_db_session_with_rls` (S12) means a
-subject belonging to another user 404s via `SubjectRepository.get_or_raise`
-rather than leaking existence. `flashcards`/`flashcard_reviews` themselves
-have no RLS policy of their own (see docs/gaps.md) - access is gated here
-by the subject ownership check instead.
+Ownership is checked explicitly via `require_owned_subject` (not just
+existence via RLS, which is bypassed in this environment — see
+docs/gaps.md gap #4): `flashcards`/`flashcard_reviews` have no RLS policy
+of their own, so access here is gated entirely by the subject ownership
+check.
 """
 
 from __future__ import annotations
@@ -24,6 +24,7 @@ from fsrs import Rating
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.dependencies.auth import get_current_user, get_db_session_with_rls
+from src.api.dependencies.ownership import require_owned_subject
 from src.api.schemas.study import (
     FlashcardListResponse,
     FlashcardResponse,
@@ -32,10 +33,8 @@ from src.api.schemas.study import (
     ReviewOutcome,
     StudyProgressResponse,
 )
-from src.db.exceptions import SubjectNotFoundError
 from src.db.models.flashcard import Flashcard
 from src.db.repositories.flashcard_repo import FlashcardRepository
-from src.db.repositories.subject_repo import SubjectRepository
 from src.services.finetuning.corrections import capture_recall_mismatch
 from src.services.study.fsrs_scheduler import new_card_fields
 from src.services.study.fsrs_scheduler import review as fsrs_review
@@ -55,22 +54,13 @@ def _to_response(flashcard: Flashcard) -> FlashcardResponse:
     )
 
 
-async def _get_owned_subject_id(subject_id: uuid.UUID, db: AsyncSession) -> uuid.UUID:
-    try:
-        subject = await SubjectRepository(db).get_or_raise(subject_id)
-    except SubjectNotFoundError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Subject not found"
-        ) from exc
-    return subject.id
-
-
 @router.get("/flashcards", response_model=FlashcardListResponse)
 async def list_flashcards(
     subject_id: uuid.UUID,
     db: AsyncSession = Depends(get_db_session_with_rls),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> FlashcardListResponse:
-    await _get_owned_subject_id(subject_id, db)
+    await require_owned_subject(subject_id, db, current_user)
     cards = await FlashcardRepository(db).list_for_subject(subject_id)
     return FlashcardListResponse(items=[_to_response(c) for c in cards])
 
@@ -79,8 +69,9 @@ async def list_flashcards(
 async def get_next_flashcard(
     subject_id: uuid.UUID,
     db: AsyncSession = Depends(get_db_session_with_rls),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> FlashcardResponse:
-    await _get_owned_subject_id(subject_id, db)
+    await require_owned_subject(subject_id, db, current_user)
     card = await FlashcardRepository(db).get_next_due(subject_id, datetime.now(UTC))
     if card is None:
         raise HTTPException(
@@ -98,7 +89,7 @@ async def review_flashcard(
     db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> FlashcardReviewResponse:
-    await _get_owned_subject_id(subject_id, db)
+    await require_owned_subject(subject_id, db, current_user)
     repo = FlashcardRepository(db)
     flashcard = await repo.get(flashcard_id)
     if flashcard is None or flashcard.subject_id != subject_id:
@@ -139,6 +130,7 @@ async def seed_flashcard(
     front: str,
     back: str,
     db: AsyncSession = Depends(get_db_session_with_rls),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> FlashcardResponse:
     """Manually create a flashcard for a subject.
 
@@ -147,7 +139,7 @@ async def seed_flashcard(
     docs/gaps.md), so this lets a user (or a seed script) add a card by
     hand until that generation trigger exists.
     """
-    await _get_owned_subject_id(subject_id, db)
+    await require_owned_subject(subject_id, db, current_user)
     flashcard = Flashcard(
         subject_id=subject_id,
         topic_label=topic_label,
@@ -165,8 +157,9 @@ async def seed_flashcard(
 async def get_study_progress(
     subject_id: uuid.UUID,
     db: AsyncSession = Depends(get_db_session_with_rls),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> StudyProgressResponse:
-    await _get_owned_subject_id(subject_id, db)
+    await require_owned_subject(subject_id, db, current_user)
     reviews = await FlashcardRepository(db).list_reviews_for_subject(subject_id)
     total = len(reviews)
     correct = sum(1 for r in reviews if r.rating >= Rating.Good)

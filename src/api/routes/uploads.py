@@ -1,11 +1,4 @@
-"""S59 — post-session upload API (board photos, notes, textbook pages, PDFs).
-
-Not wired into an app instance: no `src/main.py`/FastAPI() app assembly
-exists anywhere in this repo yet (checked — every other block's routes are
-in the same state), so this router is tested at the service layer
-(`src/services/uploads/pipeline.py`) rather than through `TestClient`,
-matching the existing convention for `src/api/routes/*` in this codebase.
-"""
+"""S59 — post-session upload API (board photos, notes, textbook pages, PDFs)."""
 
 from __future__ import annotations
 
@@ -14,7 +7,8 @@ import uuid
 from fastapi import APIRouter, Depends, HTTPException, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.api.dependencies.auth import get_db_session_with_rls
+from src.api.dependencies.auth import get_current_user, get_db_session_with_rls
+from src.api.dependencies.ownership import require_owned_session, require_owned_subject
 from src.api.schemas.upload import UploadResponse
 from src.db.repositories.upload_repo import UploadRepository
 from src.services.uploads.models import DEFAULT_MAX_FILE_SIZE_BYTES, DEFAULT_PHASH_HAMMING_THRESHOLD
@@ -29,7 +23,13 @@ async def create_upload(
     session_id: uuid.UUID,
     subject_id: uuid.UUID,
     db: AsyncSession = Depends(get_db_session_with_rls),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> UploadResponse:
+    await require_owned_subject(subject_id, db, current_user)
+    session_obj = await require_owned_session(session_id, db, current_user)
+    if session_obj.subject_id != subject_id:
+        raise HTTPException(status_code=404, detail="Session not found")
+
     raw = await file.read()
     try:
         file_type = validate_upload(file.content_type or "", len(raw), DEFAULT_MAX_FILE_SIZE_BYTES)

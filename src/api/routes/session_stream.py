@@ -8,16 +8,16 @@ from collections.abc import AsyncIterator
 from datetime import UTC, datetime
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sse_starlette.sse import EventSourceResponse
 
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
+from src.api.dependencies.ownership import require_owned_session
 from src.api.dependencies.settings import get_app_settings
 from src.api.dependencies.valkey import get_valkey_stream
 from src.core.config import Settings
-from src.db.exceptions import SessionNotFoundError
-from src.db.repositories.session_repo import SessionRepository
 from src.services.valkey_stream import ValkeyStreamProducer
 
 router = APIRouter(prefix="/sessions", tags=["stream"])
@@ -59,11 +59,7 @@ async def stream_session(
     db: AsyncSession = Depends(get_db_session),
     stream: ValkeyStreamProducer = Depends(get_valkey_stream),
     settings: Settings = Depends(get_app_settings),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> EventSourceResponse:
-    repo = SessionRepository(db)
-    try:
-        await repo.get_or_raise(session_id)
-    except SessionNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
-
+    await require_owned_session(session_id, db, current_user)
     return EventSourceResponse(_event_generator(session_id, stream, settings))

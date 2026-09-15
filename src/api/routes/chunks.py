@@ -7,7 +7,9 @@ import uuid
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
+from src.api.dependencies.ownership import require_owned_session
 from src.api.dependencies.settings import get_app_settings
 from src.api.dependencies.valkey import get_valkey_stream
 from src.core.config import Settings
@@ -39,7 +41,9 @@ async def upload_chunk(
     db: AsyncSession = Depends(get_db_session),
     stream: ValkeyStreamProducer = Depends(get_valkey_stream),
     settings: Settings = Depends(get_app_settings),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> ChunkUploadResponse:
+    await require_owned_session(session_id, db, current_user)
     chunk_bytes = await chunk.read()
 
     max_bytes = settings.CHUNK_MAX_SIZE_MB * 1024 * 1024

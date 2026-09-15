@@ -8,10 +8,11 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session, get_syllabus_db_session
+from src.api.dependencies.ownership import require_owned_subject
 from src.db.repositories.coverage_repo import CoverageRepository
 from src.db.repositories.session_repo import SessionRepository
-from src.db.repositories.subject_repo import SubjectRepository
 from src.db.repositories.topic_repo import TopicRepository
 from src.services.coverage.coverage_service import CoverageService
 from src.services.coverage.models import SyllabusCoverageSummary
@@ -38,13 +39,13 @@ async def get_dashboard(
     subject_id: uuid.UUID,
     syllabus_db: AsyncSession = Depends(get_syllabus_db_session),
     main_db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SubjectDashboard:
-    subject_repo = SubjectRepository(main_db)
+    subject = await require_owned_subject(subject_id, main_db, current_user)
     session_repo = SessionRepository(main_db)
     topic_repo = TopicRepository(main_db)
     coverage_service = CoverageService(CoverageRepository(syllabus_db, main_db))
 
-    subject = await subject_repo.get_or_raise(subject_id)
     sessions = await session_repo.list_for_subject(subject_id)
     topics = await topic_repo.list_for_subject(subject_id)
     coverage = await coverage_service.get_summary(subject_id)

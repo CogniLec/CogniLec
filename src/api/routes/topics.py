@@ -8,7 +8,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
+from src.api.dependencies.ownership import require_owned_subject
 from src.db.repositories.topic_repo import TopicRepository
 from src.ml.clustering.schemas import TopicResponse
 
@@ -25,8 +27,10 @@ async def update_topic_label(
     topic_id: uuid.UUID,
     body: TopicLabelUpdate,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> TopicResponse:
     """Update a topic's label (user edit). Preserved across re-clustering (S32)."""
+    await require_owned_subject(subject_id, db, current_user)
     repo = TopicRepository(db)
     topic = await repo.get(subject_id, topic_id)
     if topic is None:

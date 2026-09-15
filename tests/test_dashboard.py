@@ -7,6 +7,7 @@ import uuid
 import httpx
 import pytest
 from fastapi import FastAPI
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session, get_syllabus_db_session
 from src.api.routes.dashboard import router as dashboard_router
 from src.db.models.syllabus_item import SyllabusItem
@@ -60,6 +61,7 @@ async def test_dashboard_teached_vs_outstanding(syllabus_session, db_session) ->
     app.include_router(dashboard_router, prefix="/api/v1")
     app.dependency_overrides[get_syllabus_db_session] = lambda: syllabus_session
     app.dependency_overrides[get_db_session] = lambda: db_session
+    app.dependency_overrides[get_current_user] = lambda: {"id": str(user.id), "email": user.email}
 
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:

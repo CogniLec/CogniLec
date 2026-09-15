@@ -9,8 +9,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
+from src.api.dependencies.ownership import require_owned_subject
 from src.api.schemas.subject import SubjectCreate, SubjectList, SubjectResponse, SubjectUpdate
-from src.db.exceptions import DuplicateKeyError, SubjectNotFoundError
+from src.db.exceptions import DuplicateKeyError
 from src.db.repositories.subject_repo import SubjectRepository
 
 router = APIRouter(prefix="/subjects", tags=["subjects"])
@@ -52,12 +53,9 @@ async def list_subjects(
 async def get_subject(
     subject_id: uuid.UUID,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SubjectResponse:
-    repo = SubjectRepository(db)
-    try:
-        subject = await repo.get_or_raise(subject_id)
-    except SubjectNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
+    subject = await require_owned_subject(subject_id, db, current_user)
     return SubjectResponse.model_validate(subject)
 
 
@@ -66,12 +64,10 @@ async def update_subject(
     subject_id: uuid.UUID,
     payload: SubjectUpdate,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> SubjectResponse:
+    subject = await require_owned_subject(subject_id, db, current_user)
     repo = SubjectRepository(db)
-    try:
-        subject = await repo.get_or_raise(subject_id)
-    except SubjectNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     subject = await repo.update(subject, name=payload.name, description=payload.description)
     return SubjectResponse.model_validate(subject)
 
@@ -80,10 +76,8 @@ async def update_subject(
 async def delete_subject(
     subject_id: uuid.UUID,
     db: AsyncSession = Depends(get_db_session),
+    current_user: dict[str, object] = Depends(get_current_user),
 ) -> None:
+    subject = await require_owned_subject(subject_id, db, current_user)
     repo = SubjectRepository(db)
-    try:
-        subject = await repo.get_or_raise(subject_id)
-    except SubjectNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     await repo.delete(subject)

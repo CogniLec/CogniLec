@@ -11,6 +11,7 @@ import uvicorn
 from fastapi import FastAPI
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
 from src.api.dependencies.settings import get_app_settings
 from src.api.dependencies.valkey import get_valkey_stream
@@ -35,7 +36,7 @@ def _settings() -> Settings:
     return Settings(MINIO_ENDPOINT="localhost:9000", VALKEY_URL=VALKEY_URL)
 
 
-async def _create_user_and_subject(session: AsyncSession) -> Subject:
+async def _create_user_and_subject(session: AsyncSession) -> tuple[User, Subject]:
     user = User(
         email=f"test-{uuid.uuid4().hex[:8]}@example.com",
         hashed_password="hashed",
@@ -47,10 +48,12 @@ async def _create_user_and_subject(session: AsyncSession) -> Subject:
     subject = Subject(user_id=user.id, name="Test Subject")
     session.add(subject)
     await session.flush()
-    return subject
+    return user, subject
 
 
-def _build_app(db_session: AsyncSession, stream: ValkeyStreamProducer) -> FastAPI:
+def _build_app(
+    db_session: AsyncSession, stream: ValkeyStreamProducer, user_id: uuid.UUID
+) -> FastAPI:
     app = FastAPI()
     app.include_router(chunks_router, prefix="/api/v1")
     app.include_router(stream_router, prefix="/api/v1")
@@ -64,14 +67,20 @@ def _build_app(db_session: AsyncSession, stream: ValkeyStreamProducer) -> FastAP
     def _override_settings() -> Settings:
         return _settings()
 
+    async def _override_user() -> dict[str, object]:
+        return {"id": str(user_id), "email": "test@example.com"}
+
     app.dependency_overrides[get_db_session] = _override_db
     app.dependency_overrides[get_valkey_stream] = _override_stream
     app.dependency_overrides[get_app_settings] = _override_settings
+    app.dependency_overrides[get_current_user] = _override_user
     return app
 
 
-async def _client_for(db_session: AsyncSession, stream: ValkeyStreamProducer) -> httpx.AsyncClient:
-    app = _build_app(db_session, stream)
+async def _client_for(
+    db_session: AsyncSession, stream: ValkeyStreamProducer, user_id: uuid.UUID
+) -> httpx.AsyncClient:
+    app = _build_app(db_session, stream, user_id)
     transport = httpx.ASGITransport(app=app)
     return httpx.AsyncClient(transport=transport, base_url="http://test")
 
@@ -114,12 +123,12 @@ class TestChunkStoredAndStreamed:
     async def test_chunk_stored_and_streamed(
         self, db_session: AsyncSession, stream: ValkeyStreamProducer, valkey: Redis
     ) -> None:
-        subject = await _create_user_and_subject(db_session)
+        user, subject = await _create_user_and_subject(db_session)
         repo = SessionRepository(db_session)
         session_obj = await repo.create(subject.id)
         await db_session.commit()
 
-        async with await _client_for(db_session, stream) as client:
+        async with await _client_for(db_session, stream, user.id) as client:
             response = await _upload_chunk(client, session_obj.id, 0)
 
         assert response.status_code == 200
@@ -151,12 +160,12 @@ class TestDuplicateChunkIdempotent:
     async def test_duplicate_chunk_idempotent(
         self, db_session: AsyncSession, stream: ValkeyStreamProducer, valkey: Redis
     ) -> None:
-        subject = await _create_user_and_subject(db_session)
+        user, subject = await _create_user_and_subject(db_session)
         repo = SessionRepository(db_session)
         session_obj = await repo.create(subject.id)
         await db_session.commit()
 
-        async with await _client_for(db_session, stream) as client:
+        async with await _client_for(db_session, stream, user.id) as client:
             first = await _upload_chunk(client, session_obj.id, 0)
             second = await _upload_chunk(client, session_obj.id, 0)
 
@@ -182,7 +191,7 @@ class TestOutOfOrderChunks:
     async def test_out_of_order_chunks(
         self, db_session: AsyncSession, stream: ValkeyStreamProducer, valkey: Redis
     ) -> None:
-        subject = await _create_user_and_subject(db_session)
+        user, subject = await _create_user_and_subject(db_session)
         repo = SessionRepository(db_session)
         session_obj = await repo.create(subject.id)
         await repo.update_status(session_obj, SessionStatus.RECORDING)
@@ -190,7 +199,7 @@ class TestOutOfOrderChunks:
 
         storage = StorageClient(_settings())
         stored_keys = []
-        async with await _client_for(db_session, stream) as client:
+        async with await _client_for(db_session, stream, user.id) as client:
             for seq in (2, 0, 1):
                 response = await _upload_chunk(
                     client, session_obj.id, seq, data=f"seq-{seq}".encode()
@@ -247,7 +256,7 @@ class TestConcurrentSessions:
                 repo = SessionRepository(session)
                 session_obj = await repo.create(subject_id)
                 await session.commit()
-                app = _build_app(session, stream)
+                app = _build_app(session, stream, test_user_id)
                 transport = httpx.ASGITransport(app=app)
                 async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
                     for seq in range(10):
@@ -290,12 +299,12 @@ class TestSSEStatusEvents:
         # not support genuinely streaming, never-ending responses like SSE.
         # So this test runs the app on a real uvicorn server over a real
         # socket, which streams chunks as they're produced.
-        subject = await _create_user_and_subject(db_session)
+        user, subject = await _create_user_and_subject(db_session)
         repo = SessionRepository(db_session)
         session_obj = await repo.create(subject.id)
         await db_session.commit()
 
-        app = _build_app(db_session, stream)
+        app = _build_app(db_session, stream, user.id)
         port = 18916
         config = uvicorn.Config(app, host="127.0.0.1", port=port, log_level="warning")
         server = uvicorn.Server(config)
@@ -353,7 +362,7 @@ class TestChunkRejectedAfterComplete:
     async def test_chunk_rejected_after_complete(
         self, db_session: AsyncSession, stream: ValkeyStreamProducer
     ) -> None:
-        subject = await _create_user_and_subject(db_session)
+        user, subject = await _create_user_and_subject(db_session)
         repo = SessionRepository(db_session)
         session_obj = await repo.create(subject.id)
         await repo.update_status(session_obj, SessionStatus.RECORDING)
@@ -362,7 +371,7 @@ class TestChunkRejectedAfterComplete:
         await repo.update_status(session_obj, SessionStatus.COMPLETE)
         await db_session.commit()
 
-        async with await _client_for(db_session, stream) as client:
+        async with await _client_for(db_session, stream, user.id) as client:
             response = await _upload_chunk(client, session_obj.id, 0)
 
         assert response.status_code == 409

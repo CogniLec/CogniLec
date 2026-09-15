@@ -23,9 +23,13 @@ from pathlib import Path
 import httpx
 import pytest
 from fastapi import FastAPI
-from src.api.dependencies.database import get_syllabus_db_session
+from sqlalchemy.ext.asyncio import AsyncSession
+from src.api.dependencies.auth import get_current_user
+from src.api.dependencies.database import get_db_session, get_syllabus_db_session
 from src.api.routes.subjects import router as subjects_router
 from src.api.routes.syllabus_upload import router as syllabus_upload_router
+from src.db.models.subject import Subject
+from src.db.models.user import User
 from src.db.repositories.syllabus_repo import SyllabusRepository
 from src.services.docling.parser import DoclingParser, OCRUnavailableError
 from src.services.syllabus.upload_pipeline import SyllabusUploadPipeline
@@ -144,12 +148,24 @@ async def test_upload_in_subject_creation_flow() -> None:
     assert "/api/v1/subjects/{subject_id}/syllabus" in paths
 
 
-async def test_upload_endpoint_writes_via_http(syllabus_session, tmp_path: Path) -> None:
+async def test_upload_endpoint_writes_via_http(
+    syllabus_session, db_session: AsyncSession, tmp_path: Path
+) -> None:
+    user = User(email=f"su-{uuid.uuid4().hex[:8]}@example.com", hashed_password="h", is_active=True)
+    db_session.add(user)
+    await db_session.flush()
+    subject = Subject(user_id=user.id, name="Syllabus Upload Test Subject")
+    db_session.add(subject)
+    await db_session.flush()
+    await db_session.commit()
+    subject_id = subject.id
+
     app = FastAPI()
     app.include_router(syllabus_upload_router, prefix="/api/v1")
     app.dependency_overrides[get_syllabus_db_session] = lambda: syllabus_session
+    app.dependency_overrides[get_db_session] = lambda: db_session
+    app.dependency_overrides[get_current_user] = lambda: {"id": str(user.id), "email": user.email}
 
-    subject_id = uuid.uuid4()
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
         resp = await client.post(

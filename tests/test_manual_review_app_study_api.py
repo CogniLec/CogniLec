@@ -199,19 +199,15 @@ async def test_study_progress_reflects_review_history(db_session: AsyncSession) 
 
 
 @pytest.mark.asyncio
-async def test_flashcards_from_other_users_subject_reflects_known_rls_gap(
+async def test_flashcards_from_other_users_subject_returns_404(
     db_session: AsyncSession,
 ) -> None:
-    """Documents (does not paper over) a pre-existing gap, not a new one this app adds.
-
-    `study.py`'s ownership check is `SubjectRepository.get_or_raise` under
-    `get_db_session_with_rls` (S12), the same pattern `notes.py` (S46) uses.
-    It relies on Postgres RLS to actually deny cross-user rows - but per
-    docs/gaps.md gap #4, the dev DB role (`lis`) is a superuser, and
-    Postgres RLS policies never apply to a superuser connection regardless
-    of `set_config('app.user_id', ...)`. So this asserts the current (leaky)
-    behavior honestly rather than asserting a 404 this code cannot actually
-    guarantee under the dev role - the fix belongs in gap #4, not here.
+    """Regression test for a live-audit finding (docs/gaps.md): `study.py`
+    used to check only that a subject existed (`SubjectRepository.get_or_raise`),
+    never that it belonged to the caller, relying entirely on RLS -- which is
+    bypassed under the dev role (gap #4). `require_owned_subject` now checks
+    ownership explicitly and independent of RLS, so a cross-user request
+    genuinely 404s regardless of the RLS/superuser gap.
     """
     _owner, subject = await _create_user_and_subject(db_session)
     intruder = User(
@@ -228,4 +224,4 @@ async def test_flashcards_from_other_users_subject_reflects_known_rls_gap(
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
         resp = await client.get(f"/api/v1/subjects/{subject.id}/flashcards")
 
-    assert resp.status_code == 200
+    assert resp.status_code == 404
