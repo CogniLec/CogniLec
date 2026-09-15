@@ -579,7 +579,15 @@ services:
     depends_on:
       - vllm
     networks:
+      # "internal" is declared `internal: true` (no default route out at
+      # all -- confirmed live: a container on it alone gets "Network is
+      # unreachable" for any address outside the compose subnet, including
+      # a real cross-machine VLLM_API_BASE). litellm needs actual egress
+      # to reach Machine B/C in the multi-machine topology
+      # (docs/multi-gpu-setup.md), so it also joins "edge", which isn't
+      # isolated and gets Docker's normal NAT/default-route behavior.
       - internal
+      - edge
     profiles:
       - llm
 

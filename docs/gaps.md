@@ -1621,6 +1621,64 @@ upgrade` races unrelated to this change; retried once contention cleared).
   across 3 real machines" as unconfirmed until actually tried on real
   hardware.
 
+## 29. Actually tested the 3-machine deployment for real — 3 more genuine bugs found and fixed (2026-09-16)
+
+- Gap #28 documented the multi-machine rewrite and TEI/litellm.yaml wiring as
+  "correct by inspection, unverified end to end." This entry is that
+  verification actually happening, against 2 other real physical machines
+  (Machine B, Machine C) — and it immediately surfaced 3 real bugs that
+  inspection alone had missed, none of which showed up in `docker compose
+  config` validation or the test suite:
+  1. **`config/litellm.yaml` used the wrong LiteLLM provider prefix.**
+     `model: vllm/microsoft/Phi-3-mini-3.8B-4bit` tells LiteLLM to load and
+     run the `vllm` Python package **in-process inside the litellm
+     container itself**, not to call a remote OpenAI-compatible HTTP
+     server. Failed live the moment a real completion request hit it:
+     `No module named 'vllm'`. Config validation, health checks, and even
+     LiteLLM's own startup never caught this — it only surfaces on an
+     actual inference call. Same issue for `llama.cpp/llama-3-8b-instruct`.
+     Fixed: both switched to the `openai/` provider prefix (correct for
+     talking to `vllm-openai`'s real HTTP API over `api_base`), with
+     `api_key: "not-needed"` since LiteLLM's `openai/` provider requires
+     *some* value even though these self-hosted servers don't check it.
+  2. **The `internal` Docker network genuinely has no route out, by
+     design** (`internal: true` in `docker-compose.yml`) — confirmed live:
+     a container on it alone gets `Network is unreachable` for any address
+     outside the compose subnet, including a real `VLLM_API_BASE` pointing
+     at Machine B. This isn't a sandbox artifact; it would fail identically
+     on the user's actual 3 machines, and is the reason gap #28's "wired
+     correctly by inspection" claim was wrong for this one piece — nothing
+     about `internal: true` was inspected against the cross-machine
+     requirement when it was added. Fixed: `litellm` now also joins the
+     non-isolated `edge` network, giving it a real default route/NAT path.
+  3. **`config/litellm.yaml`'s hardcoded model name didn't match what
+     Machine B was actually serving** — configured for
+     `microsoft/Phi-3-mini-3.8B-4bit`, but Machine B's vLLM was actually
+     launched with `Qwen/Qwen2.5-3B-Instruct-AWQ`. 404'd with "The model
+     `X` does not exist" once (1) and (2) above were fixed and the request
+     actually reached vLLM. Fixed by matching the config to what's
+     genuinely deployed, with a comment pointing at `curl <ip>:8000/v1/models`
+     for whoever redeploys this with a different model.
+- **After all three fixes, actually verified** (not inferred) all three
+  checklist items from gap #28's "what to report back" section:
+  1. `curl` from Machine A reached Machine B's vLLM and Machine C's
+     TEI/diarisation over the real LAN — confirmed with real `curl`s to
+     each real IP, not `localhost`.
+  2. A real search request fired from Machine A produced exactly one
+     `/embed` call in Machine C's own TEI container logs (~85ms round
+     trip) — the query embedding genuinely routed across machines, not the
+     local fallback.
+  3. LiteLLM's `tier_1_local` route on Machine A produced a real chat
+     completion (`"OK."`) sourced from Machine B's vLLM, confirmed by also
+     hitting Machine B's `/v1/chat/completions` directly and comparing.
+- This is the first time in this project that "works across 3 real
+  machines" moved from "unconfirmed" (gap #28's own honesty note) to
+  actually demonstrated — worth calling out because it's also a clear
+  example of why "correct by inspection" and "config validates" are not
+  the same claim as "actually works": all 3 bugs here passed
+  `docker compose config`, passed the full test suite, and were invisible
+  until a real request was fired at a real second machine.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

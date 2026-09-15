@@ -196,12 +196,17 @@ process itself on that machine (Step 8 above) — it doesn't need a URL,
 but it does need network access to Postgres, MinIO, and Valkey (all on
 whichever machine hosts the core stack from Part 1).
 
-**Honesty note**: this has only been verified on a single machine (one
-GPU, gap #15/#17/#20/#21). The container/service wiring is real and
-correct by inspection, but genuine cross-machine execution — reaching a
-service across your LAN, not `localhost` — has not been tested end to
-end. Follow this guide, verify each step's checks, and treat "it actually
-works across 3 machines" as unconfirmed until you've done that yourself.
+**Update**: this has now actually been run across 3 real physical
+machines (gap #29), not just validated by inspection — and doing so
+surfaced 3 real bugs that inspection had missed (wrong LiteLLM provider
+prefix, a Docker network with no egress route, a model-name mismatch),
+all fixed and reflected below. Two earlier claims in this doc were wrong
+until that point: the "correct by inspection" language under Step 3, and
+this note itself. If you hit something that doesn't match what's
+described here, it's more likely a config drift on your specific machines
+(e.g. a different model loaded on Machine B) than a repeat of one of
+these 3 — check `docs/gaps.md` gap #29 for exactly what was tested and
+how.
 
 ### Step 0 — Decide which machine runs what
 
@@ -282,6 +287,22 @@ issue on Machine B (Docker's `ports:` mapping binds to `0.0.0.0` by
 default, so this is almost always a host firewall blocking the port, not
 a Docker config problem) — check `ufw status` / `iptables` on Machine B.
 
+**Check what model Machine B is actually serving** — `config/litellm.yaml`
+hardcodes a model name (`tier_1_local` → currently
+`Qwen/Qwen2.5-3B-Instruct-AWQ`) that must exactly match whatever `--model`
+Machine B's `vllm` container was launched with. A mismatch here 404s with
+"The model `X` does not exist" the moment a real completion request hits
+it — confirmed live, and not something `docker compose config` or a
+health check will ever catch:
+
+```bash
+curl http://<machine-b-ip>:8000/v1/models
+```
+
+If Machine B is serving a different model, update the `model:` field
+under `tier_1_local` in `config/litellm.yaml` to match (keep the
+`openai/` prefix — see the note below on why).
+
 **Point the rest of the system at Machine B.** `config/litellm.yaml`'s
 `api_base` fields resolve via LiteLLM's `os.environ/VAR_NAME`
 substitution (the same mechanism it already uses for `api_key:
@@ -298,6 +319,28 @@ docker compose --profile llm up -d litellm   # or: docker compose restart litell
 
 `LLAMACPP_API_BASE` works the same way if you're also running the
 CPU-tier `llamacpp` service on a different machine.
+
+Two things worth knowing about **why** `litellm` is configured the way it
+is now, confirmed by actually firing a real completion request across
+real machines (not just validating config):
+
+- `config/litellm.yaml`'s `model:` field uses the `openai/` provider
+  prefix (`openai/Qwen/Qwen2.5-3B-Instruct-AWQ`), not `vllm/`. The
+  `vllm/`/`llama.cpp/` prefixes tell LiteLLM to load and run those
+  libraries **in-process inside the litellm container itself** — not to
+  call a remote OpenAI-compatible HTTP server. That failed live with
+  `No module named 'vllm'` the instant a real request hit it, even though
+  everything up to that point (config validation, container health,
+  `/health` checks) looked fine. `openai/` + `api_base` is the correct way
+  to talk to `vllm-openai`'s actual HTTP API.
+- The `litellm` service in `docker-compose.yml` joins **both** the
+  `internal` and `edge` networks. `internal` is declared `internal: true`,
+  which means Docker gives containers on it **no default route out at
+  all** — confirmed live as `Network is unreachable` for Machine B's real
+  IP. `edge` isn't isolated, so joining it gives `litellm` an actual
+  egress path. If you add any other container that needs to reach a
+  service on a different physical machine, it needs the same treatment —
+  `internal`-only is not enough.
 
 ### Step 4 — Machine C: TEI (embedding) + diarisation
 
@@ -434,3 +477,27 @@ documentation):
 
 Full test suite re-run after these changes: 711 passed, 82 skipped, no
 regressions (see `docs/gaps.md`).
+
+**Update (gap #29)**: this was then actually run across 3 real physical
+machines, which surfaced 3 more real bugs invisible to `docker compose
+config`, health checks, and the test suite — they only showed up when a
+real inference request was fired at a real second machine:
+
+1. **Wrong LiteLLM provider prefix.** `model: vllm/...` runs vLLM
+   in-process inside the litellm container, not over HTTP — failed live
+   with `No module named 'vllm'`. Fixed: switched to `openai/<model>` +
+   `api_base`, the correct way to call `vllm-openai`'s real HTTP API.
+2. **The `internal` Docker network has no egress by design**
+   (`internal: true`) — `litellm` genuinely could not reach Machine B's IP
+   (`Network is unreachable`), not a firewall issue. Fixed: `litellm` now
+   also joins the non-isolated `edge` network.
+3. **Model name mismatch** — `litellm.yaml` was configured for
+   `microsoft/Phi-3-mini-3.8B-4bit`; Machine B was actually serving
+   `Qwen/Qwen2.5-3B-Instruct-AWQ`. Fixed by matching the config to what's
+   actually deployed.
+
+After all three fixes: a real search request from Machine A produced a
+logged `/embed` call on Machine C's TEI, and a real chat completion
+through `litellm`'s `tier_1_local` route came back from Machine B's vLLM
+— genuinely demonstrated, not inferred. Full details in `docs/gaps.md`
+gap #29.

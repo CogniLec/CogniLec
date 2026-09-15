@@ -1,21 +1,40 @@
 # S37 — LiteLLM proxy: five-tier local-first failover ladder.
 #
-# api_base for tier_1/tier_2 use LiteLLM's os.environ/VAR_NAME substitution
-# (the same mechanism already used below for api_key) so a multi-machine
-# deployment (docs/multi-gpu-setup.md) points at Machine B/C's real LAN IP
-# via env vars, not by hand-editing this file. VLLM_API_BASE/LLAMACPP_API_BASE
+# tier_1/tier_2 use the "openai/" provider prefix, not "vllm/"/"llama.cpp/".
+# Those two prefixes tell LiteLLM to call the vllm/llama-cpp-python
+# libraries IN-PROCESS inside the litellm container itself (which then
+# needs `pip install vllm`, defeating the point of running vLLM as its own
+# service on a separate GPU machine) -- confirmed live: with "vllm/" this
+# fails with "No module named 'vllm'" the moment a request actually hits
+# it, even though config validation and health checks all pass. "openai/"
+# is the correct prefix for talking to vllm-openai's (and llama.cpp
+# server's) actual OpenAI-compatible HTTP API over api_base. api_key is
+# set to a placeholder because LiteLLM's openai/ provider requires some
+# value even though these self-hosted servers don't check it.
+#
+# api_base uses LiteLLM's os.environ/VAR_NAME substitution (the same
+# mechanism already used below for api_key) so a multi-machine deployment
+# (docs/multi-gpu-setup.md) points at Machine B/C's real LAN IP via env
+# vars, not by hand-editing this file. VLLM_API_BASE/LLAMACPP_API_BASE
 # default (.env.example) to the docker-compose-internal hostnames, which is
 # correct when everything runs on one host/compose network.
 model_list:
   - model_name: tier_1_local
     litellm_params:
-      model: vllm/microsoft/Phi-3-mini-3.8B-4bit
+      # This must exactly match whatever --model (VLLM_MODEL) the vllm
+      # container on Machine B was actually launched with -- confirmed
+      # live: a mismatch here 404s with "The model `X` does not exist"
+      # even though networking/auth are otherwise fine. Check with
+      # `curl <machine-b-ip>:8000/v1/models` if unsure what's loaded.
+      model: openai/Qwen/Qwen2.5-3B-Instruct-AWQ
       api_base: os.environ/VLLM_API_BASE
+      api_key: "not-needed"
       timeout: 60
   - model_name: tier_2_cpu
     litellm_params:
-      model: llama.cpp/llama-3-8b-instruct
+      model: openai/llama-3-8b-instruct
       api_base: os.environ/LLAMACPP_API_BASE
+      api_key: "not-needed"
       timeout: 120
   - model_name: tier_3_openai
     litellm_params:
