@@ -30,7 +30,7 @@ export function AuthScreen({ onLogin }: AuthScreenProps): JSX.Element {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
-      <main className="panel w-full max-w-sm">
+      <main className="panel rise-in w-full max-w-sm">
         <div className="mb-5 flex flex-col items-center gap-2 text-center">
           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-sm font-bold text-white shadow-panel">
             LIS

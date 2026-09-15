@@ -11,14 +11,14 @@ export function StudyScreen(): JSX.Element {
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="panel">
+      <section className="panel rise-in">
         <h2 className="mb-3 text-sm font-semibold text-slate-200">Subject</h2>
         <SubjectPicker selectedSubjectId={subject?.id ?? null} onSelect={setSubject} />
       </section>
 
       {subject && (
         <>
-          <div className="flex w-fit gap-1 rounded-full border border-white/10 bg-white/5 p-1">
+          <div className="rise-in flex w-fit gap-1 rounded-full border border-white/10 bg-white/5 p-1">
             <button
               type="button"
               onClick={() => setTab("quiz")}
@@ -42,9 +42,11 @@ export function StudyScreen(): JSX.Element {
             </button>
           </div>
 
-          {tab === "quiz" && <QuizCard subjectId={subject.id} />}
-          {tab === "progress" && <ProgressView subjectId={subject.id} />}
-          {tab === "materials" && <MaterialUpload subjectId={subject.id} />}
+          <div key={tab} className="rise-in">
+            {tab === "quiz" && <QuizCard subjectId={subject.id} />}
+            {tab === "progress" && <ProgressView subjectId={subject.id} />}
+            {tab === "materials" && <MaterialUpload subjectId={subject.id} />}
+          </div>
         </>
       )}
     </div>

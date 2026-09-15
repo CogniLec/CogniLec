@@ -4,6 +4,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 14px, 0) scale(1.04);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @layer base {
   html {
     color-scheme: dark;
@@ -21,8 +52,27 @@
 }
 
 @layer components {
+  /* Fixed, decorative, ambient orbs behind the content — the "floating"
+     backdrop. aria-hidden + pointer-events-none in markup, never affects
+     layout or interaction. Motion is disabled under reduced-motion below. */
+  .float-orb {
+    @apply pointer-events-none fixed rounded-full blur-3xl;
+    animation: float-slow 14s ease-in-out infinite;
+  }
+
+  .float-orb-alt {
+    @apply pointer-events-none fixed rounded-full blur-3xl;
+    animation: float-slower 18s ease-in-out infinite;
+  }
+
+  .rise-in {
+    animation: rise-in 0.35s ease-out both;
+  }
+
   .panel {
-    @apply rounded-2xl border border-white/10 bg-slate-900/70 p-5 shadow-panel backdrop-blur-sm;
+    @apply rounded-2xl border border-white/10 bg-slate-900/70 p-5 shadow-panel backdrop-blur-sm
+      transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/15 hover:shadow-lg
+      hover:shadow-brand-900/40;
   }
 
   .field-label {
@@ -36,35 +86,41 @@
 
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium
-      transition disabled:cursor-not-allowed disabled:opacity-40;
+      transition duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-40
+      disabled:hover:translate-y-0 disabled:hover:shadow-none;
   }
 
   .btn-primary {
-    @apply btn bg-brand-600 text-white shadow-sm hover:bg-brand-500 active:bg-brand-700;
+    @apply btn bg-brand-600 text-white shadow-sm hover:-translate-y-0.5 hover:bg-brand-500
+      hover:shadow-lg hover:shadow-brand-600/30 active:translate-y-0 active:bg-brand-700;
   }
 
   .btn-secondary {
-    @apply btn border border-white/10 bg-white/5 text-slate-100 hover:bg-white/10;
+    @apply btn border border-white/10 bg-white/5 text-slate-100 hover:-translate-y-0.5 hover:bg-white/10
+      hover:shadow-lg hover:shadow-black/20 active:translate-y-0;
   }
 
   .btn-danger {
-    @apply btn bg-rose-600 text-white hover:bg-rose-500 active:bg-rose-700;
+    @apply btn bg-rose-600 text-white hover:-translate-y-0.5 hover:bg-rose-500 hover:shadow-lg
+      hover:shadow-rose-600/30 active:translate-y-0 active:bg-rose-700;
   }
 
   .btn-success {
-    @apply btn bg-emerald-600 text-white hover:bg-emerald-500 active:bg-emerald-700;
+    @apply btn bg-emerald-600 text-white hover:-translate-y-0.5 hover:bg-emerald-500 hover:shadow-lg
+      hover:shadow-emerald-600/30 active:translate-y-0 active:bg-emerald-700;
   }
 
   .btn-ghost {
-    @apply btn text-slate-300 hover:bg-white/5;
+    @apply btn text-slate-300 hover:-translate-y-0.5 hover:bg-white/5;
   }
 
   .pill-tab {
-    @apply cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium text-slate-400 transition hover:text-slate-100;
+    @apply cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium text-slate-400 transition
+      duration-200 hover:-translate-y-0.5 hover:text-slate-100;
   }
 
   .pill-tab-active {
-    @apply pill-tab bg-brand-600 text-white shadow-sm hover:text-white;
+    @apply pill-tab bg-brand-600 text-white shadow-sm shadow-brand-600/30 hover:text-white;
   }
 
   .alert-error {
@@ -73,5 +129,19 @@
 
   .badge {
     @apply inline-flex items-center rounded-full bg-white/5 px-2.5 py-0.5 text-xs font-medium text-slate-300;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-orb,
+  .float-orb-alt,
+  .rise-in {
+    animation: none !important;
+  }
+
+  .panel,
+  .btn,
+  .pill-tab {
+    transition: none !important;
   }
 }
