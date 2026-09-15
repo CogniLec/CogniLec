@@ -96,3 +96,12 @@ export interface StudyProgress {
   accuracy: number;
   recent_outcomes: ReviewOutcome[];
 }
+
+// S51 syllabus/material upload (PDF, image, TXT, MD) — src/api/routes/syllabus_upload.py.
+export interface MaterialUploadResult {
+  upload_id: string;
+  status: string;
+  items_extracted: number | null;
+  message: string;
+  error_details: string | null;
+}

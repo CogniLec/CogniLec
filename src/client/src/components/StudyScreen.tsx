@@ -2,11 +2,12 @@ import { useState } from "react";
 import { SubjectPicker } from "./SubjectPicker";
 import { QuizCard } from "./QuizCard";
 import { ProgressView } from "./ProgressView";
+import { MaterialUpload } from "./MaterialUpload";
 import type { Subject } from "../types";
 
 export function StudyScreen(): JSX.Element {
   const [subject, setSubject] = useState<Subject | null>(null);
-  const [tab, setTab] = useState<"quiz" | "progress">("quiz");
+  const [tab, setTab] = useState<"quiz" | "progress" | "materials">("quiz");
 
   return (
     <div className="flex flex-col gap-6">
@@ -32,13 +33,18 @@ export function StudyScreen(): JSX.Element {
             >
               Progress
             </button>
+            <button
+              type="button"
+              onClick={() => setTab("materials")}
+              className={tab === "materials" ? "pill-tab-active" : "pill-tab"}
+            >
+              Materials
+            </button>
           </div>
 
-          {tab === "quiz" ? (
-            <QuizCard subjectId={subject.id} />
-          ) : (
-            <ProgressView subjectId={subject.id} />
-          )}
+          {tab === "quiz" && <QuizCard subjectId={subject.id} />}
+          {tab === "progress" && <ProgressView subjectId={subject.id} />}
+          {tab === "materials" && <MaterialUpload subjectId={subject.id} />}
         </>
       )}
     </div>

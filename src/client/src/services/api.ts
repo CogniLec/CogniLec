@@ -1,6 +1,6 @@
 import { CONFIG } from "../config";
 import { getAccessToken } from "./auth";
-import type { Flashcard, FsrsRating, StudyProgress, Subject } from "../types";
+import type { Flashcard, FsrsRating, MaterialUploadResult, StudyProgress, Subject } from "../types";
 
 // Thin fetch wrappers around the backend contracts documented in S15 spec
 // section 5 (backed by S07 subjects/sessions routes). Kept minimal and
@@ -123,4 +123,27 @@ export async function reviewFlashcard(
 
 export async function fetchStudyProgress(subjectId: string): Promise<StudyProgress> {
   return request<StudyProgress>(`/api/v1/subjects/${subjectId}/study/progress`);
+}
+
+/**
+ * Uploads a syllabus/reference document — PDF, image (PNG/JPG), TXT, or MD
+ * (src/services/docling/parser.py `detect_format`) — for a subject. No
+ * `Content-Type` header is set here deliberately: the browser must set its
+ * own `multipart/form-data` boundary, which the shared `request()` helper's
+ * hardcoded `application/json` header would break.
+ */
+export async function uploadMaterial(subjectId: string, file: File): Promise<MaterialUploadResult> {
+  const token = getAccessToken();
+  const body = new FormData();
+  body.append("file", file);
+
+  const res = await fetch(`${CONFIG.apiBaseUrl}/api/v1/subjects/${subjectId}/syllabus`, {
+    method: "POST",
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    body,
+  });
+  if (!res.ok) {
+    throw new Error(`Upload failed: ${res.status} ${res.statusText}`);
+  }
+  return (await res.json()) as MaterialUploadResult;
 }
