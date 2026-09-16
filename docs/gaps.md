@@ -1725,6 +1725,73 @@ upgrade` races unrelated to this change; retried once contention cleared).
   and a passing test suite are necessary, not sufficient, for "this works
   on a machine that isn't the one that wrote the config."
 
+## 31. Machine C's fresh rebuild surfaced 6 more real bugs (2026-09-16)
+
+- Continuing the pattern from gaps #29/#30: Machine C hard-reset to
+  `origin/main` and rebuilt TEI + diarisation from scratch on a real T1000
+  (4GB VRAM, Turing) over a real (slow/bursty) network — a genuinely
+  different environment shape than gap #30's Machine B run, and it
+  surfaced 6 more real problems, none of which showed up in
+  `docker compose config` or the test suite. Fixed the machine-independent
+  ones directly in the shared config/Dockerfile; kept the genuinely
+  machine-specific ones as env-var overrides, same split as gap #30's
+  `--enforce-eager` decision:
+  1. **`minio/minio:latest` is gone from Docker Hub** ("pull access
+     denied") — this is an external registry change, not something this
+     repo did wrong, but it blocks `docker compose up` on any machine
+     pulling fresh. Fixed: both `minio`/`minio-init` image refs switched to
+     `quay.io/minio/minio:latest` (the official mirror), which stayed
+     available.
+  2. **`services/diarisation-service/Dockerfile` never installed `curl`**,
+     so the container's own healthcheck (`docker-compose.yml`'s
+     `test: ["CMD", "curl", ...]`) could never pass even though the app
+     itself worked correctly — a container permanently reporting unhealthy
+     while functioning fine. Fixed by adding `curl` to the `apt-get
+     install` line.
+  3. **TEI had no GPU device reservation** at all, unlike every other
+     GPU-profile service in this file (`vllm`, `diarisation`) — fine on
+     the default `cpu-1.5` image tag, but fails with `libcuda.so.1: cannot
+     open shared object file` the moment `TEI_IMAGE_TAG` points at a GPU
+     build, which is exactly what Machine C (a genuinely GPU-having
+     machine, per its role in `docs/multi-gpu-setup.md`) needs. Fixed by
+     adding the same `deploy.resources.reservations.devices` pattern as
+     `vllm`/`diarisation`, gated by a new `TEI_GPU_DEVICE` env var —
+     documented in the compose file as removable for anyone deliberately
+     running TEI on a machine with no GPU at all (the `cpu-1.5` default
+     case, which never touches this block's assumptions since it's never
+     asked to reserve a device unless a GPU tag is actually selected).
+  4. **TEI needs `--auto-truncate`** — Qwen3-Embedding-0.6B's own max
+     sequence length (32768) is far above `--max-batch-tokens`, and
+     without this flag a long input errors instead of truncating. This is
+     a correctness fix with no downside on any hardware, so added
+     unconditionally to the shared `command:`.
+  5. **TEI's hardcoded `--max-batch-tokens 16384` OOMs a small-VRAM GPU**
+     (confirmed on the same 4GB card from gap #30's vLLM OOM). Made
+     configurable via a new `TEI_MAX_BATCH_TOKENS` env var (default 16384,
+     unchanged shared behavior) instead of hand-editing the compose file
+     per deployment — same pattern as `VLLM_MAX_MODEL_LEN`.
+  6. **`pip install torch` (~2GB, unpinned download size) in the
+     diarisation Dockerfile was timing out on a slow/bursty network** —
+     not a bug in the sense of "wrong on a normal connection," but a real
+     robustness gap: the default pip timeout assumes reasonably fast,
+     steady throughput. Fixed by adding `--default-timeout=120 --retries
+     5` to that `RUN pip install`, which is strictly safer on a fast
+     network too (higher ceiling, not a behavior change when unneeded).
+- Full test suite re-run after these changes; `docker compose config`
+  re-validated with all 3 GPU profiles active.
+- **Verified live** (not just "container is up"): TEI's `/embed` endpoint
+  returned real 1024-dim vectors, and diarisation's `/diarise` endpoint
+  (note: British spelling — not `/diarize`, worth remembering since it's
+  an easy typo when calling it directly) ran the actual pyannote pipeline
+  on GPU and returned `200`. Both reachable from Machine A's IP,
+  reconfirming the cross-machine network path gap #29 established still
+  holds after this full rebuild.
+- Pattern now 3 for 3 (gaps #29, #30, #31): every one of these bugs only
+  surfaced because a genuinely different physical machine actually tried
+  a fresh build/run, never from re-reading the file. Machine identity
+  (GPU generation, VRAM size, network conditions) keeps mattering in ways
+  `docker compose config` and a passing test suite cannot see.
+
 ## Not yet addressed
 
 - Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`

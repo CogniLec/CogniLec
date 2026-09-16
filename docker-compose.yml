@@ -186,7 +186,10 @@ services:
   # MinIO — S3-compatible object storage
   # ---------------------------------------------------------------------------
   minio:
-    image: minio/minio:latest
+    # minio/minio:latest was pulled from Docker Hub; quay.io is the
+    # official mirror and stayed available when that image was removed
+    # (confirmed live: "pull access denied" on minio/minio:latest, gap #31).
+    image: quay.io/minio/minio:latest
     container_name: lis-minio
     hostname: minio
     command: server /data --console-address ":9001"
@@ -221,7 +224,10 @@ services:
   # MinIO Init — One-shot bucket initialization (run after MinIO is healthy)
   # ---------------------------------------------------------------------------
   minio-init:
-    image: minio/minio:latest
+    # minio/minio:latest was pulled from Docker Hub; quay.io is the
+    # official mirror and stayed available when that image was removed
+    # (confirmed live: "pull access denied" on minio/minio:latest, gap #31).
+    image: quay.io/minio/minio:latest
     container_name: lis-minio-init
     entrypoint: /bin/sh
     command: /scripts/buckets.sh
@@ -552,7 +558,13 @@ services:
     image: ghcr.io/huggingface/text-embeddings-inference:${TEI_IMAGE_TAG:-cpu-1.5}
     container_name: lis-tei
     hostname: tei
-    command: --model-id Qwen/Qwen3-Embedding-0.6B --max-batch-tokens 16384
+    # --auto-truncate: Qwen3-Embedding-0.6B's own max sequence length
+    # (32768) is far above --max-batch-tokens -- without this flag, a long
+    # input errors instead of truncating (confirmed live, gap #31).
+    # --max-batch-tokens is configurable: 16384 (below) OOMs a small GPU
+    # (confirmed live on a 4GB card) -- set TEI_MAX_BATCH_TOKENS lower in
+    # that machine's own .env; the shared default here is unchanged.
+    command: --model-id Qwen/Qwen3-Embedding-0.6B --auto-truncate --max-batch-tokens ${TEI_MAX_BATCH_TOKENS:-16384}
     ports:
       - "${TEI_PORT:-8090}:80"
     volumes:
@@ -576,6 +588,19 @@ services:
       resources:
         limits:
           memory: 2G
+        # Only needed with a GPU-tagged TEI_IMAGE_TAG (the default,
+        # cpu-1.5, doesn't touch a GPU at all). Confirmed live: the
+        # container fails ("libcuda.so.1: cannot open shared object file")
+        # without this when TEI_IMAGE_TAG points at a GPU build -- this
+        # matches vllm/diarisation's own device reservation above, and
+        # docs/multi-gpu-setup.md's Machine C already assumes a GPU host
+        # for this profile. Remove this block if you deliberately run TEI
+        # on a machine with no GPU at all (stick to the cpu-1.5 default).
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${TEI_GPU_DEVICE:-0}"]
+              capabilities: [gpu]
 
   # ---------------------------------------------------------------------------
   # LiteLLM proxy — S37 five-tier failover ladder router
