@@ -28,7 +28,7 @@ from src.services.valkey_stream import ValkeyStreamProducer
 
 pytestmark = pytest.mark.integration
 
-DATABASE_URL = "postgresql+asyncpg://lis:lis_dev@localhost:5434/lis_main"
+DATABASE_URL = "postgresql+asyncpg://lis:lis_dev@localhost:5434/lis_test"
 VALKEY_URL = "redis://localhost:6379/0"
 
 

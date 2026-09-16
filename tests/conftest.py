@@ -23,9 +23,17 @@ SYLLABUS_SCHEMA_SQL = "\n".join(
     for name in ("001_syllabus_items.sql", "002_syllabus_items_extend.sql")
 )
 
-# Connect directly to PostgreSQL, bypassing PgBouncer
-DATABASE_URL = "postgresql+asyncpg://lis:lis_dev@localhost:5434/lis_main"
-SYLLABUS_DATABASE_URL = "postgresql+asyncpg://lis:lis_dev@localhost:5435/lis_syllabus"
+# Connect directly to PostgreSQL, bypassing PgBouncer.
+#
+# These point at dedicated lis_test/lis_syllabus_test databases, NOT
+# lis_main/lis_syllabus (the live app's real databases) -- this fixture's
+# DROP SCHEMA public CASCADE below previously ran directly against the
+# live databases, silently wiping every real registered user/subject/
+# anything else on every test run. lis_test/lis_syllabus_test are
+# provisioned by docker/postgres/init-main.sql and init-syllabus.sql
+# (on a fresh volume) or created manually otherwise -- see those files.
+DATABASE_URL = "postgresql+asyncpg://lis:lis_dev@localhost:5434/lis_test"
+SYLLABUS_DATABASE_URL = "postgresql+asyncpg://lis:lis_dev@localhost:5435/lis_syllabus_test"
 
 
 @pytest.fixture(scope="function")
@@ -43,8 +51,19 @@ async def db_session():
         await conn.execute(text('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"'))
         await conn.execute(text("CREATE EXTENSION IF NOT EXISTS citext"))
 
-    # Run alembic migrations with direct PG connection (bypass PgBouncer)
-    env = {**os.environ, "DATABASE_URL": DATABASE_URL}
+    # Run alembic migrations with direct PG connection (bypass PgBouncer).
+    # SYLLABUS_DB_NAME override matters too: migration a2c7d4e9f1b3 (S11)
+    # creates the postgres_fdw foreign server's remote `dbname` option from
+    # this setting -- without pointing it at lis_syllabus_test too, the FDW
+    # foreign table on lis_test would read from the real lis_syllabus
+    # instead of the isolated test database SYLLABUS_DATABASE_URL below
+    # actually writes to, and any FDW-read test finds nothing (confirmed
+    # live: this exact mismatch broke test_syllabus.py::test_fdw_query).
+    env = {
+        **os.environ,
+        "DATABASE_URL": DATABASE_URL,
+        "SYLLABUS_DB_NAME": "lis_syllabus_test",
+    }
     proc = subprocess.run(
         [".venv/bin/alembic", "upgrade", "head"],
         capture_output=True,

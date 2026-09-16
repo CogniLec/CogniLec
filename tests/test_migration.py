@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 from pathlib import Path
 
@@ -12,6 +13,16 @@ from sqlalchemy.ext.asyncio import AsyncSession
 ALEMBIC_BIN = Path(__file__).resolve().parent.parent / ".venv" / "bin" / "alembic"
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
+# This test runs `alembic downgrade base`, which DROPS every table --
+# without this override it inherited DATABASE_URL from the process
+# environment (i.e. .env's real value, lis_main), and genuinely destroyed
+# the live app's database when run outside of a fully clean environment.
+# Matches conftest.py's own DATABASE_URL (lis_test, not lis_main).
+_TEST_DB_ENV = {
+    **os.environ,
+    "DATABASE_URL": "postgresql+asyncpg://lis:lis_dev@localhost:5434/lis_test",
+}
+
 
 def _run_alembic(command: list[str], check: bool = True) -> subprocess.CompletedProcess[str]:
     """Run an alembic command and return the result."""
@@ -21,6 +32,7 @@ def _run_alembic(command: list[str], check: bool = True) -> subprocess.Completed
         text=True,
         cwd=str(PROJECT_ROOT),
         timeout=60,
+        env=_TEST_DB_ENV,
     )
 
 

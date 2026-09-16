@@ -37,9 +37,13 @@ from src.services.backup.pg_backup import (
 
 # Host-facing DSN for seeding rows via db_session's own engine; the backup
 # helpers use the in-container DSN below since they run pg_dump/pg_restore
-# via `docker exec` (see src/services/backup/pg_backup.py).
-DSN = "postgresql://lis:lis_dev@localhost:5434/lis_main"
-CONTAINER_DSN = "postgresql://lis:lis_dev@localhost:5432/lis_main"
+# via `docker exec` (see src/services/backup/pg_backup.py). Points at
+# lis_test (matching conftest.py's db_session fixture), not lis_main --
+# this test's INSERT goes through db_session, so the backup/restore must
+# target the same database or every row-count assertion is comparing
+# against data that was never written there.
+DSN = "postgresql://lis:lis_dev@localhost:5434/lis_test"
+CONTAINER_DSN = "postgresql://lis:lis_dev@localhost:5432/lis_test"
 
 
 @pytest.mark.asyncio

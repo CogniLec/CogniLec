@@ -31,8 +31,10 @@ pytestmark = pytest.mark.integration
 # gap #4 fix: `lis_app` (NOSUPERUSER NOBYPASSRLS, migration
 # c4d8e2a6f1b9) -- connecting as this role instead of the superuser `lis`
 # used by the `db_session` fixture is what actually makes RLS enforcement
-# testable; see TestT242RLSCrossUserBlocked below.
-_RLS_ROLE_DATABASE_URL = "postgresql+asyncpg://lis_app:lis_app_dev@localhost:5434/lis_main"
+# testable; see TestT242RLSCrossUserBlocked below. Points at lis_test, the
+# same isolated database the db_session fixture itself uses (conftest.py)
+# -- not lis_main, the live app's real database.
+_RLS_ROLE_DATABASE_URL = "postgresql+asyncpg://lis_app:lis_app_dev@localhost:5434/lis_test"
 
 
 async def _create_user_and_subject(
