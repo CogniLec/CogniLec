@@ -6,12 +6,18 @@ from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.db.session import MainAsyncSession, SyllabusAsyncSession
+from src.db.session import RlsAsyncSession, SyllabusAsyncSession
 
 
 async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
-    """Yield an async database session, auto-committing on success."""
-    async with MainAsyncSession() as session:
+    """Yield an async database session, auto-committing on success.
+
+    Uses `RlsAsyncSession` (the `lis_app` role: NOSUPERUSER NOBYPASSRLS,
+    migration c4d8e2a6f1b9) rather than the superuser `lis` role used for
+    migrations -- gap #4: RLS policies are only genuinely enforced by
+    Postgres when the connecting role isn't a superuser/BYPASSRLS.
+    """
+    async with RlsAsyncSession() as session:
         try:
             yield session
             await session.commit()

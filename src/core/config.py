@@ -26,6 +26,18 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "postgresql+asyncpg://lis:lis_dev@localhost:5434/lis_main"
     SYLLABUS_DATABASE_URL: str = "postgresql+asyncpg://lis:lis_dev@localhost:5435/lis_syllabus"
 
+    # gap #4 fix: DATABASE_URL's `lis` role is a superuser with BYPASSRLS
+    # (needed for migrations' DDL) -- RLS policies on subjects/sessions/
+    # utterances/segments/note_sections/note_provenance are never actually
+    # enforced by Postgres through that role, regardless of the policies
+    # being correctly defined. RLS_DATABASE_URL uses `lis_app` (provisioned
+    # by migration c4d8e2a6f1b9: NOSUPERUSER NOBYPASSRLS, full DML only, no
+    # DDL) for the app's actual per-request connection
+    # (get_db_session/get_db_session_with_rls -- src/db/session.py), so
+    # those 6 tables' policies are now genuinely Postgres-enforced.
+    # Migrations are unaffected -- they still run via DATABASE_URL/`lis`.
+    RLS_DATABASE_URL: str = "postgresql+asyncpg://lis_app:lis_app_dev@localhost:5434/lis_main"
+
     # S11: discrete PG-SYLLABUS connection params for the postgres_fdw
     # CREATE SERVER / CREATE USER MAPPING migration (FDW options take
     # individual values, not a connection string). These deliberately use

@@ -2,23 +2,30 @@
 
 ENVIRONMENT CAVEATS (read before trusting any pass/fail here):
 
-1. GPU: this machine's NVIDIA driver is currently broken (nvidia-smi fails
-   with a driver/library version mismatch) - there is no working GPU here.
-   All tests use a small faster-whisper model (`tiny.en`, CPU,
-   compute_type="int8") instead of the production `large-v3`/
-   `large-v3-turbo` at production quantization. This proves the
-   transcription -> persistence -> state-machine mechanism works; it does
-   NOT verify production-model accuracy or GPU real-time-factor.
+1. GPU: the NVIDIA driver issue that originally blocked GPU tests here is
+   resolved (docs/gaps.md #3, fixed by a host reboot) and GPU access is
+   confirmed working across all 3 machines in the current deployment
+   (docs/gaps.md #29-#31). These tests still use a small faster-whisper
+   model (`tiny.en`, CPU, compute_type="int8") instead of the production
+   `large-v3`/`large-v3-turbo` at production quantization, deliberately -
+   not because of a driver problem, but because the production weights
+   aren't cached in this test environment and downloading them per test
+   run would be slow/flaky. This proves the transcription -> persistence
+   -> state-machine mechanism works; it does NOT verify production-model
+   accuracy or GPU real-time-factor.
 
 2. T19.1 (WER within tolerance of the S06 benchmark): the real S06 held-out
-   benchmark does not exist yet - S04's real audio corpus is incomplete (6
-   of 8-10 sessions recorded, no DVC) and the S06 ASR bake-off gate has
-   never actually passed (no MLflow runs). There is no real number to
-   compare against. `test_wer_benchmark` below therefore validates the WER
-   *computation mechanism* (reusing src/ml/asr/wer.py from S06) against a
-   synthetic reference/hypothesis pair with a hand-countable edit distance,
-   NOT a real production-benchmark comparison. Real S06 benchmark
-   validation is blocked pending the real audio corpus + GPU driver fix.
+   benchmark does not exist yet - S04's real audio corpus has 5 real
+   recordings (docs/gaps.md #27) but with placeholder room/device/subject/
+   consent metadata, and S05's hand-transcription (ground-truth WER
+   labels) hasn't started, so there is no real number to compare against.
+   `test_wer_benchmark` below therefore validates the WER *computation
+   mechanism* (reusing src/ml/asr/wer.py from S06) against a synthetic
+   reference/hypothesis pair with a hand-countable edit distance, NOT a
+   real production-benchmark comparison. Real S06 benchmark validation is
+   blocked on S05 hand-labelling and finishing S04's metadata, not on any
+   GPU/driver issue (resolved) or diarisation model access (resolved,
+   docs/gaps.md #31).
 
 3. T19.6 (RTF < 1.0 "on GPU"): run on CPU with the tiny model instead. The
    actual measured RTF is asserted and printed; this does not prove the

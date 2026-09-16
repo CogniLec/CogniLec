@@ -16,7 +16,7 @@ from typing import Any
 import httpx
 import pytest
 from fastapi import FastAPI
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from src.api.dependencies.auth import get_current_user
 from src.api.dependencies.database import get_db_session
 from src.api.routes.transcript import router as transcript_router
@@ -27,6 +27,12 @@ from src.db.repositories.session_repo import SessionRepository
 from src.db.repositories.utterance_repo import UtteranceRepository
 
 pytestmark = pytest.mark.integration
+
+# gap #4 fix: `lis_app` (NOSUPERUSER NOBYPASSRLS, migration
+# c4d8e2a6f1b9) -- connecting as this role instead of the superuser `lis`
+# used by the `db_session` fixture is what actually makes RLS enforcement
+# testable; see TestT242RLSCrossUserBlocked below.
+_RLS_ROLE_DATABASE_URL = "postgresql+asyncpg://lis_app:lis_app_dev@localhost:5434/lis_main"
 
 
 async def _create_user_and_subject(
@@ -132,22 +138,16 @@ class TestT242RLSCrossUserBlocked:
         assert resp.status_code == 404
         assert resp.json()["detail"] == "Session not found"
 
-    @pytest.mark.skip(
-        reason="T24.2 as specified requires RLS to actually deny a cross-user "
-        "row. The only DB role available in this environment (`lis`, from "
-        ".env / docker/postgres/init-main.sql) is Postgres SUPERUSER with "
-        "BYPASSRLS - superusers bypass row-level security unconditionally "
-        "regardless of FORCE ROW LEVEL SECURITY (S12 migration), so "
-        "`get_db_session_with_rls`'s `set_config('app.user_id', ...)` has no "
-        "enforcement effect for this role and User B's request genuinely "
-        "returns User A's data (verified: it returns 200, not 404). Fixing "
-        "this requires provisioning a non-superuser, NOBYPASSRLS application "
-        "role for runtime/test DB connections - an S12-level infrastructure "
-        "change outside S21-S24's scope. The route's own logic (404-not-403 "
-        "framing above, and RLS wiring via get_db_session_with_rls) is "
-        "correct and ready for that role once it exists."
-    )
     async def test_other_users_session_returns_404_not_403(self, db_session: AsyncSession) -> None:
+        """T24.2, now exercising real RLS denial (gap #4 fix).
+
+        Seeding still goes through the superuser `db_session` fixture (its
+        schema-reset/migration setup needs DDL rights), but the actual HTTP
+        request below is served through a `lis_app`-connected session
+        (NOSUPERUSER NOBYPASSRLS) -- the same role the app now uses at
+        runtime (src/api/dependencies/database.py). Postgres itself, not
+        application code, is what denies the intruder's read here.
+        """
         _owner, owner_subject = await _create_user_and_subject(db_session)
         session_repo = SessionRepository(db_session)
         session_obj = await session_repo.create(owner_subject.id)
@@ -155,16 +155,26 @@ class TestT242RLSCrossUserBlocked:
         await _seed_utterances(db_session, owner_subject, session_obj.id, 3)
 
         intruder, _ = await _create_user_and_subject(db_session)
+        await db_session.commit()
 
-        app = _build_app(
-            db_session, {"id": intruder.id, "email": intruder.email, "is_active": True}
+        rls_engine = create_async_engine(_RLS_ROLE_DATABASE_URL, echo=False)
+        rls_session_factory = async_sessionmaker(
+            rls_engine, class_=AsyncSession, expire_on_commit=False
         )
-        transport = httpx.ASGITransport(app=app)
-        async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
-            resp = await client.get(
-                f"/api/v1/sessions/{session_obj.id}/transcript",
-                headers={"Authorization": "Bearer fake"},
-            )
+        try:
+            async with rls_session_factory() as rls_session:
+                app = _build_app(
+                    rls_session, {"id": intruder.id, "email": intruder.email, "is_active": True}
+                )
+                transport = httpx.ASGITransport(app=app)
+                async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+                    resp = await client.get(
+                        f"/api/v1/sessions/{session_obj.id}/transcript",
+                        headers={"Authorization": "Bearer fake"},
+                    )
+        finally:
+            await rls_engine.dispose()
+
         assert resp.status_code == 404
         assert resp.json()["detail"] == "Session not found"
 

@@ -29,6 +29,10 @@ class TokenResponse(BaseModel):
     token_type: str = "bearer"
 
 
+class RefreshRequest(BaseModel):
+    refresh_token: str
+
+
 class TokenPayload(BaseModel):
     sub: uuid.UUID
     exp: datetime

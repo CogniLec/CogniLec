@@ -7,18 +7,23 @@ HONESTY STATEMENT - READ BEFORE TRUSTING ANY PASS HERE (this is a HARD GATE)
 The S20 spec frames T20.5 as a project HARD GATE: "all downstream blocks
 (S21+) may begin ONLY after T20.5 passes" on a real 60-minute lecture
 recording, with a working GPU and real multi-speaker diarisation. THAT GATE
-IS NOT GENUINELY CLOSED BY THIS TEST FILE. Specifically, three things this
-environment cannot provide, none of them fixable from inside this task:
+IS STILL NOT GENUINELY CLOSED BY THIS TEST FILE, but two of the three
+original blockers are now resolved:
 
-1. GPU: nvidia-smi fails here (driver/library version mismatch). No CUDA
-   device is usable, so real production-model ASR/diarisation RTF cannot be
-   measured.
-2. Real audio corpus: S04's real lecture corpus is incomplete (6 of 8-10
-   sessions recorded, per tests/test_asr_worker.py's module docstring) -
-   there is no real 60-minute lecture fixture with known ground truth.
-3. pyannote.audio: not installed (deliberately - see tests/test_diarisation.py's
-   module docstring); its pretrained model is HuggingFace-gated and no
-   HF_TOKEN/HUGGINGFACE_TOKEN is configured in .env here.
+1. GPU: RESOLVED (docs/gaps.md #3, #29-#31). The driver issue is fixed and
+   GPU access is confirmed working across all 3 machines in the current
+   deployment; this test file itself still uses the CPU tiny.en model for
+   speed/portability (see tests/test_asr_worker.py's module docstring),
+   not because of any driver problem.
+2. pyannote.audio: RESOLVED (docs/gaps.md #17, #31). It's installed and
+   genuinely running GPU-accelerated diarisation in its own container;
+   HF_TOKEN is configured and diarisation's /diarise endpoint has been
+   verified live against real audio.
+3. Real audio corpus: STILL the actual blocker. S04's corpus has 5 real
+   recordings (docs/gaps.md #27), but with placeholder room/device/
+   subject/consent metadata and no hand-labelled ground truth (S05 hasn't
+   started) - there is still no real 60-minute lecture fixture with known
+   ground truth to measure RTF/WER/diarisation accuracy against.
 
 What this test DOES genuinely verify: the full mechanical ingestion spine -
 create session (real API) -> upload a short chunk (real MinIO, real API) ->
@@ -279,12 +284,12 @@ class TestIngestionSpineE2E:
     @pytest.mark.skip(
         reason=(
             "Blocked: RTF<2.0 'for a full 60-minute session' cannot be honestly "
-            "measured - there is no real 60-minute lecture fixture (S04 corpus "
-            "incomplete) and no working GPU (nvidia-smi driver/library mismatch) "
-            "on this host, so the production model/hardware combination the spec "
-            "means is not available. test_ingestion_spine_e2e above measures "
-            "correctness of the pipeline wiring on a ~5s fixture only, not RTF "
-            "at 60-minute/GPU scale."
+            "measured - there is no real 60-minute lecture fixture yet (S04 "
+            "corpus has 5 real recordings, docs/gaps.md #27, but with "
+            "placeholder metadata and no S05 hand-labelling). GPU access itself "
+            "is resolved (docs/gaps.md #3, #29-#31) and no longer the blocker "
+            "here. test_ingestion_spine_e2e above measures correctness of the "
+            "pipeline wiring on a ~5s fixture only, not RTF at 60-minute scale."
         )
     )
     def test_rtf_under_2_for_full_60_minute_session(self) -> None:

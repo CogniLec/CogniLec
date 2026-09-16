@@ -18,17 +18,22 @@ by code changes alone.
     can't be honestly measured without a real 60-minute fixture.
 - **Fix:** record and consent the S04 corpus per spec, run the S06 bake-off in MLflow.
 
-## 2. S20 — Diarisation model unavailable
+## 2. S20 — Diarisation model unavailable — resolved (2026-09-15/16)
 
-- **Spec requirement:** pyannote.audio 3.x producing anonymous speaker tags.
-- **Current state:** pyannote.audio deliberately not installed; its pretrained
-  model is HuggingFace-gated and no `HF_TOKEN` is configured in `.env`.
-- **Blocks:**
-  - `tests/test_diarisation.py:201` — skipped, real multi-speaker diarisation
-    on real audio can't run. Tag-assignment mechanism is instead verified via
-    a synthetic backend (`test_speaker_tags_assigned_from_synthetic_segments`).
-- **Fix:** obtain a HuggingFace token with access to the gated pyannote model,
-  set `HF_TOKEN` in `.env`, install `pyannote.audio`.
+- **Was:** pyannote.audio deliberately not installed; its pretrained model
+  is HuggingFace-gated and no `HF_TOKEN` was configured.
+- **Fix applied:** `HF_TOKEN` set in `.env` (a real token, terms accepted for
+  `pyannote/speaker-diarization-3.1` and `pyannote/segmentation-3.0`);
+  diarisation runs in its own container (gap #18) and is now genuinely
+  verified live — `/diarise` (note: British spelling) ran the actual
+  pyannote pipeline on a real GPU and returned `200` with real speaker
+  tags (gap #31), reachable cross-machine.
+- **Residual:** `tests/test_diarisation.py:201`'s real-audio integration
+  test is still skipped in *this* CI/dev environment specifically (no GPU
+  attached to the machine running the test suite itself) — the model and
+  pipeline are proven working (gap #31), just not from inside a pytest run
+  on a non-GPU host. Tag-assignment logic is otherwise fully covered via
+  `test_speaker_tags_assigned_from_synthetic_segments`.
 
 ## 3. GPU driver — resolved (2026-09-12)
 
@@ -45,20 +50,53 @@ by code changes alone.
 - Residual: the 3 skips above still cite "GPU driver mismatch" in their skip
   messages — that text is now stale. The real blockers are #1 and #2 above.
 
-## 4. RLS not actually enforced (found while building S24)
+## 4. RLS not actually enforced — resolved (2026-09-16)
 
 - **Spec requirement (S12):** row-level security enforced by PostgreSQL,
   fail-closed, independent of application code.
-- **Current state:** the `lis` role (from `.env` / `docker/postgres/init-main.sql`)
-  is Postgres **SUPERUSER with BYPASSRLS**. Superusers bypass RLS
+- **Was:** the `lis` role (from `.env` / `docker/postgres/init-main.sql`) is
+  Postgres **SUPERUSER with BYPASSRLS**. Superusers bypass RLS
   unconditionally, regardless of `FORCE ROW LEVEL SECURITY`. A cross-user
-  transcript request currently returns 200 with another user's data, not 404.
-- **Blocks:** `tests/test_transcript_api.py::test_...` (T24.2) — skipped, can't
-  honestly assert RLS denial with the only role available being a superuser.
-- **Fix:** provision a non-superuser, `NOBYPASSRLS` application role for
-  runtime/test DB connections. The route logic and RLS wiring
-  (`get_db_session_with_rls`) are already correct and ready once that role
-  exists — this is a database provisioning gap, not a code bug.
+  transcript request returned 200 with another user's data, not 404.
+- **Fix applied:** migration `c4d8e2a6f1b9` provisions `lis_app` — a
+  `NOSUPERUSER NOCREATEDB NOCREATEROLE NOBYPASSRLS` role with full DML
+  (SELECT/INSERT/UPDATE/DELETE) on every table but no DDL rights, plus its
+  own `postgres_fdw` user mapping (the S11 migration only mapped `lis`).
+  `src/core/config.py` adds `RLS_DATABASE_URL`; `src/db/session.py` adds a
+  second engine/session factory (`rls_engine`/`RlsAsyncSession`) on it;
+  `src/api/dependencies/database.py`'s `get_db_session` — the app's actual
+  per-request connection — now uses that instead of the superuser
+  connection. Migrations are unaffected, still running via `DATABASE_URL`/
+  `lis` (unchanged), since they genuinely need DDL rights.
+- **Verified, not just configured:** `tests/test_transcript_api.py::TestT242RLSCrossUserBlocked::test_other_users_session_returns_404_not_403`
+  (previously skipped with exactly this reasoning) now connects as
+  `lis_app` for the actual request and genuinely passes — Postgres itself,
+  not application code, denies the intruder's read. Full test suite
+  re-run after switching `get_db_session`'s role: 712 passed (up from 711
+  — this test un-skipped), 81 skipped (down from 82), no regressions.
+- **Scope note:** this only changes enforcement on the 6 tables migration
+  `8b67f8790b48` actually put RLS policies on (`subjects`, `sessions`,
+  `utterances`, `segments`, `note_sections`, `note_provenance`). Every
+  other table (flashcards, corrections, uploads, etc.) was never covered
+  by RLS policies at all, and remains protected only by the explicit
+  ownership checks in `src/api/dependencies/ownership.py` (gap #25) — that
+  was already true before this fix and is unrelated to the superuser/
+  BYPASSRLS issue this gap was about.
+
+## 4b. Auth refresh token was issued but unusable — resolved (2026-09-16)
+
+- **Was:** `/auth/login` issued a `refresh_token`, but no endpoint ever
+  accepted it — the token existed only to expire unused. Never logged as
+  its own numbered gap earlier this session, just mentioned in passing.
+- **Fix applied:** `POST /auth/refresh` (`src/api/routes/auth.py`) accepts
+  `{"refresh_token": "..."}`, validates it's genuinely a `type: "refresh"`
+  JWT (rejects an access token used in its place) for a real, active user,
+  and returns a new access/refresh pair.
+- **Verified:** new `tests/test_auth_routes.py` (no route-level auth tests
+  existed before this) — a working refresh round-trip including using the
+  new access token against a protected route, plus rejection of an access
+  token swapped in, a garbage token, a deactivated user's token, and a
+  well-formed token for a user that no longer exists. All 5 pass.
 
 ## 5. Repo consolidation (2026-09-13)
 
@@ -1794,15 +1832,22 @@ upgrade` races unrelated to this change; retried once contention cleared).
 
 ## Not yet addressed
 
-- Skip messages in `test_asr_worker.py`, `test_diarisation.py`, `test_e2e_gate.py`
-  still reference the old GPU mismatch reasoning and should be updated to point
-  at the corpus/token gaps instead.
+- **S04/S05: real audio corpus is still incomplete.** 5 real recordings
+  exist (gap #27) but with placeholder room/device/subject/consent
+  metadata, and S05's hand-transcription (WER ground truth), topic-boundary
+  marking, and relevance labelling haven't started. This is the one
+  genuinely unresolved item gap #1 was originally about, and it now also
+  blocks gap #2/#31's diarisation and gap #29-30's vLLM/embedding work from
+  ever producing an honest accuracy number — the infrastructure all works,
+  there's just no labelled ground truth to measure against yet. Needs real
+  recordings with real consent and real human labelling effort; not
+  something fixable from inside a coding session.
 - `ansible/inventory.yml` still has placeholder `ansible_host` / `ansible_user`
   values — the playbook has never been run against a real target host, only
-  retrofitted to match this dev machine's driver version.
+  retrofitted to match this dev machine's driver version. Needs a real
+  target host to run against.
 - Pre-commit hooks are currently failing across the pre-existing codebase
   (see gap #5) and need a real cleanup pass, not further `--no-verify` commits.
 - S36-S40 (Block 6) and S25-S35 (Blocks 4-5, if/when implemented) will hit the
-  same "no GPU-loaded model / no real corpus" test-skip pattern as S02/S06/S19/
-  S20/S21 until gaps #1 and #2 (or their Block-6 equivalent: no cached vLLM
-  weights) are resolved.
+  same "no real corpus" test-skip pattern as S02/S06/S19/S20/S21 until the
+  S04/S05 item above is resolved.
