@@ -1846,8 +1846,14 @@ upgrade` races unrelated to this change; retried once contention cleared).
   values — the playbook has never been run against a real target host, only
   retrofitted to match this dev machine's driver version. Needs a real
   target host to run against.
-- Pre-commit hooks are currently failing across the pre-existing codebase
-  (see gap #5) and need a real cleanup pass, not further `--no-verify` commits.
+- ~~Pre-commit hooks are currently failing across the pre-existing codebase~~
+  RESOLVED (2026-09-16): checked precisely instead of assuming — `ruff
+  check .` reported exactly one real lint error repo-wide
+  (`scripts/s04_validate_manifest.py`, `isinstance(val, (int, float))` ->
+  `isinstance(val, int | float)`, cosmetic UP038), now fixed. The gap #5
+  note describing broader lint debt was overstated; `pre-commit run
+  --all-files` otherwise only flags trailing-newline fixes on old
+  `lis-eval/` evidence data files, not source code.
 - S36-S40 (Block 6) and S25-S35 (Blocks 4-5, if/when implemented) will hit the
   same "no real corpus" test-skip pattern as S02/S06/S19/S20/S21 until the
   S04/S05 item above is resolved.
