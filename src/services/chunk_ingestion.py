@@ -18,6 +18,14 @@ class ChunkUploadRequest(BaseModel):
     sequence: int = Field(..., ge=0, description="Chunk sequence number (0-indexed)")
     timestamp_ms: int = Field(..., ge=0, description="Timestamp in ms since session start")
     duration_ms: int = Field(..., gt=0, description="Chunk duration in ms")
+    # The ASR worker (src/workers/asr_worker.py) only finalizes a session
+    # (RECORDING -> TRANSCRIBED) when it processes a stream message with
+    # final="true" -- without this, no producer ever set that field, so no
+    # session could ever finish transcribing and nothing downstream (note
+    # synthesis, flashcard generation) could ever run. The client sets this
+    # true on the very last chunk of a recording (src/client/src/services/
+    # Recorder.ts, set when .stop() was called before this chunk closed).
+    is_final: bool = False
 
 
 class ChunkUploadResponse(BaseModel):
@@ -37,6 +45,7 @@ class StreamMessage(BaseModel):
     duration_ms: int
     object_key: str
     received_at: datetime
+    is_final: bool = False
 
 
 class SessionNotAcceptingChunksError(Exception):
@@ -120,6 +129,7 @@ class ChunkIngestionService:
             duration_ms=request.duration_ms,
             object_key=object_key,
             received_at=datetime.now(UTC),
+            is_final=request.is_final,
         )
         message_id = await self._stream.xadd_chunk(_stream_fields(stream_message))
 
@@ -156,6 +166,9 @@ def _stream_fields(message: StreamMessage) -> dict[str, str]:
         "duration_ms": str(message.duration_ms),
         "object_key": message.object_key,
         "received_at": message.received_at.isoformat(),
+        # asr_worker.py reads this literal key ("final") to decide whether
+        # to transition the session to TRANSCRIBED after this chunk.
+        "final": "true" if message.is_final else "false",
     }
 
 

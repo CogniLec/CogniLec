@@ -137,7 +137,14 @@ class Settings(BaseSettings):
     # loads. In practice these should always agree in production - kept as
     # two settings only because the spec names both and other stages already
     # read ASR_MODEL.
-    ASR_MODEL_NAME: str = "Systran/faster-whisper-large-v3-turbo"
+    #
+    # "Systran/faster-whisper-large-v3-turbo" does not exist on HuggingFace
+    # (confirmed live: 404 the moment the ASR worker actually tried to
+    # download it -- this had never been exercised for real before, since
+    # every prior test used the tiny.en fallback for GPU/corpus reasons).
+    # deepdml's CTranslate2 port is the real, commonly-used repo for this
+    # model.
+    ASR_MODEL_NAME: str = "deepdml/faster-whisper-large-v3-turbo-ct2"
     ASR_MODEL_QUANTIZATION: str = "float16"
     ASR_DEVICE: str = "cuda"
     ASR_BEAM_SIZE: int = 5
@@ -148,6 +155,12 @@ class Settings(BaseSettings):
     EMBED_MODEL_VER: str = "qwen3-0.6b-v1"
 
     # LLM Ladder
+    # Real network address of the LiteLLM proxy (S37) -- used by
+    # src/services/orchestration/auto_study_materials.py's LLMRouter to
+    # reach the actual deployed vLLM tier for note synthesis/flashcard
+    # generation. Docker-internal hostname by default; same convention as
+    # TEI_BASE_URL/DIARISATION_SERVICE_URL for a multi-machine deployment.
+    LITELLM_BASE_URL: str = "http://litellm:4000"
     LLM_TIER1_MODEL: str = "microsoft/Phi-3-mini-4k-instruct"
     LLM_TIER1_QUANTIZATION: str = "awq"
     LLM_TIER2_MODEL: str = "meta-llama/Meta-Llama-3-8B-Instruct"

@@ -30,8 +30,16 @@ def build_processed_stream_fields(
     sequence: int,
     object_key: str,
     result: PreprocessingResult,
+    is_final: bool = False,
 ) -> dict[str, str]:
-    """Build the `audio.processed` stream message fields (spec section 5)."""
+    """Build the `audio.processed` stream message fields (spec section 5).
+
+    is_final must be carried through from the incoming audio.chunk message
+    -- without it, asr_worker.py's fields.get("final", "false") always sees
+    "false" and a session can never transition to TRANSCRIBED, since this
+    function previously built its output fields from scratch and silently
+    dropped whatever "final" value the chunk message actually had.
+    """
     vad_regions = [
         {"start_ms": r.start_ms, "end_ms": r.end_ms, "confidence": r.confidence}
         for r in result.chunk.vad_regions
@@ -44,6 +52,7 @@ def build_processed_stream_fields(
         "speech_ratio": str(result.chunk.speech_ratio),
         "vad_regions": json.dumps(vad_regions),
         "processing_latency_ms": str(result.chunk.processing_latency_ms),
+        "final": "true" if is_final else "false",
     }
 
 
@@ -80,6 +89,7 @@ class PreprocessingWorker:
         session_id = UUID(fields["session_id"])
         sequence = int(fields["sequence"])
         object_key = fields["object_key"]
+        is_final = fields.get("final", "false") == "true"
 
         if not self._settings.PREPROCESSING_ENABLED:
             logger.warning("PREPROCESSING_ENABLED=false; skipping chain (emergency bypass)")
@@ -98,7 +108,9 @@ class PreprocessingWorker:
                 content_type="audio/wav",
             )
 
-            out_fields = build_processed_stream_fields(session_id, sequence, processed_key, result)
+            out_fields = build_processed_stream_fields(
+                session_id, sequence, processed_key, result, is_final=is_final
+            )
             await self._stream.xadd_processed(out_fields)
             logger.info(
                 "chunk processed",
@@ -140,4 +152,5 @@ async def main() -> None:  # pragma: no cover - process entrypoint
 
 
 if __name__ == "__main__":  # pragma: no cover
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
     asyncio.run(main())

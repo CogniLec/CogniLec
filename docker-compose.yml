@@ -312,6 +312,91 @@ services:
           memory: 2G
 
   # ---------------------------------------------------------------------------
+  # Preprocessing worker (S17) — consumes audio.chunk, runs resample/
+  # loudnorm/VAD, emits audio.processed for the ASR worker below. Neither
+  # of these two workers ran as a persistent process anywhere before this
+  # -- confirmed live: recorded audio reached MinIO but nothing ever
+  # consumed it, so no session could ever finish transcribing.
+  # ---------------------------------------------------------------------------
+  preprocessing-worker:
+    image: lis-api:latest
+    container_name: lis-preprocessing-worker
+    restart: unless-stopped
+    hostname: preprocessing-worker
+    command: ["python", "-m", "src.workers.preprocessing_worker"]
+    environment:
+      DATABASE_URL: "${API_DATABASE_URL:-postgresql+asyncpg://${POSTGRES_USER:-lis}:${POSTGRES_PASSWORD:-lis_dev}@pg-main:5432/${POSTGRES_DB:-lis_main}}"
+      MINIO_ENDPOINT: "${API_MINIO_ENDPOINT:-minio:9000}"
+      MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY:-minioadmin}"
+      MINIO_SECRET_KEY: "${MINIO_SECRET_KEY:-minioadmin}"
+      VALKEY_URL: "${API_VALKEY_URL:-redis://valkey:6379/0}"
+    networks:
+      - internal
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  # ---------------------------------------------------------------------------
+  # ASR worker (S19) — consumes audio.processed, runs faster-whisper,
+  # persists utterances, finalizes sessions, and (once finalized) triggers
+  # note synthesis + flashcard generation (src/services/orchestration/
+  # auto_study_materials.py). Needs "edge" for egress to huggingface.co on
+  # first start (same class of gap as #29-#31), and GPU access matching
+  # ASR_CUDA_DEVICE below if this machine has one -- falls back to CPU
+  # automatically if src/services/asr/service.py's device selection can't
+  # find a GPU, just slower.
+  # ---------------------------------------------------------------------------
+  asr-worker:
+    image: lis-api:latest
+    container_name: lis-asr-worker
+    restart: unless-stopped
+    hostname: asr-worker
+    command: ["python", "-m", "src.workers.asr_worker"]
+    environment:
+      DATABASE_URL: "${API_DATABASE_URL:-postgresql+asyncpg://${POSTGRES_USER:-lis}:${POSTGRES_PASSWORD:-lis_dev}@pg-main:5432/${POSTGRES_DB:-lis_main}}"
+      MINIO_ENDPOINT: "${API_MINIO_ENDPOINT:-minio:9000}"
+      MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY:-minioadmin}"
+      MINIO_SECRET_KEY: "${MINIO_SECRET_KEY:-minioadmin}"
+      VALKEY_URL: "${API_VALKEY_URL:-redis://valkey:6379/0}"
+      TEI_BASE_URL: "${TEI_BASE_URL:-http://tei:80}"
+      LITELLM_BASE_URL: "${LITELLM_BASE_URL:-http://litellm:4000}"
+      HF_HOME: /models/huggingface
+      HF_TOKEN: "${HF_TOKEN:-}"
+      ASR_CUDA_DEVICE: "${ASR_CUDA_DEVICE:-0}"
+      # Confirmed live: this service's image (the shared lis-api image,
+      # built FROM python:3.12-slim) has no CUDA runtime libraries at all
+      # (RuntimeError: "Library libcublas.so.12 is not found or cannot be
+      # loaded") even with a real GPU device reservation below -- CTranslate2
+      # needs cuBLAS/cuDNN present in the container, which a CUDA base image
+      # provides and a plain python:3.12-slim does not. Forcing CPU here
+      # until the Dockerfile is rebuilt from an nvidia/cuda base image (or
+      # ships nvidia-cublas-cu12/nvidia-cudnn-cu12 + LD_LIBRARY_PATH) --
+      # override to "cuda"/"int8_float16" once that's fixed.
+      ASR_DEVICE: "${ASR_DEVICE:-cpu}"
+      ASR_COMPUTE_TYPE: "${ASR_COMPUTE_TYPE:-int8}"
+    volumes:
+      - models:/models
+    networks:
+      - internal
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        # Confirmed live: without this, faster-whisper's CTranslate2
+        # backend still tries to initialize CUDA (ASR_DEVICE defaults to
+        # "cuda") and fails with "CUDA driver version is insufficient for
+        # CUDA runtime version" -- the container has no GPU visible to it
+        # at all without an explicit reservation, same as vllm/diarisation
+        # above.
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${ASR_CUDA_DEVICE:-0}"]
+              capabilities: [gpu]
+
+  # ---------------------------------------------------------------------------
   # pgAdmin 4 — Database administration (both servers pre-registered)
   # ---------------------------------------------------------------------------
   pgadmin:

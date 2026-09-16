@@ -36,6 +36,7 @@ async def upload_chunk(
     sequence: int = Form(...),
     timestamp_ms: int = Form(...),
     duration_ms: int = Form(...),
+    is_final: bool = Form(False),
     chunk: UploadFile = File(...),
     db: AsyncSession = Depends(get_db_session_with_rls),
     stream: ValkeyStreamProducer = Depends(get_valkey_stream),
@@ -57,6 +58,7 @@ async def upload_chunk(
         sequence=sequence,
         timestamp_ms=timestamp_ms,
         duration_ms=duration_ms,
+        is_final=is_final,
     )
 
     session_repo = SessionRepository(db)

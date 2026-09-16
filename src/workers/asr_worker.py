@@ -23,6 +23,7 @@ from src.db.repositories.session_repo import SessionRepository
 from src.db.repositories.utterance_repo import UtteranceRepository
 from src.services.asr.service import FasterWhisperASRService
 from src.services.audio_chain.vad import read_wav_as_array
+from src.services.orchestration.auto_study_materials import generate_study_materials
 from src.services.storage.client import StorageClient
 from src.services.storage.models import BucketName
 from src.services.valkey_stream import AUDIO_PROCESSED_STREAM, ValkeyStreamProducer
@@ -111,6 +112,24 @@ class ASRWorker:
                     await self._finalize_session(db_session, session_id)
 
                 await db_session.commit()
+
+            if is_final:
+                # A fresh session/transaction, deliberately separate from
+                # the one just committed above: process_session (S47)
+                # requires the TRANSCRIBED transition to already be
+                # durable before it will proceed (it re-fetches and checks
+                # session_obj.status itself), and this is a genuinely
+                # separate unit of work -- one subject's note-synthesis/
+                # flashcard-generation failure must not roll back or block
+                # the transcription commit that already succeeded.
+                try:
+                    async with self._session_factory() as materials_session:
+                        await generate_study_materials(session_id, subject_id, materials_session)
+                except Exception:
+                    logger.exception(
+                        "auto study-material generation failed (transcription itself succeeded)",
+                        extra={"session_id": str(session_id)},
+                    )
         except Exception:
             logger.exception(
                 "chunk transcription failed",
@@ -226,4 +245,9 @@ async def main() -> None:  # pragma: no cover - process entrypoint
 if __name__ == "__main__":  # pragma: no cover
     import asyncio
 
+    # Without this, every logger.info/logger.exception call in this module
+    # (including the ones that would explain a silently-swallowed
+    # transcription failure) goes nowhere -- confirmed live: a chunk was
+    # consumed and acked with zero log output and no persisted utterances.
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
     asyncio.run(main())
