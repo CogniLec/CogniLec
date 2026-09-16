@@ -1830,6 +1830,50 @@ upgrade` races unrelated to this change; retried once contention cleared).
   (GPU generation, VRAM size, network conditions) keeps mattering in ways
   `docker compose config` and a passing test suite cannot see.
 
+## 32. Real data loss incident: pytest was wiping the live app's database (2026-09-16)
+
+- **What happened, plainly:** the pytest integration suite's `db_session`
+  fixture ran `DROP SCHEMA public CASCADE` directly against `lis_main` --
+  the same database the now-containerized live API uses. Once the API
+  was actually running with real registered users (following "deploy the
+  frontend"/"run the backend on all three machines"), every subsequent
+  `pytest` run during this session silently deleted them. This happened
+  twice: once from the ordinary test suite, and once more seriously from
+  `tests/test_migration.py`, which runs `alembic downgrade base` (drops
+  every table) via a bare `subprocess.run()` with no `env=` override at
+  all -- it silently inherited `DATABASE_URL` from `.env`, i.e. the real
+  `lis_main`, and genuinely emptied the live database (confirmed via
+  `\dt` showing only `alembic_version` left). Two real registered users'
+  rows are permanently gone; the schema was restored via `alembic upgrade
+  head`, but the data itself was not recoverable.
+- **Root cause:** no separation ever existed between "the database the
+  test suite scribbles on and destroys every run" and "the database the
+  actual running app uses" -- both were `lis_main`. This was fine while
+  nothing real ever ran against `lis_main`, and stopped being fine the
+  moment the app was actually deployed and used.
+- **Fix applied:** dedicated `lis_test`/`lis_syllabus_test` databases
+  (provisioned in `docker/postgres/init-main.sql`/`init-syllabus.sql` for
+  a fresh volume), with `tests/conftest.py` and every test file that had
+  its own separately-hardcoded DB URL (`test_chunk_upload.py`,
+  `test_s71_backup_dr.py`, `test_migration.py`) redirected to them.
+  `test_migration.py`'s subprocess call in particular now pins
+  `DATABASE_URL` explicitly rather than inheriting the ambient
+  environment. Audited every other `subprocess.run`/`Popen` call in
+  `tests/` for the same class of bug -- none of the others touch a
+  database.
+- **Verified, not just "should be fixed now":** registered a real user,
+  ran the full suite twice (both runs exercising the downgrade/upgrade
+  cycle), confirmed via `docker exec lis-pg-main psql` after each run
+  that the user was still there. Full suite: 717 passed, 81 skipped.
+- **Lesson worth stating plainly:** this class of bug — a test fixture
+  that's destructive by design, silently pointed at production because
+  "production" didn't used to exist yet — is exactly the kind of thing
+  that stops being safe the moment a project moves from "pure development"
+  to "something real is actually running." That transition happened this
+  session (real deployment, real registered users) and this gap wasn't
+  caught proactively; it was caught because the user asked "where is my
+  data" after noticing it missing.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings
