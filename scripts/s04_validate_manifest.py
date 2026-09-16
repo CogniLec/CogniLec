@@ -98,7 +98,7 @@ def validate_manifest() -> list[str]:
             val = session.get(num_field)
             if val is None:
                 errors.append(f"{prefix}: Missing numeric field '{num_field}'")
-            elif not isinstance(val, (int, float)):
+            elif not isinstance(val, int | float):
                 errors.append(
                     f"{prefix}: Field '{num_field}' should be numeric, got {type(val).__name__}"
                 )
