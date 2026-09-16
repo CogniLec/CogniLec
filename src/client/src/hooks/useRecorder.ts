@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Recorder } from "../services/Recorder";
 import { UploadQueue } from "../services/UploadQueue";
 import { ChunkStore, SessionStore, enforceQuota } from "../services/db";
-import { fetchPresignedUploadUrl, uploadChunkToPresignedUrl } from "../services/api";
+import { createSession, fetchPresignedUploadUrl, uploadChunkToPresignedUrl } from "../services/api";
 import { CONFIG } from "../config";
 import type { AppState, RecordingSession, StoredAudioChunk } from "../types";
 
@@ -80,7 +80,26 @@ export function useRecorder(): UseRecorderResult {
         return;
       }
 
-      const sessionId = crypto.randomUUID();
+      // The session must exist server-side before any chunk upload, or
+      // every upload is silently rejected (require_owned_session 404s) and
+      // no audio ever actually reaches the server, regardless of what the
+      // local timer/chunk counter shows -- confirmed live: this was
+      // previously a client-only crypto.randomUUID() with no matching
+      // backend session at all, so recording looked like it worked but
+      // nothing was ever captured server-side.
+      let sessionId: string;
+      try {
+        const created = await createSession(subjectId);
+        sessionId = created.id;
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? `Could not start session on the server: ${err.message}`
+            : "Could not start session on the server.",
+        );
+        return;
+      }
+
       const newSession: RecordingSession = {
         id: sessionId,
         subjectId,
