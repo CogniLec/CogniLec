@@ -1,7 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+// GitHub Pages serves a repo (not a <user>.github.io repo) under
+// /<repo-name>/, not /. GITHUB_PAGES is set only by
+// .github/workflows/deploy-pages.yml's build step -- every other build
+// (local dev, the Docker/nginx deployment) keeps the normal root base.
+var BASE_PATH = process.env.GITHUB_PAGES ? "/CogniLec/" : "/";
 export default defineConfig({
+    base: BASE_PATH,
     plugins: [
         react(),
         VitePWA({
@@ -24,7 +30,7 @@ export default defineConfig({
             manifest: {
                 name: "Notely",
                 short_name: "Notely",
-                start_url: "/",
+                start_url: BASE_PATH,
                 display: "standalone",
                 background_color: "#0f172a",
                 theme_color: "#0f172a",
