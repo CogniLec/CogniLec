@@ -1874,6 +1874,79 @@ upgrade` races unrelated to this change; retried once contention cleared).
   caught proactively; it was caught because the user asked "where is my
   data" after noticing it missing.
 
+## 33. Recording never actually produced notes/flashcards -- full auto-pipeline was missing end to end (2026-09-17)
+
+- **What the user reported:** "the recording when it starts and stops it
+  still shows timer and not that audio is captured now making flashcard
+  or notes and the flashcards are not appearing." Chose "build the full
+  auto-pipeline now" when offered options.
+- **What was actually found, tracing the chain from the client down:**
+  1. The client called a chunk-upload endpoint that doesn't exist on the
+     backend (`POST .../chunks/{sequence}/presigned-url`; the real route
+     is `POST .../chunks`, multipart). Every chunk upload silently 404'd,
+     so no audio ever reached the server at all.
+  2. No "final chunk" signal existed anywhere in the pipeline -- even a
+     working upload path had no way to tell a worker a recording was
+     actually done.
+  3. Neither `preprocessing-worker` nor `asr-worker` ran as a process
+     anywhere (not in `docker-compose.yml`, not anywhere else). Chunks
+     that did land would sit in the Valkey stream forever, unconsumed.
+  4. Nothing anywhere auto-triggered note synthesis (S47) or flashcard
+     generation (S58) after transcription finished -- `study.py`'s
+     `seed_flashcard` was an explicitly-labelled manual stopgap "until
+     that generation trigger exists."
+  5. **Universal, independent bug:** `create_subject` never called
+     `PartitionProvisioner`, so no subject created through the real API
+     had a database partition. Even a fully working pipeline would fail
+     the moment it tried to persist the first utterance, with "no
+     partition of relation 'utterances' found for row." This affected
+     every subject ever created through the live API, not just this
+     feature.
+  6. Both workers had no `logging.basicConfig()` call, so exceptions
+     were being silently swallowed with zero log output -- confirmed
+     directly: a chunk was consumed and acked with no persisted
+     utterance and no visible error. This made every other bug on this
+     list far harder to see and must have been masking failures for a
+     while.
+- **Fixes applied** (see commits 810eabe, 88249db, c0467eb): rewired the
+  client's upload path to the real endpoint; threaded an `is_final` flag
+  client -> `chunk_ingestion.py` -> Valkey stream -> `preprocessing_worker.py`
+  -> `asr_worker.py`; added both workers as real `docker-compose.yml`
+  services; added `src/services/orchestration/auto_study_materials.py`,
+  invoked from `asr_worker.py` on the final chunk, which runs
+  `process_session` (embed/segment/cluster/synthesize) and then generates
+  and persists real flashcards per topic (best-effort: logged and
+  swallowed on failure, since it runs inline in the worker's shared
+  message loop); added `logging.basicConfig()` to both workers; fixed
+  `create_subject` to provision partitions via a new, properly overridable
+  `get_ddl_db_session` dependency (superuser role, needed for the
+  partition DDL that the RLS-scoped role intentionally can't run).
+- **Verified live, not just "should work now":** created a real subject
+  through the deployed API and confirmed its partition exists via `psql`;
+  fed real ~20s clips (extracted with `ffmpeg` from actual lecture
+  recordings) through the deployed workers and watched embedding →
+  segmentation → clustering run consistently; ran the full T1-T7 +
+  flashcard-generation-and-persistence chain to completion at least once;
+  separately unit-tested `FlashcardGenerator.generate_for_topic` to
+  confirm it can produce real, grounded flashcard JSON. Full suite: 717
+  passed, 81 skipped.
+- **Deliberately NOT fixed here, still open:**
+  - `asr-worker` runs on CPU (`ASR_DEVICE=cpu`, `int8`) even though GPU
+    passthrough is configured, because the `lis-api` image
+    (`python:3.12-slim` base) lacks CUDA runtime libraries
+    (`libcublas.so.12`) that CTranslate2/faster-whisper need. Needs
+    either an `nvidia/cuda` base image or `nvidia-cublas-cu12` +
+    `nvidia-cudnn-cu12` wheels with `LD_LIBRARY_PATH` set.
+  - The small quantized LLM (Qwen2.5-3B-Instruct-AWQ on Machine B, no
+    constrained decoding) intermittently produces malformed JSON on
+    substantive real content (confirmed: empty `filter_reason` string,
+    `-1` instead of a structured note-section object). Prefect's
+    built-in task retries recovered this in one observed run and
+    exhausted without recovering in another. This is a genuine
+    model-quality/hardware-constraint limitation (Machine B's 4GB VRAM
+    card, 2048-token context window too small for a full ~90s lecture
+    segment), not a pipeline-wiring defect, and is unaddressed.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings
