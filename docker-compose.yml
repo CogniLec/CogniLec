@@ -318,6 +318,36 @@ services:
           memory: 256M
 
   # ---------------------------------------------------------------------------
+  # Client — production build of the PWA (src/client), served by nginx.
+  # VITE_API_BASE_URL is baked in at BUILD time (Vite env vars are
+  # compile-time, unlike every other service's runtime env vars here) --
+  # changing it means `docker compose build client`, not just a restart.
+  # Default matches this deployment's actual API address as of writing
+  # (a bare uvicorn process on port 8123, not yet its own container).
+  # ---------------------------------------------------------------------------
+  client:
+    build:
+      context: ./src/client
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8123}
+    container_name: lis-client
+    hostname: client
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.client.rule=Host(`app.${DOMAIN:-lis.local}`)"
+      - "traefik.http.routers.client.entrypoints=websecure"
+      - "traefik.http.routers.client.tls.certresolver=local"
+      - "traefik.http.services.client.loadbalancer.server.port=80"
+    ports:
+      - "${CLIENT_PORT:-8081}:80"
+    networks:
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  # ---------------------------------------------------------------------------
   # Dozzle — Container log viewer
   # ---------------------------------------------------------------------------
   dozzle:
