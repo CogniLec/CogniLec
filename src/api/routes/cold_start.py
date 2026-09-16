@@ -7,8 +7,8 @@ import uuid
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.api.dependencies.auth import get_current_user
-from src.api.dependencies.database import get_db_session, get_syllabus_db_session
+from src.api.dependencies.auth import get_current_user, get_db_session_with_rls
+from src.api.dependencies.database import get_syllabus_db_session
 from src.api.dependencies.ownership import require_owned_subject
 from src.db.repositories.syllabus_repo import SyllabusRepository
 from src.services.clustering.seed import CentroidSeedService, SeedingResult
@@ -21,7 +21,7 @@ async def get_cold_start_status(
     subject_id: uuid.UUID,
     session_count: int = 0,
     syllabus_db: AsyncSession = Depends(get_syllabus_db_session),
-    main_db: AsyncSession = Depends(get_db_session),
+    main_db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> SeedingResult:
     await require_owned_subject(subject_id, main_db, current_user)

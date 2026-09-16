@@ -12,8 +12,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sse_starlette.sse import EventSourceResponse
 
-from src.api.dependencies.auth import get_current_user
-from src.api.dependencies.database import get_db_session
+from src.api.dependencies.auth import get_current_user, get_db_session_with_rls
 from src.api.dependencies.ownership import require_owned_session
 from src.api.dependencies.settings import get_app_settings
 from src.api.dependencies.valkey import get_valkey_stream
@@ -56,7 +55,7 @@ async def _event_generator(
 @router.get("/{session_id}/stream")
 async def stream_session(
     session_id: uuid.UUID,
-    db: AsyncSession = Depends(get_db_session),
+    db: AsyncSession = Depends(get_db_session_with_rls),
     stream: ValkeyStreamProducer = Depends(get_valkey_stream),
     settings: Settings = Depends(get_app_settings),
     current_user: dict[str, object] = Depends(get_current_user),

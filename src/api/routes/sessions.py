@@ -8,8 +8,7 @@ from datetime import UTC, datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.api.dependencies.auth import get_current_user
-from src.api.dependencies.database import get_db_session
+from src.api.dependencies.auth import get_current_user, get_db_session_with_rls
 from src.api.dependencies.ownership import require_owned_session, require_owned_subject
 from src.api.schemas.session import (
     ClassificationOverride,
@@ -30,7 +29,7 @@ router = APIRouter(prefix="/sessions", tags=["sessions"])
 @router.post("/", response_model=SessionResponse, status_code=status.HTTP_201_CREATED)
 async def create_session(
     payload: SessionCreate,
-    db: AsyncSession = Depends(get_db_session),
+    db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
     await require_owned_subject(payload.subject_id, db, current_user)
@@ -45,7 +44,7 @@ async def create_session(
 @router.get("/{session_id}", response_model=SessionResponse)
 async def get_session(
     session_id: uuid.UUID,
-    db: AsyncSession = Depends(get_db_session),
+    db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
     session_obj = await require_owned_session(session_id, db, current_user)
@@ -56,7 +55,7 @@ async def get_session(
 async def update_session(
     session_id: uuid.UUID,
     payload: SessionUpdate,
-    db: AsyncSession = Depends(get_db_session),
+    db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
     session_obj = await require_owned_session(session_id, db, current_user)
@@ -69,7 +68,7 @@ async def update_session(
 async def override_classification(
     session_id: uuid.UUID,
     payload: ClassificationOverride,
-    db: AsyncSession = Depends(get_db_session),
+    db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> SessionResponse:
     """S35: operator post-hoc correction. Updates session_type, re-runs
@@ -130,7 +129,7 @@ async def list_sessions_by_subject(
     subject_id: uuid.UUID,
     offset: int = 0,
     limit: int = 50,
-    db: AsyncSession = Depends(get_db_session),
+    db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> list[SessionResponse]:
     await require_owned_subject(subject_id, db, current_user)
