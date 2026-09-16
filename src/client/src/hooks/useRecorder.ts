@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Recorder } from "../services/Recorder";
 import { UploadQueue } from "../services/UploadQueue";
 import { ChunkStore, SessionStore, enforceQuota } from "../services/db";
-import { createSession, fetchPresignedUploadUrl, uploadChunkToPresignedUrl } from "../services/api";
+import { createSession, uploadSessionChunk } from "../services/api";
 import { CONFIG } from "../config";
 import type { AppState, RecordingSession, StoredAudioChunk } from "../types";
 
@@ -43,8 +43,7 @@ export function useRecorder(): UseRecorderResult {
       uploadQueueRef.current = new UploadQueue({
         maxRetries: CONFIG.maxUploadRetries,
         retryBaseMs: CONFIG.uploadRetryBaseMs,
-        getPresignedUrl: fetchPresignedUploadUrl,
-        uploadChunk: uploadChunkToPresignedUrl,
+        uploadChunk: uploadSessionChunk,
       });
     }
     return uploadQueueRef.current;

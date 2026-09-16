@@ -24,6 +24,13 @@ export interface AudioChunk {
   endTime: number;
   sampleRate: number;
   createdAt: number; // Date.now()
+  // True only for the chunk emitted right after Recorder.stop() was
+  // called. The backend's ASR worker only finalizes a session
+  // (transitions it to a "transcribed" state so notes/flashcards can be
+  // generated) when it processes a chunk with this flag set -- without
+  // it, a session's audio is uploaded and transcribed but the pipeline
+  // has no signal that recording is actually over.
+  isFinal: boolean;
 }
 
 /** AudioChunk persisted in IndexedDB, keyed by a stable id. */

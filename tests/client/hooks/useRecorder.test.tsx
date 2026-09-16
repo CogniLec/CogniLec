@@ -5,8 +5,7 @@ import { _resetDbForTests } from "../../../src/client/src/services/db";
 
 vi.mock("../../../src/client/src/services/api", () => ({
   createSession: vi.fn().mockResolvedValue({ id: "server-session-1", subject_id: "subj-1", status: "created" }),
-  fetchPresignedUploadUrl: vi.fn().mockResolvedValue("https://upload.example/chunk"),
-  uploadChunkToPresignedUrl: vi.fn().mockResolvedValue(undefined),
+  uploadSessionChunk: vi.fn().mockResolvedValue(undefined),
 }));
 
 describe("useRecorder gating (T15.4 consent, T15.5 subject)", () => {

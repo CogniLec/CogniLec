@@ -75,26 +75,41 @@ export async function createSession(
 }
 
 /**
- * Requests a presigned upload URL for a chunk (S14 contract). Not yet
- * guaranteed to exist server-side at S15 authoring time — callers must
- * tolerate failure (UploadQueue retries/backoff handle this).
+ * Uploads one audio chunk directly to the real, working backend endpoint
+ * (src/api/routes/chunks.py POST /sessions/{id}/chunks) as multipart
+ * form data. A separate presigned-URL flow used to exist here
+ * (`fetchPresignedUploadUrl`/`uploadChunkToPresignedUrl`), calling
+ * `/api/v1/sessions/{id}/chunks/{sequence}/presigned-url` -- a route that
+ * was never actually implemented server-side, so every chunk upload
+ * 404'd silently (confirmed live). This replaces that with the endpoint
+ * that genuinely exists, does auth/ownership checks, and pushes the
+ * chunk onto the ASR pipeline's Valkey stream.
+ *
+ * No `Content-Type` header is set deliberately, same reason as
+ * `uploadMaterial` below: the browser must set its own multipart
+ * boundary, which the shared `request()` helper's hardcoded
+ * `application/json` header would break.
  */
-export async function fetchPresignedUploadUrl(
-  sessionId: string,
-  sequence: number,
-): Promise<string> {
-  const data = await request<{ upload_url: string }>(
-    `/api/v1/sessions/${sessionId}/chunks/${sequence}/presigned-url`,
-    { method: "POST" },
-  );
-  return data.upload_url;
-}
+export async function uploadSessionChunk(chunk: {
+  sessionId: string;
+  sequence: number;
+  startTime: number;
+  endTime: number;
+  blob: Blob;
+  isFinal: boolean;
+}): Promise<void> {
+  const token = getAccessToken();
+  const body = new FormData();
+  body.append("sequence", String(chunk.sequence));
+  body.append("timestamp_ms", String(Math.round(chunk.startTime)));
+  body.append("duration_ms", String(Math.max(1, Math.round(chunk.endTime - chunk.startTime))));
+  body.append("is_final", chunk.isFinal ? "true" : "false");
+  body.append("chunk", chunk.blob, `${chunk.sequence}.webm`);
 
-export async function uploadChunkToPresignedUrl(uploadUrl: string, blob: Blob): Promise<void> {
-  const res = await fetch(uploadUrl, {
-    method: "PUT",
-    headers: { "Content-Type": "audio/opus" },
-    body: blob,
+  const res = await fetch(`${CONFIG.apiBaseUrl}/api/v1/sessions/${chunk.sessionId}/chunks`, {
+    method: "POST",
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    body,
   });
   if (!res.ok) {
     throw new Error(`Chunk upload failed: ${res.status} ${res.statusText}`);

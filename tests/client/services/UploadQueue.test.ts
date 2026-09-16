@@ -22,6 +22,7 @@ function makeChunk(sessionId: string, sequence: number): StoredAudioChunk {
     endTime: sequence * 25_000 + 30_000,
     sampleRate: 48000,
     createdAt: Date.now(),
+    isFinal: false,
   };
 }
 
@@ -39,7 +40,6 @@ describe("UploadQueue (T15.2 network disconnect / resume, retry backoff)", () =>
     const queue = new UploadQueue({
       maxRetries: 5,
       retryBaseMs: 10,
-      getPresignedUrl: vi.fn().mockResolvedValue("https://upload.example/chunk"),
       uploadChunk,
       isOnline: () => online,
     });
@@ -68,7 +68,6 @@ describe("UploadQueue (T15.2 network disconnect / resume, retry backoff)", () =>
     const queue = new UploadQueue({
       maxRetries: 2,
       retryBaseMs: 5,
-      getPresignedUrl: vi.fn().mockResolvedValue("https://upload.example/chunk"),
       uploadChunk,
       isOnline: () => true,
       // Run "retries" synchronously-ish (setTimeout 0) so the test doesn't
@@ -109,7 +108,6 @@ describe("UploadQueue (T15.2 network disconnect / resume, retry backoff)", () =>
     const queue = new UploadQueue({
       maxRetries: 5,
       retryBaseMs: 10,
-      getPresignedUrl: vi.fn().mockResolvedValue("https://upload.example/chunk"),
       uploadChunk,
       isOnline: () => true,
     });
@@ -136,7 +134,6 @@ describe("UploadQueue (T15.2 network disconnect / resume, retry backoff)", () =>
     const queue = new UploadQueue({
       maxRetries: 5,
       retryBaseMs: 10,
-      getPresignedUrl: vi.fn().mockResolvedValue("https://upload.example/chunk"),
       uploadChunk,
       isOnline: () => true,
     });

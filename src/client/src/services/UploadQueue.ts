@@ -9,8 +9,7 @@ export interface UploadQueueEvents extends Record<string, unknown> {
 export interface UploadQueueOptions {
   maxRetries: number;
   retryBaseMs: number;
-  getPresignedUrl: (sessionId: string, sequence: number) => Promise<string>;
-  uploadChunk: (uploadUrl: string, blob: Blob) => Promise<void>;
+  uploadChunk: (chunk: StoredAudioChunk) => Promise<void>;
   isOnline?: () => boolean;
   scheduleRetry?: (fn: () => void, delayMs: number) => void;
 }
@@ -82,9 +81,8 @@ export class UploadQueue {
     this.emitter.emit("jobUpdated", uploading);
 
     try {
-      const uploadUrl = await this.options.getPresignedUrl(job.sessionId, job.chunk.sequence);
-      await this.options.uploadChunk(uploadUrl, job.chunk.blob);
-      const completed: UploadJob = { ...uploading, status: "completed", uploadUrl };
+      await this.options.uploadChunk(job.chunk);
+      const completed: UploadJob = { ...uploading, status: "completed" };
       await PendingUploadStore.put(completed);
       this.emitter.emit("jobUpdated", completed);
     } catch (err) {

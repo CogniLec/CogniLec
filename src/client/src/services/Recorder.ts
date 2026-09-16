@@ -93,6 +93,10 @@ export class Recorder {
     recorder.onstop = () => {
       const endTime = this.now() - this.sessionStartTime;
       const blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
+      // `this.stopped` is only true here when .stop() was called before
+      // this chunk's timer fired naturally -- i.e. this is genuinely the
+      // last chunk of the recording, not just a normal chunk-boundary
+      // rotation into the next chunk.
       const chunk: AudioChunk = {
         sessionId: this.options.sessionId,
         sequence: this.sequence,
@@ -101,6 +105,7 @@ export class Recorder {
         endTime,
         sampleRate: 48000,
         createdAt: Date.now(),
+        isFinal: this.stopped,
       };
       this.sequence += 1;
       this.emitter.emit("chunk", chunk);
