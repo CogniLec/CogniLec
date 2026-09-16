@@ -8,9 +8,11 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.api.dependencies.auth import get_current_user, get_db_session_with_rls
+from src.api.dependencies.database import get_ddl_db_session
 from src.api.dependencies.ownership import require_owned_subject
 from src.api.schemas.subject import SubjectCreate, SubjectList, SubjectResponse, SubjectUpdate
 from src.db.exceptions import DuplicateKeyError
+from src.db.partitions.provisioner import PartitionProvisioner
 from src.db.repositories.subject_repo import SubjectRepository
 
 router = APIRouter(prefix="/subjects", tags=["subjects"])
@@ -19,13 +21,28 @@ router = APIRouter(prefix="/subjects", tags=["subjects"])
 @router.post("/", response_model=SubjectResponse, status_code=status.HTTP_201_CREATED)
 async def create_subject(
     payload: SubjectCreate,
-    db: AsyncSession = Depends(get_db_session_with_rls),
+    db: AsyncSession = Depends(get_ddl_db_session),
     current_user: dict[str, object] = Depends(get_current_user),
 ) -> SubjectResponse:
+    """Creates the subject row AND its per-subject table partitions
+    (utterances/segments/etc. -- src/db/partitions/provisioner.py) in one
+    transaction.
+
+    Uses get_ddl_db_session (the superuser `lis` role), not the RLS-scoped
+    get_db_session_with_rls (lis_app, gap #4): provisioning a partition is
+    DDL (CREATE TABLE ... PARTITION OF ...), which requires owning the
+    parent table -- lis_app intentionally has no DDL rights at all.
+    Confirmed live: every subject created through this route before this
+    fix had NO partition at all, so the very first utterance any real
+    recording produced failed with "no partition of relation ... found
+    for row" the moment transcription tried to persist it -- a universal
+    bug blocking all real usage, not something narrow to one code path.
+    """
     user_id = uuid.UUID(str(current_user["id"]))
-    repo = SubjectRepository(db)
     try:
-        subject = await repo.create(user_id, payload.name, payload.description)
+        subject = await PartitionProvisioner().provision_subject(
+            db, user_id, payload.name, payload.description
+        )
     except DuplicateKeyError as exc:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=str(exc)) from exc
     return SubjectResponse.model_validate(subject)

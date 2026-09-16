@@ -19,7 +19,7 @@ import pytest
 from fastapi import FastAPI
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.api.dependencies.auth import get_current_user
-from src.api.dependencies.database import get_db_session
+from src.api.dependencies.database import get_db_session, get_ddl_db_session
 from src.api.routes.subjects import router as subjects_router
 from src.db.models.user import User
 
@@ -37,6 +37,15 @@ def _build_app(db_session: AsyncSession, current_user: dict[str, Any]) -> FastAP
         return current_user
 
     app.dependency_overrides[get_db_session] = _override_db
+    # create_subject needs DDL rights (partition provisioning) via a
+    # separate dependency (get_ddl_db_session, gap #33) -- the test's own
+    # db_session fixture already connects as the superuser `lis` role, so
+    # it can serve both overrides; without this override, create_subject
+    # would silently use the real dev database's superuser connection
+    # instead of this test's isolated one, and fail on a foreign-key
+    # violation the moment it tries to insert a subject row for a user
+    # that only exists in the test's own transaction.
+    app.dependency_overrides[get_ddl_db_session] = _override_db
     app.dependency_overrides[get_current_user] = _override_user
     return app
 
