@@ -1,0 +1,17 @@
+.git
+.venv
+node_modules
+src/client/node_modules
+src/client/dist
+lis-eval
+videos
+new videos
+.pytest_cache
+__pycache__
+*.pyc
+.mypy_cache
+.ruff_cache
+htmlcov
+.coverage
+notebooks
+secrets

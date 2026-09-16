@@ -84,10 +84,10 @@ export function App(): JSX.Element {
         <header className="rise-in flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-sm font-bold text-white shadow-panel">
-              LIS
+              N
             </span>
             <div>
-              <h1 className="text-lg font-semibold leading-tight text-white">Lecture Intelligence</h1>
+              <h1 className="text-lg font-semibold leading-tight text-white">Notely</h1>
               <p className="text-xs text-slate-500">Topic-first study companion</p>
             </div>
           </div>

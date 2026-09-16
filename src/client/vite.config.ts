@@ -20,8 +20,8 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: "LIS Lecture Capture",
-        short_name: "LIS Capture",
+        name: "Notely",
+        short_name: "Notely",
         start_url: "/",
         display: "standalone",
         background_color: "#0f172a",

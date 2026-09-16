@@ -24,6 +24,7 @@ services:
   pg-main:
     image: pgvector/pgvector:pg17
     container_name: lis-pg-main
+    restart: unless-stopped
     hostname: pg-main
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-lis}
@@ -70,6 +71,7 @@ services:
   pg-syllabus:
     image: pgvector/pgvector:pg17
     container_name: lis-pg-syllabus
+    restart: unless-stopped
     hostname: pg-syllabus
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-lis}
@@ -113,6 +115,7 @@ services:
   pgbouncer:
     image: edoburu/pgbouncer:v1.23.1-p3
     container_name: lis-pgbouncer
+    restart: unless-stopped
     hostname: pgbouncer
     environment:
       PG_USER: ${POSTGRES_USER:-lis}
@@ -155,6 +158,7 @@ services:
   valkey:
     image: valkey/valkey:8-alpine
     container_name: lis-valkey
+    restart: unless-stopped
     hostname: valkey
     command: >
       valkey-server
@@ -191,6 +195,7 @@ services:
     # (confirmed live: "pull access denied" on minio/minio:latest, gap #31).
     image: quay.io/minio/minio:latest
     container_name: lis-minio
+    restart: unless-stopped
     hostname: minio
     command: server /data --console-address ":9001"
     environment:
@@ -229,6 +234,8 @@ services:
     # (confirmed live: "pull access denied" on minio/minio:latest, gap #31).
     image: quay.io/minio/minio:latest
     container_name: lis-minio-init
+    # One-shot job, not a long-running service -- no restart: policy
+    # (unless-stopped would loop-restart it forever on any failure).
     entrypoint: /bin/sh
     command: /scripts/buckets.sh
     environment:
@@ -249,11 +256,68 @@ services:
       - init
 
   # ---------------------------------------------------------------------------
+  # API — the FastAPI app itself. Previously ran as a bare `uvicorn`
+  # process outside Docker with no restart policy at all; confirmed live
+  # that it silently dies on any host/process interruption. Containerized
+  # here with the same restart: unless-stopped as every other service.
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lis-api:latest
+    container_name: lis-api
+    restart: unless-stopped
+    hostname: api
+    environment:
+      # Full-URL overrides (API_*) so this same service definition runs on
+      # Machine B/C too (docs/multi-gpu-setup.md) pointed at Machine A's
+      # real LAN IP for Postgres/MinIO/Valkey -- those only exist on
+      # Machine A, so "pg-main"/"minio"/"valkey" (Docker-internal
+      # hostnames, the defaults below) only resolve there. On B/C, set
+      # API_DATABASE_URL etc. in that machine's .env to Machine A's IP,
+      # e.g. API_DATABASE_URL=postgresql+asyncpg://lis:<pw>@192.168.9.112:5434/lis_main
+      DATABASE_URL: "${API_DATABASE_URL:-postgresql+asyncpg://${POSTGRES_USER:-lis}:${POSTGRES_PASSWORD:-lis_dev}@pg-main:5432/${POSTGRES_DB:-lis_main}}"
+      RLS_DATABASE_URL: "${API_RLS_DATABASE_URL:-postgresql+asyncpg://lis_app:lis_app_dev@pg-main:5432/${POSTGRES_DB:-lis_main}}"
+      SYLLABUS_DATABASE_URL: "${API_SYLLABUS_DATABASE_URL:-postgresql+asyncpg://${SYLLABUS_DB_USER:-lis}:${SYLLABUS_DB_PASSWORD:-lis_dev}@pg-syllabus:5432/${SYLLABUS_DB_NAME:-lis_syllabus}}"
+      MINIO_ENDPOINT: "${API_MINIO_ENDPOINT:-minio:9000}"
+      MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY:-minioadmin}"
+      MINIO_SECRET_KEY: "${MINIO_SECRET_KEY:-minioadmin}"
+      VALKEY_URL: "${API_VALKEY_URL:-redis://valkey:6379/0}"
+      TEI_BASE_URL: "${TEI_BASE_URL:-http://tei:80}"
+      DIARISATION_SERVICE_URL: "${DIARISATION_SERVICE_URL:-http://diarisation:8100}"
+      SECRET_KEY: "${SECRET_KEY:-changeme}"
+    ports:
+      - "${API_PORT:-8123}:8123"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8123/docs"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      # No hard `depends_on: pg-main` here deliberately -- Machine B/C run
+      # this service WITHOUT their own pg-main/minio/valkey containers at
+      # all, pointed at Machine A's instead (API_* overrides above). A
+      # depends_on would force compose to also try starting a local
+      # pg-main on machines that don't have (or want) one. Machine A's own
+      # deployment already brings pg-main up in the same `docker compose
+      # up -d` invocation, and pool_pre_ping/asyncpg retry on first use
+      # covers the brief startup-ordering gap.
+      - internal
+      - edge
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+
+  # ---------------------------------------------------------------------------
   # pgAdmin 4 — Database administration (both servers pre-registered)
   # ---------------------------------------------------------------------------
   pgadmin:
     image: dpage/pgadmin4:8
     container_name: lis-pgadmin
+    restart: unless-stopped
     hostname: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@lis.dev}
@@ -288,6 +352,7 @@ services:
   traefik:
     image: traefik:v3.2
     container_name: lis-traefik
+    restart: unless-stopped
     hostname: traefik
     command:
       - --api.dashboard=true
@@ -331,6 +396,7 @@ services:
       args:
         VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8123}
     container_name: lis-client
+    restart: unless-stopped
     hostname: client
     labels:
       - "traefik.enable=true"
@@ -353,6 +419,7 @@ services:
   dozzle:
     image: amir20/dozzle:v11
     container_name: lis-dozzle
+    restart: unless-stopped
     hostname: dozzle
     environment:
       DOZZLE_LEVEL: info
@@ -379,6 +446,7 @@ services:
   portainer:
     image: portainer/portainer-ce:lts
     container_name: lis-portainer
+    restart: unless-stopped
     hostname: portainer
     command: -H unix:///var/run/docker.sock
     volumes:
@@ -403,6 +471,7 @@ services:
   label-studio:
     image: heartexlabs/label-studio:1.12.0
     container_name: lis-label-studio
+    restart: unless-stopped
     hostname: label-studio
     environment:
       LABEL_STUDIO_HOST: 0.0.0.0
@@ -435,6 +504,7 @@ services:
   mlflow:
     image: python:3.12-slim
     container_name: lis-mlflow
+    restart: unless-stopped
     hostname: mlflow
     command: >
       bash -c "pip install mlflow==2.16.2 psycopg2-binary==2.9.9 &&
@@ -484,6 +554,7 @@ services:
   vllm:
     image: vllm/vllm-openai:v0.5.5
     container_name: lis-vllm
+    restart: unless-stopped
     hostname: vllm
     # --port is hardcoded (not $VLLM_PORT) deliberately: this is the
     # container-INTERNAL port the vllm process binds to, which the
@@ -541,6 +612,7 @@ services:
     build:
       context: ./services/diarisation-service
     container_name: lis-diarisation
+    restart: unless-stopped
     hostname: diarisation
     ports:
       - "${DIARISATION_SERVICE_PORT:-8100}:8100"
@@ -587,6 +659,7 @@ services:
   tei:
     image: ghcr.io/huggingface/text-embeddings-inference:${TEI_IMAGE_TAG:-cpu-1.5}
     container_name: lis-tei
+    restart: unless-stopped
     hostname: tei
     # --auto-truncate: Qwen3-Embedding-0.6B's own max sequence length
     # (32768) is far above --max-batch-tokens -- without this flag, a long
@@ -638,6 +711,7 @@ services:
   litellm:
     image: ghcr.io/berriai/litellm:main-stable
     container_name: lis-litellm
+    restart: unless-stopped
     hostname: litellm
     volumes:
       - ./config/litellm.yaml:/app/config.yaml:ro
@@ -674,6 +748,7 @@ services:
   langfuse-db:
     image: postgres:16
     container_name: lis-langfuse-db
+    restart: unless-stopped
     hostname: langfuse-db
     environment:
       POSTGRES_DB: langfuse
@@ -694,6 +769,7 @@ services:
   langfuse:
     image: langfuse/langfuse:2
     container_name: lis-langfuse
+    restart: unless-stopped
     hostname: langfuse
     ports:
       - "3000:3000"

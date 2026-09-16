@@ -33,12 +33,12 @@ export function AuthScreen({ onLogin }: AuthScreenProps): JSX.Element {
       <main className="panel rise-in w-full max-w-sm">
         <div className="mb-5 flex flex-col items-center gap-2 text-center">
           <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-sm font-bold text-white shadow-panel">
-            LIS
+            N
           </span>
           <h1 className="text-lg font-semibold text-white">
             {mode === "login" ? "Log in" : "Create account"}
           </h1>
-          <p className="text-xs text-slate-500">Lecture Intelligence System</p>
+          <p className="text-xs text-slate-500">Notely</p>
         </div>
 
         {error && (
