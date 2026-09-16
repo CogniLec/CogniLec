@@ -303,9 +303,24 @@ services:
       - --log.level=INFO
       - --accesslog=true
       - --metrics.prometheus=true
+      # Public TLS via Let's Encrypt HTTP-01 (needs port 80 reachable from
+      # the internet on ${DOMAIN} -- see docs/deploy-public.md). Routers
+      # below reference this as certresolver=letsencrypt.
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge=true
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.letsencrypt.acme.email=${TRAEFIK_EMAIL}
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+      # File provider: routes the bare-uvicorn API (not yet its own
+      # container, see docker/traefik/dynamic.yml.template) onto the same
+      # public domain/TLS as the client.
+      - --providers.file.filename=/etc/traefik/dynamic.yml
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./docker/traefik/certs:/certs:ro
+      - traefik-letsencrypt:/letsencrypt
+      - ./docker/traefik/dynamic.yml:/etc/traefik/dynamic.yml:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - "80:80"
       - "443:443"
@@ -322,8 +337,11 @@ services:
   # VITE_API_BASE_URL is baked in at BUILD time (Vite env vars are
   # compile-time, unlike every other service's runtime env vars here) --
   # changing it means `docker compose build client`, not just a restart.
-  # Default matches this deployment's actual API address as of writing
-  # (a bare uvicorn process on port 8123, not yet its own container).
+  # For a public deployment set VITE_API_BASE_URL=https://api.${DOMAIN} in
+  # .env (routed to the host's uvicorn via docker/traefik/dynamic.yml --
+  # see docs/deploy-public.md). The bare http://localhost:8123 default
+  # below only works for local dev, since browsers block an HTTPS page
+  # calling an HTTP API.
   # ---------------------------------------------------------------------------
   client:
     build:
@@ -336,7 +354,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.client.rule=Host(`app.${DOMAIN:-lis.local}`)"
       - "traefik.http.routers.client.entrypoints=websecure"
-      - "traefik.http.routers.client.tls.certresolver=local"
+      - "traefik.http.routers.client.tls.certresolver=letsencrypt"
       - "traefik.http.services.client.loadbalancer.server.port=80"
     ports:
       - "${CLIENT_PORT:-8081}:80"
@@ -363,7 +381,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.dozzle.rule=Host(`logs.${DOMAIN:-lis.local}`)"
       - "traefik.http.routers.dozzle.entrypoints=websecure"
-      - "traefik.http.routers.dozzle.tls.certresolver=local"
+      - "traefik.http.routers.dozzle.tls.certresolver=letsencrypt"
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
       - "enable_dozzle=true"
     networks:
@@ -388,7 +406,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.${DOMAIN:-lis.local}`)"
       - "traefik.http.routers.portainer.entrypoints=websecure"
-      - "traefik.http.routers.portainer.tls.certresolver=local"
+      - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
     networks:
       - edge
@@ -419,7 +437,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.label-studio.rule=Host(`label.${DOMAIN:-lis.local}`)"
       - "traefik.http.routers.label-studio.entrypoints=websecure"
-      - "traefik.http.routers.label-studio.tls.certresolver=local"
+      - "traefik.http.routers.label-studio.tls.certresolver=letsencrypt"
       - "traefik.http.services.label-studio.loadbalancer.server.port=8080"
     networks:
       - internal
@@ -463,7 +481,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.mlflow.rule=Host(`mlflow.${DOMAIN:-lis.local}`)"
       - "traefik.http.routers.mlflow.entrypoints=websecure"
-      - "traefik.http.routers.mlflow.tls.certresolver=local"
+      - "traefik.http.routers.mlflow.tls.certresolver=letsencrypt"
       - "traefik.http.services.mlflow.loadbalancer.server.port=5000"
     networks:
       - internal

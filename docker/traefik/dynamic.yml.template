@@ -1,0 +1,31 @@
+# Routes the LIS API (a bare uvicorn process on the host, port 8123 --
+# it isn't its own container yet) onto the same public domain/TLS as the
+# rest of the stack, via Traefik's file provider.
+#
+# ${DOMAIN} is NOT substituted by Docker here -- this is a Traefik-native
+# file, not a compose file. Render it with your real domain before first
+# `docker compose up` (and again any time DOMAIN changes):
+#
+#   DOMAIN=your-real-domain.com envsubst '${DOMAIN}' \
+#     < docker/traefik/dynamic.yml.template > docker/traefik/dynamic.yml
+#
+# host.docker.internal resolves to the host machine from inside the
+# traefik container via the `extra_hosts: host-gateway` entry in
+# docker-compose.yml -- it reaches whatever is bound to :8123 on the host,
+# which today is the bare uvicorn process.
+
+http:
+  routers:
+    api:
+      rule: "Host(`api.${DOMAIN}`)"
+      entrypoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+      service: api
+
+  services:
+    api:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:8123"
