@@ -2194,6 +2194,61 @@ faster.
   infrastructure. Left as a known, accepted trade-off per the user's
   explicit choice, not a hidden gap.
 
+## 33e. Clustering's 0-topic failure mode fixed at the algorithm level, manual flashcard entry replaced with real generation (2026-09-17)
+
+Same day, following up on gap #33 (the "Agentic AI" recording that
+produced a full real transcript but 0 flashcards). Root-caused fully this
+time instead of just noting the symptom: T3 clustering
+(`src/ml/clustering/bertopic_pipeline.py`) produced 0 topics from the
+recording's 7 real segments because HDBSCAN's fixed `min_cluster_size=5`
+default was only ever validated against 30+-point synthetic test data --
+for `n=7`, HDBSCAN legitimately found no cluster that large and labeled
+everything noise. `docs/specs/block-4-embedding-topic-intelligence.md`
+§6.5's own failure table explicitly listed "all segments outliers -> empty
+topics table" as *acceptable, terminal* behavior -- a genuine gap in the
+original design, not just unwired code, since it never anticipated the
+2-9-segment regime a short real recording almost always falls into.
+
+- **Fixed at the algorithm level, not by patching one parameter.**
+  `cluster_segment_embeddings()` now (1) scales `min_cluster_size` to the
+  actual segment count (`max(2, min(5, ceil(n/3)))`) instead of staying
+  fixed, and (2) if HDBSCAN still finds 0 real clusters after that,
+  collapses all segments into a single topic -- the same fallback pattern
+  already used for the trivial `n==1` case, just triggered by "0 clusters
+  found" instead of "only 1 segment exists." Updated the spec's §6.1/§6.5
+  to match (the old "empty topics table is acceptable" row is explicitly
+  superseded, not silently removed). Added test coverage for the
+  previously-untested 2-9 segment regime.
+- **Verified live with the real recording, not just unit tests:** replayed
+  the exact same "agentic AI" audio (still in MinIO) through the fixed
+  pipeline (a fresh subject/session, since the original session had
+  already terminally completed and its subject belonged to the real
+  logged-in user, not the test account). Result: 1 real topic
+  ("Generative AI vs. Agentic AI") and 5 real, grounded flashcards, up
+  from 0 and 0.
+- **Manual flashcard entry removed, replaced with real on-demand
+  generation.** The old `POST /subjects/{id}/flashcards/seed` endpoint let
+  a user type a flashcard's front/back text by hand with no LLM involved
+  -- its own docstring called it "a stopgap... until that generation
+  trigger exists," and that trigger has existed since gap #33. Removed it
+  entirely; added `POST /subjects/{id}/flashcards/generate`, which reuses
+  the exact same generation logic as the auto-trigger path (extracted into
+  a shared `generate_flashcards_for_subject()`) so a user can
+  (re)generate real flashcards for a subject on demand -- e.g. after
+  editing notes, or for a subject whose first auto-generation found
+  nothing. Frontend: `QuizCard.tsx`'s manual topic/question/answer entry
+  form replaced with a single "Generate flashcards from notes" button in
+  the same empty-state slot.
+- Full suite: 719 backend passed (81 skipped), 39 client tests passed.
+- **Side effect worth noting honestly:** this session's own debugging
+  (`pg_terminate_backend` calls used to clear a stale lock from an earlier
+  interrupted command) corrupted the API/worker's live DB connection pool
+  mid-verification, surfacing `PendingRollbackError`/"connection is
+  closed" errors unrelated to the actual code changes. Worked around by
+  restarting the affected containers rather than chasing it as a product
+  bug -- flagged here in case a similar symptom recurs and looks like a
+  regression from this change when it isn't.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings
