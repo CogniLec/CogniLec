@@ -19,12 +19,16 @@ GH="$HOME/.local/bin/gh"
 
 mkdir -p "$(dirname "$STATE_FILE")"
 
-# Ensure a tunnel container is running at all.
-if ! docker ps --format '{{.Names}}' | grep -qx "$CONTAINER"; then
+start_fresh_tunnel() {
     docker rm -f "$CONTAINER" >/dev/null 2>&1 || true
     docker run -d --name "$CONTAINER" --network lis-edge --restart unless-stopped \
         cloudflare/cloudflared:latest tunnel --url http://lis-api:8123 >/dev/null
     sleep 8
+}
+
+# Ensure a tunnel container is running at all.
+if ! docker ps --format '{{.Names}}' | grep -qx "$CONTAINER"; then
+    start_fresh_tunnel
 fi
 
 CURRENT_URL=$(docker logs "$CONTAINER" 2>&1 | grep -o 'https://[a-zA-Z0-9-]*\.trycloudflare\.com' | tail -1)
@@ -34,17 +38,31 @@ if [ -z "$CURRENT_URL" ]; then
     exit 1
 fi
 
+# Always health-check, not just when the URL string changed -- confirmed
+# live: Cloudflare can revoke/expire a quick tunnel's registration
+# ("Unauthorized: Tunnel not found") server-side while the container keeps
+# running and its logged URL stays the same. The old version of this
+# script only re-checked reachability when CURRENT_URL != LAST_URL, so a
+# tunnel that died this way was silently never detected or recovered --
+# the public site stayed broken indefinitely despite this script "running
+# fine" every 5 minutes. If the current URL is dead, force a completely
+# fresh tunnel (new registration, new URL) rather than waiting on the
+# existing, broken one to recover on its own.
+if ! curl -sf -m 8 -o /dev/null "$CURRENT_URL/health"; then
+    echo "tunnel URL $CURRENT_URL not reachable, forcing a fresh tunnel" >&2
+    start_fresh_tunnel
+    CURRENT_URL=$(docker logs "$CONTAINER" 2>&1 | grep -o 'https://[a-zA-Z0-9-]*\.trycloudflare\.com' | tail -1)
+    if [ -z "$CURRENT_URL" ] || ! curl -sf -m 8 -o /dev/null "$CURRENT_URL/health"; then
+        echo "fresh tunnel still not reachable, giving up this run" >&2
+        exit 1
+    fi
+fi
+
 LAST_URL=""
 [ -f "$STATE_FILE" ] && LAST_URL=$(cat "$STATE_FILE")
 
 if [ "$CURRENT_URL" = "$LAST_URL" ]; then
     exit 0
-fi
-
-# Confirm the tunnel actually answers before pointing the public site at it.
-if ! curl -sf -m 8 -o /dev/null "$CURRENT_URL/health"; then
-    echo "tunnel URL $CURRENT_URL not reachable yet, skipping update" >&2
-    exit 1
 fi
 
 "$GH" secret set VITE_API_BASE_URL --repo "$REPO" --body "$CURRENT_URL"
