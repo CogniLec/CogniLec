@@ -2012,6 +2012,81 @@ over-optimistic mid-investigation claim along the way.
   a real flashcard has not yet been proven to come out the other end from
   a real recording.
 
+## 33b. Real flashcards finally produced from real audio, plus a topic-labelling bug found and fixed (2026-09-17)
+
+Same day as #33/#33a, continued after the user asked to keep going. Fixed
+every failure mode named as "not yet proven" in #33a, in order:
+
+- **Embedding fallback made genuinely offline-safe:** pre-downloaded
+  `Qwen/Qwen3-Embedding-0.6B` into the shared `lis-models` volume and set
+  `HF_HUB_OFFLINE=1`; switched the fallback's device from `cuda` to `cpu`
+  (it was contending with asr-worker's own GPU and hit CUDA OOM on a real,
+  larger batch); added `build-essential` to the Dockerfile (a real batch
+  triggered a Triton JIT-compile path needing a C compiler, invisible on
+  trivial test payloads).
+- **Constrained decoding (`guided_json`) actually wired in** for the first
+  time: `LLMRouter.complete()` already accepted a `schema` parameter but it
+  was completely dead -- never forwarded to the transport, zero callers
+  anywhere in the codebase ever passed one. Wired it through to vLLM's
+  `guided_json` field for both A1 (relevance filter) and A2 (note
+  synthesis). Also found and fixed a narrower issue on the way: vLLM 0.5.5's
+  guided-decoding backend 500s on any schema containing Pydantic's default
+  `$ref`/`$defs` style -- added `inline_schema_refs()` to flatten schemas
+  first, confirmed live via direct requests to both LiteLLM and vLLM.
+- **`DEFAULT_BATCH_SIZE` lowered 20 -> 8** and Tier-1 timeout raised to 240s
+  (60s was fine for a trivial prompt, nowhere near enough once real content
+  plus constrained decoding's own latency, ~67-110s per batch even warm,
+  were both accounted for).
+- **A genuine duplicated-config bug found and fixed along the way:**
+  `LLMRouterConfig.timeout_by_tier` defaulted to a second, independently
+  hardcoded timeout table that silently overrode `TierConfig.timeout_s` --
+  confirmed live, raising a tier's `timeout_s` to 240s had zero effect
+  until this was found; collapsed to one source of truth
+  (`timeout_by_tier` now defaults empty).
+
+**The real flashcard came through**, twice, once concurrency was reverted
+to sequential (see below): a real 5-minute lecture clip produced two real
+topics and ten grounded flashcards end to end.
+
+**New bug found in that same successful run and fixed:** both resulting
+topics had an **empty `label`**, so flashcard retrieval ran against the
+literal fallback string `"unlabeled topic"` -- about half the flashcards
+from that first successful run were hallucinated generic trivia ("What is
+the capital of Canada?") completely unrelated to the lecture. Root cause:
+S31's `generate_topic_label`/`extract_keywords` (`src/ml/clustering/`) were
+complete, already-tested implementations that were simply never called by
+the running pipeline -- T3 (`cluster_segments`) only ever
+wrote a `centroid` when creating Topic rows. Added a new
+`T3b_label_topics` Prefect task right after T3 in `session_pipeline.py`
+that calls the existing labeller and persists real labels/keywords before
+anything downstream reads them. Re-ran the same clip after the fix:
+**zero hallucinated flashcards** -- all ten were genuinely grounded in the
+real lecture content ("Circle Area Ratio Triangle", "Pi and Non-recurring
+Numbers").
+
+**Parallelizing T5 was attempted and reverted -- a genuine negative
+result, not a hedge.** T5's batch loop was strictly sequential with no
+apparent reason; added `asyncio.gather` + a `Semaphore` (concurrency=2) to
+run batches concurrently. Measured live on this project's actual single
+4GB-VRAM Tier-1 GPU: it made things *worse*, not better -- a batch that
+would have succeeded serially instead returned an incomplete decision
+array, and the two Prefect retries that followed both timed out completely
+(240s each), where the sequential path succeeded outright on the same
+content. Reverted the default to `max_concurrency=1` (sequential); the
+`asyncio.gather`/`Semaphore` infrastructure is kept so a caller on hardware
+with real spare GPU capacity can opt in explicitly, but it is not safe to
+assume as a default on this hardware. Lesson: "batches are independent" is
+a correctness argument for parallelizing, not a performance guarantee --
+real server-side contention has to be measured, not assumed.
+
+**Honest current status:** the full pipeline (upload -> transcribe ->
+embed -> segment -> cluster -> label -> filter -> synthesize -> persist ->
+auto-trigger flashcards) is now confirmed working end to end against real
+audio, with grounded, non-hallucinated output. Not yet addressed: pipeline
+wall-clock latency remains slow on this hardware (a 5-minute lecture takes
+roughly 15-20 minutes with the safe sequential T5), which is a real
+usability concern for longer real lectures, not just a nice-to-have.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings
