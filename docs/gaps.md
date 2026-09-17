@@ -2087,6 +2087,60 @@ wall-clock latency remains slow on this hardware (a 5-minute lecture takes
 roughly 15-20 minutes with the safe sequential T5), which is a real
 usability concern for longer real lectures, not just a nice-to-have.
 
+## 33c. Real multi-machine LLM throughput, and a stale-PWA login bug traced to its actual cause (2026-09-17)
+
+Same day, continued after asking (1) to confirm the frontend genuinely
+shows flashcards end to end, not just via curl, (2) to fix a recurring
+"have to clear cookies to log in" bug, and (3) whether real multi-machine
+parallelism (not more asyncio against one GPU) could speed up T5.
+
+- **Frontend confirmed working live, not assumed.** Logged into the real
+  running app in an actual browser, selected a subject with flashcards
+  generated earlier this session, opened Review, and confirmed the real
+  question/answer/FSRS-grading UI renders real backend data (`πr² / (2r²)
+  = π/2` for the circle-area card). No frontend bug existed here.
+- **The "cookies" bug was never about cookies.** Auth is Bearer-token-in-
+  localStorage (`services/auth.ts`), no cookie/credentials handling
+  anywhere in the client, and the backend never sets one. Real cause: this
+  is a PWA whose Workbox config precaches the *entire* compiled JS bundle,
+  including the build-time-baked `apiBaseUrl` (`config.ts`). With
+  `registerType: "autoUpdate"`, a new service worker fetches in the
+  background, but an already-open tab keeps running the OLD bundle (stale
+  API URL included) until a full reload re-activates the SW -- exactly the
+  situation this session's own repeated backend/tunnel URL changes kept
+  creating. "Clear cookies" only incidentally worked because that browser
+  action also wipes Cache Storage/SW state. Fixed with
+  `skipWaiting`/`clientsClaim` in `vite.config.ts` plus a
+  `controllerchange` reload listener in `main.tsx` -- confirmed the new
+  flags land in the generated `sw.js`, all 38 client tests still pass.
+- **Real multi-machine throughput, without repeating the earlier concurrency
+  mistake.** Gap #33b's `asyncio.gather` attempt made T5 worse because it
+  ran concurrent requests against Machine B's single 4GB GPU, which just
+  contends with itself. The actual fix: LiteLLM's proxy already natively
+  load-balances multiple `model_list` entries sharing one `model_name` --
+  zero app code needed for that part. Stood up a genuine second Tier-1
+  backend on this host's own GPU (previously idle -- ASR and the embedding
+  fallback were both already moved to CPU earlier this session), added it
+  as a second `tier_1_local` entry in `config/litellm.yaml`, and only then
+  re-raised `DEFAULT_MAX_CONCURRENCY` back to 2 -- now that concurrent
+  requests can land on two separate cards instead of one.
+  - Also found and fixed live: standing up a second vLLM instance on a
+    real 4GB card OOM'd during KV-cache allocation even at a conservative
+    `--gpu-memory-utilization`, until `--enforce-eager --max-num-seqs 1`
+    were added -- `docs/multi-gpu-setup.md` already documented needing
+    this for Machine B's card, but `docker-compose.yml`'s `vllm` service
+    never actually had these flags; they're a real default now instead of
+    an out-of-band manual flag.
+  - **Verified, with a real measurement, not just "should be faster":**
+    same real 5-minute lecture clip used throughout this session -- T5
+    completed cleanly in ~8 minutes (was ~11.5 minutes sequential-only),
+    zero contention-related failures (no incomplete decision arrays, no
+    timeouts). T6 (a separate, single-call stage, unaffected by this
+    change) still hit its own known intermittent content-validation flake
+    on this run (duplicate/unsorted section ordinals) -- a pre-existing
+    small-model-quality issue, not something today's changes caused or
+    fixed.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings
