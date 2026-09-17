@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useStudySession } from "../hooks/useStudySession";
-import { seedFlashcard } from "../services/api";
+import { generateFlashcards } from "../services/api";
 import type { FsrsRating } from "../types";
 
 export interface QuizCardProps {
@@ -14,75 +14,48 @@ const RATINGS: { value: FsrsRating; label: string }[] = [
   { value: 4, label: "Easy" },
 ];
 
-function AddFlashcardForm({
+// Replaces the old manual "type a flashcard's front/back yourself" form
+// (removed 2026-09-17) -- flashcards are now always generated from real
+// notes via the LLM, never hand-typed. This button drives that on demand
+// for a subject whose auto-generation (which fires after every recording)
+// produced nothing yet, or after notes have changed.
+function GenerateFlashcardsButton({
   subjectId,
-  onAdded,
+  onGenerated,
 }: {
   subjectId: string;
-  onAdded: () => void;
+  onGenerated: () => void;
 }): JSX.Element {
-  const [topicLabel, setTopicLabel] = useState("");
-  const [front, setFront] = useState("");
-  const [back, setBack] = useState("");
-  const [saving, setSaving] = useState(false);
+  const [generating, setGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const canSave = topicLabel.trim() && front.trim() && back.trim() && !saving;
-
-  const handleAdd = async (): Promise<void> => {
-    setSaving(true);
+  const handleGenerate = async (): Promise<void> => {
+    setGenerating(true);
     setError(null);
     try {
-      await seedFlashcard(subjectId, topicLabel.trim(), front.trim(), back.trim());
-      setTopicLabel("");
-      setFront("");
-      setBack("");
-      onAdded();
+      await generateFlashcards(subjectId);
+      onGenerated();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to add flashcard");
+      setError(err instanceof Error ? err.message : "Failed to generate flashcards");
     } finally {
-      setSaving(false);
+      setGenerating(false);
     }
   };
 
   return (
     <div className="panel flex flex-col gap-3">
-      <p className="text-sm font-semibold text-slate-200">Add a flashcard</p>
       {error && (
         <p role="alert" className="alert-error">
           {error}
         </p>
       )}
-      <input
-        type="text"
-        aria-label="Topic"
-        placeholder="Topic (e.g. Cell Biology)"
-        value={topicLabel}
-        onChange={(event) => setTopicLabel(event.target.value)}
-        className="text-input"
-      />
-      <input
-        type="text"
-        aria-label="Question"
-        placeholder="Question"
-        value={front}
-        onChange={(event) => setFront(event.target.value)}
-        className="text-input"
-      />
-      <textarea
-        aria-label="Answer"
-        placeholder="Answer"
-        value={back}
-        onChange={(event) => setBack(event.target.value)}
-        className="text-input min-h-[5rem] resize-y"
-      />
       <button
         type="button"
-        disabled={!canSave}
-        onClick={() => void handleAdd()}
-        className="btn-secondary self-start"
+        disabled={generating}
+        onClick={() => void handleGenerate()}
+        className="btn-primary self-start"
       >
-        {saving ? "Adding…" : "Add flashcard"}
+        {generating ? "Generating…" : "Generate flashcards from notes"}
       </button>
     </div>
   );
@@ -108,7 +81,7 @@ export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
         <p data-testid="quiz-empty" className="text-sm text-slate-400">
           {error ?? "No flashcards available for this subject yet."}
         </p>
-        <AddFlashcardForm subjectId={subjectId} onAdded={refetch} />
+        <GenerateFlashcardsButton subjectId={subjectId} onGenerated={refetch} />
       </div>
     );
   }

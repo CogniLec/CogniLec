@@ -1,11 +1,15 @@
 """Auto-triggers S47 note synthesis + S58 flashcard generation once a
 session finishes transcribing.
 
-Previously nothing in the pipeline called this automatically -- see the
-docstring on src/api/routes/study.py's seed_flashcard, which existed only
-as a manual stopgap "until that generation trigger exists." This module
-is that trigger, invoked from src/workers/asr_worker.py right after a
-session is finalized (RECORDING -> TRANSCRIBED).
+Previously nothing in the pipeline called this automatically -- the old
+src/api/routes/study.py `seed_flashcard` endpoint (removed 2026-09-17,
+see docs/gaps.md) existed only as a manual stopgap "until that generation
+trigger exists." This module is that trigger, invoked from
+src/workers/asr_worker.py right after a session is finalized
+(RECORDING -> TRANSCRIBED). `generate_flashcards_for_subject` below is
+also reused directly by study.py's on-demand
+`POST /subjects/{id}/flashcards/generate` endpoint, which replaced
+`seed_flashcard`.
 
 Deliberately best-effort: any failure here is logged and swallowed rather
 than raised, since this runs inline in the ASR worker's per-message loop
@@ -38,7 +42,7 @@ FLASHCARDS_PER_TOPIC = 5
 PROMPT_VERSION = "v1.0.0"
 
 
-def _build_llm_router() -> LLMRouter:
+def build_llm_router() -> LLMRouter:
     settings = get_settings()
     # LiteLLM's own /chat/completions (not /v1/chat/completions) --
     # confirmed live against the actual deployed litellm container
@@ -65,6 +69,54 @@ def _topic_label(topic: Topic) -> str:
     return topic.label or (", ".join(topic.keywords or []) or "unlabeled topic")
 
 
+async def generate_flashcards_for_subject(
+    db: AsyncSession, subject_id: uuid.UUID, router: LLMRouter
+) -> int:
+    """Generate + persist flashcards for every one of a subject's existing
+    topics. Shared by the auto-trigger path below (right after a session's
+    notes are persisted) and the on-demand "generate from notes" endpoint
+    (`POST /subjects/{id}/flashcards/generate`, `src/api/routes/study.py`)
+    -- extracted 2026-09-17 when the on-demand endpoint replaced the old
+    manual-entry `seed_flashcard` stopgap. Requires no session context:
+    `FlashcardGenerator.generate_for_topic` only ever needed `subject_id` +
+    a topic label, retrieving directly against the subject's persisted
+    notes -- the session-coupling lived entirely in this module's caller,
+    not in the generator itself.
+    """
+    topics_result = await db.execute(select(Topic).where(Topic.subject_id == subject_id))
+    topics = list(topics_result.scalars().all())
+
+    generator = FlashcardGenerator(router)
+    created = 0
+    for topic in topics:
+        topic_label = _topic_label(topic)
+        try:
+            generated = await generator.generate_for_topic(
+                db, subject_id, topic_label, FLASHCARDS_PER_TOPIC
+            )
+        except FlashcardGenerationError:
+            logger.exception(
+                "flashcard generation failed for topic",
+                extra={"subject_id": str(subject_id), "topic": topic_label},
+            )
+            continue
+
+        for card in generated:
+            flashcard = Flashcard(
+                subject_id=subject_id,
+                topic_label=topic_label,
+                front=card.front,
+                back=card.back,
+                **new_card_fields(),
+            )
+            db.add(flashcard)
+            created += 1
+
+    if created:
+        await db.commit()
+    return created
+
+
 async def generate_study_materials(
     session_id: uuid.UUID,
     subject_id: uuid.UUID,
@@ -75,7 +127,7 @@ async def generate_study_materials(
     number of flashcards created (0 on any failure or if there was
     nothing to synthesize)."""
     settings = get_settings()
-    router = _build_llm_router()
+    router = build_llm_router()
     embedding_client = EmbeddingClient(
         tei_base_url=settings.TEI_BASE_URL,
         # CPU, not cuda:{EMBEDDING_CUDA_DEVICE} -- confirmed live:
@@ -127,37 +179,7 @@ async def generate_study_materials(
         )
         return 0
 
-    topics_result = await db.execute(select(Topic).where(Topic.subject_id == subject_id))
-    topics = list(topics_result.scalars().all())
-
-    generator = FlashcardGenerator(router)
-    created = 0
-    for topic in topics:
-        topic_label = _topic_label(topic)
-        try:
-            generated = await generator.generate_for_topic(
-                db, subject_id, topic_label, FLASHCARDS_PER_TOPIC
-            )
-        except FlashcardGenerationError:
-            logger.exception(
-                "flashcard generation failed for topic",
-                extra={"session_id": str(session_id), "topic": topic_label},
-            )
-            continue
-
-        for card in generated:
-            flashcard = Flashcard(
-                subject_id=subject_id,
-                topic_label=topic_label,
-                front=card.front,
-                back=card.back,
-                **new_card_fields(),
-            )
-            db.add(flashcard)
-            created += 1
-
-    if created:
-        await db.commit()
+    created = await generate_flashcards_for_subject(db, subject_id, router)
     logger.info(
         "auto study-material generation complete",
         extra={"session_id": str(session_id), "flashcards_created": created},

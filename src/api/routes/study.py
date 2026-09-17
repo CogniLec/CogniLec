@@ -36,7 +36,10 @@ from src.api.schemas.study import (
 from src.db.models.flashcard import Flashcard
 from src.db.repositories.flashcard_repo import FlashcardRepository
 from src.services.finetuning.corrections import capture_recall_mismatch
-from src.services.study.fsrs_scheduler import new_card_fields
+from src.services.orchestration.auto_study_materials import (
+    build_llm_router,
+    generate_flashcards_for_subject,
+)
 from src.services.study.fsrs_scheduler import review as fsrs_review
 
 router = APIRouter(prefix="/subjects/{subject_id}", tags=["study"])
@@ -122,35 +125,44 @@ async def review_flashcard(
 
 
 @router.post(
-    "/flashcards/seed", response_model=FlashcardResponse, status_code=status.HTTP_201_CREATED
+    "/flashcards/generate",
+    response_model=FlashcardListResponse,
+    status_code=status.HTTP_201_CREATED,
 )
-async def seed_flashcard(
+async def generate_flashcards(
     subject_id: uuid.UUID,
-    topic_label: str,
-    front: str,
-    back: str,
     db: AsyncSession = Depends(get_db_session_with_rls),
     current_user: dict[str, object] = Depends(get_current_user),
-) -> FlashcardResponse:
-    """Manually create a flashcard for a subject.
+) -> FlashcardListResponse:
+    """Generate real flashcards on demand from a subject's already-
+    persisted notes/topics.
 
-    A stopgap for this prototype: nothing in the pipeline yet calls S58's
-    `FlashcardGenerator` automatically once notes are ready (see
-    docs/gaps.md), so this lets a user (or a seed script) add a card by
-    hand until that generation trigger exists.
+    Replaces the old `seed_flashcard` manual-entry stopgap (removed
+    2026-09-17): that endpoint let a user type a flashcard's front/back
+    text by hand, with no LLM involved, because nothing in the pipeline
+    called S58's `FlashcardGenerator` automatically yet. That auto-trigger
+    now exists (`src/services/orchestration/auto_study_materials.py`,
+    wired since docs/gaps.md gap #33) and fires after every recording, but
+    a user may still want to (re)generate flashcards for a subject on
+    demand -- e.g. after editing notes, or for a subject whose auto-
+    generation produced nothing the first time. Reuses the exact same
+    generation logic as the auto-trigger path
+    (`generate_flashcards_for_subject`), just without needing a specific
+    session_id.
     """
     await require_owned_subject(subject_id, db, current_user)
-    flashcard = Flashcard(
-        subject_id=subject_id,
-        topic_label=topic_label,
-        front=front,
-        back=back,
-        **new_card_fields(),
-    )
-    db.add(flashcard)
-    await db.flush()
-    await db.commit()
-    return _to_response(flashcard)
+    router = build_llm_router()
+    created = await generate_flashcards_for_subject(db, subject_id, router)
+    if created == 0:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=(
+                "No flashcards could be generated -- this subject has no persisted "
+                "notes/topics yet, or generation failed for all of them."
+            ),
+        )
+    cards = await FlashcardRepository(db).list_for_subject(subject_id)
+    return FlashcardListResponse(items=[_to_response(c) for c in cards])
 
 
 @router.get("/study/progress", response_model=StudyProgressResponse)

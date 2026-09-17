@@ -1,8 +1,11 @@
 """Tests for the manual-review-app study/quiz loop (flashcards + FSRS + S65 corrections).
 
-Exercises the real end-to-end loop: seed a flashcard for a subject, fetch
-it as the next-due card, submit a review, and confirm both S58's FSRS
-scheduling state and S65's corrections table reflect it.
+Exercises the real end-to-end loop: a flashcard exists for a subject
+(created directly via DB fixture -- see `_create_flashcard` below; the
+`POST .../flashcards/seed` manual-entry endpoint these tests used to call
+was removed 2026-09-17 in favor of a real generate-from-notes endpoint,
+docs/gaps.md), fetch it as the next-due card, submit a review, and confirm
+both S58's FSRS scheduling state and S65's corrections table reflect it.
 
 Requires two real user accounts interacting through the live auth flow to
 be exercised in a browser (a genuine multi-user session) - not possible
@@ -29,6 +32,7 @@ from src.db.models.flashcard import Flashcard, FlashcardReview
 from src.db.models.subject import Subject
 from src.db.models.user import User
 from src.db.partitions.provisioner import PartitionProvisioner
+from src.services.study.fsrs_scheduler import new_card_fields
 
 pytestmark = pytest.mark.integration
 
@@ -39,6 +43,23 @@ async def _create_user_and_subject(session: AsyncSession) -> tuple[User, Subject
     await session.flush()
     subject = await PartitionProvisioner().provision_subject(session, user.id, name="Subj")
     return user, subject
+
+
+async def _create_flashcard(
+    session: AsyncSession, subject_id: uuid.UUID, topic_label: str, front: str, back: str
+) -> Flashcard:
+    """Direct DB fixture creation, replacing the removed `/flashcards/seed`
+    manual-entry endpoint as test setup (docs/gaps.md)."""
+    flashcard = Flashcard(
+        subject_id=subject_id,
+        topic_label=topic_label,
+        front=front,
+        back=back,
+        **new_card_fields(),
+    )
+    session.add(flashcard)
+    await session.flush()
+    return flashcard
 
 
 def _build_app(db_session: AsyncSession, current_user: dict[str, Any]) -> FastAPI:
@@ -59,21 +80,14 @@ def _build_app(db_session: AsyncSession, current_user: dict[str, Any]) -> FastAP
 @pytest.mark.asyncio
 async def test_seed_and_next_due_flashcard(db_session: AsyncSession) -> None:
     user, subject = await _create_user_and_subject(db_session)
+    await _create_flashcard(
+        db_session, subject.id, "Photosynthesis", "What is it?", "Light -> sugar"
+    )
     await db_session.commit()
 
     app = _build_app(db_session, {"id": str(user.id), "email": user.email, "is_active": True})
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
-        seed_resp = await client.post(
-            f"/api/v1/subjects/{subject.id}/flashcards/seed",
-            params={
-                "topic_label": "Photosynthesis",
-                "front": "What is it?",
-                "back": "Light -> sugar",
-            },
-        )
-        assert seed_resp.status_code == 201
-
         next_resp = await client.get(f"/api/v1/subjects/{subject.id}/flashcards/next")
 
     assert next_resp.status_code == 200
@@ -87,16 +101,12 @@ async def test_review_correct_updates_fsrs_state_without_correction(
     db_session: AsyncSession,
 ) -> None:
     user, subject = await _create_user_and_subject(db_session)
+    flashcard = await _create_flashcard(db_session, subject.id, "T", "Q", "A")
     await db_session.commit()
+    flashcard_id = str(flashcard.id)
     app = _build_app(db_session, {"id": str(user.id), "email": user.email, "is_active": True})
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
-        seed_resp = await client.post(
-            f"/api/v1/subjects/{subject.id}/flashcards/seed",
-            params={"topic_label": "T", "front": "Q", "back": "A"},
-        )
-        flashcard_id = seed_resp.json()["id"]
-
         review_resp = await client.post(
             f"/api/v1/subjects/{subject.id}/flashcards/{flashcard_id}/review",
             json={"rating": 3, "self_correct": True},
@@ -136,16 +146,12 @@ async def test_review_incorrect_records_recall_mismatch_correction(
 ) -> None:
     """The core loop this app adds: wrong self-rated recall feeds S65."""
     user, subject = await _create_user_and_subject(db_session)
+    flashcard = await _create_flashcard(db_session, subject.id, "T", "Q", "The real answer")
     await db_session.commit()
+    flashcard_id = str(flashcard.id)
     app = _build_app(db_session, {"id": str(user.id), "email": user.email, "is_active": True})
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
-        seed_resp = await client.post(
-            f"/api/v1/subjects/{subject.id}/flashcards/seed",
-            params={"topic_label": "T", "front": "Q", "back": "The real answer"},
-        )
-        flashcard_id = seed_resp.json()["id"]
-
         review_resp = await client.post(
             f"/api/v1/subjects/{subject.id}/flashcards/{flashcard_id}/review",
             json={"rating": 1, "self_correct": False, "consent_for_training": True},
@@ -170,15 +176,12 @@ async def test_review_incorrect_records_recall_mismatch_correction(
 @pytest.mark.asyncio
 async def test_study_progress_reflects_review_history(db_session: AsyncSession) -> None:
     user, subject = await _create_user_and_subject(db_session)
+    flashcard = await _create_flashcard(db_session, subject.id, "T", "Q", "A")
     await db_session.commit()
+    flashcard_id = str(flashcard.id)
     app = _build_app(db_session, {"id": str(user.id), "email": user.email, "is_active": True})
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
-        seed_resp = await client.post(
-            f"/api/v1/subjects/{subject.id}/flashcards/seed",
-            params={"topic_label": "T", "front": "Q", "back": "A"},
-        )
-        flashcard_id = seed_resp.json()["id"]
         await client.post(
             f"/api/v1/subjects/{subject.id}/flashcards/{flashcard_id}/review",
             json={"rating": 4, "self_correct": True},

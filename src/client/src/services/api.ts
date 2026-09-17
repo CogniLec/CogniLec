@@ -123,14 +123,12 @@ export async function fetchNextFlashcard(subjectId: string): Promise<Flashcard> 
   return request<Flashcard>(`/api/v1/subjects/${subjectId}/flashcards/next`);
 }
 
-export async function seedFlashcard(
-  subjectId: string,
-  topicLabel: string,
-  front: string,
-  back: string,
-): Promise<Flashcard> {
-  const params = new URLSearchParams({ topic_label: topicLabel, front, back });
-  return request<Flashcard>(`/api/v1/subjects/${subjectId}/flashcards/seed?${params}`, {
+// Generates real flashcards from a subject's already-persisted notes via
+// the LLM (src/services/study/flashcards.py). Replaces the old
+// seedFlashcard manual-entry function (removed 2026-09-17) -- flashcards
+// are never hand-typed now, only generated from real note content.
+export async function generateFlashcards(subjectId: string): Promise<{ items: Flashcard[] }> {
+  return request<{ items: Flashcard[] }>(`/api/v1/subjects/${subjectId}/flashcards/generate`, {
     method: "POST",
   });
 }

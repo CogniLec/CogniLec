@@ -95,6 +95,23 @@ describe("QuizCard (manual-review-app quiz/recall loop)", () => {
     );
   });
 
+  it("shows a Generate flashcards from notes button in the empty state, not a manual-entry form", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 404,
+      statusText: "Not Found",
+    }) as unknown as typeof fetch;
+
+    render(<QuizCard subjectId="subj-1" />);
+    await waitFor(() => expect(screen.getByTestId("quiz-empty")).toBeInTheDocument());
+
+    expect(screen.getByText("Generate flashcards from notes")).toBeInTheDocument();
+    // Regression: manual front/back/topic entry was removed 2026-09-17 in
+    // favor of always generating from real notes.
+    expect(screen.queryByLabelText("Question")).not.toBeInTheDocument();
+    expect(screen.queryByLabelText("Answer")).not.toBeInTheDocument();
+  });
+
   it("shows the real error message when the flashcard request genuinely fails", async () => {
     globalThis.fetch = vi.fn().mockResolvedValue({
       ok: false,
