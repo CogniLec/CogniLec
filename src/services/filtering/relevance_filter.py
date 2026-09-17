@@ -31,18 +31,23 @@ DEFAULT_BATCH_SIZE = 8
 
 # Batches were previously processed strictly sequentially, one at a time --
 # each one waiting for the last to finish even though classify_session's own
-# docstring says batches are independent (no state carries across them), so
-# the infrastructure below supports bounded concurrency. Default is 1
-# (sequential) rather than higher, though: confirmed live on this project's
-# actual single 4GB-VRAM Tier-1 GPU (ADR-015), concurrency=2 made things
-# WORSE, not better -- a batch that would have succeeded serially instead
-# returned an incomplete decision array, and both of Prefect's retries then
-# timed out completely (240s each) where the sequential path had succeeded.
-# Two concurrent guided_json requests appear to contend for the same scarce
-# GPU compute rather than genuinely parallelize on this hardware. Pass a
-# higher max_concurrency explicitly on hardware with real spare GPU
-# capacity -- it is NOT safe to assume as a default here.
-DEFAULT_MAX_CONCURRENCY = 1
+# docstring says batches are independent (no state carries across them).
+#
+# First attempt at concurrency=2 against a SINGLE backend (Machine B's one
+# 4GB GPU) made things WORSE, not better -- confirmed live: two concurrent
+# guided_json requests contended for the same scarce GPU, producing an
+# incomplete decision array and then two full-length (240s) timeouts where
+# the sequential path succeeded outright. Reverted to 1 at that point.
+#
+# Re-raised to 2 after standing up a genuine second Tier-1 backend
+# (config/litellm.yaml now has two `tier_1_local` entries on two separate
+# GPUs, load-balanced by LiteLLM itself -- see docs/gaps.md #33c) -- with
+# two real backends instead of one, concurrent requests can now land on
+# different hardware instead of contending for the same card. Still not
+# safe to assume higher than 2 without more real backends behind LiteLLM;
+# a caller should only raise this alongside actually adding more capacity,
+# not on faith.
+DEFAULT_MAX_CONCURRENCY = 2
 
 
 class FilterCategory(StrEnum):

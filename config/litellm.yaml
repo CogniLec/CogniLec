@@ -40,6 +40,23 @@ model_list:
       # after outlines' per-schema FSM cache warmed up -- real trade-off,
       # constrained decoding trades raw speed for guaranteed-valid JSON.
       timeout: 240
+  # Second real backend for tier_1_local, same model_name -- LiteLLM's own
+  # proxy natively round-robins across multiple entries sharing one
+  # model_name (router_settings.routing_strategy below), no application
+  # code changes needed. This is genuine horizontal throughput across a
+  # second, separate GPU -- deliberately NOT more in-process asyncio
+  # concurrency against a single GPU, which was tried and made things
+  # worse (docs/gaps.md #33b: two concurrent guided_json requests against
+  # Machine B's one card caused contention, incomplete decisions, and
+  # timeouts that succeeded fine sequentially). VLLM_API_BASE_2 points at
+  # this machine's (Machine A's) own GPU, previously idle -- ASR and the
+  # embedding fallback were both already forced to CPU/moved off it.
+  - model_name: tier_1_local
+    litellm_params:
+      model: openai/Qwen/Qwen2.5-3B-Instruct-AWQ
+      api_base: os.environ/VLLM_API_BASE_2
+      api_key: "not-needed"
+      timeout: 240
   - model_name: tier_2_cpu
     litellm_params:
       model: openai/llama-3-8b-instruct

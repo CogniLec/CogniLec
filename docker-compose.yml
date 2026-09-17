@@ -662,11 +662,23 @@ services:
     # Confirmed live (gap #30): using $VLLM_PORT here as well breaks the
     # healthcheck and the ports: mapping the moment VLLM_PORT != 8000,
     # since vllm then binds a different port than what's actually exposed.
+    # --enforce-eager --max-num-seqs 1: without these, vLLM's post-weight-
+    # load CUDA-graph capture + KV-cache profiling step OOMs on a real 4GB
+    # card even at a conservative --gpu-memory-utilization -- confirmed
+    # live standing up a second Tier-1 instance on this host's own 4GB
+    # T1000 (docs/multi-gpu-setup.md already independently documents
+    # needing this for Machine B's card; this makes it a real default
+    # instead of relying on an out-of-band manual flag on that machine).
+    # Override VLLM_MAX_NUM_SEQS on a machine with real VRAM headroom to
+    # allow more concurrent sequences; --enforce-eager is left unconditional
+    # since a docker-compose command string can't cleanly omit a bare flag.
     command: >
       --model ${VLLM_MODEL:-microsoft/Phi-3-mini-3.8B-4bit}
       --quantization ${VLLM_QUANTIZATION:-awq}
       --gpu-memory-utilization ${VLLM_GPU_MEMORY_UTIL:-0.85}
       --max-model-len ${VLLM_MAX_MODEL_LEN:-4096}
+      --max-num-seqs ${VLLM_MAX_NUM_SEQS:-1}
+      --enforce-eager
       --host 0.0.0.0
       --port 8000
     ports:
@@ -822,6 +834,13 @@ services:
       # at a remote machine's LAN IP here for the 3-machine topology
       # (docs/multi-gpu-setup.md) instead of hand-editing that file.
       VLLM_API_BASE: ${VLLM_API_BASE:-http://vllm:8000/v1}
+      # Second tier_1_local backend for real load-balanced throughput
+      # (config/litellm.yaml) -- point at another machine's (or this one's
+      # own, if it has spare GPU) vLLM instance. Empty by default: if unset,
+      # LiteLLM's http client will fail to reach it and that model_list
+      # entry's requests fail over per the normal tier logic rather than
+      # silently going nowhere.
+      VLLM_API_BASE_2: ${VLLM_API_BASE_2:-}
       LLAMACPP_API_BASE: ${LLAMACPP_API_BASE:-http://llamacpp:8080/v1}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
