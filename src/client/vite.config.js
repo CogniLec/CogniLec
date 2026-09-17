@@ -13,6 +13,22 @@ export default defineConfig({
         VitePWA({
             registerType: "autoUpdate",
             workbox: {
+                // Without these, a new service worker only takes control after
+                // every open tab is closed and reopened -- confirmed live: the
+                // entire compiled JS bundle (including config.ts's build-time-baked
+                // apiBaseUrl) is precached below, so a tab left open across a
+                // backend URL change kept running the OLD bundle indefinitely and
+                // every fetch (login included) failed. Reported by users as "have
+                // to clear cookies to log in" -- clearing cookies incidentally also
+                // wipes Cache Storage/SW state, which is what actually fixed it;
+                // cookies themselves are unused (auth is Bearer-token-in-
+                // localStorage, see services/auth.ts). skipWaiting+clientsClaim
+                // make a new SW activate immediately; main.tsx's controllerchange
+                // listener then reloads the (now out-of-date) open tab once that
+                // happens, so this fixes itself instead of needing manual cache
+                // clearing.
+                skipWaiting: true,
+                clientsClaim: true,
                 globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
                 // Chunk buffering itself is handled by the app's own IndexedDB
                 // ring buffer (see src/services/db.ts), not by Workbox caching —
