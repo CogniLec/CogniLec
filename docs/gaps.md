@@ -2141,6 +2141,59 @@ parallelism (not more asyncio against one GPU) could speed up T5.
     small-model-quality issue, not something today's changes caused or
     fixed.
 
+## 33d. Cloudflare quick tunnel replaced with Tailscale Funnel -- a stable public URL instead of a revocable one (2026-09-17)
+
+Same day. Hours after gap #33c's autoupdate-script fix shipped, the public
+site broke again on every device -- not a caching issue this time.
+Diagnosed live: `lis-cloudflared`'s container was still running ("Up 11
+hours"), but its own logs showed `ERR Register tunnel error from server
+side error="Unauthorized: Tunnel not found"` -- Cloudflare had revoked the
+anonymous quick tunnel's registration server-side while the process kept
+retrying forever, unprompted and with no warning. This is an inherent risk
+of Cloudflare's free, no-account quick tunnels (`docs/gaps.md`'s own
+earlier entries already flagged this as a known limitation) -- not
+something any script can fully prevent, only detect and recover from
+faster.
+
+- **Found a real bug in the recovery script itself while fixing the
+  immediate outage:** `scripts/cloudflare_tunnel_autoupdate.sh` only ever
+  ran its reachability check when the scraped tunnel URL string had
+  *changed* from the last known value. Since the container never crashed
+  or restarted, the URL string never changed, so the script exited cleanly
+  every 5 minutes for hours without ever noticing the tunnel was dead.
+  Fixed to health-check unconditionally every run and force a completely
+  fresh tunnel if the current one fails, rather than waiting on a dead
+  one to recover on its own.
+- **Then replaced the whole quick-tunnel approach with Tailscale Funnel**
+  (the user's choice, offered against a self-hosted frp/rathole
+  alternative needing a VPS this project doesn't have): `tailscale funnel
+  --bg 8123` exposes the real API at a **stable, permanent URL**
+  (`https://ashok-3.tail7148e0.ts.net`) tied to this machine's actual
+  Tailscale identity, not an anonymous revocable session. Tailscale client
+  is open source (github.com/tailscale/tailscale); Funnel itself is a free
+  feature of a personal Tailscale account, one-time-enabled via the
+  tailnet admin console. Required `sudo tailscale set --operator=ashok`
+  once so `tailscale funnel`/`serve` commands don't need root afterward.
+  `tailscaled` is already an enabled system service, so this configuration
+  persists across reboots automatically -- confirmed
+  (`systemctl is-enabled/is-active tailscaled`), unlike the Cloudflare
+  container which needed the cron-driven recovery script at all.
+- Verified live: real `/health` and a real `POST /api/v1/auth/register`
+  (201) both succeeded through the new Funnel URL; GitHub Pages redeployed
+  with `VITE_API_BASE_URL` pointed at it and confirmed the live bundle
+  bakes in the new URL.
+- Removed the now-superseded `lis-cloudflared` container and its cron
+  entry (`crontab -l` confirmed clean) -- `scripts/cloudflare_tunnel_autoupdate.sh`
+  is kept in the repo as a reference/fallback (still correctly wired
+  should Cloudflare quick tunnels ever be needed again) but nothing calls
+  it anymore.
+- **Not yet addressed:** this Funnel URL's stability is still tied to this
+  one machine's Tailscale node identity and to Tailscale's own free-tier
+  terms -- a real improvement over an anonymous revocable session, but
+  still not the same guarantee as fully self-hosted frp/rathole on owned
+  infrastructure. Left as a known, accepted trade-off per the user's
+  explicit choice, not a hidden gap.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings
