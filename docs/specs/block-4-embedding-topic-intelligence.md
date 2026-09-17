@@ -1227,6 +1227,15 @@ HDBSCAN_CONFIG = {
 }
 ```
 
+`min_cluster_size: 5` is a ceiling, not a fixed value, when the caller
+doesn't explicitly override it: it scales down to `max(2, min(5, ceil(n /
+3)))` for the actual segment count `n`. Confirmed live (2026-09-17): the
+fixed default of 5 was only ever validated against 30+-point test data
+(T30.1/T30.3 below); a real short recording with `n` in the 2-9 range
+almost never produces a cluster that large, so the un-scaled default
+caused every such session to produce zero topics. See §6.5 for what
+happens when scaling still isn't enough.
+
 #### 6.2 Mean-Pooling
 
 ```python
@@ -1252,7 +1261,8 @@ HDBSCAN assigns `-1` topic label for noise. Additionally, it provides `probabili
 |---|---|
 | 0 segments | Skip clustering, return empty result |
 | 1 segment | Single topic created, no clustering needed |
-| All segments outliers | Topics table empty, all utterances get `outlier_score ≈ 1.0` |
+| 2-9 segments, HDBSCAN finds 0 real clusters after adaptive `min_cluster_size` | Collapse all segments into a single topic (same mechanism as the 1-segment case) — **not** an empty topics table (superseded row below) |
+| ~~All segments outliers~~ (superseded 2026-09-17) | ~~Topics table empty, all utterances get `outlier_score ≈ 1.0`~~ — was found live to cause a cascading failure: flashcard generation retrieves against a meaningless placeholder topic label and either produces nothing or hallucinates ungrounded content. A real session should always end up with *some* topic; "0 distinct sub-topics found" is legitimate, "0 topics exist at all" is not. |
 | BERTopic crash | T3 retries once; on final failure, session marked `failed` |
 | VRAM exhaustion | Reduce batch size; log warning |
 

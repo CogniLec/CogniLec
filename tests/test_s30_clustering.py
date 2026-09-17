@@ -52,6 +52,35 @@ class TestT303TwoDistinctTopics:
         assert assignment.labels == []
 
 
+class TestT303SmallNNeverProducesZeroTopics:
+    """Confirmed live (docs/gaps.md #33e): a real 7-segment recording
+
+    produced 0 topics because the fixed min_cluster_size=5 default was
+    only ever validated against 30+-point test data. This is the
+    previously-untested 2-9 segment regime.
+    """
+
+    def test_seven_scattered_embeddings_still_yield_a_topic(self) -> None:
+        """Worst case for HDBSCAN: too few, too scattered points for the
+        old fixed min_cluster_size=5 to ever find a real cluster in."""
+        rng = np.random.default_rng(1)
+        embeddings = rng.normal(loc=0.0, scale=1.0, size=(7, 32)).tolist()
+
+        assignment = cluster_segment_embeddings(embeddings)
+
+        assert len(assignment.centroids) >= 1
+        assert all(lbl != -1 for lbl in assignment.labels)
+
+    def test_three_embeddings_still_yield_a_topic(self) -> None:
+        rng = np.random.default_rng(2)
+        embeddings = rng.normal(loc=0.0, scale=1.0, size=(3, 16)).tolist()
+
+        assignment = cluster_segment_embeddings(embeddings)
+
+        assert len(assignment.centroids) >= 1
+        assert all(lbl != -1 for lbl in assignment.labels)
+
+
 async def _subject_session_with_utterances(
     db: AsyncSession, n: int
 ) -> tuple[uuid.UUID, uuid.UUID, list[uuid.UUID]]:
