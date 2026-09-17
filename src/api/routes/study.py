@@ -32,9 +32,11 @@ from src.api.schemas.study import (
     FlashcardReviewResponse,
     ReviewOutcome,
     StudyProgressResponse,
+    StudyStatusResponse,
 )
 from src.db.models.flashcard import Flashcard
 from src.db.repositories.flashcard_repo import FlashcardRepository
+from src.db.repositories.session_repo import SessionRepository
 from src.services.finetuning.corrections import capture_recall_mismatch
 from src.services.orchestration.auto_study_materials import (
     build_llm_router,
@@ -163,6 +165,31 @@ async def generate_flashcards(
         )
     cards = await FlashcardRepository(db).list_for_subject(subject_id)
     return FlashcardListResponse(items=[_to_response(c) for c in cards])
+
+
+@router.get("/study/status", response_model=StudyStatusResponse)
+async def get_study_status(
+    subject_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db_session_with_rls),
+    current_user: dict[str, object] = Depends(get_current_user),
+) -> StudyStatusResponse:
+    """Lets the frontend poll for whether the most recent recording's
+    notes/flashcards are ready, instead of the user having to manually
+    reload the Review tab and guess (docs/gaps.md #33f) -- generation
+    itself already runs automatically after transcription
+    (`src/workers/asr_worker.py`), this just surfaces its progress.
+    """
+    await require_owned_subject(subject_id, db, current_user)
+    latest_session = await SessionRepository(db).get_latest_for_subject(subject_id)
+    flashcards = await FlashcardRepository(db).list_for_subject(subject_id)
+    return StudyStatusResponse(
+        subject_id=subject_id,
+        session_id=latest_session.id if latest_session else None,
+        status=latest_session.status if latest_session else None,
+        notes_ready=latest_session.notes_ready if latest_session else False,
+        flashcard_count=len(flashcards),
+        failure_reason=latest_session.failure_reason if latest_session else None,
+    )
 
 
 @router.get("/study/progress", response_model=StudyProgressResponse)

@@ -52,6 +52,16 @@ class SessionRepository:
         result = await self._session.execute(stmt)
         return list(result.scalars().all())
 
+    async def get_latest_for_subject(self, subject_id: uuid.UUID) -> Session | None:
+        stmt = (
+            select(Session)
+            .where(Session.subject_id == subject_id)
+            .order_by(Session.created_at.desc())
+            .limit(1)
+        )
+        result = await self._session.execute(stmt)
+        return result.scalars().first()
+
     async def list_by_subject(
         self, subject_id: uuid.UUID, offset: int = 0, limit: int = 50
     ) -> tuple[list[Session], int]:

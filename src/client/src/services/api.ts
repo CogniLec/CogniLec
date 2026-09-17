@@ -1,6 +1,13 @@
 import { CONFIG } from "../config";
 import { getAccessToken } from "./auth";
-import type { Flashcard, FsrsRating, MaterialUploadResult, StudyProgress, Subject } from "../types";
+import type {
+  Flashcard,
+  FsrsRating,
+  MaterialUploadResult,
+  StudyProgress,
+  StudyStatus,
+  Subject,
+} from "../types";
 
 // Thin fetch wrappers around the backend contracts documented in S15 spec
 // section 5 (backed by S07 subjects/sessions routes). Kept minimal and
@@ -152,6 +159,12 @@ export async function reviewFlashcard(
 
 export async function fetchStudyProgress(subjectId: string): Promise<StudyProgress> {
   return request<StudyProgress>(`/api/v1/subjects/${subjectId}/study/progress`);
+}
+
+// Polling target for the "Generating your notes..." banner -- see
+// src/client/src/hooks/useStudyStatus.ts.
+export async function fetchStudyStatus(subjectId: string): Promise<StudyStatus> {
+  return request<StudyStatus>(`/api/v1/subjects/${subjectId}/study/status`);
 }
 
 /**

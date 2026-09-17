@@ -104,6 +104,18 @@ export interface StudyProgress {
   recent_outcomes: ReviewOutcome[];
 }
 
+// Lets the frontend poll whether a just-recorded session's notes/
+// flashcards are ready instead of guessing (docs/gaps.md #33f) --
+// src/api/routes/study.py GET /subjects/{id}/study/status.
+export interface StudyStatus {
+  subject_id: string;
+  session_id: string | null;
+  status: string | null;
+  notes_ready: boolean;
+  flashcard_count: number;
+  failure_reason: string | null;
+}
+
 // S51 syllabus/material upload (PDF, image, TXT, MD) — src/api/routes/syllabus_upload.py.
 export interface MaterialUploadResult {
   upload_id: string;

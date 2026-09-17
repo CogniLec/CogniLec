@@ -50,3 +50,17 @@ class StudyProgressResponse(BaseModel):
     correct_reviews: int
     accuracy: float
     recent_outcomes: list[ReviewOutcome]
+
+
+class StudyStatusResponse(BaseModel):
+    """Lets the frontend poll instead of guessing when a just-recorded
+    session's notes/flashcards are ready -- see docs/gaps.md #33f. `status`
+    mirrors `SessionStatus` as a plain string so the client doesn't need to
+    import the backend enum."""
+
+    subject_id: uuid.UUID
+    session_id: uuid.UUID | None
+    status: str | None
+    notes_ready: bool
+    flashcard_count: int
+    failure_reason: str | None

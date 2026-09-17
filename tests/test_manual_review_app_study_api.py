@@ -29,6 +29,7 @@ from src.api.dependencies.database import get_db_session
 from src.api.routes.study import router as study_router
 from src.db.models.correction import Correction
 from src.db.models.flashcard import Flashcard, FlashcardReview
+from src.db.models.session import Session, SessionStatus
 from src.db.models.subject import Subject
 from src.db.models.user import User
 from src.db.partitions.provisioner import PartitionProvisioner
@@ -199,6 +200,49 @@ async def test_study_progress_reflects_review_history(db_session: AsyncSession) 
     assert body["correct_reviews"] == 1
     assert body["accuracy"] == 0.5
     assert len(body["recent_outcomes"]) == 2
+
+
+@pytest.mark.asyncio
+async def test_study_status_reflects_latest_session_processing_state(
+    db_session: AsyncSession,
+) -> None:
+    """Regression for docs/gaps.md #33f: the frontend used to have no way
+    to know a just-recorded session's notes/flashcards were still
+    generating, other than manually reloading. `GET .../study/status`
+    surfaces the latest session's status so the UI can poll instead."""
+    user, subject = await _create_user_and_subject(db_session)
+    session_obj = Session(subject_id=subject.id, status=SessionStatus.PROCESSING)
+    db_session.add(session_obj)
+    await db_session.commit()
+
+    app = _build_app(db_session, {"id": str(user.id), "email": user.email, "is_active": True})
+    transport = httpx.ASGITransport(app=app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get(f"/api/v1/subjects/{subject.id}/study/status")
+
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["status"] == "processing"
+    assert body["notes_ready"] is False
+    assert body["session_id"] == str(session_obj.id)
+    assert body["flashcard_count"] == 0
+
+
+@pytest.mark.asyncio
+async def test_study_status_with_no_sessions_yet(db_session: AsyncSession) -> None:
+    user, subject = await _create_user_and_subject(db_session)
+    await db_session.commit()
+
+    app = _build_app(db_session, {"id": str(user.id), "email": user.email, "is_active": True})
+    transport = httpx.ASGITransport(app=app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.get(f"/api/v1/subjects/{subject.id}/study/status")
+
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["session_id"] is None
+    assert body["status"] is None
+    assert body["notes_ready"] is False
 
 
 @pytest.mark.asyncio
