@@ -32,7 +32,7 @@ def make_tiers() -> list[TierConfig]:
 
 
 def scripted_transport(script: dict[LLMTier, TierFailureError | LLMResponse]):
-    async def _transport(tier: TierConfig, messages, timeout_s):
+    async def _transport(tier: TierConfig, messages, timeout_s, schema=None):
         outcome = script[tier.tier]
         if isinstance(outcome, TierFailureError):
             raise outcome
@@ -76,7 +76,7 @@ async def test_failover_triggers_timeout():
 async def test_failover_triggers_rate_limit_no_retry_storm():
     calls: list[LLMTier] = []
 
-    async def transport(tier: TierConfig, messages, timeout_s):
+    async def transport(tier: TierConfig, messages, timeout_s, schema=None):
         calls.append(tier.tier)
         if tier.tier == LLMTier.TIER_3:
             raise TierFailureError(FailoverTrigger.RATE_LIMIT, "429")
@@ -135,7 +135,7 @@ async def test_timeout_configurable_per_agent():
     config_a2 = LLMRouterConfig(tiers=make_tiers()[:1], timeout_by_tier={LLMTier.TIER_1: 120})
     seen_timeouts: list[int] = []
 
-    async def transport(tier: TierConfig, messages, timeout_s):
+    async def transport(tier: TierConfig, messages, timeout_s, schema=None):
         seen_timeouts.append(timeout_s)
         return ok_response(tier.tier)
 

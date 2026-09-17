@@ -134,13 +134,25 @@ class ASRWorker:
                         # session, not just this one. asyncio.wait_for
                         # turns a silent freeze into a bounded, logged
                         # failure so the worker keeps consuming.
+                        #
+                        # 300s was too tight once guided_json (constrained
+                        # decoding) was enabled -- confirmed live: T5's
+                        # relevance filter runs one LLM call per
+                        # DEFAULT_BATCH_SIZE=8 utterances, each taking
+                        # 60-110s with a warm FSM cache, so a real ~5-minute
+                        # lecture's several batches legitimately exceeded
+                        # 300s total and got cancelled mid-flight. Raised to
+                        # 1800s (30min) -- this is Phase 2/post-session work
+                        # (ADR-014), not real-time, so slow-but-eventually-
+                        # correct is the right trade-off over cutting off a
+                        # real session's flow.
                         await asyncio.wait_for(
                             generate_study_materials(session_id, subject_id, materials_session),
-                            timeout=300,
+                            timeout=1800,
                         )
                 except TimeoutError:
                     logger.exception(
-                        "auto study-material generation timed out after 300s "
+                        "auto study-material generation timed out after 1800s "
                         "(transcription itself succeeded)",
                         extra={"session_id": str(session_id)},
                     )

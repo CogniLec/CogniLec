@@ -34,7 +34,7 @@ def make_agent(sections_json: str) -> NoteSynthesisAgent:
         tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
     )
 
-    async def transport(tier, messages, timeout_s):
+    async def transport(tier, messages, timeout_s, schema=None):
         return LLMResponse(
             content=sections_json,
             tier_used=tier.tier,

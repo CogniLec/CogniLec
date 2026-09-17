@@ -363,6 +363,19 @@ services:
       LITELLM_BASE_URL: "${LITELLM_BASE_URL:-http://litellm:4000}"
       HF_HOME: /models/huggingface
       HF_TOKEN: "${HF_TOKEN:-}"
+      # EmbeddingClient's local fallback (src/ml/embedding/client.py,
+      # used when TEI is unreachable) is not actually offline-safe by
+      # default -- it goes through huggingface_hub, which tries a live
+      # HEAD request to huggingface.co even when the model is already
+      # cached, and this container's network doesn't reliably reach the
+      # public internet. Confirmed live: this caused T1_embed_utterances
+      # to fail outright with a DNS resolution error mid-pipeline
+      # (docs/gaps.md #33a). The embedding model (Qwen/Qwen3-Embedding-0.6B)
+      # is now pre-downloaded into the shared `models` volume, so
+      # HF_HUB_OFFLINE=1 is safe here -- it just means a *new* model
+      # id would need to be pre-downloaded the same way before use,
+      # rather than silently attempting a live fetch and failing.
+      HF_HUB_OFFLINE: "1"
       ASR_CUDA_DEVICE: "${ASR_CUDA_DEVICE:-0}"
       # Confirmed live: this service's image (the shared lis-api image,
       # built FROM python:3.12-slim) has no CUDA runtime libraries at all
@@ -759,6 +772,7 @@ services:
       - models:/models
     environment:
       HF_HOME: /models/huggingface
+      HUGGING_FACE_HUB_TOKEN: "${HF_TOKEN:-}"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:80/health"]
       interval: 30s

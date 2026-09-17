@@ -34,8 +34,12 @@ model_list:
       # tiny prompt completed in <1s, but a real S41 relevance-filter batch
       # from a 45s lecture clip timed out at 60s twice in a row and
       # exhausted process_session's retries, blocking flashcard generation
-      # entirely. Raised to give the small quantized model real headroom.
-      timeout: 180
+      # entirely. Raised to 180s, then raised again to 240s once guided_json
+      # (constrained decoding, docs/gaps.md #33a follow-up) was enabled:
+      # measured live, an 8-utterance guided_json call took 67-110s even
+      # after outlines' per-schema FSM cache warmed up -- real trade-off,
+      # constrained decoding trades raw speed for guaranteed-valid JSON.
+      timeout: 240
   - model_name: tier_2_cpu
     litellm_params:
       model: openai/llama-3-8b-instruct
@@ -56,6 +60,6 @@ model_list:
 router_settings:
   routing_strategy: "simple-shuffle"
   num_retries: 0
-  timeout: 180
+  timeout: 240
   allowed_fails: 1
   retry_after: 0

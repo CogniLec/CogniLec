@@ -13,14 +13,36 @@ prompt is never given `speaker_tag` as a signal to condition on.
 
 from __future__ import annotations
 
+import asyncio
 import json
 from dataclasses import dataclass
 from enum import StrEnum
 
 from pydantic import BaseModel, Field, ValidationError
-from src.services.llm.router import LLMRouter
+from src.services.llm.router import LLMRouter, inline_schema_refs
 
-DEFAULT_BATCH_SIZE = 20
+# 20 was too large for Machine B's real hardware ceiling: vLLM there reports
+# max_model_len=2048 (4GB VRAM card, ADR-015), and a real batch of 20 lecture
+# utterances plus the system/topic prompt can exceed that -- confirmed live,
+# this was part of what made real S41 batches slow/fail even after raising
+# LiteLLM's timeout (docs/gaps.md #33a). Smaller batches fit reliably within
+# the context ceiling; the trade-off is more LLM calls per session.
+DEFAULT_BATCH_SIZE = 8
+
+# Batches were previously processed strictly sequentially, one at a time --
+# each one waiting for the last to finish even though classify_session's own
+# docstring says batches are independent (no state carries across them), so
+# the infrastructure below supports bounded concurrency. Default is 1
+# (sequential) rather than higher, though: confirmed live on this project's
+# actual single 4GB-VRAM Tier-1 GPU (ADR-015), concurrency=2 made things
+# WORSE, not better -- a batch that would have succeeded serially instead
+# returned an incomplete decision array, and both of Prefect's retries then
+# timed out completely (240s each) where the sequential path had succeeded.
+# Two concurrent guided_json requests appear to contend for the same scarce
+# GPU compute rather than genuinely parallelize on this hardware. Pass a
+# higher max_concurrency explicitly on hardware with real spare GPU
+# capacity -- it is NOT safe to assume as a default here.
+DEFAULT_MAX_CONCURRENCY = 1
 
 
 class FilterCategory(StrEnum):
@@ -50,6 +72,18 @@ class RelevanceDecision(BaseModel):
 
 class RelevanceFilterError(Exception):
     """Raised when the LLM response can't be parsed into decisions for the batch."""
+
+
+# Passed to LLMRouter.complete() as `guided_json` so a Tier-1 vLLM call is
+# constrained to emit exactly this shape -- confirmed live: without this,
+# the small quantized Tier-1 model intermittently produced malformed
+# decisions (empty filter_reason, missing confidence field, filter_reason
+# over the 100-char limit) that parse_decisions() then rejected outright,
+# burning Prefect retries and sometimes exhausting them (docs/gaps.md #33).
+_DECISIONS_SCHEMA: dict[str, object] = {
+    "type": "array",
+    "items": inline_schema_refs(RelevanceDecision.model_json_schema()),
+}
 
 
 def batch_utterances(
@@ -115,10 +149,28 @@ class RelevanceFilterAgent:
         router: LLMRouter,
         prompt_version: str = "v1.0.0",
         batch_size: int = DEFAULT_BATCH_SIZE,
+        max_concurrency: int = DEFAULT_MAX_CONCURRENCY,
     ) -> None:
         self._router = router
         self._prompt_version = prompt_version
         self._batch_size = batch_size
+        self._max_concurrency = max_concurrency
+
+    async def _classify_batch(
+        self, topic_label: str, batch: list[UtteranceInput]
+    ) -> list[RelevanceDecision]:
+        messages = build_prompt(topic_label, batch)
+        response = await self._router.complete(
+            messages,
+            agent_id=self.AGENT_ID,
+            prompt_version=self._prompt_version,
+            schema=_DECISIONS_SCHEMA,
+        )
+        if response.failed:
+            msg = f"A1 router exhausted: {response.failure_reason}"
+            raise RelevanceFilterError(msg)
+        expected = {u.seq for u in batch}
+        return parse_decisions(response.content, expected)
 
     async def classify_session(
         self, topic_label: str, utterances: list[UtteranceInput]
@@ -127,19 +179,20 @@ class RelevanceFilterAgent:
 
         (T41.6) because each batch is scored independently against the same
         fixed topic label and each utterance's own text/outlier_score - no
-        state carries across batches.
+        state carries across batches. That independence is what makes
+        bounded-concurrency processing below safe.
         """
+        semaphore = asyncio.Semaphore(self._max_concurrency)
+
+        async def bounded(batch: list[UtteranceInput]) -> list[RelevanceDecision]:
+            async with semaphore:
+                return await self._classify_batch(topic_label, batch)
+
+        batches = batch_utterances(utterances, self._batch_size)
+        results = await asyncio.gather(*(bounded(batch) for batch in batches))
         decisions: list[RelevanceDecision] = []
-        for batch in batch_utterances(utterances, self._batch_size):
-            messages = build_prompt(topic_label, batch)
-            response = await self._router.complete(
-                messages, agent_id=self.AGENT_ID, prompt_version=self._prompt_version
-            )
-            if response.failed:
-                msg = f"A1 router exhausted: {response.failure_reason}"
-                raise RelevanceFilterError(msg)
-            expected = {u.seq for u in batch}
-            decisions.extend(parse_decisions(response.content, expected))
+        for batch_decisions in results:
+            decisions.extend(batch_decisions)
         return decisions
 
 

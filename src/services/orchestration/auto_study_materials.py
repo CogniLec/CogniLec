@@ -48,12 +48,15 @@ def _build_llm_router() -> LLMRouter:
         tier=LLMTier.TIER_1,
         model="tier_1_local",
         endpoint=settings.LITELLM_BASE_URL,
-        # Must be >= config/litellm.yaml's tier_1_local timeout (180s) --
+        # Must be >= config/litellm.yaml's tier_1_local timeout (240s) --
         # confirmed live: a real S41 relevance-filter batch on a 45s clip
         # exceeded a 60s timeout on Machine B's small quantized model, so
         # a tighter client-side timeout here would just cut the request
         # off before LiteLLM's own (now-raised) timeout ever got a chance.
-        timeout_s=180,
+        # Raised again to 240s once guided_json (constrained decoding) was
+        # enabled: measured live, it adds real latency (67-110s for an
+        # 8-utterance batch even with a warm FSM cache).
+        timeout_s=240,
     )
     return LLMRouter(LLMRouterConfig(tiers=[tier]))
 
@@ -75,7 +78,14 @@ async def generate_study_materials(
     router = _build_llm_router()
     embedding_client = EmbeddingClient(
         tei_base_url=settings.TEI_BASE_URL,
-        local_device=f"cuda:{settings.EMBEDDING_CUDA_DEVICE}",
+        # CPU, not cuda:{EMBEDDING_CUDA_DEVICE} -- confirmed live:
+        # TEI (the primary path, real GPU-backed service on Machine C) is
+        # what's supposed to own the embedding GPU. This local fallback is
+        # meant to be a rare degraded path, not a second consumer
+        # contending for the same scarce card -- on this single-GPU dev
+        # host it hit CUDA OOM (asr-worker's own GPU already ~2.8GB/3.6GB
+        # used) the moment a real, larger batch fell back to it.
+        local_device="cpu",
     )
     filter_agent = RelevanceFilterAgent(router)
     synthesis_agent = NoteSynthesisAgent(router)
@@ -90,6 +100,7 @@ async def generate_study_materials(
             embedding_client=embedding_client,
             filter_agent=filter_agent,
             synthesis_agent=synthesis_agent,
+            router=router,
         )
     except Exception:
         logger.exception(

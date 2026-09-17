@@ -5,8 +5,15 @@
 # `restart: unless-stopped`).
 FROM python:3.12-slim
 
+# build-essential (gcc): sentence-transformers' local embedding fallback
+# (src/ml/embedding/client.py, used when TEI is unreachable or rejects a
+# batch as too large) can trigger a Triton JIT-compiled kernel path on
+# real-sized batches -- confirmed live: "RuntimeError: Failed to find C
+# compiler" only appeared on a real 5-minute lecture's utterance batch,
+# not on trivial test payloads, because Triton only compiles above some
+# batch-size/sequence-length threshold.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ffmpeg curl \
+    ffmpeg curl build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir uv

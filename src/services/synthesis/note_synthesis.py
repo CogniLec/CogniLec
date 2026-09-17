@@ -15,7 +15,7 @@ import re
 from dataclasses import dataclass, field
 
 from pydantic import BaseModel, Field, ValidationError
-from src.services.llm.router import LLMRouter
+from src.services.llm.router import LLMRouter, inline_schema_refs
 
 MERMAID_FENCE_RE = re.compile(r"```mermaid\s*\n(.*?)```", re.DOTALL)
 
@@ -48,6 +48,17 @@ class NoteSectionOutput(BaseModel):
 
 class NoteSynthesisError(Exception):
     """Raised when A2's output fails structural or provenance validation."""
+
+
+# Passed to LLMRouter.complete() as `guided_json` -- confirmed live: without
+# this, A2 (unlike A1's smaller batches) intermittently returned genuinely
+# non-JSON output ("Invalid control character", "Expecting value") on the
+# large full-transcript prompt, exhausting Prefect's retries entirely on a
+# real 5-minute session (docs/gaps.md #33/#33a).
+_SECTIONS_SCHEMA: dict[str, object] = {
+    "type": "array",
+    "items": inline_schema_refs(NoteSectionOutput.model_json_schema()),
+}
 
 
 def build_full_context_prompt(context: SessionSynthesisContext) -> list[dict[str, str]]:
@@ -125,7 +136,10 @@ class NoteSynthesisAgent:
         allowed_ids = {u.id for u in context.utterances}
         messages = build_full_context_prompt(context)
         response = await self._router.complete(
-            messages, agent_id=self.AGENT_ID, prompt_version=self._prompt_version
+            messages,
+            agent_id=self.AGENT_ID,
+            prompt_version=self._prompt_version,
+            schema=_SECTIONS_SCHEMA,
         )
         if response.failed:
             msg = f"A2 router exhausted: {response.failure_reason}"

@@ -23,7 +23,7 @@ def make_config() -> LLMRouterConfig:
 
 
 def scripted_router(handler):
-    async def _transport(tier, messages, timeout_s):
+    async def _transport(tier, messages, timeout_s, schema=None):
         return LLMResponse(
             content=handler(messages),
             tier_used=tier.tier,

@@ -221,7 +221,7 @@ class TestAC5RelevanceFilterSymmetric:
             ],
         )
 
-        async def transport(tier, messages, timeout_s):
+        async def transport(tier, messages, timeout_s, schema=None):
             payload = json.loads(messages[-1]["content"])
             decisions = [
                 {
@@ -358,7 +358,7 @@ class TestAC8PrimaryLlmKilledCompletesViaFallback:
             ),
         }
 
-        async def transport(tier, messages, timeout_s):
+        async def transport(tier, messages, timeout_s, schema=None):
             outcome = script[tier.tier]
             if isinstance(outcome, TierFailureError):
                 raise outcome

@@ -38,7 +38,7 @@ def make_router(handler) -> LLMRouter:
         tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
     )
 
-    async def _transport(tier, messages, timeout_s):
+    async def _transport(tier, messages, timeout_s, schema=None):
         return LLMResponse(
             content=handler(messages),
             tier_used=tier.tier,

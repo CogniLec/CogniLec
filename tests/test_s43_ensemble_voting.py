@@ -20,7 +20,7 @@ def make_agent(seq_to_relevant: dict[int, bool]) -> RelevanceFilterAgent:
         tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
     )
 
-    async def transport(tier, messages, timeout_s):
+    async def transport(tier, messages, timeout_s, schema=None):
         payload = json.loads(messages[1]["content"])
         seqs = [u["seq"] for u in payload["utterances"]]
         content = json.dumps(
@@ -94,7 +94,7 @@ async def test_t43_4_models_vote_independently():
             tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
         )
 
-        async def transport(tier, messages, timeout_s):
+        async def transport(tier, messages, timeout_s, schema=None):
             calls.append([m["content"] for m in messages])
             content = json.dumps(
                 [

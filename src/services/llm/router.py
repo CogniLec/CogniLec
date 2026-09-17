@@ -16,6 +16,38 @@ import httpx
 from pydantic import BaseModel, Field
 
 
+def inline_schema_refs(schema: dict[str, object]) -> dict[str, object]:
+    """Resolve `$ref`/`$defs` into a flat, self-contained JSON schema.
+
+    Pydantic's `model_json_schema()` always uses `$ref`/`$defs` for nested
+    models and enums. vLLM 0.5.5's guided-decoding backend (used for the
+    `guided_json` parameter `default_http_transport` forwards below) 500s
+    on any schema containing `$ref` -- confirmed live via a direct request
+    to both LiteLLM and vLLM itself: the exact same schema with its `$ref`
+    inlined works and produces a correctly-constrained response, unchanged
+    otherwise. Callers passing `schema=` to `LLMRouter.complete()` should
+    run their Pydantic schema through this first. This is a narrow
+    vLLM-version limitation, not a schema-correctness issue.
+    """
+    defs = schema.get("$defs", {})
+    if not isinstance(defs, dict):
+        return schema
+
+    def resolve(node: object) -> object:
+        if isinstance(node, dict):
+            if "$ref" in node:
+                ref = str(node["$ref"]).removeprefix("#/$defs/")
+                return resolve(defs[ref])
+            return {k: resolve(v) for k, v in node.items() if k != "$defs"}
+        if isinstance(node, list):
+            return [resolve(item) for item in node]
+        return node
+
+    result = resolve(schema)
+    assert isinstance(result, dict)
+    return result
+
+
 class LLMTier(StrEnum):
     TIER_1 = "tier_1"
     TIER_2 = "tier_2"
@@ -40,19 +72,19 @@ class TierConfig(BaseModel):
     max_retries: int = 0
 
 
-DEFAULT_TIMEOUT_BY_TIER: dict[LLMTier, int] = {
-    LLMTier.TIER_1: 60,
-    LLMTier.TIER_2: 120,
-    LLMTier.TIER_3: 30,
-    LLMTier.TIER_4: 30,
-}
-
-
 class LLMRouterConfig(BaseModel):
     tiers: list[TierConfig]
-    timeout_by_tier: dict[LLMTier, int] = Field(
-        default_factory=lambda: dict(DEFAULT_TIMEOUT_BY_TIER)
-    )
+    # Empty by default -- TierConfig.timeout_s is the single source of
+    # truth for a tier's timeout unless a caller explicitly wants to
+    # override it per-router-instance via this dict. Previously this
+    # defaulted to a second, independently-hardcoded timeout table
+    # (DEFAULT_TIMEOUT_BY_TIER: tier1=60s) that silently won over
+    # whatever a caller set on TierConfig.timeout_s -- confirmed live:
+    # raising a TierConfig's timeout_s to 240s had NO effect, a real S41
+    # call kept timing out at 60s regardless, because complete() prefers
+    # timeout_by_tier over tier.timeout_s and this dict was never empty.
+    # That drift is exactly what this collapses (docs/gaps.md #33a).
+    timeout_by_tier: dict[LLMTier, int] = Field(default_factory=dict)
 
 
 class RoutingDecision(BaseModel):
@@ -82,19 +114,39 @@ class TierFailureError(Exception):
         self.message = message
 
 
-TierTransport = Callable[[TierConfig, list[dict[str, str]], int], Awaitable[LLMResponse]]
+TierTransport = Callable[
+    [TierConfig, list[dict[str, str]], int, "dict[str, object] | None"], Awaitable[LLMResponse]
+]
 
 
 async def default_http_transport(
-    tier: TierConfig, messages: list[dict[str, str]], timeout_s: int
+    tier: TierConfig,
+    messages: list[dict[str, str]],
+    timeout_s: int,
+    schema: dict[str, object] | None = None,
 ) -> LLMResponse:
-    """Real OpenAI-compatible transport used against vllm/llama.cpp/hosted APIs."""
+    """Real OpenAI-compatible transport used against vllm/llama.cpp/hosted APIs.
+
+    `schema`, when given, is forwarded as `guided_json` -- vLLM's OpenAI-
+    compatible extension for constrained/grammar-guided decoding (ADR-007).
+    Previously `complete()` accepted a `schema` parameter but never actually
+    used it anywhere in the call chain -- confirmed live: real relevance-
+    filter/note-synthesis calls were producing malformed JSON (missing
+    fields, over-length strings) that the small quantized Tier-1 model
+    should never have been able to emit if constrained decoding were
+    actually active. This wires it through. Hosted-API tiers (3/4) don't
+    support `guided_json`, so this is a best-effort hint, not a contract --
+    a tier that ignores it just behaves as it did before.
+    """
     start = time.monotonic()
+    request_body: dict[str, object] = {"model": tier.model, "messages": messages}
+    if schema is not None:
+        request_body["guided_json"] = schema
     try:
         async with httpx.AsyncClient(timeout=timeout_s) as client:
             resp = await client.post(
                 f"{tier.endpoint.rstrip('/')}/chat/completions",
-                json={"model": tier.model, "messages": messages},
+                json=request_body,
             )
     except httpx.TimeoutException as exc:
         raise TierFailureError(FailoverTrigger.TIMEOUT, str(exc)) from exc
@@ -155,7 +207,7 @@ class LLMRouter:
                 self._on_tier_recorded(decision)
 
             try:
-                response = await self._try_tier(tier, messages, timeout_s)
+                response = await self._try_tier(tier, messages, timeout_s, schema)
             except TierFailureError as exc:
                 last_trigger = exc.trigger
                 last_tier = tier.tier
@@ -177,6 +229,10 @@ class LLMRouter:
         )
 
     async def _try_tier(
-        self, tier: TierConfig, messages: list[dict[str, str]], timeout: int
+        self,
+        tier: TierConfig,
+        messages: list[dict[str, str]],
+        timeout: int,
+        schema: dict[str, object] | None,
     ) -> LLMResponse:
-        return await self._transport(tier, messages, timeout)
+        return await self._transport(tier, messages, timeout, schema)

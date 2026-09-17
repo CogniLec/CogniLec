@@ -55,7 +55,7 @@ class FakeEmbeddingClient(EmbeddingClient):
 
 
 def _relevance_transport_factory():
-    async def transport(tier, messages, timeout_s):
+    async def transport(tier, messages, timeout_s, schema=None):
         user_payload = json.loads(messages[-1]["content"])
         decisions = [
             {
@@ -79,7 +79,7 @@ def _relevance_transport_factory():
 
 
 def _synthesis_transport_factory():
-    async def transport(tier, messages, timeout_s):
+    async def transport(tier, messages, timeout_s, schema=None):
         payload = json.loads(messages[-1]["content"])
         ids = [u["id"] for u in payload["transcript"]]
         sections = [
