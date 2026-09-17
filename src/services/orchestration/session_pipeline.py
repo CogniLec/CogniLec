@@ -42,7 +42,7 @@ from src.db.repositories.topic_repo import TopicRepository
 from src.db.repositories.utterance_repo import UtteranceRepository
 from src.ml.clustering.schemas import ClusteringResult
 from src.ml.clustering.segmentation import SegmentationResult, segment_session
-from src.ml.clustering.tasks import cluster_segments
+from src.ml.clustering.tasks import cluster_segments, label_topics
 from src.ml.embedding.client import EmbeddingClient
 from src.ml.embedding.flows import embed_utterances
 from src.services.filtering.ensemble_voting import EnsembleVotingFilter
@@ -51,6 +51,7 @@ from src.services.filtering.relevance_filter import (
     UtteranceInput,
     decisions_to_flags,
 )
+from src.services.llm.router import LLMRouter
 from src.services.syllabus.routing import route_syllabus_lecture
 from src.services.synthesis.note_persistence import (
     mark_notes_ready,
@@ -297,6 +298,7 @@ async def process_session(
     ensemble: EnsembleVotingFilter | None = None,
     stream: ValkeyStreamProducer | None = None,
     skip_embedding: bool = False,
+    router: LLMRouter | None = None,
 ) -> PipelineResult:
     """S47: complete T1-T7 pipeline, transcript through persisted notes.
 
@@ -341,6 +343,14 @@ async def process_session(
                 session_id=session_id, subject_id=subject_id, db=db
             )
             result.topics_created = cluster_result.topics_created
+
+            await label_topics(
+                session_id=session_id,
+                subject_id=subject_id,
+                db=db,
+                router=router,
+                prompt_version=prompt_version,
+            )
         else:
             result.skipped_stages = [
                 "T1_embed_utterances",
