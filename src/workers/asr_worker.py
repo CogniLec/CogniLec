@@ -10,6 +10,7 @@ than reprocessed.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import socket
 import uuid
@@ -124,7 +125,25 @@ class ASRWorker:
                 # the transcription commit that already succeeded.
                 try:
                     async with self._session_factory() as materials_session:
-                        await generate_study_materials(session_id, subject_id, materials_session)
+                        # Bounded, not just try/except -- confirmed live:
+                        # this call can hang indefinitely past the LLM
+                        # router's own timeout (root cause not yet
+                        # isolated), and since this worker processes
+                        # messages one at a time, an unbounded hang here
+                        # freezes ALL subsequent chunk processing for every
+                        # session, not just this one. asyncio.wait_for
+                        # turns a silent freeze into a bounded, logged
+                        # failure so the worker keeps consuming.
+                        await asyncio.wait_for(
+                            generate_study_materials(session_id, subject_id, materials_session),
+                            timeout=300,
+                        )
+                except TimeoutError:
+                    logger.exception(
+                        "auto study-material generation timed out after 300s "
+                        "(transcription itself succeeded)",
+                        extra={"session_id": str(session_id)},
+                    )
                 except Exception:
                     logger.exception(
                         "auto study-material generation failed (transcription itself succeeded)",
@@ -243,8 +262,6 @@ async def main() -> None:  # pragma: no cover - process entrypoint
 
 
 if __name__ == "__main__":  # pragma: no cover
-    import asyncio
-
     # Without this, every logger.info/logger.exception call in this module
     # (including the ones that would explain a silently-swallowed
     # transcription failure) goes nowhere -- confirmed live: a chunk was

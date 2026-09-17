@@ -1947,6 +1947,71 @@ upgrade` races unrelated to this change; retried once contention cleared).
     card, 2048-token context window too small for a full ~90s lecture
     segment), not a pipeline-wiring defect, and is unaddressed.
 
+## 33a. Real-content flashcard generation attempted again, live -- still not proven end to end (2026-09-17)
+
+Follow-up to gap #33 the same day, prompted by asking "are you sure flashcards
+are working" and re-testing with real audio rather than relying on the
+trivial-content success from earlier. Found more, and corrected an
+over-optimistic mid-investigation claim along the way.
+
+- **LiteLLM's 60s timeout was too tight for real content.** A trivial
+  smoke-test prompt to Machine B completed in 0.67s, but a real S41
+  relevance-filter batch from a real ~45s clip legitimately took longer than
+  60s to generate on Machine B's small quantized model and got killed by
+  LiteLLM's own per-model timeout before it could finish -- not a dead
+  server, confirmed live (`/v1/models` responded instantly the whole time).
+  Raised `config/litellm.yaml`'s `tier_1_local`/`router_settings` timeout
+  60s -> 180s, and the matching client-side `TierConfig.timeout_s` in
+  `auto_study_materials.py` (was 90s, now 180s to match).
+- **False alarm, corrected in-session:** after that fix, a run appeared to
+  hang indefinitely after `process_session` completed (no further log
+  output for 5-9+ minutes across three separate test sessions, worker
+  seemingly frozen). Added `asyncio.wait_for(..., timeout=300)` around the
+  call in `asr_worker.py` as a defensive bound (kept -- it's a reasonable
+  safeguard regardless), but the 300s bound never fired either, which was
+  the tell that this wasn't really an unbounded hang.
+  - Used `py-spy dump` (via a sidecar container sharing the worker's PID
+    namespace: `docker run --pid=container:lis-asr-worker --cap-add
+    SYS_PTRACE ...`) to get a real stack trace instead of continuing to
+    guess. It showed the event loop genuinely idle in `select()` -- not
+    blocked on anything.
+  - Added temporary `print(..., flush=True)` checkpoints (bypassing
+    logging entirely) to pin down where execution actually was. Confirmed
+    the code had already finished correctly in all three "hung" cases: the
+    session reached `status='complete'`, correctly with zero
+    topics/sections/flashcards because T5's relevance filter had correctly
+    found nothing on-topic in those particular clip windows. There was no
+    hang -- the earlier read of "5+ minutes of silence after flow
+    completion = frozen worker" was wrong; it was un-eventful successful
+    completion of a genuinely-empty result, observed right after a
+    Prefect flow run so it looked identical to a freeze. Removed the debug
+    prints after confirming; kept the `wait_for` bound since an actual
+    hang (not this false alarm) would still be worth bounding.
+- **New, real, unresolved finding from the same test:** on a separate
+  attempt, `T1_embed_utterances` itself failed outright with
+  `NameResolutionError: Failed to resolve 'huggingface.co'` -- the
+  embedding client's local fallback path tried to download a **different**
+  model (`Qwen/Qwen3-Embedding-0.6B`) live from the internet mid-pipeline,
+  and this worker's network doesn't reliably reach the public internet
+  (confirmed separately, gap #29-31's `edge` network is for the LLM/TEI
+  services, not guaranteed for arbitrary HF downloads from this
+  container). Earlier successful runs in this same session must have hit
+  a local cache or TEI instead. This is a real, unresolved reliability gap
+  in the embedding fallback path -- worth pre-baking/pinning the embedding
+  model into the image or forcing TEI-only with no live-download fallback,
+  not attempted here.
+- **Net honest status after all of this:** the plumbing (upload ->
+  transcribe -> embed -> segment -> cluster -> filter -> synthesize ->
+  persist -> auto-trigger flashcards) is real and exercised repeatedly
+  against real audio. But no test run in this session -- across roughly
+  six real end-to-end attempts -- has yet produced actual persisted
+  flashcards from substantive real lecture content. Every run either (a)
+  correctly found nothing worth keeping in a low-content clip window, (b)
+  hit the small model's JSON-reliability limitation (gap #33), or (c) hit
+  this embedding-model network-fallback issue. The mechanism is proven;
+  a real flashcard has not yet been proven to come out the other end from
+  a real recording.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings

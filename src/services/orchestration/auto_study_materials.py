@@ -48,7 +48,12 @@ def _build_llm_router() -> LLMRouter:
         tier=LLMTier.TIER_1,
         model="tier_1_local",
         endpoint=settings.LITELLM_BASE_URL,
-        timeout_s=90,
+        # Must be >= config/litellm.yaml's tier_1_local timeout (180s) --
+        # confirmed live: a real S41 relevance-filter batch on a 45s clip
+        # exceeded a 60s timeout on Machine B's small quantized model, so
+        # a tighter client-side timeout here would just cut the request
+        # off before LiteLLM's own (now-raised) timeout ever got a chance.
+        timeout_s=180,
     )
     return LLMRouter(LLMRouterConfig(tiers=[tier]))
 
