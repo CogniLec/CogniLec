@@ -13,6 +13,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.api.routes import (
+    audio_upload,
     auth,
     chunks,
     cold_start,
@@ -41,6 +42,7 @@ app.add_middleware(
 )
 
 for router in (
+    audio_upload.router,
     auth.router,
     chunks.router,
     cold_start.router,

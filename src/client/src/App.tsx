@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SubjectPicker } from "./components/SubjectPicker";
 import { ConsentGate } from "./components/ConsentGate";
 import { RecordingControls } from "./components/RecordingControls";
+import { AudioFileUpload } from "./components/AudioFileUpload";
 import { AuthScreen } from "./components/AuthScreen";
 import { StudyScreen } from "./components/StudyScreen";
 import { FloatingBackdrop } from "./components/FloatingBackdrop";
@@ -51,6 +52,12 @@ function CaptureScreen(): JSX.Element {
           onStop={stopRecording}
         />
       </section>
+
+      {subject && consentGiven && (
+        <section className="panel rise-in" style={{ animationDelay: "160ms" }}>
+          <AudioFileUpload subjectId={subject.id} />
+        </section>
+      )}
     </div>
   );
 }

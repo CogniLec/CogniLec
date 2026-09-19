@@ -123,6 +123,35 @@ export async function uploadSessionChunk(chunk: {
   }
 }
 
+export interface AudioFileUploadResult {
+  session_id: string;
+  filename: string;
+  total_chunks: number;
+  status: string;
+  message: string;
+}
+
+/**
+ * Uploads an audio file (MP3, WAV, M4A, FLAC, OGG, WebM) to an existing
+ * session. The server splits it into 30s chunks and feeds them into the
+ * preprocessing → ASR pipeline.
+ */
+export async function uploadAudioFile(sessionId: string, file: File): Promise<AudioFileUploadResult> {
+  const token = getAccessToken();
+  const body = new FormData();
+  body.append("file", file);
+
+  const res = await fetch(`${CONFIG.apiBaseUrl}/api/v1/sessions/${sessionId}/audio-file`, {
+    method: "POST",
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    body,
+  });
+  if (!res.ok) {
+    throw new Error(`Audio upload failed: ${res.status} ${res.statusText}`);
+  }
+  return (await res.json()) as AudioFileUploadResult;
+}
+
 // Manual-review-app: study/quiz loop over S58's flashcards + FSRS
 // scheduling, backed by src/api/routes/study.py.
 
