@@ -5,7 +5,9 @@ from __future__ import annotations
 import logging
 import math
 import subprocess
+import tempfile
 from dataclasses import dataclass
+from pathlib import Path
 from uuid import UUID
 
 from src.services.audio_chain.resample import resolve_ffmpeg_binary
@@ -19,7 +21,22 @@ from src.services.storage.client import StorageClient
 logger = logging.getLogger(__name__)
 
 CHUNK_DURATION_MS = 30_000  # 30 seconds, matches Recorder.ts default
-ALLOWED_AUDIO_EXTENSIONS = {".mp3", ".wav", ".m4a", ".flac", ".ogg", ".webm", ".aac", ".wma"}
+# .mp4/.mov/.mkv added (docs/gaps.md #33i) -- a lecture recorded on a phone
+# camera or screen-recorder is commonly MP4/MOV, and there was previously
+# no way to upload one at all.
+ALLOWED_AUDIO_EXTENSIONS = {
+    ".mp3",
+    ".wav",
+    ".m4a",
+    ".flac",
+    ".ogg",
+    ".webm",
+    ".aac",
+    ".wma",
+    ".mp4",
+    ".mov",
+    ".mkv",
+}
 ALLOWED_MIME_TYPES = {
     "audio/mpeg",  # mp3
     "audio/wav",  # wav
@@ -32,6 +49,10 @@ ALLOWED_MIME_TYPES = {
     "audio/webm",  # webm
     "audio/aac",  # aac
     "audio/x-ms-wma",  # wma
+    "video/mp4",  # mp4 (video container, audio extracted via -vn below)
+    "video/quicktime",  # mov
+    "video/webm",  # webm video container
+    "video/x-matroska",  # mkv
     "audio/*",  # wildcard fallback
 }
 
@@ -44,8 +65,8 @@ class AudioFileIngestionResult:
     duration_ms: int
 
 
-def _probe_duration_ms(audio_bytes: bytes) -> int:
-    """Probe audio duration in milliseconds using ffprobe."""
+def _probe_duration_ms(input_path: str) -> int:
+    """Probe audio/video duration in milliseconds using ffprobe."""
     binary = resolve_ffmpeg_binary()
     ffprobe_binary = binary.replace("ffmpeg", "ffprobe")
     if ffprobe_binary == binary:
@@ -63,9 +84,8 @@ def _probe_duration_ms(audio_bytes: bytes) -> int:
             "format=duration",
             "-of",
             "default=noprint_wrappers=1:nokey=1",
-            "pipe:0",
+            input_path,
         ],
-        input=audio_bytes,
         capture_output=True,
         check=False,
     )
@@ -81,19 +101,29 @@ def _probe_duration_ms(audio_bytes: bytes) -> int:
     return int(float(duration_str) * 1000)
 
 
-def _split_audio_chunk(audio_bytes: bytes, start_ms: int, duration_ms: int) -> bytes:
-    """Extract a chunk from audio bytes using ffmpeg."""
+def _split_audio_chunk(input_path: str, start_ms: int, duration_ms: int) -> bytes:
+    """Extract a chunk from the audio/video file at `input_path` using ffmpeg.
+
+    Reads from a real file path rather than piping bytes via stdin
+    (`-i pipe:0`) -- confirmed live (docs/gaps.md #33i): an MP4 whose
+    `moov` atom sits at the end of the file (common for phone/screen
+    recordings) is not decodable from a non-seekable pipe, so every MP4
+    upload failed ffmpeg's demuxer regardless of the allowlist. `-vn`
+    drops any video stream so a video container's audio can still be
+    extracted into the pipeline's opus chunks.
+    """
     binary = resolve_ffmpeg_binary()
     start_s = start_ms / 1000.0
     result = subprocess.run(
         [
             binary,
             "-i",
-            "pipe:0",
+            input_path,
             "-ss",
             str(start_s),
             "-t",
             str(duration_ms / 1000.0),
+            "-vn",
             "-f",
             "opus",
             "-c:a",
@@ -102,7 +132,6 @@ def _split_audio_chunk(audio_bytes: bytes, start_ms: int, duration_ms: int) -> b
             "32k",
             "pipe:1",
         ],
-        input=audio_bytes,
         capture_output=True,
         check=False,
     )
@@ -137,57 +166,71 @@ class AudioFileIngestionService:
         filename: str,
         audio_bytes: bytes,
     ) -> AudioFileIngestionResult:
-        """Split audio file into 30s chunks and ingest each into the pipeline."""
-        duration_ms = _probe_duration_ms(audio_bytes)
-        if duration_ms <= 0:
-            msg = "Audio file has no detectable audio content"
-            raise AudioFileIngestionError(msg)
+        """Split audio/video file into 30s chunks and ingest each into the pipeline.
 
-        total_chunks = max(1, math.ceil(duration_ms / CHUNK_DURATION_MS))
-        logger.info(
-            "audio_file_ingestion_started",
-            extra={
-                "session_id": str(session_id),
-                "filename": filename,
-                "duration_ms": duration_ms,
-                "total_chunks": total_chunks,
-            },
-        )
+        Writes the upload to a real temp file once and reuses that path for
+        probing and every chunk split -- required for MP4/MOV inputs whose
+        `moov` atom can sit at the end of the file, which ffmpeg cannot
+        decode from a non-seekable stdin pipe (docs/gaps.md #33i).
+        """
+        suffix = Path(filename).suffix or ".bin"
+        with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+            tmp.write(audio_bytes)
+            tmp_path = tmp.name
 
-        for seq in range(total_chunks):
-            start_ms = seq * CHUNK_DURATION_MS
-            chunk_duration = min(CHUNK_DURATION_MS, duration_ms - start_ms)
-            is_final = seq == total_chunks - 1
+        try:
+            duration_ms = _probe_duration_ms(tmp_path)
+            if duration_ms <= 0:
+                msg = "Audio file has no detectable audio content"
+                raise AudioFileIngestionError(msg)
 
-            chunk_bytes = _split_audio_chunk(audio_bytes, start_ms, chunk_duration)
-
-            request = ChunkUploadRequest(
-                session_id=session_id,
-                sequence=seq,
-                timestamp_ms=start_ms,
-                duration_ms=chunk_duration,
-                is_final=is_final,
-            )
-
-            try:
-                await self._chunk_ingestion.ingest_chunk(request, chunk_bytes)
-            except SessionNotAcceptingChunksError:
-                logger.warning(
-                    "audio_file_session_not_accepting",
-                    extra={"session_id": str(session_id), "sequence": seq},
-                )
-                break
-
+            total_chunks = max(1, math.ceil(duration_ms / CHUNK_DURATION_MS))
             logger.info(
-                "audio_file_chunk_ingested",
+                "audio_file_ingestion_started",
                 extra={
                     "session_id": str(session_id),
-                    "sequence": seq,
-                    "start_ms": start_ms,
-                    "duration_ms": chunk_duration,
-                    "is_final": is_final,
+                    "filename": filename,
+                    "duration_ms": duration_ms,
+                    "total_chunks": total_chunks,
                 },
             )
+
+            for seq in range(total_chunks):
+                start_ms = seq * CHUNK_DURATION_MS
+                chunk_duration = min(CHUNK_DURATION_MS, duration_ms - start_ms)
+                is_final = seq == total_chunks - 1
+
+                chunk_bytes = _split_audio_chunk(tmp_path, start_ms, chunk_duration)
+
+                request = ChunkUploadRequest(
+                    session_id=session_id,
+                    sequence=seq,
+                    timestamp_ms=start_ms,
+                    duration_ms=chunk_duration,
+                    is_final=is_final,
+                )
+
+                try:
+                    await self._chunk_ingestion.ingest_chunk(request, chunk_bytes)
+                except SessionNotAcceptingChunksError:
+                    logger.warning(
+                        "audio_file_session_not_accepting",
+                        extra={"session_id": str(session_id), "sequence": seq},
+                    )
+                    break
+
+                logger.info(
+                    "audio_file_chunk_ingested",
+                    extra={
+                        "session_id": str(session_id),
+                        "sequence": seq,
+                        "start_ms": start_ms,
+                        "duration_ms": chunk_duration,
+                        "is_final": is_final,
+                    },
+                )
+        finally:
+            Path(tmp_path).unlink()
 
         logger.info(
             "audio_file_ingestion_complete",

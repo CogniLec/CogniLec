@@ -6,7 +6,7 @@ export interface AudioFileUploadProps {
   onUploaded?: (message: string, sessionId: string) => void;
 }
 
-const ACCEPTED_AUDIO_EXTENSIONS = ".mp3,.wav,.m4a,.flac,.ogg,.webm";
+const ACCEPTED_AUDIO_EXTENSIONS = ".mp3,.wav,.m4a,.flac,.ogg,.webm,.aac,.wma,.mp4,.mov,.mkv";
 
 /**
  * Lets a user upload an audio file (MP3, WAV, M4A, FLAC, OGG, WebM) to a
