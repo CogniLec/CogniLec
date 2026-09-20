@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { createSubject, fetchSubjects } from "../services/api";
+import { friendlyErrorMessage } from "../services/errorMessages";
 import type { Subject } from "../types";
 
 export interface SubjectPickerProps {
@@ -11,14 +12,24 @@ export function SubjectPicker({ selectedSubjectId, onSelect }: SubjectPickerProp
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  // Distinguishes a load failure (where "Retry" means "fetch again") from a
+  // create failure (where the fix is changing the name, not reloading) --
+  // otherwise a duplicate-name error would show a Retry button that just
+  // refreshes the list and does nothing to help (docs/gaps.md #33j).
+  const [errorSource, setErrorSource] = useState<"load" | "create" | null>(null);
   const [newName, setNewName] = useState("");
   const [creating, setCreating] = useState(false);
 
   const load = (): void => {
     setLoading(true);
+    setError(null);
+    setErrorSource(null);
     fetchSubjects()
       .then(setSubjects)
-      .catch((err: unknown) => setError(err instanceof Error ? err.message : "Failed to load subjects"))
+      .catch((err: unknown) => {
+        setError(friendlyErrorMessage(err));
+        setErrorSource("load");
+      })
       .finally(() => setLoading(false));
   };
 
@@ -28,13 +39,15 @@ export function SubjectPicker({ selectedSubjectId, onSelect }: SubjectPickerProp
     if (!newName.trim()) return;
     setCreating(true);
     setError(null);
+    setErrorSource(null);
     try {
       const subject = await createSubject(newName.trim());
       setNewName("");
       load();
       onSelect(subject);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to create subject");
+      setError(friendlyErrorMessage(err, { 409: "A subject with that name already exists." }));
+      setErrorSource("create");
     } finally {
       setCreating(false);
     }
@@ -51,9 +64,16 @@ export function SubjectPicker({ selectedSubjectId, onSelect }: SubjectPickerProp
   return (
     <div data-testid="subject-picker" className="flex flex-col gap-3">
       {error && (
-        <p role="alert" className="alert-error">
-          {error}
-        </p>
+        <div className="flex items-center gap-2">
+          <p role="alert" className="alert-error flex-1">
+            {error}
+          </p>
+          {errorSource === "load" && (
+            <button type="button" onClick={load} className="btn-ghost shrink-0 px-3 py-1 text-xs">
+              Retry
+            </button>
+          )}
+        </div>
       )}
 
       {subjects.length === 0 ? (

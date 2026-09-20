@@ -77,7 +77,7 @@ function CaptureScreen(): JSX.Element {
 }
 
 export function App(): JSX.Element {
-  const { user, loading, error: authError, login, logout } = useAuth();
+  const { user, loading, error: authError, checkFailed, retryCheck, login, logout } = useAuth();
   const [tab, setTab] = useState<"capture" | "review">("review");
 
   if (loading) {
@@ -85,6 +85,18 @@ export function App(): JSX.Element {
       <div className="flex min-h-screen items-center justify-center text-slate-400">
         <FloatingBackdrop />
         <p className="animate-pulse text-sm">Loading…</p>
+      </div>
+    );
+  }
+
+  if (checkFailed) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center text-slate-400">
+        <FloatingBackdrop />
+        <p className="text-sm">Couldn't verify your session — check your connection.</p>
+        <button type="button" onClick={retryCheck} className="btn-primary">
+          Retry
+        </button>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import {
+  AuthCheckError,
   fetchCurrentUser,
   getAccessToken,
   login as loginRequest,
@@ -12,6 +13,11 @@ export interface UseAuthResult {
   user: AuthUser | null;
   loading: boolean;
   error: string | null;
+  // True when the initial session check failed for a reason OTHER than an
+  // actually-invalid session (network blip, 5xx) -- distinct from `!user`,
+  // which now only means "genuinely logged out" (docs/gaps.md #33j).
+  checkFailed: boolean;
+  retryCheck: () => void;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
@@ -20,17 +26,30 @@ export function useAuth(): UseAuthResult {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [checkFailed, setCheckFailed] = useState(false);
 
-  useEffect(() => {
+  const checkSession = useCallback((): void => {
     if (!getAccessToken()) {
       setLoading(false);
       return;
     }
+    setLoading(true);
+    setCheckFailed(false);
     fetchCurrentUser()
-      .then(setUser)
-      .catch(() => setUser(null))
+      .then((me) => setUser(me))
+      .catch((err: unknown) => {
+        if (err instanceof AuthCheckError && err.status !== 401) {
+          // Network/5xx -- the session may well still be valid. Don't log
+          // a real user out over a connectivity hiccup.
+          setCheckFailed(true);
+        } else {
+          setUser(null);
+        }
+      })
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(checkSession, [checkSession]);
 
   // Wired to api.ts's authorizedFetch: fires when a 401 survives a refresh
   // attempt (expired/invalid refresh token), so the user is dropped to the
@@ -61,5 +80,5 @@ export function useAuth(): UseAuthResult {
     setUser(null);
   }, []);
 
-  return { user, loading, error, login, logout };
+  return { user, loading, error, checkFailed, retryCheck: checkSession, login, logout };
 }

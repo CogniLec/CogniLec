@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fetchStudyProgress } from "../services/api";
+import { friendlyErrorMessage } from "../services/errorMessages";
 import type { StudyProgress } from "../types";
 
 export interface ProgressViewProps {
@@ -9,26 +10,35 @@ export interface ProgressViewProps {
 export function ProgressView({ subjectId }: ProgressViewProps): JSX.Element {
   const [progress, setProgress] = useState<StudyProgress | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [retryToken, setRetryToken] = useState(0);
+
+  const retry = useCallback((): void => setRetryToken((n) => n + 1), []);
 
   useEffect(() => {
     let cancelled = false;
+    setError(null);
     fetchStudyProgress(subjectId)
       .then((data) => {
         if (!cancelled) setProgress(data);
       })
       .catch((err: unknown) => {
-        if (!cancelled) setError(err instanceof Error ? err.message : "Failed to load progress");
+        if (!cancelled) setError(friendlyErrorMessage(err));
       });
     return () => {
       cancelled = true;
     };
-  }, [subjectId]);
+  }, [subjectId, retryToken]);
 
   if (error) {
     return (
-      <p role="alert" className="alert-error">
-        {error}
-      </p>
+      <div className="flex items-center gap-2">
+        <p role="alert" className="alert-error flex-1">
+          {error}
+        </p>
+        <button type="button" onClick={retry} className="btn-ghost shrink-0 px-3 py-1 text-xs">
+          Retry
+        </button>
+      </div>
     );
   }
 
@@ -61,9 +71,9 @@ export function ProgressView({ subjectId }: ProgressViewProps): JSX.Element {
         </div>
       </div>
 
-      {progress.recent_outcomes.length > 0 && (
-        <div className="panel">
-          <p className="field-label mb-3">Recent activity</p>
+      <div className="panel">
+        <p className="field-label mb-3">Recent activity</p>
+        {progress.recent_outcomes.length > 0 ? (
           <ul className="flex flex-col divide-y divide-white/5">
             {progress.recent_outcomes.map((outcome, index) => (
               <li
@@ -75,8 +85,12 @@ export function ProgressView({ subjectId }: ProgressViewProps): JSX.Element {
               </li>
             ))}
           </ul>
-        </div>
-      )}
+        ) : (
+          <p data-testid="progress-no-activity" className="text-sm text-slate-500">
+            No reviews yet — start studying a subject's flashcards to see your activity here.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

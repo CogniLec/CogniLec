@@ -126,12 +126,26 @@ export async function login(email: string, password: string): Promise<void> {
   setRefreshToken(tokens.refresh_token);
 }
 
+/**
+ * Carries the HTTP status so callers can tell a genuine 401 (session is
+ * actually invalid -- show the login screen) apart from a network blip or
+ * 5xx (the session might still be fine) -- previously any failure here
+ * was treated identically as "logged out" (docs/gaps.md #33j), which
+ * bounced a validly-logged-in user to the login screen on a transient
+ * connectivity hiccup with no explanation.
+ */
+export class AuthCheckError extends Error {
+  constructor(public readonly status: number) {
+    super(`Failed to load current user: ${status}`);
+  }
+}
+
 export async function fetchCurrentUser(): Promise<AuthUser> {
   const res = await fetch(`${CONFIG.apiBaseUrl}/api/v1/auth/me`, {
     headers: { Authorization: `Bearer ${getAccessToken() ?? ""}` },
   });
   if (!res.ok) {
-    throw new Error(`Failed to load current user: ${res.status}`);
+    throw new AuthCheckError(res.status);
   }
   return (await res.json()) as AuthUser;
 }
