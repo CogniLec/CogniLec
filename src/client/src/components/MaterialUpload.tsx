@@ -1,11 +1,17 @@
 import { useRef, useState } from "react";
 import { uploadMaterial } from "../services/api";
+import { friendlyErrorMessage } from "../services/errorMessages";
 
 export interface MaterialUploadProps {
   subjectId: string;
 }
 
 const ACCEPTED_EXTENSIONS = ".pdf,.png,.jpg,.jpeg,.txt,.md";
+// Matches the server's real cap (src/api/routes/syllabus_upload.py
+// MAX_UPLOAD_SIZE_BYTES) -- checking client-side rejects an oversize file
+// instantly instead of after a full upload round-trip that, with no
+// progress indicator, looks like a hang (docs/gaps.md #33j).
+const MAX_UPLOAD_SIZE_BYTES = 20 * 1024 * 1024;
 
 /**
  * Lets a user attach reference material (syllabus, textbook page, board
@@ -18,6 +24,7 @@ export function MaterialUpload({ subjectId }: MaterialUploadProps): JSX.Element 
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [progressPct, setProgressPct] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   // Distinguishes a real extraction from `items_extracted: 0` (a scanned
@@ -28,12 +35,19 @@ export function MaterialUpload({ subjectId }: MaterialUploadProps): JSX.Element 
 
   const handleUpload = async (): Promise<void> => {
     if (!selectedFile) return;
+    if (selectedFile.size > MAX_UPLOAD_SIZE_BYTES) {
+      setError(`That file is too large. The limit is ${MAX_UPLOAD_SIZE_BYTES / (1024 * 1024)}MB.`);
+      return;
+    }
     setUploading(true);
+    setProgressPct(0);
     setError(null);
     setResult(null);
     setResultIsWarning(false);
     try {
-      const response = await uploadMaterial(subjectId, selectedFile);
+      const response = await uploadMaterial(subjectId, selectedFile, (fraction) =>
+        setProgressPct(Math.round(fraction * 100)),
+      );
       if (response.status === "failed") {
         setError(response.message);
       } else if (response.items_extracted === 0) {
@@ -51,9 +65,10 @@ export function MaterialUpload({ subjectId }: MaterialUploadProps): JSX.Element 
       setSelectedFile(null);
       if (inputRef.current) inputRef.current.value = "";
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to upload file");
+      setError(friendlyErrorMessage(err));
     } finally {
       setUploading(false);
+      setProgressPct(null);
     }
   };
 
@@ -101,9 +116,26 @@ export function MaterialUpload({ subjectId }: MaterialUploadProps): JSX.Element 
           onClick={() => void handleUpload()}
           className="btn-secondary shrink-0"
         >
-          {uploading ? "Uploading…" : "Upload"}
+          {uploading
+            ? progressPct !== null
+              ? `Uploading… ${progressPct}%`
+              : "Uploading…"
+            : "Upload"}
         </button>
       </div>
+
+      {uploading && progressPct !== null && (
+        <div
+          data-testid="upload-progress-bar"
+          data-progress={progressPct}
+          className="h-1.5 w-full overflow-hidden rounded-full bg-white/10"
+        >
+          <div
+            className="h-full rounded-full bg-brand-500 transition-all"
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+      )}
     </div>
   );
 }

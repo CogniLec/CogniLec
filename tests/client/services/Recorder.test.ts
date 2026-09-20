@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { Recorder } from "../../../src/client/src/services/Recorder";
+import { Recorder, describeGetUserMediaError } from "../../../src/client/src/services/Recorder";
 import type { AudioChunk } from "../../../src/client/src/types";
 
 /** Minimal fake MediaRecorder driven manually by tests via fake timers. */
@@ -31,6 +31,19 @@ function fakeGetUserMedia(): Promise<MediaStream> {
   return Promise.resolve({
     getTracks: () => [{ stop: vi.fn() }],
   } as unknown as MediaStream);
+}
+
+/** A fake track that supports real addEventListener/dispatchEvent, so tests
+ * can simulate a mic disconnect ("ended") or OS-level mute ("mute"). */
+class FakeTrack extends EventTarget {
+  stop = vi.fn();
+}
+
+function fakeGetUserMediaWithTrack(track: FakeTrack): () => Promise<MediaStream> {
+  return () =>
+    Promise.resolve({
+      getTracks: () => [track],
+    } as unknown as MediaStream);
 }
 
 describe("Recorder chunking (T15.1, T15.7)", () => {
@@ -127,5 +140,96 @@ describe("Recorder chunking (T15.1, T15.7)", () => {
     delete globalThis.MediaRecorder;
     expect(Recorder.isSupported()).toBe(false);
     (globalThis as unknown as { MediaRecorder: unknown }).MediaRecorder = original;
+  });
+});
+
+describe("Recorder mic-health detection (docs/gaps.md #33j)", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("emits an error when the mic track ends mid-recording", async () => {
+    const track = new FakeTrack();
+    const recorder = new Recorder({
+      sessionId: "session-x",
+      chunkDurationMs: 30_000,
+      overlapMs: 5_000,
+      getUserMedia: fakeGetUserMediaWithTrack(track),
+      mediaRecorderCtor: FakeMediaRecorder as unknown as typeof MediaRecorder,
+    });
+    const errors: Error[] = [];
+    recorder.on("error", (err) => errors.push(err));
+
+    await recorder.start();
+    track.dispatchEvent(new Event("ended"));
+
+    expect(errors).toHaveLength(1);
+    expect(errors[0].message).toMatch(/disconnected/i);
+  });
+
+  it("emits an error when the mic track is muted mid-recording", async () => {
+    const track = new FakeTrack();
+    const recorder = new Recorder({
+      sessionId: "session-y",
+      chunkDurationMs: 30_000,
+      overlapMs: 5_000,
+      getUserMedia: fakeGetUserMediaWithTrack(track),
+      mediaRecorderCtor: FakeMediaRecorder as unknown as typeof MediaRecorder,
+    });
+    const errors: Error[] = [];
+    recorder.on("error", (err) => errors.push(err));
+
+    await recorder.start();
+    track.dispatchEvent(new Event("mute"));
+
+    expect(errors).toHaveLength(1);
+    expect(errors[0].message).toMatch(/muted|unavailable/i);
+  });
+
+  it("does not emit a track-health error after stop() was called", async () => {
+    const track = new FakeTrack();
+    const recorder = new Recorder({
+      sessionId: "session-z",
+      chunkDurationMs: 30_000,
+      overlapMs: 5_000,
+      getUserMedia: fakeGetUserMediaWithTrack(track),
+      mediaRecorderCtor: FakeMediaRecorder as unknown as typeof MediaRecorder,
+    });
+    const errors: Error[] = [];
+    recorder.on("error", (err) => errors.push(err));
+
+    await recorder.start();
+    recorder.stop();
+    track.dispatchEvent(new Event("ended"));
+
+    expect(errors).toHaveLength(0);
+  });
+});
+
+describe("describeGetUserMediaError (docs/gaps.md #33j)", () => {
+  function domException(name: string): Error {
+    const err = new Error("raw browser text");
+    err.name = name;
+    return err;
+  }
+
+  it("gives actionable guidance for a permission denial", () => {
+    expect(describeGetUserMediaError(domException("NotAllowedError"))).toMatch(/denied/i);
+  });
+
+  it("gives actionable guidance for no microphone found", () => {
+    expect(describeGetUserMediaError(domException("NotFoundError"))).toMatch(/no microphone/i);
+  });
+
+  it("gives actionable guidance for a mic already in use", () => {
+    expect(describeGetUserMediaError(domException("NotReadableError"))).toMatch(/in use/i);
+  });
+
+  it("falls back to the raw message for an unrecognized error", () => {
+    expect(describeGetUserMediaError(new Error("something else"))).toBe("something else");
   });
 });

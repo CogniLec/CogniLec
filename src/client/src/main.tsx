@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { isRecordingActive, onceRecordingStops } from "./services/recordingActivity";
 import "./index.css";
 
 // Without this, an already-open tab keeps running its old, precached JS
@@ -12,12 +13,23 @@ import "./index.css";
 // (see vite.config.ts's skipWaiting/clientsClaim comment). This listener
 // reloads the tab exactly once when a new SW actually takes control, so
 // stale-bundle fetch failures fix themselves instead of needing that.
+//
+// If a recording is in progress when this fires, the reload is deferred
+// until recording stops -- an unconditional reload here would silently
+// wipe the in-progress capture with no warning (docs/gaps.md #33j).
 if ("serviceWorker" in navigator) {
   let reloaded = false;
-  navigator.serviceWorker.addEventListener("controllerchange", () => {
+  const doReload = (): void => {
     if (reloaded) return;
     reloaded = true;
     window.location.reload();
+  };
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (isRecordingActive()) {
+      onceRecordingStops(doReload);
+    } else {
+      doReload();
+    }
   });
 }
 

@@ -103,4 +103,46 @@ describe("RecordingControls", () => {
     );
     expect(screen.queryByTestId("upload-sync-status")).not.toBeInTheDocument();
   });
+
+  it("shows a long-recording warning past 30 minutes while recording (docs/gaps.md #33j)", () => {
+    render(
+      <RecordingControls
+        isRecording
+        canStart={false}
+        elapsedMs={31 * 60 * 1000}
+        chunkCount={62}
+        onStart={vi.fn()}
+        onStop={vi.fn()}
+      />,
+    );
+    expect(screen.getByTestId("long-recording-warning")).toBeInTheDocument();
+  });
+
+  it("shows no long-recording warning under 30 minutes", () => {
+    render(
+      <RecordingControls
+        isRecording
+        canStart={false}
+        elapsedMs={5 * 60 * 1000}
+        chunkCount={10}
+        onStart={vi.fn()}
+        onStop={vi.fn()}
+      />,
+    );
+    expect(screen.queryByTestId("long-recording-warning")).not.toBeInTheDocument();
+  });
+
+  it("shows no long-recording warning once stopped, even past the threshold", () => {
+    render(
+      <RecordingControls
+        isRecording={false}
+        canStart={false}
+        elapsedMs={31 * 60 * 1000}
+        chunkCount={62}
+        onStart={vi.fn()}
+        onStop={vi.fn()}
+      />,
+    );
+    expect(screen.queryByTestId("long-recording-warning")).not.toBeInTheDocument();
+  });
 });

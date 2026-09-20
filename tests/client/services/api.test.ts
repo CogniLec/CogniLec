@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
-import { fetchSubjects, createSession } from "../../../src/client/src/services/api";
+import { fetchSubjects, createSession, uploadMaterial } from "../../../src/client/src/services/api";
 import { login, getAccessToken, setSessionExpiredHandler } from "../../../src/client/src/services/auth";
+import { installFakeXhr } from "../testUtils/fakeXhr";
 
 describe("api service (mocked HTTP layer)", () => {
   const originalFetch = globalThis.fetch;
@@ -131,5 +132,57 @@ describe("api service — 401 refresh-and-retry (docs/gaps.md #33h)", () => {
     expect(getAccessToken()).toBeNull();
 
     setSessionExpiredHandler(() => {});
+  });
+});
+
+describe("xhrUpload — refresh-and-retry on 401 (docs/gaps.md #33j)", () => {
+  const originalFetch = globalThis.fetch;
+  let restoreXhr: (() => void) | null = null;
+
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    globalThis.fetch = originalFetch;
+    restoreXhr?.();
+    restoreXhr = null;
+    localStorage.clear();
+  });
+
+  it("refreshes the token once on a 401 and retries the upload", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        access_token: "old-token",
+        refresh_token: "old-refresh",
+        token_type: "bearer",
+      }),
+    }) as unknown as typeof fetch;
+    await login("a@b.com", "pw");
+
+    // The refresh call itself still goes through fetch (auth.ts), while
+    // the upload goes through the fake XHR.
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        access_token: "new-token",
+        refresh_token: "new-refresh",
+        token_type: "bearer",
+      }),
+    }) as unknown as typeof fetch;
+
+    const { calls, restore } = installFakeXhr([
+      { status: 401 },
+      { status: 200, body: { upload_id: "u1", status: "completed", items_extracted: 1, message: "ok", error_details: null } },
+    ]);
+    restoreXhr = restore;
+
+    const file = new File(["x"], "notes.md", { type: "text/markdown" });
+    const result = await uploadMaterial("subj-1", file);
+
+    expect(result.upload_id).toBe("u1");
+    expect(calls).toHaveLength(2);
+    expect(calls[1].headers.Authorization).toBe("Bearer new-token");
   });
 });

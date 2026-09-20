@@ -1,27 +1,31 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MaterialUpload } from "../../../src/client/src/components/MaterialUpload";
+import { installFakeXhr } from "../testUtils/fakeXhr";
 
 describe("MaterialUpload (S51 syllabus/reference material upload)", () => {
-  const originalFetch = globalThis.fetch;
+  let restoreXhr: (() => void) | null = null;
 
   afterEach(() => {
-    globalThis.fetch = originalFetch;
+    restoreXhr?.();
+    restoreXhr = null;
   });
 
   it("uploads a chosen file and shows the extraction result", async () => {
-    const fetchMock = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        upload_id: "up-1",
-        status: "completed",
-        items_extracted: 12,
-        message: "Parsed successfully",
-        error_details: null,
-      }),
-    });
-    globalThis.fetch = fetchMock as unknown as typeof fetch;
+    const { calls, restore } = installFakeXhr([
+      {
+        status: 200,
+        body: {
+          upload_id: "up-1",
+          status: "completed",
+          items_extracted: 12,
+          message: "Parsed successfully",
+          error_details: null,
+        },
+      },
+    ]);
+    restoreXhr = restore;
 
     render(<MaterialUpload subjectId="subj-1" />);
 
@@ -36,18 +40,30 @@ describe("MaterialUpload (S51 syllabus/reference material upload)", () => {
       expect(screen.getByText(/Parsed successfully \(12 items extracted\)/)).toBeInTheDocument(),
     );
 
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    const [url, init] = fetchMock.mock.calls[0];
-    expect(url).toContain("/subjects/subj-1/syllabus");
-    expect(init.body).toBeInstanceOf(FormData);
+    expect(calls).toHaveLength(1);
+    expect(calls[0].url).toContain("/subjects/subj-1/syllabus");
+  });
+
+  it("rejects an oversize file before ever uploading (docs/gaps.md #33j)", async () => {
+    const { calls, restore } = installFakeXhr([{ status: 200, body: {} }]);
+    restoreXhr = restore;
+
+    render(<MaterialUpload subjectId="subj-1" />);
+
+    const user = userEvent.setup();
+    const oversized = new File([new Uint8Array(21 * 1024 * 1024)], "huge.pdf", {
+      type: "application/pdf",
+    });
+    await user.upload(screen.getByLabelText(/choose file/i), oversized);
+    await user.click(screen.getByRole("button", { name: /upload/i }));
+
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent(/too large/i));
+    expect(calls).toHaveLength(0);
   });
 
   it("shows an error message when the upload fails", async () => {
-    globalThis.fetch = vi.fn().mockResolvedValue({
-      ok: false,
-      status: 413,
-      statusText: "Payload Too Large",
-    }) as unknown as typeof fetch;
+    const { restore } = installFakeXhr([{ status: 413, statusText: "Payload Too Large" }]);
+    restoreXhr = restore;
 
     render(<MaterialUpload subjectId="subj-1" />);
 
@@ -56,20 +72,24 @@ describe("MaterialUpload (S51 syllabus/reference material upload)", () => {
     await user.upload(screen.getByLabelText(/choose file/i), file);
     await user.click(screen.getByRole("button", { name: /upload/i }));
 
-    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent(/413/));
+    // Friendly copy, not the raw "413 Request Entity Too Large" (docs/gaps.md #33j).
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent(/too large/i));
   });
 
   it("shows a warning (not success) styling when 0 items were extracted (docs/gaps.md #33i)", async () => {
-    globalThis.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({
-        upload_id: "up-2",
-        status: "completed",
-        items_extracted: 0,
-        message: "Parsed successfully",
-        error_details: null,
-      }),
-    }) as unknown as typeof fetch;
+    const { restore } = installFakeXhr([
+      {
+        status: 200,
+        body: {
+          upload_id: "up-2",
+          status: "completed",
+          items_extracted: 0,
+          message: "Parsed successfully",
+          error_details: null,
+        },
+      },
+    ]);
+    restoreXhr = restore;
 
     render(<MaterialUpload subjectId="subj-1" />);
 

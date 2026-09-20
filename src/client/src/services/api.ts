@@ -73,6 +73,56 @@ async function authorizedFetch(
   return res;
 }
 
+/**
+ * Multipart upload via XMLHttpRequest (not `fetch`) so `onProgress` can
+ * report real upload percentage -- previously `uploadMaterial`/
+ * `uploadAudioFile` used plain `fetch`, which has no upload-progress hook,
+ * so a large file's only feedback was a static "Uploading…" label that
+ * looked like a hang (docs/gaps.md #33j). Mirrors `authorizedFetch`'s
+ * 401-refresh-and-retry-once behavior so this transport isn't a second,
+ * divergent auth path.
+ */
+function xhrUpload<T>(
+  url: string,
+  body: FormData,
+  onProgress?: (fraction: number) => void,
+  isRetry = false,
+): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    const token = getAccessToken();
+    if (token) xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+
+    xhr.upload.onprogress = (event) => {
+      if (onProgress && event.lengthComputable) {
+        onProgress(event.loaded / event.total);
+      }
+    };
+
+    xhr.onload = () => {
+      if (xhr.status === 401 && !isRetry) {
+        refreshAccessToken()
+          .then(() => xhrUpload<T>(url, body, onProgress, true))
+          .then(resolve, reject);
+        return;
+      }
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          resolve(JSON.parse(xhr.responseText) as T);
+        } catch {
+          reject(new Error("Malformed response from server"));
+        }
+      } else {
+        reject(new ApiError(xhr.status, xhr.statusText));
+      }
+    };
+    xhr.onerror = () => reject(new Error("Network error during upload"));
+
+    xhr.send(body);
+  });
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await authorizedFetch(`${CONFIG.apiBaseUrl}${path}`, {
     headers: { "Content-Type": "application/json" },
@@ -164,22 +214,18 @@ export interface AudioFileUploadResult {
  * 30s chunks and feeds them into the preprocessing → ASR pipeline. For a
  * video container, only its audio track is extracted.
  */
-export async function uploadAudioFile(sessionId: string, file: File): Promise<AudioFileUploadResult> {
+export async function uploadAudioFile(
+  sessionId: string,
+  file: File,
+  onProgress?: (fraction: number) => void,
+): Promise<AudioFileUploadResult> {
   const body = new FormData();
   body.append("file", file);
-
-  const res = await authorizedFetch(`${CONFIG.apiBaseUrl}/api/v1/sessions/${sessionId}/audio-file`, {
-    method: "POST",
+  return xhrUpload<AudioFileUploadResult>(
+    `${CONFIG.apiBaseUrl}/api/v1/sessions/${sessionId}/audio-file`,
     body,
-  });
-  if (!res.ok) {
-    const detail = await res.json().catch(() => null);
-    const message =
-      (detail && typeof detail === "object" && "detail" in detail && String(detail.detail)) ||
-      `${res.status} ${res.statusText}`;
-    throw new Error(`Audio upload failed: ${message}`);
-  }
-  return (await res.json()) as AudioFileUploadResult;
+    onProgress,
+  );
 }
 
 // Manual-review-app: study/quiz loop over S58's flashcards + FSRS
@@ -233,16 +279,16 @@ export async function fetchStudyStatus(subjectId: string): Promise<StudyStatus> 
  * own `multipart/form-data` boundary, which the shared `request()` helper's
  * hardcoded `application/json` header would break.
  */
-export async function uploadMaterial(subjectId: string, file: File): Promise<MaterialUploadResult> {
+export async function uploadMaterial(
+  subjectId: string,
+  file: File,
+  onProgress?: (fraction: number) => void,
+): Promise<MaterialUploadResult> {
   const body = new FormData();
   body.append("file", file);
-
-  const res = await authorizedFetch(`${CONFIG.apiBaseUrl}/api/v1/subjects/${subjectId}/syllabus`, {
-    method: "POST",
+  return xhrUpload<MaterialUploadResult>(
+    `${CONFIG.apiBaseUrl}/api/v1/subjects/${subjectId}/syllabus`,
     body,
-  });
-  if (!res.ok) {
-    throw new Error(`Upload failed: ${res.status} ${res.statusText}`);
-  }
-  return (await res.json()) as MaterialUploadResult;
+    onProgress,
+  );
 }

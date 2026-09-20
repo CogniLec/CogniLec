@@ -10,6 +10,14 @@ export interface RecordingControlsProps {
   onRetryFailedUploads?: () => void;
 }
 
+// Soft guardrail, not a hard stop: backend processing scales to roughly
+// 3-4x the recording length (docs/gaps.md #33f measured ~15-20 min
+// processing for a 5-min lecture), and there was previously no
+// indication at all that a very long recording has any cost
+// (docs/gaps.md #33j). 30 minutes is a reasonable "you may want to split
+// this up" threshold, not a limit -- recording is never blocked.
+const LONG_RECORDING_WARNING_MS = 30 * 60 * 1000;
+
 function formatElapsed(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000);
   const hours = Math.floor(totalSeconds / 3600);
@@ -52,6 +60,13 @@ export function RecordingControls({
       <div data-testid="chunk-count" className="badge">
         Chunks recorded: {chunkCount}
       </div>
+
+      {isRecording && elapsedMs >= LONG_RECORDING_WARNING_MS && (
+        <p data-testid="long-recording-warning" className="text-xs text-amber-400">
+          This is a long recording — processing time scales with length. Consider
+          stopping and starting a new session if you're not almost done.
+        </p>
+      )}
 
       {(syncingCount > 0 || failedUploadCount > 0) && (
         <div data-testid="upload-sync-status" className="flex items-center gap-2 text-xs text-slate-400">

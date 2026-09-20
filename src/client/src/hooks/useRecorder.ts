@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Recorder } from "../services/Recorder";
+import { Recorder, describeGetUserMediaError } from "../services/Recorder";
 import { UploadQueue } from "../services/UploadQueue";
 import { ChunkStore, SessionStore, enforceQuota } from "../services/db";
 import { createSession, uploadSessionChunk } from "../services/api";
 import { CONFIG } from "../config";
+import { setRecordingActive } from "../services/recordingActivity";
 import type { AppState, RecordingSession, StoredAudioChunk, UploadJob } from "../types";
 
 const MAX_BUFFERED_CHUNKS = 500;
@@ -173,7 +174,7 @@ export function useRecorder(): UseRecorderResult {
       try {
         await recorder.start();
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to start recording");
+        setError(describeGetUserMediaError(err));
         setAppState("IDLE");
         return;
       }
@@ -214,6 +215,12 @@ export function useRecorder(): UseRecorderResult {
     };
     window.addEventListener("beforeunload", handler);
     return () => window.removeEventListener("beforeunload", handler);
+  }, [appState]);
+
+  // Tells main.tsx's PWA-update reload to wait until recording stops
+  // instead of wiping an in-progress capture (docs/gaps.md #33j).
+  useEffect(() => {
+    setRecordingActive(appState === "RECORDING");
   }, [appState]);
 
   return {

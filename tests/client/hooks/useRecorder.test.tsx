@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { useRecorder } from "../../../src/client/src/hooks/useRecorder";
 import { _resetDbForTests } from "../../../src/client/src/services/db";
+import { isRecordingActive } from "../../../src/client/src/services/recordingActivity";
 
 vi.mock("../../../src/client/src/services/api", () => ({
   createSession: vi.fn().mockResolvedValue({ id: "server-session-1", subject_id: "subj-1", status: "created" }),
@@ -112,5 +113,30 @@ describe("useRecorder beforeunload guard (docs/gaps.md #33i)", () => {
 
     addSpy.mockRestore();
     removeSpy.mockRestore();
+  });
+});
+
+describe("useRecorder recordingActivity wiring (docs/gaps.md #33j)", () => {
+  beforeEach(() => {
+    _resetDbForTests();
+  });
+
+  it("marks recording active while RECORDING and inactive once stopped", async () => {
+    const { result } = renderHook(() => useRecorder());
+
+    act(() => {
+      result.current.acknowledgeConsent();
+    });
+    await act(async () => {
+      await result.current.startRecording("subj-1", "Physics");
+    });
+    await waitFor(() => expect(result.current.appState).toBe("RECORDING"));
+    expect(isRecordingActive()).toBe(true);
+
+    act(() => {
+      result.current.stopRecording();
+    });
+    await waitFor(() => expect(result.current.appState).toBe("STOPPED"));
+    expect(isRecordingActive()).toBe(false);
   });
 });

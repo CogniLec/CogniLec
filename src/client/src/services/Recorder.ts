@@ -32,6 +32,30 @@ export interface RecorderOptions {
  * further, but the chunk *cadence* and *count* — what T15.1/T15.7 assert —
  * are governed by this class regardless of encoding backend.
  */
+/**
+ * Maps a getUserMedia() rejection to guidance a user can actually act on,
+ * instead of the raw DOMException text (often just "Permission denied" or
+ * empty) that used to reach the error banner verbatim (docs/gaps.md #33j).
+ */
+export function describeGetUserMediaError(err: unknown): string {
+  const name = err instanceof Error ? err.name : "";
+  switch (name) {
+    case "NotAllowedError":
+    case "PermissionDeniedError":
+      return "Microphone access was denied. Check your browser's site settings and allow microphone access, then try again.";
+    case "NotFoundError":
+    case "DevicesNotFoundError":
+      return "No microphone was found. Connect a microphone and try again.";
+    case "NotReadableError":
+    case "TrackStartError":
+      return "The microphone couldn't be accessed — it may be in use by another app. Close other apps using the microphone and try again.";
+    default:
+      return err instanceof Error && err.message
+        ? err.message
+        : "Could not access the microphone.";
+  }
+}
+
 export class Recorder {
   private emitter = new EventEmitter<RecorderEvents>();
   private mediaRecorder: MediaRecorder | null = null;
@@ -63,10 +87,41 @@ export class Recorder {
       this.options.getUserMedia ??
       (() => navigator.mediaDevices.getUserMedia({ audio: true }));
     this.stream = await getUserMedia();
+    this.attachTrackHealthListeners(this.stream);
     this.sessionStartTime = this.now();
     this.sequence = 0;
     this.stopped = false;
     this.beginChunk();
+  }
+
+  /**
+   * `MediaRecorder.onerror` only fires for encoder-level errors -- if the
+   * mic is unplugged or the OS revokes access mid-recording, the track
+   * itself fires `ended`/`mute` with no MediaRecorder error at all, and
+   * the recording silently continues producing near-silent chunks while
+   * the UI's chunk counter keeps incrementing (docs/gaps.md #33j). Surfaces
+   * that through the same "error" event RecordingControls already listens
+   * to, instead of the user finding out only after transcription that
+   * nothing useful was captured.
+   */
+  private attachTrackHealthListeners(stream: MediaStream): void {
+    for (const track of stream.getTracks()) {
+      if (typeof track.addEventListener !== "function") continue;
+      track.addEventListener("ended", () => {
+        if (this.stopped) return;
+        this.emitter.emit(
+          "error",
+          new Error("Microphone disconnected — recording may be incomplete."),
+        );
+      });
+      track.addEventListener("mute", () => {
+        if (this.stopped) return;
+        this.emitter.emit(
+          "error",
+          new Error("Microphone muted or unavailable — check your device."),
+        );
+      });
+    }
   }
 
   private beginChunk(): void {

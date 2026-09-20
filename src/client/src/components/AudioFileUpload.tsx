@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { createSession, uploadAudioFile } from "../services/api";
+import { friendlyErrorMessage } from "../services/errorMessages";
 
 export interface AudioFileUploadProps {
   subjectId: string;
@@ -19,23 +20,28 @@ export function AudioFileUpload({ subjectId, onUploaded }: AudioFileUploadProps)
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
+  const [progressPct, setProgressPct] = useState<number | null>(null);
 
   const handleUpload = async (): Promise<void> => {
     if (!selectedFile) return;
     setUploading(true);
+    setProgressPct(0);
     setError(null);
     setResult(null);
     try {
       const session = await createSession(subjectId);
-      const response = await uploadAudioFile(session.id, selectedFile);
+      const response = await uploadAudioFile(session.id, selectedFile, (fraction) =>
+        setProgressPct(Math.round(fraction * 100)),
+      );
       setResult(response.message);
       onUploaded?.(response.message, session.id);
       setSelectedFile(null);
       if (inputRef.current) inputRef.current.value = "";
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to upload audio file");
+      setError(friendlyErrorMessage(err));
     } finally {
       setUploading(false);
+      setProgressPct(null);
     }
   };
 
@@ -77,9 +83,26 @@ export function AudioFileUpload({ subjectId, onUploaded }: AudioFileUploadProps)
           onClick={() => void handleUpload()}
           className="btn-secondary shrink-0"
         >
-          {uploading ? "Uploading…" : "Upload"}
+          {uploading
+            ? progressPct !== null
+              ? `Uploading… ${progressPct}%`
+              : "Uploading…"
+            : "Upload"}
         </button>
       </div>
+
+      {uploading && progressPct !== null && (
+        <div
+          data-testid="audio-upload-progress-bar"
+          data-progress={progressPct}
+          className="h-1.5 w-full overflow-hidden rounded-full bg-white/10"
+        >
+          <div
+            className="h-full rounded-full bg-brand-500 transition-all"
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+      )}
     </div>
   );
 }
