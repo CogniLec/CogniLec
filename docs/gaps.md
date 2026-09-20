@@ -2249,6 +2249,87 @@ original design, not just unwired code, since it never anticipated the
   bug -- flagged here in case a similar symptom recurs and looks like a
   regression from this change when it isn't.
 
+## 34. Full pipeline architecture audit + T6's context-window correctness cliff fixed (2026-09-20/21)
+
+Asked to audit the whole T1-T7 pipeline's latency/architecture and
+propose a research-backed overhaul (`docs/audit/pipeline-overhaul.md`).
+The audit's single most important finding: T6 (note synthesis) sends the
+**entire** filtered transcript in one unbatched LLM call, and the
+deployed model (`Qwen2.5-3B-Instruct-AWQ` via vLLM, confirmed live:
+`max_model_len=2048`) has a hard 2048-token context ceiling. Token-budget
+arithmetic showed this doesn't just get slow on a long lecture -- it
+**cannot complete at all** past a certain point, well before any timeout.
+
+**Real data correction, not assumed.** Queried an actual recorded session
+(`5036ee62`, real ~3-minute "Agentic AI" lecture) directly: 26 utterances
+= **8.67 utterances/min** (more than double the audit's initial ASSUMED
+4/min), and 10/26 relevant = **38.5%** T5 relevance rate (below the
+audit's ASSUMED 60%). Recalculating the context-ceiling crossover with
+these real numbers: **~13.4 minutes of lecture**, not the audit's initial
+~18-20 minute estimate. The real numbers made the problem worse, not
+better -- a genuine prior-correction, not a rubber-stamp.
+
+**Fixed** (`src/services/synthesis/note_synthesis.py`): `NoteSynthesisAgent.synthesize()`
+now chunks relevant utterances into groups of 25 (well under the
+~44.7-utterance theoretical ceiling, leaving real headroom for output),
+synthesizes each chunk independently (existing per-section citation/
+formatting validation unchanged), then merges results and renumbers
+ordinals globally so document order stays correct across chunk
+boundaries. A session needing only one chunk behaves exactly as before.
+
+**Also fixed while reading this code**: `_cache_key_t7`
+(`session_pipeline.py`) read a `prompt_version` parameter
+`persist_notes_task`'s signature never had -- Prefect's cache-key
+computation `KeyError`'d on every single T7 run, logged as "Error
+encountered when computing cache key" on every real pipeline execution.
+Caching was already silently, fully disabled for T7. Removed the
+`cache_key_fn` entirely rather than patching it -- T7 is fast (DB writes
+only), so caching it has near-zero value.
+
+**Also fixed: ASR was forced to CPU.** `ctranslate2` (faster-whisper's
+backend) needs `libcublas.so.12`/`libcudnn.so.9` at runtime; the shared
+`lis-api` image (`FROM python:3.12-slim`) shipped no CUDA runtime at all.
+Added `nvidia-cublas-cu12`/`nvidia-cudnn-cu12` as real `pyproject.toml`
+dependencies (not a manual `uv pip install` -- gap #20 already documented
+that pitfall: a manually-installed package outside the lockfile gets
+silently dropped on the next `uv sync`) and set `LD_LIBRARY_PATH` in the
+Dockerfile. Rebuilt the `lis-api` image, confirmed live: the
+`libcublas.so.12` error is genuinely gone (progressed to a real CUDA
+allocation attempt).
+
+**Honest live finding, not swept under the rug**: on THIS specific host
+(Machine A per `docs/multi-gpu-setup.md`'s naming), forcing ASR onto GPU
+immediately OOM'd (`CUDA failed with error out of memory`) -- this host
+already runs a second vLLM Tier-1 backend on its only 4GB card
+(`VLLM_API_BASE_2`, confirmed via `.env`), which alone reserves ~3.4GB at
+`--gpu-memory-utilization 0.85`, leaving no room for a second model. The
+fix is correct and now the real default (matches `src/core/config.py`'s
+own `Settings` defaults, which were already `cuda`/`int8_float16` --
+only the compose-level override was forcing CPU), but this exact shared
+host needs a local `.env` override (`ASR_DEVICE=cpu`,
+`ASR_COMPUTE_TYPE=int8`, not committed) to keep working until Machine A's
+GPU allocation changes. Flagging this clearly so a future session doesn't
+mistake the local override for the fix being wrong -- the fix is right
+for a host with a GPU actually dedicated to ASR.
+
+**Verification**: full backend suite 732 passed / 81 skipped (up 1 test:
+a new chunking regression test asserting a 50-utterance session makes 2
+chunked LLM calls and merges with correct, contiguous ordinals across the
+boundary). `test_s47_process_session_flow.py`'s T7-cache-key
+parametrized tests updated to drop T7 (no longer has a `cache_key_fn`).
+Live-verified `nvidia-cublas-cu12==12.9.2.10`/`nvidia-cudnn-cu12==9.26.0.51`
+install exactly the `.so.12`/`.so.9` SONAMEs ctranslate2 needs.
+
+**Deferred, not done this session** (per the audit's own "measure before
+committing" guidance): A/B testing `lm-format-enforcer` vs. the current
+Outlines guided-decoding default on vLLM 0.5.5 (no upgrade needed, one
+flag), and any vLLM version upgrade decision (v0.6.5/v0.7.x would unlock
+XGrammar as default; v0.13.0+ separately unlocks a real Marlin-AWQ kernel
+for Turing, confirmed merged 2025-12-16 via `gh pr view` -- these are two
+separate upgrade decisions, not one, given the version gap's size and
+risk). Persistent Prefect server (currently ephemeral per-run, confirmed
+<1% of total latency, low priority) also deferred, not urgent.
+
 ## Not yet addressed
 
 - **S04/S05: real audio corpus is still incomplete.** 5 real recordings
