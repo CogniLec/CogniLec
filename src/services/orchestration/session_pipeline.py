@@ -98,10 +98,6 @@ def _cache_key_t6(context: object, parameters: dict[str, object]) -> str:
     return f"T6-{parameters['session_id']}-{parameters['prompt_version']}"
 
 
-def _cache_key_t7(context: object, parameters: dict[str, object]) -> str:
-    return f"T7-{parameters['session_id']}-{parameters['prompt_version']}"
-
-
 @task(
     name="T2_segment_session",
     cache_key_fn=_cache_key_t2,
@@ -259,8 +255,16 @@ async def synthesize_notes_task(
 
 @task(
     name="T7_persist_notes",
-    cache_key_fn=_cache_key_t7,
-    cache_expiration=timedelta(hours=24),
+    # No cache_key_fn -- the previous one (_cache_key_t7) read
+    # parameters['prompt_version'], but this task's signature never had a
+    # prompt_version parameter, so Prefect's compute_transaction_key hit a
+    # KeyError on every single T7 run, logged as "Error encountered when
+    # computing cache key - result will not be persisted" (confirmed live
+    # in asr-worker logs). Caching was therefore already fully, silently
+    # disabled for T7. Removed rather than fixed: T7 is fast (DB writes),
+    # so caching it has near-zero latency value, and a retried T7 should
+    # re-persist whatever fresh sections T5/T6 just produced rather than
+    # risk returning a stale cached result.
     retries=1,
     retry_delay_seconds=30,
 )

@@ -30,7 +30,6 @@ from src.services.orchestration.session_pipeline import (
     _cache_key_t2,
     _cache_key_t5,
     _cache_key_t6,
-    _cache_key_t7,
     process_session,
 )
 from src.services.synthesis.note_synthesis import NoteSynthesisAgent
@@ -347,15 +346,22 @@ class TestT472T473CacheKeysDriveSelectiveRecompute:
         key_v2 = _cache_key_t2(None, {"session_id": session_id, "embed_model_ver": "v2"})
         assert key_v1 != key_v2
 
-    @pytest.mark.parametrize("cache_key_fn", [_cache_key_t5, _cache_key_t6, _cache_key_t7])
+    @pytest.mark.parametrize("cache_key_fn", [_cache_key_t5, _cache_key_t6])
     def test_prompt_dependent_tasks_recompute_on_prompt_bump(self, cache_key_fn) -> None:
-        """T47.2: bumping prompt_version changes T5/T6/T7's cache key -> cache miss, recompute."""
+        """T47.2: bumping prompt_version changes T5/T6's cache key -> cache miss, recompute.
+
+        T7 is no longer parametrized here -- it has no cache_key_fn at all
+        (removed, docs/gaps.md: the previous one read a `prompt_version`
+        parameter persist_notes_task's signature never had, so Prefect's
+        own cache-key computation KeyError'd on every real run and caching
+        was already silently disabled for T7; see session_pipeline.py's
+        T7_persist_notes task comment)."""
         session_id = uuid.uuid4()
         key_a = cache_key_fn(None, {"session_id": session_id, "prompt_version": "v1.0.0"})
         key_b = cache_key_fn(None, {"session_id": session_id, "prompt_version": "v1.1.0"})
         assert key_a != key_b
 
-    @pytest.mark.parametrize("cache_key_fn", [_cache_key_t5, _cache_key_t6, _cache_key_t7])
+    @pytest.mark.parametrize("cache_key_fn", [_cache_key_t5, _cache_key_t6])
     def test_prompt_dependent_tasks_stable_for_same_prompt(self, cache_key_fn) -> None:
         session_id = uuid.uuid4()
         key_a = cache_key_fn(None, {"session_id": session_id, "prompt_version": "v1.0.0"})

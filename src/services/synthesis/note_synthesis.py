@@ -1,11 +1,20 @@
 """S44 — A2 note synthesis: full-session-context note generation.
 
 A2 receives the full transcript, all segments, prior session notes and
-syllabus context in a single call (v2.0 SS3.2) rather than segment-by-segment,
-for cross-segment coherence. It is prompted to prefer Mermaid/KaTeX markup
-over requesting a generated image (v1.1 SS20, D-25). Every emitted section
-must carry provenance utterance IDs (FR-7.8), and only utterances already
-marked `is_relevant=true` may ever be cited or referenced (T44.8/T44.3).
+syllabus context (v2.0 SS3.2) rather than segment-by-segment, for
+cross-segment coherence -- but "full transcript" is chunked internally
+(see MAX_UTTERANCES_PER_CHUNK) rather than sent as one LLM call. The
+original single-call design structurally could not complete once a
+session's relevant-utterance count exceeded the deployed model's context
+window (confirmed via token-budget arithmetic, docs/audit/
+pipeline-overhaul.md: roughly 45 relevant utterances, ~13 minutes of real
+lecture content) -- it wasn't just slow past that point, it produced zero
+notes. Chunking keeps cross-segment coherence within each chunk while
+letting a long session simply make more calls instead of one that cannot
+fit. It is prompted to prefer Mermaid/KaTeX markup over requesting a
+generated image (v1.1 SS20, D-25). Every emitted section must carry
+provenance utterance IDs (FR-7.8), and only utterances already marked
+`is_relevant=true` may ever be cited or referenced (T44.8/T44.3).
 """
 
 from __future__ import annotations
@@ -62,6 +71,24 @@ _SECTIONS_SCHEMA: dict[str, object] = {
     "type": "array",
     "items": inline_schema_refs(NoteSectionOutput.model_json_schema()),
 }
+
+# Keeps each A2 call within the deployed model's context window. Confirmed
+# via direct token-budget arithmetic (docs/audit/pipeline-overhaul.md):
+# the original full-transcript-in-one-call design (v2.0 SS3.2) doesn't
+# just get slow on a long session, it structurally CANNOT complete past
+# roughly 45 relevant utterances (~13 minutes of real lecture at the
+# measured 8.67 utt/min / 38.5% relevance rate for a real session) --
+# the transcript JSON alone exceeds the 2048-token context, leaving no
+# room for the model's own output. 25/chunk is deliberately well under
+# that ~44.7-utterance theoretical ceiling, to leave real headroom for
+# section output rather than sizing to the exact limit.
+MAX_UTTERANCES_PER_CHUNK = 25
+
+
+def _chunk_utterances(
+    utterances: list[RelevantUtterance], chunk_size: int
+) -> list[list[RelevantUtterance]]:
+    return [utterances[i : i + chunk_size] for i in range(0, len(utterances), chunk_size)]
 
 
 def build_full_context_prompt(context: SessionSynthesisContext) -> list[dict[str, str]]:
@@ -136,6 +163,34 @@ class NoteSynthesisAgent:
         self._prompt_version = prompt_version
 
     async def synthesize(self, context: SessionSynthesisContext) -> list[NoteSectionOutput]:
+        """Synthesizes notes across the full session, chunking the relevant
+        utterances so each individual LLM call stays within the model's
+        context window (see MAX_UTTERANCES_PER_CHUNK above) -- a session
+        long enough to need more than one chunk simply makes more calls,
+        rather than the single call structurally failing.
+        """
+        chunks = _chunk_utterances(context.utterances, MAX_UTTERANCES_PER_CHUNK)
+        all_sections: list[NoteSectionOutput] = []
+        for chunk in chunks:
+            chunk_context = SessionSynthesisContext(
+                session_id=context.session_id,
+                utterances=chunk,
+                segment_summaries=context.segment_summaries,
+                prior_notes_md=context.prior_notes_md,
+                syllabus_context=context.syllabus_context,
+            )
+            all_sections.extend(await self._synthesize_chunk(chunk_context))
+
+        if not all_sections:
+            msg = "A2 produced no valid sections across any chunk"
+            raise NoteSynthesisError(msg)
+
+        # Each chunk's own LLM call restarts its ordinals at 0 -- renumber
+        # globally, in chunk order, so document order stays correct once
+        # chunks are merged.
+        return [section.model_copy(update={"ordinal": i}) for i, section in enumerate(all_sections)]
+
+    async def _synthesize_chunk(self, context: SessionSynthesisContext) -> list[NoteSectionOutput]:
         allowed_ids = {u.id for u in context.utterances}
         messages = build_full_context_prompt(context)
         response = await self._router.complete(
@@ -159,7 +214,8 @@ class NoteSynthesisAgent:
         # real recording produced 0 flashcards because a single section
         # cited a non-existent utterance ID. Drop only the offending
         # section(s) instead, so the rest of a genuinely good synthesis
-        # still survives; only fail outright if nothing survives at all.
+        # still survives; only fail outright (in synthesize(), across all
+        # chunks) if nothing survives at all.
         valid_sections = []
         for section in sections:
             unknown = set(section.source_utt_ids) - allowed_ids
@@ -182,9 +238,5 @@ class NoteSynthesisAgent:
                 )
                 continue
             valid_sections.append(section)
-
-        if not valid_sections:
-            msg = "A2 produced no valid sections (all failed citation/formatting validation)"
-            raise NoteSynthesisError(msg)
 
         return valid_sections

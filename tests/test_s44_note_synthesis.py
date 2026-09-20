@@ -185,6 +185,57 @@ async def test_t44_8_no_discarded_utterance_appears_in_notes():
         await agent.synthesize(make_context())
 
 
+async def test_t44_9_long_sessions_are_chunked_and_ordinals_renumbered_globally():
+    """Regression for docs/audit/pipeline-overhaul.md: the original
+    single-call design structurally could not complete once relevant
+    utterances exceeded the deployed model's context window (~45
+    utterances at the real measured utterance density/relevance rate).
+    Now chunked at MAX_UTTERANCES_PER_CHUNK=25; verify a 50-utterance
+    session makes 2 calls and merges with correct, contiguous ordinals
+    (each chunk's own response restarts ordinals at 0)."""
+    call_count = 0
+    config = LLMRouterConfig(
+        tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
+    )
+
+    async def transport(tier, messages, timeout_s, schema=None):
+        nonlocal call_count
+        call_count += 1
+        payload = json.loads(messages[-1]["content"])
+        first_id = payload["transcript"][0]["id"]
+        sections = [
+            {
+                "heading": f"Chunk {call_count} Section",
+                "body_md": "Content.",
+                "depth": 0,
+                "ordinal": 0,
+                "source_utt_ids": [first_id],
+            }
+        ]
+        return LLMResponse(
+            content=json.dumps(sections),
+            tier_used=tier.tier,
+            model=tier.model,
+            latency_ms=1,
+            tokens_used=1,
+        )
+
+    agent = NoteSynthesisAgent(LLMRouter(config, transport=transport))
+    utterances = [
+        RelevantUtterance(id=f"u{i}", seq=i, text=f"Sentence number {i} about the topic.")
+        for i in range(50)
+    ]
+    context = SessionSynthesisContext(session_id="s1", utterances=utterances)
+
+    result = await agent.synthesize(context)
+
+    assert call_count == 2  # 50 utterances / 25 per chunk = 2 chunks
+    assert len(result) == 2
+    assert [s.ordinal for s in result] == [0, 1]
+    assert result[0].heading == "Chunk 1 Section"
+    assert result[1].heading == "Chunk 2 Section"
+
+
 def test_validate_hierarchy_rejects_duplicate_ordinals():
     from src.services.synthesis.note_synthesis import NoteSectionOutput
 
