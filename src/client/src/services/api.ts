@@ -1,5 +1,5 @@
 import { CONFIG } from "../config";
-import { getAccessToken } from "./auth";
+import { getAccessToken, refreshAccessToken } from "./auth";
 import type {
   Flashcard,
   FsrsRating,
@@ -40,13 +40,42 @@ export class ApiError extends Error {
   }
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
+/**
+ * Attaches the current access token and retries once on a 401 after a
+ * silent token refresh, instead of every caller independently hitting a
+ * raw "API request failed: 401 Unauthorized" the moment the access token
+ * expires mid-session (docs/gaps.md #33h). Shared by `request()` below and
+ * the three bespoke upload functions, which used to build their own
+ * `Authorization` header inline and skip this entirely -- an
+ * absent/expired token there sent the request with NO auth header at all.
+ */
+async function authorizedFetch(
+  url: string,
+  init: RequestInit,
+  isRetry = false,
+): Promise<Response> {
   const token = getAccessToken();
-  const res = await fetch(`${CONFIG.apiBaseUrl}${path}`, {
+  const res = await fetch(url, {
+    ...init,
     headers: {
-      "Content-Type": "application/json",
+      ...init.headers,
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
+  });
+  if (res.status === 401 && !isRetry) {
+    try {
+      await refreshAccessToken();
+    } catch {
+      return res;
+    }
+    return authorizedFetch(url, init, true);
+  }
+  return res;
+}
+
+async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const res = await authorizedFetch(`${CONFIG.apiBaseUrl}${path}`, {
+    headers: { "Content-Type": "application/json" },
     ...init,
   });
   if (!res.ok) {
@@ -105,7 +134,6 @@ export async function uploadSessionChunk(chunk: {
   blob: Blob;
   isFinal: boolean;
 }): Promise<void> {
-  const token = getAccessToken();
   const body = new FormData();
   body.append("sequence", String(chunk.sequence));
   body.append("timestamp_ms", String(Math.round(chunk.startTime)));
@@ -113,9 +141,8 @@ export async function uploadSessionChunk(chunk: {
   body.append("is_final", chunk.isFinal ? "true" : "false");
   body.append("chunk", chunk.blob, `${chunk.sequence}.webm`);
 
-  const res = await fetch(`${CONFIG.apiBaseUrl}/api/v1/sessions/${chunk.sessionId}/chunks`, {
+  const res = await authorizedFetch(`${CONFIG.apiBaseUrl}/api/v1/sessions/${chunk.sessionId}/chunks`, {
     method: "POST",
-    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     body,
   });
   if (!res.ok) {
@@ -132,22 +159,25 @@ export interface AudioFileUploadResult {
 }
 
 /**
- * Uploads an audio file (MP3, WAV, M4A, FLAC, OGG, WebM) to an existing
- * session. The server splits it into 30s chunks and feeds them into the
- * preprocessing → ASR pipeline.
+ * Uploads an audio or video file (MP3, WAV, M4A, FLAC, OGG, WebM, AAC,
+ * WMA, MP4, MOV, MKV) to an existing session. The server splits it into
+ * 30s chunks and feeds them into the preprocessing → ASR pipeline. For a
+ * video container, only its audio track is extracted.
  */
 export async function uploadAudioFile(sessionId: string, file: File): Promise<AudioFileUploadResult> {
-  const token = getAccessToken();
   const body = new FormData();
   body.append("file", file);
 
-  const res = await fetch(`${CONFIG.apiBaseUrl}/api/v1/sessions/${sessionId}/audio-file`, {
+  const res = await authorizedFetch(`${CONFIG.apiBaseUrl}/api/v1/sessions/${sessionId}/audio-file`, {
     method: "POST",
-    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     body,
   });
   if (!res.ok) {
-    throw new Error(`Audio upload failed: ${res.status} ${res.statusText}`);
+    const detail = await res.json().catch(() => null);
+    const message =
+      (detail && typeof detail === "object" && "detail" in detail && String(detail.detail)) ||
+      `${res.status} ${res.statusText}`;
+    throw new Error(`Audio upload failed: ${message}`);
   }
   return (await res.json()) as AudioFileUploadResult;
 }
@@ -204,13 +234,11 @@ export async function fetchStudyStatus(subjectId: string): Promise<StudyStatus> 
  * hardcoded `application/json` header would break.
  */
 export async function uploadMaterial(subjectId: string, file: File): Promise<MaterialUploadResult> {
-  const token = getAccessToken();
   const body = new FormData();
   body.append("file", file);
 
-  const res = await fetch(`${CONFIG.apiBaseUrl}/api/v1/subjects/${subjectId}/syllabus`, {
+  const res = await authorizedFetch(`${CONFIG.apiBaseUrl}/api/v1/subjects/${subjectId}/syllabus`, {
     method: "POST",
-    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     body,
   });
   if (!res.ok) {

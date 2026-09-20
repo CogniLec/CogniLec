@@ -1,5 +1,6 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
 import { fetchSubjects, createSession } from "../../../src/client/src/services/api";
+import { login, getAccessToken, setSessionExpiredHandler } from "../../../src/client/src/services/auth";
 
 describe("api service (mocked HTTP layer)", () => {
   const originalFetch = globalThis.fetch;
@@ -47,5 +48,88 @@ describe("api service (mocked HTTP layer)", () => {
         body: JSON.stringify({ subject_id: "s1", session_type: "content" }),
       }),
     );
+  });
+});
+
+describe("api service — 401 refresh-and-retry (docs/gaps.md #33h)", () => {
+  const originalFetch = globalThis.fetch;
+
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    globalThis.fetch = originalFetch;
+    localStorage.clear();
+  });
+
+  it("refreshes the token once on a 401 and retries the original request", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        access_token: "old-token",
+        refresh_token: "old-refresh",
+        token_type: "bearer",
+      }),
+    }) as unknown as typeof fetch;
+    await login("a@b.com", "pw");
+
+    const fetchMock = vi
+      .fn()
+      // 1: the original request, rejected as expired
+      .mockResolvedValueOnce({ ok: false, status: 401, statusText: "Unauthorized" })
+      // 2: the refresh call
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          access_token: "new-token",
+          refresh_token: "new-refresh",
+          token_type: "bearer",
+        }),
+      })
+      // 3: the retried original request, now succeeding
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ items: [{ id: "s1", name: "Subj", description: null }], total: 1 }),
+      });
+    globalThis.fetch = fetchMock as unknown as typeof fetch;
+
+    const subjects = await fetchSubjects();
+
+    expect(subjects).toEqual([{ id: "s1", name: "Subj", description: null }]);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    const retryCall = fetchMock.mock.calls[2];
+    expect((retryCall[1] as RequestInit).headers).toMatchObject({
+      Authorization: "Bearer new-token",
+    });
+    expect(getAccessToken()).toBe("new-token");
+  });
+
+  it("clears tokens and notifies session expiry when the refresh itself fails", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        access_token: "old-token",
+        refresh_token: "old-refresh",
+        token_type: "bearer",
+      }),
+    }) as unknown as typeof fetch;
+    await login("a@b.com", "pw");
+
+    const expiredHandler = vi.fn();
+    setSessionExpiredHandler(expiredHandler);
+
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({ ok: false, status: 401, statusText: "Unauthorized" })
+      .mockResolvedValueOnce({ ok: false, status: 401, statusText: "Unauthorized" });
+    globalThis.fetch = fetchMock as unknown as typeof fetch;
+
+    await expect(fetchSubjects()).rejects.toThrow(/401/);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(expiredHandler).toHaveBeenCalledTimes(1);
+    expect(getAccessToken()).toBeNull();
+
+    setSessionExpiredHandler(() => {});
   });
 });

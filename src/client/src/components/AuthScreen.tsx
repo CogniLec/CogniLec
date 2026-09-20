@@ -3,9 +3,10 @@ import { register as registerRequest } from "../services/auth";
 
 export interface AuthScreenProps {
   onLogin: (email: string, password: string) => Promise<void>;
+  notice?: string | null;
 }
 
-export function AuthScreen({ onLogin }: AuthScreenProps): JSX.Element {
+export function AuthScreen({ onLogin, notice }: AuthScreenProps): JSX.Element {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,6 +41,12 @@ export function AuthScreen({ onLogin }: AuthScreenProps): JSX.Element {
           </h1>
           <p className="text-xs text-slate-500">Notely</p>
         </div>
+
+        {!error && notice && (
+          <p role="status" className="alert-error mb-4">
+            {notice}
+          </p>
+        )}
 
         {error && (
           <p role="alert" className="alert-error mb-4">

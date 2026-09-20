@@ -12,8 +12,19 @@ import type { Subject } from "./types";
 
 function CaptureScreen(): JSX.Element {
   const [subject, setSubject] = useState<Subject | null>(null);
-  const { appState, elapsedMs, chunkCount, error, consentGiven, acknowledgeConsent, startRecording, stopRecording } =
-    useRecorder();
+  const {
+    appState,
+    elapsedMs,
+    chunkCount,
+    error,
+    consentGiven,
+    acknowledgeConsent,
+    startRecording,
+    stopRecording,
+    syncingCount,
+    failedUploadCount,
+    retryFailedUploads,
+  } = useRecorder();
 
   const isRecording = appState === "RECORDING";
   const canStart = !!subject && consentGiven && !isRecording;
@@ -50,6 +61,9 @@ function CaptureScreen(): JSX.Element {
           chunkCount={chunkCount}
           onStart={handleStart}
           onStop={stopRecording}
+          syncingCount={syncingCount}
+          failedUploadCount={failedUploadCount}
+          onRetryFailedUploads={retryFailedUploads}
         />
       </section>
 
@@ -63,7 +77,7 @@ function CaptureScreen(): JSX.Element {
 }
 
 export function App(): JSX.Element {
-  const { user, loading, login, logout } = useAuth();
+  const { user, loading, error: authError, login, logout } = useAuth();
   const [tab, setTab] = useState<"capture" | "review">("review");
 
   if (loading) {
@@ -79,7 +93,7 @@ export function App(): JSX.Element {
     return (
       <>
         <FloatingBackdrop />
-        <AuthScreen onLogin={login} />
+        <AuthScreen onLogin={login} notice={authError} />
       </>
     );
   }
