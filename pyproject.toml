@@ -86,6 +86,18 @@ dependencies = [
     "segeval>=2.0,<3.0",
     "faster-whisper>=1.0,<2.0",
     "ctranslate2>=4.5,<5.0",
+    # ctranslate2 (faster-whisper's backend) needs libcublas.so.12/
+    # libcudnn.so.9 at runtime for GPU decoding -- these ship as separate
+    # pip packages, not bundled in torch's own wheel, and torch's own
+    # transitive nvidia-* deps target a DIFFERENT CUDA ABI version
+    # (confirmed: this venv's torch pulls in nvidia/cu13/libcublas.so.13,
+    # which ctranslate2 cannot load -- it needs the .so.12 SONAME
+    # specifically). Pinned here (not a manual `uv pip install`) so they
+    # survive `uv sync --frozen` in the Docker build instead of being
+    # silently dropped, which is exactly what happened before this was a
+    # real pyproject.toml dependency (docs/gaps.md #20).
+    "nvidia-cublas-cu12>=12.1",
+    "nvidia-cudnn-cu12>=9.0",
     # ML framework
     "torch>=2.5,<3.0",
     "torchaudio>=2.5,<3.0",

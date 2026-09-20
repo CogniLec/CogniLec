@@ -377,17 +377,20 @@ services:
       # rather than silently attempting a live fetch and failing.
       HF_HUB_OFFLINE: "1"
       ASR_CUDA_DEVICE: "${ASR_CUDA_DEVICE:-0}"
-      # Confirmed live: this service's image (the shared lis-api image,
-      # built FROM python:3.12-slim) has no CUDA runtime libraries at all
+      # Was forced to "cpu" -- the shared lis-api image (built FROM
+      # python:3.12-slim) had no CUDA runtime libraries at all
       # (RuntimeError: "Library libcublas.so.12 is not found or cannot be
-      # loaded") even with a real GPU device reservation below -- CTranslate2
-      # needs cuBLAS/cuDNN present in the container, which a CUDA base image
-      # provides and a plain python:3.12-slim does not. Forcing CPU here
-      # until the Dockerfile is rebuilt from an nvidia/cuda base image (or
-      # ships nvidia-cublas-cu12/nvidia-cudnn-cu12 + LD_LIBRARY_PATH) --
-      # override to "cuda"/"int8_float16" once that's fixed.
-      ASR_DEVICE: "${ASR_DEVICE:-cpu}"
-      ASR_COMPUTE_TYPE: "${ASR_COMPUTE_TYPE:-int8}"
+      # loaded") even with a real GPU device reservation below. Fixed:
+      # nvidia-cublas-cu12/nvidia-cudnn-cu12 are now real pyproject.toml
+      # dependencies and the Dockerfile sets LD_LIBRARY_PATH to their
+      # installed lib dirs (docs/gaps.md #20's proven dev-venv fix, made
+      # persistent for the container) -- faster-whisper measured "4x
+      # faster on GPU" in independent benchmarks (docs/audit/
+      # pipeline-overhaul.md), so this now defaults to the GPU path.
+      # int8_float16 matches gap #20's own live-validated real run
+      # (medium.en on GPU, RTF 0.16-0.43) rather than the CPU-only int8.
+      ASR_DEVICE: "${ASR_DEVICE:-cuda}"
+      ASR_COMPUTE_TYPE: "${ASR_COMPUTE_TYPE:-int8_float16}"
     volumes:
       - models:/models
     networks:

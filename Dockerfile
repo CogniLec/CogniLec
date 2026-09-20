@@ -35,6 +35,19 @@ COPY alembic.ini ./
 
 ENV PATH="/app/.venv/bin:$PATH"
 
+# ctranslate2 (faster-whisper's backend) needs libcublas.so.12/
+# libcudnn.so.9 at runtime for GPU decoding -- confirmed live (docs/
+# gaps.md #20): without this, ASR fails with "Library libcublas.so.12 is
+# not found or cannot be loaded" even with a real GPU device reservation,
+# because python:3.12-slim ships no CUDA runtime at all and these
+# libraries aren't on any default linker search path even once installed
+# (nvidia-cublas-cu12/nvidia-cudnn-cu12, now real pyproject.toml
+# dependencies -- see pyproject.toml comment -- rather than a one-off
+# manual install that doesn't survive `uv sync`). This is the same
+# per-invocation LD_LIBRARY_PATH fix gap #20 proved works for the dev
+# venv, made persistent here for the container.
+ENV LD_LIBRARY_PATH="/app/.venv/lib/python3.12/site-packages/nvidia/cublas/lib:/app/.venv/lib/python3.12/site-packages/nvidia/cudnn/lib"
+
 EXPOSE 8123
 
 # Runs migrations (via DATABASE_URL, the superuser role) before serving,
