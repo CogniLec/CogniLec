@@ -20,16 +20,27 @@ export function MaterialUpload({ subjectId }: MaterialUploadProps): JSX.Element 
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
+  // Distinguishes a real extraction from `items_extracted: 0` (a scanned
+  // or otherwise unparseable file) -- these used to render in the exact
+  // same green "success" box (docs/gaps.md #33i), so a user skimming the
+  // page had no way to tell their upload actually extracted nothing.
+  const [resultIsWarning, setResultIsWarning] = useState(false);
 
   const handleUpload = async (): Promise<void> => {
     if (!selectedFile) return;
     setUploading(true);
     setError(null);
     setResult(null);
+    setResultIsWarning(false);
     try {
       const response = await uploadMaterial(subjectId, selectedFile);
       if (response.status === "failed") {
         setError(response.message);
+      } else if (response.items_extracted === 0) {
+        setResultIsWarning(true);
+        setResult(
+          `${response.message} — no content could be extracted from this file. It may be scanned or unparseable.`,
+        );
       } else {
         setResult(
           response.items_extracted !== null
@@ -59,7 +70,15 @@ export function MaterialUpload({ subjectId }: MaterialUploadProps): JSX.Element 
         </p>
       )}
       {result && (
-        <p className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300">
+        <p
+          data-testid="material-upload-result"
+          data-variant={resultIsWarning ? "warning" : "success"}
+          className={
+            resultIsWarning
+              ? "rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-300"
+              : "rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300"
+          }
+        >
           {result}
         </p>
       )}

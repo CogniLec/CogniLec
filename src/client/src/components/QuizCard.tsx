@@ -66,6 +66,7 @@ export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
     useStudySession(subjectId);
   const [selfCorrect, setSelfCorrect] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   if (loading) {
     return (
@@ -89,11 +90,22 @@ export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
   const handleRate = async (rating: FsrsRating): Promise<void> => {
     if (selfCorrect === null) return;
     setSubmitting(true);
+    setSubmitError(null);
     try {
       await submitReview(rating, selfCorrect);
+      setSelfCorrect(null);
+    } catch (err) {
+      // Previously had no catch at all (docs/gaps.md #33i) -- a network
+      // drop mid-submit silently discarded the rating with zero feedback,
+      // and `selfCorrect` still got reset in the `finally`, forcing the
+      // user to redo their "did you know it" selection with no
+      // explanation. Now the error is shown and the selection is kept so
+      // retrying is a single click.
+      setSubmitError(
+        err instanceof Error ? err.message : "Couldn't save your rating — try again.",
+      );
     } finally {
       setSubmitting(false);
-      setSelfCorrect(null);
     }
   };
 
@@ -140,6 +152,12 @@ export function QuizCard({ subjectId }: QuizCardProps): JSX.Element {
               No, I got it wrong
             </label>
           </fieldset>
+
+          {submitError && (
+            <p role="alert" className="alert-error text-sm">
+              {submitError}
+            </p>
+          )}
 
           <div className="flex flex-wrap gap-2">
             {RATINGS.map((r) => (

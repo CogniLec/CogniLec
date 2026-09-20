@@ -58,4 +58,28 @@ describe("MaterialUpload (S51 syllabus/reference material upload)", () => {
 
     await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent(/413/));
   });
+
+  it("shows a warning (not success) styling when 0 items were extracted (docs/gaps.md #33i)", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        upload_id: "up-2",
+        status: "completed",
+        items_extracted: 0,
+        message: "Parsed successfully",
+        error_details: null,
+      }),
+    }) as unknown as typeof fetch;
+
+    render(<MaterialUpload subjectId="subj-1" />);
+
+    const user = userEvent.setup();
+    const file = new File(["scan"], "scanned.pdf", { type: "application/pdf" });
+    await user.upload(screen.getByLabelText(/choose file/i), file);
+    await user.click(screen.getByRole("button", { name: /upload/i }));
+
+    const result = await screen.findByTestId("material-upload-result");
+    expect(result).toHaveAttribute("data-variant", "warning");
+    expect(result).toHaveTextContent(/no content could be extracted/i);
+  });
 });

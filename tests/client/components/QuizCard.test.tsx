@@ -123,4 +123,35 @@ describe("QuizCard (manual-review-app quiz/recall loop)", () => {
     await waitFor(() => expect(screen.getByTestId("quiz-empty")).toBeInTheDocument());
     expect(screen.getByTestId("quiz-empty")).toHaveTextContent("API request failed: 500");
   });
+
+  it("surfaces an error and keeps the selection when submitting a rating fails (docs/gaps.md #33i)", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          id: "card-1",
+          subject_id: "subj-1",
+          topic_label: "Photosynthesis",
+          front: "What converts light to sugar?",
+          back: "Chlorophyll in chloroplasts",
+          due_at: "2026-01-01T00:00:00Z",
+          last_review_at: null,
+        }),
+      })
+      .mockRejectedValueOnce(new Error("network dropped"));
+    globalThis.fetch = fetchMock as unknown as typeof fetch;
+
+    render(<QuizCard subjectId="subj-1" />);
+    await waitFor(() => expect(screen.getByTestId("quiz-card")).toBeInTheDocument());
+
+    const user = userEvent.setup();
+    await user.click(screen.getByText("Reveal the actual note"));
+    await user.click(screen.getByLabelText(/Yes, I knew it/));
+    await user.click(screen.getByText("Good"));
+
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("network dropped"));
+    // The selection must survive the failure so the user can just retry.
+    expect(screen.getByLabelText(/Yes, I knew it/)).toBeChecked();
+  });
 });
