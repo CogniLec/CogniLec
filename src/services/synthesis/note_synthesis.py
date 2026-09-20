@@ -11,11 +11,14 @@ marked `is_relevant=true` may ever be cited or referenced (T44.8/T44.3).
 from __future__ import annotations
 
 import json
+import logging
 import re
 from dataclasses import dataclass, field
 
 from pydantic import BaseModel, Field, ValidationError
 from src.services.llm.router import LLMRouter, inline_schema_refs
+
+logger = logging.getLogger(__name__)
 
 MERMAID_FENCE_RE = re.compile(r"```mermaid\s*\n(.*?)```", re.DOTALL)
 
@@ -151,16 +154,37 @@ class NoteSynthesisAgent:
             msg = "A2 sections must have unique, sorted ordinals"
             raise NoteSynthesisError(msg)
 
+        # One hallucinated citation used to discard the ENTIRE batch,
+        # valid sections included -- confirmed live (docs/gaps.md #33g): a
+        # real recording produced 0 flashcards because a single section
+        # cited a non-existent utterance ID. Drop only the offending
+        # section(s) instead, so the rest of a genuinely good synthesis
+        # still survives; only fail outright if nothing survives at all.
+        valid_sections = []
         for section in sections:
             unknown = set(section.source_utt_ids) - allowed_ids
             if unknown:
-                msg = f"section {section.heading!r} cites non-relevant/unknown utterances {unknown}"
-                raise NoteSynthesisError(msg)
+                logger.warning(
+                    "dropping note section citing unknown utterances",
+                    extra={"heading": section.heading, "unknown_ids": list(unknown)},
+                )
+                continue
             if not validate_mermaid_blocks(section.body_md):
-                msg = f"section {section.heading!r} has an empty mermaid block"
-                raise NoteSynthesisError(msg)
+                logger.warning(
+                    "dropping note section with an empty mermaid block",
+                    extra={"heading": section.heading},
+                )
+                continue
             if not validate_katex(section.body_md):
-                msg = f"section {section.heading!r} has unbalanced KaTeX"
-                raise NoteSynthesisError(msg)
+                logger.warning(
+                    "dropping note section with unbalanced KaTeX",
+                    extra={"heading": section.heading},
+                )
+                continue
+            valid_sections.append(section)
 
-        return sections
+        if not valid_sections:
+            msg = "A2 produced no valid sections (all failed citation/formatting validation)"
+            raise NoteSynthesisError(msg)
+
+        return valid_sections

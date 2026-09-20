@@ -171,7 +171,25 @@ class TestIngestionSpineE2E:
         valkey: Redis,
         session_factory: Any,
         asr_service: FasterWhisperASRService,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
+        # This gate is the mechanical INGESTION spine only (per the class
+        # docstring above) -- upload -> preprocess -> ASR -> transcribed.
+        # asr_worker.py synchronously awaits generate_study_materials right
+        # after finalizing (src/workers/asr_worker.py:150); with no real LLM
+        # router configured here, T5 genuinely exhausts all tiers and,
+        # since the docs/gaps.md #33g fix, now durably commits the session
+        # to `failed` -- overwriting the TRANSCRIBED status this gate
+        # actually asserts. No-op it here so this test stays scoped to the
+        # ingestion spine; the downstream note-synthesis/flashcard pipeline
+        # has its own coverage in tests/test_s47_process_session_flow.py.
+        async def _noop_generate_study_materials(*args: object, **kwargs: object) -> int:
+            return 0
+
+        monkeypatch.setattr(
+            "src.workers.asr_worker.generate_study_materials", _noop_generate_study_materials
+        )
+
         # --- 1. Create session (real API layer, real Postgres) ---
         user = User(
             email=f"gate-test-{uuid.uuid4().hex[:8]}@example.com",

@@ -98,6 +98,10 @@ async def test_t44_2_every_section_carries_provenance():
 
 
 async def test_t44_3_provenance_ids_reference_relevant_utterances_only():
+    """When EVERY section cites an unknown utterance, nothing survives and
+    synthesis genuinely fails -- see the sibling test below for the
+    partial-failure case (docs/gaps.md #33g), where only the offending
+    section is dropped and valid siblings still persist."""
     sections = json.dumps(
         [
             {
@@ -110,8 +114,37 @@ async def test_t44_3_provenance_ids_reference_relevant_utterances_only():
         ]
     )
     agent = make_agent(sections)
-    with pytest.raises(NoteSynthesisError, match="unknown"):
+    with pytest.raises(NoteSynthesisError, match="no valid sections"):
         await agent.synthesize(make_context())
+
+
+async def test_t44_3b_one_hallucinated_citation_drops_only_that_section():
+    """Regression for docs/gaps.md #33g: a real recording produced 0
+    flashcards because one section citing a hallucinated utterance ID
+    discarded the entire batch, valid sections included. Now only the
+    offending section is dropped; the valid one survives."""
+    sections = json.dumps(
+        [
+            {
+                "heading": "Good Section",
+                "body_md": "Real content.",
+                "depth": 0,
+                "ordinal": 0,
+                "source_utt_ids": ["u1"],
+            },
+            {
+                "heading": "Hallucinated Section",
+                "body_md": "Fabricated content.",
+                "depth": 0,
+                "ordinal": 1,
+                "source_utt_ids": ["u_unknown"],
+            },
+        ]
+    )
+    agent = make_agent(sections)
+    result = await agent.synthesize(make_context())
+    assert len(result) == 1
+    assert result[0].heading == "Good Section"
 
 
 @pytest.mark.skip(reason=HUMAN_REVIEW_SKIP_REASON)

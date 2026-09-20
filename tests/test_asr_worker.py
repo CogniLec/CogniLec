@@ -249,7 +249,26 @@ class TestSessionTranscribed:
         db_session: AsyncSession,
         session_factory: Any,
         asr_service: FasterWhisperASRService,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
+        # This test is about T19.4's transcription-commit ordering only.
+        # asr_worker.py synchronously awaits generate_study_materials right
+        # after finalizing (src/workers/asr_worker.py:150) -- with no real
+        # LLM router configured in this fixture environment, that call
+        # genuinely fails (T5 exhausts all tiers) and, since the
+        # docs/gaps.md #33g fix, now durably commits the session to
+        # `failed`. That downstream pipeline is exercised by
+        # tests/test_s47_process_session_flow.py; here it's a no-op so this
+        # test can assert transcription's own status transition in
+        # isolation, matching what it actually observed before that
+        # unrelated failure state was (incorrectly) silently discarded.
+        async def _noop_generate_study_materials(*args: object, **kwargs: object) -> int:
+            return 0
+
+        monkeypatch.setattr(
+            "src.workers.asr_worker.generate_study_materials", _noop_generate_study_materials
+        )
+
         subject_id, session_id = await _create_subject_and_session(db_session)
 
         wav_bytes = FIXTURE_WAV.read_bytes()

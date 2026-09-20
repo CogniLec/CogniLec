@@ -159,6 +159,23 @@ async def generate_study_materials(
             "process_session failed during auto study-material generation",
             extra={"session_id": str(session_id)},
         )
+        # process_session's own except block already flushed a FAILED
+        # status/failure_reason/failure_stage onto `db` (session_pipeline.py's
+        # state_machine.transition), but flush isn't durable -- confirmed
+        # live (docs/gaps.md #33g): without this commit, asr_worker.py's
+        # `async with self._session_factory() as materials_session:` closes
+        # and silently discards that FAILED write, leaving the session
+        # stuck at whatever status was last committed (usually
+        # "transcribed") with failure_reason/failure_stage both NULL, and
+        # no diagnostic anywhere -- the exact state that produced a 409
+        # with zero explanation.
+        try:
+            await db.commit()
+        except Exception:
+            logger.exception(
+                "failed to commit FAILED session state",
+                extra={"session_id": str(session_id)},
+            )
         return 0
 
     # process_session's own state-machine transition (-> COMPLETE) and note
