@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Recorder } from "../services/Recorder";
 import { UploadQueue } from "../services/UploadQueue";
 import { ChunkStore, SessionStore, enforceQuota } from "../services/db";
 import { createSession, uploadSessionChunk } from "../services/api";
 import { CONFIG } from "../config";
-import type { AppState, RecordingSession, StoredAudioChunk } from "../types";
+import type { AppState, RecordingSession, StoredAudioChunk, UploadJob } from "../types";
 
 const MAX_BUFFERED_CHUNKS = 500;
 
@@ -19,6 +19,13 @@ export interface UseRecorderResult {
   acknowledgeConsent: () => void;
   startRecording: (subjectId: string, subjectName: string) => Promise<void>;
   stopRecording: () => void;
+  // Chunk upload health -- previously invisible entirely (docs/gaps.md
+  // #33i): UploadQueue already emitted `jobUpdated` and exposed
+  // `manualRetry`, but nothing subscribed, so a recording could silently
+  // fail to sync dozens of chunks with the user none the wiser.
+  syncingCount: number;
+  failedUploadCount: number;
+  retryFailedUploads: () => void;
 }
 
 /**
@@ -37,6 +44,7 @@ export function useRecorder(): UseRecorderResult {
   const recorderRef = useRef<Recorder | null>(null);
   const uploadQueueRef = useRef<UploadQueue | null>(null);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [uploadJobs, setUploadJobs] = useState<Map<string, UploadJob>>(new Map());
 
   const getUploadQueue = useCallback((): UploadQueue => {
     if (!uploadQueueRef.current) {
@@ -53,6 +61,36 @@ export function useRecorder(): UseRecorderResult {
   useEffect(() => {
     void getUploadQueue().resume();
   }, [getUploadQueue]);
+
+  // Track upload health so syncing/failed chunks are visible in the UI
+  // instead of silently invisible (docs/gaps.md #33i).
+  useEffect(() => {
+    const queue = getUploadQueue();
+    return queue.on("jobUpdated", (job) => {
+      setUploadJobs((prev) => {
+        const next = new Map(prev);
+        if (job.status === "completed") {
+          next.delete(job.id);
+        } else {
+          next.set(job.id, job);
+        }
+        return next;
+      });
+    });
+  }, [getUploadQueue]);
+
+  const uploadJobList = useMemo(() => Array.from(uploadJobs.values()), [uploadJobs]);
+  const syncingCount = uploadJobList.filter(
+    (job) => job.status === "pending" || job.status === "uploading",
+  ).length;
+  const failedUploadCount = uploadJobList.filter((job) => job.status === "failed").length;
+
+  const retryFailedUploads = useCallback(() => {
+    const queue = getUploadQueue();
+    for (const job of uploadJobList) {
+      if (job.status === "failed") void queue.manualRetry(job.id);
+    }
+  }, [getUploadQueue, uploadJobList]);
 
   const requireConsent = useCallback(() => {
     setAppState("CONSENT_REQUIRED");
@@ -165,6 +203,19 @@ export function useRecorder(): UseRecorderResult {
     };
   }, []);
 
+  // Closing the tab mid-recording used to silently drop the in-flight
+  // MediaRecorder buffer with no warning at all (docs/gaps.md #33i) -- no
+  // beforeunload guard existed anywhere in the client.
+  useEffect(() => {
+    if (appState !== "RECORDING") return;
+    const handler = (event: BeforeUnloadEvent): void => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [appState]);
+
   return {
     appState,
     session,
@@ -176,5 +227,8 @@ export function useRecorder(): UseRecorderResult {
     acknowledgeConsent,
     startRecording,
     stopRecording,
+    syncingCount,
+    failedUploadCount,
+    retryFailedUploads,
   };
 }

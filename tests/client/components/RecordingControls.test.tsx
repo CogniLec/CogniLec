@@ -66,4 +66,41 @@ describe("RecordingControls", () => {
     await user.click(screen.getByRole("button", { name: /stop recording/i }));
     expect(onStop).toHaveBeenCalledTimes(1);
   });
+
+  it("shows syncing/failed upload counts and wires the retry button (docs/gaps.md #33i)", async () => {
+    const user = userEvent.setup();
+    const onRetry = vi.fn();
+    render(
+      <RecordingControls
+        isRecording
+        canStart={false}
+        elapsedMs={0}
+        chunkCount={5}
+        onStart={vi.fn()}
+        onStop={vi.fn()}
+        syncingCount={2}
+        failedUploadCount={1}
+        onRetryFailedUploads={onRetry}
+      />,
+    );
+    const status = screen.getByTestId("upload-sync-status");
+    expect(status).toHaveTextContent("2 syncing");
+    expect(status).toHaveTextContent("1 failed to sync");
+    await user.click(screen.getByRole("button", { name: /retry/i }));
+    expect(onRetry).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows no upload-sync status when nothing is syncing or failed", () => {
+    render(
+      <RecordingControls
+        isRecording={false}
+        canStart={false}
+        elapsedMs={0}
+        chunkCount={0}
+        onStart={vi.fn()}
+        onStop={vi.fn()}
+      />,
+    );
+    expect(screen.queryByTestId("upload-sync-status")).not.toBeInTheDocument();
+  });
 });

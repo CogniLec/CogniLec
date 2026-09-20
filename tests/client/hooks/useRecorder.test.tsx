@@ -76,3 +76,41 @@ describe("useRecorder gating (T15.4 consent, T15.5 subject)", () => {
     expect(result.current.error).toMatch(/session/i);
   });
 });
+
+describe("useRecorder beforeunload guard (docs/gaps.md #33i)", () => {
+  beforeEach(() => {
+    _resetDbForTests();
+  });
+
+  it("warns on tab close while recording, and stops warning after stop", async () => {
+    const { result } = renderHook(() => useRecorder());
+    const addSpy = vi.spyOn(window, "addEventListener");
+    const removeSpy = vi.spyOn(window, "removeEventListener");
+
+    act(() => {
+      result.current.acknowledgeConsent();
+    });
+    await act(async () => {
+      await result.current.startRecording("subj-1", "Physics");
+    });
+    await waitFor(() => expect(result.current.appState).toBe("RECORDING"));
+
+    expect(addSpy).toHaveBeenCalledWith("beforeunload", expect.any(Function));
+    const handler = addSpy.mock.calls.find(([event]) => event === "beforeunload")?.[1] as
+      | ((e: Event) => void)
+      | undefined;
+    expect(handler).toBeDefined();
+    const fakeEvent = { preventDefault: vi.fn(), returnValue: "" } as unknown as BeforeUnloadEvent;
+    handler?.(fakeEvent);
+    expect(fakeEvent.preventDefault).toHaveBeenCalled();
+
+    act(() => {
+      result.current.stopRecording();
+    });
+    await waitFor(() => expect(result.current.appState).toBe("STOPPED"));
+    expect(removeSpy).toHaveBeenCalledWith("beforeunload", handler);
+
+    addSpy.mockRestore();
+    removeSpy.mockRestore();
+  });
+});

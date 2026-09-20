@@ -5,6 +5,9 @@ export interface RecordingControlsProps {
   chunkCount: number;
   onStart: () => void;
   onStop: () => void;
+  syncingCount?: number;
+  failedUploadCount?: number;
+  onRetryFailedUploads?: () => void;
 }
 
 function formatElapsed(ms: number): string {
@@ -23,6 +26,9 @@ export function RecordingControls({
   chunkCount,
   onStart,
   onStop,
+  syncingCount = 0,
+  failedUploadCount = 0,
+  onRetryFailedUploads,
 }: RecordingControlsProps): JSX.Element {
   return (
     <div data-testid="recording-controls" className="flex flex-col items-center gap-4">
@@ -46,6 +52,28 @@ export function RecordingControls({
       <div data-testid="chunk-count" className="badge">
         Chunks recorded: {chunkCount}
       </div>
+
+      {(syncingCount > 0 || failedUploadCount > 0) && (
+        <div data-testid="upload-sync-status" className="flex items-center gap-2 text-xs text-slate-400">
+          {syncingCount > 0 && <span>{syncingCount} syncing…</span>}
+          {failedUploadCount > 0 && (
+            <>
+              <span className="text-rose-400">
+                {failedUploadCount} failed to sync
+              </span>
+              {onRetryFailedUploads && (
+                <button
+                  type="button"
+                  onClick={onRetryFailedUploads}
+                  className="btn-ghost px-2 py-0.5 text-xs"
+                >
+                  Retry
+                </button>
+              )}
+            </>
+          )}
+        </div>
+      )}
 
       {isRecording ? (
         <button type="button" onClick={onStop} className="btn-danger w-full max-w-xs">
