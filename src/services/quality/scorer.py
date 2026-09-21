@@ -10,19 +10,28 @@ cards created at/after this session's first note section.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import uuid
 
 import numpy as np
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from src.db.models import Flashcard, NoteQualityTrace, NoteSection, Utterance
+from src.db.models import (
+    Flashcard,
+    NoteProvenance,
+    NoteQualityTrace,
+    NoteSection,
+    User,
+    Utterance,
+)
 from src.ml.embedding.client import EmbeddingClient
+from src.services.quality.judge import Judge
 from src.services.quality.reward import aggregate, coverage, diversity
 
 logger = logging.getLogger(__name__)
 EMBED_BATCH = 8
-CONFIG_VERSION = "reward-v0-unjudged"
+CONFIG_VERSION = "reward-v0"
 
 
 async def score_session(
@@ -30,6 +39,7 @@ async def score_session(
     session_id: uuid.UUID,
     subject_id: uuid.UUID,
     embedder: EmbeddingClient,
+    judge: Judge | None = None,
 ) -> float | None:
     try:
         utts = (
@@ -86,6 +96,10 @@ async def score_session(
             c = await embed([f"{f}\n{b}" for f, b in cards])
             terms["coverage"] = coverage(u, c)
             terms["diversity"] = diversity(c)
+        if judge is not None and await _consented(db, subject_id):
+            provenance = await _provenance_term(db, session_id, subject_id, judge)
+            if provenance is not None:
+                terms["provenance"] = provenance
         result = aggregate(terms)
         db.add(
             NoteQualityTrace(
@@ -102,3 +116,48 @@ async def score_session(
     except Exception:
         logger.exception("quality scoring failed (ignored)", extra={"session_id": str(session_id)})
         return None
+
+
+async def _consented(db: AsyncSession, subject_id: uuid.UUID) -> bool:
+    from src.db.models import Subject
+
+    flag = (
+        await db.execute(
+            select(User.allow_cloud_scoring)
+            .join(Subject, Subject.user_id == User.id)
+            .where(Subject.id == subject_id)
+        )
+    ).scalar()
+    return bool(flag)
+
+
+async def _provenance_term(
+    db: AsyncSession, session_id: uuid.UUID, subject_id: uuid.UUID, judge: Judge
+) -> float | None:
+    """Fraction of judged note sections supported by their cited utterances."""
+    rows = (
+        await db.execute(
+            select(NoteSection.id, NoteSection.body_md).where(
+                NoteSection.subject_id == subject_id, NoteSection.session_id == session_id
+            )
+        )
+    ).all()
+    verdicts: list[bool] = []
+    for sec_id, body in rows:
+        cited = (
+            (
+                await db.execute(
+                    select(Utterance.text)
+                    .join(NoteProvenance, NoteProvenance.utterance_id == Utterance.id)
+                    .where(NoteProvenance.note_section_id == sec_id)
+                )
+            )
+            .scalars()
+            .all()
+        )
+        if not cited:
+            continue
+        v = await asyncio.to_thread(judge.supported, body, "\n".join(cited))
+        if v is not None:
+            verdicts.append(v)
+    return sum(verdicts) / len(verdicts) if verdicts else None
