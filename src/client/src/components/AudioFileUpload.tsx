@@ -10,7 +10,7 @@ export interface AudioFileUploadProps {
 const ACCEPTED_AUDIO_EXTENSIONS = ".mp3,.wav,.m4a,.flac,.ogg,.webm,.aac,.wma,.mp4,.mov,.mkv";
 
 /**
- * Lets a user upload an audio file (MP3, WAV, M4A, FLAC, OGG, WebM) to a
+ * Lets a user upload an audio file (MP3, WAV, M4A, FLAC, OGG, WebM, MP4, MOV, MKV) to a
  * new session. Creates a server-side session first, then uploads the file
  * which gets split into 30s chunks and fed into the preprocessing → ASR pipeline.
  */
@@ -50,7 +50,7 @@ export function AudioFileUpload({ subjectId, onUploaded }: AudioFileUploadProps)
       <div>
         <p className="text-sm font-semibold text-slate-200">Upload audio file</p>
         <p className="text-xs text-slate-500">
-          MP3, WAV, M4A, FLAC, OGG, or WebM — will be split into chunks and processed automatically.
+          MP3, WAV, M4A, FLAC, OGG, WebM, or video files (MP4, MOV, MKV — audio is extracted) — will be split into chunks and processed automatically.
         </p>
       </div>
 
