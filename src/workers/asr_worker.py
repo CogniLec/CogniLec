@@ -22,6 +22,7 @@ from src.core.config import Settings, get_settings
 from src.db.models.session import SessionStatus
 from src.db.repositories.session_repo import SessionRepository
 from src.db.repositories.utterance_repo import UtteranceRepository
+from src.services.asr.external import ExternalASRService
 from src.services.asr.service import FasterWhisperASRService
 from src.services.audio_chain.vad import read_wav_as_array
 from src.services.orchestration.auto_study_materials import generate_study_materials
@@ -50,7 +51,7 @@ class ASRWorker:
         settings: Settings | None = None,
         storage: StorageClient | None = None,
         stream: ValkeyStreamProducer | None = None,
-        asr_service: FasterWhisperASRService | None = None,
+        asr_service: FasterWhisperASRService | ExternalASRService | None = None,
         consumer_name: str | None = None,
     ) -> None:
         """`session_factory` is a zero-arg callable returning a new AsyncSession
@@ -61,18 +62,30 @@ class ASRWorker:
         self._session_factory = session_factory
         self._storage = storage or StorageClient(self._settings)
         self._stream = stream or ValkeyStreamProducer(self._settings)
-        self._asr_service = asr_service or FasterWhisperASRService(
-            model_name=self._settings.ASR_MODEL_NAME,
-            compute_type=self._settings.ASR_COMPUTE_TYPE,
-            device=self._settings.ASR_DEVICE,
-            beam_size=self._settings.ASR_BEAM_SIZE,
-            language=self._settings.ASR_LANGUAGE,
-            embed_model_ver=self._settings.EMBED_MODEL_VER,
-            word_timestamps=self._settings.ASR_WORD_TIMESTAMPS,
-            alignment_model=self._settings.ASR_ALIGNMENT_MODEL,
-            device_index=self._settings.ASR_CUDA_DEVICE,
-        )
+        self._asr_service = asr_service or self._build_asr_service()
         self._consumer_name = consumer_name or f"asr-worker-{socket.gethostname()}"
+
+    def _build_asr_service(self) -> Any:
+        s = self._settings
+        if s.ASR_BACKEND == "external":
+            return ExternalASRService(
+                base_url=s.ASR_EXTERNAL_BASE_URL,
+                api_key=s.ASR_EXTERNAL_API_KEY,
+                model=s.ASR_EXTERNAL_MODEL,
+                language=s.ASR_LANGUAGE,
+                embed_model_ver=s.EMBED_MODEL_VER,
+            )
+        return FasterWhisperASRService(
+            model_name=s.ASR_MODEL_NAME,
+            compute_type=s.ASR_COMPUTE_TYPE,
+            device=s.ASR_DEVICE,
+            beam_size=s.ASR_BEAM_SIZE,
+            language=s.ASR_LANGUAGE,
+            embed_model_ver=s.EMBED_MODEL_VER,
+            word_timestamps=s.ASR_WORD_TIMESTAMPS,
+            alignment_model=s.ASR_ALIGNMENT_MODEL,
+            device_index=s.ASR_CUDA_DEVICE,
+        )
 
     async def start(self) -> None:
         """Ensure the consumer group exists, ready to poll with `run_once`/`run_forever`."""

@@ -147,6 +147,13 @@ class Settings(BaseSettings):
     ASR_MODEL_NAME: str = "deepdml/faster-whisper-large-v3-turbo-ct2"
     ASR_MODEL_QUANTIZATION: str = "float16"
     ASR_DEVICE: str = "cuda"
+    # "local" = in-process faster-whisper (default). "external" = hosted
+    # OpenAI-compatible /audio/transcriptions endpoint (Groq/OpenAI/etc.),
+    # src/services/asr/external.py -- offloads ASR off this host's GPU.
+    ASR_BACKEND: str = "local"
+    ASR_EXTERNAL_BASE_URL: str = "https://api.groq.com/openai/v1"
+    ASR_EXTERNAL_API_KEY: str = ""
+    ASR_EXTERNAL_MODEL: str = "whisper-large-v3-turbo"
     ASR_BEAM_SIZE: int = 5
     ASR_LANGUAGE: str = "en"
     ASR_WORD_TIMESTAMPS: bool = True

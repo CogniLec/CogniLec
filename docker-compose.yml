@@ -391,6 +391,14 @@ services:
       # (medium.en on GPU, RTF 0.16-0.43) rather than the CPU-only int8.
       ASR_DEVICE: "${ASR_DEVICE:-cuda}"
       ASR_COMPUTE_TYPE: "${ASR_COMPUTE_TYPE:-int8_float16}"
+      # "external" offloads transcription to a hosted OpenAI-compatible
+      # /audio/transcriptions API (src/services/asr/external.py) -- for hosts
+      # whose GPU is already claimed by vLLM (docs/about.md). Key stays in
+      # .env, never committed.
+      ASR_BACKEND: "${ASR_BACKEND:-local}"
+      ASR_EXTERNAL_BASE_URL: "${ASR_EXTERNAL_BASE_URL:-https://api.groq.com/openai/v1}"
+      ASR_EXTERNAL_API_KEY: "${ASR_EXTERNAL_API_KEY:-}"
+      ASR_EXTERNAL_MODEL: "${ASR_EXTERNAL_MODEL:-whisper-large-v3-turbo}"
     volumes:
       - models:/models
     networks:
