@@ -32,6 +32,7 @@ from src.ml.embedding.client import EmbeddingClient
 from src.services.filtering.relevance_filter import RelevanceFilterAgent
 from src.services.llm.router import LLMRouter, LLMRouterConfig, LLMTier, TierConfig
 from src.services.orchestration.session_pipeline import process_session
+from src.services.quality.scorer import score_session
 from src.services.study.flashcards import FlashcardGenerationError, FlashcardGenerator
 from src.services.study.fsrs_scheduler import new_card_fields
 from src.services.synthesis.note_synthesis import NoteSynthesisAgent
@@ -197,6 +198,7 @@ async def generate_study_materials(
         return 0
 
     created = await generate_flashcards_for_subject(db, subject_id, router)
+    await score_session(db, session_id, subject_id, embedding_client)
     logger.info(
         "auto study-material generation complete",
         extra={"session_id": str(session_id), "flashcards_created": created},
