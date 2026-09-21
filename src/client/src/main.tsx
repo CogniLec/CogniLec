@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { isRecordingActive, onceRecordingStops } from "./services/recordingActivity";
+import { loadRuntimeConfig } from "./config";
 import "./index.css";
 
 // Without this, an already-open tab keeps running its old, precached JS
@@ -38,10 +39,12 @@ if (!rootElement) {
   throw new Error("Root element #root not found");
 }
 
-ReactDOM.createRoot(rootElement).render(
-  <React.StrictMode>
-    <ErrorBoundary>
-      <App />
-    </ErrorBoundary>
-  </React.StrictMode>,
-);
+void loadRuntimeConfig().then(() => {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </React.StrictMode>,
+  );
+});

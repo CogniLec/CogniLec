@@ -1,3 +1,4 @@
+import { CONFIG } from "../config";
 import { ApiError } from "./api";
 
 /**
@@ -29,6 +30,11 @@ export function friendlyErrorMessage(
       default:
         return err.message;
     }
+  }
+  if (err instanceof TypeError && /fetch|network/i.test(err.message)) {
+    // A network-level failure (never reached the server). Name the address
+    // that was tried so "Failed to fetch" is diagnosable without DevTools.
+    return `Couldn't reach the server at ${CONFIG.apiBaseUrl}. Check your connection, or reload to pick up a new server address.`;
   }
   return err instanceof Error ? err.message : "Something went wrong.";
 }

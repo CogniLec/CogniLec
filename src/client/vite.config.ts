@@ -38,10 +38,17 @@ export default defineConfig({
         skipWaiting: true,
         clientsClaim: true,
         globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
+        // config.json carries the runtime API URL and must never be served
+        // from the precache/cache (see src/config.ts loadRuntimeConfig).
+        globIgnores: ["**/config.json"],
         // Chunk buffering itself is handled by the app's own IndexedDB
         // ring buffer (see src/services/db.ts), not by Workbox caching —
         // Workbox here only makes the app shell installable/offline.
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.endsWith("/config.json"),
+            handler: "NetworkOnly",
+          },
           {
             urlPattern: ({ url }) => url.pathname.startsWith("/api/"),
             handler: "NetworkOnly",
