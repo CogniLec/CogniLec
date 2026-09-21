@@ -169,3 +169,42 @@ def test_build_prompt_never_includes_speaker_tag():
     utterances = [UtteranceInput(seq=0, text="hello")]
     messages = build_prompt("Topic", utterances)
     assert "speaker_tag" not in json.dumps(messages)
+
+
+async def test_missing_decision_reasks_only_missing_utterance():
+    """Regression: one omitted utterance must not fail the batch (live: a real
+    10-min recording's T5 died on '7 of 8' answers, and the task-level retry
+    then redid all 28 batches)."""
+    import json as _json
+
+    calls: list[list[int]] = []
+    config = LLMRouterConfig(
+        tiers=[TierConfig(tier=LLMTier.TIER_1, model="m", endpoint="http://x")]
+    )
+
+    async def transport(tier, messages, timeout_s, schema=None):
+        seqs = [u["seq"] for u in _json.loads(messages[-1]["content"])["utterances"]]
+        calls.append(seqs)
+        answer = seqs[:-1] if len(calls) == 1 and len(seqs) > 1 else seqs  # first call drops one
+        content = _json.dumps(
+            [
+                {
+                    "seq": q,
+                    "is_relevant": True,
+                    "category": "core_content",
+                    "filter_reason": "ok",
+                    "confidence": 0.9,
+                }
+                for q in answer
+            ]
+        )
+        return LLMResponse(
+            content=content, tier_used=tier.tier, model="m", latency_ms=1, tokens_used=1
+        )
+
+    agent = RelevanceFilterAgent(LLMRouter(config, transport=transport))
+    batch = [UtteranceInput(seq=i, text=f"t{i}") for i in range(8)]
+    result = await agent.classify_session("topic", batch)
+
+    assert sorted(d.seq for d in result) == list(range(8))
+    assert calls == [list(range(8)), [7]]  # second call re-asks only the dropped one

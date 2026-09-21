@@ -79,10 +79,12 @@ _SECTIONS_SCHEMA: dict[str, object] = {
 # roughly 45 relevant utterances (~13 minutes of real lecture at the
 # measured 8.67 utt/min / 38.5% relevance rate for a real session) --
 # the transcript JSON alone exceeds the 2048-token context, leaving no
-# room for the model's own output. 25/chunk is deliberately well under
-# that ~44.7-utterance theoretical ceiling, to leave real headroom for
-# section output rather than sizing to the exact limit.
-MAX_UTTERANCES_PER_CHUNK = 25
+# room for the model's own output. 25/chunk was tried first and FAILED on a
+# real 10-minute recording: output was truncated mid-JSON (both attempts
+# cut off near char ~800), because real utterances + their UUIDs cost ~74
+# tokens each, not the estimated 42 -- 25 of them left only ~200 tokens
+# for the reply. 10/chunk leaves ~1300 tokens for output.
+MAX_UTTERANCES_PER_CHUNK = 10
 
 
 def _chunk_utterances(

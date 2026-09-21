@@ -49,6 +49,9 @@ DEFAULT_BATCH_SIZE = 8
 # not on faith.
 DEFAULT_MAX_CONCURRENCY = 2
 
+# Per-batch attempts before giving up on a batch (see _classify_batch).
+MAX_BATCH_ATTEMPTS = 3
+
 
 class FilterCategory(StrEnum):
     CORE_CONTENT = "core_content"
@@ -144,6 +147,32 @@ def parse_decisions(raw: str, expected_seqs: set[int]) -> list[RelevanceDecision
     return decisions
 
 
+def parse_partial_decisions(raw: str, expected_seqs: set[int]) -> list[RelevanceDecision]:
+    """Lenient parse: keep every valid decision whose seq was asked for.
+
+    Unlike `parse_decisions`, a missing/duplicate/malformed item does not
+    invalidate the rest -- the caller re-asks only for what's absent.
+    """
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        msg = f"non-JSON A1 response: {exc}"
+        raise RelevanceFilterError(msg) from exc
+    if not isinstance(payload, list):
+        msg = "A1 response must be a JSON array"
+        raise RelevanceFilterError(msg)
+
+    decisions: dict[int, RelevanceDecision] = {}
+    for item in payload:
+        try:
+            decision = RelevanceDecision.model_validate(item)
+        except ValidationError:
+            continue
+        if decision.seq in expected_seqs:
+            decisions.setdefault(decision.seq, decision)
+    return list(decisions.values())
+
+
 class RelevanceFilterAgent:
     """A1 — batched relevance classification against S37's router."""
 
@@ -164,18 +193,42 @@ class RelevanceFilterAgent:
     async def _classify_batch(
         self, topic_label: str, batch: list[UtteranceInput]
     ) -> list[RelevanceDecision]:
-        messages = build_prompt(topic_label, batch)
-        response = await self._router.complete(
-            messages,
-            agent_id=self.AGENT_ID,
-            prompt_version=self._prompt_version,
-            schema=_DECISIONS_SCHEMA,
-        )
-        if response.failed:
-            msg = f"A1 router exhausted: {response.failure_reason}"
-            raise RelevanceFilterError(msg)
-        expected = {u.seq for u in batch}
-        return parse_decisions(response.content, expected)
+        """Classify one batch, retrying ONLY what's missing.
+
+        The small Tier-1 model regularly returns a decision list that omits
+        one utterance (confirmed live on a real 10-minute recording: "A1
+        decisions cover [...7 of 8...]"). Previously that raised for the whole
+        batch, failing the whole T5 task, and Prefect's task-level retry then
+        re-ran ALL batches (28 for 10 minutes, ~170 for an hour) -- so one
+        omission anywhere discarded every other batch's finished work.
+        Now valid decisions are kept and only the utterances still missing
+        are re-asked, so a flaky omission costs one small extra call.
+        """
+        decisions: dict[int, RelevanceDecision] = {}
+        remaining = batch
+        last_error = "no attempts made"
+        for _ in range(MAX_BATCH_ATTEMPTS):
+            messages = build_prompt(topic_label, remaining)
+            response = await self._router.complete(
+                messages,
+                agent_id=self.AGENT_ID,
+                prompt_version=self._prompt_version,
+                schema=_DECISIONS_SCHEMA,
+            )
+            if response.failed:
+                last_error = f"A1 router exhausted: {response.failure_reason}"
+                continue
+            try:
+                got = parse_partial_decisions(response.content, {u.seq for u in remaining})
+            except RelevanceFilterError as exc:
+                last_error = str(exc)
+                continue
+            decisions.update({d.seq: d for d in got})
+            remaining = [u for u in batch if u.seq not in decisions]
+            if not remaining:
+                return [decisions[u.seq] for u in batch]
+            last_error = f"A1 decisions missing seqs {[u.seq for u in remaining]}"
+        raise RelevanceFilterError(last_error)
 
     async def classify_session(
         self, topic_label: str, utterances: list[UtteranceInput]

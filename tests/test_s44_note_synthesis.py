@@ -13,6 +13,7 @@ import json
 import pytest
 from src.services.llm.router import LLMResponse, LLMRouter, LLMRouterConfig, LLMTier, TierConfig
 from src.services.synthesis.note_synthesis import (
+    MAX_UTTERANCES_PER_CHUNK,
     NoteSynthesisAgent,
     NoteSynthesisError,
     RelevantUtterance,
@@ -190,8 +191,8 @@ async def test_t44_9_long_sessions_are_chunked_and_ordinals_renumbered_globally(
     single-call design structurally could not complete once relevant
     utterances exceeded the deployed model's context window (~45
     utterances at the real measured utterance density/relevance rate).
-    Now chunked at MAX_UTTERANCES_PER_CHUNK=25; verify a 50-utterance
-    session makes 2 calls and merges with correct, contiguous ordinals
+    Now chunked at MAX_UTTERANCES_PER_CHUNK; verify a 50-utterance
+    session makes ceil(50/chunk) calls and merges with correct, contiguous ordinals
     (each chunk's own response restarts ordinals at 0)."""
     call_count = 0
     config = LLMRouterConfig(
@@ -229,11 +230,11 @@ async def test_t44_9_long_sessions_are_chunked_and_ordinals_renumbered_globally(
 
     result = await agent.synthesize(context)
 
-    assert call_count == 2  # 50 utterances / 25 per chunk = 2 chunks
-    assert len(result) == 2
-    assert [s.ordinal for s in result] == [0, 1]
+    expected_chunks = -(-50 // MAX_UTTERANCES_PER_CHUNK)
+    assert call_count == expected_chunks
+    assert [s.ordinal for s in result] == list(range(expected_chunks))
     assert result[0].heading == "Chunk 1 Section"
-    assert result[1].heading == "Chunk 2 Section"
+    assert result[-1].heading == f"Chunk {expected_chunks} Section"
 
 
 def test_validate_hierarchy_rejects_duplicate_ordinals():
