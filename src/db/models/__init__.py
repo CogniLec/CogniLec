@@ -9,6 +9,7 @@ from src.db.models.flashcard import Flashcard, FlashcardReview
 from src.db.models.note_asset import AssetType, NoteAsset
 from src.db.models.note_link import NoteLink, NoteLinkType
 from src.db.models.note_provenance import NoteProvenance
+from src.db.models.note_quality_trace import NoteQualityTrace
 from src.db.models.note_section import NoteSection
 from src.db.models.partition_operation import PartitionOperation
 from src.db.models.question import Question
@@ -30,6 +31,7 @@ __all__ = [
     "NoteLink",
     "NoteLinkType",
     "NoteProvenance",
+    "NoteQualityTrace",
     "NoteSection",
     "PartitionOperation",
     "Question",
