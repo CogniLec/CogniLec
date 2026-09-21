@@ -21,6 +21,7 @@ from src.ml.embedding.client import EmbeddingClient
 from src.services.quality.reward import aggregate, coverage, diversity
 
 logger = logging.getLogger(__name__)
+EMBED_BATCH = 8
 CONFIG_VERSION = "reward-v0-unjudged"
 
 
@@ -71,7 +72,12 @@ async def score_session(
             return None
 
         async def embed(texts: list[str]) -> np.ndarray:
-            return np.asarray(await embedder.embed(texts, "retrieval"), dtype=float)
+            # Small batches: TEI 413s on big payloads, and the local fallback
+            # it triggers OOM-kills the container.
+            out: list[list[float]] = []
+            for i in range(0, len(texts), EMBED_BATCH):
+                out.extend(await embedder.embed(texts[i : i + EMBED_BATCH], "retrieval"))
+            return np.asarray(out, dtype=float)
 
         u = await embed(list(utts))
         n = await embed([f"{h}\n{b}" for h, b in notes])
