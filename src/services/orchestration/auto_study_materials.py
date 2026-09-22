@@ -27,6 +27,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.core.config import get_settings
 from src.db.models.flashcard import Flashcard
+from src.db.models.note_section import NoteSection
 from src.db.models.topic import Topic
 from src.ml.embedding.client import EmbeddingClient
 from src.services.filtering.relevance_filter import RelevanceFilterAgent
@@ -70,27 +71,55 @@ def _topic_label(topic: Topic) -> str:
     return topic.label or (", ".join(topic.keywords or []) or "unlabeled topic")
 
 
+async def _topic_labels_for_subject(db: AsyncSession, subject_id: uuid.UUID) -> list[str]:
+    """Real Topic rows when clustering (T3/T4) produced any, otherwise each
+    persisted note section's own heading as a pseudo-topic label.
+
+    Confirmed live: after A2 (note synthesis) was redesigned to work from
+    the full session transcript rather than per-topic segments, it no
+    longer depends on clustering succeeding -- a session can get real,
+    persisted notes even when HDBSCAN finds zero stable clusters (all
+    utterances treated as noise), which leaves the subject with ZERO
+    Topic rows despite having real notes. `FlashcardGenerator` was never
+    updated for that: it only ever looped over Topic rows, so it silently
+    produced 0 flashcards for exactly this case (a real ~20-minute lecture
+    hit this: 46 relevant utterances, 9 persisted note sections, but the
+    "no persisted notes/topics yet" 409 anyway, because `topics` was
+    genuinely empty). `retrieve()` only scopes by subject_id + a free-text
+    query string (no real dependency on Topic rows), so a note section's
+    own heading works as a topic label just as well.
+    """
+    topics_result = await db.execute(select(Topic).where(Topic.subject_id == subject_id))
+    topics = list(topics_result.scalars().all())
+    if topics:
+        return [_topic_label(t) for t in topics]
+
+    headings_result = await db.execute(
+        select(NoteSection.heading).where(NoteSection.subject_id == subject_id).distinct()
+    )
+    return list(headings_result.scalars().all())
+
+
 async def generate_flashcards_for_subject(
     db: AsyncSession, subject_id: uuid.UUID, router: LLMRouter
 ) -> int:
     """Generate + persist flashcards for every one of a subject's existing
-    topics. Shared by the auto-trigger path below (right after a session's
-    notes are persisted) and the on-demand "generate from notes" endpoint
-    (`POST /subjects/{id}/flashcards/generate`, `src/api/routes/study.py`)
-    -- extracted 2026-09-17 when the on-demand endpoint replaced the old
-    manual-entry `seed_flashcard` stopgap. Requires no session context:
-    `FlashcardGenerator.generate_for_topic` only ever needed `subject_id` +
-    a topic label, retrieving directly against the subject's persisted
-    notes -- the session-coupling lived entirely in this module's caller,
-    not in the generator itself.
+    topics (or, absent any, each persisted note section's heading -- see
+    `_topic_labels_for_subject`). Shared by the auto-trigger path below
+    (right after a session's notes are persisted) and the on-demand
+    "generate from notes" endpoint (`POST /subjects/{id}/flashcards/generate`,
+    `src/api/routes/study.py`) -- extracted 2026-09-17 when the on-demand
+    endpoint replaced the old manual-entry `seed_flashcard` stopgap.
+    Requires no session context: `FlashcardGenerator.generate_for_topic`
+    only ever needed `subject_id` + a topic label, retrieving directly
+    against the subject's persisted notes -- the session-coupling lived
+    entirely in this module's caller, not in the generator itself.
     """
-    topics_result = await db.execute(select(Topic).where(Topic.subject_id == subject_id))
-    topics = list(topics_result.scalars().all())
+    topic_labels = await _topic_labels_for_subject(db, subject_id)
 
     generator = FlashcardGenerator(router)
     created = 0
-    for topic in topics:
-        topic_label = _topic_label(topic)
+    for topic_label in topic_labels:
         try:
             generated, source_ids = await generator.generate_for_topic(
                 db, subject_id, topic_label, FLASHCARDS_PER_TOPIC
