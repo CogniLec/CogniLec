@@ -185,6 +185,43 @@ class TestDuplicateChunkIdempotent:
         await storage.delete_object(BucketName.AUDIO, f"{session_obj.id}/chunks/00000.opus")
 
 
+class TestCreatedToRecordingSurvivesLostFirstAttempt:
+    """Regression: a real session got permanently stuck at CREATED despite
+    hundreds of chunks actively streaming in and being fully transcribed
+    (382 utterances). Root cause: the dedup key in Valkey and the Postgres
+    status transition were not atomic with each other -- if chunk 0's
+    first attempt marked the dedup key "stored" but failed before the DB
+    commit landed, every retry of chunk 0 saw "already stored" and
+    short-circuited before ever reaching the transition, permanently. This
+    simulates exactly that: mark the dedup key as already stored (as if a
+    first attempt got that far and no further, e.g. it crashed before the
+    status transition committed) *before* ever calling the upload endpoint
+    for chunk 0, then upload chunk 0 for real and confirm the session
+    still reaches RECORDING even though the chunk itself was treated as a
+    duplicate."""
+
+    async def test_status_transition_survives_a_pre_existing_dedup_key(
+        self, db_session: AsyncSession, stream: ValkeyStreamProducer, valkey: Redis
+    ) -> None:
+        user, subject = await _create_user_and_subject(db_session)
+        repo = SessionRepository(db_session)
+        session_obj = await repo.create(subject.id)
+        await db_session.commit()
+
+        # Simulate the lost-first-attempt: the dedup key already exists,
+        # as if an earlier request got as far as marking it before failing.
+        await valkey.set(f"chunk:{session_obj.id}:0", "stored")
+
+        async with await _client_for(db_session, stream, user.id) as client:
+            response = await _upload_chunk(client, session_obj.id, 0)
+
+        assert response.json()["status"] == "duplicate"
+
+        refreshed = await repo.get(session_obj.id)
+        assert refreshed is not None
+        assert refreshed.status == SessionStatus.RECORDING
+
+
 class TestOutOfOrderChunks:
     """T16.3 - out-of-order chunks stored correctly by sequence."""
 

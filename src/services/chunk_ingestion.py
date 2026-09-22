@@ -90,6 +90,33 @@ class ChunkIngestionService:
         if session_obj.status in _TERMINAL_STATUSES:
             raise SessionNotAcceptingChunksError(session_obj.status)
 
+        # Deliberately BEFORE the idempotency check below, not after it --
+        # confirmed live: a real session got permanently stuck at CREATED
+        # (382 utterances transcribed, chunks actively streaming, yet the
+        # session's own status never moved) because this used to run only
+        # on a genuinely-new chunk 0. If chunk 0's first attempt marked the
+        # dedup key "stored" in Valkey but failed before this transition's
+        # own commit landed (network blip, transient DB error), every
+        # retry of chunk 0 saw "already stored" and returned early via the
+        # `is_new` check below, permanently skipping this block with no
+        # way to ever retry it -- Valkey's dedup state and Postgres's
+        # status transition were never atomic with each other. This check
+        # is naturally idempotent on its own (`if CREATED`), so running it
+        # unconditionally on every call, duplicate or not, is safe and
+        # guarantees it eventually fires on whichever request for this
+        # session's first chunk actually gets far enough to run it.
+        if session_obj.status == SessionStatus.CREATED:
+            await self._session_repo.update_status(session_obj, SessionStatus.RECORDING)
+            await self._stream.publish_event(
+                str(request.session_id),
+                "status_changed",
+                {
+                    "session_id": str(request.session_id),
+                    "status": SessionStatus.RECORDING.value,
+                    "timestamp": datetime.now(UTC).isoformat(),
+                },
+            )
+
         object_key = build_object_key(request.session_id, request.sequence)
         dedup_key = idempotency_key(request.session_id, request.sequence)
 
@@ -106,20 +133,6 @@ class ChunkIngestionService:
         await self._storage.put_object(
             BucketName.AUDIO, object_key, chunk_bytes, content_type="audio/opus"
         )
-
-        # Atomic-with-storage: transition created -> recording on first chunk,
-        # before publishing so the SSE status event fires promptly.
-        if session_obj.status == SessionStatus.CREATED:
-            await self._session_repo.update_status(session_obj, SessionStatus.RECORDING)
-            await self._stream.publish_event(
-                str(request.session_id),
-                "status_changed",
-                {
-                    "session_id": str(request.session_id),
-                    "status": SessionStatus.RECORDING.value,
-                    "timestamp": datetime.now(UTC).isoformat(),
-                },
-            )
 
         stream_message = StreamMessage(
             session_id=request.session_id,
