@@ -66,7 +66,14 @@ class FlashcardGenerator:
 
     async def generate_for_topic(
         self, db: AsyncSession, subject_id: uuid.UUID, topic_label: str, count: int
-    ) -> list[GeneratedFlashcard]:
+    ) -> tuple[list[GeneratedFlashcard], list[str]]:
+        """Returns the generated cards plus the ids of every retrieved
+        note-section/utterance their shared context was built from - not a
+        per-card citation (the LLM doesn't tell us which specific source
+        backs which card), but enough for the quality-loop judge
+        (src/services/quality/scorer.py) to check a card's answer against
+        the actual material it was generated from instead of the whole
+        subject's notes."""
         result = await retrieve(
             db,
             subject_id=subject_id,
@@ -76,6 +83,7 @@ class FlashcardGenerator:
             limit=max(count * 2, 5),
             merge_hierarchy=False,
         )
+        source_ids = [str(item.result.id) for item in result.items]
         notes_context = "\n".join(item.result.text for item in result.items)
         messages = build_flashcard_prompt(topic_label, notes_context, count)
         response = await self._router.complete(
@@ -84,7 +92,7 @@ class FlashcardGenerator:
         if response.failed:
             msg = f"flashcard router exhausted: {response.failure_reason}"
             raise FlashcardGenerationError(msg)
-        return parse_flashcards(response.content)
+        return parse_flashcards(response.content), source_ids
 
 
 @dataclass(frozen=True)

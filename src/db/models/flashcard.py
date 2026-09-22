@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy import DateTime, Float, ForeignKey, Integer, String, Text, text
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.db.models.base import Base
@@ -27,6 +27,14 @@ class Flashcard(Base):
     topic_label: Mapped[str] = mapped_column(String(200), nullable=False)
     front: Mapped[str] = mapped_column(Text, nullable=False)
     back: Mapped[str] = mapped_column(Text, nullable=False)
+
+    # Note-section/utterance ids this card's retrieval context was built
+    # from (src/services/study/flashcards.py) - lets the quality-loop
+    # judge (src/services/quality/) check each card's answer against its
+    # actual source instead of the whole subject.
+    source_result_ids: Mapped[list[str]] = mapped_column(
+        JSONB, nullable=False, server_default=text("'[]'::jsonb")
+    )
 
     # FSRS (fsrs.Card) scheduling state.
     fsrs_state: Mapped[int] = mapped_column(Integer, nullable=False, server_default="0")

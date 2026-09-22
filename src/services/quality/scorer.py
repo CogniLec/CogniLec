@@ -1,9 +1,8 @@
 """Scores one session's notes+flashcards and appends a NoteQualityTrace.
 
-Best-effort and fail-open: never raises into the pipeline. Only the
-embedding-based terms run here; judge terms (validity/provenance) stay
-unscored until flashcards store source utterance ids and the user has
-`allow_cloud_scoring` (see docs/audit/self-improving-loop.md).
+Best-effort and fail-open: never raises into the pipeline. Judge terms
+(validity/provenance) only run when the subject's owner has
+`allow_cloud_scoring` set (see docs/audit/self-improving-loop.md).
 Flashcards have no session link, so cards are approximated as the subject's
 cards created at/after this session's first note section.
 """
@@ -13,9 +12,11 @@ from __future__ import annotations
 import asyncio
 import logging
 import uuid
+from collections.abc import Sequence
+from typing import Any
 
 import numpy as np
-from sqlalchemy import func, select
+from sqlalchemy import Row, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.models import (
     Flashcard,
@@ -67,10 +68,10 @@ async def score_session(
                 select(func.min(NoteSection.created_at)).where(NoteSection.session_id == session_id)
             )
         ).scalar()
-        cards = (
+        card_rows = (
             (
                 await db.execute(
-                    select(Flashcard.front, Flashcard.back).where(
+                    select(Flashcard.front, Flashcard.back, Flashcard.source_result_ids).where(
                         Flashcard.subject_id == subject_id, Flashcard.created_at >= first
                     )
                 )
@@ -78,10 +79,11 @@ async def score_session(
             if first
             else []
         )
+        cards = [(front, back) for front, back, _ in card_rows]
         if not utts or not notes:
             return None
 
-        async def embed(texts: list[str]) -> np.ndarray:
+        async def embed(texts: list[str]) -> np.ndarray[Any, Any]:
             # Small batches: TEI 413s on big payloads, and the local fallback
             # it triggers OOM-kills the container.
             out: list[list[float]] = []
@@ -100,6 +102,10 @@ async def score_session(
             provenance = await _provenance_term(db, session_id, subject_id, judge)
             if provenance is not None:
                 terms["provenance"] = provenance
+            if card_rows:
+                validity = await _validity_term(db, subject_id, card_rows, judge)
+                if validity is not None:
+                    terms["validity"] = validity
         result = aggregate(terms)
         db.add(
             NoteQualityTrace(
@@ -158,6 +164,55 @@ async def _provenance_term(
         if not cited:
             continue
         v = await asyncio.to_thread(judge.supported, body, "\n".join(cited))
+        if v is not None:
+            verdicts.append(v)
+    return sum(verdicts) / len(verdicts) if verdicts else None
+
+
+async def _validity_term(
+    db: AsyncSession,
+    subject_id: uuid.UUID,
+    card_rows: Sequence[Row[tuple[str, str, list[str]]]],
+    judge: Judge,
+) -> float | None:
+    """Fraction of judged flashcards whose answer is supported by the
+    retrieval context they were generated from.
+
+    Not a per-card citation - `source_result_ids` is the whole set of
+    note-section/utterance ids retrieved for the card's TOPIC (S58's
+    `FlashcardGenerator.generate_for_topic` generates several cards per
+    retrieval call, and the LLM doesn't say which one backs which card) -
+    so this checks "supported by the topic's source material", a coarser
+    but still meaningful grounding check.
+    """
+    try:
+        ids = {uuid.UUID(i) for _, _, sids in card_rows for i in sids}
+    except ValueError:
+        return None
+    if not ids:
+        return None
+    note_texts = (
+        await db.execute(
+            select(NoteSection.id, NoteSection.body_md).where(
+                NoteSection.subject_id == subject_id, NoteSection.id.in_(ids)
+            )
+        )
+    ).all()
+    utt_texts = (
+        await db.execute(
+            select(Utterance.id, Utterance.text).where(
+                Utterance.subject_id == subject_id, Utterance.id.in_(ids)
+            )
+        )
+    ).all()
+    by_id = {str(i): t for i, t in (*note_texts, *utt_texts)}
+
+    verdicts: list[bool] = []
+    for front, back, source_ids in card_rows:
+        source = "\n".join(by_id[i] for i in source_ids if i in by_id)
+        if not source:
+            continue
+        v = await asyncio.to_thread(judge.supported, f"{front}\n{back}", source)
         if v is not None:
             verdicts.append(v)
     return sum(verdicts) / len(verdicts) if verdicts else None

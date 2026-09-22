@@ -92,7 +92,7 @@ async def generate_flashcards_for_subject(
     for topic in topics:
         topic_label = _topic_label(topic)
         try:
-            generated = await generator.generate_for_topic(
+            generated, source_ids = await generator.generate_for_topic(
                 db, subject_id, topic_label, FLASHCARDS_PER_TOPIC
             )
         except FlashcardGenerationError:
@@ -108,6 +108,7 @@ async def generate_flashcards_for_subject(
                 topic_label=topic_label,
                 front=card.front,
                 back=card.back,
+                source_result_ids=source_ids,
                 **new_card_fields(),
             )
             db.add(flashcard)
