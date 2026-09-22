@@ -85,6 +85,19 @@ function CaptureScreen({ onCaptureComplete }: CaptureScreenProps): JSX.Element {
           failedUploadCount={failedUploadCount}
           onRetryFailedUploads={retryFailedUploads}
         />
+        {/* Same reasoning as AudioFileUpload's own "Go to Review" button:
+         * stopping also switches tabs automatically (via handleStop
+         * above), but this stays as an always-available manual fallback
+         * so reaching Review never depends solely on that firing. */}
+        {appState === "STOPPED" && (
+          <button
+            type="button"
+            onClick={() => onCaptureComplete?.()}
+            className="btn-secondary"
+          >
+            Go to Review →
+          </button>
+        )}
       </section>
 
       {subject && consentGiven && (

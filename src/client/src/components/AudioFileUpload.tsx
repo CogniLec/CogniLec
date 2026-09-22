@@ -21,6 +21,7 @@ export function AudioFileUpload({ subjectId, onUploaded }: AudioFileUploadProps)
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [progressPct, setProgressPct] = useState<number | null>(null);
+  const [uploadedSessionId, setUploadedSessionId] = useState<string | null>(null);
 
   const handleUpload = async (): Promise<void> => {
     if (!selectedFile) return;
@@ -34,6 +35,7 @@ export function AudioFileUpload({ subjectId, onUploaded }: AudioFileUploadProps)
         setProgressPct(Math.round(fraction * 100)),
       );
       setResult(response.message);
+      setUploadedSessionId(session.id);
       onUploaded?.(response.message, session.id);
       setSelectedFile(null);
       if (inputRef.current) inputRef.current.value = "";
@@ -43,6 +45,11 @@ export function AudioFileUpload({ subjectId, onUploaded }: AudioFileUploadProps)
       setUploading(false);
       setProgressPct(null);
     }
+  };
+
+  const handleGoToReview = (): void => {
+    if (!result || !uploadedSessionId) return;
+    onUploaded?.(result, uploadedSessionId);
   };
 
   return (
@@ -60,9 +67,21 @@ export function AudioFileUpload({ subjectId, onUploaded }: AudioFileUploadProps)
         </p>
       )}
       {result && (
-        <p className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300">
-          {result}
-        </p>
+        <div className="flex flex-col gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300 sm:flex-row sm:items-center sm:justify-between">
+          <span>{result}</span>
+          {/* Switching to Review also happens automatically right after
+           * upload (via onUploaded above) -- this button is a deliberate,
+           * always-available fallback so getting there never depends on
+           * that automatic behavior actually firing in a given browser/
+           * session. It stays visible until this upload box resets. */}
+          <button
+            type="button"
+            onClick={handleGoToReview}
+            className="btn-secondary shrink-0 self-start sm:self-auto"
+          >
+            Go to Review →
+          </button>
+        </div>
       )}
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">

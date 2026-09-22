@@ -47,6 +47,13 @@ describe("AudioFileUpload (docs/gaps.md #33i/#33j — MP4 support + upload progr
     );
     expect(calls[0].url).toContain("/sessions/sess-1/audio-file");
     expect(onUploaded).toHaveBeenCalledWith("Audio file queued for processing", "sess-1");
+
+    // Regression: onUploaded already switches tabs automatically, but a
+    // manual fallback must stay visible and available too, in case that
+    // automatic switch doesn't fire in some environment/browser state.
+    onUploaded.mockClear();
+    await user.click(screen.getByRole("button", { name: /go to review/i }));
+    expect(onUploaded).toHaveBeenCalledWith("Audio file queued for processing", "sess-1");
   });
 
   it("shows a friendly error on failure", async () => {
