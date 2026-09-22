@@ -18,6 +18,7 @@ from src.services.synthesis.note_synthesis import (
     NoteSynthesisError,
     RelevantUtterance,
     SessionSynthesisContext,
+    validate_body_is_prose,
     validate_hierarchy,
     validate_katex,
     validate_mermaid_blocks,
@@ -235,6 +236,40 @@ async def test_t44_9_long_sessions_are_chunked_and_ordinals_renumbered_globally(
     assert [s.ordinal for s in result] == list(range(expected_chunks))
     assert result[0].heading == "Chunk 1 Section"
     assert result[-1].heading == f"Chunk {expected_chunks} Section"
+
+
+def test_validate_body_is_prose_rejects_source_utt_ids_echo():
+    """Regression: a real session (docs/audit/self-improving-loop.md) had
+    A2 collapse to echoing its own source_utt_ids field as body_md instead
+    of writing prose. That must be rejected, real prose must not be."""
+    assert validate_body_is_prose("Source utt_ids: [19e6333b-04b0, c550cb90-a02c]") is False
+    assert validate_body_is_prose("source_utterance_ids: [abc]") is False
+    assert validate_body_is_prose("Deep learning uses representation learning.") is True
+
+
+async def test_t44_10_section_with_stub_citation_body_is_dropped():
+    sections = json.dumps(
+        [
+            {
+                "heading": "Good Section",
+                "body_md": "Real explanatory content about the topic.",
+                "depth": 0,
+                "ordinal": 0,
+                "source_utt_ids": ["u1"],
+            },
+            {
+                "heading": "Stub Section",
+                "body_md": "Source utt_ids: [u2]",
+                "depth": 0,
+                "ordinal": 1,
+                "source_utt_ids": ["u2"],
+            },
+        ]
+    )
+    agent = make_agent(sections)
+    result = await agent.synthesize(make_context())
+    assert len(result) == 1
+    assert result[0].heading == "Good Section"
 
 
 def test_validate_hierarchy_rejects_duplicate_ordinals():

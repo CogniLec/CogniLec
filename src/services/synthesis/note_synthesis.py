@@ -134,6 +134,27 @@ def validate_katex(body_md: str) -> bool:
     return stripped.count("$") % 2 == 0
 
 
+_STUB_BODY_RE = re.compile(
+    r"^\s*Source[_ ]?utt(?:erance)?[_ ]?ids?\s*:?\s*\[.*\]\s*$", re.IGNORECASE
+)
+
+
+def validate_body_is_prose(body_md: str) -> bool:
+    """Rejects a body_md that is just an echoed citation list rather than
+    real note content.
+
+    Confirmed live (a real "Agentic AI" session, docs/audit/
+    self-improving-loop.md): on chunked input the deployed model
+    sometimes collapses to restating its own `source_utt_ids` field as
+    the section's body text, e.g. "Source utt_ids: [19e6333b-...,
+    c550cb90-...]" -- structurally valid JSON, passes every other check,
+    but has no actual explanatory content. This is a coarse structural
+    guard (not a quality judge, see src/services/quality/); it only
+    catches the degenerate echo pattern, not merely-thin notes.
+    """
+    return not _STUB_BODY_RE.match(body_md)
+
+
 def validate_hierarchy(sections: list[NoteSectionOutput]) -> bool:
     ordinals = [s.ordinal for s in sections]
     return ordinals == sorted(ordinals) and len(set(ordinals)) == len(ordinals)
@@ -236,6 +257,12 @@ class NoteSynthesisAgent:
             if not validate_katex(section.body_md):
                 logger.warning(
                     "dropping note section with unbalanced KaTeX",
+                    extra={"heading": section.heading},
+                )
+                continue
+            if not validate_body_is_prose(section.body_md):
+                logger.warning(
+                    "dropping note section whose body is a stub citation echo",
                     extra={"heading": section.heading},
                 )
                 continue
