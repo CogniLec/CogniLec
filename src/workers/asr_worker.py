@@ -26,6 +26,7 @@ from src.services.asr.external import ExternalASRService
 from src.services.asr.service import FasterWhisperASRService
 from src.services.audio_chain.vad import read_wav_as_array
 from src.services.orchestration.auto_study_materials import generate_study_materials
+from src.services.orchestration.session_reconciliation import reconcile_stale_recording_sessions
 from src.services.storage.client import StorageClient
 from src.services.storage.models import BucketName
 from src.services.valkey_stream import AUDIO_PROCESSED_STREAM, ValkeyStreamProducer
@@ -33,6 +34,11 @@ from src.services.valkey_stream import AUDIO_PROCESSED_STREAM, ValkeyStreamProdu
 logger = logging.getLogger(__name__)
 
 CONSUMER_GROUP = "asr"
+# How often run_forever sweeps for stale `recording` sessions (see
+# run_reconciliation_sweep). Independent of DEFAULT_IDLE_THRESHOLD in
+# session_reconciliation.py (how long a session must be idle before it
+# counts as stale) -- this just controls how often we check.
+RECONCILIATION_INTERVAL_S = 5 * 60
 
 # Utterance `seq` values are derived from the chunk-level stream `sequence`
 # as `sequence * SEQUENCE_STRIDE + local_index`, so multiple utterances
@@ -128,52 +134,7 @@ class ASRWorker:
                 await db_session.commit()
 
             if is_final:
-                # A fresh session/transaction, deliberately separate from
-                # the one just committed above: process_session (S47)
-                # requires the TRANSCRIBED transition to already be
-                # durable before it will proceed (it re-fetches and checks
-                # session_obj.status itself), and this is a genuinely
-                # separate unit of work -- one subject's note-synthesis/
-                # flashcard-generation failure must not roll back or block
-                # the transcription commit that already succeeded.
-                try:
-                    async with self._session_factory() as materials_session:
-                        # Bounded, not just try/except -- confirmed live:
-                        # this call can hang indefinitely past the LLM
-                        # router's own timeout (root cause not yet
-                        # isolated), and since this worker processes
-                        # messages one at a time, an unbounded hang here
-                        # freezes ALL subsequent chunk processing for every
-                        # session, not just this one. asyncio.wait_for
-                        # turns a silent freeze into a bounded, logged
-                        # failure so the worker keeps consuming.
-                        #
-                        # 300s was too tight once guided_json (constrained
-                        # decoding) was enabled -- confirmed live: T5's
-                        # relevance filter runs one LLM call per
-                        # DEFAULT_BATCH_SIZE=8 utterances, each taking
-                        # 60-110s with a warm FSM cache, so a real ~5-minute
-                        # lecture's several batches legitimately exceeded
-                        # 300s total and got cancelled mid-flight. Raised to
-                        # 1800s (30min) -- this is Phase 2/post-session work
-                        # (ADR-014), not real-time, so slow-but-eventually-
-                        # correct is the right trade-off over cutting off a
-                        # real session's flow.
-                        await asyncio.wait_for(
-                            generate_study_materials(session_id, subject_id, materials_session),
-                            timeout=1800,
-                        )
-                except TimeoutError:
-                    logger.exception(
-                        "auto study-material generation timed out after 1800s "
-                        "(transcription itself succeeded)",
-                        extra={"session_id": str(session_id)},
-                    )
-                except Exception:
-                    logger.exception(
-                        "auto study-material generation failed (transcription itself succeeded)",
-                        extra={"session_id": str(session_id)},
-                    )
+                await self._generate_materials_bounded(session_id, subject_id)
         except Exception:
             logger.exception(
                 "chunk transcription failed",
@@ -246,6 +207,52 @@ class ASRWorker:
             },
         )
 
+    async def _generate_materials_bounded(
+        self, session_id: uuid.UUID, subject_id: uuid.UUID
+    ) -> None:
+        """Runs note/flashcard generation for a just-finalized session,
+        bounded and best-effort. Shared by the normal `is_final` chunk path
+        and the stale-session reconciliation sweep (`run_forever`) -- both
+        reach this only after the recording -> transcribed transition is
+        already durably committed, so a failure here must never roll that
+        back or block anything else this worker is doing."""
+        try:
+            async with self._session_factory() as materials_session:
+                # Bounded, not just try/except -- confirmed live: this call
+                # can hang indefinitely past the LLM router's own timeout
+                # (root cause not yet isolated), and since this worker
+                # processes messages one at a time, an unbounded hang here
+                # freezes ALL subsequent chunk processing for every
+                # session, not just this one. asyncio.wait_for turns a
+                # silent freeze into a bounded, logged failure so the
+                # worker keeps consuming.
+                #
+                # 300s was too tight once guided_json (constrained
+                # decoding) was enabled -- confirmed live: T5's relevance
+                # filter runs one LLM call per DEFAULT_BATCH_SIZE=8
+                # utterances, each taking 60-110s with a warm FSM cache, so
+                # a real ~5-minute lecture's several batches legitimately
+                # exceeded 300s total and got cancelled mid-flight. Raised
+                # to 1800s (30min) -- this is Phase 2/post-session work
+                # (ADR-014), not real-time, so slow-but-eventually-correct
+                # is the right trade-off over cutting off a real session's
+                # flow.
+                await asyncio.wait_for(
+                    generate_study_materials(session_id, subject_id, materials_session),
+                    timeout=1800,
+                )
+        except TimeoutError:
+            logger.exception(
+                "auto study-material generation timed out after 1800s "
+                "(transcription itself succeeded)",
+                extra={"session_id": str(session_id)},
+            )
+        except Exception:
+            logger.exception(
+                "auto study-material generation failed (transcription itself succeeded)",
+                extra={"session_id": str(session_id)},
+            )
+
     async def _finalize_session(self, db_session: AsyncSession, session_id: uuid.UUID) -> None:
         """Transition the session recording -> transcribed atomically with the
         commit of the last utterance batch (NFR-R3: caller must commit()
@@ -267,11 +274,37 @@ class ASRWorker:
             await self.process_message(message_id, fields)
         return len(messages)
 
+    async def run_reconciliation_sweep(self) -> None:
+        """Finalizes/fails `recording` sessions stuck idle past the
+        threshold (see session_reconciliation.py's docstring for why this
+        exists: closing/crashing the recording tab before Stop leaves a
+        session's already-transcribed audio permanently unprocessed,
+        confirmed live on a real 441-utterance session). Runs the same
+        bounded generate_study_materials path as a normal `is_final`
+        chunk, for every session it finalizes."""
+        try:
+            async with self._session_factory() as db_session:
+                result = await reconcile_stale_recording_sessions(db_session)
+        except Exception:
+            logger.exception("stale-session reconciliation sweep failed")
+            return
+        for session_id, subject_id in result.finalized_session_ids:
+            await self._generate_materials_bounded(session_id, subject_id)
+
     async def run_forever(self) -> None:  # pragma: no cover - long-running loop
-        """Poll indefinitely until cancelled."""
+        """Poll indefinitely until cancelled, sweeping for stale `recording`
+        sessions roughly every RECONCILIATION_INTERVAL_S -- not on every
+        poll (run_once's own block_ms is far shorter), since the sweep is
+        a full-table status scan and gains nothing from running more often
+        than the idle threshold it's checking against."""
         await self.start()
+        last_sweep = 0.0
         while True:
             await self.run_once()
+            now = asyncio.get_event_loop().time()
+            if now - last_sweep >= RECONCILIATION_INTERVAL_S:
+                last_sweep = now
+                await self.run_reconciliation_sweep()
 
 
 async def main() -> None:  # pragma: no cover - process entrypoint

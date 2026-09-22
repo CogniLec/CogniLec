@@ -428,3 +428,56 @@ class TestNFRR3Gate:
 
         gate = NFR_R3_Gate(session_repo)
         assert await gate.assert_transcribed(session_id) is True
+
+
+class TestReconciliationSweep:
+    """Recovers a `recording` session that was never finalized (e.g. the
+    tab closed/crashed before Stop) -- run_reconciliation_sweep must both
+    transition it to transcribed AND trigger the same materials-generation
+    path a normal `is_final` chunk would."""
+
+    async def test_sweep_finalizes_stale_session_and_triggers_materials(
+        self,
+        db_session: AsyncSession,
+        session_factory: Any,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        from datetime import UTC, datetime, timedelta
+
+        from src.db.models.utterance import Utterance
+
+        subject_id, session_id = await _create_subject_and_session(db_session)
+        old = datetime.now(UTC) - timedelta(hours=25)
+        session_obj = await SessionRepository(db_session).get_or_raise(session_id)
+        session_obj.created_at = old
+        db_session.add(
+            Utterance(
+                subject_id=subject_id,
+                session_id=session_id,
+                seq=0,
+                start_ms=0,
+                end_ms=1000,
+                text="real content",
+                embed_model_ver="v1",
+                created_at=old + timedelta(minutes=1),
+            )
+        )
+        await db_session.commit()
+
+        calls: list[tuple[Any, Any]] = []
+
+        async def fake_generate(session_id: Any, subject_id: Any, db: Any) -> int:
+            calls.append((session_id, subject_id))
+            return 0
+
+        monkeypatch.setattr("src.workers.asr_worker.generate_study_materials", fake_generate)
+
+        # asr_service unused by this sweep path -- pass a stub so the
+        # worker doesn't load a real ASR model just to construct.
+        worker = ASRWorker(session_factory, stream=FakeStreamProducer(), asr_service=object())
+        await worker.run_reconciliation_sweep()
+
+        assert calls == [(session_id, subject_id)]
+        db_session.expire_all()
+        after = await SessionRepository(db_session).get_or_raise(session_id)
+        assert after.status == SessionStatus.TRANSCRIBED
