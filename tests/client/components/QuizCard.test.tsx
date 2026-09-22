@@ -124,6 +124,35 @@ describe("QuizCard (manual-review-app quiz/recall loop)", () => {
     expect(screen.getByTestId("quiz-empty")).toHaveTextContent("API request failed: 500");
   });
 
+  it("shows the backend's real 409 detail on Generate, not the generic conflict text", async () => {
+    // Regression: this previously showed the raw "API request failed: 409
+    // Conflict" for every generation failure, and friendlyErrorMessage's
+    // global 409 default ("That already exists") doesn't fit here either
+    // (it's tuned for subject-creation's name-collision 409).
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({ ok: false, status: 404, statusText: "Not Found" })
+      .mockResolvedValueOnce({
+        ok: false,
+        status: 409,
+        statusText: "Conflict",
+        json: async () => ({
+          detail: "No flashcards could be generated -- this subject has no persisted notes/topics yet.",
+        }),
+      });
+    globalThis.fetch = fetchMock as unknown as typeof fetch;
+
+    render(<QuizCard subjectId="subj-1" />);
+    await waitFor(() => expect(screen.getByTestId("quiz-empty")).toBeInTheDocument());
+
+    const user = userEvent.setup();
+    await user.click(screen.getByText("Generate flashcards from notes"));
+
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent(/no persisted notes/i));
+    expect(screen.getByRole("alert")).not.toHaveTextContent("API request failed");
+    expect(screen.getByRole("alert")).not.toHaveTextContent("That already exists");
+  });
+
   it("surfaces an error and keeps the selection when submitting a rating fails (docs/gaps.md #33i)", async () => {
     const fetchMock = vi
       .fn()

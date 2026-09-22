@@ -1,5 +1,11 @@
 import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
-import { fetchSubjects, createSession, uploadMaterial } from "../../../src/client/src/services/api";
+import {
+  ApiError,
+  fetchSubjects,
+  createSession,
+  generateFlashcards,
+  uploadMaterial,
+} from "../../../src/client/src/services/api";
 import { login, getAccessToken, setSessionExpiredHandler } from "../../../src/client/src/services/auth";
 import { installFakeXhr } from "../testUtils/fakeXhr";
 
@@ -31,6 +37,39 @@ describe("api service (mocked HTTP layer)", () => {
     }) as unknown as typeof fetch;
 
     await expect(fetchSubjects()).rejects.toThrow(/500/);
+  });
+
+  it("carries the backend's JSON `detail` text on ApiError instead of just the generic status line", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 409,
+      statusText: "Conflict",
+      json: async () => ({
+        detail: "No flashcards could be generated -- this subject has no persisted notes/topics yet.",
+      }),
+    }) as unknown as typeof fetch;
+
+    const err = await generateFlashcards("subj-1").catch((e: unknown) => e);
+    expect(err).toBeInstanceOf(ApiError);
+    expect((err as ApiError).status).toBe(409);
+    expect((err as ApiError).detail).toBe(
+      "No flashcards could be generated -- this subject has no persisted notes/topics yet.",
+    );
+  });
+
+  it("leaves ApiError.detail undefined when the error body isn't the expected shape", async () => {
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+      statusText: "Internal Server Error",
+      json: async () => {
+        throw new Error("not JSON");
+      },
+    }) as unknown as typeof fetch;
+
+    const err = await generateFlashcards("subj-1").catch((e: unknown) => e);
+    expect(err).toBeInstanceOf(ApiError);
+    expect((err as ApiError).detail).toBeUndefined();
   });
 
   it("posts a session create request with the expected body", async () => {

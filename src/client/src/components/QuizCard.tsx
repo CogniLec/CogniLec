@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStudySession } from "../hooks/useStudySession";
-import { generateFlashcards } from "../services/api";
+import { ApiError, generateFlashcards } from "../services/api";
+import { friendlyErrorMessage } from "../services/errorMessages";
 import type { FsrsRating } from "../types";
 
 export interface QuizCardProps {
@@ -36,7 +37,14 @@ function GenerateFlashcardsButton({
       await generateFlashcards(subjectId);
       onGenerated();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to generate flashcards");
+      // Previously showed the raw "API request failed: 409 Conflict" for
+      // every failure reason -- the backend's actual 409 detail ("no
+      // persisted notes/topics yet" vs "generation failed for all of
+      // them") is far more actionable, and friendlyErrorMessage's global
+      // 409 default ("That already exists") is wrong here (it's tuned for
+      // subject-creation's 409, a name collision).
+      const detail = err instanceof ApiError ? err.detail : undefined;
+      setError(friendlyErrorMessage(err, detail ? { 409: detail } : undefined));
     } finally {
       setGenerating(false);
     }

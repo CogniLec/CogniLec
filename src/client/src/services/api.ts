@@ -34,6 +34,13 @@ export class ApiError extends Error {
   constructor(
     public readonly status: number,
     statusText: string,
+    /** FastAPI's `{"detail": "..."}` body text, when the response had one
+     * and it parsed as JSON with a string `detail` -- e.g. "No flashcards
+     * could be generated -- this subject has no persisted notes/topics
+     * yet." for a 409 on flashcard generation. Callers that want that
+     * specific text instead of the generic "API request failed: 409
+     * Conflict" should show this when present (see friendlyErrorMessage). */
+    public readonly detail?: string,
   ) {
     super(`API request failed: ${status} ${statusText}`);
     this.name = "ApiError";
@@ -129,7 +136,16 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     ...init,
   });
   if (!res.ok) {
-    throw new ApiError(res.status, res.statusText);
+    let detail: string | undefined;
+    try {
+      const body: unknown = await res.json();
+      if (body && typeof body === "object" && typeof (body as { detail?: unknown }).detail === "string") {
+        detail = (body as { detail: string }).detail;
+      }
+    } catch {
+      // Non-JSON or empty error body -- fall back to the generic message.
+    }
+    throw new ApiError(res.status, res.statusText, detail);
   }
   return (await res.json()) as T;
 }
