@@ -6,10 +6,17 @@ import { MaterialUpload } from "./MaterialUpload";
 import { useStudyStatus } from "../hooks/useStudyStatus";
 import type { Subject } from "../types";
 
+function formatElapsed(ms: number): string {
+  const totalSeconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
 export function StudyScreen(): JSX.Element {
   const [subject, setSubject] = useState<Subject | null>(null);
   const [tab, setTab] = useState<"quiz" | "progress" | "materials">("quiz");
-  const { status, isProcessing } = useStudyStatus(subject?.id ?? null);
+  const { status, isProcessing, elapsedMs, progressFraction } = useStudyStatus(subject?.id ?? null);
 
   // Forces QuizCard to remount (and refetch) the moment generation
   // finishes, since the user may be sitting on the quiz tab the whole
@@ -36,11 +43,30 @@ export function StudyScreen(): JSX.Element {
           {isProcessing && (
             <div
               data-testid="study-status-banner"
-              className="panel rise-in flex items-center gap-3 border-brand-500/30 bg-brand-500/10 text-sm text-slate-200"
+              className="panel rise-in flex flex-col gap-3 border-brand-500/30 bg-brand-500/10 text-sm text-slate-200"
             >
-              <span className="h-2 w-2 animate-pulse rounded-full bg-brand-400" />
-              Generating your notes and flashcards from the latest recording — this can take
-              15-20 minutes. This page will update automatically.
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 shrink-0 animate-pulse rounded-full bg-brand-400" />
+                <span>
+                  Generating your notes and flashcards from the latest recording — this can take
+                  15-20 minutes. This page will update automatically.
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div
+                  data-testid="study-status-progress-bar"
+                  data-progress={Math.round(progressFraction * 100)}
+                  className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10"
+                >
+                  <div
+                    className="h-full rounded-full bg-brand-500 transition-all"
+                    style={{ width: `${Math.round(progressFraction * 100)}%` }}
+                  />
+                </div>
+                <span data-testid="study-status-elapsed" className="shrink-0 text-xs text-slate-400">
+                  {formatElapsed(elapsedMs)} elapsed
+                </span>
+              </div>
             </div>
           )}
           {status?.status === "failed" && (

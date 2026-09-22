@@ -41,6 +41,8 @@ describe("StudyScreen study-status polling banner (docs/gaps.md #33f)", () => {
     expect(screen.getByTestId("study-status-banner")).toHaveTextContent(
       "Generating your notes and flashcards",
     );
+    expect(screen.getByTestId("study-status-progress-bar")).toBeInTheDocument();
+    expect(screen.getByTestId("study-status-elapsed")).toHaveTextContent("elapsed");
   });
 
   it("shows a failure banner when the latest session failed", async () => {

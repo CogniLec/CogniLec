@@ -10,7 +10,11 @@ import { useRecorder } from "./hooks/useRecorder";
 import { useAuth } from "./hooks/useAuth";
 import type { Subject } from "./types";
 
-function CaptureScreen(): JSX.Element {
+export interface CaptureScreenProps {
+  onAudioUploaded?: () => void;
+}
+
+function CaptureScreen({ onAudioUploaded }: CaptureScreenProps): JSX.Element {
   const [subject, setSubject] = useState<Subject | null>(null);
   const {
     appState,
@@ -69,7 +73,7 @@ function CaptureScreen(): JSX.Element {
 
       {subject && consentGiven && (
         <section className="panel rise-in" style={{ animationDelay: "160ms" }}>
-          <AudioFileUpload subjectId={subject.id} />
+          <AudioFileUpload subjectId={subject.id} onUploaded={onAudioUploaded} />
         </section>
       )}
     </div>
@@ -149,7 +153,11 @@ export function App(): JSX.Element {
           </button>
         </nav>
 
-        {tab === "review" ? <StudyScreen /> : <CaptureScreen />}
+        {tab === "review" ? (
+          <StudyScreen />
+        ) : (
+          <CaptureScreen onAudioUploaded={() => setTab("review")} />
+        )}
       </main>
     </>
   );
