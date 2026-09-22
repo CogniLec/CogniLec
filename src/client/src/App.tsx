@@ -11,10 +11,15 @@ import { useAuth } from "./hooks/useAuth";
 import type { Subject } from "./types";
 
 export interface CaptureScreenProps {
-  onAudioUploaded?: () => void;
+  /** Fired once capture is done and its (possibly still-in-flight) chunks
+   * are queued for processing -- for both an uploaded audio file finishing
+   * and a live recording being stopped. The file-upload case only used to
+   * fire this; a stopped recording had no equivalent, leaving the user
+   * stuck on Capture with no indication anything was now processing. */
+  onCaptureComplete?: () => void;
 }
 
-function CaptureScreen({ onAudioUploaded }: CaptureScreenProps): JSX.Element {
+function CaptureScreen({ onCaptureComplete }: CaptureScreenProps): JSX.Element {
   const [subject, setSubject] = useState<Subject | null>(null);
   const {
     appState,
@@ -36,6 +41,17 @@ function CaptureScreen({ onAudioUploaded }: CaptureScreenProps): JSX.Element {
   const handleStart = (): void => {
     if (!subject) return;
     void startRecording(subject.id, subject.name);
+  };
+
+  // Chunk upload/sync continues in the background regardless of which tab
+  // is active (useRecorder's queue lives in the hook, not the screen), so
+  // switching away immediately on Stop -- matching AudioFileUpload's own
+  // "switch right after the transfer completes, not after server-side
+  // processing" behavior -- is consistent rather than making the user wait
+  // here for something Review already polls for.
+  const handleStop = (): void => {
+    stopRecording();
+    onCaptureComplete?.();
   };
 
   return (
@@ -64,7 +80,7 @@ function CaptureScreen({ onAudioUploaded }: CaptureScreenProps): JSX.Element {
           elapsedMs={elapsedMs}
           chunkCount={chunkCount}
           onStart={handleStart}
-          onStop={stopRecording}
+          onStop={handleStop}
           syncingCount={syncingCount}
           failedUploadCount={failedUploadCount}
           onRetryFailedUploads={retryFailedUploads}
@@ -73,7 +89,7 @@ function CaptureScreen({ onAudioUploaded }: CaptureScreenProps): JSX.Element {
 
       {subject && consentGiven && (
         <section className="panel rise-in" style={{ animationDelay: "160ms" }}>
-          <AudioFileUpload subjectId={subject.id} onUploaded={onAudioUploaded} />
+          <AudioFileUpload subjectId={subject.id} onUploaded={onCaptureComplete} />
         </section>
       )}
     </div>
@@ -156,7 +172,7 @@ export function App(): JSX.Element {
         {tab === "review" ? (
           <StudyScreen />
         ) : (
-          <CaptureScreen onAudioUploaded={() => setTab("review")} />
+          <CaptureScreen onCaptureComplete={() => setTab("review")} />
         )}
       </main>
     </>
