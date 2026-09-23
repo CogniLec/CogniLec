@@ -477,7 +477,11 @@ class TestReconciliationSweep:
         worker = ASRWorker(session_factory, stream=FakeStreamProducer(), asr_service=object())
         await worker.run_reconciliation_sweep()
 
-        assert calls == [(session_id, subject_id)]
+        # Membership, not exact equality: run_reconciliation_sweep also now
+        # sweeps stale `transcribed` sessions (session_reconciliation.py),
+        # which can legitimately pick up unrelated leftover rows from other
+        # tests sharing this same integration test DB.
+        assert (session_id, subject_id) in calls
         db_session.expire_all()
         after = await SessionRepository(db_session).get_or_raise(session_id)
         assert after.status == SessionStatus.TRANSCRIBED

@@ -18,6 +18,7 @@ from src.db.partitions.provisioner import PartitionProvisioner
 from src.db.repositories.session_repo import SessionRepository
 from src.services.orchestration.session_reconciliation import (
     reconcile_stale_recording_sessions,
+    reconcile_stale_transcribed_sessions,
 )
 
 pytestmark = [pytest.mark.asyncio, pytest.mark.integration]
@@ -90,6 +91,69 @@ async def test_stale_session_with_no_utterances_is_marked_failed(db_session: Asy
     assert session_obj.status == SessionStatus.FAILED
     assert session_obj.failure_reason is not None
     assert session_obj.failure_stage == "recording"
+
+
+async def test_stale_transcribed_session_is_retried_and_bookkept(db_session: AsyncSession) -> None:
+    old = datetime.now(UTC) - timedelta(hours=1)
+    subject_id, session_id = await _subject_and_recording_session(db_session, created_at=old)
+    session_obj = await SessionRepository(db_session).get_or_raise(session_id)
+    session_obj.status = SessionStatus.TRANSCRIBED
+    session_obj.notes_ready = False
+    await db_session.commit()
+
+    to_retry = await reconcile_stale_transcribed_sessions(
+        db_session, idle_after=timedelta(minutes=45)
+    )
+    assert to_retry == [(session_id, subject_id)]
+
+    db_session.expire_all()
+    refreshed = await SessionRepository(db_session).get_or_raise(session_id)
+    assert refreshed.retry_count == 1
+    assert refreshed.last_retry_at is not None
+
+
+async def test_recently_transcribed_session_is_not_retried_yet(db_session: AsyncSession) -> None:
+    _subject_id, session_id = await _subject_and_recording_session(
+        db_session, created_at=datetime.now(UTC)
+    )
+    session_obj = await SessionRepository(db_session).get_or_raise(session_id)
+    session_obj.status = SessionStatus.TRANSCRIBED
+    session_obj.notes_ready = False
+    await db_session.commit()
+
+    to_retry = await reconcile_stale_transcribed_sessions(
+        db_session, idle_after=timedelta(minutes=45)
+    )
+    assert to_retry == []
+
+
+async def test_transcribed_retry_count_caps_out(db_session: AsyncSession) -> None:
+    old = datetime.now(UTC) - timedelta(hours=1)
+    _subject_id, session_id = await _subject_and_recording_session(db_session, created_at=old)
+    session_obj = await SessionRepository(db_session).get_or_raise(session_id)
+    session_obj.status = SessionStatus.TRANSCRIBED
+    session_obj.notes_ready = False
+    session_obj.retry_count = 3
+    await db_session.commit()
+
+    to_retry = await reconcile_stale_transcribed_sessions(
+        db_session, idle_after=timedelta(minutes=45), max_retries=3
+    )
+    assert to_retry == []
+
+
+async def test_ready_transcribed_session_is_never_retried(db_session: AsyncSession) -> None:
+    old = datetime.now(UTC) - timedelta(hours=1)
+    _subject_id, session_id = await _subject_and_recording_session(db_session, created_at=old)
+    session_obj = await SessionRepository(db_session).get_or_raise(session_id)
+    session_obj.status = SessionStatus.TRANSCRIBED
+    session_obj.notes_ready = True
+    await db_session.commit()
+
+    to_retry = await reconcile_stale_transcribed_sessions(
+        db_session, idle_after=timedelta(minutes=45)
+    )
+    assert to_retry == []
 
 
 async def test_activity_measured_from_last_utterance_not_session_creation(

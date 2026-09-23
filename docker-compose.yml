@@ -407,7 +407,18 @@ services:
     deploy:
       resources:
         limits:
-          memory: 4G
+          # Was 4G. Confirmed live, repeatedly: the local-embedding
+          # fallback (src/ml/embedding/client.py, triggered whenever TEI
+          # is unreachable or -- before that client gained real batching,
+          # same commit as this change -- 413s on an oversized request)
+          # OOM-killed this container outright at 4G, silently losing
+          # whatever it was doing mid-task (a container OOM kill doesn't
+          # let Python's own exception handlers run, so nothing gets
+          # logged). Batching TEI requests makes that path far less
+          # likely to trigger at all; this raise is defense in depth for
+          # when it still does (TEI itself down, not just one oversized
+          # request).
+          memory: 8G
         # Confirmed live: without this, faster-whisper's CTranslate2
         # backend still tries to initialize CUDA (ASR_DEVICE defaults to
         # "cuda") and fails with "CUDA driver version is insufficient for

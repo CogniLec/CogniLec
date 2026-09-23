@@ -26,7 +26,10 @@ from src.services.asr.external import ExternalASRService
 from src.services.asr.service import FasterWhisperASRService
 from src.services.audio_chain.vad import read_wav_as_array
 from src.services.orchestration.auto_study_materials import generate_study_materials
-from src.services.orchestration.session_reconciliation import reconcile_stale_recording_sessions
+from src.services.orchestration.session_reconciliation import (
+    reconcile_stale_recording_sessions,
+    reconcile_stale_transcribed_sessions,
+)
 from src.services.storage.client import StorageClient
 from src.services.storage.models import BucketName
 from src.services.valkey_stream import AUDIO_PROCESSED_STREAM, ValkeyStreamProducer
@@ -275,20 +278,29 @@ class ASRWorker:
         return len(messages)
 
     async def run_reconciliation_sweep(self) -> None:
-        """Finalizes/fails `recording` sessions stuck idle past the
-        threshold (see session_reconciliation.py's docstring for why this
-        exists: closing/crashing the recording tab before Stop leaves a
-        session's already-transcribed audio permanently unprocessed,
-        confirmed live on a real 441-utterance session). Runs the same
-        bounded generate_study_materials path as a normal `is_final`
-        chunk, for every session it finalizes."""
+        """Finalizes/fails stuck `recording` sessions, and separately
+        retries study-material generation for stuck `transcribed` ones
+        (see session_reconciliation.py's module docstring for why both
+        exist -- confirmed live on real sessions, not theoretical). Runs
+        the same bounded generate_study_materials path as a normal
+        `is_final` chunk, for every session either sweep surfaces."""
         try:
             async with self._session_factory() as db_session:
-                result = await reconcile_stale_recording_sessions(db_session)
+                recording_result = await reconcile_stale_recording_sessions(db_session)
         except Exception:
-            logger.exception("stale-session reconciliation sweep failed")
-            return
-        for session_id, subject_id in result.finalized_session_ids:
+            logger.exception("stale-recording-session reconciliation sweep failed")
+            recording_result = None
+
+        try:
+            async with self._session_factory() as db_session:
+                transcribed_retries = await reconcile_stale_transcribed_sessions(db_session)
+        except Exception:
+            logger.exception("stale-transcribed-session reconciliation sweep failed")
+            transcribed_retries = []
+
+        to_process = list(recording_result.finalized_session_ids) if recording_result else []
+        to_process.extend(transcribed_retries)
+        for session_id, subject_id in to_process:
             await self._generate_materials_bounded(session_id, subject_id)
 
     async def run_forever(self) -> None:  # pragma: no cover - long-running loop

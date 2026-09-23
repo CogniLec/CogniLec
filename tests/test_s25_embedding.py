@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import uuid
 
+import httpx
 import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.models.session import Session
@@ -130,3 +131,46 @@ class TestT256InstructionPrefix:
         client._embed_via_tei = bad_tei  # type: ignore[method-assign]
         with pytest.raises(DimensionError):
             await client.embed(["x"])
+
+
+class TestBatching:
+    """Regression: `embed()` used to send every text in ONE TEI request, no
+    batching at all -- confirmed live, repeatedly: this 413s on any real
+    session's full utterance/note set, forcing every call onto the local
+    CPU fallback, which then OOM-killed the 4GB asr-worker container
+    outright (silently -- a container OOM kill doesn't let Python's own
+    exception handlers run), leaving real sessions permanently stuck.
+    """
+
+    async def test_texts_are_sent_in_batches_not_one_request(self) -> None:
+        client = EmbeddingClient(fallback_local=True, batch_size=2)
+        call_sizes: list[int] = []
+
+        async def fake_tei(texts: list[str]) -> list[list[float]]:
+            call_sizes.append(len(texts))
+            return [[0.0] * 1024 for _ in texts]
+
+        client._embed_via_tei = fake_tei  # type: ignore[method-assign]
+        result = await client.embed([f"t{i}" for i in range(5)])
+
+        assert call_sizes == [2, 2, 1]
+        assert len(result) == 5
+
+    async def test_one_batch_falling_back_to_local_does_not_affect_others(self) -> None:
+        client = EmbeddingClient(fallback_local=True, batch_size=2)
+        tei_call_count = 0
+
+        async def flaky_tei(texts: list[str]) -> list[list[float]]:
+            nonlocal tei_call_count
+            tei_call_count += 1
+            if tei_call_count == 2:
+                raise httpx.HTTPError("simulated 413")
+            return [[0.0] * 1024 for _ in texts]
+
+        client._embed_via_tei = flaky_tei  # type: ignore[method-assign]
+        client._embed_local = lambda texts: [[1.0] * 1024 for _ in texts]  # type: ignore[method-assign]
+
+        result = await client.embed([f"t{i}" for i in range(4)])
+        assert len(result) == 4
+        assert result[0] == [0.0] * 1024  # first batch: real TEI call
+        assert result[2] == [1.0] * 1024  # second batch: fell back to local

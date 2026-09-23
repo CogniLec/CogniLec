@@ -25,12 +25,25 @@ class EmbeddingClient:
         fallback_local: bool = True,
         version_info: ModelVersionInfo | None = None,
         local_device: str = "cpu",
+        batch_size: int = 16,
     ) -> None:
         self.tei_base_url = tei_base_url
         self.fallback_local = fallback_local
         self._version_info = version_info
         self._local_model = None
         self._local_device = local_device
+        # Confirmed live, repeatedly: sending every text in ONE TEI request
+        # (no batching at all, previously) 413s on any real session's full
+        # utterance/note set, which used to force EVERY call onto this
+        # single client's fallback_local path -- and that path OOM-killed
+        # the 4GB asr-worker container outright, not just failed cleanly,
+        # taking down whatever else the worker was doing mid-task with no
+        # error logged (a container OOM kill doesn't let Python's own
+        # exception handlers run). Batching here means TEI (fast, doesn't
+        # share this container's memory) succeeds in the common case, and
+        # local fallback -- still real, still slow/memory-hungry -- is only
+        # ever needed per-batch, not for an entire session's texts at once.
+        self.batch_size = batch_size
 
     @property
     def version_info(self) -> ModelVersionInfo:
@@ -58,13 +71,18 @@ class EmbeddingClient:
         prefix = self._prefix_for(task_mode)
         prefixed = [f"{prefix}{t}" for t in texts]
 
-        try:
-            vectors = await self._embed_via_tei(prefixed)
-        except (httpx.HTTPError, OSError) as exc:
-            if not self.fallback_local:
-                raise
-            log.warning("embedding.fallback_local: TEI unreachable (%s); using local model", exc)
-            vectors = self._embed_local(prefixed)
+        vectors: list[list[float]] = []
+        for i in range(0, len(prefixed), self.batch_size):
+            batch = prefixed[i : i + self.batch_size]
+            try:
+                vectors.extend(await self._embed_via_tei(batch))
+            except (httpx.HTTPError, OSError) as exc:
+                if not self.fallback_local:
+                    raise
+                log.warning(
+                    "embedding.fallback_local: TEI unreachable (%s); using local model", exc
+                )
+                vectors.extend(self._embed_local(batch))
 
         expected_dim = self.version_info.dim
         for vec in vectors:
